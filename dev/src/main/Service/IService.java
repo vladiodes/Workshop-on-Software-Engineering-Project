@@ -286,24 +286,4 @@ public interface IService {
      * REQ 2.6.5
      */
     String getNumberOfRegisteredUsersPerDate(String userToken,LocalDateTime date);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
