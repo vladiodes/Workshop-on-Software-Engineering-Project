@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IService {
 
-    /**
+    /*
      ------------------------ Users,guests, purchases -------------------
      */
     /**
@@ -130,7 +130,7 @@ public interface IService {
      */
     boolean addSecurityQuestions(String userToken,String question,String answer);
 
-    /**
+    /*
      ------------------------ Stores, permissions -------------------
      */
 
@@ -139,7 +139,7 @@ public interface IService {
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    boolean AddProductToStore(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity);
+    boolean AddProductToStore(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity, double price);
 
     /**
      * REQ 2.4.1 - manage store inventory
@@ -236,7 +236,7 @@ public interface IService {
      */
     List<ProductDTO>getStorePurchaseHistory(String userToken,String storeName);
 
-    /**
+    /*
      ------------------------ System manager actions -------------------
      */
 
@@ -267,7 +267,7 @@ public interface IService {
      */
     boolean respondToMessage(String userToken,String userToRespond,String msg);
 
-    /**
+    /*
      ------------------------ System stats -------------------
      These are all the functions to fulfil req 2.6.5 - a system manager can receive stats about the system.
      */
