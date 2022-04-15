@@ -77,6 +77,17 @@ public class Market {
         return new Pair<>(user,store);
     }
 
+    public boolean appointStoreManager(String userToken, String userToAppoint, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        User user_to_appoint=usersByName.get(userToAppoint);
+        if(user_to_appoint==null)
+            throw new IllegalArgumentException("The user to appoint doesn't exist!");
+        if(p.first==user_to_appoint)
+            throw new IllegalArgumentException("Can't appoint yourself!");
+
+        return p.first.appointManagerToStore(p.second,user_to_appoint);
+    }
+
     private class Pair<K,V>{
         private K first;
         private V second;

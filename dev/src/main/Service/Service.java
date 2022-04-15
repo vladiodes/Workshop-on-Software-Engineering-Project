@@ -144,7 +144,8 @@ public class Service implements IService{
 
     @Override
     public boolean appointStoreManager(String userToken, String userToAppoint, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to appoint store manager with parameters: token: %s userToAppoint: %s storeName:%s", userToken, userToAppoint, storeName));
+        return market.appointStoreManager(userToken, userToAppoint, storeName);
     }
 
     @Override

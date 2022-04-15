@@ -89,20 +89,12 @@ public class User implements IUser {
 
     public boolean appointOwnerToStore(Store store, User user_to_appoint) {
 
-        //first checking if the appointing (this) user can appoint an owner to the store
-        if(!foundedStores.contains(store) || !getOwnedStores().contains(store))
-            throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
-
-        //second checking if the user to appoint isn't already an owner/manager/founder of the store
-        if(user_to_appoint.getOwnedStores().contains(store))
-            throw new IllegalArgumentException("This user is already an owner of the store!");
-        if(user_to_appoint.foundedStores.contains(store))
-            throw new IllegalArgumentException("This user is already a founder of the store!");
-        if(user_to_appoint.getManagedStores().contains(store))
-            throw new IllegalArgumentException("This user is already a manager of the store!");
+        //first checking preconditions to make the appointment
+        checkAppointmentPreconditions(store, user_to_appoint);
 
         OwnerPermissions newOwnerAppointment=new OwnerPermissions(user_to_appoint,this,store);
         user_to_appoint.addOwnedStore(newOwnerAppointment);
+        store.addOwnerToStore(newOwnerAppointment);
         return true;
     }
 
@@ -187,5 +179,37 @@ public class User implements IUser {
                 ownersAppointedBy.add(ownerAppointment.getAppointedToOwner());
         }
         return ownersAppointedBy;
+    }
+
+    public boolean appointManagerToStore(Store store, User user_to_appoint) {
+        //first checking preconditions for the appointment
+        checkAppointmentPreconditions(store, user_to_appoint);
+
+        ManagerPermissions newManagerAppointment=new ManagerPermissions(user_to_appoint,this,store);
+        user_to_appoint.addManagedStores(newManagerAppointment);
+        store.addManager(newManagerAppointment);
+        return true;
+    }
+
+    private void addManagedStores(ManagerPermissions newManagerAppointment) {
+        managedStores.add(newManagerAppointment);
+    }
+
+    /**
+     * This function checks the preconditions holds for this user to appoint user_to_appoint to a staff
+     * member of the store.
+     */
+    private void checkAppointmentPreconditions(Store store, User user_to_appoint) {
+        //first checking if the appointing (this) user can appoint a manager to the store
+        if (!foundedStores.contains(store) || !getOwnedStores().contains(store))
+            throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
+
+        //second checking if the user to appoint isn't already an owner/manager/founder of the store
+        if (user_to_appoint.getOwnedStores().contains(store))
+            throw new IllegalArgumentException("This user is already an owner of the store!");
+        if (user_to_appoint.foundedStores.contains(store))
+            throw new IllegalArgumentException("This user is already a founder of the store!");
+        if (user_to_appoint.getManagedStores().contains(store))
+            throw new IllegalArgumentException("This user is already a manager of the store!");
     }
 }

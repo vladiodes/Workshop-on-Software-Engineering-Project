@@ -67,4 +67,12 @@ public class Store implements IStore {
     public ConcurrentLinkedQueue<ManagerPermissions> getManagersAppointments() {
         return managers;
     }
+
+    public void addOwnerToStore(OwnerPermissions newOwnerAppointment) {
+        owners.add(newOwnerAppointment);
+    }
+
+    public void addManager(ManagerPermissions newManagerAppointment) {
+        managers.add(newManagerAppointment);
+    }
 }

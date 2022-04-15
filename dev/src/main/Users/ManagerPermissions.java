@@ -11,8 +11,11 @@ public class ManagerPermissions {
     private Store store;
     private ConcurrentLinkedQueue<StorePermission> permissions;
 
-    public ManagerPermissions(){
+    public ManagerPermissions(User appointedToManager,User appointedBy,Store store){
         permissions=new ConcurrentLinkedQueue<>();
+        this.appointedToManager=appointedToManager;
+        this.store=store;
+        this.appointedBy=appointedBy;
     }
 
     public Store getStore() {
