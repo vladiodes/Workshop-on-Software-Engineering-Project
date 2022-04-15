@@ -2,15 +2,19 @@ package main.Users;
 
 import main.Stores.Store;
 
-import java.security.Permission;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ManagerPermissions {
 
     private User appointedToManager;
     private User appointedBy;
     private Store store;
-    private List<StorePermission> permissions;
+    private ConcurrentLinkedQueue<StorePermission> permissions;
+
+    public ManagerPermissions(){
+        permissions=new ConcurrentLinkedQueue<>();
+    }
+
     public Store getStore() {
         return store;
     }
@@ -18,5 +22,13 @@ public class ManagerPermissions {
 
     public boolean hasPermission(StorePermission permission) {
         return permissions.contains(permission);
+    }
+
+    public User getAppointedBy() {
+        return appointedBy;
+    }
+
+    public User getAppointedToManager() {
+        return appointedToManager;
     }
 }

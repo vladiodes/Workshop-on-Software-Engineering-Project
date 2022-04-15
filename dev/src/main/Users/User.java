@@ -109,4 +109,83 @@ public class User implements IUser {
     private void addOwnedStore(OwnerPermissions newOwnerAppointment) {
         ownedStores.add(newOwnerAppointment);
     }
+
+    /**
+     * This is a recursive function - it deletes the owner of a store and all of the
+     * managers and owners that were appointed by the user to the store
+     * @return true upon success
+     */
+    public boolean removeOwnerAppointment(Store store, User appointed_user) {
+
+        OwnerPermissions ow = CheckPreConditionsAndFindAppointment(store, appointed_user);
+
+        // now we delete all appointments by appointed_user
+        deleteAllAppointedBy(store,
+                getAllStoreOwnersAppointedBy(appointed_user,store)
+                , getAllStoreManagersAppointedBy(appointed_user,store));
+
+        //finally - deleting the appointment to owner from the appointed_user
+        appointed_user.ownedStores.remove(ow);
+        return true;
+    }
+
+    private void deleteAllAppointedBy(Store store, List<User> ownersAppointedBy, List<User> managersAppointedBy) {
+        for(User owner: ownersAppointedBy){
+            removeOwnerAppointment(store,owner);
+        }
+        for(User manager: managersAppointedBy){
+            removeManagerAppointment(store,manager);
+        }
+    }
+
+    private OwnerPermissions CheckPreConditionsAndFindAppointment(Store store, User appointed_user) {
+        OwnerPermissions ow=null;
+        //checking preconditions
+        //first checking if the appointed user is an owner of the store
+        if(!appointed_user.getOwnedStores().contains(store))
+            throw new IllegalArgumentException("The appointed user is not an owner of the store");
+
+        //second, checking if this user can remove the appointment - has to be a founder or an appointing user
+        if(!foundedStores.contains(store)){ //he's not a founder
+
+            for(OwnerPermissions appointment: appointed_user.ownedStores){ //or either he didn't appoint the user to an owner
+                if(appointment.getStore()== store)
+                {
+                    ow=appointment;
+                    if(appointment.getAppointedBy()!=this){
+                        throw new IllegalArgumentException("The user is not a founder or either didn't appoint the user to an owner");
+                    }
+                }
+            }
+        }
+        return ow;
+    }
+
+    private void removeManagerAppointment(Store store, User manager) {
+        
+    }
+
+    /**
+     * This function returns all users that are managers and were appointed by AppointedByUser
+     */
+    private List<User> getAllStoreManagersAppointedBy(User AppointedByUser, Store store) {
+        LinkedList<User> managersAppointedBy=new LinkedList<>();
+        for(ManagerPermissions managerAppointment:store.getManagersAppointments()){
+            if(managerAppointment.getAppointedBy()==AppointedByUser)
+                managersAppointedBy.add(managerAppointment.getAppointedToManager());
+        }
+        return managersAppointedBy;
+    }
+
+    /**
+     * This function returns all users that are owners and were appointed by AppointedByUser
+     */
+    private List<User> getAllStoreOwnersAppointedBy(User AppointedByUser, Store store) {
+        LinkedList<User> ownersAppointedBy=new LinkedList<>();
+        for(OwnerPermissions ownerAppointment:store.getOwnersAppointments()){
+            if(ownerAppointment.getAppointedBy()==AppointedByUser)
+                ownersAppointedBy.add(ownerAppointment.getAppointedToOwner());
+        }
+        return ownersAppointedBy;
+    }
 }

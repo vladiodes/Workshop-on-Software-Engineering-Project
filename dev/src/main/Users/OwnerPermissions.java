@@ -18,4 +18,12 @@ public class OwnerPermissions {
     public Store getStore() {
         return store;
     }
+
+    public User getAppointedBy(){
+        return appointedBy;
+    }
+
+    public User getAppointedToOwner(){
+        return appointedToOwner;
+    }
 }

@@ -54,6 +54,17 @@ public class Market {
         return p.first.appointOwnerToStore(p.second,user_to_appoint);
     }
 
+
+
+    public boolean removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        User appointed_user = usersByName.get(userAppointed);
+        if(appointed_user==null)
+            throw new IllegalArgumentException("The user appointed doesn't exist in the system");
+
+        return p.first.removeOwnerAppointment(p.second,appointed_user);
+    }
+
     private Pair<User,Store> getConnectedUserAndStore(String userToken,String storeName){
         User user= connectedUsers.get(userToken);
         if(user==null)

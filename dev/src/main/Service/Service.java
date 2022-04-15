@@ -138,7 +138,8 @@ public class Service implements IService{
 
     @Override
     public boolean removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to remove a store owner appointment parameters: token: %s userAppointed: %s storeName:%s",userToken,userAppointed,storeName));
+        return market.removeStoreOwnerAppointment(userToken,userAppointed,storeName);
     }
 
     @Override
