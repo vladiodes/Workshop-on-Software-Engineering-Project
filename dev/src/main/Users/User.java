@@ -72,7 +72,7 @@ public class User implements IUser {
 
     private boolean hasPermission(Store store,StorePermission permission){
         if(foundedStores.contains(store)){
-            //founder can add do whatever he likes...
+            //founder can do whatever he likes...
             return true;
         }
         if(getOwnedStores().contains(store)){
@@ -85,5 +85,28 @@ public class User implements IUser {
             }
         }
         return false;
+    }
+
+    public boolean appointOwnerToStore(Store store, User user_to_appoint) {
+
+        //first checking if the appointing (this) user can appoint an owner to the store
+        if(!foundedStores.contains(store) || !getOwnedStores().contains(store))
+            throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
+
+        //second checking if the user to appoint isn't already an owner/manager/founder of the store
+        if(user_to_appoint.getOwnedStores().contains(store))
+            throw new IllegalArgumentException("This user is already an owner of the store!");
+        if(user_to_appoint.foundedStores.contains(store))
+            throw new IllegalArgumentException("This user is already a founder of the store!");
+        if(user_to_appoint.getManagedStores().contains(store))
+            throw new IllegalArgumentException("This user is already a manager of the store!");
+
+        OwnerPermissions newOwnerAppointment=new OwnerPermissions(user_to_appoint,this,store);
+        user_to_appoint.addOwnedStore(newOwnerAppointment);
+        return true;
+    }
+
+    private void addOwnedStore(OwnerPermissions newOwnerAppointment) {
+        ownedStores.add(newOwnerAppointment);
     }
 }

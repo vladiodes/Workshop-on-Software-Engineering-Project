@@ -1,6 +1,7 @@
 package main;
 
 import main.Security.ISecurity;
+import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.User;
 
@@ -34,33 +35,46 @@ public class Market {
     }
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
-        User user=connectedUsers.get(userToken);
-        if(user==null)
-            //user is offline/doesn't exist
-            return false;
-
-        Store store=stores.get(storeName);
-        if(store==null)
-            //no such store
-            return false;
-
-        return user.addProductToStore(store,productName,category,keyWords,description,quantity,price);
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.addProductToStore(p.second,productName,category,keyWords,description,quantity,price);
     }
 
     public boolean updateProductInStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
-        User user = connectedUsers.get(userToken);
-        if (user == null)
-            return false;
-
-        Store store = stores.get(storeName);
-        if (store == null)
-            return false;
-
-        return user.updateProductToStore(store,productName,category,keyWords,description,quantity,price);
-
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.updateProductToStore(p.second,productName,category,keyWords,description,quantity,price);
     }
 
 
+    public boolean appointStoreOwner(String userToken, String userToAppoint, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        User user_to_appoint=usersByName.get(userToAppoint);
+        if(user_to_appoint==null)
+            throw new IllegalArgumentException("The user to appoint doesn't exist!");
+
+        return p.first.appointOwnerToStore(p.second,user_to_appoint);
+    }
+
+    private Pair<User,Store> getConnectedUserAndStore(String userToken,String storeName){
+        User user= connectedUsers.get(userToken);
+        if(user==null)
+            throw new IllegalArgumentException("User not logged in");
+
+        Store store = stores.get(storeName);
+        if (store == null)
+            throw new IllegalArgumentException("No such store");
+
+        return new Pair<>(user,store);
+    }
+
+    private class Pair<K,V>{
+        private K first;
+        private V second;
+
+        private Pair(K first,V second){
+            this.first=first;
+            this.second=second;
+        }
+    }
 }
 
 
