@@ -6,8 +6,6 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Logger.Logger;
 import main.Market;
-import main.Stores.IStore;
-import main.Users.User;
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
@@ -155,22 +153,86 @@ public class Service implements IService{
 
     @Override
     public boolean allowManagerUpdateProducts(String userToken, String managerName, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant update products permission to:%s in store:%s",managerName,storeName));
+        return market.allowManagerUpdateProducts(userToken,managerName,storeName);
     }
 
     @Override
     public boolean disAllowManagerUpdateProducts(String userToken, String managerName, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow update products permission to:%s in store:%s",managerName,storeName));
+        return market.disallowManagerUpdateProducts(userToken,managerName,storeName);
     }
 
     @Override
     public boolean allowManagerGetHistory(String userToken, String managerName, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant view purchase history permission to:%s in store:%s",managerName,storeName));
+        return market.allowManagerViewPurchaseHistory(userToken,managerName,storeName);
     }
 
     @Override
     public boolean disAllowManagerGetHistory(String userToken, String managerName, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow viewing purchase history permission to:%s in store:%s",managerName,storeName));
+        return market.disallowManagerViewPurchaseHistory(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean allowManagerViewStaffPermissions(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant view staff permissions permission to:%s in store:%s",managerName,storeName));
+        return market.allowManagerViewStaffPermissions(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean disAllowManagerViewStaffPermissions(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow viewing staff permissions permission to:%s in store:%s",managerName,storeName));
+        return market.disallowManagerViewStaffPermissions(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean allowManagerChangeStaffPermissions(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant change staff permissions permission to:%s in store:%s",managerName,storeName));
+        return market.allowManagerChangeStaffPermissions(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean disAllowManagerChangeStaffPermissions(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow changing staff permissions permission to:%s in store:%s",managerName,storeName));
+        return market.disallowManagerChangeStaffPermissions(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean allowManagerRemoveManager(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant remove manager permission to:%s in store:%s",managerName,storeName));
+        return market.allowManagerRemoveManager(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean disAllowManagerRemoveManager(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow removing manager permission to:%s in store:%s",managerName,storeName));
+        return market.disallowManagerRemoveManager(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean allowManagerAppointToManager(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant appoint manager permission to:%s in store:%s",managerName,storeName));
+        return market.allowManagerAppointToManager(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean disAllowManagerAppointToManager(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow appointing manager permission to:%s in store:%s",managerName,storeName));
+        return market.disallowManagerAppointToManager(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean allowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant answer and take requests permission to:%s in store:%s",managerName,storeName));
+        return market.allowManagerAnswerAndTakeRequests(userToken,managerName,storeName);
+    }
+
+    @Override
+    public boolean disAllowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow answer and take requests permission to:%s in store:%s",managerName,storeName));
+        return market.disallowManagerAnswerAndTakeRequests(userToken,managerName,storeName);
     }
 
     @Override

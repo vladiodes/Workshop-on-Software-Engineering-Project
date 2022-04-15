@@ -16,6 +16,12 @@ public class ManagerPermissions {
         this.appointedToManager=appointedToManager;
         this.store=store;
         this.appointedBy=appointedBy;
+        addDefaultPermissions();
+    }
+
+    private void addDefaultPermissions() {
+        permissions.add(StorePermission.AnswerAndTakeRequests);
+        permissions.add(StorePermission.ViewStoreHistory);
     }
 
     public Store getStore() {
@@ -33,5 +39,14 @@ public class ManagerPermissions {
 
     public User getAppointedToManager() {
         return appointedToManager;
+    }
+
+    public void addPermission(StorePermission permission) {
+        if(!permissions.contains(permission))
+            permissions.add(permission);
+    }
+
+    public void removePermission(StorePermission permission) {
+        permissions.remove(permission);
     }
 }
