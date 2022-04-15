@@ -2,6 +2,7 @@ package main.Users;
 
 import main.Stores.Store;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class OwnerPermissions {
@@ -14,6 +15,7 @@ public class OwnerPermissions {
         this.appointedBy=appointedBy;
         this.store=store;
     }
+
 
     public Store getStore() {
         return store;

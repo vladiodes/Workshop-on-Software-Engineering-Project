@@ -201,54 +201,6 @@ public interface IService {
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    boolean allowManagerViewStaffPermissions(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
-    boolean disAllowManagerViewStaffPermissions(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
-    boolean allowManagerChangeStaffPermissions(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
-    boolean disAllowManagerChangeStaffPermissions(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
-    boolean allowManagerRemoveManager(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
-    boolean disAllowManagerRemoveManager(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
-    boolean allowManagerAppointToManager(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
-    boolean disAllowManagerAppointToManager(String userToken,String managerName,String storeName);
-
-    /**
-     * REQ 2.4.7
-     * @return true/false upon success/failure
-     */
     boolean allowManagerAnswerAndTakeRequests(String userToken,String managerName,String storeName);
 
     /**

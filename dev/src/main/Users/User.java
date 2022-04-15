@@ -127,7 +127,7 @@ public class User implements IUser {
      */
     public boolean removeOwnerAppointment(Store store, User appointed_user) {
 
-        OwnerPermissions ow = CheckPreConditionsAndFindAppointment(store, appointed_user);
+        OwnerPermissions ow = CheckPreConditionsAndFindOwnerAppointment(store, appointed_user);
 
         // now we delete all appointments by appointed_user
         deleteAllAppointedBy(store,
@@ -136,6 +136,7 @@ public class User implements IUser {
 
         //finally - deleting the appointment to owner from the appointed_user
         appointed_user.ownedStores.remove(ow);
+        store.removeOwner(ow);
         return true;
     }
 
@@ -148,7 +149,7 @@ public class User implements IUser {
         }
     }
 
-    private OwnerPermissions CheckPreConditionsAndFindAppointment(Store store, User appointed_user) {
+    private OwnerPermissions CheckPreConditionsAndFindOwnerAppointment(Store store, User appointed_user) {
         OwnerPermissions ow = null;
         //checking preconditions
         //first checking if the appointed user is an owner of the store
@@ -167,8 +168,33 @@ public class User implements IUser {
         return ow;
     }
 
-    private void removeManagerAppointment(Store store, User manager) {
+    public boolean removeManagerAppointment(Store store, User manager) {
+        ManagerPermissions mp = CheckPreConditionsAndFindManagerAppointment(store, manager);
+
+        //deleting the appointment to manager from the appointed_user
+        manager.managedStores.remove(mp);
+        store.removeManager(mp);
+        return true;
         
+    }
+
+    private ManagerPermissions CheckPreConditionsAndFindManagerAppointment(Store store, User manager) {
+        ManagerPermissions mp = null;
+        //checking preconditions
+        //first checking if the appointed user is a manager of the store
+        if (!manager.getManagedStores().contains(store))
+            throw new IllegalArgumentException("The appointed user is not a manager of the store");
+
+        //second, checking if this user can remove the appointment - has to be an appointing user and have the relevant permission
+        //if the user is a manager - and has a permission to delete manager appointment
+        for (ManagerPermissions ma : manager.managedStores) {
+            if (ma.getStore() == store) {
+                mp = ma;
+                if (mp.getAppointedBy() != this)
+                    throw new IllegalArgumentException("The user didn't appoint the user to a manager");
+            }
+        }
+        return mp;
     }
 
     /**
@@ -206,17 +232,10 @@ public class User implements IUser {
 
     private void appointManagerPreconditions(Store store, User user_to_appoint) {
         //first checking preconditions for the appointment
-        if (!foundedStores.contains(store) || !getOwnedStores().contains(store) || !getManagedStores().contains(store)) {
+        if (!foundedStores.contains(store) || !getOwnedStores().contains(store)) {
             throw new IllegalArgumentException("This user doesn't have any permissions to the store");
         }
-        if(getManagedStores().contains(store)){
-            for (ManagerPermissions mp:managedStores){
-                if(mp.getStore()== store && mp.hasPermission(StorePermission.AppointToManager))
-                    break;
-                else
-                    throw new IllegalArgumentException("This user doesn't have the permission to do so");
-            }
-        }
+
         //second checking if the user to appoint isn't already an owner/manager/founder of the store
         if(checkIfAlreadyStaff(store, user_to_appoint))
             throw new IllegalArgumentException("This user is already a staff of the store!");
@@ -235,14 +254,7 @@ public class User implements IUser {
 
         if (!checkIfAlreadyStaff(store, this))
             throw new IllegalArgumentException("This user can't grant permissions!");
-        if (getManagedStores().contains(store)) {
-            for (ManagerPermissions mp : managedStores) {
-                if (mp.getStore() == store && mp.hasPermission(StorePermission.ChangeStaffPermissions))
-                    break;
-                else
-                    throw new IllegalArgumentException("This user can't grant permissions!");
-            }
-        }
+
         if (!manager.getManagedStores().contains(store))
             throw new IllegalArgumentException("This user isn't a manager of the store!");
 

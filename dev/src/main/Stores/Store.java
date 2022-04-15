@@ -75,4 +75,12 @@ public class Store implements IStore {
     public void addManager(ManagerPermissions newManagerAppointment) {
         managers.add(newManagerAppointment);
     }
+
+    public void removeManager(ManagerPermissions mp) {
+        managers.remove(mp);
+    }
+
+    public void removeOwner(OwnerPermissions ow) {
+        owners.remove(ow);
+    }
 }

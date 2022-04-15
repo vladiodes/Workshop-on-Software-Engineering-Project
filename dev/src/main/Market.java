@@ -114,44 +114,22 @@ public class Market {
         return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.ViewStoreHistory,false);
     }
 
-    public boolean allowManagerViewStaffPermissions(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.ViewStaffPermissions,true);
-    }
-
-    public boolean disallowManagerViewStaffPermissions(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.ViewStaffPermissions,false);
-    }
-
-    public boolean allowManagerChangeStaffPermissions(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.ChangeStaffPermissions,true);
-    }
-
-    public boolean disallowManagerChangeStaffPermissions(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.ChangeStaffPermissions,false);
-    }
-
-    public boolean allowManagerRemoveManager(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.RemoveManager,true);
-    }
-
-    public boolean disallowManagerRemoveManager(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.RemoveManager,false);
-    }
-
-    public boolean allowManagerAppointToManager(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.AppointToManager,true);
-    }
-
-    public boolean disallowManagerAppointToManager(String userToken, String managerName, String storeName) {
-        return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.AppointToManager,false);
-    }
-
     public boolean allowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
         return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.AnswerAndTakeRequests,true);
     }
 
     public boolean disallowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
         return allowOrDisallowPermission(userToken,managerName,storeName,StorePermission.AnswerAndTakeRequests,false);
+    }
+
+    public boolean removeStoreManager(String userToken, String userAppointed, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        User manager = usersByName.get(userAppointed);
+        if(manager==null)
+            throw new IllegalArgumentException("The user doesn't exist in the system!");
+
+        return p.first.removeManagerAppointment(p.second,manager);
+
     }
 
     private class Pair<K,V>{
