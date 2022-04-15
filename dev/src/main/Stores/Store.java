@@ -89,10 +89,27 @@ public class Store implements IStore {
     }
 
     public synchronized void closeStore() {
-        isActive=false;
+        if (!isActive)
+            throw new IllegalArgumentException("The store is already closed!");
+        isActive = false;
+        sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()));
+    }
+
+    private void sendMessageToStaffOfStore(String msg) {
+        for (User u : getOwnersOfStore())
+            u.addMessage(msg);
+        for (User u : getManagersOfStore())
+            u.addMessage(msg);
     }
 
     public String getName() {
         return storeName;
+    }
+
+    public synchronized void reOpen() {
+        if (isActive)
+            throw new IllegalArgumentException("The store is already opened!");
+        isActive = true;
+        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()));
     }
 }

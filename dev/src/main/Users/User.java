@@ -277,14 +277,17 @@ public class User implements IUser {
         if(!foundedStores.contains(store))
             throw new IllegalArgumentException("You're not the founder of the store!");
         store.closeStore();
-        for(User u:store.getOwnersOfStore())
-            u.addMessage(String.format("The store %s that you own is now inactive!",store.getName()));
-        for(User u:store.getManagersOfStore())
-            u.addMessage(String.format("The store %s that you manage is now inactive!",store.getName()));
         return true;
     }
 
-    private void addMessage(String msg){
+    public void addMessage(String msg){
         messages.add(msg);
+    }
+
+    public boolean reOpenStore(Store store) {
+        if(!foundedStores.contains(store))
+            throw new IllegalArgumentException("You're not the founder of the store!");
+        store.reOpen();
+        return true;
     }
 }

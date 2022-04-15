@@ -196,7 +196,8 @@ public class Service implements IService{
 
     @Override
     public boolean reOpenStore(String userToken, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to reopen store:%s",storeName));
+        return market.reOpenStore(userToken,storeName);
     }
 
     @Override

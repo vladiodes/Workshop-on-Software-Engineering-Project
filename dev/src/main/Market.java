@@ -138,6 +138,11 @@ public class Market {
 
     }
 
+    public boolean reOpenStore(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.reOpenStore(p.second);
+    }
+
     private class Pair<K,V>{
         private K first;
         private V second;
