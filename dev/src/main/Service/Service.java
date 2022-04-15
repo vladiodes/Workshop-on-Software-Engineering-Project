@@ -190,7 +190,8 @@ public class Service implements IService{
 
     @Override
     public boolean closeStore(String userToken, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to close store:%s",storeName));
+        return market.closeStore(userToken,storeName);
     }
 
     @Override

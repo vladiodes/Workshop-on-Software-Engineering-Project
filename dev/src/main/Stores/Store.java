@@ -14,6 +14,8 @@ public class Store implements IStore {
     private ConcurrentHashMap<String,Product> productsByName;
     private ConcurrentLinkedQueue<OwnerPermissions> owners;
     private ConcurrentLinkedQueue<ManagerPermissions> managers;
+    private boolean isActive;
+    private String storeName;
     public List<User> getOwnersOfStore(){
         LinkedList<User> storeOwners=new LinkedList<>();
         for(OwnerPermissions ow:owners){
@@ -29,10 +31,12 @@ public class Store implements IStore {
         return storeManagers;
     }
 
-    public Store(){
+    public Store(String storeName){
         this.owners=new ConcurrentLinkedQueue<>();
         this.managers=new ConcurrentLinkedQueue<>();
         this.productsByName=new ConcurrentHashMap<>();
+        isActive=true;
+        this.storeName=storeName;
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -82,5 +86,13 @@ public class Store implements IStore {
 
     public void removeOwner(OwnerPermissions ow) {
         owners.remove(ow);
+    }
+
+    public synchronized void closeStore() {
+        isActive=false;
+    }
+
+    public String getName() {
+        return storeName;
     }
 }

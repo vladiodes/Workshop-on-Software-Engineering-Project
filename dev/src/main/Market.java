@@ -132,6 +132,12 @@ public class Market {
 
     }
 
+    public boolean closeStore(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.closeStore(p.second);
+
+    }
+
     private class Pair<K,V>{
         private K first;
         private V second;

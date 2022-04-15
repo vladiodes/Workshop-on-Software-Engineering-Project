@@ -5,6 +5,7 @@ import main.Stores.Store;
 import javax.naming.NoPermissionException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class User implements IUser {
@@ -13,6 +14,7 @@ public class User implements IUser {
     private String userName;
     private String hashed_password;
     private AtomicBoolean isLoggedIn;
+    private ConcurrentLinkedQueue<String> messages=new ConcurrentLinkedQueue<>();
 
     // stores connections
     private List<Store> foundedStores;
@@ -269,5 +271,20 @@ public class User implements IUser {
             }
         }
         throw new IllegalArgumentException("The manager wasn't appointed by this user");
+    }
+
+    public boolean closeStore(Store store) {
+        if(!foundedStores.contains(store))
+            throw new IllegalArgumentException("You're not the founder of the store!");
+        store.closeStore();
+        for(User u:store.getOwnersOfStore())
+            u.addMessage(String.format("The store %s that you own is now inactive!",store.getName()));
+        for(User u:store.getManagersOfStore())
+            u.addMessage(String.format("The store %s that you manage is now inactive!",store.getName()));
+        return true;
+    }
+
+    private void addMessage(String msg){
+        messages.add(msg);
     }
 }
