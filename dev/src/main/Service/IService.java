@@ -6,6 +6,7 @@ import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 
+import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -139,14 +140,14 @@ public interface IService {
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    boolean AddProductToStore(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity, double price);
+    boolean AddProductToStore(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity, double price) throws NoPermissionException;
 
     /**
      * REQ 2.4.1 - manage store inventory
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    boolean updateProduct(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity);
+    boolean updateProduct(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity,double price) throws NoPermissionException;
 
     /**
      * REQ 2.4.4

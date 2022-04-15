@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
-      <change afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Finished implementing REQ 2.4.1 - managing store inventory">
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +53,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="main.Stores" />
       <recent name="main.DTO" />
       <recent name="test.AcceptanceTests" />
     </key>
@@ -60,6 +62,9 @@
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="main.Users" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="test.UnitTests" />
@@ -113,6 +118,14 @@
       <option name="presentableId" value="Default" />
       <updated>1649831427176</updated>
     </task>
+    <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
+      <created>1649926452757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1649926452757</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,7 +142,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff" />
+    <MESSAGE value="Finished implementing REQ 2.4.1 - managing store inventory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished implementing REQ 2.4.1 - managing store inventory" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

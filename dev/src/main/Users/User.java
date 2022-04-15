@@ -2,6 +2,7 @@ package main.Users;
 
 import main.Stores.Store;
 
+import javax.naming.NoPermissionException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -18,17 +19,17 @@ public class User implements IUser {
     private List<ManagerPermissions> managedStores;
     private List<OwnerPermissions> ownedStores;
 
-    private List<Store> getManagedStores(){
-        List<Store> stores=new LinkedList<>();
-        for(ManagerPermissions permission:managedStores){
+    private List<Store> getManagedStores() {
+        List<Store> stores = new LinkedList<>();
+        for (ManagerPermissions permission : managedStores) {
             stores.add(permission.getStore());
         }
         return stores;
     }
 
-    private List<Store> getOwnedStores(){
-        List<Store> stores=new LinkedList<>();
-        for(OwnerPermissions permissions:ownedStores){
+    private List<Store> getOwnedStores() {
+        List<Store> stores = new LinkedList<>();
+        for (OwnerPermissions permissions : ownedStores) {
             stores.add(permissions.getStore());
         }
         return stores;
@@ -56,19 +57,31 @@ public class User implements IUser {
         foundedStores=new LinkedList<>();
     }
 
-    public boolean addProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
+
+    public boolean addProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) throws NoPermissionException {
+        if (hasPermission(store, StorePermission.UpdateAddProducts))
+            return store.addProduct(productName, category, keyWords, description, quantity, price);
+        throw new NoPermissionException("This user doesn't have permissions to do that!");
+    }
+
+    public boolean updateProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) throws NoPermissionException {
+        if(hasPermission(store,StorePermission.UpdateAddProducts))
+            store.updateProduct(productName,category,keyWords,description,quantity,price);
+        throw new NoPermissionException("This user doesn't have permissions to do that!");
+    }
+
+    private boolean hasPermission(Store store,StorePermission permission){
         if(foundedStores.contains(store)){
-            //founder can add product...
-            return store.addProduct(productName,category,keyWords,description,quantity,price);
+            //founder can add do whatever he likes...
+            return true;
         }
         if(getOwnedStores().contains(store)){
-            //owner can add product...
-            return store.addProduct(productName,category,keyWords,description,quantity,price);
+            //owner can do almost everything
+            return true;
         }
-        for(ManagerPermissions permission:managedStores){
-            if(permission.getStore()==store){
-                if(permission.hasUpdateProductPermissions())
-                    return store.addProduct(productName,category,keyWords,description,quantity,price);
+        for(ManagerPermissions mp:managedStores){
+            if(mp.getStore()==store){
+                return mp.hasPermission(permission);
             }
         }
         return false;

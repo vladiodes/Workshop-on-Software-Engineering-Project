@@ -9,6 +9,7 @@ import main.Market;
 import main.Stores.IStore;
 import main.Users.User;
 
+import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -118,14 +119,15 @@ public class Service implements IService{
     }
 
     @Override
-    public boolean AddProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity,double price) {
+    public boolean AddProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity,double price) throws NoPermissionException {
         Logger.getInstance().logEvent("Service", String.format("Add product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
         return market.addProductToStore(userToken, productName, category, keyWords, description, storeName, quantity, price);
     }
 
     @Override
-    public boolean updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity) {
-        return false;
+    public boolean updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity,double price) throws NoPermissionException {
+        Logger.getInstance().logEvent("Service",String.format("Update product to store invoked with parameters: token: %s productName:%s storeName:%s",userToken,productName,storeName));
+        return market.updateProductInStore(userToken,productName,category,keyWords,description,storeName,quantity,price);
     }
 
     @Override
