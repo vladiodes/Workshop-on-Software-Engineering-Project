@@ -3,6 +3,7 @@ package main.Users;
 import main.Stores.Store;
 
 import javax.naming.NoPermissionException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -289,5 +290,19 @@ public class User implements IUser {
             throw new IllegalArgumentException("You're not the founder of the store!");
         store.reOpen();
         return true;
+    }
+
+    public HashMap<User, String> getStoreStaff(Store store) {
+        //check if this user is an owner/founder
+        if(!foundedStores.contains(store) || !getOwnedStores().contains(store))
+            throw new IllegalArgumentException("Must be owner/founder");
+
+        return store.getStoreStaff();
+
+
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

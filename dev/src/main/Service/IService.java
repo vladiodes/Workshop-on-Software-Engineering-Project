@@ -227,7 +227,7 @@ public interface IService {
      * UserDTO - represents the user that has a role in the store (manager,owner,founder)
      * List<String> - a list of all the permissions that the staff member has.
      */
-    HashMap<UserDTO,List<String>> getStoreStaff(String userToken,String storeName);
+    HashMap<UserDTO,String> getStoreStaff(String userToken,String storeName);
 
     /**
      * REQ 2.4.12

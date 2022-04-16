@@ -6,6 +6,7 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Logger.Logger;
 import main.Market;
+import main.Users.User;
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
@@ -201,8 +202,15 @@ public class Service implements IService{
     }
 
     @Override
-    public HashMap<UserDTO, List<String>> getStoreStaff(String userToken, String storeName) {
-        return null;
+    public HashMap<UserDTO, String> getStoreStaff(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to view store staff in store:%s",storeName));
+        HashMap<User,String> map=market.getStoreStaff(userToken,storeName);
+        HashMap<UserDTO,String> toReturn=new HashMap<>();
+        for(User u:map.keySet()){
+            UserDTO dto = new UserDTO(u);
+            toReturn.put(dto,map.get(u));
+        }
+        return toReturn;
     }
 
     @Override

@@ -4,6 +4,7 @@ import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,6 +15,7 @@ public class Store implements IStore {
     private ConcurrentHashMap<String,Product> productsByName;
     private ConcurrentLinkedQueue<OwnerPermissions> owners;
     private ConcurrentLinkedQueue<ManagerPermissions> managers;
+    private User founder;
     private boolean isActive;
     private String storeName;
     public List<User> getOwnersOfStore(){
@@ -31,12 +33,13 @@ public class Store implements IStore {
         return storeManagers;
     }
 
-    public Store(String storeName){
+    public Store(String storeName,User founder){
         this.owners=new ConcurrentLinkedQueue<>();
         this.managers=new ConcurrentLinkedQueue<>();
         this.productsByName=new ConcurrentHashMap<>();
         isActive=true;
         this.storeName=storeName;
+        this.founder=founder;
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -111,5 +114,23 @@ public class Store implements IStore {
             throw new IllegalArgumentException("The store is already opened!");
         isActive = true;
         sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()));
+    }
+
+    public HashMap<User, String> getStoreStaff() {
+        HashMap<User,String> staff=new HashMap<>();
+        //founder
+        staff.put(founder,"Founder of the store");
+
+        //owners
+        for(User owner:getOwnersOfStore())
+            staff.put(owner,"Owner of the store");
+
+        //managers
+        for(ManagerPermissions managerPermission:managers)
+            staff.put(managerPermission.getAppointedToManager(),managerPermission.permissionsToString());
+
+        return staff;
+
+
     }
 }

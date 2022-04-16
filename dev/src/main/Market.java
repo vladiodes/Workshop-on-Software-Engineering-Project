@@ -8,6 +8,7 @@ import main.Users.User;
 import main.utils.Pair;
 
 import javax.naming.NoPermissionException;
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -142,6 +143,11 @@ public class Market {
     public boolean reOpenStore(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.reOpenStore(p.second);
+    }
+
+    public HashMap<User, String> getStoreStaff(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.getStoreStaff(p.second);
     }
 }
 
