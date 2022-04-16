@@ -6,6 +6,8 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Logger.Logger;
 import main.Market;
+import main.Users.User;
+import main.utils.Response;
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
@@ -16,29 +18,47 @@ public class Service implements IService{
 
     private Market market;
 
+
     public Service(){
         market=new Market();
     }
 
 
     @Override
-    public String guestConnect() {
-        return null;
+    public Response<String> guestConnect() {
+        return new Response(market.ConnectGuest(), null);
     }
 
     @Override
-    public void guestDisconnect(String userToken) {
-
+    public Response<UserDTO> guestDisconnect(String userToken) {
+        try {
+            User r = market.DisconnectGuest(userToken);
+            return new Response<>(new UserDTO(r), null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean register(String userName, String password) {
-        return false;
+    public Response<Boolean> register(String userName, String password) {
+        try {
+            market.Register(userName, password);
+            return new Response<>(true, null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public String login(String userName, String password) {
-        return null;
+    public Response<UserDTO> login(String token, String userName, String password) {
+        try {
+            return new Response<>(new UserDTO(market.Login(token, userName, password)),null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
