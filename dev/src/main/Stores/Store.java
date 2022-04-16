@@ -1,5 +1,6 @@
 package main.Stores;
 
+import main.NotificationBus;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
@@ -18,6 +19,7 @@ public class Store implements IStore {
     private User founder;
     private boolean isActive;
     private String storeName;
+    private ConcurrentLinkedQueue<String> messagesToStore;
     public List<User> getOwnersOfStore(){
         LinkedList<User> storeOwners=new LinkedList<>();
         for(OwnerPermissions ow:owners){
@@ -40,6 +42,7 @@ public class Store implements IStore {
         isActive=true;
         this.storeName=storeName;
         this.founder=founder;
+        messagesToStore=new ConcurrentLinkedQueue<>();
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -91,29 +94,29 @@ public class Store implements IStore {
         owners.remove(ow);
     }
 
-    public synchronized void closeStore() {
+    public synchronized void closeStore(NotificationBus bus) {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
         isActive = false;
-        sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()));
+        sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()),bus);
     }
 
-    private void sendMessageToStaffOfStore(String msg) {
+    private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
         for (User u : getOwnersOfStore())
-            u.addMessage(msg);
+            bus.addMessage(u,msg);
         for (User u : getManagersOfStore())
-            u.addMessage(msg);
+            bus.addMessage(u,msg);
     }
 
     public String getName() {
         return storeName;
     }
 
-    public synchronized void reOpen() {
+    public synchronized void reOpen(NotificationBus bus) {
         if (isActive)
             throw new IllegalArgumentException("The store is already opened!");
         isActive = true;
-        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()));
+        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()),bus);
     }
 
     public HashMap<User, String> getStoreStaff() {
@@ -132,5 +135,12 @@ public class Store implements IStore {
         return staff;
 
 
+    }
+
+    public List<String> getQuestions() {
+        LinkedList<String> msgList=new LinkedList<>();
+        while (!messagesToStore.isEmpty())
+            msgList.add(messagesToStore.remove());
+        return msgList;
     }
 }

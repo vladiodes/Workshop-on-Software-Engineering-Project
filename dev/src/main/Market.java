@@ -29,12 +29,14 @@ public class Market {
     private ConcurrentHashMap<String, Store> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
+    private NotificationBus notificationBus;
 
     public Market(){
         usersByName=new ConcurrentHashMap<>();
         connectedUsers=new ConcurrentHashMap<>();
         stores=new ConcurrentHashMap<>();
         guestCounter=new AtomicInteger(1);
+        notificationBus=new NotificationBus();
     }
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
@@ -136,18 +138,23 @@ public class Market {
 
     public boolean closeStore(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
-        return p.first.closeStore(p.second);
+        return p.first.closeStore(p.second,notificationBus);
 
     }
 
     public boolean reOpenStore(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
-        return p.first.reOpenStore(p.second);
+        return p.first.reOpenStore(p.second,notificationBus);
     }
 
     public HashMap<User, String> getStoreStaff(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.getStoreStaff(p.second);
+    }
+
+    public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.receiveQuestionsFromStore(p.second);
     }
 }
 

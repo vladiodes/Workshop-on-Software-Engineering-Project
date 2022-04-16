@@ -215,7 +215,8 @@ public class Service implements IService{
 
     @Override
     public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
-        return null;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to receive questions from buyers from store:%s",storeName));
+        return market.receiveQuestionsFromBuyers(userToken,storeName);
     }
 
     @Override

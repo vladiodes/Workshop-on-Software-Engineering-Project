@@ -1,5 +1,6 @@
 package main.Users;
 
+import main.NotificationBus;
 import main.Stores.Store;
 
 import javax.naming.NoPermissionException;
@@ -274,10 +275,10 @@ public class User implements IUser {
         throw new IllegalArgumentException("The manager wasn't appointed by this user");
     }
 
-    public boolean closeStore(Store store) {
+    public boolean closeStore(Store store, NotificationBus bus) {
         if(!foundedStores.contains(store))
             throw new IllegalArgumentException("You're not the founder of the store!");
-        store.closeStore();
+        store.closeStore(bus);
         return true;
     }
 
@@ -285,24 +286,30 @@ public class User implements IUser {
         messages.add(msg);
     }
 
-    public boolean reOpenStore(Store store) {
+    public boolean reOpenStore(Store store,NotificationBus bus) {
         if(!foundedStores.contains(store))
             throw new IllegalArgumentException("You're not the founder of the store!");
-        store.reOpen();
+        store.reOpen(bus);
         return true;
     }
 
     public HashMap<User, String> getStoreStaff(Store store) {
-        //check if this user is an owner/founder
-        if(!foundedStores.contains(store) || !getOwnedStores().contains(store))
-            throw new IllegalArgumentException("Must be owner/founder");
-
+        checkOwnerOrFounder(store);
         return store.getStoreStaff();
-
-
     }
 
     public String getUserName() {
         return userName;
+    }
+
+    public List<String> receiveQuestionsFromStore(Store store) {
+        checkOwnerOrFounder(store);
+        return store.getQuestions();
+    }
+
+    private void checkOwnerOrFounder(Store store) {
+        //check if this user is an owner/founder
+        if(!foundedStores.contains(store) || !getOwnedStores().contains(store))
+            throw new IllegalArgumentException("Must be owner/founder");
     }
 }
