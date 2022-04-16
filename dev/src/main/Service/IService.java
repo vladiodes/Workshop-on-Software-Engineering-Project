@@ -1,10 +1,8 @@
 package main.Service;
 
 
-import main.DTO.ProductDTO;
-import main.DTO.ShoppingCartDTO;
-import main.DTO.StoreDTO;
-import main.DTO.UserDTO;
+import main.DTO.*;
+import main.utils.Pair;
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
@@ -245,9 +243,11 @@ public interface IService {
      * REQ 2.4.13
      * REQ 2.5
      * REQ 2.6.4
-     * @return a list of all the products that were purchased in the store
+     * @return a hashmap - the key is a pair of the purchase date and the integer is the quantity of the product that
+     * was bought at that date
+     * the value is the dto of the product.
      */
-    List<ProductDTO>getStorePurchaseHistory(String userToken,String storeName);
+    List<PurchaseDTO> getStorePurchaseHistory(String userToken, String storeName);
 
     /*
      ------------------------ System manager actions -------------------

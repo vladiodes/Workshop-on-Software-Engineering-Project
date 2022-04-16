@@ -1,12 +1,15 @@
 package main.Users;
 
 import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
 import main.Stores.Store;
 
 import javax.naming.NoPermissionException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -16,7 +19,6 @@ public class User implements IUser {
     private String userName;
     private String hashed_password;
     private AtomicBoolean isLoggedIn;
-    private ConcurrentLinkedQueue<String> messages=new ConcurrentLinkedQueue<>();
 
     // stores connections
     private List<Store> foundedStores;
@@ -104,7 +106,7 @@ public class User implements IUser {
 
     private void appointOwnerPreconditions(Store store, User user_to_appoint) {
         //first checking if the appointing (this) user can appoint a owner to the store
-        if (!foundedStores.contains(store) || !getOwnedStores().contains(store))
+        if(!hasPermission(store,StorePermission.OwnerPermission))
             throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
         if(checkIfAlreadyStaff(store, user_to_appoint))
             throw new IllegalArgumentException("This user is already a staff of the store");
@@ -157,7 +159,7 @@ public class User implements IUser {
         OwnerPermissions ow = null;
         //checking preconditions
         //first checking if the appointed user is an owner of the store
-        if (!appointed_user.getOwnedStores().contains(store))
+        if(!hasPermission(store,StorePermission.OwnerPermission))
             throw new IllegalArgumentException("The appointed user is not an owner of the store");
 
         //second, checking if this user can remove the appointment - has to be an appointing user
@@ -189,8 +191,7 @@ public class User implements IUser {
         if (!manager.getManagedStores().contains(store))
             throw new IllegalArgumentException("The appointed user is not a manager of the store");
 
-        //second, checking if this user can remove the appointment - has to be an appointing user and have the relevant permission
-        //if the user is a manager - and has a permission to delete manager appointment
+        //second, checking if this user can remove the appointment - has to be an appointing user
         for (ManagerPermissions ma : manager.managedStores) {
             if (ma.getStore() == store) {
                 mp = ma;
@@ -236,8 +237,8 @@ public class User implements IUser {
 
     private void appointManagerPreconditions(Store store, User user_to_appoint) {
         //first checking preconditions for the appointment
-        if (!foundedStores.contains(store) || !getOwnedStores().contains(store)) {
-            throw new IllegalArgumentException("This user doesn't have any permissions to the store");
+        if(!hasPermission(store,StorePermission.OwnerPermission)) {
+            throw new IllegalArgumentException("This user doesn't have permission to do that");
         }
 
         //second checking if the user to appoint isn't already an owner/manager/founder of the store
@@ -282,10 +283,6 @@ public class User implements IUser {
         return true;
     }
 
-    public void addMessage(String msg){
-        messages.add(msg);
-    }
-
     public boolean reOpenStore(Store store,NotificationBus bus) {
         if(!foundedStores.contains(store))
             throw new IllegalArgumentException("You're not the founder of the store!");
@@ -294,8 +291,9 @@ public class User implements IUser {
     }
 
     public HashMap<User, String> getStoreStaff(Store store) {
-        checkOwnerOrFounder(store);
-        return store.getStoreStaff();
+        if(hasPermission(store,StorePermission.OwnerPermission))
+            return store.getStoreStaff();
+        throw new IllegalArgumentException("You don't have permission to do that");
     }
 
     public String getUserName() {
@@ -303,13 +301,22 @@ public class User implements IUser {
     }
 
     public List<String> receiveQuestionsFromStore(Store store) {
-        checkOwnerOrFounder(store);
-        return store.getQuestions();
+        if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
+            return store.getQuestions();
+        throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    private void checkOwnerOrFounder(Store store) {
-        //check if this user is an owner/founder
-        if(!foundedStores.contains(store) || !getOwnedStores().contains(store))
-            throw new IllegalArgumentException("Must be owner/founder");
+
+    public boolean sendRespondFromStore(Store store, User toRespond, String msg,NotificationBus bus) {
+        if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
+            return store.respondToBuyer(toRespond, msg, bus);
+        throw new IllegalArgumentException("You don't have permission to do that");
+    }
+
+
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(Store store) {
+        if(hasPermission(store,StorePermission.ViewStoreHistory))
+            return store.getPurchaseHistory();
+        throw new IllegalArgumentException("The user doesn't have permissions to do that!");
     }
 }

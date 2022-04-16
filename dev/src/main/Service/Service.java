@@ -1,17 +1,20 @@
 package main.Service;
 
-import main.DTO.ProductDTO;
-import main.DTO.ShoppingCartDTO;
-import main.DTO.StoreDTO;
-import main.DTO.UserDTO;
+import main.DTO.*;
 import main.Logger.Logger;
 import main.Market;
+import main.Shopping.ShoppingBasket;
+import main.Stores.Product;
 import main.Users.User;
+import main.utils.Pair;
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Service implements IService{
 
@@ -221,12 +224,23 @@ public class Service implements IService{
 
     @Override
     public boolean sendRespondToBuyers(String userToken, String storeName, String userToRespond, String msg) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to send respond from store:%s",storeName));
+        return market.sendRespondToBuyer(userToken,storeName,userToRespond,msg);
     }
 
     @Override
-    public List<ProductDTO> getStorePurchaseHistory(String userToken, String storeName) {
-        return null;
+    public List<PurchaseDTO> getStorePurchaseHistory(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history",storeName));
+        ConcurrentHashMap<ShoppingBasket,LocalDateTime> baskets=market.getStorePurchaseHistory(userToken,storeName);
+
+        List<PurchaseDTO> output=new LinkedList<>();
+        for(ShoppingBasket basket:baskets.keySet()){
+            HashMap<ProductDTO,Integer> products=new HashMap<>();
+            for(Product product:basket.getProductsAndQuantities().keySet())
+                products.put(new ProductDTO(product),basket.getProductsAndQuantities().get(product));
+            output.add(new PurchaseDTO(products,baskets.get(basket)));
+        }
+        return output;
     }
 
     @Override

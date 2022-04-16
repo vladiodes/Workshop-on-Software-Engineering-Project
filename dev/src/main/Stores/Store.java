@@ -1,10 +1,12 @@
 package main.Stores;
 
 import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,6 +22,9 @@ public class Store implements IStore {
     private boolean isActive;
     private String storeName;
     private ConcurrentLinkedQueue<String> messagesToStore;
+    private ConcurrentHashMap<ShoppingBasket,LocalDateTime> purchaseHistory;
+    private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
+
     public List<User> getOwnersOfStore(){
         LinkedList<User> storeOwners=new LinkedList<>();
         for(OwnerPermissions ow:owners){
@@ -43,6 +48,8 @@ public class Store implements IStore {
         this.storeName=storeName;
         this.founder=founder;
         messagesToStore=new ConcurrentLinkedQueue<>();
+        purchaseHistory=new ConcurrentHashMap<>();
+        buyingBaskets=new ConcurrentLinkedQueue<>();
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -142,5 +149,15 @@ public class Store implements IStore {
         while (!messagesToStore.isEmpty())
             msgList.add(messagesToStore.remove());
         return msgList;
+    }
+
+    public boolean respondToBuyer(User toRespond, String msg, NotificationBus bus) {
+        bus.addMessage(toRespond,msg);
+        // here we can add any history of messages between user-store if necessary
+        return true;
+    }
+
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
+        return purchaseHistory;
     }
 }

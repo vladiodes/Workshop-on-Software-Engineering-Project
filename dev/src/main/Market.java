@@ -2,12 +2,14 @@ package main;
 
 import main.Security.ISecurity;
 
+import main.Shopping.ShoppingBasket;
 import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
 
 import javax.naming.NoPermissionException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -155,6 +157,20 @@ public class Market {
     public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.receiveQuestionsFromStore(p.second);
+    }
+
+    public boolean sendRespondToBuyer(String userToken, String storeName, String userToRespond, String msg) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        User toRespond=usersByName.get(userToRespond);
+        if(toRespond==null)
+            throw new IllegalArgumentException("No such user to respond to");
+        return p.first.sendRespondFromStore(p.second,toRespond,msg,notificationBus);
+    }
+
+
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.getStorePurchaseHistory(p.second);
     }
 }
 
