@@ -6,13 +6,14 @@ import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 
+import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
 public interface IService {
 
-    /**
+    /*
      ------------------------ Users,guests, purchases -------------------
      */
     /**
@@ -130,7 +131,7 @@ public interface IService {
      */
     boolean addSecurityQuestions(String userToken,String question,String answer);
 
-    /**
+    /*
      ------------------------ Stores, permissions -------------------
      */
 
@@ -139,14 +140,14 @@ public interface IService {
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    boolean AddProductToStore(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity);
+    boolean AddProductToStore(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity, double price) throws NoPermissionException;
 
     /**
      * REQ 2.4.1 - manage store inventory
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    boolean updateProduct(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity);
+    boolean updateProduct(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity,double price) throws NoPermissionException;
 
     /**
      * REQ 2.4.4
@@ -197,6 +198,18 @@ public interface IService {
     boolean disAllowManagerGetHistory(String userToken,String managerName,String storeName);
 
     /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    boolean allowManagerAnswerAndTakeRequests(String userToken,String managerName,String storeName);
+
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    boolean disAllowManagerAnswerAndTakeRequests(String userToken,String managerName,String storeName);
+
+    /**
      * REQ 2.4.9
      * @return true/false upon success/failure
      */
@@ -236,7 +249,7 @@ public interface IService {
      */
     List<ProductDTO>getStorePurchaseHistory(String userToken,String storeName);
 
-    /**
+    /*
      ------------------------ System manager actions -------------------
      */
 
@@ -267,7 +280,7 @@ public interface IService {
      */
     boolean respondToMessage(String userToken,String userToRespond,String msg);
 
-    /**
+    /*
      ------------------------ System stats -------------------
      These are all the functions to fulfil req 2.6.5 - a system manager can receive stats about the system.
      */

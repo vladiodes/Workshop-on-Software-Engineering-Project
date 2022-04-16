@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Finished implementing REQ 2.4.10">
+      <change afterPath="$PROJECT_DIR$/src/main/utils/Pair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="13-users-stores-requirements-2.4" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="27jRI4CyYtbVR4afKDi00JXHKi0" />
@@ -41,6 +47,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="main.Stores" />
       <recent name="main.DTO" />
       <recent name="test.AcceptanceTests" />
     </key>
@@ -49,6 +56,10 @@
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="main" />
+      <recent name="main.Users" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="test.UnitTests" />
@@ -102,6 +113,70 @@
       <option name="presentableId" value="Default" />
       <updated>1649831427176</updated>
     </task>
+    <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
+      <created>1649926452757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1649926452757</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Finished implementing REQ 2.4.1 - managing store inventory">
+      <created>1650004007560</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650004007576</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Finished implementing REQ 2.4.4 - Appointing an owner to a store">
+      <created>1650005631970</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1650005631970</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Finished implementing REQ 2.4.5 - Deleting owner appointment">
+      <created>1650009338077</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650009338077</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Finished implementing REQ 2.4.6 - Appointing store manager">
+      <created>1650010816917</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1650010816917</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Finished implementing REQ 2.4.7 - Changing manager's permissions">
+      <created>1650032325375</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1650032325375</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7">
+      <created>1650034099630</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1650034099630</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Finished implementing REQ 2.4.9 - making a store inactive">
+      <created>1650035124004</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1650035124004</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Finished implementing REQ 2.4.10">
+      <created>1650035526252</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1650035526252</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,12 +184,51 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/13-users-stores-requirements-2.4" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/13-users-stores-requirements-2.4" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff" />
+    <MESSAGE value="Finished implementing REQ 2.4.1 - managing store inventory" />
+    <MESSAGE value="Finished implementing REQ 2.4.4 - Appointing an owner to a store" />
+    <MESSAGE value="Finished implementing REQ 2.4.5 - Deleting owner appointment" />
+    <MESSAGE value="Finished implementing REQ 2.4.6 - Appointing store manager" />
+    <MESSAGE value="Finished implementing REQ 2.4.7 - Changing manager's permissions" />
+    <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
+    <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
+    <MESSAGE value="Finished implementing REQ 2.4.10" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished implementing REQ 2.4.10" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
