@@ -5,6 +5,7 @@ import main.Security.ISecurity;
 import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
+import main.utils.Pair;
 
 import javax.naming.NoPermissionException;
 import java.util.List;
@@ -141,16 +142,6 @@ public class Market {
     public boolean reOpenStore(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.reOpenStore(p.second);
-    }
-
-    private class Pair<K,V>{
-        private K first;
-        private V second;
-
-        private Pair(K first,V second){
-            this.first=first;
-            this.second=second;
-        }
     }
 }
 
