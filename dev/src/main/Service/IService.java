@@ -57,17 +57,25 @@ public interface IService {
     /**
      * REQ 2.2.1
      */
-    StoreDTO getStoreInfo(String storeName);
+    Response<StoreDTO> getStoreInfo(String storeName);
+
 
     /**
      * REQ 2.2.1
      */
-    List<ProductDTO>getStoreProducts(String storeName);
+    Response<List<String>> getSmilliarStores(String storeName);
 
     /**
+     * REQ 2.2.1
+     */
+    Response<List<ProductDTO>>getStoreProducts(String storeName);
+
+    /**
+     * does bitwise & between the conditions.
+     * null means to ignore a certain condition.
      * REQ 2.2.2
      */
-    List<ProductDTO> getProductsByInfo(String productName, String category, String keyWord, double productRating, double storeRating, double minPrice, double maxPrice);
+    Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice);
 
     /**
      * REQ 2.2.3
