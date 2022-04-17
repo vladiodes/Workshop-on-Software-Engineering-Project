@@ -138,7 +138,7 @@ public class User implements IUser {
         // now we delete all appointments by appointed_user
         deleteAllAppointedBy(store,
                 getAllStoreOwnersAppointedBy(appointed_user,store)
-                , getAllStoreManagersAppointedBy(appointed_user,store));
+                , getAllStoreManagersAppointedBy(appointed_user,store),appointed_user);
 
         //finally - deleting the appointment to owner from the appointed_user
         appointed_user.ownedStores.remove(ow);
@@ -146,20 +146,20 @@ public class User implements IUser {
         return true;
     }
 
-    private void deleteAllAppointedBy(Store store, List<User> ownersAppointedBy, List<User> managersAppointedBy) {
+    private void deleteAllAppointedBy(Store store, List<User> ownersAppointedBy, List<User> managersAppointedBy,User appointing_user) {
         for(User owner: ownersAppointedBy){
-            removeOwnerAppointment(store,owner);
+            appointing_user.removeOwnerAppointment(store,owner);
         }
         for(User manager: managersAppointedBy){
-            removeManagerAppointment(store,manager);
+            appointing_user.removeManagerAppointment(store,manager);
         }
     }
 
     private OwnerPermissions CheckPreConditionsAndFindOwnerAppointment(Store store, User appointed_user) {
         OwnerPermissions ow = null;
         //checking preconditions
-        //first checking if the appointed user is an owner of the store
-        if(!hasPermission(store,StorePermission.OwnerPermission))
+        //first checking if this user is an owner of the store
+        if(!appointed_user.hasPermission(store,StorePermission.OwnerPermission))
             throw new IllegalArgumentException("The appointed user is not an owner of the store");
 
         //second, checking if this user can remove the appointment - has to be an appointing user
@@ -328,15 +328,35 @@ public class User implements IUser {
         return true;
     }
 
-    public void removeRole(Store store) {
+    public void removeFounderRole(Store store) {
         foundedStores.remove(store);
     }
 
-    public void removeRole(OwnerPermissions ownerPermissions) {
+    public void removeOwnerRole(OwnerPermissions ownerPermissions) {
         ownedStores.remove(ownerPermissions);
     }
 
-    public void removeRole(ManagerPermissions managerPermissions) {
+    public void removeManagerRole(ManagerPermissions managerPermissions) {
         managedStores.remove(managerPermissions);
+    }
+
+    public boolean deleteUser(User toDelete) {
+        if(!isSystemManager)
+            throw new IllegalArgumentException("You're not a system manager!");
+
+        //removing all the stores that the user has founded
+        for(Store store:toDelete.foundedStores){
+            removeStore(store);
+        }
+
+        for(OwnerPermissions ownerPermissions:ownedStores){
+            ownerPermissions.getAppointedBy().removeOwnerAppointment(ownerPermissions.getStore(),this);
+        }
+
+        for(ManagerPermissions managerPermissions:managedStores){
+            managerPermissions.getAppointedBy().removeManagerAppointment(managerPermissions.getStore(),this);
+        }
+
+        return true;
     }
 }

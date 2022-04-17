@@ -163,16 +163,16 @@ public class Store implements IStore {
 
     public void CancelStaffRoles() {
         //first removing founder
-        founder.removeRole(this);
+        founder.removeFounderRole(this);
 
         //then removing all owners
         for(OwnerPermissions owner:owners){
-            owner.getAppointedToOwner().removeRole(owner);
+            owner.getAppointedToOwner().removeOwnerRole(owner);
         }
 
         //finally, removing all managers
         for(ManagerPermissions manager:managers){
-            manager.getAppointedToManager().removeRole(manager);
+            manager.getAppointedToManager().removeManagerRole(manager);
         }
     }
 }

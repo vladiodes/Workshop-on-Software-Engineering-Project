@@ -251,7 +251,8 @@ public class Service implements IService{
 
     @Override
     public boolean deleteUser(String userToken, String userName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove user %s",userName));
+        return market.deleteUser(userToken,userName);
     }
 
     @Override

@@ -181,6 +181,18 @@ public class Market {
         }
         return false;
     }
+
+    public boolean deleteUser(String userToken, String userName) {
+        User admin=connectedUsers.get(userToken);
+        if(admin==null)
+            throw new IllegalArgumentException("No such admin in the system");
+        User toDelete=usersByName.get(userName);
+        if(admin.deleteUser(toDelete)) {
+            usersByName.remove(toDelete.getUserName());
+            return true;
+        }
+        return false;
+    }
 }
 
 
