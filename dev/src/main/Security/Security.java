@@ -8,10 +8,4 @@ public class Security implements ISecurity {
         return password.concat("HASHED");
     }
 
-    @Override
-    public String unhashPassword(String hashedPassword) {
-        return hashedPassword.substring(0, hashedPassword.length() - "HASHED".length());
-    }
-
-
 }

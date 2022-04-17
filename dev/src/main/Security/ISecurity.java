@@ -9,11 +9,4 @@ public interface ISecurity {
      * @return hashed password.
      */
     public String hashPassword(String password);
-
-    /***
-     *
-     * @param hashedPassword - password to unhash
-     * @return original password.
-     */
-    public String unhashPassword(String hashedPassword);
 }

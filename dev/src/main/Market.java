@@ -93,7 +93,7 @@ public class Market {
             throw new IllegalArgumentException("user already logged in.");
         }
         User u = usersByName.get(userName);
-        if (!security_controller.unhashPassword(u.getHashed_password()).equals(password)) {
+        if (!u.getHashed_password().equals(security_controller.hashPassword(password))) {
             throw new IllegalArgumentException("Incorrect password.");
         }
         Logger.getInstance().logEvent("Market", String.format("%s logged in.",userName));
