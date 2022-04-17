@@ -1,5 +1,8 @@
 package main.Users;
 
+import main.Security.ISecurity;
+import main.Security.Security;
+import main.Shopping.ShoppingCart;
 import main.Stores.Store;
 
 import javax.naming.NoPermissionException;
@@ -15,7 +18,7 @@ public class User implements IUser {
     private String hashed_password;
     private AtomicBoolean isLoggedIn;
     private ConcurrentLinkedQueue<String> messages=new ConcurrentLinkedQueue<>();
-
+    private ShoppingCart cart;
     // stores connections
     private List<Store> foundedStores;
     private List<ManagerPermissions> managedStores;
@@ -40,12 +43,13 @@ public class User implements IUser {
     /**
      * This constructor is used once a new guest enters the system
      */
-    public User(int guestID){
+    public User(String guestID){
         isSystemManager=false;
-        userName="Guest".concat(String.valueOf(guestID));
+        userName="Guest".concat(guestID);
         hashed_password=null;
         isLoggedIn=new AtomicBoolean(false);
         foundedStores=new LinkedList<>();
+        cart = new ShoppingCart();
     }
 
     /**
@@ -57,8 +61,28 @@ public class User implements IUser {
         this.hashed_password=hashed_password;
         isLoggedIn=new AtomicBoolean(false);
         foundedStores=new LinkedList<>();
+        cart = new ShoppingCart();
     }
 
+    public ShoppingCart getCart() {
+        return cart;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getHashed_password() {
+        return hashed_password;
+    }
+
+    public void LogIn() {
+        this.isLoggedIn.set(true);
+    }
+
+    public Boolean getIsLoggedIn() {
+        return isLoggedIn.get();
+    }
 
     public boolean addProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) throws NoPermissionException {
         if (hasPermission(store, StorePermission.UpdateAddProducts))

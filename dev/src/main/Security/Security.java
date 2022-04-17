@@ -1,5 +1,5 @@
 package main.Security;
-
+import main.Users.User;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -7,8 +7,7 @@ import java.security.NoSuchAlgorithmException;
 public class Security implements ISecurity {
 
     // using the SHA 512 bytes algorithm for the crypto-hash function
-    private String get_SHA_512_SecurePassword(String passwordToHash
-                                              ) {
+    private String get_SHA_512_SecurePassword(String passwordToHash) {
         String generatedPassword = null;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
