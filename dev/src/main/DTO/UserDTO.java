@@ -3,6 +3,7 @@ package main.DTO;
 import main.Users.User;
 
 public class UserDTO {
+
     private String userName;
     private ShoppingCartDTO cart;
     public UserDTO(User u) {

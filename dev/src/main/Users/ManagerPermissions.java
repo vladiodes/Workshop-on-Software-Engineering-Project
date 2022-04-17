@@ -49,4 +49,13 @@ public class ManagerPermissions {
     public void removePermission(StorePermission permission) {
         permissions.remove(permission);
     }
+
+    public String permissionsToString() {
+        StringBuilder builder=new StringBuilder();
+        for(StorePermission permission:permissions){
+            builder.append(permission.toString());
+            builder.append(", ");
+        }
+        return builder.toString();
+    }
 }

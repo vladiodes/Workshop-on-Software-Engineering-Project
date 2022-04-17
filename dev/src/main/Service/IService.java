@@ -1,11 +1,15 @@
 package main.Service;
 
 
+
+import main.DTO.*;
+import main.utils.Pair;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.utils.Response;
+
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
@@ -238,7 +242,7 @@ public interface IService {
      * UserDTO - represents the user that has a role in the store (manager,owner,founder)
      * List<String> - a list of all the permissions that the staff member has.
      */
-    HashMap<UserDTO,List<String>> getStoreStaff(String userToken,String storeName);
+    HashMap<UserDTO,String> getStoreStaff(String userToken,String storeName);
 
     /**
      * REQ 2.4.12
@@ -256,9 +260,11 @@ public interface IService {
      * REQ 2.4.13
      * REQ 2.5
      * REQ 2.6.4
-     * @return a list of all the products that were purchased in the store
+     * @return a hashmap - the key is a pair of the purchase date and the integer is the quantity of the product that
+     * was bought at that date
+     * the value is the dto of the product.
      */
-    List<ProductDTO>getStorePurchaseHistory(String userToken,String storeName);
+    List<PurchaseDTO> getStorePurchaseHistory(String userToken, String storeName);
 
     /*
      ------------------------ System manager actions -------------------
@@ -280,6 +286,7 @@ public interface IService {
 
     /**
      * REQ 2.6.3
+     * Also - a connected user will use this function to get all of its pending messages
      * @return a list of all the messages
      */
     List<String> receiveMessages(String userToken);
@@ -287,6 +294,9 @@ public interface IService {
     /**
      * REQ 2.6.3
      * respond to messages
+     * @param userToken - the responding user
+     * @param userToRespond - the user to send the message to
+     * @param msg - the message itself
      * @return true/false upon success/failure
      */
     boolean respondToMessage(String userToken,String userToRespond,String msg);
