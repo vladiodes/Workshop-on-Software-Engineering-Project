@@ -1,8 +1,16 @@
 package main.Stores;
 
+
+import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
+
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,8 +22,14 @@ public class Store implements IStore {
     private ConcurrentHashMap<String,Product> productsByName;
     private ConcurrentLinkedQueue<OwnerPermissions> owners;
     private ConcurrentLinkedQueue<ManagerPermissions> managers;
+    private User founder;
     private boolean isActive;
     private String storeName;
+    private ConcurrentLinkedQueue<String> messagesToStore;
+    private ConcurrentHashMap<ShoppingBasket,LocalDateTime> purchaseHistory;
+    private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
+
+
     public List<User> getOwnersOfStore(){
         LinkedList<User> storeOwners=new LinkedList<>();
         for(OwnerPermissions ow:owners){
@@ -31,12 +45,19 @@ public class Store implements IStore {
         return storeManagers;
     }
 
-    public Store(String storeName){
+
+    public Store(String storeName,User founder){
+
         this.owners=new ConcurrentLinkedQueue<>();
         this.managers=new ConcurrentLinkedQueue<>();
         this.productsByName=new ConcurrentHashMap<>();
         isActive=true;
         this.storeName=storeName;
+        this.founder=founder;
+        messagesToStore=new ConcurrentLinkedQueue<>();
+        purchaseHistory=new ConcurrentHashMap<>();
+        buyingBaskets=new ConcurrentLinkedQueue<>();
+
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -88,28 +109,87 @@ public class Store implements IStore {
         owners.remove(ow);
     }
 
-    public synchronized void closeStore() {
+    public synchronized void closeStore(NotificationBus bus) {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
         isActive = false;
-        sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()));
+        sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()),bus);
     }
 
-    private void sendMessageToStaffOfStore(String msg) {
+    private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
         for (User u : getOwnersOfStore())
-            u.addMessage(msg);
+            bus.addMessage(u,msg);
         for (User u : getManagersOfStore())
-            u.addMessage(msg);
+            bus.addMessage(u,msg);
+
     }
 
     public String getName() {
         return storeName;
     }
 
+
+    public synchronized void reOpen(NotificationBus bus) {
+        if (isActive)
+            throw new IllegalArgumentException("The store is already opened!");
+        isActive = true;
+        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()),bus);
+    }
+
+    public HashMap<User, String> getStoreStaff() {
+        HashMap<User,String> staff=new HashMap<>();
+        //founder
+        staff.put(founder,"Founder of the store");
+
+        //owners
+        for(User owner:getOwnersOfStore())
+            staff.put(owner,"Owner of the store");
+
+        //managers
+        for(ManagerPermissions managerPermission:managers)
+            staff.put(managerPermission.getAppointedToManager(),managerPermission.permissionsToString());
+
+        return staff;
+
+
+    }
+
+    public List<String> getQuestions() {
+        LinkedList<String> msgList=new LinkedList<>();
+        while (!messagesToStore.isEmpty())
+            msgList.add(messagesToStore.remove());
+        return msgList;
+    }
+
+    public boolean respondToBuyer(User toRespond, String msg, NotificationBus bus) {
+        bus.addMessage(toRespond,msg);
+        // here we can add any history of messages between user-store if necessary
+        return true;
+    }
+
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
+        return purchaseHistory;
+    }
+
+    public void CancelStaffRoles() {
+        //first removing founder
+        founder.removeFounderRole(this);
+
+        //then removing all owners
+        for(OwnerPermissions owner:owners){
+            owner.getAppointedToOwner().removeOwnerRole(owner);
+        }
+
+        //finally, removing all managers
+        for(ManagerPermissions manager:managers){
+            manager.getAppointedToManager().removeManagerRole(manager);
+        }
+
     public synchronized void reOpen() {
         if (isActive)
             throw new IllegalArgumentException("The store is already opened!");
         isActive = true;
         sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()));
+
     }
 }

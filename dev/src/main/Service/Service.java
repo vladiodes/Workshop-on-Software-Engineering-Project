@@ -1,5 +1,14 @@
 package main.Service;
 
+
+import main.DTO.*;
+import main.Logger.Logger;
+
+import main.Shopping.ShoppingBasket;
+import main.Stores.Product;
+import main.Users.User;
+import main.utils.Pair;
+
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
@@ -9,10 +18,16 @@ import main.Market;
 import main.Users.User;
 import main.utils.Response;
 
+
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 
 public class Service implements IService{
 
@@ -25,6 +40,7 @@ public class Service implements IService{
 
 
     @Override
+
     public Response<String> guestConnect() {
         return new Response(market.ConnectGuest(), null);
     }
@@ -221,20 +237,45 @@ public class Service implements IService{
     }
 
     @Override
-    public HashMap<UserDTO, List<String>> getStoreStaff(String userToken, String storeName) {
-        return null;
+    public HashMap<UserDTO, String> getStoreStaff(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to view store staff in store:%s",storeName));
+        HashMap<User,String> map=market.getStoreStaff(userToken,storeName);
+        HashMap<UserDTO,String> toReturn=new HashMap<>();
+        for(User u:map.keySet()){
+            UserDTO dto = new UserDTO(u);
+            toReturn.put(dto,map.get(u));
+        }
+        return toReturn;
     }
 
     @Override
     public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
-        return null;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to receive questions from buyers from store:%s",storeName));
+        return market.receiveQuestionsFromBuyers(userToken,storeName);
     }
 
     @Override
     public boolean sendRespondToBuyers(String userToken, String storeName, String userToRespond, String msg) {
-        return false;
+
+        Logger.getInstance().logEvent("Service", String.format("Attempting to send respond from store:%s",storeName));
+        return market.sendRespondToBuyer(userToken,storeName,userToRespond,msg);
     }
 
+    @Override
+    public List<PurchaseDTO> getStorePurchaseHistory(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history",storeName));
+        ConcurrentHashMap<ShoppingBasket,LocalDateTime> baskets=market.getStorePurchaseHistory(userToken,storeName);
+
+        List<PurchaseDTO> output=new LinkedList<>();
+        for(ShoppingBasket basket:baskets.keySet()){
+            HashMap<ProductDTO,Integer> products=new HashMap<>();
+            for(Product product:basket.getProductsAndQuantities().keySet())
+                products.put(new ProductDTO(product),basket.getProductsAndQuantities().get(product));
+            output.add(new PurchaseDTO(products,baskets.get(basket)));
+        }
+        return output;
+    }
+  
     @Override
     public List<ProductDTO> getStorePurchaseHistory(String userToken, String storeName) {
         return null;
@@ -242,36 +283,43 @@ public class Service implements IService{
 
     @Override
     public boolean deleteStore(String userToken, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove store %s",storeName));
+        return market.deleteStore(userToken,storeName);
     }
 
     @Override
     public boolean deleteUser(String userToken, String userName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove user %s",userName));
+        return market.deleteUser(userToken,userName);
     }
 
     @Override
     public List<String> receiveMessages(String userToken) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get all messages for token: %s",userToken));
+        return market.receiveMessages(userToken);
     }
 
     @Override
     public boolean respondToMessage(String userToken, String userToRespond, String msg) {
-        return false;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to respond to a message from %s",userToRespond));
+        return market.respondToMessage(userToken,userToRespond,msg);
     }
 
     @Override
     public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: logged in users per date: %s",date.toString()));
+        return market.getNumberOfLoggedInUsersPerDate(userToken,date);
     }
 
     @Override
     public String getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: number of purchases per date: %s",date.toString()));
+        return market.getNumberOfPurchasesPerDate(userToken,date);
     }
 
     @Override
     public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: registered users per date: %s",date.toString()));
+        return market.getNumberOfRegisteredUsersPerDate(userToken,date);
     }
 }

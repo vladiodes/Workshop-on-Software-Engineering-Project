@@ -3,5 +3,6 @@ package main.Users;
 public enum StorePermission {
     UpdateAddProducts,
     ViewStoreHistory,
-    AnswerAndTakeRequests
+    AnswerAndTakeRequests,
+    OwnerPermission //can do anything
 }
