@@ -269,16 +269,20 @@ public class Service implements IService{
 
     @Override
     public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: logged in users per date: %s",date.toString()));
+        return market.getNumberOfLoggedInUsersPerDate(userToken,date);
+
     }
 
     @Override
     public String getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: number of purchases per date: %s",date.toString()));
+        return market.getNumberOfPurchasesPerDate(userToken,date);
     }
 
     @Override
     public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: registered users per date: %s",date.toString()));
+        return market.getNumberOfRegisteredUsersPerDate(userToken,date);
     }
 }

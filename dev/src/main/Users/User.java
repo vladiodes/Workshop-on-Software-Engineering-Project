@@ -315,7 +315,7 @@ public class User implements IUser {
 
 
     public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(Store store) {
-        if(hasPermission(store,StorePermission.ViewStoreHistory))
+        if(isSystemManager || hasPermission(store,StorePermission.ViewStoreHistory))
             return store.getPurchaseHistory();
         throw new IllegalArgumentException("The user doesn't have permissions to do that!");
     }
@@ -358,5 +358,9 @@ public class User implements IUser {
         }
 
         return true;
+    }
+
+    public boolean isAdmin() {
+        return isSystemManager;
     }
 }

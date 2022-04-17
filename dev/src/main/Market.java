@@ -7,6 +7,7 @@ import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
+import main.utils.SystemStats;
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
@@ -32,6 +33,7 @@ public class Market {
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
     private NotificationBus notificationBus;
+    private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
 
     public Market(){
         usersByName=new ConcurrentHashMap<>();
@@ -39,6 +41,7 @@ public class Market {
         stores=new ConcurrentHashMap<>();
         guestCounter=new AtomicInteger(1);
         notificationBus=new NotificationBus();
+        systemStatsByDate=new ConcurrentHashMap<>();
     }
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
@@ -206,6 +209,28 @@ public class Market {
         User user_receiving_msg=usersByName.get(userToRespond);
         notificationBus.addMessage(user_receiving_msg,String.format("From user:%s \n Message content: %s",responding_user.getUserName(),msg));
         return true;
+    }
+
+    public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
+        return String.valueOf(getStats(userToken, date).getNumOfLoggedIn());
+    }
+
+    private SystemStats getStats(String userToken, LocalDateTime date) {
+        User admin = connectedUsers.get(userToken);
+        if(!admin.isAdmin())
+            throw new IllegalArgumentException("This isn't a system admin");
+
+        if(systemStatsByDate.get(date)==null)
+            throw new IllegalArgumentException("No stats for the specific date");
+        return systemStatsByDate.get(date);
+    }
+
+    public String getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
+        return String.valueOf(getStats(userToken, date).getNumOfPurchases());
+    }
+
+    public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
+        return String.valueOf(getStats(userToken, date).getNumOfRegistered());
     }
 }
 

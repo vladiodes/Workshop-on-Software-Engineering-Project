@@ -277,6 +277,9 @@ public interface IService {
     /**
      * REQ 2.6.3
      * respond to messages
+     * @param userToken - the responding user
+     * @param userToRespond - the user to send the message to
+     * @param msg - the message itself
      * @return true/false upon success/failure
      */
     boolean respondToMessage(String userToken,String userToRespond,String msg);
