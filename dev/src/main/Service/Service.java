@@ -257,12 +257,14 @@ public class Service implements IService{
 
     @Override
     public List<String> receiveMessages(String userToken) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get all messages for token: %s",userToken));
+        return market.receiveMessages(userToken);
     }
 
     @Override
     public boolean respondToMessage(String userToken, String userToRespond, String msg) {
-        return false;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to respond to a message from %s",userToRespond));
+        return market.respondToMessage(userToken,userToRespond,msg);
     }
 
     @Override

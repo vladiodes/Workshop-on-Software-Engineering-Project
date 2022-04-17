@@ -269,6 +269,7 @@ public interface IService {
 
     /**
      * REQ 2.6.3
+     * Also - a connected user will use this function to get all of its pending messages
      * @return a list of all the messages
      */
     List<String> receiveMessages(String userToken);

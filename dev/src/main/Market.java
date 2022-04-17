@@ -193,6 +193,20 @@ public class Market {
         }
         return false;
     }
+
+    public List<String> receiveMessages(String userToken) {
+        User user = connectedUsers.get(userToken);
+        if(user==null)
+            throw new IllegalArgumentException("User isn't connected");
+        return notificationBus.getMessagesFromUserRequest(user);
+    }
+
+    public boolean respondToMessage(String userToken, String userToRespond, String msg) {
+        User responding_user=connectedUsers.get(userToken);
+        User user_receiving_msg=usersByName.get(userToRespond);
+        notificationBus.addMessage(user_receiving_msg,String.format("From user:%s \n Message content: %s",responding_user.getUserName(),msg));
+        return true;
+    }
 }
 
 

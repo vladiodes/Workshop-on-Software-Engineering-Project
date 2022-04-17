@@ -29,6 +29,11 @@ public class NotificationBus {
         // in the future - code for sending notifications to user only if he's logged in should be here!
     }
 
+    /**
+     * This function returns all messages that were gathered in a user's queue up until now
+     * @param requestingUser the user that requested to get messages
+     * @return returns a list of all the messages that were gathered so far
+     */
     public List<String> getMessagesFromUserRequest(User requestingUser){
         LinkedList<String> msgList=new LinkedList<>();
         ConcurrentLinkedQueue<String> msgQueue=usersMessagesMap.get(requestingUser);
