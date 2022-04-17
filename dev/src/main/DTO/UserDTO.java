@@ -5,8 +5,13 @@ import main.Users.User;
 public class UserDTO {
 
     private String userName;
-
+    private ShoppingCartDTO cart;
     public UserDTO(User u) {
-        userName=u.getUserName();
+        this.userName = u.getUserName();
+        this.cart = new ShoppingCartDTO(u.getCart());
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

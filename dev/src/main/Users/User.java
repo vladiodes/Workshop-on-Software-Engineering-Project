@@ -1,15 +1,19 @@
 package main.Users;
 
+
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Stores.Store;
-
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import main.Security.ISecurity;
+import main.Security.Security;
+import main.Shopping.ShoppingCart;
+import javax.naming.NoPermissionException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -19,6 +23,8 @@ public class User implements IUser {
     private String userName;
     private String hashed_password;
     private AtomicBoolean isLoggedIn;
+    private ConcurrentLinkedQueue<String> messages=new ConcurrentLinkedQueue<>();
+    private ShoppingCart cart;
 
     // stores connections
     private List<Store> foundedStores;
@@ -44,12 +50,14 @@ public class User implements IUser {
     /**
      * This constructor is used once a new guest enters the system
      */
-    public User(int guestID){
+
+    public User(String guestID){
         isSystemManager=false;
-        userName="Guest".concat(String.valueOf(guestID));
+        userName="Guest".concat(guestID);
         hashed_password=null;
         isLoggedIn=new AtomicBoolean(false);
         foundedStores=new LinkedList<>();
+        cart = new ShoppingCart();
     }
 
     /**
@@ -61,6 +69,27 @@ public class User implements IUser {
         this.hashed_password=hashed_password;
         isLoggedIn=new AtomicBoolean(false);
         foundedStores=new LinkedList<>();
+        cart = new ShoppingCart();
+    }
+
+    public ShoppingCart getCart() {
+        return cart;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getHashed_password() {
+        return hashed_password;
+    }
+
+    public void LogIn() {
+        this.isLoggedIn.set(true);
+    }
+
+    public Boolean getIsLoggedIn() {
+        return isLoggedIn.get();
     }
 
 
@@ -140,6 +169,7 @@ public class User implements IUser {
                 getAllStoreOwnersAppointedBy(appointed_user,store)
                 , getAllStoreManagersAppointedBy(appointed_user,store),appointed_user);
 
+
         //finally - deleting the appointment to owner from the appointed_user
         appointed_user.ownedStores.remove(ow);
         store.removeOwner(ow);
@@ -192,6 +222,7 @@ public class User implements IUser {
             throw new IllegalArgumentException("The appointed user is not a manager of the store");
 
         //second, checking if this user can remove the appointment - has to be an appointing user
+
         for (ManagerPermissions ma : manager.managedStores) {
             if (ma.getStore() == store) {
                 mp = ma;
@@ -275,6 +306,7 @@ public class User implements IUser {
         }
         throw new IllegalArgumentException("The manager wasn't appointed by this user");
     }
+
 
     public boolean closeStore(Store store, NotificationBus bus) {
         if(!foundedStores.contains(store))

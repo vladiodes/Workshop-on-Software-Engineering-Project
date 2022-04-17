@@ -1,8 +1,15 @@
 package main.Service;
 
 
+
 import main.DTO.*;
 import main.utils.Pair;
+import main.DTO.ProductDTO;
+import main.DTO.ShoppingCartDTO;
+import main.DTO.StoreDTO;
+import main.DTO.UserDTO;
+import main.utils.Response;
+
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
@@ -15,32 +22,34 @@ public interface IService {
      ------------------------ Users,guests, purchases -------------------
      */
     /**
-     * This function is invoked once a guest enters the system
+     * This function is invoked once a guest enters the system.
+     * Should be invoked on every system startup.
      * @return returns a unique token that can be used by the system to identify the session of the guest
      * REQ 2.1.1
      */
-    String guestConnect();
+    Response<String> guestConnect();
 
     /**
      * This function is invoked once a guest exits the system (all of his details are simply deleted)
      * @param userToken the token that is used by the system to identify the guest.
      * REQ 2.1.2
+     * @return
      */
-    void guestDisconnect(String userToken);
+    Response<UserDTO> guestDisconnect(String userToken);
 
     /**
      * Registration to the system
      * @return returns true/false upon successful registration
      * REQ 2.1.3
      */
-    boolean register(String userName, String password);
+    Response<Boolean> register(String userName, String password);
 
     /**
-     * Login to the system
+     * Login to a member in the system.
      * @return returns a unique token that can be used by the system to identify the session of the user
      * REQ 2.1.4
      */
-    String login(String userName, String password);
+    Response<UserDTO> login(String token, String userName, String password);
 
     /**
      * Logout of the system

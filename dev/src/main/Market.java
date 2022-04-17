@@ -1,18 +1,32 @@
 package main;
 
-import main.Security.ISecurity;
 
 import main.Shopping.ShoppingBasket;
+
+import main.Logger.Logger;
+import main.Security.ISecurity;
+
+import main.Security.Security;
+
 import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
+
 import main.utils.SystemStats;
 
-import javax.naming.NoPermissionException;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
+
+
+
+
+import javax.naming.NoPermissionException;
+import javax.security.auth.login.LoginException;
 import java.util.List;
+
+import java.util.UUID;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -32,6 +46,7 @@ public class Market {
     private ConcurrentHashMap<String, Store> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
+
     private NotificationBus notificationBus;
     private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
 
@@ -42,6 +57,69 @@ public class Market {
         guestCounter=new AtomicInteger(1);
         notificationBus=new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
+        security_controller = new Security();
+    }
+
+    /***
+     * @return new unique user token.
+     */
+    public String ConnectGuest(){
+        String new_token = generateToken();
+        User new_guest = new User(new_token);
+        connectedUsers.put(new_token, new_guest);
+        Logger.getInstance().logEvent("Market", String.format("New guest connected %s.", new_guest.getUserName()));
+        return new_token;
+    }
+
+    public User DisconnectGuest(String user_token){
+        if (!connectedUsers.containsKey(user_token)){
+            Logger.getInstance().logBug("Market", String.format("invalid user token attempted to disconnect %s", user_token));
+            throw new IllegalArgumentException("user token isn't connected.");
+        }
+        if(connectedUsers.get(user_token).getIsLoggedIn()){
+            throw new IllegalArgumentException("user token is a a member not a guest.");
+        }
+        User leaving_user = connectedUsers.remove(user_token);
+        Logger.getInstance().logEvent("Market", String.format("User %s left the system.", leaving_user.getUserName()));
+        return leaving_user;
+    }
+
+    public boolean Register(String userName, String password){
+        if (usersByName.containsKey(userName)){
+            throw new IllegalArgumentException("username is taken.");
+        }
+        if (password.length() < 6 || password.contains(userName)){
+            throw new IllegalArgumentException("password is not secure enough.");
+        }
+        User new_user = new User(false, userName, security_controller.hashPassword(password));
+        usersByName.put(userName, new_user);
+        Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
+        return true;
+    }
+
+    private String generateToken(){
+        return UUID.randomUUID().toString();
+    }
+
+    public User Login(String token, String userName, String password){
+        if (!usersByName.containsKey(userName)){
+            throw new IllegalArgumentException("username doesn't exist.");
+        }
+        if (!connectedUsers.containsKey(token)){
+            Logger.getInstance().logBug("Market", String.format("token %s isn't in the system and attempted to log in."));
+            throw new IllegalArgumentException("token isn't connected in the system.");
+        }
+        if (connectedUsers.get(token).getIsLoggedIn()){
+            throw new IllegalArgumentException("user already logged in.");
+        }
+        User u = usersByName.get(userName);
+        if (!u.getHashed_password().equals(security_controller.hashPassword(password))) {
+            throw new IllegalArgumentException("Incorrect password.");
+        }
+        Logger.getInstance().logEvent("Market", String.format("%s logged in.",userName));
+        connectedUsers.put(token, u);
+        u.LogIn();
+        return u;
     }
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
@@ -144,7 +222,6 @@ public class Market {
     public boolean closeStore(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.closeStore(p.second,notificationBus);
-
     }
 
     public boolean reOpenStore(String userToken, String storeName) {

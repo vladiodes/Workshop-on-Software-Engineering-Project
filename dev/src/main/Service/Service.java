@@ -1,24 +1,38 @@
 package main.Service;
 
+
 import main.DTO.*;
 import main.Logger.Logger;
-import main.Market;
+
 import main.Shopping.ShoppingBasket;
 import main.Stores.Product;
 import main.Users.User;
 import main.utils.Pair;
 
+import main.DTO.ProductDTO;
+import main.DTO.ShoppingCartDTO;
+import main.DTO.StoreDTO;
+import main.DTO.UserDTO;
+import main.Logger.Logger;
+import main.Market;
+import main.Users.User;
+import main.utils.Response;
+
+
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 public class Service implements IService{
 
     private Market market;
+
 
     public Service(){
         market=new Market();
@@ -26,23 +40,41 @@ public class Service implements IService{
 
 
     @Override
-    public String guestConnect() {
-        return null;
+
+    public Response<String> guestConnect() {
+        return new Response(market.ConnectGuest(), null);
     }
 
     @Override
-    public void guestDisconnect(String userToken) {
-
+    public Response<UserDTO> guestDisconnect(String userToken) {
+        try {
+            User r = market.DisconnectGuest(userToken);
+            return new Response<>(new UserDTO(r), null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean register(String userName, String password) {
-        return false;
+    public Response<Boolean> register(String userName, String password) {
+        try {
+            market.Register(userName, password);
+            return new Response<>(true, null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public String login(String userName, String password) {
-        return null;
+    public Response<UserDTO> login(String token, String userName, String password) {
+        try {
+            return new Response<>(new UserDTO(market.Login(token, userName, password)),null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
@@ -224,6 +256,7 @@ public class Service implements IService{
 
     @Override
     public boolean sendRespondToBuyers(String userToken, String storeName, String userToRespond, String msg) {
+
         Logger.getInstance().logEvent("Service", String.format("Attempting to send respond from store:%s",storeName));
         return market.sendRespondToBuyer(userToken,storeName,userToRespond,msg);
     }
@@ -241,6 +274,11 @@ public class Service implements IService{
             output.add(new PurchaseDTO(products,baskets.get(basket)));
         }
         return output;
+    }
+  
+    @Override
+    public List<ProductDTO> getStorePurchaseHistory(String userToken, String storeName) {
+        return null;
     }
 
     @Override
@@ -271,7 +309,6 @@ public class Service implements IService{
     public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: logged in users per date: %s",date.toString()));
         return market.getNumberOfLoggedInUsersPerDate(userToken,date);
-
     }
 
     @Override

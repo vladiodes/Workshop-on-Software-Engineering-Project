@@ -1,13 +1,17 @@
 package main.Stores;
 
+
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
+
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,6 +29,7 @@ public class Store implements IStore {
     private ConcurrentHashMap<ShoppingBasket,LocalDateTime> purchaseHistory;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
 
+
     public List<User> getOwnersOfStore(){
         LinkedList<User> storeOwners=new LinkedList<>();
         for(OwnerPermissions ow:owners){
@@ -40,7 +45,9 @@ public class Store implements IStore {
         return storeManagers;
     }
 
+
     public Store(String storeName,User founder){
+
         this.owners=new ConcurrentLinkedQueue<>();
         this.managers=new ConcurrentLinkedQueue<>();
         this.productsByName=new ConcurrentHashMap<>();
@@ -50,6 +57,7 @@ public class Store implements IStore {
         messagesToStore=new ConcurrentLinkedQueue<>();
         purchaseHistory=new ConcurrentHashMap<>();
         buyingBaskets=new ConcurrentLinkedQueue<>();
+
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -113,11 +121,13 @@ public class Store implements IStore {
             bus.addMessage(u,msg);
         for (User u : getManagersOfStore())
             bus.addMessage(u,msg);
+
     }
 
     public String getName() {
         return storeName;
     }
+
 
     public synchronized void reOpen(NotificationBus bus) {
         if (isActive)
@@ -174,5 +184,12 @@ public class Store implements IStore {
         for(ManagerPermissions manager:managers){
             manager.getAppointedToManager().removeManagerRole(manager);
         }
+
+    public synchronized void reOpen() {
+        if (isActive)
+            throw new IllegalArgumentException("The store is already opened!");
+        isActive = true;
+        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()));
+
     }
 }
