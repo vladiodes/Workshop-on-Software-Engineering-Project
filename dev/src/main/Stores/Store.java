@@ -160,4 +160,19 @@ public class Store implements IStore {
     public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
         return purchaseHistory;
     }
+
+    public void CancelStaffRoles() {
+        //first removing founder
+        founder.removeRole(this);
+
+        //then removing all owners
+        for(OwnerPermissions owner:owners){
+            owner.getAppointedToOwner().removeRole(owner);
+        }
+
+        //finally, removing all managers
+        for(ManagerPermissions manager:managers){
+            manager.getAppointedToManager().removeRole(manager);
+        }
+    }
 }

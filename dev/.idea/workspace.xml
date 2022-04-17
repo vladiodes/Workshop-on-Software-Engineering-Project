@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="REQ 2.4.12 implemented">
-      <change afterPath="$PROJECT_DIR$/src/main/DTO/PurchaseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

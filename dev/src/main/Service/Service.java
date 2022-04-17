@@ -245,7 +245,8 @@ public class Service implements IService{
 
     @Override
     public boolean deleteStore(String userToken, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove store %s",storeName));
+        return market.deleteStore(userToken,storeName);
     }
 
     @Override

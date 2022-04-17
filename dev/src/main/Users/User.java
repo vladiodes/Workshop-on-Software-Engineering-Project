@@ -319,4 +319,24 @@ public class User implements IUser {
             return store.getPurchaseHistory();
         throw new IllegalArgumentException("The user doesn't have permissions to do that!");
     }
+
+    public boolean removeStore(Store store) {
+        if(!isSystemManager)
+            throw new IllegalArgumentException("You're not a system manager!");
+
+        store.CancelStaffRoles();
+        return true;
+    }
+
+    public void removeRole(Store store) {
+        foundedStores.remove(store);
+    }
+
+    public void removeRole(OwnerPermissions ownerPermissions) {
+        ownedStores.remove(ownerPermissions);
+    }
+
+    public void removeRole(ManagerPermissions managerPermissions) {
+        managedStores.remove(managerPermissions);
+    }
 }

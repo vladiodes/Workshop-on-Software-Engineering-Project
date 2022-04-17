@@ -172,6 +172,15 @@ public class Market {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.getStorePurchaseHistory(p.second);
     }
+
+    public boolean deleteStore(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        if(p.first.removeStore(p.second)) {
+            stores.remove(storeName);
+            return true;
+        }
+        return false;
+    }
 }
 
 
