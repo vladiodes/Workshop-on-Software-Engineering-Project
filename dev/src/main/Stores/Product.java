@@ -41,27 +41,4 @@ public class Product {
         this.quantity=quantity;
         this.price=price;
     }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public boolean hasKeyWord(String word) {
-        for (String Keyword : this.keyWords)
-            if (Keyword.equals(word))
-                return true;
-        return false;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
 }

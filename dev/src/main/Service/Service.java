@@ -6,14 +6,12 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Logger.Logger;
 import main.Market;
-import main.Stores.Product;
 import main.Users.User;
 import main.utils.Response;
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Service implements IService{
@@ -69,50 +67,18 @@ public class Service implements IService{
     }
 
     @Override
-    public Response<StoreDTO> getStoreInfo(String storeName) {
-        try {
-            return new Response<>(new StoreDTO(market.getStoreByName(storeName)),null);
-        }
-        catch (Exception e){
-            return new Response<>(null, e.getMessage());
-        }
-    }
-
-
-    @Override
-    public Response<List<String>> getSmilliarStores(String storeName) {
-        try {
-            return new Response<>(market.getStoresByString(storeName), null);
-        }
-        catch (Exception e) {
-            return new Response<>(null, e.getMessage());
-        }
+    public StoreDTO getStoreInfo(String storeName) {
+        return null;
     }
 
     @Override
-    public Response<List<ProductDTO>> getStoreProducts(String storeName) {
-        try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getStoreProducts(storeName))
-                res.add(new ProductDTO(p));
-            return new Response<>(res, null);
-        }
-        catch (Exception e) {
-            return new Response<>(null, e.getMessage());
-        }
+    public List<ProductDTO> getStoreProducts(String storeName) {
+        return null;
     }
 
     @Override
-    public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
-        try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
-                res.add(new ProductDTO(p));
-            return new Response<>(res, null);
-        }
-        catch (Exception e) {
-            return new Response<>(null, e.getMessage());
-        }
+    public List<ProductDTO> getProductsByInfo(String productName, String category, String keyWord, double productRating, double storeRating, double minPrice, double maxPrice) {
+        return null;
     }
 
     @Override

@@ -88,10 +88,6 @@ public class Store implements IStore {
         owners.remove(ow);
     }
 
-    public ConcurrentHashMap<String, Product> getProductsByName() {
-        return productsByName;
-    }
-
     public synchronized void closeStore() {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
