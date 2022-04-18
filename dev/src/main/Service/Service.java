@@ -6,6 +6,7 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Logger.Logger;
 import main.Market;
+import main.Shopping.ShoppingCart;
 import main.Stores.Product;
 import main.Users.User;
 import main.utils.Response;
@@ -64,8 +65,16 @@ public class Service implements IService{
     }
 
     @Override
-    public boolean logout(String token) {
-        return false;
+    public Response<Boolean> logout(String token) {
+        try
+        {
+            market.logout(token);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
@@ -131,8 +140,17 @@ public class Service implements IService{
     }
 
     @Override
-    public boolean purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) {
-        return false;
+    public Response<Boolean> purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) {
+        try
+        {
+            market.purchaseCart(userToken, cardNumber, year, month, day, cvv);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+
     }
 
     @Override
@@ -156,8 +174,16 @@ public class Service implements IService{
     }
 
     @Override
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken, String userName) {
-        return null;
+    public Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken, String userName) {
+        try
+        {
+            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken);
+            return new Response<>(carts, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
