@@ -328,10 +328,6 @@ public class User implements IUser {
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public List<String> receiveQuestionsFromStore(Store store) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
             return store.getQuestions();

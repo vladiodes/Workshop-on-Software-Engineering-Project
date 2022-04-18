@@ -42,7 +42,7 @@ public class Service implements IService{
     @Override
 
     public Response<String> guestConnect() {
-        return new Response(market.ConnectGuest(), null);
+        return new Response<>(market.ConnectGuest(), null);
     }
 
     @Override
@@ -274,11 +274,6 @@ public class Service implements IService{
             output.add(new PurchaseDTO(products,baskets.get(basket)));
         }
         return output;
-    }
-  
-    @Override
-    public List<ProductDTO> getStorePurchaseHistory(String userToken, String storeName) {
-        return null;
     }
 
     @Override
