@@ -1,33 +1,23 @@
 package main;
 
 
-import main.Shopping.ShoppingBasket;
-
 import main.Logger.Logger;
+import main.Payment.IPayment;
+import main.Payment.PaymentSystem;
 import main.Security.ISecurity;
-
 import main.Security.Security;
-
+import main.Shopping.ShoppingBasket;
 import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
-
 import main.utils.SystemStats;
 
-
+import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-
-
-
-
-import javax.naming.NoPermissionException;
-import javax.security.auth.login.LoginException;
 import java.util.List;
-
 import java.util.UUID;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -46,6 +36,7 @@ public class Market {
     private ConcurrentHashMap<String, Store> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
+    private IPayment paymentSystem;
 
     private NotificationBus notificationBus;
     private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
@@ -58,6 +49,7 @@ public class Market {
         notificationBus=new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
         security_controller = new Security();
+        paymentSystem = new PaymentSystem();
     }
 
     /***
