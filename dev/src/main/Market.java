@@ -9,6 +9,8 @@ import main.Security.ISecurity;
 import main.Security.Security;
 
 import main.Stores.Store;
+import main.Supplying.ISupplying;
+import main.Supplying.SupplyingSystem;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
@@ -46,6 +48,7 @@ public class Market {
     private ConcurrentHashMap<String, Store> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
+    private ISupplying supplyingSystem;
 
     private NotificationBus notificationBus;
     private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
@@ -58,6 +61,7 @@ public class Market {
         notificationBus=new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
         security_controller = new Security();
+        supplyingSystem = new SupplyingSystem();
     }
 
     /***
