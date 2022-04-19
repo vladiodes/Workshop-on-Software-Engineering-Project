@@ -8,10 +8,12 @@ import main.Security.ISecurity;
 
 import main.Security.Security;
 
+import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
+import main.utils.stringFunctions;
 
 import main.utils.SystemStats;
 
@@ -24,6 +26,7 @@ import java.util.HashMap;
 
 import javax.naming.NoPermissionException;
 import javax.security.auth.login.LoginException;
+import java.util.LinkedList;
 import java.util.List;
 
 import java.util.UUID;
@@ -121,6 +124,45 @@ public class Market {
         u.LogIn();
         return u;
     }
+
+    public Store getStoreByName(String name) {
+        return this.stores.get(name);
+    }
+
+    public List<String> getStoresByString(String name) {
+        List<String> res = new LinkedList<>();
+        for (String key : this.stores.keySet()) {
+            if (stringFunctions.calculate_distance(name, key) <= 3)
+                res.add(key);
+        }
+        return res;
+    }
+
+    public List<Product> getStoreProducts(String storeName) {
+        List<Product> res = new LinkedList<>();
+        Store st = this.getStoreByName(storeName);
+        if (st == null)
+            throw new IllegalArgumentException("store doesn't exist.");
+        for (String productName : st.getProductsByName().keySet())
+            res.add(st.getProductsByName().get(productName));
+        return res;
+    }
+
+    public List<Product> getProductsByAttributes(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice){
+        List<Product> result = new LinkedList<>();
+        for (Store currStr : this.stores.values())
+            for (Product currPrd : currStr.getProductsByName().values()) {
+                if (productName == null || currPrd.getName().equals(productName))
+                    if (category == null || currPrd.getCategory().equals(category))
+                        if (keyWord == null || currPrd.hasKeyWord(keyWord))
+                            if (productRating == null) //TODO: || rating = productRating
+                                if (storeRating == null) //TODO: || rating = productRating
+                                    if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
+                                        result.add(currPrd);
+            }
+        return result;
+    }
+
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
