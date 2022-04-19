@@ -2,7 +2,7 @@ package main.Service;
 
 import main.DTO.*;
 import main.utils.Response;
-import javax.naming.NoPermissionException;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -224,7 +224,7 @@ public interface IService {
      * REQ 2.4.10
      * @return true/false upon success/failure
      */
-    Response<Boolean> reOpenStore(String userToken, String storeName);
+    Response<Boolean> reopenStore(String userToken, String storeName);
 
     /**
      * REQ 2.4.11
