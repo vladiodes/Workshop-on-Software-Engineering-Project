@@ -7,15 +7,12 @@ import main.Logger.Logger;
 import main.Shopping.ShoppingBasket;
 import main.Stores.Product;
 import main.Users.User;
-import main.utils.Pair;
 
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
-import main.Logger.Logger;
 import main.Market;
-import main.Users.User;
 import main.utils.Response;
 
 
@@ -25,7 +22,6 @@ import java.util.HashMap;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -83,17 +79,22 @@ public class Service implements IService{
     }
 
     @Override
-    public StoreDTO getStoreInfo(String storeName) {
+    public Response<StoreDTO> getStoreInfo(String storeName) {
         return null;
     }
 
     @Override
-    public List<ProductDTO> getStoreProducts(String storeName) {
+    public Response<List<String>> getSmilliarStores(String storeName) {
         return null;
     }
 
     @Override
-    public List<ProductDTO> getProductsByInfo(String productName, String category, String keyWord, double productRating, double storeRating, double minPrice, double maxPrice) {
+    public Response<List<ProductDTO>> getStoreProducts(String storeName) {
+        return null;
+    }
+
+    @Override
+    public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
         return null;
     }
 
