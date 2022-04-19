@@ -20,13 +20,11 @@ public class User implements IUser {
     private AtomicBoolean isLoggedIn;
     private ConcurrentLinkedQueue<String> messages=new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
-    private List<ShoppingCart> purchaseHistory;
     // stores connections
     private List<Store> foundedStores;
     private List<ManagerPermissions> managedStores;
     private List<OwnerPermissions> ownedStores;
     private List<Pair<String,String>> securityQNA;
-    private Boolean isGuest;
 
     private List<Store> getManagedStores() {
         List<Store> stores = new LinkedList<>();
@@ -48,28 +46,25 @@ public class User implements IUser {
      * This constructor is used once a new guest enters the system
      */
     public User(String guestID){
-        isGuest = true;
         isSystemManager=false;
         userName="Guest".concat(guestID);
         hashed_password=null;
         isLoggedIn=new AtomicBoolean(false);
         foundedStores=new LinkedList<>();
         cart = new ShoppingCart();
+        securityQNA = new LinkedList<>();
     }
 
     /**
      * This constructor is used once a new user registers to the system
      */
     public User(boolean isSystemManager,String userName,String hashed_password){
-        isGuest = false;
         this.isSystemManager=isSystemManager;
         this.userName=userName;
         this.hashed_password=hashed_password;
         isLoggedIn=new AtomicBoolean(false);
         foundedStores=new LinkedList<>();
         cart = new ShoppingCart();
-        securityQNA = new LinkedList<>();
-        purchaseHistory = new LinkedList<>();
     }
 
     public ShoppingCart getCart() {
@@ -330,17 +325,5 @@ public class User implements IUser {
             throw new Exception("Question or Answer cant be empty");
         }
         this.securityQNA.add(new Pair<>(question, answer));
-    }
-
-    public void logout() {
-        this.isLoggedIn.set(false);
-    }
-
-    public void purchaseCart() {
-        purchaseHistory.add(cart);
-    }
-
-    public List<ShoppingCart> getPurchaseHistory() {
-        return this.purchaseHistory;
     }
 }

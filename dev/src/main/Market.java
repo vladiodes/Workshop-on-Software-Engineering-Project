@@ -1,11 +1,9 @@
 package main;
 
-import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
 import main.Security.ISecurity;
 
 import main.Security.Security;
-import main.Shopping.ShoppingCart;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.StorePermission;
@@ -262,45 +260,10 @@ public class Market {
         {
             throw new Exception("Invalid user token");
         }
+
+        //TODO: Check that the user is a registered member and not a guest
         User u = connectedUsers.get(userToken);
-        //TODO: check if user is a guest or member - req 3.9
         u.addSecurityQuestion(question, answer);
-    }
-
-    public void logout(String token) throws Exception
-    {
-        if(!connectedUsers.containsKey(token))
-        {
-            throw new Exception("Invalid user token");
-        }
-        //TODO: check if user is a guest or member - req 3.1
-        //TODO: Check with Ilay that the shopping cart is saved when logging out
-        User u = connectedUsers.get(token);
-        u.logout();
-    }
-
-    public void purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) throws Exception
-    {
-        //User purchase history update
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
-        u.purchaseCart();
-
-        //TODO: Missing part of purchasing from store
-    }
-
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
-        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
-        return null;
-        //TODO: turn every shopping cart into DTO and return
     }
 }
 

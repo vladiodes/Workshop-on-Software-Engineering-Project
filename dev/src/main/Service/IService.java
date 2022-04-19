@@ -52,7 +52,7 @@ public interface IService {
      * @return true/false upon success or failure
      * REQ 2.3.1
      */
-    Response<Boolean> logout(String token);
+    boolean logout(String token);
 
     /**
      * REQ 2.2.1
@@ -98,7 +98,7 @@ public interface IService {
      * User has to provide a credit card
      * @return true/false upon success/failure
      */
-    Response<Boolean> purchaseCart(String userToken,String cardNumber, int year, int month, int day, int cvv);
+    boolean purchaseCart(String userToken,String cardNumber, int year, int month, int day, int cvv);
 
     /**
      * REQ 2.3.2
@@ -128,7 +128,7 @@ public interface IService {
      * REQ 2.3.7
      * REQ 2.6.3
      */
-    Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken,String userName);
+    List<ShoppingCartDTO> getPurchaseHistory(String userToken,String userName);
 
     /**
      * REQ 2.3.8
