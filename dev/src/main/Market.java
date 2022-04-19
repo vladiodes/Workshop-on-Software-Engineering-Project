@@ -1,24 +1,33 @@
 package main;
 
+
+import main.Shopping.ShoppingBasket;
+
 import main.Logger.Logger;
 import main.Security.ISecurity;
 
 import main.Security.Security;
-import main.Stores.Product;
+
 import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
-import main.utils.stringFunctions;
-import org.junit.platform.commons.util.StringUtils;
+
+import main.utils.SystemStats;
+
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+
+
+
 
 import javax.naming.NoPermissionException;
 import javax.security.auth.login.LoginException;
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
-import java.util.LinkedList;
 import java.util.List;
 
 import java.util.UUID;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -37,16 +46,21 @@ public class Market {
     private ConcurrentHashMap<String, Store> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
+
+    private NotificationBus notificationBus;
+    private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
+
     public Market(){
         usersByName=new ConcurrentHashMap<>();
         connectedUsers=new ConcurrentHashMap<>();
         stores=new ConcurrentHashMap<>();
         guestCounter=new AtomicInteger(1);
+        notificationBus=new NotificationBus();
+        systemStatsByDate=new ConcurrentHashMap<>();
         security_controller = new Security();
     }
 
     /***
-     * This function should be called on every system start up.
      * @return new unique user token.
      */
     public String ConnectGuest(){
@@ -106,44 +120,6 @@ public class Market {
         connectedUsers.put(token, u);
         u.LogIn();
         return u;
-    }
-
-    public Store getStoreByName(String name) {
-        return this.stores.get(name);
-    }
-
-    public List<String> getStoresByString(String name) {
-        List<String> res = new LinkedList<>();
-        for (String key : this.stores.keySet()) {
-            if (stringFunctions.calculate_distance(name, key) <= 3)
-                res.add(key);
-        }
-        return res;
-    }
-
-    public List<Product> getStoreProducts(String storeName) {
-        List<Product> res = new LinkedList<>();
-        Store st = this.getStoreByName(storeName);
-        if (st == null)
-            throw new IllegalArgumentException("store doesn't exist.");
-        for (String productName : st.getProductsByName().keySet())
-            res.add(st.getProductsByName().get(productName));
-        return res;
-    }
-
-    public List<Product> getProductsByAttributes(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice){
-        List<Product> result = new LinkedList<>();
-        for (Store currStr : this.stores.values())
-            for (Product currPrd : currStr.getProductsByName().values()) {
-                if (productName == null || currPrd.getName().equals(productName))
-                    if (category == null || currPrd.getCategory().equals(category))
-                        if (keyWord == null || currPrd.hasKeyWord(keyWord))
-                            if (productRating == null) //TODO: || rating = productRating
-                                if (storeRating == null) //TODO: || rating = productRating
-                                    if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
-                                        result.add(currPrd);
-            }
-        return result;
     }
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
@@ -245,13 +221,93 @@ public class Market {
 
     public boolean closeStore(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
-        return p.first.closeStore(p.second);
-
+        return p.first.closeStore(p.second,notificationBus);
     }
 
     public boolean reOpenStore(String userToken, String storeName) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
-        return p.first.reOpenStore(p.second);
+        return p.first.reOpenStore(p.second,notificationBus);
+    }
+
+    public HashMap<User, String> getStoreStaff(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.getStoreStaff(p.second);
+    }
+
+    public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.receiveQuestionsFromStore(p.second);
+    }
+
+    public boolean sendRespondToBuyer(String userToken, String storeName, String userToRespond, String msg) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        User toRespond=usersByName.get(userToRespond);
+        if(toRespond==null)
+            throw new IllegalArgumentException("No such user to respond to");
+        return p.first.sendRespondFromStore(p.second,toRespond,msg,notificationBus);
+    }
+
+
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        return p.first.getStorePurchaseHistory(p.second);
+    }
+
+    public boolean deleteStore(String userToken, String storeName) {
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+        if(p.first.removeStore(p.second)) {
+            stores.remove(storeName);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteUser(String userToken, String userName) {
+        User admin=connectedUsers.get(userToken);
+        if(admin==null)
+            throw new IllegalArgumentException("No such admin in the system");
+        User toDelete=usersByName.get(userName);
+        if(admin.deleteUser(toDelete)) {
+            usersByName.remove(toDelete.getUserName());
+            return true;
+        }
+        return false;
+    }
+
+    public List<String> receiveMessages(String userToken) {
+        User user = connectedUsers.get(userToken);
+        if(user==null)
+            throw new IllegalArgumentException("User isn't connected");
+        return notificationBus.getMessagesFromUserRequest(user);
+    }
+
+    public boolean respondToMessage(String userToken, String userToRespond, String msg) {
+        User responding_user=connectedUsers.get(userToken);
+        User user_receiving_msg=usersByName.get(userToRespond);
+        notificationBus.addMessage(user_receiving_msg,String.format("From user:%s \n Message content: %s",responding_user.getUserName(),msg));
+        return true;
+    }
+
+    public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
+        return String.valueOf(getStats(userToken, date).getNumOfLoggedIn());
+    }
+
+    private SystemStats getStats(String userToken, LocalDateTime date) {
+        User admin = connectedUsers.get(userToken);
+        if(!admin.isAdmin())
+            throw new IllegalArgumentException("This isn't a system admin");
+
+        if(systemStatsByDate.get(date)==null)
+            throw new IllegalArgumentException("No stats for the specific date");
+        return systemStatsByDate.get(date);
+    }
+
+    public String getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
+        return String.valueOf(getStats(userToken, date).getNumOfPurchases());
+    }
+
+    public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
+        return String.valueOf(getStats(userToken, date).getNumOfRegistered());
     }
 }
 

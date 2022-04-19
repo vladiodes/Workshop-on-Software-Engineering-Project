@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Implemented Security class - crypto hashing function, implemented using the SHA 512 algorithm.&#10;Added unit tests for the class - all passing">
-      <change afterPath="$PROJECT_DIR$/src/main/Security/Security.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/SecurityTest.java" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Req 2.6.3 implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Security/ISecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Security/ISecurity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/SecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/SecurityTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +49,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="main.utils" />
       <recent name="main.Stores" />
       <recent name="main.DTO" />
       <recent name="test.AcceptanceTests" />
@@ -67,7 +69,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SecurityTest">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration name="Security" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Security.Security" />
       <module name="dev" />
@@ -144,11 +146,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.test.AcceptanceTests in dev" />
         <item itemvalue="JUnit.SecurityTest" />
         <item itemvalue="JUnit.SecurityTest.testHashingSamePassword" />
         <item itemvalue="Application.Security" />
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.test.AcceptanceTests in dev" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +226,49 @@
       <option name="project" value="LOCAL" />
       <updated>1650035526252</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Moved Pair to a public package">
+      <created>1650099576694</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1650099576694</updated>
+    </task>
+    <task id="LOCAL-00011" summary="REQ 2.4.11 implemented">
+      <created>1650101054837</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1650101054837</updated>
+    </task>
+    <task id="LOCAL-00012" summary="REQ 2.4.12 implemented">
+      <created>1650102737497</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1650102737497</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Req 2.6.1 implemented">
+      <created>1650190175351</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1650190175351</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Req 2.6.2 implemented">
+      <created>1650191843192</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1650191843192</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Req 2.6.3 implemented">
+      <created>1650192532689</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1650192532689</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,8 +320,13 @@
     <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
     <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
     <MESSAGE value="Finished implementing REQ 2.4.10" />
-    <MESSAGE value="Implemented Security class - crypto hashing function, implemented using the SHA 512 algorithm.&#10;Added unit tests for the class - all passing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Security class - crypto hashing function, implemented using the SHA 512 algorithm.&#10;Added unit tests for the class - all passing" />
+    <MESSAGE value="Moved Pair to a public package" />
+    <MESSAGE value="REQ 2.4.11 implemented" />
+    <MESSAGE value="REQ 2.4.12 implemented" />
+    <MESSAGE value="Req 2.6.1 implemented" />
+    <MESSAGE value="Req 2.6.2 implemented" />
+    <MESSAGE value="Req 2.6.3 implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Req 2.6.3 implemented" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

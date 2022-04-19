@@ -1,20 +1,33 @@
 package main.Service;
 
+
+import main.DTO.*;
+import main.Logger.Logger;
+
+import main.Shopping.ShoppingBasket;
+import main.Stores.Product;
+import main.Users.User;
+import main.utils.Pair;
+
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Logger.Logger;
 import main.Market;
-import main.Stores.Product;
 import main.Users.User;
 import main.utils.Response;
+
 
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 
 public class Service implements IService{
 
@@ -27,8 +40,9 @@ public class Service implements IService{
 
 
     @Override
+
     public Response<String> guestConnect() {
-        return new Response(market.ConnectGuest(), null);
+        return new Response<>(market.ConnectGuest(), null);
     }
 
     @Override
@@ -69,50 +83,18 @@ public class Service implements IService{
     }
 
     @Override
-    public Response<StoreDTO> getStoreInfo(String storeName) {
-        try {
-            return new Response<>(new StoreDTO(market.getStoreByName(storeName)),null);
-        }
-        catch (Exception e){
-            return new Response<>(null, e.getMessage());
-        }
-    }
-
-
-    @Override
-    public Response<List<String>> getSmilliarStores(String storeName) {
-        try {
-            return new Response<>(market.getStoresByString(storeName), null);
-        }
-        catch (Exception e) {
-            return new Response<>(null, e.getMessage());
-        }
+    public StoreDTO getStoreInfo(String storeName) {
+        return null;
     }
 
     @Override
-    public Response<List<ProductDTO>> getStoreProducts(String storeName) {
-        try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getStoreProducts(storeName))
-                res.add(new ProductDTO(p));
-            return new Response<>(res, null);
-        }
-        catch (Exception e) {
-            return new Response<>(null, e.getMessage());
-        }
+    public List<ProductDTO> getStoreProducts(String storeName) {
+        return null;
     }
 
     @Override
-    public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
-        try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
-                res.add(new ProductDTO(p));
-            return new Response<>(res, null);
-        }
-        catch (Exception e) {
-            return new Response<>(null, e.getMessage());
-        }
+    public List<ProductDTO> getProductsByInfo(String productName, String category, String keyWord, double productRating, double storeRating, double minPrice, double maxPrice) {
+        return null;
     }
 
     @Override
@@ -255,57 +237,84 @@ public class Service implements IService{
     }
 
     @Override
-    public HashMap<UserDTO, List<String>> getStoreStaff(String userToken, String storeName) {
-        return null;
+    public HashMap<UserDTO, String> getStoreStaff(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to view store staff in store:%s",storeName));
+        HashMap<User,String> map=market.getStoreStaff(userToken,storeName);
+        HashMap<UserDTO,String> toReturn=new HashMap<>();
+        for(User u:map.keySet()){
+            UserDTO dto = new UserDTO(u);
+            toReturn.put(dto,map.get(u));
+        }
+        return toReturn;
     }
 
     @Override
     public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
-        return null;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to receive questions from buyers from store:%s",storeName));
+        return market.receiveQuestionsFromBuyers(userToken,storeName);
     }
 
     @Override
     public boolean sendRespondToBuyers(String userToken, String storeName, String userToRespond, String msg) {
-        return false;
+
+        Logger.getInstance().logEvent("Service", String.format("Attempting to send respond from store:%s",storeName));
+        return market.sendRespondToBuyer(userToken,storeName,userToRespond,msg);
     }
 
     @Override
-    public List<ProductDTO> getStorePurchaseHistory(String userToken, String storeName) {
-        return null;
+    public List<PurchaseDTO> getStorePurchaseHistory(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history",storeName));
+        ConcurrentHashMap<ShoppingBasket,LocalDateTime> baskets=market.getStorePurchaseHistory(userToken,storeName);
+
+        List<PurchaseDTO> output=new LinkedList<>();
+        for(ShoppingBasket basket:baskets.keySet()){
+            HashMap<ProductDTO,Integer> products=new HashMap<>();
+            for(Product product:basket.getProductsAndQuantities().keySet())
+                products.put(new ProductDTO(product),basket.getProductsAndQuantities().get(product));
+            output.add(new PurchaseDTO(products,baskets.get(basket)));
+        }
+        return output;
     }
 
     @Override
     public boolean deleteStore(String userToken, String storeName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove store %s",storeName));
+        return market.deleteStore(userToken,storeName);
     }
 
     @Override
     public boolean deleteUser(String userToken, String userName) {
-        return false;
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove user %s",userName));
+        return market.deleteUser(userToken,userName);
     }
 
     @Override
     public List<String> receiveMessages(String userToken) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get all messages for token: %s",userToken));
+        return market.receiveMessages(userToken);
     }
 
     @Override
     public boolean respondToMessage(String userToken, String userToRespond, String msg) {
-        return false;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to respond to a message from %s",userToRespond));
+        return market.respondToMessage(userToken,userToRespond,msg);
     }
 
     @Override
     public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: logged in users per date: %s",date.toString()));
+        return market.getNumberOfLoggedInUsersPerDate(userToken,date);
     }
 
     @Override
     public String getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: number of purchases per date: %s",date.toString()));
+        return market.getNumberOfPurchasesPerDate(userToken,date);
     }
 
     @Override
     public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
-        return null;
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats: registered users per date: %s",date.toString()));
+        return market.getNumberOfRegisteredUsersPerDate(userToken,date);
     }
 }
