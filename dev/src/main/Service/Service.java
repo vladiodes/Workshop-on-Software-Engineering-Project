@@ -166,16 +166,8 @@ public class Service implements IService{
     }
 
     @Override
-    public Response<Boolean> addSecurityQuestion(String userToken, String question, String answer) {
-        try
-        {
-            market.addSecurityQuestion(userToken, question, answer);
-            return new Response<Boolean>(true, null);
-        }
-        catch (Exception e)
-        {
-            return new Response<Boolean>(null, e.getMessage());
-        }
+    public boolean addSecurityQuestions(String userToken, String question, String answer) {
+        return false;
     }
 
     @Override

@@ -4,7 +4,6 @@ import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingCart;
 import main.Stores.Store;
-import main.utils.Pair;
 
 import javax.naming.NoPermissionException;
 import java.util.LinkedList;
@@ -24,7 +23,6 @@ public class User implements IUser {
     private List<Store> foundedStores;
     private List<ManagerPermissions> managedStores;
     private List<OwnerPermissions> ownedStores;
-    private List<Pair<String,String>> securityQNA;
 
     private List<Store> getManagedStores() {
         List<Store> stores = new LinkedList<>();
@@ -52,7 +50,6 @@ public class User implements IUser {
         isLoggedIn=new AtomicBoolean(false);
         foundedStores=new LinkedList<>();
         cart = new ShoppingCart();
-        securityQNA = new LinkedList<>();
     }
 
     /**
@@ -316,14 +313,5 @@ public class User implements IUser {
             throw new IllegalArgumentException("You're not the founder of the store!");
         store.reOpen();
         return true;
-    }
-
-    public void addSecurityQuestion(String question, String answer) throws Exception
-    {
-        if(question.isBlank() || answer.isBlank())
-        {
-            throw new Exception("Question or Answer cant be empty");
-        }
-        this.securityQNA.add(new Pair<>(question, answer));
     }
 }

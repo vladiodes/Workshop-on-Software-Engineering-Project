@@ -253,18 +253,6 @@ public class Market {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.reOpenStore(p.second);
     }
-
-    public void addSecurityQuestion(String userToken, String question, String answer) throws Exception
-    {
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-
-        //TODO: Check that the user is a registered member and not a guest
-        User u = connectedUsers.get(userToken);
-        u.addSecurityQuestion(question, answer);
-    }
 }
 
 

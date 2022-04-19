@@ -140,7 +140,7 @@ public interface IService {
      * REQ 2.3.9
      * @return true/false upon success/failure
      */
-    Response<Boolean> addSecurityQuestion(String userToken,String question,String answer);
+    boolean addSecurityQuestions(String userToken,String question,String answer);
 
     /*
      ------------------------ Stores, permissions -------------------
