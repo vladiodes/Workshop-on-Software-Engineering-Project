@@ -18,6 +18,10 @@ public class Response<T> {
         return error_message;
     }
 
+    public boolean isWas_expected_error() {
+        return was_expected_error;
+    }
+
     public Response(T _res, String error_message){
         error_occured = false;
         this.result = _res;
