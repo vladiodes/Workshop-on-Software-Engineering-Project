@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Req 2.6.3 implemented">
-      <change afterPath="$PROJECT_DIR$/src/main/utils/SystemStats.java" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Changed service signatures to return responses">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/main/utils/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/Response.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="13-users-stores-requirements-2.4" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -52,7 +52,6 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
-
       <recent name="main.Stores" />
       <recent name="main.DTO" />
       <recent name="test.AcceptanceTests" />
@@ -72,7 +71,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SecurityTest">
+  <component name="RunManager" selected="JUnit.AT">
     <configuration name="Security" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Security.Security" />
       <module name="dev" />
@@ -82,6 +81,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -131,29 +145,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.AcceptanceTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AT" />
         <item itemvalue="JUnit.SecurityTest" />
         <item itemvalue="JUnit.SecurityTest.testHashingSamePassword" />
         <item itemvalue="Application.Security" />
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.test.AcceptanceTests in dev" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +227,6 @@
       <option name="project" value="LOCAL" />
       <updated>1650035526252</updated>
     </task>
-
     <task id="LOCAL-00010" summary="Moved Pair to a public package">
       <created>1650099576694</created>
       <option name="number" value="00010" />
@@ -273,7 +270,6 @@
       <updated>1650192532689</updated>
     </task>
     <option name="localTasksCounter" value="16" />
-
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,15 +321,14 @@
     <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
     <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
     <MESSAGE value="Finished implementing REQ 2.4.10" />
-
     <MESSAGE value="Moved Pair to a public package" />
     <MESSAGE value="REQ 2.4.11 implemented" />
     <MESSAGE value="REQ 2.4.12 implemented" />
     <MESSAGE value="Req 2.6.1 implemented" />
     <MESSAGE value="Req 2.6.2 implemented" />
     <MESSAGE value="Req 2.6.3 implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Req 2.6.3 implemented" />
-
+    <MESSAGE value="Changed service signatures to return responses" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed service signatures to return responses" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

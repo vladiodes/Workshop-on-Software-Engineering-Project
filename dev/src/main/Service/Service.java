@@ -25,7 +25,7 @@ public class Service implements IService {
     @Override
 
     public Response<String> guestConnect() {
-        return new Response(market.ConnectGuest(), null);
+        return new Response<>(market.ConnectGuest(), null);
     }
 
     @Override
@@ -133,173 +133,407 @@ public class Service implements IService {
     }
 
     @Override
-    public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
+    public Response<Boolean> addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
         Logger.getInstance().logEvent("Service", String.format("Add product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
-        return market.addProductToStore(userToken, productName, category, keyWords, description, storeName, quantity, price);
-    }
-
-    @Override
-    public boolean removeProductFromStore(String userToken, String productName) throws NoPermissionException {
-        throw new NoPermissionException("not implemented yet");
-    }
-
-    @Override
-    public boolean updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
-        Logger.getInstance().logEvent("Service", String.format("Update product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
-        return market.updateProductInStore(userToken, productName, category, keyWords, description, storeName, quantity, price);
-    }
-
-    @Override
-    public boolean appointStoreOwner(String userToken, String userToAppoint, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to appoint store owner with parameters: token: %s userToAppoint: %s storeName:%s", userToken, userToAppoint, storeName));
-        return market.appointStoreOwner(userToken, userToAppoint, storeName);
-    }
-
-    @Override
-    public boolean removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to remove a store owner appointment parameters: token: %s userAppointed: %s storeName:%s", userToken, userAppointed, storeName));
-        return market.removeStoreOwnerAppointment(userToken, userAppointed, storeName);
-    }
-
-    @Override
-    public boolean appointStoreManager(String userToken, String userToAppoint, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to appoint store manager with parameters: token: %s userToAppoint: %s storeName:%s", userToken, userToAppoint, storeName));
-        return market.appointStoreManager(userToken, userToAppoint, storeName);
-    }
-
-    @Override
-    public boolean removeStoreManagerAppointment(String userToken, String userAppointed, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to remove a store manager:%s from store:%s", userAppointed, storeName));
-        return market.removeStoreManager(userToken, userAppointed, storeName);
-    }
-
-    @Override
-    public boolean allowManagerUpdateProducts(String userToken, String managerName, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to grant update products permission to:%s in store:%s", managerName, storeName));
-        return market.allowManagerUpdateProducts(userToken, managerName, storeName);
-    }
-
-    @Override
-    public boolean disAllowManagerUpdateProducts(String userToken, String managerName, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow update products permission to:%s in store:%s", managerName, storeName));
-        return market.disallowManagerUpdateProducts(userToken, managerName, storeName);
-    }
-
-    @Override
-    public boolean allowManagerGetHistory(String userToken, String managerName, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to grant view purchase history permission to:%s in store:%s", managerName, storeName));
-        return market.allowManagerViewPurchaseHistory(userToken, managerName, storeName);
-    }
-
-    @Override
-    public boolean disAllowManagerGetHistory(String userToken, String managerName, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow viewing purchase history permission to:%s in store:%s", managerName, storeName));
-        return market.disallowManagerViewPurchaseHistory(userToken, managerName, storeName);
-    }
-
-    @Override
-    public boolean allowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to grant answer and take requests permission to:%s in store:%s", managerName, storeName));
-        return market.allowManagerAnswerAndTakeRequests(userToken, managerName, storeName);
-    }
-
-    @Override
-    public boolean disAllowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow answer and take requests permission to:%s in store:%s", managerName, storeName));
-        return market.disallowManagerAnswerAndTakeRequests(userToken, managerName, storeName);
-    }
-
-    @Override
-    public boolean closeStore(String userToken, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to close store:%s", storeName));
-        return market.closeStore(userToken, storeName);
-    }
-
-    @Override
-    public boolean reOpenStore(String userToken, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to reopen store:%s", storeName));
-        return market.reOpenStore(userToken, storeName);
-    }
-
-    @Override
-    public HashMap<UserDTO, String> getStoreStaff(String userToken, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to view store staff in store:%s", storeName));
-        HashMap<User, String> map = market.getStoreStaff(userToken, storeName);
-        HashMap<UserDTO, String> toReturn = new HashMap<>();
-        for (User u : map.keySet()) {
-            UserDTO dto = new UserDTO(u);
-            toReturn.put(dto, map.get(u));
+        try{
+            boolean res=market.addProductToStore(userToken, productName, category, keyWords, description, storeName, quantity, price);
+            return new Response<>(res);
         }
-        return toReturn;
+        catch(IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in addProductToStore!");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
+    public Response<Boolean> removeProductFromStore(String userToken, String productName) {
+        throw new IllegalArgumentException("not implemented yet");
+    }
+
+    @Override
+    public Response<Boolean> updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
+        Logger.getInstance().logEvent("Service", String.format("Update product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
+        try{
+            return new Response<>(market.updateProductInStore(userToken, productName, category, keyWords, description, storeName, quantity, price));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in update product");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> appointStoreOwner(String userToken, String userToAppoint, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to appoint store owner with parameters: token: %s userToAppoint: %s storeName:%s", userToken, userToAppoint, storeName));
+        try{
+            return new Response<>(market.appointStoreOwner(userToken, userToAppoint, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in appoint store owner");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove a store owner appointment parameters: token: %s userAppointed: %s storeName:%s", userToken, userAppointed, storeName));
+        try{
+            return new Response<>( market.removeStoreOwnerAppointment(userToken, userAppointed, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in remove store owner appointment");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> appointStoreManager(String userToken, String userToAppoint, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to appoint store manager with parameters: token: %s userToAppoint: %s storeName:%s", userToken, userToAppoint, storeName));
+        try{
+            return new Response<>(market.appointStoreManager(userToken, userToAppoint, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in appointStoreManager");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> removeStoreManagerAppointment(String userToken, String userAppointed, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to remove a store manager:%s from store:%s", userAppointed, storeName));
+        try{
+            return new Response<>(market.removeStoreManager(userToken, userAppointed, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in remove store manager appointment");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> allowManagerUpdateProducts(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant update products permission to:%s in store:%s", managerName, storeName));
+        try{
+            return new Response<>(market.allowManagerUpdateProducts(userToken, managerName, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in allow manager update products");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> disAllowManagerUpdateProducts(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow update products permission to:%s in store:%s", managerName, storeName));
+        try{
+            return new Response<>(market.disallowManagerUpdateProducts(userToken, managerName, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in disallow manager to update products");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> allowManagerGetHistory(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant view purchase history permission to:%s in store:%s", managerName, storeName));
+        try{
+            return new Response<>(market.allowManagerViewPurchaseHistory(userToken, managerName, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service", "Bug in allow manager get history");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> disAllowManagerGetHistory(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow viewing purchase history permission to:%s in store:%s", managerName, storeName));
+        try{
+            return new Response<>(market.disallowManagerViewPurchaseHistory(userToken, managerName, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e
+            , true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Serivce","Bug in disallow manager get history");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> allowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to grant answer and take requests permission to:%s in store:%s", managerName, storeName));
+        try{
+            return new Response<>(market.allowManagerAnswerAndTakeRequests(userToken, managerName, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in allow manager answer and take requests");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> disAllowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to disallow answer and take requests permission to:%s in store:%s", managerName, storeName));
+        try{
+            return new Response<>( market.disallowManagerAnswerAndTakeRequests(userToken, managerName, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in disallow manager answer and take requests");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> closeStore(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to close store:%s", storeName));
+        try{
+            return new Response<>(market.closeStore(userToken, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in close store");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> reOpenStore(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to reopen store:%s", storeName));
+        try{
+            return new Response<>(market.reOpenStore(userToken, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in reopen store");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<HashMap<UserDTO, String>> getStoreStaff(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to view store staff in store:%s", storeName));
+        try {
+            HashMap<User, String> map = market.getStoreStaff(userToken, storeName);
+
+            HashMap<UserDTO, String> toReturn = new HashMap<>();
+            for (User u : map.keySet()) {
+                UserDTO dto = new UserDTO(u);
+                toReturn.put(dto, map.get(u));
+            }
+            return new Response<>(toReturn);
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in get store staff");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to receive questions from buyers from store:%s", storeName));
-        return market.receiveQuestionsFromBuyers(userToken, storeName);
+        try{
+            return new Response<>(market.receiveQuestionsFromBuyers(userToken, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in receive questions from buyers");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public boolean sendRespondToBuyers(String userToken, String storeName, String userToRespond, String msg) {
+    public Response<Boolean> sendRespondToBuyers(String userToken, String storeName, String userToRespond, String msg) {
 
         Logger.getInstance().logEvent("Service", String.format("Attempting to send respond from store:%s", storeName));
-        return market.sendRespondToBuyer(userToken, storeName, userToRespond, msg);
-    }
-
-    @Override
-    public List<PurchaseDTO> getStorePurchaseHistory(String userToken, String storeName) {
-        Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
-        ConcurrentHashMap<ShoppingBasket, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
-
-        List<PurchaseDTO> output = new LinkedList<>();
-        for (ShoppingBasket basket : baskets.keySet()) {
-            HashMap<ProductDTO, Integer> products = new HashMap<>();
-            for (Product product : basket.getProductsAndQuantities().keySet())
-                products.put(new ProductDTO(product), basket.getProductsAndQuantities().get(product));
-            output.add(new PurchaseDTO(products, baskets.get(basket)));
+        try{
+            return new Response<>(market.sendRespondToBuyer(userToken, storeName, userToRespond, msg));
         }
-        return output;
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in send respond to buyers");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public boolean deleteStore(String userToken, String storeName) {
+    public Response<List<PurchaseDTO>> getStorePurchaseHistory(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
+        try {
+            ConcurrentHashMap<ShoppingBasket, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
+
+
+            List<PurchaseDTO> output = new LinkedList<>();
+            for (ShoppingBasket basket : baskets.keySet()) {
+                HashMap<ProductDTO, Integer> products = new HashMap<>();
+                for (Product product : basket.getProductsAndQuantities().keySet())
+                    products.put(new ProductDTO(product), basket.getProductsAndQuantities().get(product));
+                output.add(new PurchaseDTO(products, baskets.get(basket)));
+            }
+            return new Response<>(output);
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in get store purchase history");
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> deleteStore(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to remove store %s", storeName));
-        return market.deleteStore(userToken, storeName);
+        try{
+            return new Response<>(market.deleteStore(userToken, storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in delete store");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public boolean deleteUser(String userToken, String userName) {
+    public Response<Boolean> deleteUser(String userToken, String userName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to remove user %s", userName));
-        return market.deleteUser(userToken, userName);
+        try{
+            return new Response<>(market.deleteUser(userToken, userName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in delete user");
+            return new Response<>(e,false);
+
+        }
     }
 
     @Override
-    public List<String> receiveMessages(String userToken) {
+    public Response<List<String>> receiveMessages(String userToken) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get all messages for token: %s", userToken));
-        return market.receiveMessages(userToken);
+        try{
+            return new Response<>(market.receiveMessages(userToken));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in receive messages");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public boolean respondToMessage(String userToken, String userToRespond, String msg) {
+    public Response<Boolean> respondToMessage(String userToken, String userToRespond, String msg) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to respond to a message from %s", userToRespond));
-        return market.respondToMessage(userToken, userToRespond, msg);
+        try{
+            return new Response<>(market.respondToMessage(userToken, userToRespond, msg));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","bug in respond to message");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
+    public Response<String> getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get system stats: logged in users per date: %s", date.toString()));
-        return market.getNumberOfLoggedInUsersPerDate(userToken, date);
+        try{
+            return new Response<>( market.getNumberOfLoggedInUsersPerDate(userToken, date));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in get number of logged in users per date");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public String getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
+    public Response<String> getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get system stats: number of purchases per date: %s", date.toString()));
-        return market.getNumberOfPurchasesPerDate(userToken, date);
+        try{
+            return new Response<>( market.getNumberOfPurchasesPerDate(userToken, date));
+        }
+         catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in get number of purchases per date");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
-    public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
+    public Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get system stats: registered users per date: %s", date.toString()));
-        return market.getNumberOfRegisteredUsersPerDate(userToken, date);
+        try{
+            return new Response<>(market.getNumberOfRegisteredUsersPerDate(userToken, date));
+        }
+         catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service","Bug in get number of registered users per date");
+            return new Response<>(e,false);
+        }
     }
 }

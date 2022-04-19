@@ -89,16 +89,16 @@ public class User implements IUser {
         return isLoggedIn.get();
     }
 
-    public boolean addProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) throws NoPermissionException {
+    public boolean addProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(store, StorePermission.UpdateAddProducts))
             return store.addProduct(productName, category, keyWords, description, quantity, price);
-        throw new NoPermissionException("This user doesn't have permissions to do that!");
+        throw new IllegalArgumentException("This user doesn't have permissions to do that!");
     }
 
-    public boolean updateProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) throws NoPermissionException {
+    public boolean updateProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(store, StorePermission.UpdateAddProducts))
             store.updateProduct(productName, category, keyWords, description, quantity, price);
-        throw new NoPermissionException("This user doesn't have permissions to do that!");
+        throw new IllegalArgumentException("This user doesn't have permissions to do that!");
     }
 
     private boolean hasPermission(Store store, StorePermission permission) {

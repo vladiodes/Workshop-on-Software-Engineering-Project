@@ -106,7 +106,7 @@ public class Market {
             throw new IllegalArgumentException("username doesn't exist.");
         }
         if (!connectedUsers.containsKey(token)){
-            Logger.getInstance().logBug("Market", String.format("token %s isn't in the system and attempted to log in."));
+            Logger.getInstance().logBug("Market", String.format("token %s isn't in the system and attempted to log in.",token));
             throw new IllegalArgumentException("token isn't connected in the system.");
         }
         if (connectedUsers.get(token).getIsLoggedIn()){
@@ -122,12 +122,12 @@ public class Market {
         return u;
     }
 
-    public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
+    public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.addProductToStore(p.second,productName,category,keyWords,description,quantity,price);
     }
 
-    public boolean updateProductInStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
+    public boolean updateProductInStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.updateProductToStore(p.second,productName,category,keyWords,description,quantity,price);
     }

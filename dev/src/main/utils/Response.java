@@ -4,6 +4,7 @@ public class Response<T> {
     private T result;
     private boolean error_occured;
     private String error_message;
+    private boolean was_expected_error;
 
     public T getResult() {
         return result;
@@ -24,5 +25,16 @@ public class Response<T> {
             this.error_occured = true;
             this.error_message = error_message;
         }
+    }
+
+    public Response(T result){
+        error_occured=false;
+        this.result=result;
+    }
+
+    public Response(Exception e,boolean was_expected_error){
+        this.error_occured=true;
+        this.error_message=e.getMessage();
+        this.was_expected_error=was_expected_error;
     }
 }

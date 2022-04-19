@@ -173,11 +173,4 @@ public class Store implements IStore {
             manager.getAppointedToManager().removeManagerRole(manager);
         }
     }
-
-    public synchronized void reOpen() {
-        if (isActive)
-            throw new IllegalArgumentException("The store is already opened!");
-        isActive = true;
-        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()));
-    }
 }
