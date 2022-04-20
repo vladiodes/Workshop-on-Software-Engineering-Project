@@ -7,15 +7,12 @@ import main.Logger.Logger;
 import main.Shopping.ShoppingBasket;
 import main.Stores.Product;
 import main.Users.User;
-import main.utils.Pair;
 
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
-import main.Logger.Logger;
 import main.Market;
-import main.Users.User;
 import main.utils.Response;
 
 
@@ -25,7 +22,6 @@ import java.util.HashMap;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -83,33 +79,75 @@ public class Service implements IService{
     }
 
     @Override
-    public StoreDTO getStoreInfo(String storeName) {
-        return null;
+    public Response<StoreDTO> getStoreInfo(String storeName) {
+        try {
+            return new Response<>(new StoreDTO(market.getStoreByName(storeName)),null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
+    }
+    @Override
+    public Response<List<String>> getSmilliarStores(String storeName) {
+        try {
+            return new Response<>(market.getStoresByString(storeName), null);
+        }
+        catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public List<ProductDTO> getStoreProducts(String storeName) {
-        return null;
+    public Response<List<ProductDTO>> getStoreProducts(String storeName) {
+        try {
+            List<ProductDTO> res = new LinkedList<>();
+            for (Product p : market.getStoreProducts(storeName))
+                res.add(new ProductDTO(p));
+            return new Response<>(res, null);
+        }
+        catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public List<ProductDTO> getProductsByInfo(String productName, String category, String keyWord, double productRating, double storeRating, double minPrice, double maxPrice) {
-        return null;
+    public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
+        try {
+            List<ProductDTO> res = new LinkedList<>();
+            for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
+                res.add(new ProductDTO(p));
+            return new Response<>(res, null);
+        }
+        catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean addProductToBasket(String userToken, String storeName, String productName, int quantity) {
-        return false;
+    public Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity) {
+        try {
+            return new Response<>(market.addProductToCart(userToken, storeName, productName, quantity), null);
+        } catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean removeProductFromBasket(String userToken, String storeName, String productName, int quantity) {
-        return false;
+    public Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
+        try {
+            return new Response<>(market.RemoveProductFromCart(userToken, storeName, productName, quantity), null);
+        } catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public ShoppingCartDTO getCartInfo(String userToken) {
-        return null;
+    public Response<ShoppingCartDTO> getCartInfo(String userToken) {
+        try {
+            return new Response<>(new ShoppingCartDTO(market.getUserCart(userToken)), null);
+        } catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
