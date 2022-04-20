@@ -85,17 +85,17 @@ public interface IService {
      * REQ 2.2.3
      * @return true/false upon success or failure
      */
-    boolean addProductToBasket(String userToken,String storeName,String productName,int quantity);
+    Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity);
 
     /**
      * REQ 2.2.4
      */
-    boolean removeProductFromBasket(String userToken,String storeName,String productName,int quantity);
+    Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity);
 
     /**
      * REQ 2.2.4
      */
-    ShoppingCartDTO getCartInfo(String userToken);
+    Response<ShoppingCartDTO> getCartInfo(String userToken);
 
     /**
      * REQ 2.2.5

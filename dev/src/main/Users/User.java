@@ -348,6 +348,14 @@ public class User implements IUser {
         throw new IllegalArgumentException("The user doesn't have permissions to do that!");
     }
 
+    public boolean addProductToCart(Store st, String productName, int quantity) {
+        return cart.addProductToCart(st, productName, quantity);
+    }
+
+    public boolean RemoveProductFromCart(Store st, String productName, int quantity) {
+        return cart.RemoveProductFromCart(st, productName, quantity);
+    }
+
     public boolean removeStore(Store store) {
         if(!isSystemManager)
             throw new IllegalArgumentException("You're not a system manager!");

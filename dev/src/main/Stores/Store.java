@@ -120,6 +120,9 @@ public class Store implements IStore {
     public ConcurrentHashMap<String, Product> getProductsByName() {
         return productsByName;
     }
+    public Product getProduct(String name) {
+        return productsByName.get(name);
+    }
 
     private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
         for (User u : getOwnersOfStore())

@@ -80,37 +80,74 @@ public class Service implements IService{
 
     @Override
     public Response<StoreDTO> getStoreInfo(String storeName) {
-        return null;
+        try {
+            return new Response<>(new StoreDTO(market.getStoreByName(storeName)),null);
+        }
+        catch (Exception e){
+            return new Response<>(null, e.getMessage());
+        }
     }
-
     @Override
     public Response<List<String>> getSmilliarStores(String storeName) {
-        return null;
+        try {
+            return new Response<>(market.getStoresByString(storeName), null);
+        }
+        catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
     public Response<List<ProductDTO>> getStoreProducts(String storeName) {
-        return null;
+        try {
+            List<ProductDTO> res = new LinkedList<>();
+            for (Product p : market.getStoreProducts(storeName))
+                res.add(new ProductDTO(p));
+            return new Response<>(res, null);
+        }
+        catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
     public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
-        return null;
+        try {
+            List<ProductDTO> res = new LinkedList<>();
+            for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
+                res.add(new ProductDTO(p));
+            return new Response<>(res, null);
+        }
+        catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean addProductToBasket(String userToken, String storeName, String productName, int quantity) {
-        return false;
+    public Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity) {
+        try {
+            return new Response<>(market.addProductToCart(userToken, storeName, productName, quantity), null);
+        } catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean removeProductFromBasket(String userToken, String storeName, String productName, int quantity) {
-        return false;
+    public Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
+        try {
+            return new Response<>(market.RemoveProductFromCart(userToken, storeName, productName, quantity), null);
+        } catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public ShoppingCartDTO getCartInfo(String userToken) {
-        return null;
+    public Response<ShoppingCartDTO> getCartInfo(String userToken) {
+        try {
+            return new Response<>(new ShoppingCartDTO(market.getUserCart(userToken)), null);
+        } catch (Exception e) {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override

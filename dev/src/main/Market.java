@@ -8,6 +8,7 @@ import main.Security.ISecurity;
 
 import main.Security.Security;
 
+import main.Shopping.ShoppingCart;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.StorePermission;
@@ -161,6 +162,45 @@ public class Market {
                                         result.add(currPrd);
             }
         return result;
+    }
+
+    public boolean addProductToCart(String userToken, String storeName, String productName, int quantity) {
+        User us = this.connectedUsers.get(userToken);
+        if (quantity <= 0)
+            throw new IllegalArgumentException("quantity is lesss than or equal to 0.");
+        if (us == null) {
+            Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
+            throw new IllegalArgumentException("Unkown user token.");
+        }
+        Store st = this.getStoreByName(storeName);
+        if(st == null) {
+            throw new IllegalArgumentException("Store doesn't exist.");
+        }
+        return us.addProductToCart(st, productName, quantity);
+    }
+
+    public boolean RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
+        User us = this.connectedUsers.get(userToken);
+        if (quantity <= 0)
+            throw new IllegalArgumentException("quantity is lesss than or equal to 0.");
+        if (us == null) {
+            Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
+            throw new IllegalArgumentException("Unkown user token.");
+        }
+        Store st = this.getStoreByName(storeName);
+        if(st == null) {
+            throw new IllegalArgumentException("Store doesn't exist.");
+        }
+        return us.RemoveProductFromCart(st, productName, quantity);
+    }
+
+    public ShoppingCart getUserCart(String userToken) {
+        User us = this.connectedUsers.get(userToken);
+        if (us == null) {
+            Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
+            throw new IllegalArgumentException("Unkown user token.");
+        }
+        return us.getCart();
     }
 
 
