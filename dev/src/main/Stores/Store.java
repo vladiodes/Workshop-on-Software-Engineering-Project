@@ -1,6 +1,7 @@
 package main.Stores;
 
 
+
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 
@@ -48,7 +49,6 @@ public class Store implements IStore {
 
 
     public Store(String storeName, User founder) {
-
         this.owners = new ConcurrentLinkedQueue<>();
         this.managers = new ConcurrentLinkedQueue<>();
         this.productsByName = new ConcurrentHashMap<>();
@@ -122,6 +122,7 @@ public class Store implements IStore {
     }
     public Product getProduct(String name) {
         return productsByName.get(name);
+
     }
 
     private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
@@ -129,7 +130,6 @@ public class Store implements IStore {
             bus.addMessage(u, msg);
         for (User u : getManagersOfStore())
             bus.addMessage(u, msg);
-
     }
 
     public String getName() {
@@ -158,7 +158,6 @@ public class Store implements IStore {
             staff.put(managerPermission.getAppointedToManager(), managerPermission.permissionsToString());
 
         return staff;
-
 
     }
 
@@ -192,5 +191,13 @@ public class Store implements IStore {
         for (ManagerPermissions manager : managers) {
             manager.getAppointedToManager().removeManagerRole(manager);
         }
+    }
+
+    public boolean removeProduct(String productName) {
+        Product toRemove=productsByName.get(productName);
+        if(toRemove==null)
+            throw new IllegalArgumentException("No such product with this name");
+        return productsByName.remove(productName)!=null;
+
     }
 }

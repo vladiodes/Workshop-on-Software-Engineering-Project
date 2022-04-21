@@ -20,7 +20,7 @@ public class NotificationBus {
     }
 
     public void addMessage(User toUser,String msg){
-        if(usersMessagesMap.containsKey(toUser)){
+        if(!usersMessagesMap.containsKey(toUser)){
             Logger.getInstance().logBug("Notification Bus","A user is not registered to the notification bus, this shouldn't happen");
             return;
         }
