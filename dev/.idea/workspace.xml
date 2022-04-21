@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="getter in response">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Fixed compilation issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +67,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test.UnitTests in dev">
+  <component name="RunManager" selected="JUnit.AT">
     <configuration name="AT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -84,7 +83,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AT.concurrentAppointStoreManager" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT.addProductTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -94,7 +93,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
       <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
-      <option name="METHOD_NAME" value="concurrentAppointStoreManager" />
+      <option name="METHOD_NAME" value="addProductTwice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -146,11 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AT" />
+        <item itemvalue="JUnit.AT.addProductTwice" />
         <item itemvalue="JUnit.test.UnitTests in dev" />
         <item itemvalue="JUnit.test.AcceptanceTests in dev" />
-        <item itemvalue="JUnit.AT" />
         <item itemvalue="JUnit.AT.concurrentRemoveAndEditProduct" />
-        <item itemvalue="JUnit.AT.concurrentAppointStoreManager" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650361805501</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed compilation issues">
+      <created>1650545025130</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1650545025130</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,9 +349,19 @@
     <MESSAGE value="Req 2.6.3 implemented" />
     <MESSAGE value="Changed service signatures to return responses" />
     <MESSAGE value="getter in response" />
-    <option name="LAST_COMMIT_MESSAGE" value="getter in response" />
+    <MESSAGE value="Fixed compilation issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed compilation issues" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="main.Market" memberName="stores" />

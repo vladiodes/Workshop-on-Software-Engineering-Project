@@ -7,7 +7,8 @@ public class ProductDTO {
     private String description;
 
     public ProductDTO(Product product) {
-
+        this.productName = product.getName();
+        this.description = product.getDescription();
     }
 
     public String getProductName() {
