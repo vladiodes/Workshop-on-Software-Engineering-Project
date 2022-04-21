@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="getter in response">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Logger/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT.java" afterDir="false" />
     </list>
@@ -73,7 +67,8 @@
       <recent name="test.UnitTests" />
       <recent name="test" />
     </key>
-  </component>  <component name="RunManager" selected="JUnit.AT">
+  </component>
+  <component name="RunManager" selected="JUnit.test.UnitTests in dev">
     <configuration name="AT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -85,38 +80,6 @@
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
       <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AT.allowAndDisallowManagerGetHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
-      <option name="METHOD_NAME" value="allowAndDisallowManagerGetHistory" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AT.allowManagerAnswerAndTakeRequests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
-      <option name="METHOD_NAME" value="allowManagerAnswerAndTakeRequests" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,13 +116,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test.AcceptanceTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test.UnitTests in dev" />
+        <item itemvalue="JUnit.test.AcceptanceTests in dev" />
         <item itemvalue="JUnit.AT" />
         <item itemvalue="JUnit.AT.concurrentRemoveAndEditProduct" />
         <item itemvalue="JUnit.AT.concurrentAppointStoreManager" />
-        <item itemvalue="JUnit.AT.allowManagerAnswerAndTakeRequests" />
-        <item itemvalue="JUnit.AT.allowAndDisallowManagerGetHistory" />
       </list>
     </recent_temporary>
   </component>
@@ -355,20 +346,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="getter in response" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT.java</url>
-          <line>93</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="main.Market" memberName="stores" />

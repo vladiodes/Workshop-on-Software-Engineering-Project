@@ -419,7 +419,4 @@ public class User implements IUser {
         return cart.RemoveProductFromCart(st, productName, quantity);
     }
 
-    public boolean isAdmin() {
-        return isSystemManager;
-    }
 }
