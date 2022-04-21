@@ -1,12 +1,18 @@
 package main.Stores;
 
+
+
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
+
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,6 +30,7 @@ public class Store implements IStore {
     private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
 
+
     public List<User> getOwnersOfStore() {
         LinkedList<User> storeOwners = new LinkedList<>();
         for (OwnerPermissions ow : owners) {
@@ -40,6 +47,7 @@ public class Store implements IStore {
         return storeManagers;
     }
 
+
     public Store(String storeName, User founder) {
         this.owners = new ConcurrentLinkedQueue<>();
         this.managers = new ConcurrentLinkedQueue<>();
@@ -50,6 +58,7 @@ public class Store implements IStore {
         messagesToStore = new ConcurrentLinkedQueue<>();
         purchaseHistory = new ConcurrentHashMap<>();
         buyingBaskets = new ConcurrentLinkedQueue<>();
+
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -108,6 +117,14 @@ public class Store implements IStore {
         sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()), bus);
     }
 
+    public ConcurrentHashMap<String, Product> getProductsByName() {
+        return productsByName;
+    }
+    public Product getProduct(String name) {
+        return productsByName.get(name);
+
+    }
+
     private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
         for (User u : getOwnersOfStore())
             bus.addMessage(u, msg);
@@ -118,6 +135,7 @@ public class Store implements IStore {
     public String getName() {
         return storeName;
     }
+
 
     public synchronized void reOpen(NotificationBus bus) {
         if (isActive)
@@ -140,6 +158,7 @@ public class Store implements IStore {
             staff.put(managerPermission.getAppointedToManager(), managerPermission.permissionsToString());
 
         return staff;
+
     }
 
     public List<String> getQuestions() {
@@ -179,5 +198,6 @@ public class Store implements IStore {
         if(toRemove==null)
             throw new IllegalArgumentException("No such product with this name");
         return productsByName.remove(productName)!=null;
+
     }
 }

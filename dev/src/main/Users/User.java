@@ -1,16 +1,22 @@
 package main.Users;
 
+
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 import main.Stores.Store;
 
+
+import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
+import main.Stores.Store;
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -92,6 +98,7 @@ public class User implements IUser {
         return isLoggedIn.get();
     }
 
+
     public boolean addProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(store, StorePermission.UpdateAddProducts))
             return store.addProduct(productName, category, keyWords, description, quantity, price);
@@ -134,6 +141,7 @@ public class User implements IUser {
 
     private void appointOwnerPreconditions(Store store, User user_to_appoint) {
         //first checking if the appointing (this) user can appoint a owner to the store
+
         if (!hasPermission(store, StorePermission.OwnerPermission))
             throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
         if (checkIfAlreadyStaff(store, user_to_appoint))
@@ -168,6 +176,7 @@ public class User implements IUser {
         deleteAllAppointedBy(store,
                 getAllStoreOwnersAppointedBy(appointed_user, store)
                 , getAllStoreManagersAppointedBy(appointed_user, store), appointed_user);
+
 
 
         //finally - deleting the appointment to owner from the appointed_user
@@ -306,6 +315,7 @@ public class User implements IUser {
         throw new IllegalArgumentException("The manager wasn't appointed by this user");
     }
 
+
     public boolean closeStore(Store store, NotificationBus bus) {
         if (!foundedStores.contains(store))
             throw new IllegalArgumentException("You're not the founder of the store!");
@@ -331,6 +341,7 @@ public class User implements IUser {
             return store.getQuestions();
         throw new IllegalArgumentException("You don't have permission to do that");
     }
+
 
     public boolean sendRespondFromStore(Store store, User toRespond, String msg, NotificationBus bus) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
@@ -398,5 +409,17 @@ public class User implements IUser {
         if(!hasPermission(store,StorePermission.UpdateAddProducts))
             throw new IllegalArgumentException("You don't have permissions to do that");
         return store.removeProduct(productName);
+    }
+  
+    public boolean addProductToCart(Store st, String productName, int quantity) {
+        return cart.addProductToCart(st, productName, quantity);
+    }
+
+    public boolean RemoveProductFromCart(Store st, String productName, int quantity) {
+        return cart.RemoveProductFromCart(st, productName, quantity);
+    }
+
+    public boolean isAdmin() {
+        return isSystemManager;
     }
 }

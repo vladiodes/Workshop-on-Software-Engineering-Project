@@ -50,8 +50,6 @@ class SecurityTest {
         String password2="Same_password";
         String hashed1=security.hashPassword(password1);
         String hashed2=security.hashPassword(password2);
-        System.out.println(hashed1);
-        System.out.println(hashed2);
         assertEquals(hashed1,hashed2);
     }
 

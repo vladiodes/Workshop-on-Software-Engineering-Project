@@ -1,8 +1,19 @@
 package main.Service;
 
+
+
+
+
 import main.DTO.*;
+import main.utils.Pair;
+import main.DTO.ProductDTO;
+import main.DTO.ShoppingCartDTO;
+import main.DTO.StoreDTO;
+import main.DTO.UserDTO;
 import main.utils.Response;
 
+
+import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -52,33 +63,43 @@ public interface IService {
     /**
      * REQ 2.2.1
      */
-    StoreDTO getStoreInfo(String storeName);
+    Response<StoreDTO> getStoreInfo(String storeName);
+
 
     /**
      * REQ 2.2.1
      */
-    List<ProductDTO>getStoreProducts(String storeName);
+    Response<List<String>> getSmilliarStores(String storeName);
 
     /**
+     * REQ 2.2.1
+     */
+    Response<List<ProductDTO>>getStoreProducts(String storeName);
+
+    /**
+     * does bitwise & between the conditions.
+     * null means to ignore a certain condition.
      * REQ 2.2.2
      */
-    List<ProductDTO> getProductsByInfo(String productName, String category, String keyWord, double productRating, double storeRating, double minPrice, double maxPrice);
+    Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice);
 
     /**
      * REQ 2.2.3
      * @return true/false upon success or failure
      */
-    boolean addProductToBasket(String userToken, String storeName, String productName, int quantity);
+    Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity);
+
 
     /**
      * REQ 2.2.4
      */
-    boolean removeProductFromBasket(String userToken, String storeName, String productName, int quantity);
+    Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity);
+
 
     /**
      * REQ 2.2.4
      */
-    ShoppingCartDTO getCartInfo(String userToken);
+    Response<ShoppingCartDTO> getCartInfo(String userToken);
 
     /**
      * REQ 2.2.5
@@ -232,6 +253,7 @@ public interface IService {
      * UserDTO - represents the user that has a role in the store (manager,owner,founder)
      * List<String> - a list of all the permissions that the staff member has.
      */
+
     Response<HashMap<UserDTO,String>> getStoreStaff(String userToken, String storeName);
 
     /**

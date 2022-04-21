@@ -73,8 +73,7 @@
       <recent name="test.UnitTests" />
       <recent name="test" />
     </key>
-  </component>
-  <component name="RunManager" selected="JUnit.AT">
+  </component>  <component name="RunManager" selected="JUnit.AT">
     <configuration name="AT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
