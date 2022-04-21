@@ -91,7 +91,7 @@ public interface IService {
      * REQ 2.3.2
      * @return true/false upon success/failure
      */
-    boolean openStore(String userToken, String storeName);
+    Response<Boolean> openStore(String userToken, String storeName);
 
     /**
      * REQ 2.3.4
@@ -145,7 +145,7 @@ public interface IService {
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    Response<Boolean> removeProductFromStore(String userToken, String productName) ;
+    Response<Boolean> removeProductFromStore(String userToken, String productName,String storeName) ;
 
     /**
      * REQ 2.4.1 - manage store inventory

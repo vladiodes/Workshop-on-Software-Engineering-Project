@@ -173,4 +173,11 @@ public class Store implements IStore {
             manager.getAppointedToManager().removeManagerRole(manager);
         }
     }
+
+    public boolean removeProduct(String productName) {
+        Product toRemove=productsByName.get(productName);
+        if(toRemove==null)
+            throw new IllegalArgumentException("No such product with this name");
+        return productsByName.remove(productName)!=null;
+    }
 }

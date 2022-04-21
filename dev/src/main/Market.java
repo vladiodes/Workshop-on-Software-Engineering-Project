@@ -77,6 +77,7 @@ public class Market {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
+        notificationBus.register(new_user);
         usersByName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
         return true;
@@ -288,5 +289,22 @@ public class Market {
 
     public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
         return String.valueOf(getStats(userToken, date).getNumOfRegistered());
+    }
+
+    public boolean openStore(String userToken, String storeName) {
+        User founder = connectedUsers.get(userToken);
+        if(!usersByName.containsKey(founder.getUserName()))
+            throw new IllegalArgumentException("This user isn't registered to the system!");
+        if(stores.containsKey(storeName))
+            throw new IllegalArgumentException("There's already a store with that name in the system");
+
+        Store newStore=founder.openStore(storeName);
+        stores.put(storeName,newStore);
+        return true;
+    }
+
+    public boolean removeProductFromStore(String userToken, String productName, String storeName) {
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        return p.first.removeProductFromStore(productName,p.second);
     }
 }

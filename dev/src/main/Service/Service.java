@@ -96,8 +96,16 @@ public class Service implements IService {
     }
 
     @Override
-    public boolean openStore(String userToken, String storeName) {
-        return false;
+    public Response<Boolean> openStore(String userToken, String storeName) {
+        try{
+            return new Response<>(market.openStore(userToken,storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            return new Response<>(e,false);
+        }
     }
 
     @Override
@@ -139,14 +147,24 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in addProductToStore!");
+            Logger.getInstance().logBug("Service - addProductToStore", "Bug in addProductToStore!");
             return new Response<>(e, false);
         }
     }
 
     @Override
-    public Response<Boolean> removeProductFromStore(String userToken, String productName) {
-        throw new IllegalArgumentException("not implemented yet");
+    public Response<Boolean> removeProductFromStore(String userToken, String productName,String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Delete product from store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
+        try{
+            return new Response<>(market.removeProductFromStore(userToken,productName,storeName));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service - removeProductFromStore", "Bug in remove product");
+            return new Response<>(e,false);
+        }
     }
 
     @Override
@@ -157,7 +175,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in update product");
+            Logger.getInstance().logBug("Service - updateProduct", "Bug in update product");
             return new Response<>(e, false);
         }
     }
@@ -170,7 +188,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in appoint store owner");
+            Logger.getInstance().logBug("Service - appointStoreOwner", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -183,7 +201,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in remove store owner appointment");
+            Logger.getInstance().logBug("Service - removeStoreOwnerAppointment", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -196,7 +214,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in appointStoreManager");
+            Logger.getInstance().logBug("Service - appointStoreManager", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -209,7 +227,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in remove store manager appointment");
+            Logger.getInstance().logBug("Service - removeStoreManagerAppointment", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -222,7 +240,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in allow manager update products");
+            Logger.getInstance().logBug("Service - allowManagerUpdateProducts", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -235,7 +253,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in disallow manager to update products");
+            Logger.getInstance().logBug("Service - disAllowManagerUpdateProducts", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -248,7 +266,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in allow manager get history");
+            Logger.getInstance().logBug("Service - allowManagerGetHistory", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -261,7 +279,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Serivce", "Bug in disallow manager get history");
+            Logger.getInstance().logBug("Serivce - disAllowManagerGetHistory", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -274,7 +292,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in allow manager answer and take requests");
+            Logger.getInstance().logBug("Service - allowManagerAnswerAndTakeRequests", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -287,7 +305,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in disallow manager answer and take requests");
+            Logger.getInstance().logBug("Service - disAllowManagerAnswerAndTakeRequests", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -300,7 +318,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in close store");
+            Logger.getInstance().logBug("Service - closeStore", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -313,7 +331,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in reopen store");
+            Logger.getInstance().logBug("Service - reopenStore", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -332,7 +350,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in get store staff");
+            Logger.getInstance().logBug("Service - getStoreStaff", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -345,7 +363,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in receive questions from buyers");
+            Logger.getInstance().logBug("Service - receiveQuestionsFromBuyers", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -358,7 +376,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in send respond to buyers");
+            Logger.getInstance().logBug("Service - sendRespondToBuyers", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -380,7 +398,7 @@ public class Service implements IService {
             return new Response<>(e, true);
 
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in get store purchase history");
+            Logger.getInstance().logBug("Service - getStorePurchaseHistory", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -393,7 +411,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in delete store");
+            Logger.getInstance().logBug("Service - deleteStore", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -406,7 +424,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in delete user");
+            Logger.getInstance().logBug("Service - deleteUser", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -419,7 +437,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in receive messages");
+            Logger.getInstance().logBug("Service - receiveMessages", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -432,7 +450,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "bug in respond to message");
+            Logger.getInstance().logBug("Service - respondToMessage", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -445,7 +463,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in get number of logged in users per date");
+            Logger.getInstance().logBug("Service - getNumberOfLoggedInUsersPerDate", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -458,7 +476,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in get number of purchases per date");
+            Logger.getInstance().logBug("Service - getNumberOfPurchasesPerDate", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -471,7 +489,7 @@ public class Service implements IService {
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in get number of registered users per date");
+            Logger.getInstance().logBug("Service - getNumberOfRegisteredUsersPerDate", e.getMessage());
             return new Response<>(e, false);
         }
     }

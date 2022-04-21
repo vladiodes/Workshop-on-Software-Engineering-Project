@@ -67,6 +67,9 @@ public class User implements IUser {
         isLoggedIn = new AtomicBoolean(false);
         foundedStores = new LinkedList<>();
         cart = new ShoppingCart();
+        ownedStores = new LinkedList<>();
+        managedStores = new LinkedList<>();
+        messages=new ConcurrentLinkedQueue<>();
     }
 
     public ShoppingCart getCart() {
@@ -97,7 +100,7 @@ public class User implements IUser {
 
     public boolean updateProductToStore(Store store, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(store, StorePermission.UpdateAddProducts))
-            store.updateProduct(productName, category, keyWords, description, quantity, price);
+            return store.updateProduct(productName, category, keyWords, description, quantity, price);
         throw new IllegalArgumentException("This user doesn't have permissions to do that!");
     }
 
@@ -383,5 +386,17 @@ public class User implements IUser {
 
     public boolean isAdmin() {
         return isSystemManager;
+    }
+
+    public Store openStore(String storeName) {
+        Store store = new Store(storeName,this);
+        foundedStores.add(store);
+        return store;
+    }
+
+    public boolean removeProductFromStore(String productName, Store store) {
+        if(!hasPermission(store,StorePermission.UpdateAddProducts))
+            throw new IllegalArgumentException("You don't have permissions to do that");
+        return store.removeProduct(productName);
     }
 }

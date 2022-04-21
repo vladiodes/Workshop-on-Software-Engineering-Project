@@ -2,28 +2,49 @@ package main.Logger;
 
 import jdk.jshell.spi.ExecutionControl;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Logger {
     /**
      * A logger class, implemented as a safe-thread singleton
      * Simply writes events or bugs into a file.
      */
-    private static class LoggerHolder{
+    private static class LoggerHolder {
         private final static Logger instance = new Logger();
     }
 
-    private String logFileName;
-    private Logger(){
+    private String logFileName = "LOG.txt";
+
+    private Logger() {
 
     }
-    public static Logger getInstance(){
+
+    public static Logger getInstance() {
         return LoggerHolder.instance;
     }
 
-    public void logEvent(String className,String msg){
-
+    public synchronized void logEvent(String className, String msg) {
+        appendStrToFile(String.format("[EVENT] - %s in class: %s\n",msg,className));
     }
 
-    public void logBug(String className,String msg){
+    public synchronized void logBug(String className, String msg) {
+        appendStrToFile(String.format("[BUG] - %s in class: %s\n",msg,className));
+    }
 
+    private void appendStrToFile(String msg) {
+
+        try {
+            BufferedWriter out = new BufferedWriter(
+                    new FileWriter(logFileName, true));
+
+            out.write(msg);
+            out.close();
+        }
+        catch (IOException e) {
+            System.out.println("exception occurred" + e);
+        }
     }
 }
+
