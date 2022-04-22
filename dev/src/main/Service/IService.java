@@ -277,7 +277,7 @@ public interface IService {
      * REQ 2.4.12
      * @return a collection of all the questions from all the buyers
      */
-    Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName);
+    Response<List<Pair<String,String>>> receiveQuestionsFromBuyers(String userToken, String storeName);
 
     /**
      * REQ 2.4.12

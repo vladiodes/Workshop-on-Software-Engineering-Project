@@ -16,6 +16,7 @@ import main.Shopping.ShoppingCart;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.User;
+import main.utils.Pair;
 import main.utils.Response;
 import javax.naming.NoPermissionException;
 import java.security.interfaces.RSAKey;
@@ -486,7 +487,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
+    public Response<List<Pair<String, String>>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to receive questions from buyers from store:%s", storeName));
         try {
             return new Response<>(market.receiveQuestionsFromBuyers(userToken, storeName));

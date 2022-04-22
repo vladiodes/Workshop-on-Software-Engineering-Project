@@ -353,6 +353,7 @@ public class User implements IUser {
 
     public void purchaseCart() {
         purchaseHistory.add(cart);
+        this.cart = new ShoppingCart(); //User's cart is now a new empty cart since the last cart was purchased
     }
 
     public List<ShoppingCart> getPurchaseHistory() {
@@ -396,7 +397,7 @@ public class User implements IUser {
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    public List<String> receiveQuestionsFromStore(Store store) {
+    public List<Pair<String, String>> receiveQuestionsFromStore(Store store) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
             return store.getQuestions();
         throw new IllegalArgumentException("You don't have permission to do that");

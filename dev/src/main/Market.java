@@ -16,6 +16,8 @@ import main.Users.User;
 import main.utils.Pair;
 import main.utils.stringFunctions;
 import main.utils.SystemStats;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import javax.naming.NoPermissionException;
@@ -43,7 +45,8 @@ public class Market {
 
     private NotificationBus notificationBus;
 
-    private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
+    private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+    private enum StatsType{Register, Login, Purchase}
 
     public Market(){
         usersByName=new ConcurrentHashMap<>();
@@ -81,6 +84,46 @@ public class Market {
         return leaving_user;
     }
 
+    private void addStats(StatsType type)
+    {
+        LocalDate date = LocalDate.now();
+        if(this.systemStatsByDate.containsKey(date))
+        {
+            SystemStats systemStats = this.systemStatsByDate.get(date);
+            switch (type)
+            {
+                case Register:
+                    systemStats.addRegister();
+                    break;
+                case Login:
+                    systemStats.addLogIn();
+                    break;
+                case Purchase:
+                    systemStats.addPurchase();
+                    break;
+            }
+        }
+        else
+        {
+            SystemStats newSystemStats = new SystemStats(date);
+            switch (type)
+            {
+                case Register:
+                    newSystemStats.addRegister();
+                    break;
+                case Login:
+                    newSystemStats.addLogIn();
+                    break;
+                case Purchase:
+                    newSystemStats.addPurchase();
+                    break;
+            }
+
+            this.systemStatsByDate.put(date, newSystemStats);
+        }
+
+    }
+
     public boolean Register(String userName, String password) {
         if (usersByName.containsKey(userName)) {
             throw new IllegalArgumentException("username is taken.");
@@ -92,6 +135,7 @@ public class Market {
         notificationBus.registerUser(new_user);
         usersByName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
+        addStats(StatsType.Register);
         return true;
     }
 
@@ -117,6 +161,7 @@ public class Market {
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         connectedUsers.put(token, u);
         u.LogIn();
+        addStats(StatsType.Login);
         return u;
     }
 
@@ -306,7 +351,7 @@ public class Market {
         return p.first.getStoreStaff(p.second);
     }
 
-    public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
+    public List<Pair<String, String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.receiveQuestionsFromStore(p.second);
     }
@@ -432,9 +477,11 @@ public class Market {
             throw new Exception("Invalid user token");
         }
         User u = connectedUsers.get(userToken);
-        u.purchaseCart();
 
         //TODO: Missing part of purchasing from store
+
+        u.purchaseCart();
+        addStats(StatsType.Purchase);
     }
 
     public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
