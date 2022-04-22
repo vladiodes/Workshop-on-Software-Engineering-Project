@@ -11,7 +11,6 @@ import main.Stores.Product;
 import main.Stores.ProductReview;
 import main.Stores.Store;
 import main.Stores.StoreReview;
-import main.Users.OwnerPermissions;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
@@ -20,7 +19,6 @@ import main.utils.SystemStats;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import javax.naming.NoPermissionException;
-import javax.security.auth.login.LoginException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -91,7 +89,7 @@ public class Market {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
-        notificationBus.register(new_user);
+        notificationBus.registerUser(new_user);
         usersByName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
         return true;
@@ -480,5 +478,79 @@ public class Market {
         }
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
+    }
+
+    public void changePassword(String userToken, String oldPassword, String newPassword)throws Exception {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        if(!isValidPass(newPassword))
+        {
+            throw new Exception("");
+        }
+        User u = connectedUsers.get(userToken);
+        String oldPassHashed = this.security_controller.hashPassword(oldPassword);
+        if(!oldPassHashed.equals(u.getHashed_password()))
+        {
+            throw new Exception("Old password is incorrect");
+        }
+        u.changePassword(this.security_controller.hashPassword(newPassword));
+    }
+
+    public void changeUsername(String userToken, String newUsername) throws Exception {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        String oldUsername = u.getUserName();
+        u.changeUsername(newUsername);
+        this.usersByName.remove(oldUsername);
+        this.usersByName.put(newUsername, u);
+    }
+
+    private boolean isValidPass(String pass)
+    {
+        if(pass.isBlank() || pass.length()<4)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
+        if(!stores.contains(storeName))
+        {
+            throw new Exception("No such store "+ storeName);
+        }
+        Store store = stores.get(storeName);
+        User u = getConnectedUserByToken(userToken);
+        String userName = u.getUserName();
+        this.notificationBus.addMessage(store, userName, message);
+    }
+
+    private User getConnectedUserByToken(String userToken) throws Exception
+    {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        return u;
+    }
+
+    public void sendComplaint(String userToken, String msg) throws  Exception {
+        for(User u : this.usersByName.values())
+        {
+            if(u.isAdmin())
+            {
+                notificationBus.addMessage(u, msg);
+                return;
+            }
+        }
+        throw new Exception("This is a bug : No admin was found in the system");
+
+        //Find admin to send the complaint to
     }
 }

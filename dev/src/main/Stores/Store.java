@@ -8,6 +8,7 @@ import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+import main.utils.Pair;
 
 
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ public class Store implements IStore {
     private boolean isActive;
     private String storeName;
     private List<StoreReview> storeReviews;
-    private ConcurrentLinkedQueue<String> messagesToStore;
+    private ConcurrentLinkedQueue<Pair<String, String>> messagesToStore;
     private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
 
@@ -163,8 +164,8 @@ public class Store implements IStore {
 
     }
 
-    public List<String> getQuestions() {
-        LinkedList<String> msgList = new LinkedList<>();
+    public List<Pair<String,String>> getQuestions() {
+        List<Pair<String,String>> msgList = new LinkedList<>();
         while (!messagesToStore.isEmpty())
             msgList.add(messagesToStore.remove());
         return msgList;

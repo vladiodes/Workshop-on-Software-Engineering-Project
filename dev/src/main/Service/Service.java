@@ -18,6 +18,7 @@ import main.Stores.Store;
 import main.Users.User;
 import main.utils.Response;
 import javax.naming.NoPermissionException;
+import java.security.interfaces.RSAKey;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -209,13 +210,31 @@ public class Service implements IService {
     }
 
     @Override
-    public boolean sendQuestionsToStore(String userToken, String storeName, String message) {
-        return false;
+    public Response<Boolean> sendQuestionsToStore(String userToken, String storeName, String message)
+    {
+        try
+        {
+            market.sendQuestionsToStore(userToken, storeName, message);
+            return new Response<>(true, null);
+        }
+        catch (Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean sendComplaint(String userToken, String msg) {
-        return false;
+    public Response<Boolean> sendComplaint(String userToken, String msg)
+    {
+        try
+        {
+            market.sendComplaint(userToken, msg);
+            return new Response<>(true, null);
+        }
+        catch (Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
@@ -604,4 +623,31 @@ public class Service implements IService {
             return new Response<>(e, false);
         }
     }
+
+    public Response<Boolean> changePassword(String userToken, String oldPassword, String newPassword)
+    {
+        try
+        {
+            market.changePassword(userToken, oldPassword, newPassword);
+            return new Response<>(true, null);
+        }
+        catch (Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+    }
+
+    public Response<Boolean> changeUsername(String userToken, String newUsername)
+    {
+        try
+        {
+            market.changeUsername(userToken, newUsername);
+            return new Response<>(true, null);
+        }
+        catch (Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+    }
+
 }

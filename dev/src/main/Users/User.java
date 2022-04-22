@@ -479,4 +479,15 @@ public class User implements IUser {
         return cart.RemoveProductFromCart(st, productName, quantity);
     }
 
+    public void changePassword(String newPassHashed) {
+        this.hashed_password = newPassHashed;
+    }
+
+    public void changeUsername(String newUsername) throws Exception{
+        if(newUsername.isBlank())
+        {
+            throw new Exception("Username cant be blank");
+        }
+        this.userName = newUsername;
+    }
 }

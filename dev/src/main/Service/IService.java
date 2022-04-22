@@ -129,13 +129,26 @@ public interface IService {
      * REQ 2.3.5
      * @return true/false upon success/failure
      */
-    boolean sendQuestionsToStore(String userToken, String storeName, String message);
+    Response<Boolean> sendQuestionsToStore(String userToken, String storeName, String message);
 
     /**
      * REQ 2.3.6
+     * Sends a complaint to one of the market admins
      * @return true/false upon success/failure
      */
-    boolean sendComplaint(String userToken, String msg);
+    Response<Boolean> sendComplaint(String userToken, String msg);
+
+    /**
+     * REQ 2.3.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> changePassword(String userToken, String oldPassword, String newPassword);
+
+    /**
+     * REQ 2.3.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> changeUsername(String userToken, String newUsername);
 
     /**
      * REQ 2.3.7
