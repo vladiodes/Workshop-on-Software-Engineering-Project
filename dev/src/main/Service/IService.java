@@ -33,7 +33,7 @@ public interface IService {
      * This function is invoked once a guest exits the system (all of his details are simply deleted)
      * @param userToken the token that is used by the system to identify the guest.
      * REQ 2.1.2
-     * @return
+     * @return a user DTO
      */
     Response<UserDTO> guestDisconnect(String userToken);
 
@@ -85,17 +85,19 @@ public interface IService {
      * REQ 2.2.3
      * @return true/false upon success or failure
      */
-    boolean addProductToBasket(String userToken,String storeName,String productName,int quantity);
+    Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity);
+
 
     /**
      * REQ 2.2.4
      */
-    boolean removeProductFromBasket(String userToken,String storeName,String productName,int quantity);
+    Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity);
+
 
     /**
      * REQ 2.2.4
      */
-    ShoppingCartDTO getCartInfo(String userToken);
+    Response<ShoppingCartDTO> getCartInfo(String userToken);
 
     /**
      * REQ 2.2.5
@@ -108,7 +110,8 @@ public interface IService {
      * REQ 2.3.2
      * @return true/false upon success/failure
      */
-    Response<StoreDTO> openStore(String userToken,String storeName);
+    Response<Boolean> openStore(String userToken, String storeName);
+
 
     /**
      * REQ 2.3.4
@@ -126,13 +129,13 @@ public interface IService {
      * REQ 2.3.5
      * @return true/false upon success/failure
      */
-    boolean sendQuestionsToStore(String userToken,String storeName,String message);
+    boolean sendQuestionsToStore(String userToken, String storeName, String message);
 
     /**
      * REQ 2.3.6
      * @return true/false upon success/failure
      */
-    boolean sendComplaint(String userToken,String msg);
+    boolean sendComplaint(String userToken, String msg);
 
     /**
      * REQ 2.3.7
@@ -144,7 +147,7 @@ public interface IService {
      * REQ 2.3.8
      * @return true/false upon success/failure
      */
-    boolean updateUserInfo(String userToken,String newUserName,String oldPassword,String newPassword);
+    boolean updateUserInfo(String userToken, String newUserName, String oldPassword, String newPassword);
 
     /**
      * REQ 2.3.9
@@ -161,86 +164,93 @@ public interface IService {
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    boolean AddProductToStore(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity, double price) throws NoPermissionException;
+    Response<Boolean> addProductToStore(String userToken, String productName, String category, List<String>keyWords, String description, String storeName, int quantity, double price);
 
     /**
      * REQ 2.4.1 - manage store inventory
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    boolean updateProduct(String userToken,String productName,String category,List<String>keyWords,String description,String storeName,int quantity,double price) throws NoPermissionException;
+    Response<Boolean> removeProductFromStore(String userToken, String productName,String storeName) ;
+
+    /**
+     * REQ 2.4.1 - manage store inventory
+     * REQ 2.5
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price);
 
     /**
      * REQ 2.4.4
      * @return true/false upon success/failure
      */
-    boolean appointStoreOwner(String userToken,String userToAppoint,String storeName);
+    Response<Boolean> appointStoreOwner(String userToken,String userToAppoint,String storeName);
 
     /**
      * REQ 2.4.5
      * @return true/false upon success/failure
      */
-    boolean removeStoreOwnerAppointment(String userToken,String userAppointed,String storeName);
+    Response<Boolean> removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName);
 
     /**
      * REQ 2.4.6
      * @return true/false upon success/failure
      */
-    boolean appointStoreManager(String userToken,String userToAppoint,String storeName);
+    Response<Boolean> appointStoreManager(String userToken, String userToAppoint, String storeName);
 
     /**
      * REQ 2.4.8
      * @return true/false upon success/failure
      */
-    boolean removeStoreManagerAppointment(String userToken,String userAppointed,String storeName);
+    Response<Boolean> removeStoreManagerAppointment(String userToken, String userAppointed, String storeName);
 
     /**
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    boolean allowManagerUpdateProducts(String userToken,String managerName,String storeName);
+    Response<Boolean> allowManagerUpdateProducts(String userToken, String managerName, String storeName);
 
     /**
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    boolean disAllowManagerUpdateProducts(String userToken,String managerName,String storeName);
+    Response<Boolean> disAllowManagerUpdateProducts(String userToken, String managerName, String storeName);
 
     /**
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    boolean allowManagerGetHistory(String userToken,String managerName,String storeName);
+    Response<Boolean> allowManagerGetHistory(String userToken, String managerName, String storeName);
 
     /**
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    boolean disAllowManagerGetHistory(String userToken,String managerName,String storeName);
+    Response<Boolean> disAllowManagerGetHistory(String userToken, String managerName, String storeName);
 
     /**
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    boolean allowManagerAnswerAndTakeRequests(String userToken,String managerName,String storeName);
+    Response<Boolean> allowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName);
 
     /**
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    boolean disAllowManagerAnswerAndTakeRequests(String userToken,String managerName,String storeName);
+    Response<Boolean> disAllowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName);
 
     /**
      * REQ 2.4.9
      * @return true/false upon success/failure
      */
-    boolean closeStore(String userToken,String storeName);
+    Response<Boolean> closeStore(String userToken, String storeName);
 
     /**
      * REQ 2.4.10
      * @return true/false upon success/failure
      */
-    boolean reOpenStore(String userToken,String storeName);
+    Response<Boolean> reopenStore(String userToken, String storeName);
 
     /**
      * REQ 2.4.11
@@ -248,19 +258,19 @@ public interface IService {
      * UserDTO - represents the user that has a role in the store (manager,owner,founder)
      * List<String> - a list of all the permissions that the staff member has.
      */
-    HashMap<UserDTO,String> getStoreStaff(String userToken,String storeName);
+    Response<HashMap<UserDTO,String>> getStoreStaff(String userToken, String storeName);
 
     /**
      * REQ 2.4.12
      * @return a collection of all the questions from all the buyers
      */
-    List<String> receiveQuestionsFromBuyers(String userToken,String storeName);
+    Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName);
 
     /**
      * REQ 2.4.12
      * @return true/false upon success/failure
      */
-    boolean sendRespondToBuyers(String userToken,String storeName,String userToRespond,String msg);
+    Response<Boolean> sendRespondToBuyers(String userToken, String storeName, String userToRespond, String msg);
 
     /**
      * REQ 2.4.13
@@ -270,7 +280,7 @@ public interface IService {
      * was bought at that date
      * the value is the dto of the product.
      */
-    List<PurchaseDTO> getStorePurchaseHistory(String userToken, String storeName);
+    Response<List<PurchaseDTO>> getStorePurchaseHistory(String userToken, String storeName);
 
     /*
      ------------------------ System manager actions -------------------
@@ -282,20 +292,20 @@ public interface IService {
      * store staff had.
      * @return true/false upon success/failure
      */
-    boolean deleteStore(String userToken, String storeName);
+    Response<Boolean> deleteStore(String userToken, String storeName);
 
     /**
      * REQ 2.6.2
      * @return true/false upon success/failure
      */
-    boolean deleteUser(String userToken,String userName);
+    Response<Boolean> deleteUser(String userToken, String userName);
 
     /**
      * REQ 2.6.3
      * Also - a connected user will use this function to get all of its pending messages
      * @return a list of all the messages
      */
-    List<String> receiveMessages(String userToken);
+    Response<List<String>> receiveMessages(String userToken);
 
     /**
      * REQ 2.6.3
@@ -305,7 +315,7 @@ public interface IService {
      * @param msg - the message itself
      * @return true/false upon success/failure
      */
-    boolean respondToMessage(String userToken,String userToRespond,String msg);
+    Response<Boolean> respondToMessage(String userToken, String userToRespond, String msg);
 
     /*
      ------------------------ System stats -------------------
@@ -315,15 +325,15 @@ public interface IService {
     /**
      * REQ 2.6.5
      */
-    String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date);
+    Response<String> getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date);
 
     /**
      * REQ 2.6.5
      */
-    String getNumberOfPurchasesPerDate(String userToken,LocalDateTime date);
+    Response<String> getNumberOfPurchasesPerDate(String userToken, LocalDateTime date);
 
     /**
      * REQ 2.6.5
      */
-    String getNumberOfRegisteredUsersPerDate(String userToken,LocalDateTime date);
+    Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date);
 }
