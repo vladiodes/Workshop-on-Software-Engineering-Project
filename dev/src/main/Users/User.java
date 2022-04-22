@@ -3,6 +3,7 @@ package main.Users;
 import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingCart;
+import main.Stores.Product;
 import main.Stores.Store;
 import main.utils.Pair;
 
@@ -342,5 +343,36 @@ public class User implements IUser {
 
     public List<ShoppingCart> getPurchaseHistory() {
         return this.purchaseHistory;
+    }
+
+    public void setStoreFounder(Store store) throws Exception
+    {
+        if(!this.foundedStores.isEmpty())
+        {
+            throw new Exception("There is already a store founder");
+        }
+        this.foundedStores.add(store);
+    }
+
+    public Product findProductInHistoryByNameAndStore(String productName, String storeName) {
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            if(sc.isProductInCart(productName, storeName)) // Only true if product is in the user's purchase history for that specific store
+            {
+                return sc.getProduct(productName, storeName);
+            }
+        }
+        return null;
+    }
+
+    public Store getStoreInPurchaseHistory(String storeName) {
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            if(sc.isStoreInCart(storeName))
+            {
+                return sc.getStore(storeName);
+            }
+        }
+        return null;
     }
 }

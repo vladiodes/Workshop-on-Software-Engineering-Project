@@ -7,16 +7,16 @@ import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingCart;
 import main.Stores.Product;
+import main.Stores.ProductReview;
 import main.Stores.Store;
+import main.Stores.StoreReview;
+import main.Users.OwnerPermissions;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
 import main.utils.stringFunctions;
-import org.junit.platform.commons.util.StringUtils;
 
 import javax.naming.NoPermissionException;
-import javax.security.auth.login.LoginException;
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -263,7 +263,10 @@ public class Market {
             throw new Exception("Invalid user token");
         }
         User u = connectedUsers.get(userToken);
-        //TODO: check if user is a guest or member - req 3.9
+        if(!usersByName.containsKey(u.getUserName()))
+        {
+            throw new Exception("User is a not a member");
+        }
         u.addSecurityQuestion(question, answer);
     }
 
@@ -271,12 +274,11 @@ public class Market {
     {
         if(!connectedUsers.containsKey(token))
         {
-            throw new Exception("Invalid user token");
+            throw new Exception("User is not logged in");
         }
-        //TODO: check if user is a guest or member - req 3.1
-        //TODO: Check with Ilay that the shopping cart is saved when logging out
         User u = connectedUsers.get(token);
         u.logout();
+        connectedUsers.remove(u.getUserName());
     }
 
     public void purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) throws Exception
@@ -299,8 +301,61 @@ public class Market {
         }
         User u = connectedUsers.get(userToken);
         List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
-        return null;
-        //TODO: turn every shopping cart into DTO and return
+        List<ShoppingCartDTO> scDTO = new LinkedList<>();
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            scDTO.add(new ShoppingCartDTO(sc));
+        }
+        return scDTO;
+    }
+
+    public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        Product prod = u.findProductInHistoryByNameAndStore(productName, storeName);
+        if(prod == null)
+            throw new Exception("Product was not found in user's purchase history");
+        ProductReview pReview = new ProductReview(u, prod, reviewDescription, points);
+        prod.addReview(pReview);
+    }
+
+    public void writeStoreReview(String userToken, String storeName, String reviewDescription, double points) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        Store store = u.getStoreInPurchaseHistory(storeName);
+        if(store==null)
+        {
+            throw new Exception("Product was not found in user's purchase history");
+        }
+        StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
+        store.addReview(sReview);
+    }
+
+
+    public Store openStore(String userToken, String storeName) throws Exception
+    {
+        //TODO: check usertoken is member
+
+        if(stores.containsKey(storeName))
+        {
+            throw new Exception("Store name is already taken");
+        }
+        //TODO: extract the same userToken check and get to a method
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        Store newStore = new Store(storeName);
+        u.setStoreFounder(newStore);
+        newStore.addOwnerToStore(new OwnerPermissions(u,u,newStore));
+        return newStore;
     }
 }
 

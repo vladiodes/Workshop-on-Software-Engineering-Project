@@ -1,5 +1,6 @@
 package main.Stores;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Product {
@@ -9,6 +10,7 @@ public class Product {
     private String description;
     private int quantity;
     private double price;
+    private List<ProductReview> reviews;
 
     public Product(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if(productName==null || productName.trim().equals(""))
@@ -22,6 +24,7 @@ public class Product {
         this.description=description;
         this.quantity=quantity;
         this.price=price;
+        this.reviews = new LinkedList<>();
     }
 
     public String getName() {
@@ -63,5 +66,10 @@ public class Product {
 
     public double getPrice() {
         return price;
+    }
+
+    public void addReview(ProductReview review)
+    {
+        this.reviews.add(review);
     }
 }

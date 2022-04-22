@@ -16,6 +16,7 @@ public class Store implements IStore {
     private ConcurrentLinkedQueue<ManagerPermissions> managers;
     private boolean isActive;
     private String storeName;
+    private List<StoreReview> storeReviews;
     public List<User> getOwnersOfStore(){
         LinkedList<User> storeOwners=new LinkedList<>();
         for(OwnerPermissions ow:owners){
@@ -37,6 +38,7 @@ public class Store implements IStore {
         this.productsByName=new ConcurrentHashMap<>();
         isActive=true;
         this.storeName=storeName;
+        this.storeReviews = new LinkedList<>();
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -115,5 +117,9 @@ public class Store implements IStore {
             throw new IllegalArgumentException("The store is already opened!");
         isActive = true;
         sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()));
+    }
+
+    public void addReview(StoreReview sReview) {
+        this.storeReviews.add(sReview);
     }
 }

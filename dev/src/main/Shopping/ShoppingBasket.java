@@ -18,4 +18,12 @@ public class ShoppingBasket {
     public HashMap<Product,Integer> getProductsAndQuantities() {
         return productsQuantity;
     }
+
+    public Store getStore() {
+        return  this.store;
+    }
+
+    public HashMap<Product, Integer> getProductsQuantity() {
+        return productsQuantity;
+    }
 }

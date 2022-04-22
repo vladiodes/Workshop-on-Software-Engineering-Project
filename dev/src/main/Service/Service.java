@@ -8,6 +8,7 @@ import main.Logger.Logger;
 import main.Market;
 import main.Shopping.ShoppingCart;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Response;
 
@@ -154,13 +155,42 @@ public class Service implements IService{
     }
 
     @Override
-    public boolean openStore(String userToken, String storeName) {
-        return false;
+    public Response<StoreDTO> openStore(String userToken, String storeName){
+        try
+        {
+            Store s = market.openStore(userToken, storeName);
+            return new Response<>(new StoreDTO(s), null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
-    public boolean writeReview(String userToken, String productName, String storeName, String reviewDescription, double points) {
-        return false;
+    public Response<Boolean> writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) {
+        try
+        {
+            market.writeProductReview(userToken, productName, storeName, reviewDescription, points);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+    }
+
+    @Override
+    public Response<Boolean> writeStoreReview(String userToken, String storeName, String reviewDescription, double points) {
+        try
+        {
+            market.writeStoreReview(userToken, storeName, reviewDescription, points);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
