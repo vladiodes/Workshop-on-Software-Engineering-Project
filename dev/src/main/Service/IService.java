@@ -123,13 +123,6 @@ public interface IService {
      * REQ 2.3.4
      * @return true/false upon success/failure
      */
-
-    Response<Boolean> writeProductReview(String userToken,String productName, String storeName, String reviewDescription, double points);
-
-    /**
-     * REQ 2.3.4
-     * @return true/false upon success/failure
-     */
     Response<Boolean> writeStoreReview(String userToken, String storeName, String reviewDescription, double points);
 
     /**
