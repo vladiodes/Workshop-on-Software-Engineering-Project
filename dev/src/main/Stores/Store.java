@@ -122,9 +122,6 @@ public class Store implements IStore {
         sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()), bus);
     }
 
-    public ConcurrentHashMap<String, Product> getProductsByName() {
-        return productsByName;
-    }
     public Product getProduct(String name) {
         return productsByName.get(name);
 

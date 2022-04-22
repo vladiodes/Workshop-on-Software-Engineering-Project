@@ -481,25 +481,4 @@ public class Market {
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
     }
-
-
-    public Store openStore(String userToken, String storeName) throws Exception
-    {
-        //TODO: check usertoken is member
-
-        if(stores.containsKey(storeName))
-        {
-            throw new Exception("Store name is already taken");
-        }
-        //TODO: extract the same userToken check and get to a method
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
-        Store newStore = new Store(storeName);
-        u.setStoreFounder(newStore);
-        newStore.addOwnerToStore(new OwnerPermissions(u,u,newStore));
-        return newStore;
-    }
 }
