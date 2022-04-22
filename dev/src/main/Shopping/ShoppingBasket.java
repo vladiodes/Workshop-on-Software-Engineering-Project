@@ -2,7 +2,6 @@ package main.Shopping;
 
 import main.Stores.Product;
 import main.Stores.Store;
-
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -68,3 +67,4 @@ public class ShoppingBasket {
         return store;
     }
 }
+

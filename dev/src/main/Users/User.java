@@ -4,7 +4,9 @@ package main.Users;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
+import main.Stores.Product;
 import main.Stores.Store;
+import main.utils.Pair;
 
 
 import main.NotificationBus;
@@ -28,11 +30,15 @@ public class User implements IUser {
     private AtomicBoolean isLoggedIn;
     private ConcurrentLinkedQueue<String> messages = new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
+    private List<ShoppingCart> purchaseHistory;
+
 
     // stores connections
     private List<Store> foundedStores;
     private List<ManagerPermissions> managedStores;
     private List<OwnerPermissions> ownedStores;
+    private List<Pair<String,String>> securityQNA;
+    private Boolean isGuest;
 
     private List<Store> getManagedStores() {
         List<Store> stores = new LinkedList<>();
@@ -76,6 +82,8 @@ public class User implements IUser {
         ownedStores = new LinkedList<>();
         managedStores = new LinkedList<>();
         messages=new ConcurrentLinkedQueue<>();
+		securityQNA = new LinkedList<>();
+        purchaseHistory = new LinkedList<>();
     }
 
     public ShoppingCart getCart() {
@@ -330,6 +338,58 @@ public class User implements IUser {
         return true;
     }
 
+    public void addSecurityQuestion(String question, String answer) throws Exception
+    {
+        if(question.isBlank() || answer.isBlank())
+        {
+            throw new Exception("Question or Answer cant be empty");
+        }
+        this.securityQNA.add(new Pair<>(question, answer));
+    }
+
+    public void logout() {
+        this.isLoggedIn.set(false);
+    }
+
+    public void purchaseCart() {
+        purchaseHistory.add(cart);
+    }
+
+    public List<ShoppingCart> getPurchaseHistory() {
+        return this.purchaseHistory;
+    }
+
+    public void setStoreFounder(Store store) throws Exception
+    {
+        if(!this.foundedStores.isEmpty())
+        {
+            throw new Exception("There is already a store founder");
+        }
+        this.foundedStores.add(store);
+    }
+
+    public Product findProductInHistoryByNameAndStore(String productName, String storeName) {
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            if(sc.isProductInCart(productName, storeName)) // Only true if product is in the user's purchase history for that specific store
+            {
+                return sc.getProduct(productName, storeName);
+            }
+        }
+        return null;
+    }
+
+    public Store getStoreInPurchaseHistory(String storeName) {
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            if(sc.isStoreInCart(storeName))
+            {
+                return sc.getStore(storeName);
+            }
+        }
+        return null;
+    }
+	
     public HashMap<User, String> getStoreStaff(Store store) {
         if (hasPermission(store, StorePermission.OwnerPermission))
             return store.getStoreStaff();

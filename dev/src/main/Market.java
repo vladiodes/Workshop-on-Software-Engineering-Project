@@ -1,36 +1,29 @@
 package main;
 
 
+import main.DTO.ShoppingCartDTO;
 import main.Shopping.ShoppingBasket;
-
 import main.Logger.Logger;
 import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingCart;
 import main.Stores.Product;
-
+import main.Stores.ProductReview;
 import main.Stores.Store;
+import main.Stores.StoreReview;
+import main.Users.OwnerPermissions;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
-
 import main.utils.stringFunctions;
-
 import main.utils.SystemStats;
-
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
-
-
-
-
 import javax.naming.NoPermissionException;
 import javax.security.auth.login.LoginException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -66,6 +59,7 @@ public class Market {
     }
 
     /***
+     * This function should be called on every system start up.
      * @return new unique user token.
      */
     public String ConnectGuest() {
@@ -127,8 +121,6 @@ public class Market {
         u.LogIn();
         return u;
     }
-
-
 
     public Store getStoreByName(String name) {
         return this.stores.get(name);
@@ -407,5 +399,86 @@ public class Market {
     public boolean removeProductFromStore(String userToken, String productName, String storeName) {
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.removeProductFromStore(productName,p.second);
+    }
+
+    public void addSecurityQuestion(String userToken, String question, String answer) throws Exception
+    {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        if(!usersByName.containsKey(u.getUserName()))
+        {
+            throw new Exception("User is a not a member");
+        }
+        u.addSecurityQuestion(question, answer);
+    }
+
+    public void logout(String token) throws Exception
+    {
+        if(!connectedUsers.containsKey(token))
+        {
+            throw new Exception("User is not logged in");
+        }
+        User u = connectedUsers.get(token);
+        u.logout();
+        connectedUsers.remove(u.getUserName());
+    }
+
+    public void purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) throws Exception
+    {
+        //User purchase history update
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        u.purchaseCart();
+
+        //TODO: Missing part of purchasing from store
+    }
+
+    public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
+        List<ShoppingCartDTO> scDTO = new LinkedList<>();
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            scDTO.add(new ShoppingCartDTO(sc));
+        }
+        return scDTO;
+    }
+
+    public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        Product prod = u.findProductInHistoryByNameAndStore(productName, storeName);
+        if(prod == null)
+            throw new Exception("Product was not found in user's purchase history");
+        ProductReview pReview = new ProductReview(u, prod, reviewDescription, points);
+        prod.addReview(pReview);
+    }
+
+    public void writeStoreReview(String userToken, String storeName, String reviewDescription, double points) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        Store store = u.getStoreInPurchaseHistory(storeName);
+        if(store==null)
+        {
+            throw new Exception("Product was not found in user's purchase history");
+        }
+        StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
+        store.addReview(sReview);
     }
 }

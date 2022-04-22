@@ -1,11 +1,12 @@
 package main.Shopping;
 
-
+import main.Stores.Product;
 import main.Stores.Store;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingCart {
@@ -41,5 +42,49 @@ public class ShoppingCart {
                 this.baskets.remove(st.getName());
             return true;
         }
+    }
+	
+	public boolean isProductInCart(String productName, String storeName) {
+        if(!baskets.containsKey(storeName))
+        {
+            return false;
+        }
+        ShoppingBasket sb = baskets.get(storeName);
+        HashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        for(Product p : productsQuantities.keySet())
+        {
+            if(p.getName().equals(productName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Product getProduct(String productName, String storeName) {
+        if(!baskets.containsKey(storeName))
+        {
+            return null;
+        }
+        ShoppingBasket sb = baskets.get(storeName);
+        HashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        for(Product p : productsQuantities.keySet())
+        {
+            if(p.getName().equals(productName))
+            {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public boolean isStoreInCart(String storeName) {
+        return baskets.containsKey(storeName);
+    }
+
+    public Store getStore(String storeName) {
+        if(!baskets.containsKey(storeName))
+            return null;
+        return baskets.get(storeName).getStore();
     }
 }

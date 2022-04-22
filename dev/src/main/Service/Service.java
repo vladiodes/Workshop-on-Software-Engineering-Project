@@ -4,23 +4,22 @@ package main.Service;
 
 import main.DTO.*;
 import main.Logger.Logger;
-
 import main.Shopping.ShoppingBasket;
 import main.Stores.Product;
 import main.Users.User;
-
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Market;
+import main.Shopping.ShoppingCart;
+import main.Stores.Product;
+import main.Stores.Store;
+import main.Users.User;
 import main.utils.Response;
-
-
 import javax.naming.NoPermissionException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -70,8 +69,16 @@ public class Service implements IService {
     }
 
     @Override
-    public boolean logout(String token) {
-        return false;
+    public Response<Boolean> logout(String token) {
+        try
+        {
+            market.logout(token);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
@@ -83,6 +90,7 @@ public class Service implements IService {
             return new Response<>(null, e.getMessage());
         }
     }
+
     @Override
     public Response<List<String>> getSmilliarStores(String storeName) {
         try {
@@ -147,11 +155,21 @@ public class Service implements IService {
     }
 
     @Override
-    public boolean purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) {
-        return false;
+    public Response<Boolean> purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) {
+        try
+        {
+            market.purchaseCart(userToken, cardNumber, year, month, day, cvv);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+
     }
 
     @Override
+
     public Response<Boolean> openStore(String userToken, String storeName) {
         try{
             return new Response<>(market.openStore(userToken,storeName));
@@ -165,8 +183,29 @@ public class Service implements IService {
     }
 
     @Override
-    public boolean writeReview(String userToken, String productName, String storeName, String reviewDescription, double points) {
-        return false;
+    public Response<Boolean> writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) {
+        try
+        {
+            market.writeProductReview(userToken, productName, storeName, reviewDescription, points);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+    }
+
+    @Override
+    public Response<Boolean> writeStoreReview(String userToken, String storeName, String reviewDescription, double points) {
+        try
+        {
+            market.writeStoreReview(userToken, storeName, reviewDescription, points);
+            return new Response<>(true, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
@@ -180,8 +219,16 @@ public class Service implements IService {
     }
 
     @Override
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken, String userName) {
-        return null;
+    public Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken, String userName) {
+        try
+        {
+            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken);
+            return new Response<>(carts, null);
+        }
+        catch(Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
     }
 
     @Override
@@ -190,8 +237,16 @@ public class Service implements IService {
     }
 
     @Override
-    public boolean addSecurityQuestions(String userToken, String question, String answer) {
-        return false;
+    public Response<Boolean> addSecurityQuestion(String userToken, String question, String answer) {
+        try
+        {
+            market.addSecurityQuestion(userToken, question, answer);
+            return new Response<Boolean>(true, null);
+        }
+        catch (Exception e)
+        {
+            return new Response<Boolean>(null, e.getMessage());
+        }
     }
 
     @Override
