@@ -351,9 +351,19 @@ public class User implements IUser {
         this.isLoggedIn.set(false);
     }
 
-    public void purchaseCart() {
-        purchaseHistory.add(cart);
+    public void purchaseCart() throws Exception{
+        ShoppingCart dupCart = deepCopyCart(cart);
+        purchaseHistory.add(dupCart);
+        ConcurrentHashMap<String, ShoppingBasket>  baskets = cart.getBaskets();
+        for(ShoppingBasket sb : baskets.values())
+        {
+            sb.purchaseBasket();
+        }
         this.cart = new ShoppingCart(); //User's cart is now a new empty cart since the last cart was purchased
+    }
+
+    private ShoppingCart deepCopyCart(ShoppingCart cart) {
+        return new ShoppingCart(cart);
     }
 
     public List<ShoppingCart> getPurchaseHistory() {

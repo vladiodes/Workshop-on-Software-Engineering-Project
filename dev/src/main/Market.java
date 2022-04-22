@@ -477,9 +477,6 @@ public class Market {
             throw new Exception("Invalid user token");
         }
         User u = connectedUsers.get(userToken);
-
-        //TODO: Missing part of purchasing from store
-
         u.purchaseCart();
         addStats(StatsType.Purchase);
     }

@@ -207,4 +207,17 @@ public class Store implements IStore {
     public void addReview(StoreReview sReview) {
         this.storeReviews.add(sReview);
     }
+
+    public void subtractProductQuantity(Product product, Integer quantity) throws Exception {
+        if(product.getQuantity()<quantity)
+        {
+            throw new Exception("Not enough products in stock");
+        }
+        if(product.getQuantity()==quantity)
+        {
+            removeProduct(product.getName());
+            return;
+        }
+        product.subtractQuantity(quantity);
+    }
 }

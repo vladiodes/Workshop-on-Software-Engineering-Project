@@ -17,6 +17,32 @@ public class ShoppingBasket {
         productsQuantity=new ConcurrentHashMap<>();
     }
 
+
+    /*
+        ConcurrentHashMap<String, ShoppingBasket> oldBaskets = oldCart.getBaskets();
+        ConcurrentHashMap<String, ShoppingBasket> newBaskets = new ConcurrentHashMap<>();
+
+        for(HashMap.Entry<String , ShoppingBasket> element : oldBaskets.entrySet())
+        {
+            newBaskets.put(element.getKey(), new ShoppingBasket(element.getValue()));
+        }
+        this.baskets = newBaskets;*/
+
+    public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
+    {
+        ConcurrentHashMap<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
+        ConcurrentHashMap<Product,Integer> newProductsQuantity = new ConcurrentHashMap<>();
+
+        for(HashMap.Entry<Product, Integer> element : productsQuantity.entrySet())
+        {
+            newProductsQuantity.put(new Product(element.getKey()), new Integer(element.getValue()));
+        }
+
+        this.cart = oldShoppingBasket.cart;
+        this.store = oldShoppingBasket.store;
+        this.productsQuantity = newProductsQuantity;
+    }
+
     private int setProductQuantity(String prodName, int additiveQuanity) {
         Product prod = null;
         for (Product p : productsQuantity.keySet())
@@ -59,12 +85,21 @@ public class ShoppingBasket {
         return productsQuantity.size();
     }
 
-    public HashMap<Product, Integer> getProductsAndQuantities() {
-        return new HashMap<>(productsQuantity);
+    public ConcurrentHashMap<Product, Integer> getProductsAndQuantities() {
+        return new ConcurrentHashMap<>(productsQuantity);
     }
 
     public Store getStore() {
         return store;
+    }
+
+    public void purchaseBasket() throws Exception
+    {
+        for(ConcurrentHashMap.Entry<Product, Integer> element : this.productsQuantity.entrySet())
+        {
+            store.subtractProductQuantity(element.getKey(), element.getValue());
+        }
+
     }
 }
 
