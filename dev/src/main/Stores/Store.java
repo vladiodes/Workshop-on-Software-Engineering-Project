@@ -1,6 +1,7 @@
 package main.Stores;
 
 
+
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 
@@ -25,6 +26,7 @@ public class Store implements IStore {
     private User founder;
     private boolean isActive;
     private String storeName;
+    private List<StoreReview> storeReviews;
     private ConcurrentLinkedQueue<String> messagesToStore;
     private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
@@ -48,7 +50,6 @@ public class Store implements IStore {
 
 
     public Store(String storeName, User founder) {
-
         this.owners = new ConcurrentLinkedQueue<>();
         this.managers = new ConcurrentLinkedQueue<>();
         this.productsByName = new ConcurrentHashMap<>();
@@ -58,7 +59,7 @@ public class Store implements IStore {
         messagesToStore = new ConcurrentLinkedQueue<>();
         purchaseHistory = new ConcurrentHashMap<>();
         buyingBaskets = new ConcurrentLinkedQueue<>();
-
+		this.storeReviews = new LinkedList<>();
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -110,6 +111,10 @@ public class Store implements IStore {
         owners.remove(ow);
     }
 
+    public ConcurrentHashMap<String, Product> getProductsByName() {
+        return productsByName;
+    }
+
     public synchronized void closeStore(NotificationBus bus) {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
@@ -117,12 +122,16 @@ public class Store implements IStore {
         sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()), bus);
     }
 
+    public Product getProduct(String name) {
+        return productsByName.get(name);
+
+    }
+
     private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
         for (User u : getOwnersOfStore())
             bus.addMessage(u, msg);
         for (User u : getManagersOfStore())
             bus.addMessage(u, msg);
-
     }
 
     public String getName() {
@@ -151,7 +160,6 @@ public class Store implements IStore {
             staff.put(managerPermission.getAppointedToManager(), managerPermission.permissionsToString());
 
         return staff;
-
 
     }
 
@@ -185,5 +193,17 @@ public class Store implements IStore {
         for (ManagerPermissions manager : managers) {
             manager.getAppointedToManager().removeManagerRole(manager);
         }
+    }
+
+    public boolean removeProduct(String productName) {
+        Product toRemove=productsByName.get(productName);
+        if(toRemove==null)
+            throw new IllegalArgumentException("No such product with this name");
+        return productsByName.remove(productName)!=null;
+
+    }
+
+    public void addReview(StoreReview sReview) {
+        this.storeReviews.add(sReview);
     }
 }
