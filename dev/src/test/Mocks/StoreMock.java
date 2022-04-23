@@ -92,17 +92,17 @@ public class StoreMock implements IStore {
     }
 
     @Override
+    public Boolean getIsActive() {
+        return null;
+    }
+
+    @Override
     public void reOpen(NotificationBus bus) {
 
     }
 
     @Override
     public HashMap<User, String> getStoreStaff() {
-        return null;
-    }
-
-    @Override
-    public List<Pair<String, String>> getQuestions() {
         return null;
     }
 
@@ -127,7 +127,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void subtractProductQuantity(Product key, Integer value) throws Exception {
+    public void subtractProductQuantity(Product key, Integer value) {
 
     }
 

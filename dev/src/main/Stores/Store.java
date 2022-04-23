@@ -22,7 +22,6 @@ public class Store implements IStore {
     private boolean isActive;
     private String storeName;
     private List<StoreReview> storeReviews;
-    private ConcurrentLinkedQueue<Pair<String, String>> messagesToStore;
     private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
 
@@ -51,7 +50,6 @@ public class Store implements IStore {
         isActive = true;
         this.storeName = storeName;
         this.founder = founder;
-        messagesToStore = new ConcurrentLinkedQueue<>();
         purchaseHistory = new ConcurrentHashMap<>();
         buyingBaskets = new ConcurrentLinkedQueue<>();
         this.storeReviews = new LinkedList<>();
@@ -171,11 +169,6 @@ public class Store implements IStore {
             staff.put(managerPermission.getAppointedToManager(), "Manager of the store, has permissions: " + managerPermission.permissionsToString());
 
         return staff;
-    }
-
-    @Override
-    public List<Pair<String, String>> getQuestions() {
-        return null;
     }
 
     @Override

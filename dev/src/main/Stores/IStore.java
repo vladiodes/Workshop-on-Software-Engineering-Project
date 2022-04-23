@@ -5,7 +5,6 @@ import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
-import main.utils.Pair;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -47,8 +46,6 @@ public interface IStore {
     void reOpen(NotificationBus bus);
 
     HashMap<User, String> getStoreStaff();
-
-    List<Pair<String, String>> getQuestions();
 
     boolean respondToBuyer(User toRespond, String msg, NotificationBus bus);
 

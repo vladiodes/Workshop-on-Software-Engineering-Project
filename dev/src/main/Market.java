@@ -98,33 +98,19 @@ public class Market {
         if(this.systemStatsByDate.containsKey(date))
         {
             SystemStats systemStats = this.systemStatsByDate.get(date);
-            switch (type)
-            {
-                case Register:
-                    systemStats.addRegister();
-                    break;
-                case Login:
-                    systemStats.addLogIn();
-                    break;
-                case Purchase:
-                    systemStats.addPurchase();
-                    break;
+            switch (type) {
+                case Register -> systemStats.addRegister();
+                case Login -> systemStats.addLogIn();
+                case Purchase -> systemStats.addPurchase();
             }
         }
         else
         {
             SystemStats newSystemStats = new SystemStats(date);
-            switch (type)
-            {
-                case Register:
-                    newSystemStats.addRegister();
-                    break;
-                case Login:
-                    newSystemStats.addLogIn();
-                    break;
-                case Purchase:
-                    newSystemStats.addPurchase();
-                    break;
+            switch (type) {
+                case Register -> newSystemStats.addRegister();
+                case Login -> newSystemStats.addLogIn();
+                case Purchase -> newSystemStats.addPurchase();
             }
 
             this.systemStatsByDate.put(date, newSystemStats);
@@ -364,7 +350,7 @@ public class Market {
 
     public List<Pair<String, String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
-        return p.first.receiveQuestionsFromStore(p.second);
+        return p.first.receiveQuestionsFromStore(p.second,bus);
     }
 
     public boolean sendRespondToBuyer(String userToken, String storeName, String userToRespond, String msg) {
@@ -416,11 +402,11 @@ public class Market {
         return true;
     }
 
-    public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
+    public String getNumberOfLoggedInUsersPerDate(String userToken, LocalDate date) {
         return String.valueOf(getStats(userToken, date).getNumOfLoggedIn());
     }
 
-    private SystemStats getStats(String userToken, LocalDateTime date) {
+    private SystemStats getStats(String userToken, LocalDate date) {
         User admin = connectedUsers.get(userToken);
         if (!admin.isAdmin())
             throw new IllegalArgumentException("This isn't a system admin");
@@ -430,11 +416,11 @@ public class Market {
         return systemStatsByDate.get(date);
     }
 
-    public String getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
+    public String getNumberOfPurchasesPerDate(String userToken, LocalDate date) {
         return String.valueOf(getStats(userToken, date).getNumOfPurchases());
     }
 
-    public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
+    public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date) {
         return String.valueOf(getStats(userToken, date).getNumOfRegistered());
     }
 
@@ -450,8 +436,6 @@ public class Market {
     }
 
 
-
-
     public boolean openStore(String userToken, String storeName) {
         User founder = connectedUsers.get(userToken);
         if(!usersByName.containsKey(founder.getUserName()))
@@ -461,6 +445,7 @@ public class Market {
 
         IStore newIStore =founder.openStore(storeName);
         stores.put(storeName, newIStore);
+        bus.register(newIStore);
         return true;
     }
 
@@ -581,15 +566,11 @@ public class Market {
 
     private boolean isValidPass(String pass)
     {
-        if(pass.isBlank() || pass.length()<4)
-        {
-            return false;
-        }
-        return true;
+        return !pass.isBlank() && pass.length() >= 4;
     }
 
     public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
-        if(!stores.contains(storeName))
+        if(!stores.containsKey(storeName))
         {
             throw new Exception("No such store "+ storeName);
         }
@@ -605,8 +586,7 @@ public class Market {
         {
             throw new Exception("Invalid user token");
         }
-        User u = connectedUsers.get(userToken);
-        return u;
+        return connectedUsers.get(userToken);
     }
 
     public void sendComplaint(String userToken, String msg) throws  Exception {

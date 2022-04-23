@@ -67,11 +67,11 @@ public class NotificationBus {
     }
   
     /**
-     * This function returns all messages that were gathered in a stores's queue up until now
+     * This function returns all messages that were gathered in a store's queue up until now
      * @param IStore the store that requested to get messages
      * @return returns a list of all the messages that were gathered so far
      */
-    public List<Pair<String,String>> getMessagesFromUserRequest(IStore IStore){
+    public List<Pair<String,String>> getStoreMessages(IStore IStore){
         LinkedList<Pair<String, String>> msgList=new LinkedList<>();
         ConcurrentLinkedQueue<Pair<String, String>> msgQueue=storesMessagesMap.get(IStore);
         while (!msgQueue.isEmpty())

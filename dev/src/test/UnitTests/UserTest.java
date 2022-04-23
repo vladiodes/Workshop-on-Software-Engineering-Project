@@ -1,5 +1,6 @@
 package test.UnitTests;
 
+import main.NotificationBus;
 import main.Stores.IStore;
 import main.Users.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ class UserTest {
     private User user4;
     private User user5;
     private IStore store_mock;
+    private NotificationBus bus;
 
     @BeforeEach
     void setUp() {
@@ -26,6 +28,8 @@ class UserTest {
         user4 = new User(false,"user4","password");
         user5 = new User(false,"user5","password");
         store_mock = new StoreMock();
+        bus=new NotificationBus();
+        bus.register(store_mock);
     }
 
     @Test
@@ -267,15 +271,15 @@ class UserTest {
     void receiveQuestionsFromStoreOwnerOrFounderGood(){
         user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
-        assertDoesNotThrow(()->user2.receiveQuestionsFromStore(store_mock));
-        assertDoesNotThrow(()->user.receiveQuestionsFromStore(store_mock));
+        assertDoesNotThrow(()->user2.receiveQuestionsFromStore(store_mock,bus));
+        assertDoesNotThrow(()->user.receiveQuestionsFromStore(store_mock,bus));
     }
 
     @Test
     void receiveQuestionsFromStoreManagerWithPermissions(){
         user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
-        assertDoesNotThrow(()->user2.receiveQuestionsFromStore(store_mock));
+        assertDoesNotThrow(()->user2.receiveQuestionsFromStore(store_mock,bus));
     }
 
     @Test
@@ -283,7 +287,7 @@ class UserTest {
         user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         user.grantOrDeletePermission(user2,store_mock,false,StorePermission.AnswerAndTakeRequests);
-        assertThrows(IllegalArgumentException.class,()->user2.receiveQuestionsFromStore(store_mock));
+        assertThrows(IllegalArgumentException.class,()->user2.receiveQuestionsFromStore(store_mock,bus));
     }
 
     @Test

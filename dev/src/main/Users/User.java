@@ -408,9 +408,9 @@ public class User {
         return null;
     }
 
-    public List<Pair<String, String>> receiveQuestionsFromStore(IStore store) {
+    public List<Pair<String, String>> receiveQuestionsFromStore(IStore store,NotificationBus bus) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
-            return store.getQuestions();
+            return bus.getStoreMessages(store);
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 

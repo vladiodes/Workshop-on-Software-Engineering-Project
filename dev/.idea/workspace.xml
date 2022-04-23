@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Req 2.6.3 implemented">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Fixed compilation issues, still refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/StoreReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/StoreReview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
@@ -93,7 +93,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration name="AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -174,8 +174,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" />
         <item itemvalue="JUnit.StoreTest.removeProductNonExist" />
         <item itemvalue="JUnit.StoreTest.removeProductTest" />
         <item itemvalue="JUnit.StoreTest.removeRolesTest" />
@@ -354,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650733576135</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Fixed compilation issues, still refactoring">
+      <created>1650744725864</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1650744725864</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +430,8 @@
     <MESSAGE value="Changed AT class name to be more relevant" />
     <MESSAGE value="Added NotificationBus tests" />
     <MESSAGE value="Added ManagerPermissions tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ManagerPermissions tests" />
+    <MESSAGE value="Fixed compilation issues, still refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed compilation issues, still refactoring" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

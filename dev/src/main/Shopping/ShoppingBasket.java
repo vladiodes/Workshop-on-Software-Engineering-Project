@@ -12,9 +12,9 @@ public class ShoppingBasket {
     private ShoppingCart cart;
     private final Object basketEditLock = new Object();
 
-    public ShoppingBasket(IStore IStore, ShoppingCart cart){
+    public ShoppingBasket(IStore store, ShoppingCart cart){
         this.cart = cart;
-        this.store = IStore;
+        this.store = store;
         productsQuantity=new ConcurrentHashMap<>();
     }
 
@@ -36,7 +36,7 @@ public class ShoppingBasket {
 
         for(HashMap.Entry<Product, Integer> element : productsQuantity.entrySet())
         {
-            newProductsQuantity.put(new Product(element.getKey()), new Integer(element.getValue()));
+            newProductsQuantity.put(new Product(element.getKey()), element.getValue());
         }
 
         this.cart = oldShoppingBasket.cart;
