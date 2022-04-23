@@ -15,16 +15,16 @@ import main.Stores.ProductReview;
 import main.Stores.Store;
 import main.Supplying.ISupplying;
 import main.Stores.StoreReview;
-import main.Users.OwnerPermissions;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
 import main.utils.stringFunctions;
 import main.utils.SystemStats;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import javax.naming.NoPermissionException;
-import javax.security.auth.login.LoginException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -51,7 +51,8 @@ public class Market {
 
     private NotificationBus notificationBus;
 
-    private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
+    private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+    private enum StatsType{Register, Login, Purchase}
 
     public Market(){
         usersByName=new ConcurrentHashMap<>();
@@ -92,6 +93,46 @@ public class Market {
         return leaving_user;
     }
 
+    private void addStats(StatsType type)
+    {
+        LocalDate date = LocalDate.now();
+        if(this.systemStatsByDate.containsKey(date))
+        {
+            SystemStats systemStats = this.systemStatsByDate.get(date);
+            switch (type)
+            {
+                case Register:
+                    systemStats.addRegister();
+                    break;
+                case Login:
+                    systemStats.addLogIn();
+                    break;
+                case Purchase:
+                    systemStats.addPurchase();
+                    break;
+            }
+        }
+        else
+        {
+            SystemStats newSystemStats = new SystemStats(date);
+            switch (type)
+            {
+                case Register:
+                    newSystemStats.addRegister();
+                    break;
+                case Login:
+                    newSystemStats.addLogIn();
+                    break;
+                case Purchase:
+                    newSystemStats.addPurchase();
+                    break;
+            }
+
+            this.systemStatsByDate.put(date, newSystemStats);
+        }
+
+    }
+
     public boolean Register(String userName, String password) {
         if (usersByName.containsKey(userName)) {
             throw new IllegalArgumentException("username is taken.");
@@ -100,9 +141,10 @@ public class Market {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
-        notificationBus.register(new_user);
+        notificationBus.registerUser(new_user);
         usersByName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
+        addStats(StatsType.Register);
         return true;
     }
 
@@ -128,6 +170,7 @@ public class Market {
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         connectedUsers.put(token, u);
         u.LogIn();
+        addStats(StatsType.Login);
         return u;
     }
 
@@ -317,7 +360,7 @@ public class Market {
         return p.first.getStoreStaff(p.second);
     }
 
-    public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
+    public List<Pair<String, String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.receiveQuestionsFromStore(p.second);
     }
@@ -458,8 +501,7 @@ public class Market {
         }
         User u = connectedUsers.get(userToken);
         u.purchaseCart();
-
-        //TODO: Missing part of purchasing from store
+        addStats(StatsType.Purchase);
     }
 
     public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
@@ -503,5 +545,79 @@ public class Market {
         }
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
+    }
+
+    public void changePassword(String userToken, String oldPassword, String newPassword)throws Exception {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        if(!isValidPass(newPassword))
+        {
+            throw new Exception("");
+        }
+        User u = connectedUsers.get(userToken);
+        String oldPassHashed = this.security_controller.hashPassword(oldPassword);
+        if(!oldPassHashed.equals(u.getHashed_password()))
+        {
+            throw new Exception("Old password is incorrect");
+        }
+        u.changePassword(this.security_controller.hashPassword(newPassword));
+    }
+
+    public void changeUsername(String userToken, String newUsername) throws Exception {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        String oldUsername = u.getUserName();
+        u.changeUsername(newUsername);
+        this.usersByName.remove(oldUsername);
+        this.usersByName.put(newUsername, u);
+    }
+
+    private boolean isValidPass(String pass)
+    {
+        if(pass.isBlank() || pass.length()<4)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
+        if(!stores.contains(storeName))
+        {
+            throw new Exception("No such store "+ storeName);
+        }
+        Store store = stores.get(storeName);
+        User u = getConnectedUserByToken(userToken);
+        String userName = u.getUserName();
+        this.notificationBus.addMessage(store, userName, message);
+    }
+
+    private User getConnectedUserByToken(String userToken) throws Exception
+    {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        return u;
+    }
+
+    public void sendComplaint(String userToken, String msg) throws  Exception {
+        for(User u : this.usersByName.values())
+        {
+            if(u.isAdmin())
+            {
+                notificationBus.addMessage(u, msg);
+                return;
+            }
+        }
+        throw new Exception("This is a bug : No admin was found in the system");
+
+        //Find admin to send the complaint to
     }
 }

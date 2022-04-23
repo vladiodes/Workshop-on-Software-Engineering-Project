@@ -16,6 +16,17 @@ public class ShoppingCart {
         this.baskets = new ConcurrentHashMap<>();
     }
 
+    public ShoppingCart(ShoppingCart oldCart) //use this constructor to deep copy a ShoppingCart
+    {
+        ConcurrentHashMap<String, ShoppingBasket> oldBaskets = oldCart.getBaskets();
+        ConcurrentHashMap<String, ShoppingBasket> newBaskets = new ConcurrentHashMap<>();
+
+        for(HashMap.Entry<String , ShoppingBasket> element : oldBaskets.entrySet())
+        {
+            newBaskets.put(element.getKey(), new ShoppingBasket(element.getValue()));
+        }
+        this.baskets = newBaskets;
+    }
     public HashMap<String, ShoppingBasket> getBasketInfo() {
         return new HashMap<>(baskets);
     }
@@ -50,7 +61,7 @@ public class ShoppingCart {
             return false;
         }
         ShoppingBasket sb = baskets.get(storeName);
-        HashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
         for(Product p : productsQuantities.keySet())
         {
             if(p.getName().equals(productName))
@@ -67,7 +78,7 @@ public class ShoppingCart {
             return null;
         }
         ShoppingBasket sb = baskets.get(storeName);
-        HashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
         for(Product p : productsQuantities.keySet())
         {
             if(p.getName().equals(productName))
@@ -86,5 +97,9 @@ public class ShoppingCart {
         if(!baskets.containsKey(storeName))
             return null;
         return baskets.get(storeName).getStore();
+    }
+
+    public ConcurrentHashMap<String, ShoppingBasket> getBaskets() {
+        return baskets;
     }
 }

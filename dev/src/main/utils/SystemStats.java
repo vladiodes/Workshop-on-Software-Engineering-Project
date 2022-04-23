@@ -1,15 +1,16 @@
 package main.utils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SystemStats {
-    private LocalDateTime date;
+    private LocalDate date;
     private AtomicInteger numOfLoggedIn;
     private AtomicInteger numOfRegistered;
     private AtomicInteger numOfPurchases;
 
-    public SystemStats(LocalDateTime date){
+    public SystemStats(LocalDate date){
         this.date=date;
         numOfLoggedIn=new AtomicInteger(0);
         numOfRegistered=new AtomicInteger(0);

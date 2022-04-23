@@ -1,7 +1,9 @@
 package main.Stores;
 
+
 import java.util.LinkedList;
 import java.util.List;
+
 
 public class Product {
     private String productName;
@@ -25,6 +27,17 @@ public class Product {
         this.quantity=quantity;
         this.price=price;
         this.reviews = new LinkedList<>();
+    }
+
+    public Product(Product p) // Use this constructor to deep copy Product
+    {
+        this.productName = p.productName;
+        this.category = p.category;
+        this.keyWords = p.keyWords;
+        this.description = p.description;
+        this.quantity = p.quantity;
+        this.price = p.price;
+        this.reviews = p.reviews;
     }
 
     public String getName() {
@@ -62,6 +75,15 @@ public class Product {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void subtractQuantity(Integer quantity) throws Exception
+    {
+        if(quantity>this.quantity)
+        {
+            throw new Exception("Quantity to remove is larger than stock");
+        }
+        this.quantity = this.quantity - quantity;
     }
 
     public double getPrice() {

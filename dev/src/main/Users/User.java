@@ -351,8 +351,19 @@ public class User implements IUser {
         this.isLoggedIn.set(false);
     }
 
-    public void purchaseCart() {
-        purchaseHistory.add(cart);
+    public void purchaseCart() throws Exception{
+        ShoppingCart dupCart = deepCopyCart(cart);
+        purchaseHistory.add(dupCart);
+        ConcurrentHashMap<String, ShoppingBasket>  baskets = cart.getBaskets();
+        for(ShoppingBasket sb : baskets.values())
+        {
+            sb.purchaseBasket();
+        }
+        this.cart = new ShoppingCart(); //User's cart is now a new empty cart since the last cart was purchased
+    }
+
+    private ShoppingCart deepCopyCart(ShoppingCart cart) {
+        return new ShoppingCart(cart);
     }
 
     public List<ShoppingCart> getPurchaseHistory() {
@@ -396,7 +407,7 @@ public class User implements IUser {
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    public List<String> receiveQuestionsFromStore(Store store) {
+    public List<Pair<String, String>> receiveQuestionsFromStore(Store store) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
             return store.getQuestions();
         throw new IllegalArgumentException("You don't have permission to do that");
@@ -479,4 +490,15 @@ public class User implements IUser {
         return cart.RemoveProductFromCart(st, productName, quantity);
     }
 
+    public void changePassword(String newPassHashed) {
+        this.hashed_password = newPassHashed;
+    }
+
+    public void changeUsername(String newUsername) throws Exception{
+        if(newUsername.isBlank())
+        {
+            throw new Exception("Username cant be blank");
+        }
+        this.userName = newUsername;
+    }
 }
