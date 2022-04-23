@@ -53,9 +53,13 @@ public class ManagerPermissions {
     public String permissionsToString() {
         StringBuilder builder=new StringBuilder();
         for(StorePermission permission:permissions){
-            builder.append(permission.toString());
+            builder.append(StorePermission.stringOf(permission));
             builder.append(", ");
         }
         return builder.toString();
+    }
+
+    public ConcurrentLinkedQueue<StorePermission> getPermissions() {
+        return permissions;
     }
 }

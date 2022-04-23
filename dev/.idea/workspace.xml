@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Changed AT class name to be more relevant">
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/NotificationBusTest.java" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added ManagerPermissions tests">
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/ManagerPermissionsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,22 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NotificationBusTest">
+  <component name="RunManager" selected="JUnit.ManagerPermissionsTest">
+    <configuration name="ManagerPermissionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.ManagerPermissionsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NotificationBusTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -107,22 +123,6 @@
       <option name="PACKAGE_NAME" value="test.UnitTests" />
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.removeProductFromStoreNotStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
-      <option name="METHOD_NAME" value="removeProductFromStoreNotStaff" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -159,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ManagerPermissionsTest" />
         <item itemvalue="JUnit.NotificationBusTest" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
-        <item itemvalue="JUnit.UserTest.removeProductFromStoreNotStaff" />
       </list>
     </recent_temporary>
   </component>
@@ -323,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650726807168</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added NotificationBus tests">
+      <created>1650732398578</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1650732398578</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -388,7 +395,9 @@
     <MESSAGE value="Fixed ProductDTO constructor" />
     <MESSAGE value="Unit tests for User" />
     <MESSAGE value="Changed AT class name to be more relevant" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed AT class name to be more relevant" />
+    <MESSAGE value="Added NotificationBus tests" />
+    <MESSAGE value="Added ManagerPermissions tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ManagerPermissions tests" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
