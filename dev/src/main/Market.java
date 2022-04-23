@@ -2,10 +2,12 @@ package main;
 
 
 import main.DTO.ShoppingCartDTO;
-import main.Shopping.ShoppingBasket;
 import main.Logger.Logger;
+import main.Payment.IPayment;
+import main.Payment.PaymentAdapter;
 import main.Security.ISecurity;
 import main.Security.Security;
+import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 import main.Stores.Product;
 import main.Stores.ProductReview;
@@ -42,6 +44,7 @@ public class Market {
     private ConcurrentHashMap<String, Store> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
+    private IPayment paymentSystem;
 
     private NotificationBus notificationBus;
 
@@ -56,6 +59,7 @@ public class Market {
         systemStatsByDate=new ConcurrentHashMap<>();
 
         security_controller = new Security();
+        paymentSystem = new PaymentAdapter();
     }
 
     /***
