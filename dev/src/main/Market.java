@@ -384,6 +384,20 @@ public class Market {
         return String.valueOf(getStats(userToken, date).getNumOfRegistered());
     }
 
+    /**
+     * Create Default system manager
+     */
+    public void initialize() {
+        String adminUserName = "admin";
+        String adminHashPassowrd = security_controller.hashPassword("admin");
+        User admin = new User(true, adminUserName, adminHashPassowrd);
+        usersByName.put("admin", admin);
+
+    }
+
+
+
+
     public boolean openStore(String userToken, String storeName) {
         User founder = connectedUsers.get(userToken);
         if(!usersByName.containsKey(founder.getUserName()))
