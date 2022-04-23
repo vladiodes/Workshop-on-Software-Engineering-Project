@@ -1,6 +1,7 @@
 package main;
 
 
+import dev.src.main.Supplying.SupplyingAdapter;
 import main.Shopping.ShoppingBasket;
 
 import main.Logger.Logger;
@@ -9,8 +10,7 @@ import main.Security.ISecurity;
 import main.Security.Security;
 
 import main.Stores.Store;
-import main.Supplying.ISupplying;
-import main.Supplying.SupplyingSystem;
+import dev.src.main.Supplying.ISupplying;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
@@ -25,7 +25,6 @@ import java.util.HashMap;
 
 
 import javax.naming.NoPermissionException;
-import javax.security.auth.login.LoginException;
 import java.util.List;
 
 import java.util.UUID;
@@ -61,7 +60,7 @@ public class Market {
         notificationBus=new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
         security_controller = new Security();
-        supplyingSystem = new SupplyingSystem();
+        supplyingSystem = new SupplyingAdapter();
     }
 
     /***
