@@ -3,10 +3,12 @@ package main;
 
 import main.Supplying.SupplyingAdapter;
 import main.DTO.ShoppingCartDTO;
-import main.Shopping.ShoppingBasket;
 import main.Logger.Logger;
+import main.Payment.IPayment;
+import main.Payment.PaymentAdapter;
 import main.Security.ISecurity;
 import main.Security.Security;
+import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 import main.Stores.Product;
 import main.Stores.ProductReview;
@@ -45,6 +47,7 @@ public class Market {
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
     private ISupplying supplyingSystem;
+    private IPayment paymentSystem;
 
     private NotificationBus notificationBus;
 
@@ -60,6 +63,8 @@ public class Market {
 
         security_controller = new Security();
         supplyingSystem = new SupplyingAdapter();
+
+        paymentSystem = new PaymentAdapter();
     }
 
     /***
@@ -387,6 +392,20 @@ public class Market {
     public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
         return String.valueOf(getStats(userToken, date).getNumOfRegistered());
     }
+
+    /**
+     * Create Default system manager
+     */
+    public void initialize() {
+        String adminUserName = "admin";
+        String adminHashPassowrd = security_controller.hashPassword("admin");
+        User admin = new User(true, adminUserName, adminHashPassowrd);
+        usersByName.put("admin", admin);
+
+    }
+
+
+
 
     public boolean openStore(String userToken, String storeName) {
         User founder = connectedUsers.get(userToken);
