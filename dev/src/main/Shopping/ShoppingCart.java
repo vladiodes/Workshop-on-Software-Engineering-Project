@@ -1,11 +1,9 @@
 package main.Shopping;
 
 
-import main.Stores.Store;
+import main.Stores.IStore;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingCart {
@@ -19,19 +17,19 @@ public class ShoppingCart {
         return new HashMap<>(baskets);
     }
 
-    public  boolean addProductToCart(Store store, String productName, int quantity) {
+    public  boolean addProductToCart(IStore IStore, String productName, int quantity) {
         synchronized (carteditLock) {
-            if (baskets.containsKey(store.getName()))
-                return baskets.get(store.getName()).AddProduct(productName, quantity);
+            if (baskets.containsKey(IStore.getName()))
+                return baskets.get(IStore.getName()).AddProduct(productName, quantity);
             else {
-                ShoppingBasket basket = new ShoppingBasket(store, this);
-                baskets.put(store.getName(), basket);
+                ShoppingBasket basket = new ShoppingBasket(IStore, this);
+                baskets.put(IStore.getName(), basket);
                 return basket.AddProduct(productName, quantity);
             }
         }
     }
 
-    public boolean RemoveProductFromCart(Store st, String prodName, int quantity) {
+    public boolean RemoveProductFromCart(IStore st, String prodName, int quantity) {
         if (!baskets.containsKey(st.getName()))
             throw new IllegalArgumentException("Basket for that store doesn't exist yet.");
         synchronized (carteditLock) {

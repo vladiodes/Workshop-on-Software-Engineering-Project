@@ -31,6 +31,7 @@ public class Store implements IStore {
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
 
 
+    @Override
     public List<User> getOwnersOfStore() {
         LinkedList<User> storeOwners = new LinkedList<>();
         for (OwnerPermissions ow : owners) {
@@ -39,6 +40,7 @@ public class Store implements IStore {
         return storeOwners;
     }
 
+    @Override
     public List<User> getManagersOfStore() {
         LinkedList<User> storeManagers = new LinkedList<>();
         for (ManagerPermissions mp : managers) {
@@ -61,6 +63,7 @@ public class Store implements IStore {
 
     }
 
+    @Override
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (productsByName.containsKey(productName))
             throw new IllegalArgumentException("There's already such product with this name in the store");
@@ -70,6 +73,7 @@ public class Store implements IStore {
         return true;
     }
 
+    @Override
     public boolean updateProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         Product product = productsByName.get(productName);
         if (product == null)
@@ -86,30 +90,37 @@ public class Store implements IStore {
         return true;
     }
 
+    @Override
     public ConcurrentLinkedQueue<OwnerPermissions> getOwnersAppointments() {
         return owners;
     }
 
+    @Override
     public ConcurrentLinkedQueue<ManagerPermissions> getManagersAppointments() {
         return managers;
     }
 
+    @Override
     public void addOwnerToStore(OwnerPermissions newOwnerAppointment) {
         owners.add(newOwnerAppointment);
     }
 
+    @Override
     public void addManager(ManagerPermissions newManagerAppointment) {
         managers.add(newManagerAppointment);
     }
 
+    @Override
     public void removeManager(ManagerPermissions mp) {
         managers.remove(mp);
     }
 
+    @Override
     public void removeOwner(OwnerPermissions ow) {
         owners.remove(ow);
     }
 
+    @Override
     public synchronized void closeStore(NotificationBus bus) {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
@@ -117,9 +128,11 @@ public class Store implements IStore {
         sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()), bus);
     }
 
+    @Override
     public ConcurrentHashMap<String, Product> getProductsByName() {
         return productsByName;
     }
+    @Override
     public Product getProduct(String name) {
         return productsByName.get(name);
 
@@ -132,11 +145,13 @@ public class Store implements IStore {
             bus.addMessage(u, msg);
     }
 
+    @Override
     public String getName() {
         return storeName;
     }
 
 
+    @Override
     public synchronized void reOpen(NotificationBus bus) {
         if (isActive)
             throw new IllegalArgumentException("The store is already opened!");
@@ -144,6 +159,7 @@ public class Store implements IStore {
         sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()), bus);
     }
 
+    @Override
     public HashMap<User, String> getStoreStaff() {
         HashMap<User, String> staff = new HashMap<>();
         //founder
@@ -161,6 +177,7 @@ public class Store implements IStore {
 
     }
 
+    @Override
     public List<String> getQuestions() {
         LinkedList<String> msgList = new LinkedList<>();
         while (!messagesToStore.isEmpty())
@@ -168,16 +185,19 @@ public class Store implements IStore {
         return msgList;
     }
 
+    @Override
     public boolean respondToBuyer(User toRespond, String msg, NotificationBus bus) {
         bus.addMessage(toRespond, msg);
         // here we can add any history of messages between user-store if necessary
         return true;
     }
 
+    @Override
     public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
         return purchaseHistory;
     }
 
+    @Override
     public void CancelStaffRoles() {
         //first removing founder
         founder.removeFounderRole(this);
@@ -193,6 +213,7 @@ public class Store implements IStore {
         }
     }
 
+    @Override
     public boolean removeProduct(String productName) {
         Product toRemove=productsByName.get(productName);
         if(toRemove==null)

@@ -7,9 +7,9 @@ import main.Logger.Logger;
 import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingCart;
+import main.Stores.IStore;
 import main.Stores.Product;
 
-import main.Stores.Store;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
@@ -26,7 +26,6 @@ import java.util.HashMap;
 
 
 import javax.naming.NoPermissionException;
-import javax.security.auth.login.LoginException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -46,7 +45,7 @@ public class Market {
      */
     private ConcurrentHashMap<String, User> usersByName; //key=username
     private ConcurrentHashMap<String, User> connectedUsers; //key=userToken, generated randomly by system
-    private ConcurrentHashMap<String, Store> stores; //key=store name
+    private ConcurrentHashMap<String, IStore> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
 
@@ -130,7 +129,7 @@ public class Market {
 
 
 
-    public Store getStoreByName(String name) {
+    public IStore getStoreByName(String name) {
         return this.stores.get(name);
     }
 
@@ -145,7 +144,7 @@ public class Market {
 
     public List<Product> getStoreProducts(String storeName) {
         List<Product> res = new LinkedList<>();
-        Store st = this.getStoreByName(storeName);
+        IStore st = this.getStoreByName(storeName);
         if (st == null)
             throw new IllegalArgumentException("store doesn't exist.");
         for (String productName : st.getProductsByName().keySet())
@@ -155,7 +154,7 @@ public class Market {
 
     public List<Product> getProductsByAttributes(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice){
         List<Product> result = new LinkedList<>();
-        for (Store currStr : this.stores.values())
+        for (IStore currStr : this.stores.values())
             for (Product currPrd : currStr.getProductsByName().values()) {
                 if (productName == null || currPrd.getName().equals(productName))
                     if (category == null || currPrd.getCategory().equals(category))
@@ -176,7 +175,7 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
             throw new IllegalArgumentException("Unkown user token.");
         }
-        Store st = this.getStoreByName(storeName);
+        IStore st = this.getStoreByName(storeName);
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
@@ -191,7 +190,7 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
             throw new IllegalArgumentException("Unkown user token.");
         }
-        Store st = this.getStoreByName(storeName);
+        IStore st = this.getStoreByName(storeName);
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
@@ -208,18 +207,18 @@ public class Market {
     }
 
 
-    public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) throws NoPermissionException {
-        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
+    public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
+        Pair<User, IStore> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.addProductToStore(p.second,productName,category,keyWords,description,quantity,price);
     }
 
     public boolean updateProductInStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.updateProductToStore(p.second, productName, category, keyWords, description, quantity, price);
     }
 
     public boolean appointStoreOwner(String userToken, String userToAppoint, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         User user_to_appoint = usersByName.get(userToAppoint);
         if (user_to_appoint == null)
             throw new IllegalArgumentException("The user to appoint doesn't exist!");
@@ -228,7 +227,7 @@ public class Market {
     }
 
     public boolean removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         User appointed_user = usersByName.get(userAppointed);
         if (appointed_user == null)
             throw new IllegalArgumentException("The user appointed doesn't exist in the system");
@@ -236,20 +235,20 @@ public class Market {
         return p.first.removeOwnerAppointment(p.second, appointed_user);
     }
 
-    private Pair<User, Store> getConnectedUserAndStore(String userToken, String storeName) {
+    private Pair<User, IStore> getConnectedUserAndStore(String userToken, String storeName) {
         User user = connectedUsers.get(userToken);
         if (user == null)
             throw new IllegalArgumentException("User not logged in");
 
-        Store store = stores.get(storeName);
-        if (store == null)
+        IStore IStore = stores.get(storeName);
+        if (IStore == null)
             throw new IllegalArgumentException("No such store");
 
-        return new Pair<>(user, store);
+        return new Pair<>(user, IStore);
     }
 
     public boolean appointStoreManager(String userToken, String userToAppoint, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         User user_to_appoint = usersByName.get(userToAppoint);
         if (user_to_appoint == null)
             throw new IllegalArgumentException("The user to appoint doesn't exist!");
@@ -260,7 +259,7 @@ public class Market {
     }
 
     private boolean allowOrDisallowPermission(String userToken, String managerName, String storeName, StorePermission permission, boolean shouldGrant) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         User manager = usersByName.get(managerName);
         if (manager == null)
             throw new IllegalArgumentException("There's no such manager");
@@ -293,7 +292,7 @@ public class Market {
     }
 
     public boolean removeStoreManager(String userToken, String userAppointed, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         User manager = usersByName.get(userAppointed);
         if (manager == null)
             throw new IllegalArgumentException("The user doesn't exist in the system!");
@@ -302,27 +301,27 @@ public class Market {
     }
 
     public boolean closeStore(String userToken, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.closeStore(p.second, notificationBus);
     }
 
     public boolean reopenStore(String userToken, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.reOpenStore(p.second, notificationBus);
     }
 
     public HashMap<User, String> getStoreStaff(String userToken, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.getStoreStaff(p.second);
     }
 
     public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.receiveQuestionsFromStore(p.second);
     }
 
     public boolean sendRespondToBuyer(String userToken, String storeName, String userToRespond, String msg) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         User toRespond = usersByName.get(userToRespond);
         if (toRespond == null)
             throw new IllegalArgumentException("No such user to respond to");
@@ -330,12 +329,12 @@ public class Market {
     }
 
     public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.getStorePurchaseHistory(p.second);
     }
 
     public boolean deleteStore(String userToken, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         if (p.first.removeStore(p.second)) {
             stores.remove(storeName);
             return true;
@@ -399,13 +398,13 @@ public class Market {
         if(stores.containsKey(storeName))
             throw new IllegalArgumentException("There's already a store with that name in the system");
 
-        Store newStore=founder.openStore(storeName);
-        stores.put(storeName,newStore);
+        IStore newIStore =founder.openStore(storeName);
+        stores.put(storeName, newIStore);
         return true;
     }
 
     public boolean removeProductFromStore(String userToken, String productName, String storeName) {
-        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.removeProductFromStore(productName,p.second);
     }
 }

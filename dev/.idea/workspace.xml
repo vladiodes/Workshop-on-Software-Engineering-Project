@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Fixed compilation issues">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Fixed ProductDTO constructor">
+      <change afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/StoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/StoreDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/IUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,9 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -26,6 +36,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="27jRI4CyYtbVR4afKDi00JXHKi0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -59,77 +77,17 @@
       <recent name="" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="main" />
+      <recent name="main.Stores" />
       <recent name="main.Users" />
+      <recent name="main" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="test.UnitTests" />
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AT">
-    <configuration name="AT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AT.addProductTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
-      <option name="METHOD_NAME" value="addProductTwice" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AT.concurrentRemoveAndEditProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT" />
-      <option name="METHOD_NAME" value="concurrentRemoveAndEditProduct" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test.AcceptanceTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserTest">
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -138,18 +96,83 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.openStoreGood" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="openStoreGood" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.removeProductFromStoreNoPermission" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeProductFromStoreNoPermission" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.removeProductFromStoreNotStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeProductFromStoreNotStaff" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AT" />
-        <item itemvalue="JUnit.AT.addProductTwice" />
-        <item itemvalue="JUnit.test.UnitTests in dev" />
-        <item itemvalue="JUnit.test.AcceptanceTests in dev" />
-        <item itemvalue="JUnit.AT.concurrentRemoveAndEditProduct" />
+        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
+        <item itemvalue="JUnit.UserTest.removeProductFromStoreNotStaff" />
+        <item itemvalue="JUnit.UserTest.removeProductFromStoreNoPermission" />
+        <item itemvalue="JUnit.UserTest.openStoreGood" />
       </list>
     </recent_temporary>
   </component>
@@ -288,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650545025130</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Fixed ProductDTO constructor">
+      <created>1650545463219</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1650545463219</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -350,18 +380,10 @@
     <MESSAGE value="Changed service signatures to return responses" />
     <MESSAGE value="getter in response" />
     <MESSAGE value="Fixed compilation issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed compilation issues" />
+    <MESSAGE value="Fixed ProductDTO constructor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed ProductDTO constructor" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="main.Market" memberName="stores" />
