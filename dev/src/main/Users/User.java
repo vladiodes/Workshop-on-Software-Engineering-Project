@@ -4,8 +4,13 @@ package main.Users;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
+
 import main.Stores.IStore;
+
+import main.Stores.Product;
+
 import main.Stores.Store;
+import main.utils.Pair;
 
 
 import java.time.LocalDateTime;
@@ -25,11 +30,15 @@ public class User {
     private AtomicBoolean isLoggedIn;
     private ConcurrentLinkedQueue<String> messages = new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
+    private List<ShoppingCart> purchaseHistory;
+
 
     // stores connections
     private List<IStore> foundedIStores;
     private List<ManagerPermissions> managedStores;
     private List<OwnerPermissions> ownedStores;
+    private List<Pair<String,String>> securityQNA;
+    private Boolean isGuest;
 
     public List<IStore> getManagedStores() {
         List<IStore> IStores = new LinkedList<>();
@@ -73,6 +82,8 @@ public class User {
         ownedStores = new LinkedList<>();
         managedStores = new LinkedList<>();
         messages=new ConcurrentLinkedQueue<>();
+		securityQNA = new LinkedList<>();
+        purchaseHistory = new LinkedList<>();
     }
 
     public ShoppingCart getCart() {
@@ -327,6 +338,7 @@ public class User {
         return true;
     }
 
+
     public HashMap<User, String> getStoreStaff(IStore IStore) {
         if (hasPermission(IStore, StorePermission.OwnerPermission))
             return IStore.getStoreStaff();
@@ -336,6 +348,79 @@ public class User {
     public List<String> receiveQuestionsFromStore(IStore IStore) {
         if (hasPermission(IStore, StorePermission.AnswerAndTakeRequests))
             return IStore.getQuestions();
+
+    public void addSecurityQuestion(String question, String answer) throws Exception
+    {
+        if(question.isBlank() || answer.isBlank())
+        {
+            throw new Exception("Question or Answer cant be empty");
+        }
+        this.securityQNA.add(new Pair<>(question, answer));
+    }
+
+    public void logout() {
+        this.isLoggedIn.set(false);
+    }
+
+    public void purchaseCart() throws Exception{
+        ShoppingCart dupCart = deepCopyCart(cart);
+        purchaseHistory.add(dupCart);
+        ConcurrentHashMap<String, ShoppingBasket>  baskets = cart.getBaskets();
+        for(ShoppingBasket sb : baskets.values())
+        {
+            sb.purchaseBasket();
+        }
+        this.cart = new ShoppingCart(); //User's cart is now a new empty cart since the last cart was purchased
+    }
+
+    private ShoppingCart deepCopyCart(ShoppingCart cart) {
+        return new ShoppingCart(cart);
+    }
+
+    public List<ShoppingCart> getPurchaseHistory() {
+        return this.purchaseHistory;
+    }
+
+    public void setStoreFounder(Store store) throws Exception
+    {
+        if(!this.foundedStores.isEmpty())
+        {
+            throw new Exception("There is already a store founder");
+        }
+        this.foundedStores.add(store);
+    }
+
+    public Product findProductInHistoryByNameAndStore(String productName, String storeName) {
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            if(sc.isProductInCart(productName, storeName)) // Only true if product is in the user's purchase history for that specific store
+            {
+                return sc.getProduct(productName, storeName);
+            }
+        }
+        return null;
+    }
+
+    public Store getStoreInPurchaseHistory(String storeName) {
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            if(sc.isStoreInCart(storeName))
+            {
+                return sc.getStore(storeName);
+            }
+        }
+        return null;
+    }
+	
+    public HashMap<User, String> getStoreStaff(Store store) {
+        if (hasPermission(store, StorePermission.OwnerPermission))
+            return store.getStoreStaff();
+        throw new IllegalArgumentException("You don't have permission to do that");
+    }
+
+    public List<Pair<String, String>> receiveQuestionsFromStore(Store store) {
+        if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
+            return store.getQuestions();
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
@@ -416,7 +501,20 @@ public class User {
         return cart.RemoveProductFromCart(st, productName, quantity);
     }
 
+
     public List<IStore> getFoundedIStores() {
         return foundedIStores;
+
+    public void changePassword(String newPassHashed) {
+        this.hashed_password = newPassHashed;
+    }
+
+    public void changeUsername(String newUsername) throws Exception{
+        if(newUsername.isBlank())
+        {
+            throw new Exception("Username cant be blank");
+        }
+        this.userName = newUsername;
+
     }
 }

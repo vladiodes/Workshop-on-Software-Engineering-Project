@@ -15,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="13-users-stores-requirements-2.4" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -53,16 +54,21 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -107,6 +113,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="StoreTest.removeProductNonExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -116,14 +123,18 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
+
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.StoreTest" />
       <option name="METHOD_NAME" value="removeProductNonExist" />
       <option name="TEST_OBJECT" value="method" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="StoreTest.removeProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -132,14 +143,18 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
+
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.StoreTest" />
       <option name="METHOD_NAME" value="removeProductTest" />
+
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="StoreTest.removeRolesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -151,6 +166,7 @@
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.StoreTest" />
       <option name="METHOD_NAME" value="removeRolesTest" />
       <option name="TEST_OBJECT" value="method" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,6 +180,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
+
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -176,6 +193,7 @@
         <item itemvalue="JUnit.StoreTest.removeProductTest" />
         <item itemvalue="JUnit.StoreTest.removeRolesTest" />
         <item itemvalue="JUnit.StoreTest.getStoreStaffTest" />
+
       </list>
     </recent_temporary>
   </component>
@@ -187,6 +205,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1649831427176</updated>
+      <workItem from="1650274728823" duration="359000" />
+      <workItem from="1650275111935" duration="783000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -352,6 +372,9 @@
     <option name="localTasksCounter" value="24" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -392,7 +415,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff" />
     <MESSAGE value="Finished implementing REQ 2.4.1 - managing store inventory" />
     <MESSAGE value="Finished implementing REQ 2.4.4 - Appointing an owner to a store" />
@@ -418,12 +440,15 @@
     <MESSAGE value="Added ManagerPermissions tests" />
     <option name="LAST_COMMIT_MESSAGE" value="Added ManagerPermissions tests" />
   </component>
-  <component name="XDebuggerManager">
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="main.Market" memberName="stores" />
-      </pinned-members>
-    </pin-to-top-manager>
+  <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1650275901207">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1650275901207" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1650275897371">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1650275897371" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

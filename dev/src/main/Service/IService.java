@@ -2,8 +2,6 @@ package main.Service;
 
 
 
-
-
 import main.DTO.*;
 import main.utils.Pair;
 import main.DTO.ProductDTO;
@@ -58,7 +56,7 @@ public interface IService {
      * @return true/false upon success or failure
      * REQ 2.3.1
      */
-    boolean logout(String token);
+    Response<Boolean> logout(String token);
 
     /**
      * REQ 2.2.1
@@ -106,7 +104,7 @@ public interface IService {
      * User has to provide a credit card
      * @return true/false upon success/failure
      */
-    boolean purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv);
+    Response<Boolean> purchaseCart(String userToken,String cardNumber, int year, int month, int day, int cvv);
 
     /**
      * REQ 2.3.2
@@ -114,29 +112,49 @@ public interface IService {
      */
     Response<Boolean> openStore(String userToken, String storeName);
 
+
     /**
      * REQ 2.3.4
      * @return true/false upon success/failure
      */
-    boolean writeReview(String userToken, String productName, String storeName, String reviewDescription, double points);
+    Response<Boolean> writeProductReview(String userToken,String productName, String storeName, String reviewDescription, double points);
+
+    /**
+     * REQ 2.3.4
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> writeStoreReview(String userToken, String storeName, String reviewDescription, double points);
 
     /**
      * REQ 2.3.5
      * @return true/false upon success/failure
      */
-    boolean sendQuestionsToStore(String userToken, String storeName, String message);
+    Response<Boolean> sendQuestionsToStore(String userToken, String storeName, String message);
 
     /**
      * REQ 2.3.6
+     * Sends a complaint to one of the market admins
      * @return true/false upon success/failure
      */
-    boolean sendComplaint(String userToken, String msg);
+    Response<Boolean> sendComplaint(String userToken, String msg);
+
+    /**
+     * REQ 2.3.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> changePassword(String userToken, String oldPassword, String newPassword);
+
+    /**
+     * REQ 2.3.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> changeUsername(String userToken, String newUsername);
 
     /**
      * REQ 2.3.7
      * REQ 2.6.3
      */
-    List<ShoppingCartDTO> getPurchaseHistory(String userToken, String userName);
+    Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken,String userName);
 
     /**
      * REQ 2.3.8
@@ -148,7 +166,7 @@ public interface IService {
      * REQ 2.3.9
      * @return true/false upon success/failure
      */
-    boolean addSecurityQuestions(String userToken, String question, String answer);
+    Response<Boolean> addSecurityQuestion(String userToken,String question,String answer);
 
     /*
      ------------------------ Stores, permissions -------------------
@@ -253,14 +271,13 @@ public interface IService {
      * UserDTO - represents the user that has a role in the store (manager,owner,founder)
      * List<String> - a list of all the permissions that the staff member has.
      */
-
     Response<HashMap<UserDTO,String>> getStoreStaff(String userToken, String storeName);
 
     /**
      * REQ 2.4.12
      * @return a collection of all the questions from all the buyers
      */
-    Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName);
+    Response<List<Pair<String,String>>> receiveQuestionsFromBuyers(String userToken, String storeName);
 
     /**
      * REQ 2.4.12

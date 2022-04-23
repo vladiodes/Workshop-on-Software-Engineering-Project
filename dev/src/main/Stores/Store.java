@@ -8,6 +8,7 @@ import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+import main.utils.Pair;
 
 
 import java.time.LocalDateTime;
@@ -26,7 +27,8 @@ public class Store implements IStore {
     private User founder;
     private boolean isActive;
     private String storeName;
-    private ConcurrentLinkedQueue<String> messagesToStore;
+    private List<StoreReview> storeReviews;
+    private ConcurrentLinkedQueue<Pair<String, String>> messagesToStore;
     private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
 
@@ -60,7 +62,7 @@ public class Store implements IStore {
         messagesToStore = new ConcurrentLinkedQueue<>();
         purchaseHistory = new ConcurrentHashMap<>();
         buyingBaskets = new ConcurrentLinkedQueue<>();
-
+		this.storeReviews = new LinkedList<>();
     }
 
     @Override
@@ -120,6 +122,10 @@ public class Store implements IStore {
     }
 
     @Override
+    public ConcurrentHashMap<String, Product> getProductsByName() {
+        return productsByName;
+    }
+
     public synchronized void closeStore(NotificationBus bus) {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
@@ -223,5 +229,22 @@ public class Store implements IStore {
             throw new IllegalArgumentException("No such product with this name");
         return productsByName.remove(productName)!=null;
 
+    }
+
+    public void addReview(StoreReview sReview) {
+        this.storeReviews.add(sReview);
+    }
+
+    public void subtractProductQuantity(Product product, Integer quantity) throws Exception {
+        if(product.getQuantity()<quantity)
+        {
+            throw new Exception("Not enough products in stock");
+        }
+        if(product.getQuantity()==quantity)
+        {
+            removeProduct(product.getName());
+            return;
+        }
+        product.subtractQuantity(quantity);
     }
 }

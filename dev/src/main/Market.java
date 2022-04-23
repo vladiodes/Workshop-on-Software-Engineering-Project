@@ -1,32 +1,29 @@
 package main;
 
 
-import main.Shopping.ShoppingBasket;
-
+import main.Supplying.SupplyingAdapter;
+import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
+import main.Payment.IPayment;
+import main.Payment.PaymentAdapter;
 import main.Security.ISecurity;
 import main.Security.Security;
+import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 import main.Stores.IStore;
 import main.Stores.Product;
-
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
-
 import main.utils.stringFunctions;
-
 import main.utils.SystemStats;
 
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -45,10 +42,13 @@ public class Market {
     private ConcurrentHashMap<String, IStore> stores; //key=store name
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
+    private ISupplying supplyingSystem;
+    private IPayment paymentSystem;
 
     private NotificationBus bus;
 
-    private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
+    private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+    private enum StatsType{Register, Login, Purchase}
 
     public Market(){
         usersByName=new ConcurrentHashMap<>();
@@ -59,9 +59,13 @@ public class Market {
         systemStatsByDate=new ConcurrentHashMap<>();
 
         security_controller = new Security();
+        supplyingSystem = new SupplyingAdapter();
+
+        paymentSystem = new PaymentAdapter();
     }
 
     /***
+     * This function should be called on every system start up.
      * @return new unique user token.
      */
     public String ConnectGuest() {
@@ -85,6 +89,46 @@ public class Market {
         return leaving_user;
     }
 
+    private void addStats(StatsType type)
+    {
+        LocalDate date = LocalDate.now();
+        if(this.systemStatsByDate.containsKey(date))
+        {
+            SystemStats systemStats = this.systemStatsByDate.get(date);
+            switch (type)
+            {
+                case Register:
+                    systemStats.addRegister();
+                    break;
+                case Login:
+                    systemStats.addLogIn();
+                    break;
+                case Purchase:
+                    systemStats.addPurchase();
+                    break;
+            }
+        }
+        else
+        {
+            SystemStats newSystemStats = new SystemStats(date);
+            switch (type)
+            {
+                case Register:
+                    newSystemStats.addRegister();
+                    break;
+                case Login:
+                    newSystemStats.addLogIn();
+                    break;
+                case Purchase:
+                    newSystemStats.addPurchase();
+                    break;
+            }
+
+            this.systemStatsByDate.put(date, newSystemStats);
+        }
+
+    }
+
     public boolean Register(String userName, String password) {
         if (usersByName.containsKey(userName)) {
             throw new IllegalArgumentException("username is taken.");
@@ -94,8 +138,10 @@ public class Market {
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
         bus.register(new_user);
+
         usersByName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
+        addStats(StatsType.Register);
         return true;
     }
 
@@ -121,6 +167,7 @@ public class Market {
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         connectedUsers.put(token, u);
         u.LogIn();
+        addStats(StatsType.Login);
         return u;
     }
 
@@ -312,7 +359,7 @@ public class Market {
         return p.first.getStoreStaff(p.second);
     }
 
-    public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
+    public List<Pair<String, String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.receiveQuestionsFromStore(p.second);
     }
@@ -388,6 +435,20 @@ public class Market {
         return String.valueOf(getStats(userToken, date).getNumOfRegistered());
     }
 
+    /**
+     * Create Default system manager
+     */
+    public void initialize() {
+        String adminUserName = "admin";
+        String adminHashPassowrd = security_controller.hashPassword("admin");
+        User admin = new User(true, adminUserName, adminHashPassowrd);
+        usersByName.put("admin", admin);
+
+    }
+
+
+
+
     public boolean openStore(String userToken, String storeName) {
         User founder = connectedUsers.get(userToken);
         if(!usersByName.containsKey(founder.getUserName()))
@@ -403,5 +464,159 @@ public class Market {
     public boolean removeProductFromStore(String userToken, String productName, String storeName) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.removeProductFromStore(productName,p.second);
+    }
+
+    public void addSecurityQuestion(String userToken, String question, String answer) throws Exception
+    {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        if(!usersByName.containsKey(u.getUserName()))
+        {
+            throw new Exception("User is a not a member");
+        }
+        u.addSecurityQuestion(question, answer);
+    }
+
+    public void logout(String token) throws Exception
+    {
+        if(!connectedUsers.containsKey(token))
+        {
+            throw new Exception("User is not logged in");
+        }
+        User u = connectedUsers.get(token);
+        u.logout();
+        connectedUsers.remove(u.getUserName());
+    }
+
+    public void purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) throws Exception
+    {
+        //User purchase history update
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        u.purchaseCart();
+        addStats(StatsType.Purchase);
+    }
+
+    public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
+        List<ShoppingCartDTO> scDTO = new LinkedList<>();
+        for(ShoppingCart sc : purchaseHistory)
+        {
+            scDTO.add(new ShoppingCartDTO(sc));
+        }
+        return scDTO;
+    }
+
+    public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        Product prod = u.findProductInHistoryByNameAndStore(productName, storeName);
+        if(prod == null)
+            throw new Exception("Product was not found in user's purchase history");
+        ProductReview pReview = new ProductReview(u, prod, reviewDescription, points);
+        prod.addReview(pReview);
+    }
+
+    public void writeStoreReview(String userToken, String storeName, String reviewDescription, double points) throws Exception{
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        Store store = u.getStoreInPurchaseHistory(storeName);
+        if(store==null)
+        {
+            throw new Exception("Product was not found in user's purchase history");
+        }
+        StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
+        store.addReview(sReview);
+    }
+
+    public void changePassword(String userToken, String oldPassword, String newPassword)throws Exception {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        if(!isValidPass(newPassword))
+        {
+            throw new Exception("");
+        }
+        User u = connectedUsers.get(userToken);
+        String oldPassHashed = this.security_controller.hashPassword(oldPassword);
+        if(!oldPassHashed.equals(u.getHashed_password()))
+        {
+            throw new Exception("Old password is incorrect");
+        }
+        u.changePassword(this.security_controller.hashPassword(newPassword));
+    }
+
+    public void changeUsername(String userToken, String newUsername) throws Exception {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        String oldUsername = u.getUserName();
+        u.changeUsername(newUsername);
+        this.usersByName.remove(oldUsername);
+        this.usersByName.put(newUsername, u);
+    }
+
+    private boolean isValidPass(String pass)
+    {
+        if(pass.isBlank() || pass.length()<4)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
+        if(!stores.contains(storeName))
+        {
+            throw new Exception("No such store "+ storeName);
+        }
+        Store store = stores.get(storeName);
+        User u = getConnectedUserByToken(userToken);
+        String userName = u.getUserName();
+        this.notificationBus.addMessage(store, userName, message);
+    }
+
+    private User getConnectedUserByToken(String userToken) throws Exception
+    {
+        if(!connectedUsers.containsKey(userToken))
+        {
+            throw new Exception("Invalid user token");
+        }
+        User u = connectedUsers.get(userToken);
+        return u;
+    }
+
+    public void sendComplaint(String userToken, String msg) throws  Exception {
+        for(User u : this.usersByName.values())
+        {
+            if(u.isAdmin())
+            {
+                notificationBus.addMessage(u, msg);
+                return;
+            }
+        }
+        throw new Exception("This is a bug : No admin was found in the system");
+
+        //Find admin to send the complaint to
     }
 }

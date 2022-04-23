@@ -1,9 +1,18 @@
 package main.Shopping;
 
 
+
 import main.Stores.IStore;
 
 import java.util.HashMap;
+
+import main.Stores.Product;
+import main.Stores.Store;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingCart {
@@ -13,6 +22,17 @@ public class ShoppingCart {
         this.baskets = new ConcurrentHashMap<>();
     }
 
+    public ShoppingCart(ShoppingCart oldCart) //use this constructor to deep copy a ShoppingCart
+    {
+        ConcurrentHashMap<String, ShoppingBasket> oldBaskets = oldCart.getBaskets();
+        ConcurrentHashMap<String, ShoppingBasket> newBaskets = new ConcurrentHashMap<>();
+
+        for(HashMap.Entry<String , ShoppingBasket> element : oldBaskets.entrySet())
+        {
+            newBaskets.put(element.getKey(), new ShoppingBasket(element.getValue()));
+        }
+        this.baskets = newBaskets;
+    }
     public HashMap<String, ShoppingBasket> getBasketInfo() {
         return new HashMap<>(baskets);
     }
@@ -39,5 +59,53 @@ public class ShoppingCart {
                 this.baskets.remove(st.getName());
             return true;
         }
+    }
+	
+	public boolean isProductInCart(String productName, String storeName) {
+        if(!baskets.containsKey(storeName))
+        {
+            return false;
+        }
+        ShoppingBasket sb = baskets.get(storeName);
+        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        for(Product p : productsQuantities.keySet())
+        {
+            if(p.getName().equals(productName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Product getProduct(String productName, String storeName) {
+        if(!baskets.containsKey(storeName))
+        {
+            return null;
+        }
+        ShoppingBasket sb = baskets.get(storeName);
+        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        for(Product p : productsQuantities.keySet())
+        {
+            if(p.getName().equals(productName))
+            {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public boolean isStoreInCart(String storeName) {
+        return baskets.containsKey(storeName);
+    }
+
+    public Store getStore(String storeName) {
+        if(!baskets.containsKey(storeName))
+            return null;
+        return baskets.get(storeName).getStore();
+    }
+
+    public ConcurrentHashMap<String, ShoppingBasket> getBaskets() {
+        return baskets;
     }
 }
