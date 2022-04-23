@@ -42,4 +42,8 @@ public class NotificationBus {
 
         return msgList;
     }
+
+    public ConcurrentHashMap<User, ConcurrentLinkedQueue<String>> getUsersMessagesMap() {
+        return usersMessagesMap;
+    }
 }
