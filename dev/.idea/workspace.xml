@@ -86,7 +86,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserTest">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -98,22 +98,6 @@
       <option name="PACKAGE_NAME" value="test.UnitTests" />
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.openStoreGood" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
-      <option name="METHOD_NAME" value="openStoreGood" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -166,13 +150,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
         <item itemvalue="JUnit.UserTest.removeProductFromStoreNotStaff" />
         <item itemvalue="JUnit.UserTest.removeProductFromStoreNoPermission" />
-        <item itemvalue="JUnit.UserTest.openStoreGood" />
       </list>
     </recent_temporary>
   </component>

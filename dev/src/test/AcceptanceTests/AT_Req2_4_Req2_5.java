@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AT {
+public class AT_Req2_4_Req2_5 {
 
     Response<String> manager1token, manager2token, founder1token, founder2token, owner1token, user1token;
     boolean searchFlag;
