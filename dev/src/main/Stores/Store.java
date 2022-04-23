@@ -1,19 +1,13 @@
 package main.Stores;
 
-
-
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
-
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Pair;
-
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,7 +25,6 @@ public class Store implements IStore {
     private ConcurrentLinkedQueue<Pair<String, String>> messagesToStore;
     private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
-
 
     @Override
     public List<User> getOwnersOfStore() {
@@ -51,7 +44,6 @@ public class Store implements IStore {
         return storeManagers;
     }
 
-
     public Store(String storeName, User founder) {
         this.owners = new ConcurrentLinkedQueue<>();
         this.managers = new ConcurrentLinkedQueue<>();
@@ -62,7 +54,7 @@ public class Store implements IStore {
         messagesToStore = new ConcurrentLinkedQueue<>();
         purchaseHistory = new ConcurrentHashMap<>();
         buyingBaskets = new ConcurrentLinkedQueue<>();
-		this.storeReviews = new LinkedList<>();
+        this.storeReviews = new LinkedList<>();
     }
 
     @Override
@@ -76,7 +68,7 @@ public class Store implements IStore {
     }
 
     @Override
-    public boolean updateProduct(String oldProductName,String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
+    public boolean updateProduct(String oldProductName, String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
         Product product = productsByName.get(oldProductName);
         if (product == null)
             throw new IllegalArgumentException("No such product in the store!");
@@ -132,14 +124,14 @@ public class Store implements IStore {
     public ConcurrentHashMap<String, Product> getProductsByName() {
         return productsByName;
     }
+
     @Override
     public Product getProduct(String name) {
         return productsByName.get(name);
-
     }
 
     private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
-        bus.addMessage(founder,msg);
+        bus.addMessage(founder, msg);
         for (User u : getOwnersOfStore())
             bus.addMessage(u, msg);
         for (User u : getManagersOfStore())
@@ -151,6 +143,10 @@ public class Store implements IStore {
         return storeName;
     }
 
+    @Override
+    public Boolean getIsActive() {
+        return isActive;
+    }
 
     @Override
     public synchronized void reOpen(NotificationBus bus) {
@@ -175,7 +171,6 @@ public class Store implements IStore {
             staff.put(managerPermission.getAppointedToManager(), "Manager of the store, has permissions: " + managerPermission.permissionsToString());
 
         return staff;
-
     }
 
     @Override
@@ -199,7 +194,7 @@ public class Store implements IStore {
     public void CancelStaffRoles() {
         //first removing founder
         founder.removeFounderRole(this);
-        this.founder=null;
+        this.founder = null;
 
         //then removing all owners
         for (OwnerPermissions owner : owners) {
@@ -216,11 +211,10 @@ public class Store implements IStore {
 
     @Override
     public boolean removeProduct(String productName) {
-        Product toRemove=productsByName.get(productName);
-        if(toRemove==null)
+        Product toRemove = productsByName.get(productName);
+        if (toRemove == null)
             throw new IllegalArgumentException("No such product with this name");
-        return productsByName.remove(productName)!=null;
-
+        return productsByName.remove(productName) != null;
     }
 
     @Override
@@ -230,12 +224,10 @@ public class Store implements IStore {
 
     @Override
     public void subtractProductQuantity(Product product, Integer quantity) throws Exception {
-        if(product.getQuantity()<quantity)
-        {
+        if (product.getQuantity() < quantity) {
             throw new Exception("Not enough products in stock");
         }
-        if(product.getQuantity()==quantity)
-        {
+        if (product.getQuantity() == quantity) {
             removeProduct(product.getName());
             return;
         }
