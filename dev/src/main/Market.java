@@ -1,6 +1,5 @@
 package main;
 
-
 import main.Stores.ProductReview;
 import main.Stores.StoreReview;
 import main.Supplying.ISupplying;
@@ -20,7 +19,6 @@ import main.Users.User;
 import main.utils.Pair;
 import main.utils.stringFunctions;
 import main.utils.SystemStats;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -60,10 +58,8 @@ public class Market {
         guestCounter=new AtomicInteger(1);
         bus =new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
-
         security_controller = new Security();
         supplyingSystem = new SupplyingAdapter();
-
         paymentSystem = new PaymentAdapter();
     }
 
@@ -112,10 +108,8 @@ public class Market {
                 case Login -> newSystemStats.addLogIn();
                 case Purchase -> newSystemStats.addPurchase();
             }
-
             this.systemStatsByDate.put(date, newSystemStats);
         }
-
     }
 
     public boolean Register(String userName, String password) {
@@ -159,8 +153,6 @@ public class Market {
         addStats(StatsType.Login);
         return u;
     }
-
-
 
     public IStore getStoreByName(String name) {
         return this.stores.get(name);
@@ -238,7 +230,6 @@ public class Market {
         }
         return us.getCart();
     }
-
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
         Pair<User, IStore> p=getConnectedUserAndStore(userToken,storeName);
@@ -429,12 +420,10 @@ public class Market {
      */
     public void initialize() {
         String adminUserName = "admin";
-        String adminHashPassowrd = security_controller.hashPassword("admin");
-        User admin = new User(true, adminUserName, adminHashPassowrd);
+        String adminHashPassword = security_controller.hashPassword("admin");
+        User admin = new User(true, adminUserName, adminHashPassword);
         usersByName.put("admin", admin);
-
     }
-
 
     public boolean openStore(String userToken, String storeName) {
         User founder = connectedUsers.get(userToken);
@@ -443,11 +432,10 @@ public class Market {
                 throw new IllegalArgumentException("This user isn't registered to the system!");
             if (stores.containsKey(storeName))
                 throw new IllegalArgumentException("There's already a store with that name in the system");
-        }
-
         IStore newIStore =founder.openStore(storeName);
         stores.put(storeName, newIStore);
         bus.register(newIStore);
+        }
         return true;
     }
 
