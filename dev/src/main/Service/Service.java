@@ -36,6 +36,7 @@ public class Service implements IService{
 
     public Service(){
         market=new Market();
+        market.initialize();
     }
 
 

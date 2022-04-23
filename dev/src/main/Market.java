@@ -309,6 +309,17 @@ public class Market {
     public String getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
         return String.valueOf(getStats(userToken, date).getNumOfRegistered());
     }
+
+    /**
+     * Create Default system manager
+     */
+    public void initialize() {
+        String adminUserName = "admin";
+        String adminHashPassowrd = security_controller.hashPassword("admin");
+        User admin = new User(true, adminUserName, adminHashPassowrd);
+        usersByName.put("admin", admin);
+
+    }
 }
 
 
