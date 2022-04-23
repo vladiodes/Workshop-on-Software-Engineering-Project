@@ -438,10 +438,12 @@ public class Market {
 
     public boolean openStore(String userToken, String storeName) {
         User founder = connectedUsers.get(userToken);
-        if(!usersByName.containsKey(founder.getUserName()))
-            throw new IllegalArgumentException("This user isn't registered to the system!");
-        if(stores.containsKey(storeName))
-            throw new IllegalArgumentException("There's already a store with that name in the system");
+        synchronized (stores) {
+            if (!usersByName.containsKey(founder.getUserName()))
+                throw new IllegalArgumentException("This user isn't registered to the system!");
+            if (stores.containsKey(storeName))
+                throw new IllegalArgumentException("There's already a store with that name in the system");
+        }
 
         IStore newIStore =founder.openStore(storeName);
         stores.put(storeName, newIStore);
