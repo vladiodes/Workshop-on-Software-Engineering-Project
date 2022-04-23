@@ -23,9 +23,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 
-
-
-import javax.naming.NoPermissionException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -49,7 +46,7 @@ public class Market {
     private ISecurity security_controller;
     private AtomicInteger guestCounter;
 
-    private NotificationBus notificationBus;
+    private NotificationBus bus;
 
     private ConcurrentHashMap <LocalDateTime, SystemStats> systemStatsByDate;
 
@@ -58,7 +55,7 @@ public class Market {
         connectedUsers=new ConcurrentHashMap<>();
         stores=new ConcurrentHashMap<>();
         guestCounter=new AtomicInteger(1);
-        notificationBus=new NotificationBus();
+        bus =new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
 
         security_controller = new Security();
@@ -96,7 +93,7 @@ public class Market {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
-        notificationBus.register(new_user);
+        bus.register(new_user);
         usersByName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
         return true;
@@ -212,9 +209,9 @@ public class Market {
         return p.first.addProductToStore(p.second,productName,category,keyWords,description,quantity,price);
     }
 
-    public boolean updateProductInStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
+    public boolean updateProductInStore(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
-        return p.first.updateProductToStore(p.second, productName, category, keyWords, description, quantity, price);
+        return p.first.updateProductToStore(p.second, oldProductName,newProductName, category, keyWords, description, quantity, price);
     }
 
     public boolean appointStoreOwner(String userToken, String userToAppoint, String storeName) {
@@ -302,12 +299,12 @@ public class Market {
 
     public boolean closeStore(String userToken, String storeName) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
-        return p.first.closeStore(p.second, notificationBus);
+        return p.first.closeStore(p.second, bus);
     }
 
     public boolean reopenStore(String userToken, String storeName) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
-        return p.first.reOpenStore(p.second, notificationBus);
+        return p.first.reOpenStore(p.second, bus);
     }
 
     public HashMap<User, String> getStoreStaff(String userToken, String storeName) {
@@ -325,7 +322,7 @@ public class Market {
         User toRespond = usersByName.get(userToRespond);
         if (toRespond == null)
             throw new IllegalArgumentException("No such user to respond to");
-        return p.first.sendRespondFromStore(p.second, toRespond, msg, notificationBus);
+        return p.first.sendRespondFromStore(p.second, toRespond, msg, bus);
     }
 
     public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
@@ -359,13 +356,13 @@ public class Market {
         User user = connectedUsers.get(userToken);
         if (user == null)
             throw new IllegalArgumentException("User isn't connected");
-        return notificationBus.getMessagesFromUserRequest(user);
+        return bus.getMessagesFromUserRequest(user);
     }
 
     public boolean respondToMessage(String userToken, String userToRespond, String msg) {
         User responding_user = connectedUsers.get(userToken);
         User user_receiving_msg = usersByName.get(userToRespond);
-        notificationBus.addMessage(user_receiving_msg, String.format("From user:%s \n Message content: %s", responding_user.getUserName(), msg));
+        bus.addMessage(user_receiving_msg, String.format("From user:%s \n Message content: %s", responding_user.getUserName(), msg));
         return true;
     }
 

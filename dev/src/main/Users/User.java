@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class User implements IUser {
+public class User {
 
     private boolean isSystemManager;
     private String userName;
@@ -75,43 +75,36 @@ public class User implements IUser {
         messages=new ConcurrentLinkedQueue<>();
     }
 
-    @Override
     public ShoppingCart getCart() {
         return cart;
     }
 
-    @Override
     public String getUserName() {
         return userName;
     }
 
-    @Override
     public String getHashed_password() {
         return hashed_password;
     }
 
-    @Override
     public void LogIn() {
         this.isLoggedIn.set(true);
     }
 
-    @Override
     public Boolean getIsLoggedIn() {
         return isLoggedIn.get();
     }
 
 
-    @Override
     public boolean addProductToStore(IStore IStore, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(IStore, StorePermission.UpdateAddProducts))
             return IStore.addProduct(productName, category, keyWords, description, quantity, price);
         throw new IllegalArgumentException("This user doesn't have permissions to do that!");
     }
 
-    @Override
-    public boolean updateProductToStore(IStore IStore, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
+    public boolean updateProductToStore(IStore IStore, String oldProductName,String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(IStore, StorePermission.UpdateAddProducts))
-            return IStore.updateProduct(productName, category, keyWords, description, quantity, price);
+            return IStore.updateProduct(oldProductName,newProductName, category, keyWords, description, quantity, price);
         throw new IllegalArgumentException("This user doesn't have permissions to do that!");
     }
 
@@ -132,7 +125,6 @@ public class User implements IUser {
         return false;
     }
 
-    @Override
     public boolean appointOwnerToStore(IStore IStore, User user_to_appoint) {
 
         //first checking preconditions to make the appointment
@@ -173,7 +165,6 @@ public class User implements IUser {
      *
      * @return true upon success
      */
-    @Override
     public boolean removeOwnerAppointment(IStore IStore, User appointed_user) {
 
         OwnerPermissions ow = CheckPreConditionsAndFindOwnerAppointment(IStore, appointed_user);
@@ -219,7 +210,6 @@ public class User implements IUser {
         return ow;
     }
 
-    @Override
     public boolean removeManagerAppointment(IStore IStore, User manager) {
         ManagerPermissions mp = CheckPreConditionsAndFindManagerAppointment(IStore, manager);
 
@@ -273,7 +263,6 @@ public class User implements IUser {
         return ownersAppointedBy;
     }
 
-    @Override
     public boolean appointManagerToStore(IStore IStore, User user_to_appoint) {
         appointManagerPreconditions(IStore, user_to_appoint);
 
@@ -302,7 +291,6 @@ public class User implements IUser {
      * This function removes/adds (according to the shouldGrant flag)
      * a permission to a manager of the store (should be appointed by this user).
      */
-    @Override
     public boolean grantOrDeletePermission(User manager, IStore IStore, boolean shouldGrant, StorePermission permission) {
 
         if (!checkIfAlreadyStaff(IStore, this))
@@ -325,7 +313,6 @@ public class User implements IUser {
     }
 
 
-    @Override
     public boolean closeStore(IStore IStore, NotificationBus bus) {
         if (!foundedIStores.contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
@@ -333,7 +320,6 @@ public class User implements IUser {
         return true;
     }
 
-    @Override
     public boolean reOpenStore(IStore IStore, NotificationBus bus) {
         if (!foundedIStores.contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
@@ -341,14 +327,12 @@ public class User implements IUser {
         return true;
     }
 
-    @Override
     public HashMap<User, String> getStoreStaff(IStore IStore) {
         if (hasPermission(IStore, StorePermission.OwnerPermission))
             return IStore.getStoreStaff();
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    @Override
     public List<String> receiveQuestionsFromStore(IStore IStore) {
         if (hasPermission(IStore, StorePermission.AnswerAndTakeRequests))
             return IStore.getQuestions();
@@ -356,21 +340,18 @@ public class User implements IUser {
     }
 
 
-    @Override
     public boolean sendRespondFromStore(IStore IStore, User toRespond, String msg, NotificationBus bus) {
         if (hasPermission(IStore, StorePermission.AnswerAndTakeRequests))
             return IStore.respondToBuyer(toRespond, msg, bus);
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    @Override
     public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(IStore IStore) {
         if (isSystemManager || hasPermission(IStore, StorePermission.ViewStoreHistory))
             return IStore.getPurchaseHistory();
         throw new IllegalArgumentException("The user doesn't have permissions to do that!");
     }
 
-    @Override
     public boolean removeStore(IStore IStore) {
         if (!isSystemManager)
             throw new IllegalArgumentException("You're not a system manager!");
@@ -379,22 +360,18 @@ public class User implements IUser {
         return true;
     }
 
-    @Override
     public void removeFounderRole(IStore IStore) {
         foundedIStores.remove(IStore);
     }
 
-    @Override
     public void removeOwnerRole(OwnerPermissions ownerPermissions) {
         ownedStores.remove(ownerPermissions);
     }
 
-    @Override
     public void removeManagerRole(ManagerPermissions managerPermissions) {
         managedStores.remove(managerPermissions);
     }
 
-    @Override
     public boolean deleteUser(User toDelete) {
         if (!isSystemManager)
             throw new IllegalArgumentException("You're not a system manager!");
@@ -415,36 +392,30 @@ public class User implements IUser {
         return true;
     }
 
-    @Override
     public boolean isAdmin() {
         return isSystemManager;
     }
 
-    @Override
     public IStore openStore(String storeName) {
         IStore IStore = new Store(storeName,this);
         foundedIStores.add(IStore);
         return IStore;
     }
 
-    @Override
     public boolean removeProductFromStore(String productName, IStore IStore) {
         if(!hasPermission(IStore,StorePermission.UpdateAddProducts))
             throw new IllegalArgumentException("You don't have permissions to do that");
         return IStore.removeProduct(productName);
     }
-  
-    @Override
+
     public boolean addProductToCart(IStore st, String productName, int quantity) {
         return cart.addProductToCart(st, productName, quantity);
     }
 
-    @Override
     public boolean RemoveProductFromCart(IStore st, String productName, int quantity) {
         return cart.RemoveProductFromCart(st, productName, quantity);
     }
 
-    @Override
     public List<IStore> getFoundedIStores() {
         return foundedIStores;
     }

@@ -78,7 +78,7 @@ public class AT_Req2_4_Req2_5 {
     public void notManagerAddProduct() {
         //this test fails because service.getStoreProducts wasn't implemented yet!
         int size = service.getStoreProducts("MyStore1").getResult().size();
-        assertTrue(service.updateProduct(user1token.getResult(), "Crystal Cola", "Drinks", null, "ew", "MyStore1", 100, 6).isWas_expected_error());
+        assertTrue(service.updateProduct(user1token.getResult(), "Crystal Cola","Crystal Cola", "Drinks", null, "ew", "MyStore1", 100, 6).isWas_expected_error());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size);
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         searchFlag = false;
@@ -90,7 +90,7 @@ public class AT_Req2_4_Req2_5 {
     @Test
     public void updateProductInfo() {
         //this test fails because service.getStoreProducts wasn't implemented yet!
-        assertTrue(service.updateProduct(founder1token.getResult(), "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
+        assertTrue(service.updateProduct(founder1token.getResult(), "Coca Cola","Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
@@ -100,7 +100,7 @@ public class AT_Req2_4_Req2_5 {
     @Test
     public void notManagerUpdateProductInfo() {
         //this test fails because service.getStoreProducts wasn't implemented yet!
-        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Drinks", null, "bad drink", "MyStore1", 100, 6).isWas_expected_error());
+        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola","Coca Cola", "Drinks", null, "bad drink", "MyStore1", 100, 6).isWas_expected_error());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
@@ -164,7 +164,7 @@ public class AT_Req2_4_Req2_5 {
         assertTrue(service.removeStoreOwnerAppointment(founder1token.getResult(), "manager2", "MyStore1").getResult());
 
         //this should throw an expected error since user1 was appointed by manager2 and it shouldn't be a manager anymore!
-        assertTrue(service.updateProduct(user1token.getResult(),"Coca Cola","Something",null,"Something","MyStore1",100000,20000.5).isWas_expected_error());
+        assertTrue(service.updateProduct(user1token.getResult(),"Coca Cola","Coca Cola","Something",null,"Something","MyStore1",100000,20000.5).isWas_expected_error());
     }
 
     @Test
@@ -261,7 +261,7 @@ public class AT_Req2_4_Req2_5 {
 
         //default permissions include doesn't include update products permission
         assertTrue(service.allowManagerUpdateProducts(owner1token.getResult(), "user1", "MyStore1").getResult());
-        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
+        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola","Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
 
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
@@ -269,7 +269,7 @@ public class AT_Req2_4_Req2_5 {
                 assertEquals(product.getDescription(), "very tasty drink");
 
         assertTrue(service.disAllowManagerUpdateProducts(owner1token.getResult(), "user1", "MyStore1").getResult());
-        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6).isWas_expected_error());
+        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola","Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6).isWas_expected_error());
         MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
@@ -433,7 +433,7 @@ public class AT_Req2_4_Req2_5 {
             }
         };
         Runnable owner1UpdateProduct = () -> {
-            Response<Boolean> resp = service.updateProduct(manager1token.getResult(), "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6);
+            Response<Boolean> resp = service.updateProduct(manager1token.getResult(), "Coca Cola","Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6);
             if(resp.isWas_expected_error())
                 num_of_errors.incrementAndGet();
         };

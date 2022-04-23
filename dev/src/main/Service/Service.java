@@ -224,10 +224,10 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
-        Logger.getInstance().logEvent("Service", String.format("Update product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
+    public Response<Boolean> updateProduct(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
+        Logger.getInstance().logEvent("Service", String.format("Update product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, oldProductName, storeName));
         try {
-            return new Response<>(market.updateProductInStore(userToken, productName, category, keyWords, description, storeName, quantity, price));
+            return new Response<>(market.updateProductInStore(userToken, oldProductName,newProductName, category, keyWords, description, storeName, quantity, price));
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {

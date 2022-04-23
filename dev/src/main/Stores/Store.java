@@ -74,19 +74,18 @@ public class Store implements IStore {
     }
 
     @Override
-    public boolean updateProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
-        Product product = productsByName.get(productName);
+    public boolean updateProduct(String oldProductName,String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
+        Product product = productsByName.get(oldProductName);
         if (product == null)
             throw new IllegalArgumentException("No such product in the store!");
-        String prevName = product.getName();
-        if (!prevName.equals(productName)) { //name is changed
-            if (productsByName.containsKey(productName)) //the name is already taken
+        if (!oldProductName.equals(newProductName)) { //name is changed
+            if (productsByName.containsKey(newProductName)) //the name is already taken
                 throw new IllegalArgumentException("There's already a product with that name!");
         }
-        product.setProperties(productName, category, keyWords, description, quantity, price);
+        product.setProperties(newProductName, category, keyWords, description, quantity, price);
 
-        productsByName.remove(prevName);
-        productsByName.put(productName, product);
+        productsByName.remove(oldProductName);
+        productsByName.put(newProductName, product);
         return true;
     }
 
@@ -139,6 +138,7 @@ public class Store implements IStore {
     }
 
     private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
+        bus.addMessage(founder,msg);
         for (User u : getOwnersOfStore())
             bus.addMessage(u, msg);
         for (User u : getManagersOfStore())
@@ -171,7 +171,7 @@ public class Store implements IStore {
 
         //managers
         for (ManagerPermissions managerPermission : managers)
-            staff.put(managerPermission.getAppointedToManager(), managerPermission.permissionsToString());
+            staff.put(managerPermission.getAppointedToManager(), "Manager of the store, has permissions: " + managerPermission.permissionsToString());
 
         return staff;
 
@@ -201,15 +201,18 @@ public class Store implements IStore {
     public void CancelStaffRoles() {
         //first removing founder
         founder.removeFounderRole(this);
+        this.founder=null;
 
         //then removing all owners
         for (OwnerPermissions owner : owners) {
             owner.getAppointedToOwner().removeOwnerRole(owner);
+            this.owners.remove(owner);
         }
 
         //finally, removing all managers
         for (ManagerPermissions manager : managers) {
             manager.getAppointedToManager().removeManagerRole(manager);
+            this.managers.remove(manager);
         }
     }
 

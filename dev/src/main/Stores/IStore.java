@@ -19,7 +19,7 @@ public interface IStore {
 
     boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price);
 
-    boolean updateProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price);
+    boolean updateProduct(String oldProductName,String newProductName, String category, List<String> keyWords, String description, int quantity, double price);
 
     ConcurrentLinkedQueue<OwnerPermissions> getOwnersAppointments();
 

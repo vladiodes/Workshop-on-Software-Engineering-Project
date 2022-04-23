@@ -50,13 +50,13 @@ class UserTest {
     @Test
     void updateProductToStoreWithFounderPermissions(){
         user.getFoundedIStores().add(store_mock);
-        boolean res = user.updateProductToStore(store_mock,"product","category",null,null,5,15);
+        boolean res = user.updateProductToStore(store_mock,"product","product","category",null,null,5,15);
         assertTrue(res);
     }
 
     @Test
     void updateProductToStoreWithoutPermissions(){
-        assertThrows(IllegalArgumentException.class,() ->user.updateProductToStore(store_mock,"product","category",null,null,5,15));
+        assertThrows(IllegalArgumentException.class,() ->user.updateProductToStore(store_mock,"product","product","category",null,null,5,15));
     }
 
     @Test

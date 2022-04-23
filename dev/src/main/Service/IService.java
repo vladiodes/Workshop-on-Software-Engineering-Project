@@ -173,7 +173,7 @@ public interface IService {
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    Response<Boolean> updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price);
+    Response<Boolean> updateProduct(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price);
 
     /**
      * REQ 2.4.4
