@@ -29,8 +29,11 @@ public class Service implements IService {
 
     private Market market;
 
-    public Service() {
-        market = new Market();
+
+    public Service(){
+        market=new Market();
+        market.initialize();
+
     }
 
     @Override
