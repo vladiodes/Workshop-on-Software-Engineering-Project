@@ -3,7 +3,7 @@ package main;
 
 import main.Logger.Logger;
 import main.Payment.IPayment;
-import main.Payment.PaymentSystem;
+import main.Payment.PaymentAdapter;
 import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingBasket;
@@ -49,7 +49,7 @@ public class Market {
         notificationBus=new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
         security_controller = new Security();
-        paymentSystem = new PaymentSystem();
+        paymentSystem = new PaymentAdapter();
     }
 
     /***
