@@ -1,17 +1,18 @@
 package main.Shopping;
 
+import main.Stores.IStore;
 import main.Stores.Product;
-import main.Stores.Store;
+
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingBasket {
     private ConcurrentHashMap<Product,Integer> productsQuantity;
-    private Store store;
+    private IStore store;
     private ShoppingCart cart;
     private final Object basketEditLock = new Object();
 
-    public ShoppingBasket(Store store, ShoppingCart cart){
+    public ShoppingBasket(IStore store, ShoppingCart cart){
         this.cart = cart;
         this.store = store;
         productsQuantity=new ConcurrentHashMap<>();
@@ -35,7 +36,7 @@ public class ShoppingBasket {
 
         for(HashMap.Entry<Product, Integer> element : productsQuantity.entrySet())
         {
-            newProductsQuantity.put(new Product(element.getKey()), new Integer(element.getValue()));
+            newProductsQuantity.put(new Product(element.getKey()), element.getValue());
         }
 
         this.cart = oldShoppingBasket.cart;
@@ -89,7 +90,7 @@ public class ShoppingBasket {
         return new ConcurrentHashMap<>(productsQuantity);
     }
 
-    public Store getStore() {
+    public IStore getStore() {
         return store;
     }
 

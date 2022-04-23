@@ -1,6 +1,7 @@
 package test.AcceptanceTests;
 
 import main.DTO.ProductDTO;
+import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.Service.Service;
 import main.utils.Response;
@@ -13,10 +14,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AT {
+public class AT_Req2_4_Req2_5 {
 
     Response<String> manager1token, manager2token, founder1token, founder2token, owner1token, user1token;
-    boolean searchFlag;
     IService service = new Service();
 
     @Before
@@ -31,7 +31,7 @@ public class AT {
         service.register("manager1", "12345678");
         service.register("manager2", "12345678");
         service.register("founder1", "12345678");
-        service.register("founder2","12345678");
+        service.register("founder2", "12345678");
         service.register("owner1", "12345678");
         service.register("user1", "12345678");
 
@@ -51,12 +51,12 @@ public class AT {
 
     @Test
     public void addProduct() {
-        //this test fails because getStoreProducts isn't implemented yet
+        // this test fails because getStoreProducts isn't implemented yet
         int size = service.getStoreProducts("MyStore1").getResult().size();
         assertTrue(service.addProductToStore(founder1token.getResult(), "Pepsi Cola", "Drinks", null, "less tasty drink", "MyStore1", 50, 5).getResult());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size + 1);
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
-        searchFlag = false;
+        boolean searchFlag = false;
         for (ProductDTO product : MyStore1Products)
             searchFlag |= product.getProductName().equals("Pepsi Cola");
         assertTrue(searchFlag);
@@ -64,7 +64,7 @@ public class AT {
 
     @Test
     public void addProductTwice() {
-        //this test fails because service.getStoreProducts wasn't implemented yet!
+        // this test fails because service.getStoreProducts wasn't implemented yet!
         assertTrue(service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6).isWas_expected_error());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         int counter = 0;
@@ -76,12 +76,12 @@ public class AT {
 
     @Test
     public void notManagerAddProduct() {
-        //this test fails because service.getStoreProducts wasn't implemented yet!
+        // this test fails because service.getStoreProducts wasn't implemented yet!
         int size = service.getStoreProducts("MyStore1").getResult().size();
-        assertTrue(service.updateProduct(user1token.getResult(), "Crystal Cola", "Drinks", null, "ew", "MyStore1", 100, 6).isWas_expected_error());
+        assertTrue(service.updateProduct(user1token.getResult(), "Crystal Cola", "Crystal Cola", "Drinks", null, "ew", "MyStore1", 100, 6).isWas_expected_error());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size);
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
-        searchFlag = false;
+        boolean searchFlag = false;
         for (ProductDTO product : MyStore1Products)
             searchFlag |= product.getProductName().equals("Crystal Cola");
         assertFalse(searchFlag);
@@ -89,8 +89,8 @@ public class AT {
 
     @Test
     public void updateProductInfo() {
-        //this test fails because service.getStoreProducts wasn't implemented yet!
-        assertTrue(service.updateProduct(founder1token.getResult(), "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
+        // this test fails because service.getStoreProducts wasn't implemented yet!
+        assertTrue(service.updateProduct(founder1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
@@ -99,8 +99,8 @@ public class AT {
 
     @Test
     public void notManagerUpdateProductInfo() {
-        //this test fails because service.getStoreProducts wasn't implemented yet!
-        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Drinks", null, "bad drink", "MyStore1", 100, 6).isWas_expected_error());
+        // this test fails because service.getStoreProducts wasn't implemented yet!
+        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "bad drink", "MyStore1", 100, 6).isWas_expected_error());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
@@ -109,23 +109,23 @@ public class AT {
 
     @Test
     public void removeProduct() {
-        //this test fails because service.getStoreProducts wasn't implemented yet!
+        // this test fails because service.getStoreProducts wasn't implemented yet!
         int size = service.getStoreProducts("MyStore1").getResult().size();
-        assertTrue(service.removeProductFromStore(founder1token.getResult(), "Coca Cola","MyStore1").getResult());
+        assertTrue(service.removeProductFromStore(founder1token.getResult(), "Coca Cola", "MyStore1").getResult());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size - 1);
     }
 
     @Test
     public void removeProductTwice() {
-        assertTrue(service.removeProductFromStore(founder1token.getResult(), "Coca Cola","MyStore1").getResult());
-        assertTrue(service.removeProductFromStore(founder1token.getResult(), "Coca Cola","MyStore1").isWas_expected_error());
+        assertTrue(service.removeProductFromStore(founder1token.getResult(), "Coca Cola", "MyStore1").getResult());
+        assertTrue(service.removeProductFromStore(founder1token.getResult(), "Coca Cola", "MyStore1").isWas_expected_error());
     }
 
     @Test
     public void notManagerRemoveProduct() {
-        //this test fails because service.getStoreProducts wasn't implemented yet!
+        // this test fails because service.getStoreProducts wasn't implemented yet!
         int size = service.getStoreProducts("MyStore1").getResult().size();
-        assertTrue(service.removeProductFromStore(user1token.getResult(), "Coca Cola","MyStore1").isWas_expected_error());
+        assertTrue(service.removeProductFromStore(user1token.getResult(), "Coca Cola", "MyStore1").isWas_expected_error());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size);
     }
 
@@ -163,8 +163,8 @@ public class AT {
         service.appointStoreOwner(manager2token.getResult(), "user1", "MyStore1");
         assertTrue(service.removeStoreOwnerAppointment(founder1token.getResult(), "manager2", "MyStore1").getResult());
 
-        //this should throw an expected error since user1 was appointed by manager2 and it shouldn't be a manager anymore!
-        assertTrue(service.updateProduct(user1token.getResult(),"Coca Cola","Something",null,"Something","MyStore1",100000,20000.5).isWas_expected_error());
+        // this should throw an expected error since user1 was appointed by manager2 and it shouldn't be a manager anymore!
+        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Coca Cola", "Something", null, "Something", "MyStore1", 100000, 20000.5).isWas_expected_error());
     }
 
     @Test
@@ -221,15 +221,6 @@ public class AT {
         assertTrue(service.removeStoreManagerAppointment(founder1token.getResult(), "manager1", "MyStore1").getResult());
     }
 
-    // need to check if this test is relevant
-//    @Test
-//    public void chainRemoveStoreManagerAppointment() {
-//        service.appointStoreManager(founder1token.getResult(), "manager2", "MyStore1");
-//        service.appointStoreManager(manager2token.getResult(), "user1", "MyStore1");
-//        assertTrue(service.removeStoreManagerAppointment(founder1token.getResult(), "manager2", "MyStore1").getResult());
-//        assertEquals("need to check", "if user1 is manager");
-//    }
-
     @Test
     public void notOwnerRemoveStoreManagerAppointment() {
         assertTrue(service.removeStoreManagerAppointment(user1token.getResult(), "manager1", "MyStore1").isWas_expected_error());
@@ -255,13 +246,80 @@ public class AT {
     }
 
     @Test
+    public void closeStore() {
+        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").getResult());
+        StoreDTO store = service.getStoreInfo("MyStore1").getResult();
+        assertFalse(store.getIsActive());
+    }
+
+    @Test
+    public void closeInvalidStore() {
+        assertTrue(service.closeStore(founder1token.getResult(), "MyStore2").isWas_expected_error());
+        StoreDTO store = service.getStoreInfo("MyStore2").getResult();
+        assertTrue(store.getIsActive());
+    }
+
+    @Test
+    public void closeInactiveStore() {
+        service.closeStore(founder1token.getResult(), "MyStore1");
+        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
+    }
+
+    @Test
+    public void closeNotRealStore() {
+        assertTrue(service.closeStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
+    }
+
+    @Test
+    public void reopenStore() {
+        service.closeStore(founder1token.getResult(), "MyStore1");
+        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").getResult());
+        StoreDTO store = service.getStoreInfo("MyStore1").getResult();
+        assertTrue(store.getIsActive());
+    }
+
+    @Test
+    public void reopenActiveStore() {
+        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
+    }
+
+    @Test
+    public void reopenInvalidStore() {
+        service.closeStore(founder1token.getResult(), "MyStore1");
+        assertTrue(service.reopenStore(founder2token.getResult(), "MyStore1").isWas_expected_error());
+        StoreDTO store = service.getStoreInfo("MyStore1").getResult();
+        assertFalse(store.getIsActive());
+    }
+
+    @Test
+    public void reopenNotRealStore() {
+        assertTrue(service.reopenStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
+    }
+
+    @Test
+    public void getStoreStaff() {
+        assertNotNull(service.getStoreStaff(founder1token.getResult(), "MyStore1").getResult());
+    }
+
+    @Test
+    public void getStoreStaffNotOwner() {
+        assertTrue(service.getStoreStaff(user1token.getResult(), "MyStore1").isWas_expected_error());
+        assertTrue(service.getStoreStaff(manager1token.getResult(), "MyStore1").isWas_expected_error());
+    }
+
+    @Test
+    public void getStoreStaffFromDifferentStore() {
+        assertTrue(service.getStoreStaff(founder1token.getResult(), "MyStore2").isWas_expected_error());
+    }
+
+    @Test
     public void allowAndDisallowManagerUpdateProducts() {
-        //this test fails because getStoreProducts wasn't implemented yet
+        // this test fails because getStoreProducts wasn't implemented yet
         service.appointStoreManager(owner1token.getResult(), "user1", "MyStore1");
 
-        //default permissions include doesn't include update products permission
+        // default permissions include doesn't include update products permission
         assertTrue(service.allowManagerUpdateProducts(owner1token.getResult(), "user1", "MyStore1").getResult());
-        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
+        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
 
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
@@ -269,7 +327,7 @@ public class AT {
                 assertEquals(product.getDescription(), "very tasty drink");
 
         assertTrue(service.disAllowManagerUpdateProducts(owner1token.getResult(), "user1", "MyStore1").getResult());
-        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6).isWas_expected_error());
+        assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6).isWas_expected_error());
         MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
@@ -288,9 +346,9 @@ public class AT {
 
     @Test
     public void allowAndDisallowManagerGetHistory() {
-        service.appointStoreManager(owner1token.getResult(),"user1","MyStore1");
+        service.appointStoreManager(owner1token.getResult(), "user1", "MyStore1");
         assertTrue(service.allowManagerGetHistory(owner1token.getResult(), "user1", "MyStore1").getResult());
-        assertNotEquals(service.getStorePurchaseHistory(user1token.getResult(), "MyStore1").getResult(),null);
+        assertNotNull(service.getStorePurchaseHistory(user1token.getResult(), "MyStore1").getResult());
 
         assertTrue(service.disAllowManagerGetHistory(owner1token.getResult(), "user1", "MyStore1").getResult());
         assertTrue(service.getStorePurchaseHistory(user1token.getResult(), "MyStore1").isWas_expected_error());
@@ -308,9 +366,9 @@ public class AT {
 
     @Test
     public void allowManagerAnswerAndTakeRequests() {
-        service.appointStoreManager(owner1token.getResult(),"user1","MyStore1");
+        service.appointStoreManager(owner1token.getResult(), "user1", "MyStore1");
         assertTrue(service.allowManagerAnswerAndTakeRequests(owner1token.getResult(), "user1", "MyStore1").getResult());
-        assertNotEquals(null,service.receiveQuestionsFromBuyers(user1token.getResult(), "MyStore1").getResult());
+        assertNotNull(service.receiveQuestionsFromBuyers(user1token.getResult(), "MyStore1").getResult());
         assertTrue(service.sendRespondToBuyers(user1token.getResult(), "MyStore1", "manager1", "check").getResult());
         assertEquals("check", service.receiveMessages(manager1token.getResult()).getResult().get(0));
 
@@ -330,83 +388,17 @@ public class AT {
     }
 
     @Test
-    public void closeStore() {
-        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").getResult());
-        // TODO
-    }
-
-    @Test
-    public void closeInvalidStore() {
-        assertTrue(service.closeStore(founder1token.getResult(), "MyStore2").isWas_expected_error());
-    }
-
-    @Test
-    public void closeInactiveStore() {
-        service.closeStore(founder1token.getResult(), "MyStore1");
-        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
-    }
-
-    @Test
-    public void closeNotRealStore() {
-        assertTrue(service.closeStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
-    }
-
-    @Test
-    public void reopenStore() {
-        service.closeStore(founder1token.getResult(), "MyStore1");
-        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").getResult());
-    }
-
-    @Test
-    public void reopenActiveStore() {
-        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
-    }
-
-    @Test
-    public void reopenInvalidStore() {
-        service.closeStore(founder1token.getResult(), "MyStore1");
-        assertTrue(service.reopenStore(founder2token.getResult(), "MyStore1").isWas_expected_error());
-    }
-
-    @Test
-    public void reopenNotRealStore() {
-        assertTrue(service.reopenStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
-    }
-
-//    @Test
-//    public void deleteStore() {
-//        //this function fails because only an admin can invoke this
-//        assertTrue(service.deleteStore(founder1token.getResult(), "MyStore1").getResult());
-//    }
-//
-//    @Test
-//    public void deleteInvalidStore() {
-//        assertTrue(service.deleteStore(founder1token.getResult(), "MyStore2").isWas_expected_error());
-//    }
-//
-//    @Test
-//    public void deleteInactiveStore() {
-//        service.deleteStore(founder1token.getResult(), "MyStore1");
-//        assertTrue(service.deleteStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
-//    }
-//
-//    @Test
-//    public void deleteNotRealStore() {
-//        assertTrue(service.deleteStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
-//    }
-
-    @Test
     public void concurrentAppointStoreManager() throws InterruptedException {
         AtomicInteger counter = new AtomicInteger(0);
         Runnable founder1AppointsUser1 = () -> {
             Response<Boolean> resp = service.appointStoreManager(founder1token.getResult(), "user1", "MyStore1");
-            if(!resp.isError_occured())
+            if (!resp.isError_occured())
                 counter.incrementAndGet();
         };
 
         Runnable owner1AppointsUser1 = () -> {
             Response<Boolean> resp = service.appointStoreManager(owner1token.getResult(), "user1", "MyStore1");
-            if(!resp.isError_occured())
+            if (!resp.isError_occured())
                 counter.incrementAndGet();
         };
 
@@ -418,51 +410,66 @@ public class AT {
 
         founder1AppointsUser1Thread.join();
         owner1AppointsUser1Thread.join();
-        assertEquals(1,counter.get());
+        assertEquals(1, counter.get());
+    }
+
+    @Test
+    public void concurrentAddStoreWithSameName() throws InterruptedException {
+        AtomicInteger counter = new AtomicInteger(0);
+        Runnable founder1AddStore = () -> {
+            Response<Boolean> resp = service.openStore(founder1token.getResult(), "SpecialStore");
+            if (!resp.isError_occured())
+                counter.incrementAndGet();
+        };
+
+        Runnable founder2AddStore = () -> {
+            Response<Boolean> resp = service.openStore(founder2token.getResult(), "SpecialStore");
+            if (!resp.isError_occured())
+                counter.incrementAndGet();
+        };
+
+        Thread founder1AddStoreThread = new Thread(founder1AddStore);
+        Thread founder2AddStoreThread = new Thread(founder2AddStore);
+
+        founder1AddStoreThread.start();
+        founder2AddStoreThread.start();
+
+        founder1AddStoreThread.join();
+        founder2AddStoreThread.join();
+        assertEquals(1, counter.get());
     }
 
     @Test
     public void concurrentRemoveAndEditProduct() throws InterruptedException {
-        AtomicInteger num_of_errors=new AtomicInteger(0);
+        AtomicInteger num_of_errors = new AtomicInteger(0);
         AtomicBoolean should_not_happen = new AtomicBoolean(false);
         Runnable founder1RemoveProduct = () -> {
-            Response<Boolean> resp = service.removeProductFromStore(founder1token.getResult(), "Coca Cola","MyStore1");
-            if(resp.isError_occured()) {
+            Response<Boolean> resp = service.removeProductFromStore(founder1token.getResult(), "Coca Cola", "MyStore1");
+            if (resp.isError_occured()) {
                 should_not_happen.set(true);
                 num_of_errors.incrementAndGet();
             }
         };
-        Runnable owner1UpdateProduct = () -> {
-            Response<Boolean> resp = service.updateProduct(manager1token.getResult(), "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6);
-            if(resp.isWas_expected_error())
+        Runnable manager1UpdateProduct = () -> {
+            Response<Boolean> resp = service.updateProduct(manager1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6);
+            if (resp.isWas_expected_error())
                 num_of_errors.incrementAndGet();
         };
 
-
         Thread founder1RemoveProductThread = new Thread(founder1RemoveProduct);
-        Thread owner1UpdateProductThread = new Thread(owner1UpdateProduct);
+        Thread manager1UpdateProductThread = new Thread(manager1UpdateProduct);
 
         founder1RemoveProductThread.start();
-        owner1UpdateProductThread.start();
+        manager1UpdateProductThread.start();
         founder1RemoveProductThread.join();
-        owner1UpdateProductThread.join();
+        manager1UpdateProductThread.join();
 
         assertFalse(should_not_happen.get());
-        assertTrue(num_of_errors.get()<=1);
-
+        assertTrue(num_of_errors.get() <= 1);
     }
 
     @After
     public void tearDown() {
-        service=new Service();
+        service = new Service();
     }
-
-    /*
-        need TODO:
-        • getStoreStaff
-        • concurrency tests
-        • check if a store is closed
-        - change delete store tests
-
-     */
 }

@@ -12,14 +12,10 @@ import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Market;
-import main.Shopping.ShoppingCart;
-import main.Stores.Product;
-import main.Stores.Store;
-import main.Users.User;
 import main.utils.Pair;
 import main.utils.Response;
-import javax.naming.NoPermissionException;
-import java.security.interfaces.RSAKey;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -264,11 +260,11 @@ public class Service implements IService {
         try
         {
             market.addSecurityQuestion(userToken, question, answer);
-            return new Response<Boolean>(true, null);
+            return new Response<>(true, null);
         }
         catch (Exception e)
         {
-            return new Response<Boolean>(null, e.getMessage());
+            return new Response<>(null, e.getMessage());
         }
     }
 
@@ -302,10 +298,10 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
-        Logger.getInstance().logEvent("Service", String.format("Update product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
+    public Response<Boolean> updateProduct(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
+        Logger.getInstance().logEvent("Service", String.format("Update product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, oldProductName, storeName));
         try {
-            return new Response<>(market.updateProductInStore(userToken, productName, category, keyWords, description, storeName, quantity, price));
+            return new Response<>(market.updateProductInStore(userToken, oldProductName,newProductName, category, keyWords, description, storeName, quantity, price));
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
@@ -590,7 +586,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<String> getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date) {
+    public Response<String> getNumberOfLoggedInUsersPerDate(String userToken, LocalDate date) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get system stats: logged in users per date: %s", date.toString()));
         try {
             return new Response<>(market.getNumberOfLoggedInUsersPerDate(userToken, date));
@@ -603,7 +599,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<String> getNumberOfPurchasesPerDate(String userToken, LocalDateTime date) {
+    public Response<String> getNumberOfPurchasesPerDate(String userToken, LocalDate date) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get system stats: number of purchases per date: %s", date.toString()));
         try {
             return new Response<>(market.getNumberOfPurchasesPerDate(userToken, date));
@@ -616,7 +612,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date) {
+    public Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get system stats: registered users per date: %s", date.toString()));
         try {
             return new Response<>(market.getNumberOfRegisteredUsersPerDate(userToken, date));

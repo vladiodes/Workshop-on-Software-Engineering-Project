@@ -10,8 +10,7 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.utils.Response;
 
-
-import javax.naming.NoPermissionException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -191,7 +190,7 @@ public interface IService {
      * REQ 2.5
      * @return true/false upon success/failure
      */
-    Response<Boolean> updateProduct(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price);
+    Response<Boolean> updateProduct(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price);
 
     /**
      * REQ 2.4.4
@@ -338,15 +337,15 @@ public interface IService {
     /**
      * REQ 2.6.5
      */
-    Response<String> getNumberOfLoggedInUsersPerDate(String userToken, LocalDateTime date);
+    Response<String> getNumberOfLoggedInUsersPerDate(String userToken, LocalDate date);
 
     /**
      * REQ 2.6.5
      */
-    Response<String> getNumberOfPurchasesPerDate(String userToken, LocalDateTime date);
+    Response<String> getNumberOfPurchasesPerDate(String userToken, LocalDate date);
 
     /**
      * REQ 2.6.5
      */
-    Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDateTime date);
+    Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date);
 }

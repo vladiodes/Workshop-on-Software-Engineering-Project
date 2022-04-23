@@ -1,5 +1,11 @@
 package main.Shopping;
 
+
+
+import main.Stores.IStore;
+
+import java.util.HashMap;
+
 import main.Stores.Product;
 import main.Stores.Store;
 
@@ -31,19 +37,19 @@ public class ShoppingCart {
         return new HashMap<>(baskets);
     }
 
-    public  boolean addProductToCart(Store store, String productName, int quantity) {
+    public  boolean addProductToCart(IStore IStore, String productName, int quantity) {
         synchronized (carteditLock) {
-            if (baskets.containsKey(store.getName()))
-                return baskets.get(store.getName()).AddProduct(productName, quantity);
+            if (baskets.containsKey(IStore.getName()))
+                return baskets.get(IStore.getName()).AddProduct(productName, quantity);
             else {
-                ShoppingBasket basket = new ShoppingBasket(store, this);
-                baskets.put(store.getName(), basket);
+                ShoppingBasket basket = new ShoppingBasket(IStore, this);
+                baskets.put(IStore.getName(), basket);
                 return basket.AddProduct(productName, quantity);
             }
         }
     }
 
-    public boolean RemoveProductFromCart(Store st, String prodName, int quantity) {
+    public boolean RemoveProductFromCart(IStore st, String prodName, int quantity) {
         if (!baskets.containsKey(st.getName()))
             throw new IllegalArgumentException("Basket for that store doesn't exist yet.");
         synchronized (carteditLock) {
@@ -93,7 +99,7 @@ public class ShoppingCart {
         return baskets.containsKey(storeName);
     }
 
-    public Store getStore(String storeName) {
+    public IStore getStore(String storeName) {
         if(!baskets.containsKey(storeName))
             return null;
         return baskets.get(storeName).getStore();

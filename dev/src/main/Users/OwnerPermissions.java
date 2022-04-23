@@ -1,24 +1,21 @@
 package main.Users;
 
-import main.Stores.Store;
-
-import java.util.LinkedList;
-import java.util.List;
+import main.Stores.IStore;
 
 public class OwnerPermissions {
     private User appointedToOwner;
     private User appointedBy;
-    private Store store;
+    private IStore IStore;
 
-    public OwnerPermissions(User appointedToOwner,User appointedBy,Store store){
+    public OwnerPermissions(User appointedToOwner, User appointedBy, IStore IStore){
         this.appointedToOwner=appointedToOwner;
         this.appointedBy=appointedBy;
-        this.store=store;
+        this.IStore = IStore;
     }
 
 
-    public Store getStore() {
-        return store;
+    public IStore getStore() {
+        return IStore;
     }
 
     public User getAppointedBy(){

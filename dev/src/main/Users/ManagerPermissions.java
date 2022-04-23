@@ -1,6 +1,6 @@
 package main.Users;
 
-import main.Stores.Store;
+import main.Stores.IStore;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -8,13 +8,13 @@ public class ManagerPermissions {
 
     private User appointedToManager;
     private User appointedBy;
-    private Store store;
+    private IStore IStore;
     private ConcurrentLinkedQueue<StorePermission> permissions;
 
-    public ManagerPermissions(User appointedToManager,User appointedBy,Store store){
+    public ManagerPermissions(User appointedToManager, User appointedBy, IStore IStore){
         permissions=new ConcurrentLinkedQueue<>();
         this.appointedToManager=appointedToManager;
-        this.store=store;
+        this.IStore = IStore;
         this.appointedBy=appointedBy;
         addDefaultPermissions();
     }
@@ -24,8 +24,8 @@ public class ManagerPermissions {
         permissions.add(StorePermission.ViewStoreHistory);
     }
 
-    public Store getStore() {
-        return store;
+    public IStore getStore() {
+        return IStore;
     }
 
 
@@ -53,9 +53,13 @@ public class ManagerPermissions {
     public String permissionsToString() {
         StringBuilder builder=new StringBuilder();
         for(StorePermission permission:permissions){
-            builder.append(permission.toString());
+            builder.append(StorePermission.stringOf(permission));
             builder.append(", ");
         }
         return builder.toString();
+    }
+
+    public ConcurrentLinkedQueue<StorePermission> getPermissions() {
+        return permissions;
     }
 }
