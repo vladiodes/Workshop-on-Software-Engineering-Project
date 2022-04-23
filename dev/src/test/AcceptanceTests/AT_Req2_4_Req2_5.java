@@ -1,6 +1,7 @@
 package test.AcceptanceTests;
 
 import main.DTO.ProductDTO;
+import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.Service.Service;
 import main.utils.Response;
@@ -10,12 +11,12 @@ import org.junit.Test;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AT_Req2_4_Req2_5 {
 
     Response<String> manager1token, manager2token, founder1token, founder2token, owner1token, user1token;
-    boolean searchFlag;
     IService service = new Service();
 
     @Before
@@ -55,7 +56,7 @@ public class AT_Req2_4_Req2_5 {
         assertTrue(service.addProductToStore(founder1token.getResult(), "Pepsi Cola", "Drinks", null, "less tasty drink", "MyStore1", 50, 5).getResult());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size + 1);
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
-        searchFlag = false;
+        boolean searchFlag = false;
         for (ProductDTO product : MyStore1Products)
             searchFlag |= product.getProductName().equals("Pepsi Cola");
         assertTrue(searchFlag);
@@ -80,7 +81,7 @@ public class AT_Req2_4_Req2_5 {
         assertTrue(service.updateProduct(user1token.getResult(), "Crystal Cola", "Crystal Cola", "Drinks", null, "ew", "MyStore1", 100, 6).isWas_expected_error());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size);
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
-        searchFlag = false;
+        boolean searchFlag = false;
         for (ProductDTO product : MyStore1Products)
             searchFlag |= product.getProductName().equals("Crystal Cola");
         assertFalse(searchFlag);
@@ -245,6 +246,73 @@ public class AT_Req2_4_Req2_5 {
     }
 
     @Test
+    public void closeStore() {
+        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").getResult());
+        StoreDTO store = service.getStoreInfo("MyStore1").getResult();
+        assertFalse(store.getIsActive());
+    }
+
+    @Test
+    public void closeInvalidStore() {
+        assertTrue(service.closeStore(founder1token.getResult(), "MyStore2").isWas_expected_error());
+        StoreDTO store = service.getStoreInfo("MyStore2").getResult();
+        assertTrue(store.getIsActive());
+    }
+
+    @Test
+    public void closeInactiveStore() {
+        service.closeStore(founder1token.getResult(), "MyStore1");
+        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
+    }
+
+    @Test
+    public void closeNotRealStore() {
+        assertTrue(service.closeStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
+    }
+
+    @Test
+    public void reopenStore() {
+        service.closeStore(founder1token.getResult(), "MyStore1");
+        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").getResult());
+        StoreDTO store = service.getStoreInfo("MyStore1").getResult();
+        assertTrue(store.getIsActive());
+    }
+
+    @Test
+    public void reopenActiveStore() {
+        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
+    }
+
+    @Test
+    public void reopenInvalidStore() {
+        service.closeStore(founder1token.getResult(), "MyStore1");
+        assertTrue(service.reopenStore(founder2token.getResult(), "MyStore1").isWas_expected_error());
+        StoreDTO store = service.getStoreInfo("MyStore1").getResult();
+        assertFalse(store.getIsActive());
+    }
+
+    @Test
+    public void reopenNotRealStore() {
+        assertTrue(service.reopenStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
+    }
+
+    @Test
+    public void getStoreStaff() {
+        assertNotNull(service.getStoreStaff(founder1token.getResult(), "MyStore1").getResult());
+    }
+
+    @Test
+    public void getStoreStaffNotOwner() {
+        assertTrue(service.getStoreStaff(user1token.getResult(), "MyStore1").isWas_expected_error());
+        assertTrue(service.getStoreStaff(manager1token.getResult(), "MyStore1").isWas_expected_error());
+    }
+
+    @Test
+    public void getStoreStaffFromDifferentStore() {
+        assertTrue(service.getStoreStaff(founder1token.getResult(), "MyStore2").isWas_expected_error());
+    }
+
+    @Test
     public void allowAndDisallowManagerUpdateProducts() {
         // this test fails because getStoreProducts wasn't implemented yet
         service.appointStoreManager(owner1token.getResult(), "user1", "MyStore1");
@@ -320,72 +388,6 @@ public class AT_Req2_4_Req2_5 {
     }
 
     @Test
-    public void closeStore() {
-        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").getResult());
-        // TODO
-    }
-
-    @Test
-    public void closeInvalidStore() {
-        assertTrue(service.closeStore(founder1token.getResult(), "MyStore2").isWas_expected_error());
-    }
-
-    @Test
-    public void closeInactiveStore() {
-        service.closeStore(founder1token.getResult(), "MyStore1");
-        assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
-    }
-
-    @Test
-    public void closeNotRealStore() {
-        assertTrue(service.closeStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
-    }
-
-    @Test
-    public void reopenStore() {
-        service.closeStore(founder1token.getResult(), "MyStore1");
-        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").getResult());
-    }
-
-    @Test
-    public void reopenActiveStore() {
-        assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
-    }
-
-    @Test
-    public void reopenInvalidStore() {
-        service.closeStore(founder1token.getResult(), "MyStore1");
-        assertTrue(service.reopenStore(founder2token.getResult(), "MyStore1").isWas_expected_error());
-    }
-
-    @Test
-    public void reopenNotRealStore() {
-        assertTrue(service.reopenStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
-    }
-
-//    @Test
-//    public void deleteStore() {
-//        // this function fails because only an admin can invoke this
-//        assertTrue(service.deleteStore(founder1token.getResult(), "MyStore1").getResult());
-//    }
-// 
-//    @Test
-//    public void deleteInvalidStore() {
-//        assertTrue(service.deleteStore(founder1token.getResult(), "MyStore2").isWas_expected_error());
-//    }
-// 
-//    @Test
-//    public void deleteInactiveStore() {
-//        service.deleteStore(founder1token.getResult(), "MyStore1");
-//        assertTrue(service.deleteStore(founder1token.getResult(), "MyStore1").isWas_expected_error());
-//    }
-// 
-//    @Test
-//    public void deleteNotRealStore() {
-//        assertTrue(service.deleteStore(founder1token.getResult(), "NotARealStore").isWas_expected_error());
-//    }
-
-    @Test
     public void concurrentAppointStoreManager() throws InterruptedException {
         AtomicInteger counter = new AtomicInteger(0);
         Runnable founder1AppointsUser1 = () -> {
@@ -408,6 +410,32 @@ public class AT_Req2_4_Req2_5 {
 
         founder1AppointsUser1Thread.join();
         owner1AppointsUser1Thread.join();
+        assertEquals(1, counter.get());
+    }
+
+    @Test
+    public void concurrentAddStoreWithSameName() throws InterruptedException {
+        AtomicInteger counter = new AtomicInteger(0);
+        Runnable founder1AddStore = () -> {
+            Response<Boolean> resp = service.openStore(founder1token.getResult(), "SpecialStore");
+            if (!resp.isError_occured())
+                counter.incrementAndGet();
+        };
+
+        Runnable founder2AddStore = () -> {
+            Response<Boolean> resp = service.openStore(founder2token.getResult(), "SpecialStore");
+            if (!resp.isError_occured())
+                counter.incrementAndGet();
+        };
+
+        Thread founder1AddStoreThread = new Thread(founder1AddStore);
+        Thread founder2AddStoreThread = new Thread(founder2AddStore);
+
+        founder1AddStoreThread.start();
+        founder2AddStoreThread.start();
+
+        founder1AddStoreThread.join();
+        founder2AddStoreThread.join();
         assertEquals(1, counter.get());
     }
 
@@ -444,12 +472,4 @@ public class AT_Req2_4_Req2_5 {
     public void tearDown() {
         service = new Service();
     }
-
-    /*
-        need TODO:
-        • getStoreStaff
-        • concurrency tests
-        • check if a store is closed
-        • change delete store tests
-     */
 }
