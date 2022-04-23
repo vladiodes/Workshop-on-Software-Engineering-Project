@@ -34,7 +34,7 @@ public class User {
 
 
     // stores connections
-    private List<IStore> foundedIStores;
+    private List<IStore> foundedStores;
     private List<ManagerPermissions> managedStores;
     private List<OwnerPermissions> ownedStores;
     private List<Pair<String,String>> securityQNA;
@@ -65,7 +65,7 @@ public class User {
         userName = "Guest".concat(guestID);
         hashed_password = null;
         isLoggedIn = new AtomicBoolean(false);
-        foundedIStores = new LinkedList<>();
+        foundedStores = new LinkedList<>();
         cart = new ShoppingCart();
     }
 
@@ -77,7 +77,7 @@ public class User {
         this.userName = userName;
         this.hashed_password = hashed_password;
         isLoggedIn = new AtomicBoolean(false);
-        foundedIStores = new LinkedList<>();
+        foundedStores = new LinkedList<>();
         cart = new ShoppingCart();
         ownedStores = new LinkedList<>();
         managedStores = new LinkedList<>();
@@ -120,7 +120,7 @@ public class User {
     }
 
     private boolean hasPermission(IStore IStore, StorePermission permission) {
-        if (foundedIStores.contains(IStore)) {
+        if (foundedStores.contains(IStore)) {
             //founder can do whatever he likes...
             return true;
         }
@@ -161,7 +161,7 @@ public class User {
         //second checking if the user to appoint isn't already an owner/manager/founder of the store
         if (user.getOwnedStores().contains(IStore))
             return true;
-        if (user.foundedIStores.contains(IStore))
+        if (user.foundedStores.contains(IStore))
             return true;
         return user.getManagedStores().contains(IStore);
     }
@@ -325,14 +325,14 @@ public class User {
 
 
     public boolean closeStore(IStore IStore, NotificationBus bus) {
-        if (!foundedIStores.contains(IStore))
+        if (!foundedStores.contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
         IStore.closeStore(bus);
         return true;
     }
 
     public boolean reOpenStore(IStore IStore, NotificationBus bus) {
-        if (!foundedIStores.contains(IStore))
+        if (!foundedStores.contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
         IStore.reOpen(bus);
         return true;
@@ -344,10 +344,6 @@ public class User {
             return IStore.getStoreStaff();
         throw new IllegalArgumentException("You don't have permission to do that");
     }
-
-    public List<String> receiveQuestionsFromStore(IStore IStore) {
-        if (hasPermission(IStore, StorePermission.AnswerAndTakeRequests))
-            return IStore.getQuestions();
 
     public void addSecurityQuestion(String question, String answer) throws Exception
     {
@@ -381,13 +377,13 @@ public class User {
         return this.purchaseHistory;
     }
 
-    public void setStoreFounder(Store store) throws Exception
+    public void setStoreFounder(IStore IStore) throws Exception
     {
         if(!this.foundedStores.isEmpty())
         {
             throw new Exception("There is already a store founder");
         }
-        this.foundedStores.add(store);
+        this.foundedStores.add(IStore);
     }
 
     public Product findProductInHistoryByNameAndStore(String productName, String storeName) {
@@ -401,7 +397,7 @@ public class User {
         return null;
     }
 
-    public Store getStoreInPurchaseHistory(String storeName) {
+    public IStore getStoreInPurchaseHistory(String storeName) {
         for(ShoppingCart sc : purchaseHistory)
         {
             if(sc.isStoreInCart(storeName))
@@ -411,14 +407,8 @@ public class User {
         }
         return null;
     }
-	
-    public HashMap<User, String> getStoreStaff(Store store) {
-        if (hasPermission(store, StorePermission.OwnerPermission))
-            return store.getStoreStaff();
-        throw new IllegalArgumentException("You don't have permission to do that");
-    }
 
-    public List<Pair<String, String>> receiveQuestionsFromStore(Store store) {
+    public List<Pair<String, String>> receiveQuestionsFromStore(IStore store) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
             return store.getQuestions();
         throw new IllegalArgumentException("You don't have permission to do that");
@@ -446,7 +436,7 @@ public class User {
     }
 
     public void removeFounderRole(IStore IStore) {
-        foundedIStores.remove(IStore);
+        foundedStores.remove(IStore);
     }
 
     public void removeOwnerRole(OwnerPermissions ownerPermissions) {
@@ -462,7 +452,7 @@ public class User {
             throw new IllegalArgumentException("You're not a system manager!");
 
         //removing all the stores that the user has founded
-        for (IStore IStore : toDelete.foundedIStores) {
+        for (IStore IStore : toDelete.foundedStores) {
             removeStore(IStore);
         }
 
@@ -483,7 +473,7 @@ public class User {
 
     public IStore openStore(String storeName) {
         IStore IStore = new Store(storeName,this);
-        foundedIStores.add(IStore);
+        foundedStores.add(IStore);
         return IStore;
     }
 
@@ -502,8 +492,9 @@ public class User {
     }
 
 
-    public List<IStore> getFoundedIStores() {
-        return foundedIStores;
+    public List<IStore> getFoundedStores() {
+        return foundedStores;
+    }
 
     public void changePassword(String newPassHashed) {
         this.hashed_password = newPassHashed;

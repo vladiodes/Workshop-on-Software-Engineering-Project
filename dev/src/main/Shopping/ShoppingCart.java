@@ -99,7 +99,7 @@ public class ShoppingCart {
         return baskets.containsKey(storeName);
     }
 
-    public Store getStore(String storeName) {
+    public IStore getStore(String storeName) {
         if(!baskets.containsKey(storeName))
             return null;
         return baskets.get(storeName).getStore();

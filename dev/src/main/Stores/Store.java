@@ -121,11 +121,6 @@ public class Store implements IStore {
         owners.remove(ow);
     }
 
-    @Override
-    public ConcurrentHashMap<String, Product> getProductsByName() {
-        return productsByName;
-    }
-
     public synchronized void closeStore(NotificationBus bus) {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
@@ -184,11 +179,8 @@ public class Store implements IStore {
     }
 
     @Override
-    public List<String> getQuestions() {
-        LinkedList<String> msgList = new LinkedList<>();
-        while (!messagesToStore.isEmpty())
-            msgList.add(messagesToStore.remove());
-        return msgList;
+    public List<Pair<String, String>> getQuestions() {
+        return null;
     }
 
     @Override
@@ -231,10 +223,12 @@ public class Store implements IStore {
 
     }
 
+    @Override
     public void addReview(StoreReview sReview) {
         this.storeReviews.add(sReview);
     }
 
+    @Override
     public void subtractProductQuantity(Product product, Integer quantity) throws Exception {
         if(product.getQuantity()<quantity)
         {

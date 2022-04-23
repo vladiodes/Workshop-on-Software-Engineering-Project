@@ -1,6 +1,9 @@
 package main;
 
 
+import main.Stores.ProductReview;
+import main.Stores.StoreReview;
+import main.Supplying.ISupplying;
 import main.Supplying.SupplyingAdapter;
 import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
@@ -537,7 +540,7 @@ public class Market {
             throw new Exception("Invalid user token");
         }
         User u = connectedUsers.get(userToken);
-        Store store = u.getStoreInPurchaseHistory(storeName);
+        IStore store = u.getStoreInPurchaseHistory(storeName);
         if(store==null)
         {
             throw new Exception("Product was not found in user's purchase history");
@@ -590,10 +593,10 @@ public class Market {
         {
             throw new Exception("No such store "+ storeName);
         }
-        Store store = stores.get(storeName);
+        IStore store = stores.get(storeName);
         User u = getConnectedUserByToken(userToken);
         String userName = u.getUserName();
-        this.notificationBus.addMessage(store, userName, message);
+        this.bus.addMessage(store, userName, message);
     }
 
     private User getConnectedUserByToken(String userToken) throws Exception
@@ -611,7 +614,7 @@ public class Market {
         {
             if(u.isAdmin())
             {
-                notificationBus.addMessage(u, msg);
+                bus.addMessage(u, msg);
                 return;
             }
         }

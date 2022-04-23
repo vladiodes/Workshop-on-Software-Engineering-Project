@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added ManagerPermissions tests">
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/StoreTest.java" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Req 2.6.3 implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/IUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/StoreReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/StoreReview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,24 +93,23 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
-    <configuration name="StoreTest.getStoreStaffTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests">
+    <configuration name="AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.StoreTest" />
-      <option name="METHOD_NAME" value="getStoreStaffTest" />
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Req2_5" />
+      <option name="METHOD_NAME" value="allowManagerAnswerAndTakeRequests" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="StoreTest.removeProductNonExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -123,18 +119,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.StoreTest" />
       <option name="METHOD_NAME" value="removeProductNonExist" />
       <option name="TEST_OBJECT" value="method" />
-
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="StoreTest.removeProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -143,18 +135,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.StoreTest" />
       <option name="METHOD_NAME" value="removeProductTest" />
-
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="StoreTest.removeRolesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -166,7 +154,6 @@
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.StoreTest" />
       <option name="METHOD_NAME" value="removeRolesTest" />
       <option name="TEST_OBJECT" value="method" />
-
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,7 +167,6 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -188,12 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.StoreTest.removeProductNonExist" />
         <item itemvalue="JUnit.StoreTest.removeProductTest" />
         <item itemvalue="JUnit.StoreTest.removeRolesTest" />
-        <item itemvalue="JUnit.StoreTest.getStoreStaffTest" />
-
       </list>
     </recent_temporary>
   </component>
@@ -440,15 +425,12 @@
     <MESSAGE value="Added ManagerPermissions tests" />
     <option name="LAST_COMMIT_MESSAGE" value="Added ManagerPermissions tests" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1650275901207">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1650275901207" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1650275897371">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1650275897371" />
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="main.Market" memberName="stores" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

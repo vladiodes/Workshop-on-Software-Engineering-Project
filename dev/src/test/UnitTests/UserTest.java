@@ -37,7 +37,7 @@ class UserTest {
 
     @Test
     void addProductToStoreWithFounderPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         boolean res = user.addProductToStore(store_mock,"product","category",null,null,5,15);
         assertTrue(res);
     }
@@ -49,7 +49,7 @@ class UserTest {
 
     @Test
     void updateProductToStoreWithFounderPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         boolean res = user.updateProductToStore(store_mock,"product","product","category",null,null,5,15);
         assertTrue(res);
     }
@@ -61,21 +61,21 @@ class UserTest {
 
     @Test
     void appointOwnerToStoreAlreadyStaff(){
-        user2.getFoundedIStores().add(store_mock);
-        user.getFoundedIStores().add(store_mock);
+        user2.getFoundedStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         assertThrows(IllegalArgumentException.class,()->user.appointOwnerToStore(store_mock,user2));
     }
 
     @Test
     void appointOwnerToStoreSuccess(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         assertTrue(user.appointOwnerToStore(store_mock,user2));
         assertTrue(user2.getOwnedStores().contains(store_mock));
     }
 
     @Test
     void appointOwnerToStoreOwnerAppointing(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreOwner(user2,user3,store_mock);
         assertTrue(user3.getOwnedStores().contains(store_mock));
@@ -83,7 +83,7 @@ class UserTest {
 
     @Test
     void appointOwnerCircularity(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreOwner(user2,user3,store_mock);
         appointStoreOwner(user3,user4,store_mock);
@@ -92,13 +92,13 @@ class UserTest {
 
     @Test
     void removeOwnerAppointmentNonOwner(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         assertThrows(IllegalArgumentException.class,()->user.removeOwnerAppointment(store_mock,user2));
     }
 
     @Test
     void removeOwnerAppointmentGoodNoChain(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         assertTrue(user.removeOwnerAppointment(store_mock,user2));
         assertFalse(user.getOwnedStores().contains(store_mock));
@@ -116,14 +116,14 @@ class UserTest {
 
     @Test
     void removeOwnerAppointmentNotAppointing(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreOwner(user,user3,store_mock);
         assertThrows(IllegalArgumentException.class,()->user2.removeOwnerAppointment(store_mock,user3));
     }
     @Test
     void removeOwnerAppointmentGoodWithChain(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreOwner(user2,user3,store_mock);
         appointStoreOwner(user3,user4,store_mock);
@@ -137,7 +137,7 @@ class UserTest {
 
     @Test
     void removeOwnerAppointmentGoodWithForkedChain(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreOwner(user,user3,store_mock);
         appointStoreOwner(user2,user4,store_mock);
@@ -151,7 +151,7 @@ class UserTest {
 
     @Test
     void removeOwnerAppointmentGoodWithChainIncludingManagers(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreOwner(user2,user3,store_mock);
         appointStoreManager(user3,user4,store_mock);
@@ -163,21 +163,21 @@ class UserTest {
 
     @Test
     void appointManagerToStore(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertTrue(user2.getManagedStores().contains(store_mock));
     }
 
     @Test
     void appointManagerAlreadyManager(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertThrows(IllegalArgumentException.class,()->appointStoreManager(user,user2,store_mock));
     }
 
     @Test
     void RemoveManagerAppointmentGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertTrue(user.removeManagerAppointment(store_mock,user2));
         assertEquals(0, user2.getManagedStores().size());
@@ -185,33 +185,33 @@ class UserTest {
 
     @Test
     void RemoveManagerNotManager(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         assertThrows(IllegalArgumentException.class,()->user.removeManagerAppointment(store_mock,user2));
     }
 
     @Test
     void RemoveManagerOwner(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         assertThrows(IllegalArgumentException.class,()->user.removeManagerAppointment(store_mock,user2));
     }
 
     @Test
     void grantPermissionNotStaff(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertThrows(IllegalArgumentException.class,()->user3.grantOrDeletePermission(user2,store_mock,true, StorePermission.UpdateAddProducts));
     }
 
     @Test
     void grantPermissionNotToManager(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         assertThrows(IllegalArgumentException.class,()->user.grantOrDeletePermission(user2,store_mock,true,StorePermission.UpdateAddProducts));
     }
 
     @Test
     void grantPermissionNotByAppointing(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreManager(user,user3,store_mock);
         assertThrows(IllegalArgumentException.class,()->user2.grantOrDeletePermission(user3,store_mock,true,StorePermission.UpdateAddProducts));
@@ -219,7 +219,7 @@ class UserTest {
 
     @Test
     void grantPermissionGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreManager(user2,user3,store_mock);
         assertTrue(user2.grantOrDeletePermission(user3,store_mock,true,StorePermission.UpdateAddProducts));
@@ -227,7 +227,7 @@ class UserTest {
 
     @Test
     void closeStoreGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         assertTrue(user.closeStore(store_mock,null));
     }
 
@@ -238,7 +238,7 @@ class UserTest {
 
     @Test
     void reopenStoreGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         assertTrue(user.reOpenStore(store_mock,null));
     }
 
@@ -249,7 +249,7 @@ class UserTest {
 
     @Test
     void getStoreStaffNotOwnerOrFounder(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertThrows(IllegalArgumentException.class,()->user2.getStoreStaff(store_mock));
         assertThrows(IllegalArgumentException.class,()->user3.getStoreStaff(store_mock));
@@ -257,7 +257,7 @@ class UserTest {
 
     @Test
     void getStoreStaffOwnerOrFounderGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         assertDoesNotThrow(()->user2.getStoreStaff(store_mock));
         assertDoesNotThrow(()->user.getStoreStaff(store_mock));
@@ -265,7 +265,7 @@ class UserTest {
 
     @Test
     void receiveQuestionsFromStoreOwnerOrFounderGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         assertDoesNotThrow(()->user2.receiveQuestionsFromStore(store_mock));
         assertDoesNotThrow(()->user.receiveQuestionsFromStore(store_mock));
@@ -273,14 +273,14 @@ class UserTest {
 
     @Test
     void receiveQuestionsFromStoreManagerWithPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertDoesNotThrow(()->user2.receiveQuestionsFromStore(store_mock));
     }
 
     @Test
     void receiveQuestionsFromStoreManagerWithoutPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         user.grantOrDeletePermission(user2,store_mock,false,StorePermission.AnswerAndTakeRequests);
         assertThrows(IllegalArgumentException.class,()->user2.receiveQuestionsFromStore(store_mock));
@@ -288,7 +288,7 @@ class UserTest {
 
     @Test
     void sendRespondsFromStoreOwnerOrFounderGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         assertDoesNotThrow(()->user2.sendRespondFromStore(store_mock,user3,"asdasd",null));
         assertDoesNotThrow(()->user.sendRespondFromStore(store_mock,user3,"asdasd",null));
@@ -296,14 +296,14 @@ class UserTest {
 
     @Test
     void sendRespondsFromStoreManagerWithPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertDoesNotThrow(()->user2.sendRespondFromStore(store_mock,user3,"asdasd",null));
     }
 
     @Test
     void sendRespondsFromStoreManagerWithoutPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         user.grantOrDeletePermission(user2,store_mock,false,StorePermission.AnswerAndTakeRequests);
         assertThrows(IllegalArgumentException.class,()->user2.sendRespondFromStore(store_mock,user3,"asdasd",null));
@@ -311,7 +311,7 @@ class UserTest {
 
     @Test
     void getStorePurchaseHistoryOwnerOrFounderGood(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         assertDoesNotThrow(()->user2.getStorePurchaseHistory(store_mock));
         assertDoesNotThrow(()->user.getStorePurchaseHistory(store_mock));
@@ -319,14 +319,14 @@ class UserTest {
 
     @Test
     void getStorePurchaseHistoryManagerWithPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertDoesNotThrow(()->user2.getStorePurchaseHistory(store_mock));
     }
 
     @Test
     void getStorePurchaseHistoryManagerWithoutPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         user.grantOrDeletePermission(user2,store_mock,false,StorePermission.ViewStoreHistory);
         assertThrows(IllegalArgumentException.class,()->user2.getStorePurchaseHistory(store_mock));
@@ -356,13 +356,13 @@ class UserTest {
     void openStoreGood(){
         IStore store=user.openStore("store1");
         assertNotNull(store);
-        assertEquals(1,user.getFoundedIStores().size());
-        assertTrue(user.getFoundedIStores().contains(store));
+        assertEquals(1,user.getFoundedStores().size());
+        assertTrue(user.getFoundedStores().contains(store));
     }
 
     @Test
     void removeProductFromStoreNoPermission(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         assertThrows(IllegalArgumentException.class,()->user2.removeProductFromStore("product",store_mock));
     }
@@ -374,7 +374,7 @@ class UserTest {
 
     @Test
     void removeProductFromStoreOwnerOrFounderOrManagerWithPermissions(){
-        user.getFoundedIStores().add(store_mock);
+        user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         appointStoreOwner(user,user3,store_mock);
         user.grantOrDeletePermission(user2,store_mock,true,StorePermission.UpdateAddProducts);

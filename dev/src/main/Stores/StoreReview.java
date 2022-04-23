@@ -4,15 +4,15 @@ import main.Users.User;
 
 public class StoreReview {
     private User user;
-    private Store store;
+    private IStore IStore;
     private String desc;
     private double points;
 
-    public StoreReview(User user, Store store, String desc, double points) throws Exception
+    public StoreReview(User user, IStore IStore, String desc, double points) throws Exception
     {
         //TODO: Insert unique check
         this.user = user;
-        this.store = store;
+        this.IStore = IStore;
 
         if (desc.isBlank())
             throw new Exception("Review description cant be empty or blank");

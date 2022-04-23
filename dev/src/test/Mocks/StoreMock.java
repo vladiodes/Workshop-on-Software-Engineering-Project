@@ -4,9 +4,11 @@ import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.StoreReview;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+import main.utils.Pair;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -100,7 +102,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public List<String> getQuestions() {
+    public List<Pair<String, String>> getQuestions() {
         return null;
     }
 
@@ -122,5 +124,15 @@ public class StoreMock implements IStore {
     @Override
     public boolean removeProduct(String productName) {
         return true;
+    }
+
+    @Override
+    public void subtractProductQuantity(Product key, Integer value) throws Exception {
+
+    }
+
+    @Override
+    public void addReview(StoreReview sReview) {
+
     }
 }

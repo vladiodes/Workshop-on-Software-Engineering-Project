@@ -2,20 +2,19 @@ package main.Shopping;
 
 import main.Stores.IStore;
 import main.Stores.Product;
-import main.Stores.Store;
 
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingBasket {
     private ConcurrentHashMap<Product,Integer> productsQuantity;
-    private IStore IStore;
+    private IStore store;
     private ShoppingCart cart;
     private final Object basketEditLock = new Object();
 
     public ShoppingBasket(IStore IStore, ShoppingCart cart){
         this.cart = cart;
-        this.IStore = IStore;
+        this.store = IStore;
         productsQuantity=new ConcurrentHashMap<>();
     }
 
@@ -64,7 +63,7 @@ public class ShoppingBasket {
 
     public synchronized boolean AddProduct (String prodName, int quantity) {
         synchronized (basketEditLock) {
-            Product prodToAdd = this.IStore.getProduct(prodName);
+            Product prodToAdd = this.store.getProduct(prodName);
             if (prodToAdd == null)
                 throw new IllegalArgumentException(String.format("Product %s doesn't exist in the store.", prodName));
             for (Product pr : productsQuantity.keySet())
@@ -92,7 +91,7 @@ public class ShoppingBasket {
     }
 
     public IStore getStore() {
-        return IStore;
+        return store;
     }
 
     public void purchaseBasket() throws Exception
