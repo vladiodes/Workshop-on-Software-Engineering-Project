@@ -1,8 +1,10 @@
-package dev.src.main.Supplying;
+package main.Supplying;
 
-import main.Supplying.ISupplying;
+
+import main.Stores.Product;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class SupplyingAdapter implements ISupplying {
 
@@ -12,7 +14,8 @@ public class SupplyingAdapter implements ISupplying {
     }
 
     @Override
-    public boolean supply(String location) {
+    public boolean supply(String location, List<Product> productToSupply) {
         return false;
     }
+
 }

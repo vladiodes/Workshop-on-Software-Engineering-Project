@@ -1,7 +1,7 @@
 package main;
 
 
-import dev.src.main.Supplying.SupplyingAdapter;
+import main.Supplying.SupplyingAdapter;
 import main.Shopping.ShoppingBasket;
 
 import main.Logger.Logger;
@@ -10,7 +10,7 @@ import main.Security.ISecurity;
 import main.Security.Security;
 
 import main.Stores.Store;
-import dev.src.main.Supplying.ISupplying;
+import main.Supplying.ISupplying;
 import main.Users.StorePermission;
 import main.Users.User;
 import main.utils.Pair;
