@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AT_Req2_6 {
 
-    Response<String> adminToken, founder1token, user1token;
+    Response<String> adminToken, founder1token, user1token, user2token, user3token;
     IService service = new Service();
 
     @Before
@@ -19,9 +19,11 @@ public class AT_Req2_6 {
         adminToken = service.guestConnect();
         founder1token = service.guestConnect();
         user1token = service.guestConnect();
+        user2token = service.guestConnect();
 
         service.register("founder1", "12345678");
         service.register("user1", "12345678");
+        service.register("user2", "12345678");
         service.login(founder1token.getResult(), "founder1", "12345678");
         service.login(user1token.getResult(), "user1", "12345678");
         service.login(adminToken.getResult(), "admin", "admin");
@@ -163,7 +165,9 @@ public class AT_Req2_6 {
      */
     @Test
     public void getNumberOfLoggedInUsersPerDate() {
-        assertNotNull(service.getNumberOfLoggedInUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult());
+        assertEquals(service.getNumberOfLoggedInUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "3");
+        service.login(user2token.getResult(), "user2", "12345678");
+        assertEquals(service.getNumberOfLoggedInUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "4");
     }
 
     /***
@@ -179,7 +183,10 @@ public class AT_Req2_6 {
      */
     @Test
     public void getNumberOfRegisteredUsersPerDate() {
-        assertNotNull(service.getNumberOfRegisteredUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult());
+        assertEquals(service.getNumberOfRegisteredUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "3");
+        user3token = service.guestConnect();
+        service.register("user3", "12345678");
+        assertEquals(service.getNumberOfRegisteredUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "4");
     }
 
     /***
@@ -195,7 +202,7 @@ public class AT_Req2_6 {
      */
     @Test
     public void getNumberOfPurchasesPerDate() {
-        assertNotNull(service.getNumberOfPurchasesPerDate(adminToken.getResult(), LocalDate.now()).getResult());
+        assertEquals(service.getNumberOfPurchasesPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "0");
     }
 
     /***
