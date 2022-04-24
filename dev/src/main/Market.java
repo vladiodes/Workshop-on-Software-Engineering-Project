@@ -388,7 +388,11 @@ public class Market {
 
     public boolean respondToMessage(String userToken, String userToRespond, String msg) {
         User responding_user = connectedUsers.get(userToken);
+        if(!responding_user.isAdmin())
+            throw new IllegalArgumentException("Only admin can respond to messages");
         User user_receiving_msg = usersByName.get(userToRespond);
+        if(user_receiving_msg==null)
+            throw new IllegalArgumentException("No such user to respond to");
         bus.addMessage(user_receiving_msg, String.format("From user:%s \n Message content: %s", responding_user.getUserName(), msg));
         return true;
     }
@@ -423,6 +427,7 @@ public class Market {
         String adminHashPassword = security_controller.hashPassword("admin");
         User admin = new User(true, adminUserName, adminHashPassword);
         usersByName.put("admin", admin);
+        bus.register(admin);
     }
 
     public boolean openStore(String userToken, String storeName) {
@@ -481,13 +486,14 @@ public class Market {
         addStats(StatsType.Purchase);
     }
 
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
-        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
+    public List<ShoppingCartDTO> getPurchaseHistory(String userToken,String userName){
+        User invoking_user = connectedUsers.get(userToken);
+        User user_to_check = usersByName.get(userName);
+        if(invoking_user == null || user_to_check ==null)
+            throw new IllegalArgumentException("No such user in the system");
+        if(!(invoking_user.isAdmin() || invoking_user==user_to_check))
+            throw new IllegalArgumentException("You don't have permission to do that");
+        List<ShoppingCart> purchaseHistory = user_to_check.getPurchaseHistory();
         List<ShoppingCartDTO> scDTO = new LinkedList<>();
         for(ShoppingCart sc : purchaseHistory)
         {

@@ -86,9 +86,12 @@ public class AT_Req2_6 {
      * use case: Reading And Commenting Complaints req 6.3:
      */
     @Test
-    public void receiveMessagesNotAdmin() {
+    public void receiveComplaintsOnlyAdmin() {
         service.sendComplaint(user1token.getResult(), "complaint");
-        assertTrue(service.receiveMessages(founder1token.getResult()).isWas_expected_error());
+        assertEquals(0, service.receiveMessages(founder1token.getResult()).getResult().size());
+        assertEquals(0, service.receiveMessages(user1token.getResult()).getResult().size());
+        assertEquals(1, service.receiveMessages(adminToken.getResult()).getResult().size());
+
     }
 
     /***
