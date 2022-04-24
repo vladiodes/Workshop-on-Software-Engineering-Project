@@ -127,12 +127,17 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void subtractProductQuantity(Product key, Integer value) {
+    public void purchaseBasket(NotificationBus bus, ShoppingBasket bask) throws Exception {
 
     }
 
     @Override
     public void addReview(StoreReview sReview) {
 
+    }
+
+    @Override
+    public boolean ValidateProduct(Product key, Integer value) {
+        return false;
     }
 }

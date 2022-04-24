@@ -3,12 +3,12 @@ package main;
 
 import main.Stores.ProductReview;
 import main.Stores.StoreReview;
-import main.Supplying.ISupplying;
-import main.Supplying.SupplyingAdapter;
+import main.ExternalServices.Supplying.ISupplying;
+import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
-import main.Payment.IPayment;
-import main.Payment.PaymentAdapter;
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Payment.PaymentAdapter;
 import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingBasket;
@@ -17,9 +17,7 @@ import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.StorePermission;
 import main.Users.User;
-import main.utils.Pair;
-import main.utils.stringFunctions;
-import main.utils.SystemStats;
+import main.utils.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -481,7 +479,7 @@ public class Market {
         connectedUsers.remove(u.getUserName());
     }
 
-    public void purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) throws Exception
+    public void purchaseCart(String userToken, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception
     {
         //User purchase history update
         if(!connectedUsers.containsKey(userToken))
@@ -489,7 +487,7 @@ public class Market {
             throw new Exception("Invalid user token");
         }
         User u = connectedUsers.get(userToken);
-        u.purchaseCart();
+        u.purchaseCart(bus, pinfo, sinfo);
         addStats(StatsType.Purchase);
     }
 
