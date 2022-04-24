@@ -13,7 +13,10 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Market;
 import main.utils.Pair;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -156,10 +159,10 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) {
+    public Response<Boolean> purchaseCart(String userToken, PaymentInformation pi, SupplyingInformation si) {
         try
         {
-            market.purchaseCart(userToken, cardNumber, year, month, day, cvv);
+            market.purchaseCart(userToken, pi, si);
             return new Response<>(true, null);
         }
         catch(Exception e)

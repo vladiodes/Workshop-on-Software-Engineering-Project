@@ -1,9 +1,12 @@
 package main.Shopping;
 
+
+import main.NotificationBus;
 import main.Stores.IStore;
 import main.Stores.Product;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingBasket {
@@ -94,13 +97,26 @@ public class ShoppingBasket {
         return store;
     }
 
-    public void purchaseBasket() throws Exception
+    public void purchaseBasket(NotificationBus bus) throws Exception
     {
-        for(ConcurrentHashMap.Entry<Product, Integer> element : this.productsQuantity.entrySet())
-        {
-            store.subtractProductQuantity(element.getKey(), element.getValue());
-        }
+        store.purchaseBasket(bus, this);
+    }
 
+    public double getPrice() {
+        double res = 0;
+        for (Product pr : productsQuantity.keySet())
+            res += pr.getPrice();
+        return res;
+    }
+
+    /**
+     * @return true/false depending if the basket is purchesable.
+     */
+    public boolean ValidateBasket() {
+        boolean res = true;
+        for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet() )
+            res &= this.store.ValidateProduct(ent.getKey(), ent.getValue());
+        return res;
     }
 }
 

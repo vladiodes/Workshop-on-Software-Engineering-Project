@@ -4,14 +4,13 @@ package main.Shopping;
 
 import main.Stores.IStore;
 
-import java.util.HashMap;
+
+import java.util.*;
 
 import main.Stores.Product;
 import main.Stores.Store;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.LinkedList;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -105,7 +104,28 @@ public class ShoppingCart {
         return baskets.get(storeName).getStore();
     }
 
+    public double getPrice(){
+        double result = 0;
+        for (Map.Entry<String, ShoppingBasket> basketEntry : this.baskets.entrySet())
+            result += basketEntry.getValue().getPrice();
+        return result;
+    }
+
     public ConcurrentHashMap<String, ShoppingBasket> getBaskets() {
         return baskets;
+    }
+
+    public HashMap<Product, Integer> getProducts() {
+        HashMap<Product, Integer> res = new HashMap<>();
+        for (Map.Entry<String, ShoppingBasket> basketEntry : this.baskets.entrySet())
+            res.putAll(basketEntry.getValue().getProductsAndQuantities());
+        return res;
+    }
+
+    public boolean ValidateCart() {
+        boolean res = true;
+        for(ShoppingBasket basket : this.baskets.values())
+            res &= basket.ValidateBasket();
+        return res;
     }
 }

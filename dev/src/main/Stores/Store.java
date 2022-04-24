@@ -6,10 +6,14 @@ import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Pair;
+
+
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -211,12 +215,34 @@ public class Store implements IStore {
     }
 
     @Override
+    public void purchaseBasket(NotificationBus bus,ShoppingBasket bask) throws Exception {
+        for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
+            purchaseProduct(en.getKey(), en.getValue());
+        this.purchaseHistory.put(bask,LocalDateTime.now());
+        notifyPurchase(bus);
+    }
+
+    private void notifyPurchase(NotificationBus bus) {
+        for (User manager: getManagersOfStore())
+            bus.addMessage(manager, "Product/s were bought from your store!");
+    }
+
+    @Override
     public void addReview(StoreReview sReview) {
         this.storeReviews.add(sReview);
     }
 
+    /***
+     * @param product to check
+     * @param amount to buy
+     * @return returns if its purchesable for the current amount.
+     */
     @Override
-    public void subtractProductQuantity(Product product, Integer quantity) throws Exception {
+    public boolean ValidateProduct(Product product, Integer amount) {
+        return this.getIsActive() && product.getQuantity() == amount;
+    }
+
+    private void purchaseProduct(Product product, Integer quantity) throws Exception {
         if (product.getQuantity() < quantity) {
             throw new Exception("Not enough products in stock");
         }

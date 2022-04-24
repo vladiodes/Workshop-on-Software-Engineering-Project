@@ -139,7 +139,7 @@
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -167,6 +167,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AT_Req2_4_Req2_5" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.AT_Req2_6.receiveComplaintsOnlyAdmin" />
         <item itemvalue="JUnit.AT_Req2_6.receiveMessages" />
