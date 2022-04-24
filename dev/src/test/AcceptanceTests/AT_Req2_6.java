@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import java.time.LocalDate;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AT_Req2_6 {
@@ -73,23 +72,39 @@ public class AT_Req2_6 {
     }
 
     /***
-     * use case: Reading And Commenting Complaints  req 6.3:
+     * use case: Reading And Commenting Complaints req 6.3:
      */
     @Test
     public void receiveMessages() {
         service.sendComplaint(user1token.getResult(), "complaint");
-        Response<List<String>> resp = service.receiveMessages(adminToken.getResult());
-        assertFalse(resp.getResult().isEmpty());
-        assertEquals(resp.getResult().get(0), "complaint");
+        List<String> messageList = service.receiveMessages(adminToken.getResult()).getResult();
+        assertFalse(messageList.isEmpty());
+        assertEquals(messageList.get(0), "complaint");
     }
 
     /***
-     * use case: Reading And Commenting Complaints  req 6.3:
+     * use case: Reading And Commenting Complaints req 6.3:
      */
     @Test
     public void receiveMessagesNotAdmin() {
         service.sendComplaint(user1token.getResult(), "complaint");
         assertTrue(service.receiveMessages(founder1token.getResult()).isWas_expected_error());
+    }
+
+    /***
+     * use case: Reading And Commenting Complaints req 6.3:
+     */
+    @Test
+    public void respondToMessage() {
+        assertTrue(service.respondToMessage(adminToken.getResult(), "user1", "answer").getResult());
+    }
+
+    /***
+     * use case: Reading And Commenting Complaints req 6.3:
+     */
+    @Test
+    public void respondToMessageNotAdmin() {
+        assertTrue(service.respondToMessage(founder1token.getResult(), "user1", "answer").isWas_expected_error());
     }
 
     /***
