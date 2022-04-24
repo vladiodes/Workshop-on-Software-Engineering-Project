@@ -17,6 +17,7 @@ import main.utils.PaymentInformation;
 import main.utils.Response;
 import main.utils.SupplyingInformation;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -241,14 +242,19 @@ public class Service implements IService {
 
     @Override
     public Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken, String userName) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get purchase history, userToken:%s userName:%s",userToken,userName));
         try
         {
-            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken);
+            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken,userName);
             return new Response<>(carts, null);
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
         }
         catch(Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service->getPurchaseHistory",e.getMessage());
+            return new Response<>(e,false);
         }
     }
 

@@ -154,6 +154,8 @@ public interface IService {
     /**
      * REQ 2.3.7
      * REQ 2.6.3
+     * @param userToken - the user that invokes the action
+     * @param userName - the user to check its history - admin can check for any user, non admin can only check for itself
      */
     Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken,String userName);
 

@@ -1,10 +1,10 @@
 package main;
 
-
-import main.Stores.ProductReview;
-import main.Stores.StoreReview;
 import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
+import main.Stores.ProductReview;
+import main.Stores.StoreReview;
+
 import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
 import main.ExternalServices.Payment.IPayment;
@@ -17,7 +17,9 @@ import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.StorePermission;
 import main.Users.User;
+
 import main.utils.*;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -58,10 +60,8 @@ public class Market {
         guestCounter=new AtomicInteger(1);
         bus =new NotificationBus();
         systemStatsByDate=new ConcurrentHashMap<>();
-
         security_controller = new Security();
         supplyingSystem = new SupplyingAdapter();
-
         paymentSystem = new PaymentAdapter();
     }
 
@@ -110,10 +110,8 @@ public class Market {
                 case Login -> newSystemStats.addLogIn();
                 case Purchase -> newSystemStats.addPurchase();
             }
-
             this.systemStatsByDate.put(date, newSystemStats);
         }
-
     }
 
     public boolean Register(String userName, String password) {
@@ -157,7 +155,6 @@ public class Market {
         addStats(StatsType.Login);
         return u;
     }
-
 
 
     public IStore getStoreByName(String name) {
@@ -395,7 +392,12 @@ public class Market {
 
     public boolean respondToMessage(String userToken, String userToRespond, String msg) {
         User responding_user = connectedUsers.get(userToken);
+        if(!responding_user.isAdmin())
+            throw new IllegalArgumentException("Only admin can respond to messages");
         User user_receiving_msg = usersByName.get(userToRespond);
+        if(user_receiving_msg==null)
+            throw new IllegalArgumentException("No such user to respond to");
+
         bus.addMessage(user_receiving_msg, String.format("From user:%s \n Message content: %s", responding_user.getUserName(), msg));
         return true;
     }
@@ -427,10 +429,10 @@ public class Market {
      */
     public void initialize() {
         String adminUserName = "admin";
-        String adminHashPassowrd = security_controller.hashPassword("admin");
-        User admin = new User(true, adminUserName, adminHashPassowrd);
+        String adminHashPassword = security_controller.hashPassword("admin");
+        User admin = new User(true, adminUserName, adminHashPassword);
         usersByName.put("admin", admin);
-
+        bus.register(admin);
     }
 
 
@@ -441,11 +443,10 @@ public class Market {
                 throw new IllegalArgumentException("This user isn't registered to the system!");
             if (stores.containsKey(storeName))
                 throw new IllegalArgumentException("There's already a store with that name in the system");
-        }
-
         IStore newIStore =founder.openStore(storeName);
         stores.put(storeName, newIStore);
         bus.register(newIStore);
+        }
         return true;
     }
 
@@ -491,13 +492,14 @@ public class Market {
         addStats(StatsType.Purchase);
     }
 
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
-        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
+    public List<ShoppingCartDTO> getPurchaseHistory(String userToken,String userName){
+        User invoking_user = connectedUsers.get(userToken);
+        User user_to_check = usersByName.get(userName);
+        if(invoking_user == null || user_to_check ==null)
+            throw new IllegalArgumentException("No such user in the system");
+        if(!(invoking_user.isAdmin() || invoking_user==user_to_check))
+            throw new IllegalArgumentException("You don't have permission to do that");
+        List<ShoppingCart> purchaseHistory = user_to_check.getPurchaseHistory();
         List<ShoppingCartDTO> scDTO = new LinkedList<>();
         for(ShoppingCart sc : purchaseHistory)
         {
