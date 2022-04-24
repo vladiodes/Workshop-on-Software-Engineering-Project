@@ -1,9 +1,9 @@
 package main;
 
+import main.ExternalServices.Supplying.ISupplying;
+import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Stores.ProductReview;
 import main.Stores.StoreReview;
-import main.Supplying.ISupplying;
-import main.Supplying.SupplyingAdapter;
 
 import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
