@@ -348,4 +348,6 @@ public interface IService {
      * REQ 2.6.5
      */
     Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date);
+
+    Response<Boolean> isLoggedOut(String userToken);
 }

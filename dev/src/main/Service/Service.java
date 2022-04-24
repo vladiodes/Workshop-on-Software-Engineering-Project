@@ -650,4 +650,17 @@ public class Service implements IService {
         }
     }
 
+    public Response<Boolean> isLoggedOut(String userToken)
+    {
+        try
+        {
+            boolean res = market.isLoggedOut(userToken);
+            return new Response<>(res, null);
+        }
+        catch (Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+    }
+
 }

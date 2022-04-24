@@ -51,6 +51,7 @@ public class Market {
     private NotificationBus bus;
 
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+
     private enum StatsType{Register, Login, Purchase}
 
     public Market(){
@@ -99,18 +100,30 @@ public class Market {
         {
             SystemStats systemStats = this.systemStatsByDate.get(date);
             switch (type) {
-                case Register -> systemStats.addRegister();
-                case Login -> systemStats.addLogIn();
-                case Purchase -> systemStats.addPurchase();
+                case Register:
+                    systemStats.addRegister();
+                    break;
+                case Login:
+                    systemStats.addLogIn();
+                    break;
+                case Purchase :
+                    systemStats.addPurchase();
+                    break;
             }
         }
         else
         {
             SystemStats newSystemStats = new SystemStats(date);
             switch (type) {
-                case Register -> newSystemStats.addRegister();
-                case Login -> newSystemStats.addLogIn();
-                case Purchase -> newSystemStats.addPurchase();
+                case Register:
+                    newSystemStats.addRegister();
+                    break;
+                case Login:
+                    newSystemStats.addLogIn();
+                    break;
+                case Purchase:
+                    newSystemStats.addPurchase();
+                    break;
             }
 
             this.systemStatsByDate.put(date, newSystemStats);
@@ -477,6 +490,11 @@ public class Market {
             throw new Exception("User is not logged in");
         }
         User u = connectedUsers.get(token);
+        String userName = u.getUserName();
+        if(!usersByName.containsKey(userName))
+        {
+            throw new Exception("User is not a member");
+        }
         u.logout();
         connectedUsers.remove(u.getUserName());
     }
@@ -603,5 +621,11 @@ public class Market {
         throw new Exception("This is a bug : No admin was found in the system");
 
         //Find admin to send the complaint to
+    }
+
+    public boolean isLoggedOut(String userToken) throws Exception{
+        User u = getConnectedUserByToken(userToken);
+        return u.getIsLoggedIn();
+
     }
 }
