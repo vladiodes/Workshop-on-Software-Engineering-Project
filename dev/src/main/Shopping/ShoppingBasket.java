@@ -68,6 +68,8 @@ public class ShoppingBasket {
             Product prodToAdd = this.store.getProduct(prodName);
             if (prodToAdd == null)
                 throw new IllegalArgumentException(String.format("Product %s doesn't exist in the store.", prodName));
+            if (!store.ValidateProduct(prodToAdd, quantity))
+                throw new IllegalArgumentException(String.format("Product %s isnt available.", prodName));
             for (Product pr : productsQuantity.keySet())
                 if (pr.getName().equals(prodName)) {
                     productsQuantity.put(pr, productsQuantity.get(pr) + quantity);

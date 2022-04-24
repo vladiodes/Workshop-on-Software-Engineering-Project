@@ -238,7 +238,7 @@ public class Store implements IStore {
      */
     @Override
     public boolean ValidateProduct(Product product, Integer amount) {
-        return this.getIsActive() && product.getQuantity() == amount;
+        return this.getIsActive() && product.getQuantity() >= amount;
     }
 
     private void purchaseProduct(Product product, Integer quantity) throws Exception {
