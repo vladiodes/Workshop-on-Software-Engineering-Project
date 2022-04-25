@@ -250,10 +250,6 @@ public class Service implements IService {
         }
     }
 
-    @Override
-    public boolean updateUserInfo(String userToken, String newUserName, String oldPassword, String newPassword) {
-        return false;
-    }
 
     @Override
     public Response<Boolean> addSecurityQuestion(String userToken, String question, String answer) {
@@ -650,11 +646,11 @@ public class Service implements IService {
         }
     }
 
-    public Response<Boolean> isLoggedOut(String userToken)
+    public Response<Boolean> isMemberLoggedOut(String userToken)
     {
         try
         {
-            boolean res = market.isLoggedOut(userToken);
+            boolean res = market.isMemberLoggedOut(userToken);
             return new Response<>(res, null);
         }
         catch (Exception e)

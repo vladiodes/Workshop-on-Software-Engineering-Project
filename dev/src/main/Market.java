@@ -135,17 +135,17 @@ public class Market {
         if (usersByName.containsKey(userName)) {
             throw new IllegalArgumentException("username is taken.");
         }
-        if (password.length() < 6 || password.contains(userName)) {
+        if (!isValidPass(password, userName)) {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
         bus.register(new_user);
-
         usersByName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
         addStats(StatsType.Register);
         return true;
     }
+
 
     private String generateToken() {
         return UUID.randomUUID().toString();
@@ -449,9 +449,13 @@ public class Market {
     }
 
 
-    public boolean openStore(String userToken, String storeName) {
+    public boolean openStore(String userToken, String storeName) throws Exception{
         User founder = connectedUsers.get(userToken);
         synchronized (stores) {
+            if(founder== null)
+            {
+                throw new Exception("Invalid user token");
+            }
             if (!usersByName.containsKey(founder.getUserName()))
                 throw new IllegalArgumentException("This user isn't registered to the system!");
             if (stores.containsKey(storeName))
@@ -495,8 +499,11 @@ public class Market {
         {
             throw new Exception("User is not a member");
         }
+        if(!u.getIsLoggedIn())
+        {
+            throw new Exception("Member is not logged in");
+        }
         u.logout();
-        connectedUsers.remove(u.getUserName());
     }
 
     public void purchaseCart(String userToken, String cardNumber, int year, int month, int day, int cvv) throws Exception
@@ -517,6 +524,10 @@ public class Market {
             throw new Exception("Invalid user token");
         }
         User u = connectedUsers.get(userToken);
+        if(!u.getIsLoggedIn())
+        {
+            throw new Exception("User is not logged in");
+        }
         List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
         List<ShoppingCartDTO> scDTO = new LinkedList<>();
         for(ShoppingCart sc : purchaseHistory)
@@ -559,11 +570,11 @@ public class Market {
         {
             throw new Exception("Invalid user token");
         }
-        if(!isValidPass(newPassword))
-        {
-            throw new Exception("");
-        }
         User u = connectedUsers.get(userToken);
+        if(!isValidPass(newPassword, u.getUserName()))
+        {
+            throw new Exception("Invalid password");
+        }
         String oldPassHashed = this.security_controller.hashPassword(oldPassword);
         if(!oldPassHashed.equals(u.getHashed_password()))
         {
@@ -584,9 +595,9 @@ public class Market {
         this.usersByName.put(newUsername, u);
     }
 
-    private boolean isValidPass(String pass)
+    private boolean isValidPass(String pass, String userName)
     {
-        return !pass.isBlank() && pass.length() >= 4;
+        return !pass.isBlank() && pass.length() >= 6 && (!pass.contains(userName));
     }
 
     public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
@@ -619,13 +630,11 @@ public class Market {
             }
         }
         throw new Exception("This is a bug : No admin was found in the system");
-
-        //Find admin to send the complaint to
     }
 
-    public boolean isLoggedOut(String userToken) throws Exception{
+    public boolean isMemberLoggedOut(String userToken) throws Exception{
         User u = getConnectedUserByToken(userToken);
-        return u.getIsLoggedIn();
+        return !u.getIsLoggedIn();
 
     }
 }
