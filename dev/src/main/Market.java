@@ -434,7 +434,6 @@ public class Market {
         usersByName.put("admin", admin);
         bus.register(admin);
         Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUserName));
-        addStats(StatsType.Register);
     }
 
 
