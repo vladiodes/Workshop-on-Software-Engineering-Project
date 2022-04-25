@@ -1,0 +1,1372 @@
+[EVENT] - New guest connected Guest89862888-ee26-4285-bdc1-e68270bbfe1e. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guest49f7f571-fee3-4c37-903b-49b2c99c05cd. in class: Market
+[EVENT] - New guest connected Guest22e81af5-cacd-4ec4-b026-ee86182023c3. in class: Market
+[EVENT] - New guest connected Guest7ffbdca3-e149-4a72-9730-47d8d748c39a. in class: Market
+[EVENT] - New guest connected Guestee7f06b6-0890-4383-b0ea-395de3e42559. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get all messages for token: 22e81af5-cacd-4ec4-b026-ee86182023c3 in class: Service
+[EVENT] - Attempting to get all messages for token: 7ffbdca3-e149-4a72-9730-47d8d748c39a in class: Service
+[EVENT] - Attempting to get all messages for token: 49f7f571-fee3-4c37-903b-49b2c99c05cd in class: Service
+[EVENT] - New guest connected Guest9cdad287-991c-4204-b65d-2916823e9271. in class: Market
+[EVENT] - New guest connected Guest0763f800-8c65-498e-9672-dc4317f9d76b. in class: Market
+[EVENT] - New guest connected Guesta296dbf9-3dc9-4e4c-920c-0b4eb20238c6. in class: Market
+[EVENT] - New guest connected Guest0415ae9f-1bd2-4a19-aed6-67f24a1f6b51. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to remove store NotARealStore in class: Service
+[EVENT] - New guest connected Guest22917655-398d-441e-8016-e846b49cea25. in class: Market
+[EVENT] - New guest connected Guestab4d09a3-645c-4d49-80ac-828415c1e124. in class: Market
+[EVENT] - New guest connected Guestf0679d59-5694-433b-b6b6-f5346c9810b8. in class: Market
+[EVENT] - New guest connected Guest3c1f0dfd-2bc8-49e2-9fb4-fa6b7d532b61. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get system stats: logged in users per date: 2022-04-24 in class: Service
+[EVENT] - user2 logged in. in class: Market
+[EVENT] - Attempting to get system stats: logged in users per date: 2022-04-24 in class: Service
+[EVENT] - New guest connected Guest8ebda08c-4689-4a7f-809a-743dc6acd270. in class: Market
+[EVENT] - New guest connected Guestba3b4eee-a6a0-491c-8561-76f9c229221f. in class: Market
+[EVENT] - New guest connected Guest89273113-40b1-4aa5-bf4d-927088296c38. in class: Market
+[EVENT] - New guest connected Guesta983901f-2051-407c-abdc-b913b366e86c. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to remove user founder1 in class: Service
+[EVENT] - New guest connected Guest6a8a350b-e65a-41e3-8315-0be61521a780. in class: Market
+[EVENT] - New guest connected Guest8a54bc86-78fc-4e1c-958b-31467162001f. in class: Market
+[EVENT] - New guest connected Guestd167246e-0172-4904-83c3-be1c9febabd3. in class: Market
+[EVENT] - New guest connected Guestad4075e1-7849-4381-a4bf-88474ae85350. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to respond to a message from user1 in class: Service
+[EVENT] - New guest connected Guest63b49251-cbd4-4ddd-9823-42bf5a96a13e. in class: Market
+[EVENT] - New guest connected Guestbd30b91b-af5c-4258-9128-d85afec8eda4. in class: Market
+[EVENT] - New guest connected Guest959383cb-cff5-425a-a5b7-6cbb8bf732f0. in class: Market
+[EVENT] - New guest connected Guestbc32e987-80ff-4365-832a-d467b96d1c15. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get purchase history, userToken:63b49251-cbd4-4ddd-9823-42bf5a96a13e userName:user1 in class: Service
+[EVENT] - New guest connected Gueste71a6cc6-f9bd-4132-b8a5-0f8416990195. in class: Market
+[EVENT] - New guest connected Guestdba08975-2bc2-4209-8e49-1ab96a9bb3e7. in class: Market
+[EVENT] - New guest connected Guestac9fb76d-924d-4127-a04b-c26b8a218998. in class: Market
+[EVENT] - New guest connected Guest8e20050c-85cf-44b5-9952-18d1e75dbdca. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get system stats: registered users per date: 2022-04-24 in class: Service
+[EVENT] - New guest connected Guest42853e42-9ab2-41d2-b40a-1324d0d7377c. in class: Market
+[EVENT] - New guest connected Guestae19eb5a-f16e-48bc-bba7-950aac86c782. in class: Market
+[EVENT] - New guest connected Guest62706db9-2122-4c3b-b383-1a840ec82bb3. in class: Market
+[EVENT] - New guest connected Guest3ca31254-34b0-40da-8ca7-49261a7e9fb8. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to remove store MyStore1 in class: Service
+[EVENT] - New guest connected Guest29969019-e267-4f9f-adb8-2abefb8176d2. in class: Market
+[EVENT] - New guest connected Gueste4ec5480-de2b-4b9a-bee2-24f28e1ff136. in class: Market
+[EVENT] - New guest connected Guest33e39846-4a3e-48ab-a0c8-b5ea26e812b0. in class: Market
+[EVENT] - New guest connected Guest9ce0ce21-be6d-4c09-acef-72bc24dce3e3. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to respond to a message from user1 in class: Service
+[EVENT] - New guest connected Guest5e770add-97e4-4a79-b10a-8e919cb9517a. in class: Market
+[EVENT] - New guest connected Guestdebe0ac2-6996-421d-8c80-156d886a5667. in class: Market
+[EVENT] - New guest connected Guest0b33f48b-45a9-4d60-961f-3b983bbb1fc5. in class: Market
+[EVENT] - New guest connected Guest2a18b7a4-3000-47f6-8b7c-a6885a335b4c. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get system stats: number of purchases per date: 2022-04-24 in class: Service
+[EVENT] - New guest connected Guest3bcb5dc1-4baa-45b1-b876-2ce1937d2369. in class: Market
+[EVENT] - New guest connected Guestc66982c7-807f-47e8-ae8e-be586811e191. in class: Market
+[EVENT] - New guest connected Guest30d336d3-ed62-46b1-9b77-9af0752f81d5. in class: Market
+[EVENT] - New guest connected Guest7553de43-c7a8-4b90-aa6e-77d872154eaa. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get storeMyStore1 purchase history in class: Service
+[EVENT] - New guest connected Guest20662e71-be9c-4d14-925b-789b9ef83128. in class: Market
+[EVENT] - New guest connected Guest0c97e688-3abb-4d38-adba-1acce345d665. in class: Market
+[EVENT] - New guest connected Guestafff6fc3-1c69-4e02-ae1f-710960d8e265. in class: Market
+[EVENT] - New guest connected Guest64636fae-203b-470e-bfd1-421fe144a048. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get system stats: registered users per date: 2022-04-24 in class: Service
+[EVENT] - New guest connected Guest825f75b3-fee5-40ba-a232-98f00acfbf00. in class: Market
+[EVENT] - New user registered with username: user3 in class: Market
+[EVENT] - Attempting to get system stats: registered users per date: 2022-04-24 in class: Service
+[EVENT] - New guest connected Guest4c7257a1-dcf0-47fa-9aad-a245abafd148. in class: Market
+[EVENT] - New guest connected Guestde8b6529-ac0f-4844-9f26-ed4f6636229a. in class: Market
+[EVENT] - New guest connected Guest356740b5-f75d-459a-bc8d-b8b6c2e53da7. in class: Market
+[EVENT] - New guest connected Guest24460c07-71e0-4c03-b4b2-40996f6dacc6. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to remove user NotARealUser in class: Service
+[BUG] - null in class: Service - deleteUser
+[EVENT] - New guest connected Guest5b30b22c-e023-465d-9823-8cb3372849b5. in class: Market
+[EVENT] - New guest connected Guest40aaebe2-c673-4897-8b8c-5b21aacd5c3e. in class: Market
+[EVENT] - New guest connected Guestc16048ff-6ac8-4949-8132-c3d221f054d8. in class: Market
+[EVENT] - New guest connected Guest730dc700-d635-4d22-b5b2-157d046d9f94. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get storeMyStore1 purchase history in class: Service
+[EVENT] - New guest connected Guestdaffca59-a7ca-4e50-9192-3be0acafd170. in class: Market
+[EVENT] - New guest connected Guestd539ca43-e658-4d56-8090-ef4a38efdd4c. in class: Market
+[EVENT] - New guest connected Guest0836aeb9-da90-4a58-b495-0bf5ded15caf. in class: Market
+[EVENT] - New guest connected Guest38b9e252-f6fd-434f-8021-9b0d6574beb5. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get storeNotARealStore purchase history in class: Service
+[EVENT] - New guest connected Guest42b57f88-9aea-4916-b3ef-4c5b7d418f4a. in class: Market
+[EVENT] - New guest connected Guestdab304cc-bf27-46a4-913f-26560485abfd. in class: Market
+[EVENT] - New guest connected Guest0c233887-46d6-4001-beff-6629a3c20aba. in class: Market
+[EVENT] - New guest connected Guest54e0ace1-d4fc-4b8e-b181-9793cebecb70. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get purchase history, userToken:42b57f88-9aea-4916-b3ef-4c5b7d418f4a userName:NotARealUser in class: Service
+[EVENT] - New guest connected Guestab45cb66-1a1c-4c44-b826-c7c1a8f1abf8. in class: Market
+[EVENT] - New guest connected Guest6e332e37-c4e6-48bb-929d-0670154ea24a. in class: Market
+[EVENT] - New guest connected Guest9bfb22ff-a4e1-4051-94fc-b491badb03e2. in class: Market
+[EVENT] - New guest connected Guest8244952f-3ef0-434c-8a4f-d5cac890cec9. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get system stats: number of purchases per date: 2022-04-24 in class: Service
+[EVENT] - New guest connected Guest2aec5ca9-6278-4f7e-8fbb-d3b7eeecac7c. in class: Market
+[EVENT] - New guest connected Guest88ddfbc2-3d2b-40de-ba16-00dca939d12c. in class: Market
+[EVENT] - New guest connected Guestef4de42b-13a5-45c9-848e-4b143900a411. in class: Market
+[EVENT] - New guest connected Gueste11be47e-a889-4764-bb7d-ca436d9caf31. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get purchase history, userToken:88ddfbc2-3d2b-40de-ba16-00dca939d12c userName:user1 in class: Service
+[EVENT] - New guest connected Guest04f3e92b-c87f-4be7-8e3e-5d587e912584. in class: Market
+[EVENT] - New guest connected Gueste099fd25-fcb7-46ee-95ac-d5f5f91c64fe. in class: Market
+[EVENT] - New guest connected Guest74377ecb-fc6d-4407-853f-d86093cf45e8. in class: Market
+[EVENT] - New guest connected Guest5691fd69-e36f-4c55-a81d-34628834c8e4. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to remove user user1 in class: Service
+[EVENT] - New guest connected Guest7986f62d-ea95-46e7-a032-d8b9378e26d6. in class: Market
+[EVENT] - New guest connected Guestc0791557-acb0-49d7-ac90-24c19436aec6. in class: Market
+[EVENT] - New guest connected Guest302395a2-10d8-4c00-a2f5-dc36382acd26. in class: Market
+[EVENT] - New guest connected Guest459d0384-bdb6-43bc-b288-4d6774ff82e4. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get all messages for token: 7986f62d-ea95-46e7-a032-d8b9378e26d6 in class: Service
+[EVENT] - New guest connected Guest07003263-095c-4f9e-a290-c69da236321b. in class: Market
+[EVENT] - New guest connected Guest67523732-bc8d-481d-a34a-fd697742b681. in class: Market
+[EVENT] - New guest connected Guest2729b52c-5ea7-4e7f-9ed8-64002e98b911. in class: Market
+[EVENT] - New guest connected Guesteecafa8a-c24b-4fc6-aaa5-bfc61504c010. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - New user registered with username: user2 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - Attempting to get system stats: logged in users per date: 2022-04-24 in class: Service
+[EVENT] - New guest connected Gueste8929b93-07aa-4db9-b7f7-87613afb35b3. in class: Market
+[EVENT] - New guest connected Guest7f1be9fc-e77a-491c-9d92-87656d9b14c3. in class: Market
+[EVENT] - New guest connected Guestb232a24f-5c95-47fc-ae69-85ea381579eb. in class: Market
+[EVENT] - New guest connected Guest8dfa981d-87f5-40c4-ba12-12fd182e4083. in class: Market
+[EVENT] - New guest connected Guestf5441fcc-3a08-4be4-bbaa-8b004d083104. in class: Market
+[EVENT] - New guest connected Guesta4860806-b7af-4d31-8948-bd8ea671d4ac. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: b232a24f-5c95-47fc-ae69-85ea381579eb userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: b232a24f-5c95-47fc-ae69-85ea381579eb userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: b232a24f-5c95-47fc-ae69-85ea381579eb productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to close store:MyStore1 in class: Service
+[EVENT] - New guest connected Guest0eacd307-ad3d-4325-9001-b7d2969618c1. in class: Market
+[EVENT] - New guest connected Guest358d680e-c271-47ba-8fde-c918cf385b77. in class: Market
+[EVENT] - New guest connected Guest7388ffe2-9bea-44be-b7f4-d8fd793fbfd5. in class: Market
+[EVENT] - New guest connected Guest9f5c9d9c-cb84-489a-8f88-9f04d31c3a7e. in class: Market
+[EVENT] - New guest connected Guestb9087f88-9f07-47d7-9f78-544eb3f98a81. in class: Market
+[EVENT] - New guest connected Guesteb0ecb21-b79b-4576-abca-295daf65d931. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 7388ffe2-9bea-44be-b7f4-d8fd793fbfd5 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 7388ffe2-9bea-44be-b7f4-d8fd793fbfd5 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 7388ffe2-9bea-44be-b7f4-d8fd793fbfd5 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store manager:manager1 from store:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store manager:manager1 from store:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store manager:owner1 from store:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store manager:owner1 from store:MyStore1 in class: Service
+[EVENT] - New guest connected Guesta5e24961-986d-451c-9146-b3cf6a40924d. in class: Market
+[EVENT] - New guest connected Guest8e23a5a8-4f80-4fa1-a6ec-3b3c29025236. in class: Market
+[EVENT] - New guest connected Guest312ddb61-6c05-434a-b8d2-5fc316b26f17. in class: Market
+[EVENT] - New guest connected Guest5eb1935c-70cb-44e1-a84e-db38c4c40662. in class: Market
+[EVENT] - New guest connected Guest98a27a2b-c4ac-420b-96c4-06ff8094a560. in class: Market
+[EVENT] - New guest connected Guest0494420d-45e4-4a9c-9fd6-0a6cfbd5b895. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 312ddb61-6c05-434a-b8d2-5fc316b26f17 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 312ddb61-6c05-434a-b8d2-5fc316b26f17 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 312ddb61-6c05-434a-b8d2-5fc316b26f17 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest6e837de0-0f39-43c2-ace5-bb910bf80c8e. in class: Market
+[EVENT] - New guest connected Guest8b533e50-fbbd-45b6-8dc0-418b116eff1d. in class: Market
+[EVENT] - New guest connected Guestb0e6afb5-96ce-40da-b9ab-4ce18abebf84. in class: Market
+[EVENT] - New guest connected Guest1ca6312a-0812-4ba1-9bec-187547cc89df. in class: Market
+[EVENT] - New guest connected Guest69902bf7-bf2e-4dba-9e18-ed194355df5d. in class: Market
+[EVENT] - New guest connected Guest99d3dfe0-9038-4afb-89c8-8295065f0adc. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: b0e6afb5-96ce-40da-b9ab-4ce18abebf84 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: b0e6afb5-96ce-40da-b9ab-4ce18abebf84 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: b0e6afb5-96ce-40da-b9ab-4ce18abebf84 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Update product to store invoked with parameters: token: 6e837de0-0f39-43c2-ace5-bb910bf80c8e productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Delete product from store invoked with parameters: token: b0e6afb5-96ce-40da-b9ab-4ce18abebf84 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest5b5a45d0-0fec-493a-84a5-d8ebc673fc9e. in class: Market
+[EVENT] - New guest connected Guest1b5eaea4-8ca9-4cc9-933b-e519e6181223. in class: Market
+[EVENT] - New guest connected Guest0ec672f7-10c0-4958-a586-e05970e31958. in class: Market
+[EVENT] - New guest connected Guesta12c009c-c4fe-46ea-851e-77db5ba2eeb8. in class: Market
+[EVENT] - New guest connected Guestec045e8c-f568-4a05-a68e-bbb2a7cae0a8. in class: Market
+[EVENT] - New guest connected Guest685142e7-f9f9-4d1c-a2bf-2dca8da57ec2. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 0ec672f7-10c0-4958-a586-e05970e31958 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 0ec672f7-10c0-4958-a586-e05970e31958 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 0ec672f7-10c0-4958-a586-e05970e31958 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant view purchase history permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - New guest connected Guesta43f7398-15ad-4d3d-8d13-6d6151a526c2. in class: Market
+[EVENT] - New guest connected Guestb8587a98-66ed-480e-a10c-8943ae2380a8. in class: Market
+[EVENT] - New guest connected Guest64185c8d-cf4d-4194-b857-c3266d14ca87. in class: Market
+[EVENT] - New guest connected Guestf6909fa7-39fc-40d4-98fb-9eeaeb01050a. in class: Market
+[EVENT] - New guest connected Guest1d2cac76-953d-4d0f-826a-891ace190428. in class: Market
+[EVENT] - New guest connected Guest6762263d-cbf2-4517-a6ea-e7f0d6aeac9b. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 64185c8d-cf4d-4194-b857-c3266d14ca87 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 64185c8d-cf4d-4194-b857-c3266d14ca87 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 64185c8d-cf4d-4194-b857-c3266d14ca87 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 64185c8d-cf4d-4194-b857-c3266d14ca87 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 1d2cac76-953d-4d0f-826a-891ace190428 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest77db297c-73ff-4a22-8cda-e2d88181b9db. in class: Market
+[EVENT] - New guest connected Guest0cf0847f-85c7-4f18-8df8-a75f88307a78. in class: Market
+[EVENT] - New guest connected Guest9ce39dc5-d00a-4d38-b5b1-a192a3413c73. in class: Market
+[EVENT] - New guest connected Guestceb9aa1e-4f20-4538-867d-45c33474fc77. in class: Market
+[EVENT] - New guest connected Guest8fb34d0d-4c75-4032-988d-6bb82deafb48. in class: Market
+[EVENT] - New guest connected Guest03ccd56a-65f1-4aca-a32c-7f8c09fe2578. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 9ce39dc5-d00a-4d38-b5b1-a192a3413c73 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 9ce39dc5-d00a-4d38-b5b1-a192a3413c73 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 9ce39dc5-d00a-4d38-b5b1-a192a3413c73 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store manager:manager1 from store:MyStore2 in class: Service
+[EVENT] - Attempting to remove a store manager:manager1 from store:MyStore2 in class: Service
+[EVENT] - New guest connected Guestd6111489-d329-4664-becb-752cbda289a2. in class: Market
+[EVENT] - New guest connected Guest26eb7a8f-73a9-4132-a91b-bb662e7bf0ba. in class: Market
+[EVENT] - New guest connected Guestf5cf78f5-fb0e-406e-b5ae-9bf714b7a6c9. in class: Market
+[EVENT] - New guest connected Guest4c9490b2-2f26-4fad-8157-d221e69f01f3. in class: Market
+[EVENT] - New guest connected Guestc11f5d1a-6b65-4280-93a2-c3aa3c76cca4. in class: Market
+[EVENT] - New guest connected Guest07f866b2-248e-48d7-8489-ed7c27e84693. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: f5cf78f5-fb0e-406e-b5ae-9bf714b7a6c9 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: f5cf78f5-fb0e-406e-b5ae-9bf714b7a6c9 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: f5cf78f5-fb0e-406e-b5ae-9bf714b7a6c9 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: f5cf78f5-fb0e-406e-b5ae-9bf714b7a6c9 userAppointed: owner1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guestb51f7d55-174e-4525-8773-e08ced13979b. in class: Market
+[EVENT] - New guest connected Guestce4bdabd-8843-4334-8782-50d99c14303e. in class: Market
+[EVENT] - New guest connected Guestbbaae16b-f4e6-47d0-89d6-562777c2d767. in class: Market
+[EVENT] - New guest connected Guest9c362775-c25b-46b9-b186-09465f255639. in class: Market
+[EVENT] - New guest connected Guestf248b5dc-edb1-4835-b076-88514eef3e15. in class: Market
+[EVENT] - New guest connected Guest55db76a4-3a5a-4ca6-9a26-d965abd9b8e8. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: bbaae16b-f4e6-47d0-89d6-562777c2d767 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: bbaae16b-f4e6-47d0-89d6-562777c2d767 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: bbaae16b-f4e6-47d0-89d6-562777c2d767 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: bbaae16b-f4e6-47d0-89d6-562777c2d767 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guestf89b8479-2745-4731-84e1-5a85ce139fa1. in class: Market
+[EVENT] - New guest connected Guest8e2350c5-37f9-4150-8a85-37c156abba89. in class: Market
+[EVENT] - New guest connected Guestcd63e1c1-9691-4ba4-ac91-aa97cd771823. in class: Market
+[EVENT] - New guest connected Guestab112335-8b49-4d68-bede-1df33669acec. in class: Market
+[EVENT] - New guest connected Guest3eaa54b9-9676-4920-8777-2158935bd049. in class: Market
+[EVENT] - New guest connected Guest24c6bab7-8548-4cc3-85b0-0daa865c60d5. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: cd63e1c1-9691-4ba4-ac91-aa97cd771823 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: cd63e1c1-9691-4ba4-ac91-aa97cd771823 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: cd63e1c1-9691-4ba4-ac91-aa97cd771823 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Delete product from store invoked with parameters: token: 24c6bab7-8548-4cc3-85b0-0daa865c60d5 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guestec1ae08d-68fd-479c-b707-a3664f69dc78. in class: Market
+[EVENT] - New guest connected Gueste9ae54d0-ed03-458f-9d6c-acf917ce052c. in class: Market
+[EVENT] - New guest connected Guestec564479-c594-44cb-8b6f-51cab29a93f2. in class: Market
+[EVENT] - New guest connected Guestf84590e2-4672-4f2a-bfd0-2aa038171eee. in class: Market
+[EVENT] - New guest connected Guest119c9143-5c48-4bba-b007-12ea90340d64. in class: Market
+[EVENT] - New guest connected Guest49375b46-6e55-430a-8e32-712f954c1e9c. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: ec564479-c594-44cb-8b6f-51cab29a93f2 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: ec564479-c594-44cb-8b6f-51cab29a93f2 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: ec564479-c594-44cb-8b6f-51cab29a93f2 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to close store:NotARealStore in class: Service
+[EVENT] - New guest connected Guestb6759a0d-a60c-44a6-8a3f-a931dabc4509. in class: Market
+[EVENT] - New guest connected Guest7fbd59e5-9d49-4ee3-b910-8879c2a17ee0. in class: Market
+[EVENT] - New guest connected Guestc5079aa4-3215-4806-bd72-b927554bb772. in class: Market
+[EVENT] - New guest connected Guestb573b8fd-0eb4-49ce-81db-6090a822324d. in class: Market
+[EVENT] - New guest connected Gueste519d1b4-1633-4ff8-84db-1f0bdd1b67fd. in class: Market
+[EVENT] - New guest connected Guestd4fb7f00-19e1-4521-a4d7-e009d607a3c1. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: c5079aa4-3215-4806-bd72-b927554bb772 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: c5079aa4-3215-4806-bd72-b927554bb772 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: c5079aa4-3215-4806-bd72-b927554bb772 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: e519d1b4-1633-4ff8-84db-1f0bdd1b67fd userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: c5079aa4-3215-4806-bd72-b927554bb772 userToAppoint: manager2 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Gueste80cda35-f7d3-4c55-be1b-5657198c74b1. in class: Market
+[EVENT] - New guest connected Guestd863e6be-82f0-4119-8591-197105319d01. in class: Market
+[EVENT] - New guest connected Guest0bb4172b-a158-4d53-90f5-367635ecf793. in class: Market
+[EVENT] - New guest connected Guestade71fbd-c239-4c1c-882a-6d57eb01327f. in class: Market
+[EVENT] - New guest connected Guest84a40989-5e8a-461f-83a0-f5c8d7049ade. in class: Market
+[EVENT] - New guest connected Guest7d63d2a3-6274-48f3-8199-7cca04af95d9. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 0bb4172b-a158-4d53-90f5-367635ecf793 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 0bb4172b-a158-4d53-90f5-367635ecf793 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 0bb4172b-a158-4d53-90f5-367635ecf793 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: 7d63d2a3-6274-48f3-8199-7cca04af95d9 userAppointed: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: d863e6be-82f0-4119-8591-197105319d01 userAppointed: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: 7d63d2a3-6274-48f3-8199-7cca04af95d9 userAppointed: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: d863e6be-82f0-4119-8591-197105319d01 userAppointed: owner1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guesta6e16b48-b333-4246-89cf-5428f6d48ac0. in class: Market
+[EVENT] - New guest connected Guestb4db6804-ddc9-4061-a69d-3f15b50f7a06. in class: Market
+[EVENT] - New guest connected Guestcf94516b-58ae-4d33-a5a8-c877bf8182d8. in class: Market
+[EVENT] - New guest connected Guest4fb49c22-eb68-41a2-b726-684ce702e202. in class: Market
+[EVENT] - New guest connected Guest5658b80c-c6fa-487c-9609-91e8a1f0999a. in class: Market
+[EVENT] - New guest connected Guest2fadb0b1-d47f-4f0c-a55d-7fec6ef2194d. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: cf94516b-58ae-4d33-a5a8-c877bf8182d8 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: cf94516b-58ae-4d33-a5a8-c877bf8182d8 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: cf94516b-58ae-4d33-a5a8-c877bf8182d8 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant answer and take requests permission to:manager1 in store:MyStore1 in class: Service
+[EVENT] - New guest connected Guest15e7a00b-724d-4a05-a14f-d5096b79391f. in class: Market
+[EVENT] - New guest connected Guestd656f553-0224-4f68-b6c1-593a97431061. in class: Market
+[EVENT] - New guest connected Gueste6a7e6af-1701-4596-b34f-da4dd5493522. in class: Market
+[EVENT] - New guest connected Guestd35e9044-0b7c-4fd0-9723-c3eb91ec91b5. in class: Market
+[EVENT] - New guest connected Guestfef7804c-1cdf-4ee5-a677-da7705bad621. in class: Market
+[EVENT] - New guest connected Guestec7ee019-7f46-4246-9679-b47b6fae81fc. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: e6a7e6af-1701-4596-b34f-da4dd5493522 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: e6a7e6af-1701-4596-b34f-da4dd5493522 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: e6a7e6af-1701-4596-b34f-da4dd5493522 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store manager:manager1 from store:MyStore1 in class: Service
+[EVENT] - New guest connected Gueste8065c57-a963-47c6-8029-a5d1dffc475d. in class: Market
+[EVENT] - New guest connected Guest57d78712-311c-4544-bef1-1503c8e9334b. in class: Market
+[EVENT] - New guest connected Guest4dbd1418-0288-4be2-a574-a9a6bd239837. in class: Market
+[EVENT] - New guest connected Guestf5b755a8-4837-4709-b49c-6849db8681dc. in class: Market
+[EVENT] - New guest connected Guest98fbb276-ebf7-467c-904d-317d49cf12d8. in class: Market
+[EVENT] - New guest connected Gueste2bb9685-da53-4610-a021-47937249ad44. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 4dbd1418-0288-4be2-a574-a9a6bd239837 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 4dbd1418-0288-4be2-a574-a9a6bd239837 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 4dbd1418-0288-4be2-a574-a9a6bd239837 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Update product to store invoked with parameters: token: e2bb9685-da53-4610-a021-47937249ad44 productName:Crystal Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest730d2aff-69d7-46c9-8e96-b2fba4dfbf1d. in class: Market
+[EVENT] - New guest connected Guestf92f5136-4483-432c-8755-a1304e3d3ca8. in class: Market
+[EVENT] - New guest connected Guest8ccb1b27-631a-4efa-a31d-f5936442e4da. in class: Market
+[EVENT] - New guest connected Guest32e4a3d0-b81a-42c2-acda-db6edf381fcf. in class: Market
+[EVENT] - New guest connected Guest3d5a7e33-e961-419b-9d9e-6520f4e53386. in class: Market
+[EVENT] - New guest connected Guest55ff0269-c120-49b8-b9c2-7b9f103b7931. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 8ccb1b27-631a-4efa-a31d-f5936442e4da userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 8ccb1b27-631a-4efa-a31d-f5936442e4da userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 8ccb1b27-631a-4efa-a31d-f5936442e4da productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Delete product from store invoked with parameters: token: 8ccb1b27-631a-4efa-a31d-f5936442e4da productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Delete product from store invoked with parameters: token: 8ccb1b27-631a-4efa-a31d-f5936442e4da productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guesta18412f3-d943-4259-a349-969c83eb546c. in class: Market
+[EVENT] - New guest connected Guest4fc2fbb8-1be6-466e-8fb7-097b36a832e8. in class: Market
+[EVENT] - New guest connected Guest9d02daa6-5545-4d30-9db7-204fb63113b2. in class: Market
+[EVENT] - New guest connected Guestf548d5cd-1dd6-4d17-828d-8a81de426c22. in class: Market
+[EVENT] - New guest connected Guestd74e7101-ce48-4e60-8400-dff5e6851c4b. in class: Market
+[EVENT] - New guest connected Guestd46df582-eb7e-42d9-b774-5f749fff14a8. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 9d02daa6-5545-4d30-9db7-204fb63113b2 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 9d02daa6-5545-4d30-9db7-204fb63113b2 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 9d02daa6-5545-4d30-9db7-204fb63113b2 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to view store staff in store:MyStore1 in class: Service
+[EVENT] - Attempting to view store staff in store:MyStore1 in class: Service
+[EVENT] - New guest connected Guestaf3d50f5-0b01-4c7e-999c-004ca136d632. in class: Market
+[EVENT] - New guest connected Guest6ec2be2d-63a7-4aed-8c66-2ce647bbe376. in class: Market
+[EVENT] - New guest connected Guest85deb6dc-26ac-4085-9c69-e18eb07a372e. in class: Market
+[EVENT] - New guest connected Guest0b68aff5-cf2b-4b36-9f0f-5ad477ae1024. in class: Market
+[EVENT] - New guest connected Guesta53eb310-79ad-4baa-8ded-d55afa128128. in class: Market
+[EVENT] - New guest connected Guest9f6174f3-e30f-4c7d-9482-ee8cfb682d46. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 85deb6dc-26ac-4085-9c69-e18eb07a372e userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 85deb6dc-26ac-4085-9c69-e18eb07a372e userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 85deb6dc-26ac-4085-9c69-e18eb07a372e productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to reopen store:NotARealStore in class: Service
+[EVENT] - New guest connected Guest360dba18-a800-421e-8dc7-8d29da36589d. in class: Market
+[EVENT] - New guest connected Guest86745114-ba78-422a-a491-aae6c308670b. in class: Market
+[EVENT] - New guest connected Guest1a0cd7a4-6cb4-4aa8-b4e9-1386b7a1dc66. in class: Market
+[EVENT] - New guest connected Guest7a82cf8b-16f8-460e-8300-c94ea46a870b. in class: Market
+[EVENT] - New guest connected Guestf0fc603b-718d-47f3-87b7-f75d1dec9c8b. in class: Market
+[EVENT] - New guest connected Guest7968e3f1-31ec-48f1-9790-cb917957fde7. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 1a0cd7a4-6cb4-4aa8-b4e9-1386b7a1dc66 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 1a0cd7a4-6cb4-4aa8-b4e9-1386b7a1dc66 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 1a0cd7a4-6cb4-4aa8-b4e9-1386b7a1dc66 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: 7968e3f1-31ec-48f1-9790-cb917957fde7 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: 86745114-ba78-422a-a491-aae6c308670b userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest39ab35b6-f52d-4bfd-98df-4c231b828904. in class: Market
+[EVENT] - New guest connected Guest9031622f-4629-42d0-866d-1c472087d69e. in class: Market
+[EVENT] - New guest connected Guesta33d143e-06c8-4b29-bf50-00619b67f310. in class: Market
+[EVENT] - New guest connected Guestda02337d-3b2f-4683-a2f3-3fc789416574. in class: Market
+[EVENT] - New guest connected Guestb2cda6ba-0de3-40ac-8f23-b3490d9edf62. in class: Market
+[EVENT] - New guest connected Guestd81bc945-2512-4e73-ad32-4b77fa54120c. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: a33d143e-06c8-4b29-bf50-00619b67f310 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: a33d143e-06c8-4b29-bf50-00619b67f310 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: a33d143e-06c8-4b29-bf50-00619b67f310 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: b2cda6ba-0de3-40ac-8f23-b3490d9edf62 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest997f8fd0-e8b7-4311-9060-e350fedcbb55. in class: Market
+[EVENT] - New guest connected Guest853c3c0c-087e-4be7-9f56-570eecfb3255. in class: Market
+[EVENT] - New guest connected Guest85da86f3-78a0-4329-b715-45e13e470a4c. in class: Market
+[EVENT] - New guest connected Guestaa0ea97d-eaaf-40bc-84da-441407f46713. in class: Market
+[EVENT] - New guest connected Guest56c28d8c-5d59-43e8-98d4-fddf82913f4d. in class: Market
+[EVENT] - New guest connected Guest5e59c5ec-eb69-45ee-96a6-04735b6ffd40. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 85da86f3-78a0-4329-b715-45e13e470a4c userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 85da86f3-78a0-4329-b715-45e13e470a4c userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 85da86f3-78a0-4329-b715-45e13e470a4c productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Update product to store invoked with parameters: token: 5e59c5ec-eb69-45ee-96a6-04735b6ffd40 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Gueste9ca6cb7-9e3f-4940-9b1d-1e64764e5ac3. in class: Market
+[EVENT] - New guest connected Guest2d0a5ec6-4abf-4317-87df-aafdcf7bf0d4. in class: Market
+[EVENT] - New guest connected Guest8bf57755-5f2e-4cf8-bda3-e38a47cc4239. in class: Market
+[EVENT] - New guest connected Guest68ebd3d3-5f4b-44bb-a362-8bd683bcd8e3. in class: Market
+[EVENT] - New guest connected Guestfae6a91a-4e63-4db2-b9db-d8da7af32977. in class: Market
+[EVENT] - New guest connected Guest8219e943-37fd-4646-86b3-891013dcb95a. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 8bf57755-5f2e-4cf8-bda3-e38a47cc4239 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 8bf57755-5f2e-4cf8-bda3-e38a47cc4239 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 8bf57755-5f2e-4cf8-bda3-e38a47cc4239 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: fae6a91a-4e63-4db2-b9db-d8da7af32977 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store manager:owner1 from store:MyStore1 in class: Service
+[EVENT] - New guest connected Guestc523faa9-95b8-4a09-849e-fd151667b4d2. in class: Market
+[EVENT] - New guest connected Guest3369faa3-311b-4e40-87f4-c6322b76a6cf. in class: Market
+[EVENT] - New guest connected Guestcadd852e-4243-400b-8d32-529636234ec4. in class: Market
+[EVENT] - New guest connected Guestf0697165-691a-46fd-a9c1-08afd42b6ac7. in class: Market
+[EVENT] - New guest connected Guest4505f4c8-dc6e-404a-8e56-a9362f63446c. in class: Market
+[EVENT] - New guest connected Guestdd0a86fa-0f48-4b15-bc62-41ccc709cbf4. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: cadd852e-4243-400b-8d32-529636234ec4 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: cadd852e-4243-400b-8d32-529636234ec4 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: cadd852e-4243-400b-8d32-529636234ec4 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: cadd852e-4243-400b-8d32-529636234ec4 userAppointed: manager1 storeName:MyStore2 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: f0697165-691a-46fd-a9c1-08afd42b6ac7 userAppointed: manager1 storeName:MyStore2 in class: Service
+[EVENT] - New guest connected Guest0b67f276-5c43-42c8-87d1-2af853f1df2d. in class: Market
+[EVENT] - New guest connected Guest2faad8d7-8798-4220-beef-842acc5e8818. in class: Market
+[EVENT] - New guest connected Gueste46ae1d3-ac72-4c14-9483-0fa0ae186851. in class: Market
+[EVENT] - New guest connected Guest135a1aef-fab6-4306-955f-eb6e768f23b0. in class: Market
+[EVENT] - New guest connected Guest83330aa2-0542-47f6-9d84-41ae117c8493. in class: Market
+[EVENT] - New guest connected Guest4957d2fd-7743-4c46-b2c3-8697d65ac181. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: e46ae1d3-ac72-4c14-9483-0fa0ae186851 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: e46ae1d3-ac72-4c14-9483-0fa0ae186851 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: e46ae1d3-ac72-4c14-9483-0fa0ae186851 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant view purchase history permission to:manager1 in store:MyStore1 in class: Service
+[EVENT] - New guest connected Guest8911c2f3-a6e3-4868-9602-1509a882eb1b. in class: Market
+[EVENT] - New guest connected Guest4eba38df-8587-418f-baf9-4c74937d48aa. in class: Market
+[EVENT] - New guest connected Guestd0474016-1291-4ef7-81bc-b524be80ef19. in class: Market
+[EVENT] - New guest connected Guest386e20ca-e7c5-451e-b049-5d387ccd38bd. in class: Market
+[EVENT] - New guest connected Guest5380d911-9050-4b71-ba8b-e88dd2da75b7. in class: Market
+[EVENT] - New guest connected Guest1b2970e2-6943-40b8-b8a1-3dfeac711148. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: d0474016-1291-4ef7-81bc-b524be80ef19 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: d0474016-1291-4ef7-81bc-b524be80ef19 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: d0474016-1291-4ef7-81bc-b524be80ef19 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: d0474016-1291-4ef7-81bc-b524be80ef19 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 5380d911-9050-4b71-ba8b-e88dd2da75b7 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest67b7ba35-6be7-468e-8c51-9b48edaeaea6. in class: Market
+[EVENT] - New guest connected Guest0cfa3051-3607-453f-8deb-8fb3bce7d0cd. in class: Market
+[EVENT] - New guest connected Guest460a44bc-03a3-40da-83ee-265c59992477. in class: Market
+[EVENT] - New guest connected Guest36c84586-9441-4ea3-9812-fd603b6056cd. in class: Market
+[EVENT] - New guest connected Guest35aa4501-559e-4968-84b3-d44632b37ec4. in class: Market
+[EVENT] - New guest connected Guestf21ea5c0-a212-40bb-b0d2-a870b63e1d0b. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 460a44bc-03a3-40da-83ee-265c59992477 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 460a44bc-03a3-40da-83ee-265c59992477 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 460a44bc-03a3-40da-83ee-265c59992477 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to close store:MyStore2 in class: Service
+[EVENT] - New guest connected Guestf0a7006a-21af-4082-b111-674d1f0e173e. in class: Market
+[EVENT] - New guest connected Guest63ee254b-b783-4667-80a9-2e2888be01b9. in class: Market
+[EVENT] - New guest connected Guest75c8eb95-08f6-4c26-a38f-84d34063906b. in class: Market
+[EVENT] - New guest connected Guest6d2818b9-71ab-4533-9d57-33299886e010. in class: Market
+[EVENT] - New guest connected Guest87cbfaba-6fbc-4685-b164-b68ba815970c. in class: Market
+[EVENT] - New guest connected Guestef5d21b5-b37b-48f4-a676-3327264dd158. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 75c8eb95-08f6-4c26-a38f-84d34063906b userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 75c8eb95-08f6-4c26-a38f-84d34063906b userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 75c8eb95-08f6-4c26-a38f-84d34063906b productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to close store:MyStore1 in class: Service
+[EVENT] - Attempting to reopen store:MyStore1 in class: Service
+[EVENT] - New guest connected Guestfa79628c-b682-4443-bc9c-cd0f1f41f7cd. in class: Market
+[EVENT] - New guest connected Guestcce68653-30ea-45e1-a71f-f180f055c86a. in class: Market
+[EVENT] - New guest connected Guest5b74ff11-18a4-41df-ad74-33394b97b9df. in class: Market
+[EVENT] - New guest connected Guest576921f6-6f1a-46b8-a490-360d181dbf37. in class: Market
+[EVENT] - New guest connected Guest1d5ec56d-b7ea-4499-893a-1d2d7e19ef5f. in class: Market
+[EVENT] - New guest connected Guest3059734b-3f11-4ddc-81e2-617b8c79d7b2. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 5b74ff11-18a4-41df-ad74-33394b97b9df userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 5b74ff11-18a4-41df-ad74-33394b97b9df userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 5b74ff11-18a4-41df-ad74-33394b97b9df productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to view store staff in store:MyStore1 in class: Service
+[EVENT] - New guest connected Gueste5d86be1-15a0-4a96-bf0d-b04e672158ea. in class: Market
+[EVENT] - New guest connected Guested692800-df96-4d4c-8c97-7772da26c2b6. in class: Market
+[EVENT] - New guest connected Guest89abf1fc-1f1e-4b75-b5af-2505c503c138. in class: Market
+[EVENT] - New guest connected Guest24674602-55ea-40c9-9ec2-a7ad675855a8. in class: Market
+[EVENT] - New guest connected Guest3a17c676-c888-4669-8437-419e15075552. in class: Market
+[EVENT] - New guest connected Guest685ca8c7-a6eb-4f74-870b-84bebc86db5d. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 89abf1fc-1f1e-4b75-b5af-2505c503c138 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 89abf1fc-1f1e-4b75-b5af-2505c503c138 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 89abf1fc-1f1e-4b75-b5af-2505c503c138 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: 89abf1fc-1f1e-4b75-b5af-2505c503c138 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: 3a17c676-c888-4669-8437-419e15075552 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest0ae2e5d6-a05c-4334-8030-fd956d5ca87f. in class: Market
+[EVENT] - New guest connected Guest2878c2e1-39df-40d5-ab21-77f8426e9138. in class: Market
+[EVENT] - New guest connected Guest0651dc3e-f9c6-4d29-accb-a97a97ab58c1. in class: Market
+[EVENT] - New guest connected Guest0e7165df-6ef1-400b-b6f3-964437384400. in class: Market
+[EVENT] - New guest connected Guestfc9dd068-8834-4004-97b9-3fa3e7bf0661. in class: Market
+[EVENT] - New guest connected Guest52c42426-cbae-4e0c-8707-e4c1ee8e5229. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 0651dc3e-f9c6-4d29-accb-a97a97ab58c1 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 0651dc3e-f9c6-4d29-accb-a97a97ab58c1 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 0651dc3e-f9c6-4d29-accb-a97a97ab58c1 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: fc9dd068-8834-4004-97b9-3fa3e7bf0661 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: 0ae2e5d6-a05c-4334-8030-fd956d5ca87f userAppointed: owner1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guesta57cffb5-de57-4a53-b5f5-9b8eb7f31ae6. in class: Market
+[EVENT] - New guest connected Guest29bbfa4e-d3c9-4ac8-a7eb-56fa5da616dd. in class: Market
+[EVENT] - New guest connected Guest63156e76-fe2f-4054-8607-0e5f5a36ef06. in class: Market
+[EVENT] - New guest connected Guest91e68ae6-a2cf-4f0c-846f-fd66ffeb620e. in class: Market
+[EVENT] - New guest connected Gueste6bb31cd-dc4e-4f53-8e23-0964bccaa4da. in class: Market
+[EVENT] - New guest connected Guestd5f755d1-aad2-4a7e-adb8-245ac0f15d39. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 63156e76-fe2f-4054-8607-0e5f5a36ef06 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 63156e76-fe2f-4054-8607-0e5f5a36ef06 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 63156e76-fe2f-4054-8607-0e5f5a36ef06 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Delete product from store invoked with parameters: token: 63156e76-fe2f-4054-8607-0e5f5a36ef06 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest987a218e-c007-4521-ab38-1a67290c56f3. in class: Market
+[EVENT] - New guest connected Guestad59c332-8420-4b3e-813f-9fa39e982ef4. in class: Market
+[EVENT] - New guest connected Guestc1b2755f-7c41-4031-a452-0fdbec6d9b30. in class: Market
+[EVENT] - New guest connected Guest68f8dd9e-0808-40df-9cb5-0db97b6752c0. in class: Market
+[EVENT] - New guest connected Guest8ef9f9c3-34d6-44de-bf6e-f1c9ec0edb60. in class: Market
+[EVENT] - New guest connected Guest2412e9f6-4439-4cf4-8002-22eae8cf4e34. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: c1b2755f-7c41-4031-a452-0fdbec6d9b30 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: c1b2755f-7c41-4031-a452-0fdbec6d9b30 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: c1b2755f-7c41-4031-a452-0fdbec6d9b30 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to close store:MyStore1 in class: Service
+[EVENT] - Attempting to reopen store:MyStore1 in class: Service
+[EVENT] - New guest connected Guest92cca05b-42b2-42a1-9bdb-eff9a91c9a57. in class: Market
+[EVENT] - New guest connected Guest7d66fa7f-bb69-4c5b-85e5-e82892251985. in class: Market
+[EVENT] - New guest connected Guestb0fb1349-9982-40ca-8d7d-6bc2bec54fcc. in class: Market
+[EVENT] - New guest connected Guest0e575aba-2952-4460-9dda-b01d45214c23. in class: Market
+[EVENT] - New guest connected Guesta8988fa6-f918-4965-aedd-5a5869058650. in class: Market
+[EVENT] - New guest connected Guestfdeea981-1d94-4948-9e75-ab8e0faa8f19. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: b0fb1349-9982-40ca-8d7d-6bc2bec54fcc userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: b0fb1349-9982-40ca-8d7d-6bc2bec54fcc userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: b0fb1349-9982-40ca-8d7d-6bc2bec54fcc productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to reopen store:MyStore1 in class: Service
+[EVENT] - New guest connected Guestacc50d31-9880-4192-a333-bd4a1c7381c4. in class: Market
+[EVENT] - New guest connected Guest4eeca55f-fc76-4038-9164-9533cbb857c4. in class: Market
+[EVENT] - New guest connected Guest82cd538c-d4c6-4368-b086-9be218e4d8af. in class: Market
+[EVENT] - New guest connected Guest3fda71a6-e3e1-48ee-97f0-73046930ace0. in class: Market
+[EVENT] - New guest connected Guest3031da10-3bcd-4637-93b9-89da6f5b12f1. in class: Market
+[EVENT] - New guest connected Gueste48d7373-e5de-47e8-8fb1-676c5cc7e976. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 82cd538c-d4c6-4368-b086-9be218e4d8af userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 82cd538c-d4c6-4368-b086-9be218e4d8af userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 82cd538c-d4c6-4368-b086-9be218e4d8af productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: e48d7373-e5de-47e8-8fb1-676c5cc7e976 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 4eeca55f-fc76-4038-9164-9533cbb857c4 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest8bc2decb-7885-437a-bcd8-ae8f55c736ad. in class: Market
+[EVENT] - New guest connected Guestc9c58d09-ca6e-4c9c-84a8-9dfc1c69dfeb. in class: Market
+[EVENT] - New guest connected Guesteb1aeb19-fbfc-4425-a201-117e01ca24c6. in class: Market
+[EVENT] - New guest connected Guest2f6988a3-f64a-470c-8456-2c12ad625bfc. in class: Market
+[EVENT] - New guest connected Guestdf78ce4d-a6ed-49a5-97f7-32fe79ed1ece. in class: Market
+[EVENT] - New guest connected Guestd2d4851c-ff92-4358-a406-2fcc7b5290b9. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: eb1aeb19-fbfc-4425-a201-117e01ca24c6 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: eb1aeb19-fbfc-4425-a201-117e01ca24c6 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: eb1aeb19-fbfc-4425-a201-117e01ca24c6 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant answer and take requests permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - New guest connected Guest989e535b-f8b8-4c03-a5b5-acb831367d7e. in class: Market
+[EVENT] - New guest connected Guest38ca279c-2e58-400d-8e0b-a75b51eb4be5. in class: Market
+[EVENT] - New guest connected Guest95065251-ed9b-43e3-96d1-70b18976f35c. in class: Market
+[EVENT] - New guest connected Gueste8eebead-338c-46ab-bad8-c471559c2cfd. in class: Market
+[EVENT] - New guest connected Guest7d5be5f1-1034-4158-ae4a-0ae5d61b134e. in class: Market
+[EVENT] - New guest connected Guest8a9df5fe-4213-4ee0-9faa-2794bdf77908. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 95065251-ed9b-43e3-96d1-70b18976f35c userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 95065251-ed9b-43e3-96d1-70b18976f35c userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 95065251-ed9b-43e3-96d1-70b18976f35c productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 7d5be5f1-1034-4158-ae4a-0ae5d61b134e userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant update products permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - Update product to store invoked with parameters: token: 8a9df5fe-4213-4ee0-9faa-2794bdf77908 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to disallow update products permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - Update product to store invoked with parameters: token: 8a9df5fe-4213-4ee0-9faa-2794bdf77908 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guestf234d02a-3006-4cb9-b2ea-905df9cef3e1. in class: Market
+[EVENT] - New guest connected Guest5efef1b4-6bdb-480a-a32f-c625da583530. in class: Market
+[EVENT] - New guest connected Guest7d307070-c452-4a2d-ab9b-98e1ed8585bb. in class: Market
+[EVENT] - New guest connected Guestef68ae65-ce19-443a-a37f-0f0a051d4fb0. in class: Market
+[EVENT] - New guest connected Gueste7c9cacc-a7a8-47fa-9b1f-c695035cc067. in class: Market
+[EVENT] - New guest connected Guest9731245f-b64a-48d0-9e90-72b1c2db032e. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 7d307070-c452-4a2d-ab9b-98e1ed8585bb userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 7d307070-c452-4a2d-ab9b-98e1ed8585bb userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 7d307070-c452-4a2d-ab9b-98e1ed8585bb productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: e7c9cacc-a7a8-47fa-9b1f-c695035cc067 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant answer and take requests permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - Attempting to receive questions from buyers from store:MyStore1 in class: Service
+[EVENT] - Attempting to send respond from store:MyStore1 in class: Service
+[EVENT] - Attempting to get all messages for token: f234d02a-3006-4cb9-b2ea-905df9cef3e1 in class: Service
+[EVENT] - Attempting to disallow answer and take requests permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - Attempting to receive questions from buyers from store:MyStore1 in class: Service
+[EVENT] - Attempting to send respond from store:MyStore1 in class: Service
+[EVENT] - New guest connected Guestab213d3a-0314-4800-a01c-10d72bbbecf3. in class: Market
+[EVENT] - New guest connected Guestecc7dd91-7a91-469c-9953-f3045a60ffa3. in class: Market
+[EVENT] - New guest connected Guest39ddbfb3-81e3-4c6c-b186-8e043b5b9d09. in class: Market
+[EVENT] - New guest connected Guest068882a1-ae5c-4ee3-ba54-7b52b8142316. in class: Market
+[EVENT] - New guest connected Guest09fe32e4-ff52-4c29-85b7-31e6131f9a78. in class: Market
+[EVENT] - New guest connected Guest6f027f87-5432-4d67-a6e8-f0e1c41b40a9. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 39ddbfb3-81e3-4c6c-b186-8e043b5b9d09 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 39ddbfb3-81e3-4c6c-b186-8e043b5b9d09 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 39ddbfb3-81e3-4c6c-b186-8e043b5b9d09 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: 39ddbfb3-81e3-4c6c-b186-8e043b5b9d09 userToAppoint: manager2 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: ecc7dd91-7a91-469c-9953-f3045a60ffa3 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to remove a store owner appointment parameters: token: 39ddbfb3-81e3-4c6c-b186-8e043b5b9d09 userAppointed: manager2 storeName:MyStore1 in class: Service
+[EVENT] - Update product to store invoked with parameters: token: 6f027f87-5432-4d67-a6e8-f0e1c41b40a9 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest8513feaa-03fe-4115-9218-c289b6e0839f. in class: Market
+[EVENT] - New guest connected Guested7941b4-d852-4016-b904-bd31778708dd. in class: Market
+[EVENT] - New guest connected Guest95b3a500-62b5-469e-b7ef-12235e581e0f. in class: Market
+[EVENT] - New guest connected Guestbd348fa7-3e9d-4391-b985-44c6839b2a98. in class: Market
+[EVENT] - New guest connected Guestc09bfb52-f152-4d5b-949b-1f8548eaf184. in class: Market
+[EVENT] - New guest connected Guestbffa061f-f0fa-49e5-8429-aa4a175f2361. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 95b3a500-62b5-469e-b7ef-12235e581e0f userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 95b3a500-62b5-469e-b7ef-12235e581e0f userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 95b3a500-62b5-469e-b7ef-12235e581e0f productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 95b3a500-62b5-469e-b7ef-12235e581e0f userToAppoint: manager1 storeName:MyStore2 in class: Service
+[EVENT] - New guest connected Guest5b1604d4-33ec-4aa8-afc3-3bf53f9762f5. in class: Market
+[EVENT] - New guest connected Guest5f1137a4-4760-4dda-bf14-075c6ce0ff4b. in class: Market
+[EVENT] - New guest connected Guestbf05a38f-c0b6-4f1f-a0a7-266b7499d9e1. in class: Market
+[EVENT] - New guest connected Guestdddc47a9-2052-48f1-9a29-08dd02243ea0. in class: Market
+[EVENT] - New guest connected Guest54a9b20d-de09-4956-a23f-f07ad9de1651. in class: Market
+[EVENT] - New guest connected Guest711b8267-8cc8-43b4-9a0a-ad20d166b662. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: bf05a38f-c0b6-4f1f-a0a7-266b7499d9e1 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: bf05a38f-c0b6-4f1f-a0a7-266b7499d9e1 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: bf05a38f-c0b6-4f1f-a0a7-266b7499d9e1 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: bf05a38f-c0b6-4f1f-a0a7-266b7499d9e1 productName:Pepsi Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest9696b2be-c875-4b31-99bc-1e8011a12731. in class: Market
+[EVENT] - New guest connected Gueste1efc94a-990c-4583-aace-efd59a462335. in class: Market
+[EVENT] - New guest connected Guest4ec481ee-fe21-4bd7-90ad-4b167fce0887. in class: Market
+[EVENT] - New guest connected Guestf72444f2-22da-4dee-a84a-3932c39c7eb7. in class: Market
+[EVENT] - New guest connected Guest32531f96-7d8f-43d4-8ab7-9e0058eb71c7. in class: Market
+[EVENT] - New guest connected Guestb03d7871-89ea-4069-879d-ec4ab51295f6. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 4ec481ee-fe21-4bd7-90ad-4b167fce0887 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 4ec481ee-fe21-4bd7-90ad-4b167fce0887 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 4ec481ee-fe21-4bd7-90ad-4b167fce0887 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Update product to store invoked with parameters: token: 4ec481ee-fe21-4bd7-90ad-4b167fce0887 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Gueste7effbb0-1869-48b1-ad30-e68ba5d03460. in class: Market
+[EVENT] - New guest connected Guest73c90d09-0d1d-46eb-85c5-9fce7ff42707. in class: Market
+[EVENT] - New guest connected Guest950101d6-9480-417c-bac7-cda2cedf6002. in class: Market
+[EVENT] - New guest connected Guest37f4d54d-934e-46df-90f7-d7684844f16d. in class: Market
+[EVENT] - New guest connected Guest2fe98235-ad22-4726-b015-e561a416d0ce. in class: Market
+[EVENT] - New guest connected Guestae0a416d-ae69-4ac1-bb45-edf12d29abe3. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 950101d6-9480-417c-bac7-cda2cedf6002 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 950101d6-9480-417c-bac7-cda2cedf6002 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 950101d6-9480-417c-bac7-cda2cedf6002 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to close store:MyStore1 in class: Service
+[EVENT] - Attempting to close store:MyStore1 in class: Service
+[EVENT] - New guest connected Guest37c9f880-21a1-4e57-b188-a4123eedb453. in class: Market
+[EVENT] - New guest connected Guestb072d3a0-387b-4452-ad8d-90a482c60f4d. in class: Market
+[EVENT] - New guest connected Guestd2ce3d27-5d5c-4e82-9edc-a1afd4b23be0. in class: Market
+[EVENT] - New guest connected Guest982d41dd-831d-4245-bf52-5ceb2e5c7bf6. in class: Market
+[EVENT] - New guest connected Guest4469a0af-b1fe-41a3-afe8-d4032672990a. in class: Market
+[EVENT] - New guest connected Guest9191d8ea-3523-4982-a608-f1502459c22b. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: d2ce3d27-5d5c-4e82-9edc-a1afd4b23be0 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: d2ce3d27-5d5c-4e82-9edc-a1afd4b23be0 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: d2ce3d27-5d5c-4e82-9edc-a1afd4b23be0 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to view store staff in store:MyStore2 in class: Service
+[EVENT] - New guest connected Guest6f97a3e6-03d0-489f-b813-e65e59943f7a. in class: Market
+[EVENT] - New guest connected Guestd77ba14c-f906-4dc1-a4e0-85e6ecf7e98d. in class: Market
+[EVENT] - New guest connected Guest4b68ae10-c3c6-44ea-8e4c-b56874c7c68f. in class: Market
+[EVENT] - New guest connected Guest7e997b31-7384-49be-b9f8-85ac34f74f4e. in class: Market
+[EVENT] - New guest connected Guestcfd7eb0c-3a94-4d59-88f3-0cf5d3e48c44. in class: Market
+[EVENT] - New guest connected Guest62cf5bd5-b550-42c5-bb82-29666f19cf2c. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 4b68ae10-c3c6-44ea-8e4c-b56874c7c68f userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 4b68ae10-c3c6-44ea-8e4c-b56874c7c68f userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 4b68ae10-c3c6-44ea-8e4c-b56874c7c68f productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant update products permission to:manager1 in store:MyStore1 in class: Service
+[EVENT] - New guest connected Guestd3ec4a1e-0d33-40fa-87d0-1f185cc851a8. in class: Market
+[EVENT] - New guest connected Gueste32d32b6-2617-422e-8269-d76e4f5df815. in class: Market
+[EVENT] - New guest connected Guest9d438fbe-7cc9-4e47-962d-dd6ae5e169c0. in class: Market
+[EVENT] - New guest connected Guest09218ffb-b411-4cf7-b528-e2f17b8d0aff. in class: Market
+[EVENT] - New guest connected Guest793b1902-7c14-4d98-8fee-2c4bc5ed304e. in class: Market
+[EVENT] - New guest connected Guesta9514f0d-21b1-4595-a29c-8308161154b3. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 9d438fbe-7cc9-4e47-962d-dd6ae5e169c0 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 9d438fbe-7cc9-4e47-962d-dd6ae5e169c0 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 9d438fbe-7cc9-4e47-962d-dd6ae5e169c0 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 793b1902-7c14-4d98-8fee-2c4bc5ed304e userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant view purchase history permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - Attempting to get storeMyStore1 purchase history in class: Service
+[EVENT] - Attempting to disallow viewing purchase history permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - Attempting to get storeMyStore1 purchase history in class: Service
+[EVENT] - New guest connected Guestb09407a4-3b5c-4dec-9d5a-b98dca7c71d4. in class: Market
+[EVENT] - New guest connected Guest7145246b-85e4-46e5-909a-1f9ebf95e806. in class: Market
+[EVENT] - New guest connected Gueste03560d2-4e16-43c4-b808-e31d3bef872e. in class: Market
+[EVENT] - New guest connected Guest5fdd1b42-a98a-45c3-b3ae-e778291e61e6. in class: Market
+[EVENT] - New guest connected Guestba70d2e8-9f06-44cd-874b-f35cc9dfaf05. in class: Market
+[EVENT] - New guest connected Guest8e5bf79d-5322-45b7-b5e2-a0c4a025b9de. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: e03560d2-4e16-43c4-b808-e31d3bef872e userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: e03560d2-4e16-43c4-b808-e31d3bef872e userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: e03560d2-4e16-43c4-b808-e31d3bef872e productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: ba70d2e8-9f06-44cd-874b-f35cc9dfaf05 userToAppoint: user1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: e03560d2-4e16-43c4-b808-e31d3bef872e userToAppoint: manager2 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to receive questions from buyers from store:MyStore1 in class: Service
+[EVENT] - Attempting to send respond from store:MyStore1 in class: Service
+[EVENT] - Attempting to get all messages for token: b09407a4-3b5c-4dec-9d5a-b98dca7c71d4 in class: Service
+[EVENT] - Attempting to get storeMyStore1 purchase history in class: Service
+[EVENT] - Update product to store invoked with parameters: token: 7145246b-85e4-46e5-909a-1f9ebf95e806 productName:Crystal Cola storeName:MyStore1 in class: Service
+[EVENT] - New guest connected Guest19d34c8b-e081-4487-87ff-e3b31b9127d2. in class: Market
+[EVENT] - New guest connected Guest2a99901c-86ae-4fd3-9146-c631006adc61. in class: Market
+[EVENT] - New guest connected Guest357b1ce6-aa31-4d1d-afdf-554b7d91e13c. in class: Market
+[EVENT] - New guest connected Guest0111fe87-bb6c-49f9-85b2-bf1f3f645648. in class: Market
+[EVENT] - New guest connected Guestd7cce9a0-c9bc-4c30-8dc7-88926ea18ba1. in class: Market
+[EVENT] - New guest connected Guest2b7a185d-9a64-433a-8826-4782a6050f37. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 357b1ce6-aa31-4d1d-afdf-554b7d91e13c userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 357b1ce6-aa31-4d1d-afdf-554b7d91e13c userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 357b1ce6-aa31-4d1d-afdf-554b7d91e13c productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store owner with parameters: token: 357b1ce6-aa31-4d1d-afdf-554b7d91e13c userToAppoint: manager1 storeName:MyStore2 in class: Service
+[EVENT] - New guest connected Guested8e77ef-8e0a-4a1f-b21f-80554b065fb9. in class: Market
+[EVENT] - New guest connected Guestd208eec3-9651-49eb-99cd-ded6abe2c562. in class: Market
+[EVENT] - New guest connected Guest57260aad-c181-4932-9d75-93da067e93d4. in class: Market
+[EVENT] - New guest connected Guest3712a700-8b53-44f5-8051-10fd1f2607aa. in class: Market
+[EVENT] - New guest connected Guest221a07db-55f2-45b3-bbd0-b6174ff74535. in class: Market
+[EVENT] - New guest connected Guest0275c3cf-02b9-4edb-98b7-e89bbf18f281. in class: Market
+[EVENT] - New user registered with username: manager1 in class: Market
+[EVENT] - New user registered with username: manager2 in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - New user registered with username: founder2 in class: Market
+[EVENT] - New user registered with username: owner1 in class: Market
+[EVENT] - New user registered with username: user1 in class: Market
+[EVENT] - manager1 logged in. in class: Market
+[EVENT] - manager2 logged in. in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - founder2 logged in. in class: Market
+[EVENT] - owner1 logged in. in class: Market
+[EVENT] - user1 logged in. in class: Market
+[EVENT] - Attempting to appoint store owner with parameters: token: 57260aad-c181-4932-9d75-93da067e93d4 userToAppoint: owner1 storeName:MyStore1 in class: Service
+[EVENT] - Attempting to appoint store manager with parameters: token: 57260aad-c181-4932-9d75-93da067e93d4 userToAppoint: manager1 storeName:MyStore1 in class: Service
+[EVENT] - Add product to store invoked with parameters: token: 57260aad-c181-4932-9d75-93da067e93d4 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - Attempting to grant update products permission to:user1 in store:MyStore1 in class: Service
+[EVENT] - New guest connected Guestfce77a5c-698e-491a-8540-22101809369d. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guest6f8d2e23-0d1d-4f15-b3c8-320cd1fe64bd. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guestd15f85e9-092f-4080-8e42-48caadad05aa. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guest78c1e8d5-151b-4816-bd7b-d7ab81075864. in class: Market
+[EVENT] - admin logged in. in class: Market
