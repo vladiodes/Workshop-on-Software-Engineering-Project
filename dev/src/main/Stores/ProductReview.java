@@ -15,11 +15,14 @@ public class ProductReview {
 
         if (desc.isBlank())
             throw new Exception("Review description cant be empty or blank");
+        if(desc.length()>501)
+            throw new Exception("Review is longer than 500 characters");
         this.desc = desc;
 
         if(points<0)
             throw new Exception("Review points cant be negative");
         this.points = points;
+
     }
 
     public double getPoints() {

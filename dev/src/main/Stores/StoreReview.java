@@ -23,6 +23,10 @@ public class StoreReview {
         this.points = points;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public double getPoints() {
         return points;
     }

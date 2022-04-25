@@ -37,7 +37,7 @@ public class ShoppingBasket {
         ConcurrentHashMap<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
         ConcurrentHashMap<Product,Integer> newProductsQuantity = new ConcurrentHashMap<>();
 
-        for(HashMap.Entry<Product, Integer> element : productsQuantity.entrySet())
+        for(HashMap.Entry<Product, Integer> element : oldProductsQuantity.entrySet())
         {
             newProductsQuantity.put(new Product(element.getKey()), element.getValue());
         }

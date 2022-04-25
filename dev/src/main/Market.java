@@ -118,7 +118,7 @@ public class Market {
         if (usersByName.containsKey(userName)) {
             throw new IllegalArgumentException("username is taken.");
         }
-        if (password.length() < 6 || password.contains(userName)) {
+        if (!isValidPass(password, userName)) {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
@@ -155,6 +155,7 @@ public class Market {
         addStats(StatsType.Login);
         return u;
     }
+
 
 
     public IStore getStoreByName(String name) {
@@ -437,9 +438,13 @@ public class Market {
     }
 
 
-    public boolean openStore(String userToken, String storeName) {
+    public boolean openStore(String userToken, String storeName) throws Exception{
         User founder = connectedUsers.get(userToken);
         synchronized (stores) {
+            if(founder== null)
+            {
+                throw new Exception("Invalid user token");
+            }
             if (!usersByName.containsKey(founder.getUserName()))
                 throw new IllegalArgumentException("This user isn't registered to the system!");
             if (stores.containsKey(storeName))
@@ -458,11 +463,11 @@ public class Market {
 
     public void addSecurityQuestion(String userToken, String question, String answer) throws Exception
     {
-        if(!connectedUsers.containsKey(userToken))
+        if(question.isBlank() || answer.isBlank())
         {
-            throw new Exception("Invalid user token");
+            throw new IllegalArgumentException("Answer and Question cant be empty");
         }
-        User u = connectedUsers.get(userToken);
+        User u = getConnectedUserByToken(userToken);
         if(!usersByName.containsKey(u.getUserName()))
         {
             throw new Exception("User is a not a member");
@@ -477,30 +482,38 @@ public class Market {
             throw new Exception("User is not logged in");
         }
         User u = connectedUsers.get(token);
+        String userName = u.getUserName();
+        if(!usersByName.containsKey(userName))
+        {
+            throw new Exception("User is not a member");
+        }
+        if(!u.getIsLoggedIn())
+        {
+            throw new Exception("Member is not logged in");
+        }
         u.logout();
-        connectedUsers.remove(u.getUserName());
     }
 
     public void purchaseCart(String userToken, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception
     {
         //User purchase history update
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
+        User u = getConnectedUserByToken(userToken);
         u.purchaseCart(bus, pinfo, sinfo);
         addStats(StatsType.Purchase);
     }
 
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken,String userName){
-        User invoking_user = connectedUsers.get(userToken);
-        User user_to_check = usersByName.get(userName);
-        if(invoking_user == null || user_to_check ==null)
-            throw new IllegalArgumentException("No such user in the system");
-        if(!(invoking_user.isAdmin() || invoking_user==user_to_check))
-            throw new IllegalArgumentException("You don't have permission to do that");
-        List<ShoppingCart> purchaseHistory = user_to_check.getPurchaseHistory();
+    public List<ShoppingCartDTO> getPurchaseHistory(String userToken, String userName) throws Exception{
+        User u = getConnectedUserByToken(userToken);
+        if(!u.getIsLoggedIn())
+        {
+            throw new Exception("User is not logged in");
+        }
+        if(!(u.isAdmin() || u.getUserName().equals(userName)))
+            throw new IllegalArgumentException("No permission to ask for that purchase history.");
+        User uToReturn = usersByName.get(userName);
+        if(uToReturn == null)
+            throw new IllegalArgumentException("User doesn't exist.");
+        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
         List<ShoppingCartDTO> scDTO = new LinkedList<>();
         for(ShoppingCart sc : purchaseHistory)
         {
@@ -510,11 +523,7 @@ public class Market {
     }
 
     public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) throws Exception{
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
+        User u = getConnectedUserByToken(userToken);
         Product prod = u.findProductInHistoryByNameAndStore(productName, storeName);
         if(prod == null)
             throw new Exception("Product was not found in user's purchase history");
@@ -523,11 +532,9 @@ public class Market {
     }
 
     public void writeStoreReview(String userToken, String storeName, String reviewDescription, double points) throws Exception{
-        if(!connectedUsers.containsKey(userToken))
-        {
-            throw new Exception("Invalid user token");
-        }
-        User u = connectedUsers.get(userToken);
+        User u = getConnectedUserByToken(userToken);
+        if(!u.getIsLoggedIn())
+            throw new IllegalArgumentException("Only members can write reviews.");
         IStore store = u.getStoreInPurchaseHistory(storeName);
         if(store==null)
         {
@@ -538,15 +545,11 @@ public class Market {
     }
 
     public void changePassword(String userToken, String oldPassword, String newPassword)throws Exception {
-        if(!connectedUsers.containsKey(userToken))
+        User u = getConnectedUserByToken(userToken);
+        if(!isValidPass(newPassword, u.getUserName()))
         {
-            throw new Exception("Invalid user token");
+            throw new Exception("Invalid password");
         }
-        if(!isValidPass(newPassword))
-        {
-            throw new Exception("");
-        }
-        User u = connectedUsers.get(userToken);
         String oldPassHashed = this.security_controller.hashPassword(oldPassword);
         if(!oldPassHashed.equals(u.getHashed_password()))
         {
@@ -560,22 +563,32 @@ public class Market {
         {
             throw new Exception("Invalid user token");
         }
+        if(usersByName.containsKey(newUsername))
+            throw new IllegalArgumentException("User name all ready in use.");
         User u = connectedUsers.get(userToken);
+        if(!u.getIsLoggedIn())
+            throw new IllegalArgumentException("only members can change user name.");
         String oldUsername = u.getUserName();
         u.changeUsername(newUsername);
-        this.usersByName.remove(oldUsername);
-        this.usersByName.put(newUsername, u);
+        if(usersByName.containsKey(oldUsername)) {
+            this.usersByName.remove(oldUsername);
+            this.usersByName.put(newUsername, u);
+        }
     }
 
-    private boolean isValidPass(String pass)
+    private boolean isValidPass(String pass, String userName)
     {
-        return !pass.isBlank() && pass.length() >= 4;
+        return !pass.isBlank() && pass.length() >= 6 && (!pass.contains(userName));
     }
 
     public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
         if(!stores.containsKey(storeName))
         {
             throw new Exception("No such store "+ storeName);
+        }
+        if(message.isBlank())
+        {
+            throw new Exception("Illegal message body");
         }
         IStore store = stores.get(storeName);
         User u = getConnectedUserByToken(userToken);
@@ -593,6 +606,15 @@ public class Market {
     }
 
     public void sendComplaint(String userToken, String msg) throws  Exception {
+        if(msg.isBlank())
+        {
+            throw new Exception("Illegal message body");
+        }
+        User user = getConnectedUserByToken(userToken);
+        if(getPurchaseHistory(userToken, user.getUserName()).isEmpty())
+        {
+            throw new Exception("User has no purchase history. Cant send complaint without purchasing any product");
+        }
         for(User u : this.usersByName.values())
         {
             if(u.isAdmin())
@@ -602,7 +624,11 @@ public class Market {
             }
         }
         throw new Exception("This is a bug : No admin was found in the system");
+    }
 
-        //Find admin to send the complaint to
+    public boolean isMemberLoggedOut(String userToken) throws Exception{
+        User u = getConnectedUserByToken(userToken);
+        return !u.getIsLoggedIn();
+
     }
 }

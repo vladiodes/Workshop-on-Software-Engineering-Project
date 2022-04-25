@@ -230,6 +230,9 @@ public class Store implements IStore {
 
     @Override
     public void addReview(StoreReview sReview) {
+        for (StoreReview sr : this.storeReviews)
+            if(sr.getUser().equals(sReview.getUser()))
+                throw new IllegalArgumentException("User already wrote a review.");
         this.storeReviews.add(sReview);
     }
 

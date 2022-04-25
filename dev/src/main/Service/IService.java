@@ -139,17 +139,6 @@ public interface IService {
      */
     Response<Boolean> sendComplaint(String userToken, String msg);
 
-    /**
-     * REQ 2.3.7
-     * @return true/false upon success/failure
-     */
-    Response<Boolean> changePassword(String userToken, String oldPassword, String newPassword);
-
-    /**
-     * REQ 2.3.7
-     * @return true/false upon success/failure
-     */
-    Response<Boolean> changeUsername(String userToken, String newUsername);
 
     /**
      * REQ 2.3.7
@@ -163,7 +152,13 @@ public interface IService {
      * REQ 2.3.8
      * @return true/false upon success/failure
      */
-    boolean updateUserInfo(String userToken, String newUserName, String oldPassword, String newPassword);
+    Response<Boolean> changePassword(String userToken, String oldPassword, String newPassword);
+
+    /**
+     * REQ 2.3.8
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> changeUsername(String userToken, String newUsername);
 
     /**
      * REQ 2.3.9
@@ -352,4 +347,6 @@ public interface IService {
      * REQ 2.6.5
      */
     Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date);
+
+    Response<Boolean> isMemberLoggedOut(String userToken);
 }

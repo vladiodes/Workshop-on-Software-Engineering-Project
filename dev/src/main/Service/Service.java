@@ -282,7 +282,7 @@ public class Service implements IService {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get purchase history, userToken:%s userName:%s",userToken,userName));
         try
         {
-            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken,userName);
+            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken, userName);
             return new Response<>(carts, null);
         }
         catch (IllegalArgumentException e){
@@ -295,10 +295,6 @@ public class Service implements IService {
         }
     }
 
-    @Override
-    public boolean updateUserInfo(String userToken, String newUserName, String oldPassword, String newPassword) {
-        return false;
-    }
 
     @Override
     public Response<Boolean> addSecurityQuestion(String userToken, String question, String answer) {
@@ -688,6 +684,19 @@ public class Service implements IService {
         {
             market.changeUsername(userToken, newUsername);
             return new Response<>(true, null);
+        }
+        catch (Exception e)
+        {
+            return new Response<>(null, e.getMessage());
+        }
+    }
+
+    public Response<Boolean> isMemberLoggedOut(String userToken)
+    {
+        try
+        {
+            boolean res = market.isMemberLoggedOut(userToken);
+            return new Response<>(res, null);
         }
         catch (Exception e)
         {
