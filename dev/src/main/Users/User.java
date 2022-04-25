@@ -2,6 +2,9 @@ package main.Users;
 
 
 import main.NotificationBus;
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Payment.PaymentAdapter;
+import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 
@@ -10,7 +13,11 @@ import main.Stores.IStore;
 import main.Stores.Product;
 
 import main.Stores.Store;
+import main.ExternalServices.Supplying.ISupplying;
+import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.utils.Pair;
+import main.utils.PaymentInformation;
+import main.utils.SupplyingInformation;
 
 
 import java.time.LocalDateTime;
@@ -358,23 +365,21 @@ public class User {
         this.isLoggedIn.set(false);
     }
 
-    public void purchaseCart() throws Exception{
-        ShoppingCart dupCart = deepCopyCart(cart);
-        purchaseHistory.add(dupCart);
-        ConcurrentHashMap<String, ShoppingBasket>  baskets = cart.getBaskets();
-        for(ShoppingBasket sb : baskets.values())
-        {
-            sb.purchaseBasket();
-        }
-        this.cart = new ShoppingCart(); //User's cart is now a new empty cart since the last cart was purchased
-    }
-
-    private ShoppingCart deepCopyCart(ShoppingCart cart) {
-        return new ShoppingCart(cart);
+    public void purchaseCart(NotificationBus bus, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception{
+        Purchase p = new Purchase(pinfo, sinfo, this, this.cart);
+        p.executePurchase(bus);
     }
 
     public List<ShoppingCart> getPurchaseHistory() {
         return this.purchaseHistory;
+    }
+
+    public void resetCart(){
+        this.cart = new ShoppingCart();
+    }
+
+    public void addCartToHistory(ShoppingCart cart){
+        this.purchaseHistory.add(cart);
     }
 
     public void setStoreFounder(IStore IStore) throws Exception

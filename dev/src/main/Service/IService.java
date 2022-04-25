@@ -8,7 +8,9 @@ import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -103,7 +105,7 @@ public interface IService {
      * User has to provide a credit card
      * @return true/false upon success/failure
      */
-    Response<Boolean> purchaseCart(String userToken,String cardNumber, int year, int month, int day, int cvv);
+    Response<Boolean> purchaseCart(String userToken, PaymentInformation pi, SupplyingInformation si);
 
     /**
      * REQ 2.3.2
@@ -141,6 +143,8 @@ public interface IService {
     /**
      * REQ 2.3.7
      * REQ 2.6.3
+     * @param userToken - the user that invokes the action
+     * @param userName - the user to check its history - admin can check for any user, non admin can only check for itself
      */
     Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken,String userName);
 
