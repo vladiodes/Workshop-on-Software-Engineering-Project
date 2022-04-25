@@ -5,7 +5,9 @@ import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.Service.Service;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,8 +64,6 @@ public class AT_Req2_3 {
         //Logout
 
         service.guestDisconnect(loggedOutMember.getResult());
-        service.guestDisconnect(memberToChange1.getResult());
-        service.guestDisconnect(memberToChange2.getResult());
 
         //Stores
         service.openStore(founder1token.getResult(), "MyStore1");
@@ -73,7 +73,7 @@ public class AT_Req2_3 {
         //Others
         service.addProductToCart(memberWithCartToken.getResult(), "MyStore1", "Coca Cola", 2);
         service.addProductToCart(memberBoughtCola.getResult(), "MyStore1", "Coca Cola", 1);
-//        service.purchaseCart(memberBoughtCola.getResult(),"4580000011112222", 23, 7, 5, 777);
+        service.purchaseCart(memberBoughtCola.getResult(),new PaymentInformation(true), new SupplyingInformation(true));
 
 
 
@@ -196,8 +196,9 @@ public class AT_Req2_3 {
         //Member changes to valid userName - success
         Response<Boolean> res = service.changeUsername(memberToChange1.getResult(), "validUsername");
         assertFalse(res.isError_occured());
-        //TODO: check that the username is really changed
-        //TODO: check that the new username is updated in the usersByName
+        service.logout(memberToChange1.getResult());
+        assertFalse(service.login(memberToChange1.getResult(),"validUsername", "12345678").isError_occured());
+
     }
 
     /***
@@ -214,10 +215,10 @@ public class AT_Req2_3 {
         assertTrue(service.changePassword(memberToChange2.getResult(), "12345678","").isError_occured());
 
         //Member changes to valid userName - success
-        Response<Boolean> res = service.changePassword(memberToChange2.getResult(), "12345678","");
+        Response<Boolean> res = service.changePassword(memberToChange2.getResult(), "12345678","12345678new");
         assertFalse(res.isError_occured());
-        //TODO: check that the username is really changed
-        //TODO: check that the new username is updated in the usersByName
+        service.logout(memberToChange2.getResult());
+        assertFalse(service.login(memberToChange2.getResult(),"toChange2", "12345678new" ).isError_occured());
     }
 
 

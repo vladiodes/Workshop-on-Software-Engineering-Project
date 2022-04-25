@@ -575,11 +575,17 @@ public class Market {
         {
             throw new Exception("Invalid user token");
         }
+        if(usersByName.containsKey(newUsername))
+            throw new IllegalArgumentException("User name all ready in use.");
         User u = connectedUsers.get(userToken);
+        if(!u.getIsLoggedIn())
+            throw new IllegalArgumentException("only members can change user name.");
         String oldUsername = u.getUserName();
         u.changeUsername(newUsername);
-        this.usersByName.remove(oldUsername);
-        this.usersByName.put(newUsername, u);
+        if(usersByName.containsKey(oldUsername)) {
+            this.usersByName.remove(oldUsername);
+            this.usersByName.put(newUsername, u);
+        }
     }
 
     private boolean isValidPass(String pass, String userName)
