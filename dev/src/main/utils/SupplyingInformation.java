@@ -1,5 +1,6 @@
 package main.utils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SupplyingInformation {
