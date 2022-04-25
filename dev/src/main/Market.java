@@ -543,6 +543,8 @@ public class Market {
             throw new Exception("Invalid user token");
         }
         User u = connectedUsers.get(userToken);
+        if(!u.getIsLoggedIn())
+            throw new IllegalArgumentException("Only members can write reviews.");
         IStore store = u.getStoreInPurchaseHistory(storeName);
         if(store==null)
         {

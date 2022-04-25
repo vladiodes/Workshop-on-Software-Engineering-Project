@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AT_Req2_3 {
 
-    private Response<String> guest1Token, memberNoCartToken, memberWithCartToken, founder1token, founder2token, loggedOutMember, founder3token, memberBoughtCola, memberToChange1, memberToChange2;
+    private Response<String> guest1Token, memberNoCartToken, memberWithCartToken, founder1token, founder2token, loggedOutMember, founder3token, memberBoughtCola, memberToChange1, memberToChange2, bloggerMember;
     private IService service = new Service();
-
+    String longString;
 
     //===========================================Setup========================================
 
@@ -29,6 +29,11 @@ public class AT_Req2_3 {
     @Before
     public void setUp()
     {
+        longString = "";
+        for(int i=0; i< 502; i++)
+        {
+            longString = longString + "a";
+        }
         service = new Service();
         guest1Token = service.guestConnect();
         memberNoCartToken = service.guestConnect();
@@ -40,6 +45,7 @@ public class AT_Req2_3 {
         memberBoughtCola = service.guestConnect();
         memberToChange1 = service.guestConnect();
         memberToChange2 = service.guestConnect();
+        bloggerMember = service.guestConnect();
 
 
         //Register
@@ -52,6 +58,7 @@ public class AT_Req2_3 {
         service.register("boughtCola", "12345678");
         service.register("toChange1", "12345678");
         service.register("toChange2", "12345678");
+        service.register("ViralBlogger", "12345678");
 
         //Login
         service.login(memberNoCartToken.getResult(), "memberNoCart", "12345678");
@@ -60,6 +67,7 @@ public class AT_Req2_3 {
         service.login(founder2token.getResult(), "founder2", "12345678");
         service.login(founder3token.getResult(), "founder3", "12345678");
         service.login(memberBoughtCola.getResult(), "boughtCola", "12345678");
+        service.login(bloggerMember.getResult(), "ViralBlogger", "12345678");
 
         //Logout
 
@@ -136,12 +144,6 @@ public class AT_Req2_3 {
     @Test
     public void testProductReview()
     {
-
-        String longString  = "";
-        for(int i=0; i< 502; i++)
-        {
-            longString = longString + "a";
-        }
         //Member write 500+ character review
         assertTrue(service.writeProductReview(memberBoughtCola.getResult(),"Coca Cola", "MyStore1",longString, 5).isError_occured());
         //Member Writes product review on product he didnt buy - fail
@@ -156,7 +158,16 @@ public class AT_Req2_3 {
     @Test
     public void testStoreReview()
     {
-
+        //guest can't write a review.
+        assertTrue(service.writeStoreReview(guest1Token.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
+        //only someone who bought from the store can write a review.
+        assertTrue(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
+        service.addProductToCart(bloggerMember.getResult(), "MyStore1", "Coca Cola", 1);
+        service.purchaseCart(bloggerMember.getResult(),new PaymentInformation(true), new SupplyingInformation(true));
+        assertTrue(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", -2).isError_occured());
+        assertFalse(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
+        //same user can't write a review twice to the same store.
+        assertTrue(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
 
     }
 
