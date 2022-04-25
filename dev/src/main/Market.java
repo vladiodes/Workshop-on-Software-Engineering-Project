@@ -97,18 +97,30 @@ public class Market {
         {
             SystemStats systemStats = this.systemStatsByDate.get(date);
             switch (type) {
-                case Register -> systemStats.addRegister();
-                case Login -> systemStats.addLogIn();
-                case Purchase -> systemStats.addPurchase();
+                case Register:
+                    systemStats.addRegister();
+                    break;
+                case Login:
+                    systemStats.addLogIn();
+                    break;
+                case Purchase :
+                    systemStats.addPurchase();
+                    break;
             }
         }
         else
         {
             SystemStats newSystemStats = new SystemStats(date);
             switch (type) {
-                case Register -> newSystemStats.addRegister();
-                case Login -> newSystemStats.addLogIn();
-                case Purchase -> newSystemStats.addPurchase();
+                case Register:
+                    newSystemStats.addRegister();
+                    break;
+                case Login:
+                    newSystemStats.addLogIn();
+                    break;
+                case Purchase:
+                    newSystemStats.addPurchase();
+                    break;
             }
             this.systemStatsByDate.put(date, newSystemStats);
         }
@@ -433,6 +445,8 @@ public class Market {
         User admin = new User(true, adminUserName, adminHashPassword);
         usersByName.put("admin", admin);
         bus.register(admin);
+        Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUserName));
+        addStats(StatsType.Register);
     }
 
 

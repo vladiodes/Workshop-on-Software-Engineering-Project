@@ -49,6 +49,7 @@ public class Store implements IStore {
 
     public Store(String storeName, User founder) {
         this.owners = new ConcurrentLinkedQueue<>();
+
         this.managers = new ConcurrentLinkedQueue<>();
         this.productsByName = new ConcurrentHashMap<>();
         isActive = true;
