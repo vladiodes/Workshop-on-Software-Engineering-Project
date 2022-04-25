@@ -4,7 +4,9 @@ import main.DTO.ShoppingCartDTO;
 import main.DTO.UserDTO;
 import main.Service.IService;
 import main.Service.Service;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -96,5 +98,17 @@ public class AT_Req_Constraints {
         Response<Boolean> res = service.addProductToStore(founder1token.getResult(),"Bamba","Snacks",null,"nice snack","MyStore1",20,22);
         Response<Boolean> res2 = service.addProductToCart(user1token.getResult(),"MyStore1","Bamba",21);
         assertTrue(res2.isError_occured());
+    }
+    /*
+    Truth Constraint number 10.2
+     */
+    @Test
+    public void checkPurchaseWithBadSupplyAndPayment() {
+        SupplyingInformation si  = new SupplyingInformation(false);
+        PaymentInformation pi = new PaymentInformation(false);
+        Response<Boolean> res = service.addProductToStore(founder1token.getResult(),"Bamba","Snacks",null,"nice snack","MyStore1",20,22);
+        Response<Boolean> res2 = service.addProductToCart(user1token.getResult(),"MyStore1","Bamba",5);
+        Response<Boolean> res3 = service.purchaseCart(user1token.getResult(),pi,si);
+        assertTrue(res3.isError_occured());
     }
 }
