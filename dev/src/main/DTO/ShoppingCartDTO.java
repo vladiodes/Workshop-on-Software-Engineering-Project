@@ -16,4 +16,8 @@ public class ShoppingCartDTO {
             baskets.put(kv.getKey(), new ShoppingBasketDTO(kv.getValue()));
         }
     }
+
+    public HashMap<String, ShoppingBasketDTO> getBaskets() {
+        return baskets;
+    }
 }

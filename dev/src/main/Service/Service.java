@@ -40,7 +40,7 @@ public class Service implements IService {
     @Override
 
     public Response<String> guestConnect() {
-        return new Response<>(market.ConnectGuest(), null);
+        return new Response<>(market.ConnectGuest());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Service implements IService {
             User r = market.DisconnectGuest(userToken);
             return new Response<>(new UserDTO(r), null);
         } catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -57,18 +57,26 @@ public class Service implements IService {
     public Response<Boolean> register(String userName, String password) {
         try {
             market.Register(userName, password);
-            return new Response<>(true, null);
-        } catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(true);
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        }
+        catch (Exception e) {
+            return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<UserDTO> login(String token, String userName, String password) {
         try {
-            return new Response<>(new UserDTO(market.Login(token, userName, password)), null);
-        } catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(new UserDTO(market.Login(token, userName, password)));
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        }
+        catch (Exception e) {
+            return new Response<>(e, false);
         }
     }
 
@@ -77,31 +85,39 @@ public class Service implements IService {
         try
         {
             market.logout(token);
-            return new Response<>(true, null);
+            return new Response<>(true);
         }
-        catch(Exception e)
-        {
-            return new Response<>(null, e.getMessage());
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        }
+        catch(Exception e){
+            return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<StoreDTO> getStoreInfo(String storeName) {
         try {
-            return new Response<>(new StoreDTO(market.getStoreByName(storeName)),null);
+            return new Response<>(new StoreDTO(market.getStoreByName(storeName)));
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
         }
         catch (Exception e){
-            return new Response<>(null, e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<List<String>> getSmilliarStores(String storeName) {
         try {
-            return new Response<>(market.getStoresByString(storeName), null);
+            return new Response<>(market.getStoresByString(storeName));
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
         }
         catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -111,10 +127,13 @@ public class Service implements IService {
             List<ProductDTO> res = new LinkedList<>();
             for (Product p : market.getStoreProducts(storeName))
                 res.add(new ProductDTO(p));
-            return new Response<>(res, null);
+            return new Response<>(res);
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
         }
         catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -124,19 +143,26 @@ public class Service implements IService {
             List<ProductDTO> res = new LinkedList<>();
             for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
                 res.add(new ProductDTO(p));
-            return new Response<>(res, null);
+            return new Response<>(res);
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
         }
         catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity) {
         try {
-            return new Response<>(market.addProductToCart(userToken, storeName, productName, quantity), null);
-        } catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(market.addProductToCart(userToken, storeName, productName, quantity));
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        }
+        catch (Exception e) {
+            return new Response<>(e, false);
         }
     }
 
@@ -144,8 +170,12 @@ public class Service implements IService {
     public Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
         try {
             return new Response<>(market.RemoveProductFromCart(userToken, storeName, productName, quantity), null);
-        } catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        }
+        catch (Exception e) {
+            return new Response<>(e, false);
         }
     }
 
@@ -153,8 +183,12 @@ public class Service implements IService {
     public Response<ShoppingCartDTO> getCartInfo(String userToken) {
         try {
             return new Response<>(new ShoppingCartDTO(market.getUserCart(userToken)), null);
-        } catch (Exception e) {
-            return new Response<>(null, e.getMessage());
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        }
+        catch (Exception e) {
+            return new Response<>(e, false);
         }
     }
 
@@ -163,11 +197,14 @@ public class Service implements IService {
         try
         {
             market.purchaseCart(userToken, pi, si);
-            return new Response<>(true, null);
+            return new Response<>(true);
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
         }
         catch(Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            return new Response<>(e, false);
         }
 
     }
