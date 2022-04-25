@@ -505,7 +505,7 @@ public class Market {
         addStats(StatsType.Purchase);
     }
 
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
+    public List<ShoppingCartDTO> getPurchaseHistory(String userToken, String userName) throws Exception{
         if(!connectedUsers.containsKey(userToken))
         {
             throw new Exception("Invalid user token");
@@ -515,6 +515,11 @@ public class Market {
         {
             throw new Exception("User is not logged in");
         }
+        if(!(u.isAdmin() || u.getUserName().equals(userName)))
+            throw new IllegalArgumentException("No permission to ask for that purchase history.");
+        User uToReturn = usersByName.get(userName);
+        if(uToReturn == null)
+            throw new IllegalArgumentException("User doesn't exist.");
         List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
         List<ShoppingCartDTO> scDTO = new LinkedList<>();
         for(ShoppingCart sc : purchaseHistory)
