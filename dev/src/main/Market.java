@@ -97,30 +97,18 @@ public class Market {
         {
             SystemStats systemStats = this.systemStatsByDate.get(date);
             switch (type) {
-                case Register:
-                    systemStats.addRegister();
-                    break;
-                case Login:
-                    systemStats.addLogIn();
-                    break;
-                case Purchase :
-                    systemStats.addPurchase();
-                    break;
+                case Register -> systemStats.addRegister();
+                case Login -> systemStats.addLogIn();
+                case Purchase -> systemStats.addPurchase();
             }
         }
         else
         {
             SystemStats newSystemStats = new SystemStats(date);
             switch (type) {
-                case Register:
-                    newSystemStats.addRegister();
-                    break;
-                case Login:
-                    newSystemStats.addLogIn();
-                    break;
-                case Purchase:
-                    newSystemStats.addPurchase();
-                    break;
+                case Register -> newSystemStats.addRegister();
+                case Login -> newSystemStats.addLogIn();
+                case Purchase -> newSystemStats.addPurchase();
             }
             this.systemStatsByDate.put(date, newSystemStats);
         }
