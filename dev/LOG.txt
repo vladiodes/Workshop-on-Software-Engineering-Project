@@ -1370,3 +1370,45 @@
 [EVENT] - admin logged in. in class: Market
 [EVENT] - New guest connected Guest78c1e8d5-151b-4816-bd7b-d7ab81075864. in class: Market
 [EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guest788baece-867a-4a7e-8d83-e1266f477ff9. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guest3644be2c-37b6-4826-a4d7-9ec01c9b809c. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guestf80845b0-925f-41ab-be3e-6e82aebe945f. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Gueste6e916aa-40bc-449a-9d0c-dbddc262a003. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guest2508d2d2-af92-4521-b43a-7a233ed4c4d3. in class: Market
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Gueste2c214d9-d46d-4702-9b82-496824401bd4. in class: Market
+[EVENT] - New guest connected Guest5b797c2e-a64a-42b8-91ca-bd48e4f25756. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - Add product to store invoked with parameters: token: 5b797c2e-a64a-42b8-91ca-bd48e4f25756 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guest9bb4b224-dac6-4d6b-91b4-843bd184d8b9. in class: Market
+[EVENT] - New guest connected Guest5e5ffb2e-c1cc-4172-a480-5c14c4299096. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - Add product to store invoked with parameters: token: 5e5ffb2e-c1cc-4172-a480-5c14c4299096 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Guested8e7d99-5c27-47ea-b80d-c39c59133a88. in class: Market
+[EVENT] - New guest connected Guest14fff680-da6a-42cf-a530-d81a3cdafde0. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - Add product to store invoked with parameters: token: 14fff680-da6a-42cf-a530-d81a3cdafde0 productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - admin logged in. in class: Market
+[EVENT] - User admin executed a purchase. in class: Purchase
+[EVENT] - New guest connected Guestb23cd610-2414-429e-a207-0109043b2175. in class: Market
+[EVENT] - New guest connected Guest0f65b424-f725-4feb-b63e-782d6b7368bb. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - Add product to store invoked with parameters: token: 0f65b424-f725-4feb-b63e-782d6b7368bb productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - admin logged in. in class: Market
+[EVENT] - New guest connected Gueste5534135-90e9-40e2-a25d-8cf843cbf984. in class: Market
+[EVENT] - New guest connected Guest282fb3fb-4cc4-44c9-97e1-8e7d93ff5cbd. in class: Market
+[EVENT] - New user registered with username: founder1 in class: Market
+[EVENT] - founder1 logged in. in class: Market
+[EVENT] - Add product to store invoked with parameters: token: 282fb3fb-4cc4-44c9-97e1-8e7d93ff5cbd productName:Coca Cola storeName:MyStore1 in class: Service
+[EVENT] - admin logged in. in class: Market
+[EVENT] - User admin executed a purchase. in class: Purchase

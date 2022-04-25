@@ -21,13 +21,20 @@ public class AT_Req_1_1 {
     Response<String> adminToken;
     PaymentInformation pInfo;
     SupplyingInformation sInfo;
+    Response<String> founder1token;
 
     @Before
     public void setUp() {
         service = new Service();
         adminToken = service.guestConnect();
-        pInfo = new PaymentInformation("5236045598761023",2025,6,28,520,"admin","admin@gmail.com");
-        sInfo = new SupplyingInformation("Kfar Saba", LocalDateTime.now());
+        pInfo = new PaymentInformation(true);
+        sInfo = new SupplyingInformation(true);
+        founder1token = service.guestConnect();
+        service.register("founder1", "12345678");
+        service.login(founder1token.getResult(), "founder1", "12345678");
+        service.openStore(founder1token.getResult(), "MyStore1");
+        service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6);
+
 
     }
     /*
@@ -41,7 +48,7 @@ public class AT_Req_1_1 {
     @Test
     public void checkPaymentAndSupplySystemsAreAccesible() {
         Response<UserDTO> resLogin = service.login(adminToken.getResult(),"admin","admin");
-
+        Response<Boolean> resAddToCart = service.addProductToCart(adminToken.getResult(),"MyStore1","Coca Cola", 5);
         Response<Boolean> resPurchase = service.purchaseCart(adminToken.getResult(),pInfo,sInfo);
         assertTrue(resPurchase.isError_occured() == false);
     }
