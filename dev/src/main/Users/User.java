@@ -513,4 +513,8 @@ public class User {
         this.userName = newUsername;
 
     }
+
+    public List<Pair<String, String>> getSecurityQNA() {
+        return securityQNA;
+    }
 }
