@@ -505,14 +505,6 @@ public class Market {
         addStats(StatsType.Purchase);
     }
 
-    public List<ShoppingCartDTO> getPurchaseHistory(String userToken,String userName){
-        User invoking_user = connectedUsers.get(userToken);
-        User user_to_check = usersByName.get(userName);
-        if(invoking_user == null || user_to_check ==null)
-            throw new IllegalArgumentException("No such user in the system");
-        if(!(invoking_user.isAdmin() || invoking_user==user_to_check))
-            throw new IllegalArgumentException("You don't have permission to do that");
-        List<ShoppingCart> purchaseHistory = user_to_check.getPurchaseHistory();
     public List<ShoppingCartDTO> getPurchaseHistory(String userToken) throws Exception{
         if(!connectedUsers.containsKey(userToken))
         {

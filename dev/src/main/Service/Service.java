@@ -282,7 +282,7 @@ public class Service implements IService {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get purchase history, userToken:%s userName:%s",userToken,userName));
         try
         {
-            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken,userName);
+            List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken);
             return new Response<>(carts, null);
         }
         catch (IllegalArgumentException e){

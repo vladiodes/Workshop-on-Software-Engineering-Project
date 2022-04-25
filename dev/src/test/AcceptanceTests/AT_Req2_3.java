@@ -73,7 +73,7 @@ public class AT_Req2_3 {
         //Others
         service.addProductToCart(memberWithCartToken.getResult(), "MyStore1", "Coca Cola", 2);
         service.addProductToCart(memberBoughtCola.getResult(), "MyStore1", "Coca Cola", 1);
-        service.purchaseCart(memberBoughtCola.getResult(),"4580000011112222", 23, 7, 5, 777);
+//        service.purchaseCart(memberBoughtCola.getResult(),"4580000011112222", 23, 7, 5, 777);
 
 
 
