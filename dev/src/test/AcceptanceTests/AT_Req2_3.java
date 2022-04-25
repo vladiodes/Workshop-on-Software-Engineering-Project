@@ -171,6 +171,34 @@ public class AT_Req2_3 {
 
     }
 
+    /***
+     * use case: sendQuestionsToStore req 3.5 :
+     */
+    @Test
+    public void testSendQuestionsToStore()
+    {
+        //Invalid message content - fail
+        assertTrue(service.sendQuestionsToStore(memberWithCartToken.getResult(),"MyStore1", "").isError_occured());
+        //Store doesnt exist - fail
+        assertTrue(service.sendQuestionsToStore(memberWithCartToken.getResult(),"NoSuchStore", "Such a great and valid message").isError_occured());
+        //Sends to store - success
+        assertFalse(service.sendQuestionsToStore(memberWithCartToken.getResult(),"MyStore1", "Such a great and valid message").isError_occured());
+    }
+
+    /***
+     * use case: sendComplaintToAdmin req 3.6 :
+     */
+    @Test
+    public void testSendComplaint()
+    {
+        //Invalid message - fail
+        assertTrue(service.sendComplaint(memberBoughtCola.getResult(),"").isError_occured());
+        //No purchase history - fail
+        assertTrue(service.sendComplaint(memberNoCartToken.getResult(), "This is wrong dammit!").isError_occured());
+        //Sends complaint to admin - success
+        assertFalse(service.sendComplaint(memberBoughtCola.getResult(), "This is wrong dammit!").isError_occured());
+    }
+
 
     /***
      * use case: purchaseHistory req 3.7 :
@@ -232,12 +260,22 @@ public class AT_Req2_3 {
         assertFalse(service.login(memberToChange2.getResult(),"toChange2", "12345678new" ).isError_occured());
     }
 
+    /***
+     * use case: addSecurityQuestion req 3.9 :
+     */
+    @Test
+    public void testAddSecurityQuestion()
+    {
+        //Empty answer / question - fail
+        assertTrue(service.addSecurityQuestion(memberNoCartToken.getResult(), "", "Answer").isError_occured());
+        assertTrue(service.addSecurityQuestion(memberNoCartToken.getResult(), "Quesion", "").isError_occured());
 
+        //Guest tries to add security question - fail
+        assertTrue(service.addSecurityQuestion(guest1Token.getResult(),"Question", "Answer").isError_occured());
 
-
-
-
-
+        //Sends non empty question and answer - success
+        assertFalse(service.addSecurityQuestion(memberNoCartToken.getResult(), "Question", "Answer").isError_occured());
+    }
 
 
 
