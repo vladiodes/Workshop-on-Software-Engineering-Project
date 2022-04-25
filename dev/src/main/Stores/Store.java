@@ -223,7 +223,7 @@ public class Store implements IStore {
     }
 
     private void notifyPurchase(NotificationBus bus) {
-        for (User manager: getManagersOfStore())
+        for (User manager: getOwnersOfStore())
             bus.addMessage(manager, "Product/s were bought from your store!");
     }
 
@@ -239,7 +239,7 @@ public class Store implements IStore {
      */
     @Override
     public boolean ValidateProduct(Product product, Integer amount) {
-        return this.getIsActive() && product.getQuantity() == amount;
+        return this.getIsActive() && product.getQuantity() >= amount;
     }
 
     private void purchaseProduct(Product product, Integer quantity) throws Exception {

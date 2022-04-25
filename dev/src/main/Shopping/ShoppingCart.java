@@ -122,8 +122,15 @@ public class ShoppingCart {
         return res;
     }
 
+    public int getAmountOfProducts(){
+        int res = 0;
+        for(ShoppingBasket basket : this.baskets.values())
+            res+=basket.getAmountOfProducts();
+        return res;
+    }
+
     public boolean ValidateCart() {
-        boolean res = true;
+        boolean res = getAmountOfProducts() > 0;
         for(ShoppingBasket basket : this.baskets.values())
             res &= basket.ValidateBasket();
         return res;

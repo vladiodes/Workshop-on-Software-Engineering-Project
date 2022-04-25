@@ -10,12 +10,12 @@ public class SupplyingAdapter implements ISupplying {
 
     @Override
     public boolean bookDelivery(SupplyingInformation si) {
-        return true;
+        return si.getOutput();
     }
 
     @Override
     public boolean supply(SupplyingInformation si, HashMap<Product, Integer> productToSupply) {
-        return true;
+        return si.getOutput();
     }
 
     @Override

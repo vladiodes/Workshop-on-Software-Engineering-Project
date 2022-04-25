@@ -4,6 +4,7 @@ package main.Users;
 import main.NotificationBus;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Payment.PaymentAdapter;
+import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 
@@ -365,41 +366,20 @@ public class User {
     }
 
     public void purchaseCart(NotificationBus bus, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception{
-        IPayment payment = new PaymentAdapter();
-        ISupplying supplier = new SupplyingAdapter();
-        if (!this.cart.ValidateCart())
-            throw new Exception("Cart is unpurchasable.");
-        if (!payment.validateCard(pinfo))
-            throw new Exception("Payment authentication failed.");
-        if (!supplier.bookDelivery(sinfo))
-            throw new Exception("Supplier authentication failed");
-        if (!(payment.makePayment(pinfo, this.cart.getPrice()) && supplier.supply(sinfo, this.cart.getProducts())))
-        {
-            payment.abort(pinfo);
-            supplier.abort(sinfo);
-            throw new Exception("Unexpected purchase error, aborting.");
-        }
-
-        executePurchase(bus);
-    }
-
-    private void executePurchase(NotificationBus bus) throws Exception {
-        ShoppingCart dupCart = deepCopyCart(cart);
-        purchaseHistory.add(dupCart);
-        ConcurrentHashMap<String, ShoppingBasket>  baskets = cart.getBaskets();
-        for(ShoppingBasket sb : baskets.values())
-        {
-            sb.purchaseBasket(bus);
-        }
-        this.cart = new ShoppingCart(); //User's cart is now a new empty cart since the last cart was purchased
-    }
-
-    private ShoppingCart deepCopyCart(ShoppingCart cart) {
-        return new ShoppingCart(cart);
+        Purchase p = new Purchase(pinfo, sinfo, this, this.cart);
+        p.executePurchase(bus);
     }
 
     public List<ShoppingCart> getPurchaseHistory() {
         return this.purchaseHistory;
+    }
+
+    public void resetCart(){
+        this.cart = new ShoppingCart();
+    }
+
+    public void addCartToHistory(ShoppingCart cart){
+        this.purchaseHistory.add(cart);
     }
 
     public void setStoreFounder(IStore IStore) throws Exception
