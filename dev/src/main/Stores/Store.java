@@ -222,7 +222,7 @@ public class Store implements IStore {
     }
 
     private void notifyPurchase(NotificationBus bus) {
-        for (User manager: getManagersOfStore())
+        for (User manager: getOwnersOfStore())
             bus.addMessage(manager, "Product/s were bought from your store!");
     }
 

@@ -23,24 +23,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ATuser2Requirements {
 
-    Response<String> manager1token, founder1token,user1token;
+    Response<String> founder1token,user1token, owner1token;
     IService service = new Service();
     @Before
     public void setUp(){
-        manager1token = service.guestConnect();
         founder1token = service.guestConnect();
         user1token = service.guestConnect();
+        owner1token = service.guestConnect();
 
         service.register("manager1", "12345678");
         service.register("founder1", "12345678");
         service.register("user1", "12345678");
-
-        service.login(manager1token.getResult(), "manager1", "12345678");
+        service.register("owner1", "12345678");
         service.login(founder1token.getResult(), "founder1", "12345678");
         service.login(user1token.getResult(), "user1", "12345678");
+        service.login(owner1token.getResult(), "owner1", "12345678");
 
         service.openStore(founder1token.getResult(), "MyStore1");
-        service.appointStoreManager(founder1token.getResult(), "manager1", "MyStore1");
+        service.appointStoreOwner(founder1token.getResult(), "owner1", "MyStore1");
         service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6);
 
     }
@@ -128,10 +128,10 @@ public class ATuser2Requirements {
         Response<ShoppingCartDTO> cartR = service.getCartInfo(user1token.getResult());
         assertEquals(0, cartR.getResult().getBaskets().size());
         assertEquals(service.getPurchaseHistory(user1token.getResult(), "user1").getResult().size(),1);
-        assertEquals(1, service.receiveMessages(manager1token.getResult()).getResult().size());
+        assertEquals(1, service.receiveMessages(owner1token.getResult()).getResult().size());
     }
     /***
-     * use case: purchasing a cart with failed payment or delivety req 2.5:
+     * use case: purchasing a cart with failed payment or delivery req 2.5:
      */
     @Test
     public void PurchaseCartScenarioBadPaymentOrDelivery(){
