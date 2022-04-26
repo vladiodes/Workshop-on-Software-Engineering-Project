@@ -12,25 +12,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ShoppingBasket {
     private ConcurrentHashMap<Product,Integer> productsQuantity;
     private IStore store;
-    private ShoppingCart cart;
     private final Object basketEditLock = new Object();
 
-    public ShoppingBasket(IStore store, ShoppingCart cart){
-        this.cart = cart;
+    public ShoppingBasket(IStore store){
         this.store = store;
         productsQuantity=new ConcurrentHashMap<>();
     }
-
-
-    /*
-        ConcurrentHashMap<String, ShoppingBasket> oldBaskets = oldCart.getBaskets();
-        ConcurrentHashMap<String, ShoppingBasket> newBaskets = new ConcurrentHashMap<>();
-
-        for(HashMap.Entry<String , ShoppingBasket> element : oldBaskets.entrySet())
-        {
-            newBaskets.put(element.getKey(), new ShoppingBasket(element.getValue()));
-        }
-        this.baskets = newBaskets;*/
 
     public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
     {
@@ -42,7 +29,6 @@ public class ShoppingBasket {
             newProductsQuantity.put(new Product(element.getKey()), element.getValue());
         }
 
-        this.cart = oldShoppingBasket.cart;
         this.store = oldShoppingBasket.store;
         this.productsQuantity = newProductsQuantity;
     }
@@ -61,14 +47,16 @@ public class ShoppingBasket {
             productsQuantity.remove(prod);
         else
             productsQuantity.put(prod, newValue);
-        return newValue;
+        return Math.max(0, newValue);
     }
 
-    public synchronized boolean AddProduct (String prodName, int quantity) {
+    public boolean AddProduct (String prodName, int quantity) {
         synchronized (basketEditLock) {
             Product prodToAdd = this.store.getProduct(prodName);
             if (prodToAdd == null)
                 throw new IllegalArgumentException(String.format("Product %s doesn't exist in the store.", prodName));
+            if (quantity <= 0)
+                throw new IllegalArgumentException("Can't add negative number of product.");
             if (!store.ValidateProduct(prodToAdd, quantity))
                 throw new IllegalArgumentException(String.format("Product %s isnt available.", prodName));
             for (Product pr : productsQuantity.keySet())
@@ -81,8 +69,10 @@ public class ShoppingBasket {
         }
     }
 
-    public synchronized  int RemoveProduct(String productName, int quantity) {
+    public int RemoveProduct(String productName, int quantity) {
         synchronized (basketEditLock) {
+            if(quantity <= 0)
+                throw new IllegalArgumentException("Cant remove negative number");
             return setProductQuantity(productName, quantity * -1);
         }
     }
@@ -99,15 +89,15 @@ public class ShoppingBasket {
         return store;
     }
 
-    public void purchaseBasket(NotificationBus bus) throws Exception
+    public void purchaseBasket(NotificationBus bus)
     {
         store.purchaseBasket(bus, this);
     }
 
     public double getPrice() {
         double res = 0;
-        for (Product pr : productsQuantity.keySet())
-            res += pr.getPrice();
+        for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
+            res += en.getKey().getPrice() * en.getValue();
         return res;
     }
 

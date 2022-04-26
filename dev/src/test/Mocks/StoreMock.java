@@ -127,7 +127,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void purchaseBasket(NotificationBus bus, ShoppingBasket bask) throws Exception {
+    public void purchaseBasket(NotificationBus bus, ShoppingBasket bask){
 
     }
 

@@ -216,7 +216,7 @@ public class Store implements IStore {
     }
 
     @Override
-    public void purchaseBasket(NotificationBus bus,ShoppingBasket bask) throws Exception {
+    public void purchaseBasket(NotificationBus bus,ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
             purchaseProduct(en.getKey(), en.getValue());
         this.purchaseHistory.put(bask,LocalDateTime.now());
@@ -246,9 +246,9 @@ public class Store implements IStore {
         return this.getIsActive() && product.getQuantity() >= amount;
     }
 
-    private void purchaseProduct(Product product, Integer quantity) throws Exception {
+    private void purchaseProduct(Product product, Integer quantity) {
         if (product.getQuantity() < quantity) {
-            throw new Exception("Not enough products in stock");
+            throw new IllegalArgumentException("Not enough products in stock");
         }
         if (product.getQuantity() == quantity) {
             removeProduct(product.getName());

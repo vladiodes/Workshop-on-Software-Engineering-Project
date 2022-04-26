@@ -77,7 +77,7 @@ public class Product {
         return quantity;
     }
 
-    public void subtractQuantity(Integer quantity) throws Exception
+    public void subtractQuantity(Integer quantity)
     {
         if(quantity>this.quantity)
         {
