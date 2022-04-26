@@ -33,6 +33,22 @@ class UserTest {
     }
 
     @Test
+    void addSecurityQuestionFail()
+    {
+        assertTrue(user.getSecurityQNA().isEmpty());
+        assertThrows(Exception.class, ()->user.addSecurityQuestion("Question?", ""));
+        assertThrows(Exception.class, ()->user.addSecurityQuestion("", "Answer!"));
+        assertTrue(user.getSecurityQNA().isEmpty());
+    }
+    @Test
+    void addSecurityQuestion()
+    {
+        assertTrue(user.getSecurityQNA().isEmpty());
+        assertDoesNotThrow(()->user.addSecurityQuestion("Question?", "Answer!"));
+        assertFalse(user.getSecurityQNA().isEmpty());
+    }
+
+    @Test
     void checkLogin(){
         assertFalse(user.getIsLoggedIn());
         user.LogIn();

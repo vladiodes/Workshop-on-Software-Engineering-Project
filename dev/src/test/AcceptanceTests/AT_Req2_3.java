@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -275,6 +276,35 @@ public class AT_Req2_3 {
 
         //Sends non empty question and answer - success
         assertFalse(service.addSecurityQuestion(memberNoCartToken.getResult(), "Question", "Answer").isError_occured());
+    }
+
+    /**
+     * Concurrency Add store with the same name by 2 users
+     */
+    @Test
+    public void concurrentAddStoreWithSameName() throws InterruptedException {
+        AtomicInteger counter = new AtomicInteger(0);
+        Runnable founder1AddStore = () -> {
+            Response<Boolean> resp = service.openStore(founder1token.getResult(), "SpecialStore");
+            if (!resp.isError_occured())
+                counter.incrementAndGet();
+        };
+
+        Runnable founder2AddStore = () -> {
+            Response<Boolean> resp = service.openStore(founder2token.getResult(), "SpecialStore");
+            if (!resp.isError_occured())
+                counter.incrementAndGet();
+        };
+
+        Thread founder1AddStoreThread = new Thread(founder1AddStore);
+        Thread founder2AddStoreThread = new Thread(founder2AddStore);
+
+        founder1AddStoreThread.start();
+        founder2AddStoreThread.start();
+
+        founder1AddStoreThread.join();
+        founder2AddStoreThread.join();
+        assertEquals(1, counter.get());
     }
 
 
