@@ -53,10 +53,9 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void addProduct() {
-        // this test fails because getStoreProducts isn't implemented yet
         int size = service.getStoreProducts("MyStore1").getResult().size();
         assertTrue(service.addProductToStore(founder1token.getResult(), "Pepsi Cola", "Drinks", null, "less tasty drink", "MyStore1", 50, 5).getResult());
-        assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size + 1);
+        assertEquals(size + 1, service.getStoreProducts("MyStore1").getResult().size());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         boolean searchFlag = false;
         for (ProductDTO product : MyStore1Products)
@@ -69,14 +68,13 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void addProductTwice() {
-        // this test fails because service.getStoreProducts wasn't implemented yet!
         assertTrue(service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6).isWas_expected_error());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         int counter = 0;
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
                 counter++;
-        assertEquals(counter, 1);
+        assertEquals(1, counter);
     }
 
     /***
@@ -84,10 +82,9 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void notManagerAddProduct() {
-        // this test fails because service.getStoreProducts wasn't implemented yet!
         int size = service.getStoreProducts("MyStore1").getResult().size();
         assertTrue(service.updateProduct(user1token.getResult(), "Crystal Cola", "Crystal Cola", "Drinks", null, "ew", "MyStore1", 100, 6).isWas_expected_error());
-        assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size);
+        assertEquals(size, service.getStoreProducts("MyStore1").getResult().size());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         boolean searchFlag = false;
         for (ProductDTO product : MyStore1Products)
@@ -100,12 +97,11 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void updateProductInfo() {
-        // this test fails because service.getStoreProducts wasn't implemented yet!
         assertTrue(service.updateProduct(founder1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6).getResult());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
-                assertEquals(product.getDescription(), "very tasty drink");
+                assertEquals("very tasty drink", product.getDescription());
     }
 
     /***
@@ -113,7 +109,6 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void notManagerUpdateProductInfo() {
-        // this test fails because service.getStoreProducts wasn't implemented yet!
         assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "bad drink", "MyStore1", 100, 6).isWas_expected_error());
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
@@ -126,10 +121,9 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void removeProduct() {
-        // this test fails because service.getStoreProducts wasn't implemented yet!
         int size = service.getStoreProducts("MyStore1").getResult().size();
         assertTrue(service.removeProductFromStore(founder1token.getResult(), "Coca Cola", "MyStore1").getResult());
-        assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size - 1);
+        assertEquals(size - 1, service.getStoreProducts("MyStore1").getResult().size());
     }
 
     /***
@@ -146,7 +140,6 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void notManagerRemoveProduct() {
-        // this test fails because service.getStoreProducts wasn't implemented yet!
         int size = service.getStoreProducts("MyStore1").getResult().size();
         assertTrue(service.removeProductFromStore(user1token.getResult(), "Coca Cola", "MyStore1").isWas_expected_error());
         assertEquals(service.getStoreProducts("MyStore1").getResult().size(), size);
@@ -339,7 +332,7 @@ public class AT_Req2_4_Req2_5 {
         assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").getResult());
         StoreDTO store = service.getStoreInfo("MyStore1").getResult();
         assertFalse(store.getIsActive());
-        assertEquals(service.receiveMessages(manager1token.getResult()).getResult().size(), messagesSize + 1);
+        assertEquals(messagesSize + 1, service.receiveMessages(manager1token.getResult()).getResult().size());
     }
 
     /***
@@ -379,7 +372,7 @@ public class AT_Req2_4_Req2_5 {
         assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").getResult());
         StoreDTO store = service.getStoreInfo("MyStore1").getResult();
         assertTrue(store.getIsActive());
-        assertEquals(service.receiveMessages(manager1token.getResult()).getResult().size(), messagesSize + 2);
+        assertEquals(messagesSize + 2, service.receiveMessages(manager1token.getResult()).getResult().size());
     }
 
     /***
@@ -449,7 +442,7 @@ public class AT_Req2_4_Req2_5 {
         List<ProductDTO> MyStore1Products = service.getStoreProducts("MyStore1").getResult();
         for (ProductDTO product : MyStore1Products)
             if (product.getProductName().equals("Coca Cola"))
-                assertEquals(product.getDescription(), "very tasty drink");
+                assertEquals("very tasty drink", product.getDescription());
 
         assertTrue(service.disAllowManagerUpdateProducts(owner1token.getResult(), "user1", "MyStore1").getResult());
         assertTrue(service.updateProduct(user1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6).isWas_expected_error());
