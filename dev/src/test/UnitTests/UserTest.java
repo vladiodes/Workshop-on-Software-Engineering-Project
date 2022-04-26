@@ -364,7 +364,7 @@ class UserTest {
 
     @Test
     void removeUserAdmin(){
-        assertTrue(admin.deleteUser(user));
+        assertNotNull(admin.deleteUser(user));
     }
 
     @Test
