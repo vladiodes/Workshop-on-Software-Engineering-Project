@@ -77,11 +77,11 @@ public class Product {
         return quantity;
     }
 
-    public void subtractQuantity(Integer quantity) throws Exception
+    public void subtractQuantity(Integer quantity)
     {
         if(quantity>this.quantity)
         {
-            throw new Exception("Quantity to remove is larger than stock");
+            throw new IllegalArgumentException("Quantity to remove is larger than stock");
         }
         this.quantity = this.quantity - quantity;
     }

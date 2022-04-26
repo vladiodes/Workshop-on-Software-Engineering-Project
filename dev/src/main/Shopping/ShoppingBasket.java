@@ -21,17 +21,6 @@ public class ShoppingBasket {
         productsQuantity=new ConcurrentHashMap<>();
     }
 
-
-    /*
-        ConcurrentHashMap<String, ShoppingBasket> oldBaskets = oldCart.getBaskets();
-        ConcurrentHashMap<String, ShoppingBasket> newBaskets = new ConcurrentHashMap<>();
-
-        for(HashMap.Entry<String , ShoppingBasket> element : oldBaskets.entrySet())
-        {
-            newBaskets.put(element.getKey(), new ShoppingBasket(element.getValue()));
-        }
-        this.baskets = newBaskets;*/
-
     public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
     {
         ConcurrentHashMap<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
@@ -106,8 +95,8 @@ public class ShoppingBasket {
 
     public double getPrice() {
         double res = 0;
-        for (Product pr : productsQuantity.keySet())
-            res += pr.getPrice();
+        for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
+            res += en.getKey().getPrice() * en.getValue();
         return res;
     }
 

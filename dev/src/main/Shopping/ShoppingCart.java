@@ -41,6 +41,10 @@ public class ShoppingCart {
             if (baskets.containsKey(IStore.getName()))
                 return baskets.get(IStore.getName()).AddProduct(productName, quantity);
             else {
+                if (!IStore.getIsActive())
+                    throw new IllegalArgumentException("Store is not active.");
+                if (!IStore.getProductsByName().containsKey(productName))
+                    throw new IllegalArgumentException("Product does not exist in store");
                 ShoppingBasket basket = new ShoppingBasket(IStore, this);
                 baskets.put(IStore.getName(), basket);
                 return basket.AddProduct(productName, quantity);
@@ -115,6 +119,9 @@ public class ShoppingCart {
         return baskets;
     }
 
+    /***
+     * @return amount of unique products.
+     */
     public HashMap<Product, Integer> getProducts() {
         HashMap<Product, Integer> res = new HashMap<>();
         for (Map.Entry<String, ShoppingBasket> basketEntry : this.baskets.entrySet())
@@ -129,6 +136,10 @@ public class ShoppingCart {
         return res;
     }
 
+    /***
+     *
+     * @return true/false if cart is purchaseable.
+     */
     public boolean ValidateCart() {
         boolean res = getAmountOfProducts() > 0;
         for(ShoppingBasket basket : this.baskets.values())
