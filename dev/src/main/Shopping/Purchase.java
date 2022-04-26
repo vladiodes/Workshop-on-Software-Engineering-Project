@@ -40,11 +40,15 @@ public class Purchase {
             supplier.abort(sinfo);
             throw new Exception("Unexpected purchase error, aborting.");
         }
+        updateMarket(bus);
+        Logger.getInstance().logEvent("Purchase", String.format("User %s executed a purchase.", user.getUserName()));
+    }
+
+    private void updateMarket(NotificationBus bus) {
         this.user.resetCart();
         ConcurrentHashMap<String, ShoppingBasket> baskets = cart.getBaskets();
         for(ShoppingBasket sb : baskets.values())
             sb.purchaseBasket(bus);
         this.user.addCartToHistory(this.cart);
-        Logger.getInstance().logEvent("Purchase", String.format("User %s executed a purchase.", user.getUserName()));
     }
 }

@@ -55,7 +55,7 @@ public interface IStore {
 
     boolean removeProduct(String productName);
 
-    void purchaseBasket(NotificationBus bus,ShoppingBasket bask) throws Exception;
+    void purchaseBasket(NotificationBus bus,ShoppingBasket bask) ;
 
     void addReview(StoreReview sReview);
 

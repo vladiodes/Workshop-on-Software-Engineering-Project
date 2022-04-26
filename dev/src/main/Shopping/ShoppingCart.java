@@ -45,7 +45,7 @@ public class ShoppingCart {
                     throw new IllegalArgumentException("Store is not active.");
                 if (!IStore.getProductsByName().containsKey(productName))
                     throw new IllegalArgumentException("Product does not exist in store");
-                ShoppingBasket basket = new ShoppingBasket(IStore, this);
+                ShoppingBasket basket = new ShoppingBasket(IStore);
                 baskets.put(IStore.getName(), basket);
                 return basket.AddProduct(productName, quantity);
             }
