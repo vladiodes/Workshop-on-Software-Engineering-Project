@@ -49,12 +49,14 @@ public class Service implements IService {
             User r = market.DisconnectGuest(userToken);
             return new Response<>(new UserDTO(r), null);
         } catch (Exception e) {
+            Logger.getInstance().logBug("Service - guestDisconnect", e.getMessage());
             return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<Boolean> register(String userName, String password) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to register, userName:%s",userName));
         try {
             market.Register(userName, password);
             return new Response<>(true);
@@ -63,12 +65,14 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e) {
+            Logger.getInstance().logBug("Service - register", e.getMessage());
             return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<UserDTO> login(String token, String userName, String password) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get login, userName:%s", userName));
         try {
             return new Response<>(new UserDTO(market.Login(token, userName, password)));
         }
@@ -76,12 +80,14 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e) {
+            Logger.getInstance().logBug("Service - login", e.getMessage());
             return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<Boolean> logout(String token) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to logout, userToken:%s" ,token));
         try
         {
             market.logout(token);
@@ -91,12 +97,14 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch(Exception e){
+            Logger.getInstance().logBug("Service - logout", e.getMessage());
             return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<StoreDTO> getStoreInfo(String storeName) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get store info, storeName:%s" ,storeName));
         try {
             return new Response<>(new StoreDTO(market.getStoreByName(storeName)));
         }
@@ -104,6 +112,7 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e){
+            Logger.getInstance().logBug("Service - getStoreInfo", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -133,6 +142,7 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e) {
+            Logger.getInstance().logBug("Service - getStoreProducts", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -149,12 +159,14 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e) {
+            Logger.getInstance().logBug("Service - getProductsByInfo", e.getMessage());
             return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to add product to cart, userToken:%s storeName:%s productName:%s quantity:%d",userToken,storeName, productName, quantity));
         try {
             return new Response<>(market.addProductToCart(userToken, storeName, productName, quantity));
         }
@@ -162,12 +174,14 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e) {
+            Logger.getInstance().logBug("Service - addProductToCart", e.getMessage());
             return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to remove product from cart, userToken:%s storeName:%s productName:%s quantity:%d",userToken,storeName, productName, quantity));
         try {
             return new Response<>(market.RemoveProductFromCart(userToken, storeName, productName, quantity), null);
         }
@@ -175,6 +189,7 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e) {
+            Logger.getInstance().logBug("Service - removeProductFromCart", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -188,6 +203,7 @@ public class Service implements IService {
             return new Response<>(e, true);
         }
         catch (Exception e) {
+            Logger.getInstance().logBug("Service - getCartInfo", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -204,6 +220,7 @@ public class Service implements IService {
         }
         catch(Exception e)
         {
+            Logger.getInstance().logBug("Service - purchaseCart", e.getMessage());
             return new Response<>(e, false);
         }
 
@@ -212,6 +229,7 @@ public class Service implements IService {
     @Override
 
     public Response<Boolean> openStore(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to open store, userToken:%s storeName:%s" ,userToken,storeName));
         try{
             return new Response<>(market.openStore(userToken,storeName));
         }
@@ -219,6 +237,7 @@ public class Service implements IService {
             return new Response<>(e,true);
         }
         catch (Exception e){
+            Logger.getInstance().logBug("Service - openStore", e.getMessage());
             return new Response<>(e,false);
         }
     }
@@ -232,7 +251,8 @@ public class Service implements IService {
         }
         catch(Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - writeProductReview", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -245,13 +265,15 @@ public class Service implements IService {
         }
         catch(Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - writeStoreReview", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<Boolean> sendQuestionsToStore(String userToken, String storeName, String message)
     {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to send questions to store, userToken:%s storeName:%s message:%s ",userToken,storeName, message));
         try
         {
             market.sendQuestionsToStore(userToken, storeName, message);
@@ -259,13 +281,15 @@ public class Service implements IService {
         }
         catch (Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - sendQuestionsToStore", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
     @Override
     public Response<Boolean> sendComplaint(String userToken, String msg)
     {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to send complaint, userToken:%s msg:%s ",userToken,msg));
         try
         {
             market.sendComplaint(userToken, msg);
@@ -273,7 +297,8 @@ public class Service implements IService {
         }
         catch (Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - sendComplaint", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -298,6 +323,7 @@ public class Service implements IService {
 
     @Override
     public Response<Boolean> addSecurityQuestion(String userToken, String question, String answer) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to add security question, userToken:%s question:%s answer:%s ",userToken,question, answer));
         try
         {
             market.addSecurityQuestion(userToken, question, answer);
@@ -305,7 +331,8 @@ public class Service implements IService {
         }
         catch (Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - addSecurityQuestions", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -674,7 +701,8 @@ public class Service implements IService {
         }
         catch (Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - changePassword", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -687,7 +715,8 @@ public class Service implements IService {
         }
         catch (Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - changeUsername", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 
@@ -700,7 +729,8 @@ public class Service implements IService {
         }
         catch (Exception e)
         {
-            return new Response<>(null, e.getMessage());
+            Logger.getInstance().logBug("Service - isMemberLoggedOut", e.getMessage());
+            return new Response<>(e, false);
         }
     }
 

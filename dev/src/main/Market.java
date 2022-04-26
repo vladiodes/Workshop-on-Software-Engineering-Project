@@ -479,17 +479,17 @@ public class Market {
     {
         if(!connectedUsers.containsKey(token))
         {
-            throw new Exception("User is not logged in");
+            throw new IllegalArgumentException("User is not logged in");
         }
         User u = connectedUsers.get(token);
         String userName = u.getUserName();
         if(!usersByName.containsKey(userName))
         {
-            throw new Exception("User is not a member");
+            throw new IllegalArgumentException("User is not a member");
         }
         if(!u.getIsLoggedIn())
         {
-            throw new Exception("Member is not logged in");
+            throw new IllegalArgumentException("Member is not logged in");
         }
         u.logout();
     }
@@ -506,7 +506,7 @@ public class Market {
         User u = getConnectedUserByToken(userToken);
         if(!u.getIsLoggedIn())
         {
-            throw new Exception("User is not logged in");
+            throw new IllegalArgumentException("User is not logged in");
         }
         if(!(u.isAdmin() || u.getUserName().equals(userName)))
             throw new IllegalArgumentException("No permission to ask for that purchase history.");
@@ -526,7 +526,7 @@ public class Market {
         User u = getConnectedUserByToken(userToken);
         Product prod = u.findProductInHistoryByNameAndStore(productName, storeName);
         if(prod == null)
-            throw new Exception("Product was not found in user's purchase history");
+            throw new IllegalArgumentException("Product was not found in user's purchase history");
         ProductReview pReview = new ProductReview(u, prod, reviewDescription, points);
         prod.addReview(pReview);
     }
@@ -538,7 +538,7 @@ public class Market {
         IStore store = u.getStoreInPurchaseHistory(storeName);
         if(store==null)
         {
-            throw new Exception("Product was not found in user's purchase history");
+            throw new IllegalArgumentException("Store was not found in user's purchase history");
         }
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
@@ -548,12 +548,12 @@ public class Market {
         User u = getConnectedUserByToken(userToken);
         if(!isValidPass(newPassword, u.getUserName()))
         {
-            throw new Exception("Invalid password");
+            throw new IllegalArgumentException("Invalid password");
         }
         String oldPassHashed = this.security_controller.hashPassword(oldPassword);
         if(!oldPassHashed.equals(u.getHashed_password()))
         {
-            throw new Exception("Old password is incorrect");
+            throw new IllegalArgumentException("Old password is incorrect");
         }
         u.changePassword(this.security_controller.hashPassword(newPassword));
     }
@@ -584,11 +584,11 @@ public class Market {
     public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
         if(!stores.containsKey(storeName))
         {
-            throw new Exception("No such store "+ storeName);
+            throw new IllegalArgumentException("No such store "+ storeName);
         }
         if(message.isBlank())
         {
-            throw new Exception("Illegal message body");
+            throw new IllegalArgumentException("Illegal message body");
         }
         IStore store = stores.get(storeName);
         User u = getConnectedUserByToken(userToken);
@@ -608,12 +608,12 @@ public class Market {
     public void sendComplaint(String userToken, String msg) throws  Exception {
         if(msg.isBlank())
         {
-            throw new Exception("Illegal message body");
+            throw new IllegalArgumentException("Illegal message body");
         }
         User user = getConnectedUserByToken(userToken);
         if(getPurchaseHistory(userToken, user.getUserName()).isEmpty())
         {
-            throw new Exception("User has no purchase history. Cant send complaint without purchasing any product");
+            throw new IllegalArgumentException("User has no purchase history. Cant send complaint without purchasing any product");
         }
         for(User u : this.usersByName.values())
         {
