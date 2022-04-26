@@ -81,7 +81,7 @@ public class Product {
     {
         if(quantity>this.quantity)
         {
-            throw new Exception("Quantity to remove is larger than stock");
+            throw new IllegalArgumentException("Quantity to remove is larger than stock");
         }
         this.quantity = this.quantity - quantity;
     }

@@ -567,31 +567,7 @@ public class AT_Req2_4_Req2_5 {
         assertEquals(1, counter.get());
     }
 
-    @Test
-    public void concurrentAddStoreWithSameName() throws InterruptedException {
-        AtomicInteger counter = new AtomicInteger(0);
-        Runnable founder1AddStore = () -> {
-            Response<Boolean> resp = service.openStore(founder1token.getResult(), "SpecialStore");
-            if (!resp.isError_occured())
-                counter.incrementAndGet();
-        };
 
-        Runnable founder2AddStore = () -> {
-            Response<Boolean> resp = service.openStore(founder2token.getResult(), "SpecialStore");
-            if (!resp.isError_occured())
-                counter.incrementAndGet();
-        };
-
-        Thread founder1AddStoreThread = new Thread(founder1AddStore);
-        Thread founder2AddStoreThread = new Thread(founder2AddStore);
-
-        founder1AddStoreThread.start();
-        founder2AddStoreThread.start();
-
-        founder1AddStoreThread.join();
-        founder2AddStoreThread.join();
-        assertEquals(1, counter.get());
-    }
 
     /***
      * concurrent test on req 4.1:
