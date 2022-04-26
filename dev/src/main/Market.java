@@ -377,11 +377,12 @@ public class Market {
         if (admin == null)
             throw new IllegalArgumentException("No such admin in the system");
         User toDelete = usersByName.get(userName);
-        if (admin.deleteUser(toDelete)) {
+        // removing all stores founded by the user
+        for(IStore store:admin.deleteUser(toDelete))
+            stores.remove(store.getName());
+
             usersByName.remove(toDelete.getUserName());
             return true;
-        }
-        return false;
     }
 
     public List<String> receiveMessages(String userToken) {

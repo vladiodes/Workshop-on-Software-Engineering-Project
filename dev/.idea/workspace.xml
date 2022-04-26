@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Fixing conflicts">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/Driver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/SystemProxy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/SystemService.java" beforeDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Deleting unnecessary files">
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +85,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test.UnitTests in dev">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration name="AT_Req2_6.getNumberOfRegisteredUsersPerDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -165,9 +161,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.test.UnitTests in dev" />
         <item itemvalue="JUnit.test.AcceptanceTests in dev" />
-        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.AT_Req2_6.getNumberOfRegisteredUsersPerDate" />
         <item itemvalue="JUnit.ATuser2Requirements" />
       </list>
