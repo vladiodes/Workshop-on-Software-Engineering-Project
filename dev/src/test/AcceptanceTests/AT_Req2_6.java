@@ -2,7 +2,9 @@ package test.AcceptanceTests;
 
 import main.Service.IService;
 import main.Service.Service;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
 import org.junit.Before;
 import org.junit.Test;
 import java.time.LocalDate;
@@ -28,6 +30,7 @@ public class AT_Req2_6 {
         service.login(user1token.getResult(), "user1", "12345678");
         service.login(adminToken.getResult(), "admin", "admin");
         service.openStore(founder1token.getResult(), "MyStore1");
+        service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6);
     }
 
     /***
@@ -54,6 +57,7 @@ public class AT_Req2_6 {
     @Test
     public void deleteUser() {
         assertTrue(service.deleteUser(adminToken.getResult(), "user1").getResult());
+        assertTrue(service.register("user1", "12345678").getResult());
     }
 
     /***
@@ -62,7 +66,7 @@ public class AT_Req2_6 {
     @Test
     public void deleteUserWithStore() {
         assertTrue(service.deleteUser(adminToken.getResult(), "founder1").getResult());
-        // TODO: What should happen?
+        assertTrue(service.getStoreInfo("MyStore1").isError_occured());
     }
 
     /***
@@ -78,10 +82,12 @@ public class AT_Req2_6 {
      */
     @Test
     public void receiveMessages() {
+        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 1);
+        service.purchaseCart(user1token.getResult(), new PaymentInformation(true), new SupplyingInformation(true));
         service.sendComplaint(user1token.getResult(), "complaint");
         List<String> messageList = service.receiveMessages(adminToken.getResult()).getResult();
         assertFalse(messageList.isEmpty());
-        assertEquals(messageList.get(0), "complaint");
+        assertEquals("complaint", messageList.get(0));
     }
 
     /***
@@ -89,11 +95,21 @@ public class AT_Req2_6 {
      */
     @Test
     public void receiveComplaintsOnlyAdmin() {
+        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 1);
+        service.purchaseCart(user1token.getResult(), new PaymentInformation(true), new SupplyingInformation(true));
         service.sendComplaint(user1token.getResult(), "complaint");
         assertEquals(0, service.receiveMessages(founder1token.getResult()).getResult().size());
         assertEquals(0, service.receiveMessages(user1token.getResult()).getResult().size());
         assertEquals(1, service.receiveMessages(adminToken.getResult()).getResult().size());
+    }
 
+    /***
+     * use case: Reading And Commenting Complaints req 6.3:
+     */
+    @Test
+    public void receiveComplaintsWithoutPurchase() {
+        assertTrue(service.sendComplaint(user1token.getResult(), "complaint").isError_occured());
+        assertEquals(0, service.receiveMessages(adminToken.getResult()).getResult().size());
     }
 
     /***
@@ -165,9 +181,9 @@ public class AT_Req2_6 {
      */
     @Test
     public void getNumberOfLoggedInUsersPerDate() {
-        assertEquals(service.getNumberOfLoggedInUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "3");
+        assertEquals("3", service.getNumberOfLoggedInUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult());
         service.login(user2token.getResult(), "user2", "12345678");
-        assertEquals(service.getNumberOfLoggedInUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "4");
+        assertEquals("4", service.getNumberOfLoggedInUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult());
     }
 
     /***
@@ -183,10 +199,10 @@ public class AT_Req2_6 {
      */
     @Test
     public void getNumberOfRegisteredUsersPerDate() {
-        assertEquals(service.getNumberOfRegisteredUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "3");
+        assertEquals("3", service.getNumberOfRegisteredUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult());
         user3token = service.guestConnect();
         service.register("user3", "12345678");
-        assertEquals(service.getNumberOfRegisteredUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "4");
+        assertEquals("4", service.getNumberOfRegisteredUsersPerDate(adminToken.getResult(), LocalDate.now()).getResult());
     }
 
     /***
@@ -202,7 +218,7 @@ public class AT_Req2_6 {
      */
     @Test
     public void getNumberOfPurchasesPerDate() {
-        assertEquals(service.getNumberOfPurchasesPerDate(adminToken.getResult(), LocalDate.now()).getResult(), "0");
+        assertEquals("0", service.getNumberOfPurchasesPerDate(adminToken.getResult(), LocalDate.now()).getResult());
     }
 
     /***

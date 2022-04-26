@@ -8,19 +8,19 @@ public class ProductReview {
     private String desc;
     private double points;
 
-    public ProductReview(User user, Product product, String desc, double points) throws Exception
+    public ProductReview(User user, Product product, String desc, double points)
     {
         this.user = user;
         this.product = product;
 
         if (desc.isBlank())
-            throw new Exception("Review description cant be empty or blank");
+            throw new IllegalArgumentException("Review description cant be empty or blank");
         if(desc.length()>501)
-            throw new Exception("Review is longer than 500 characters");
+            throw new IllegalArgumentException("Review is longer than 500 characters");
         this.desc = desc;
 
         if(points<0)
-            throw new Exception("Review points cant be negative");
+            throw new IllegalArgumentException("Review points cant be negative");
         this.points = points;
 
     }

@@ -452,13 +452,16 @@ public class User {
         managedStores.remove(managerPermissions);
     }
 
-    public boolean deleteUser(User toDelete) {
+    public List<IStore> deleteUser(User toDelete) {
         if (!isSystemManager)
             throw new IllegalArgumentException("You're not a system manager!");
 
+        List<IStore> deletedStores=new LinkedList<>();
+
         //removing all the stores that the user has founded
         for (IStore IStore : toDelete.foundedStores) {
-            removeStore(IStore);
+            if(removeStore(IStore))
+                deletedStores.add(IStore);
         }
 
         for (OwnerPermissions ownerPermissions : ownedStores) {
@@ -469,7 +472,7 @@ public class User {
             managerPermissions.getAppointedBy().removeManagerAppointment(managerPermissions.getStore(), this);
         }
 
-        return true;
+        return deletedStores;
     }
 
     public boolean isAdmin() {
@@ -512,5 +515,9 @@ public class User {
         }
         this.userName = newUsername;
 
+    }
+
+    public List<Pair<String, String>> getSecurityQNA() {
+        return securityQNA;
     }
 }
