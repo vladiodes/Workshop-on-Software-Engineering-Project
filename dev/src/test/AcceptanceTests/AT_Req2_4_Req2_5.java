@@ -335,9 +335,11 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void closeStore() {
+        int messagesSize = service.receiveMessages(manager1token.getResult()).getResult().size();
         assertTrue(service.closeStore(founder1token.getResult(), "MyStore1").getResult());
         StoreDTO store = service.getStoreInfo("MyStore1").getResult();
         assertFalse(store.getIsActive());
+        assertEquals(service.receiveMessages(manager1token.getResult()).getResult().size(), messagesSize + 1);
     }
 
     /***
@@ -372,10 +374,12 @@ public class AT_Req2_4_Req2_5 {
      */
     @Test
     public void reopenStore() {
+        int messagesSize = service.receiveMessages(manager1token.getResult()).getResult().size();
         service.closeStore(founder1token.getResult(), "MyStore1");
         assertTrue(service.reopenStore(founder1token.getResult(), "MyStore1").getResult());
         StoreDTO store = service.getStoreInfo("MyStore1").getResult();
         assertTrue(store.getIsActive());
+        assertEquals(service.receiveMessages(manager1token.getResult()).getResult().size(), messagesSize + 2);
     }
 
     /***
@@ -566,8 +570,6 @@ public class AT_Req2_4_Req2_5 {
         owner1AppointsUser1Thread.join();
         assertEquals(1, counter.get());
     }
-
-
 
     /***
      * concurrent test on req 4.1:
