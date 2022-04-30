@@ -4,6 +4,7 @@ import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import io.javalin.http.staticfiles.Location;
 import main.Communication.Controllers.RegisterController;
+import main.Communication.Controllers.StoreController;
 import main.Communication.book.BookDao;
 import main.Communication.Controllers.LoginController;
 import main.Communication.user.UserDao;
@@ -23,6 +24,7 @@ public class Main {
 
         RegisterController registerController=new RegisterController(service);
         LoginController loginController=new LoginController(service);
+        StoreController storeController=new StoreController(service);
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
@@ -31,12 +33,15 @@ public class Main {
 
         app.routes(() -> {
             //post("/",registerController.handleSystemConnect);
+            get("/home",ViewUtil.serveHomePage);
             get("/register",registerController.serveRegisterPage);
             post("/register",registerController.handleRegisterPost);
             get("/login",loginController.serveLoginPage);
             post("/login",loginController.handleLoginPost);
             get("/logout",loginController.serveLogoutPage);
             post("/logout",loginController.handleLogoutPost);
+            get("/openStore", storeController.openStorePage);
+            post("/openStore",storeController.handleOpenStorePost);
             //before(Filters.handleLocaleChange);
             //before(LoginController.ensureLoginBeforeViewingBooks);
             //get(Path.Web.INDEX, IndexController.serveIndexPage);

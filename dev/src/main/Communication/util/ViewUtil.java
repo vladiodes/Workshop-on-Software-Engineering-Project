@@ -19,7 +19,7 @@ public class ViewUtil {
         return model;
     }
 
-    public static Handler notFound = ctx -> {
+    public static Handler serveHomePage = ctx -> {
         ctx.render(Path.Template.NOT_FOUND, baseModel(ctx));
     };
 

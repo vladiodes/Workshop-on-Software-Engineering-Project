@@ -15,8 +15,11 @@ public class Path {
         public static final String INDEX = "/velocity/index/index.vm";
         public static final String LOGIN = "/velocity/login/login.vm";
         public static final String LOGOUT = "/velocity/login/logout.vm";
+        public static final String OPEN_STORE = "/velocity/store/openStore.vm";
+
 
         public static final String NOT_FOUND = "/velocity/notFound.vm";
+        public static final String HOME_PAGE = "/velocity/index.vm";
     }
 
 }
