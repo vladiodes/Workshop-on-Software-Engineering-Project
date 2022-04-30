@@ -13,31 +13,33 @@ import main.utils.SupplyingInformation;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Purchase {
-    private PaymentInformation pinfo;
-    private SupplyingInformation sinfo;
-    private User user;
-    private ShoppingCart cart;
+    private final PaymentInformation pinfo;
+    private final SupplyingInformation sinfo;
+    private final User user;
+    private final ShoppingCart cart;
+    private final IPayment paymentSystem;
+    private final ISupplying supplyingSystem;
 
-    public Purchase(PaymentInformation pinfo, SupplyingInformation sinfo, User user, ShoppingCart cart) {
+    public Purchase(PaymentInformation pinfo, SupplyingInformation sinfo, User user, ShoppingCart cart, IPayment paymentSystem, ISupplying supplyingSystem) {
         this.pinfo = pinfo;
         this.sinfo = sinfo;
         this.user = user;
         this.cart = cart;
+        this.paymentSystem = paymentSystem;
+        this.supplyingSystem = supplyingSystem;
     }
 
     public void executePurchase(NotificationBus bus) throws Exception {
-        IPayment payment = new PaymentAdapter();
-        ISupplying supplier = new SupplyingAdapter();
         if (!this.cart.ValidateCart())
             throw new Exception("Cart is unpurchasable.");
-        if (!payment.validateCard(pinfo))
+        if (!paymentSystem.validateCard(pinfo))
             throw new Exception("Payment authentication failed.");
-        if (!supplier.bookDelivery(sinfo))
+        if (!supplyingSystem.bookDelivery(sinfo))
             throw new Exception("Supplier authentication failed");
-        if (!(payment.makePayment(pinfo, this.cart.getPrice()) && supplier.supply(sinfo, this.cart.getProducts())))
+        if (!(paymentSystem.makePayment(pinfo, this.cart.getPrice()) && supplyingSystem.supply(sinfo, this.cart.getProducts())))
         {
-            payment.abort(pinfo);
-            supplier.abort(sinfo);
+            paymentSystem.abort(pinfo);
+            supplyingSystem.abort(sinfo);
             throw new Exception("Unexpected purchase error, aborting.");
         }
         updateMarket(bus);

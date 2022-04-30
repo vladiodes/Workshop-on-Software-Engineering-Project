@@ -365,8 +365,8 @@ public class User {
         this.isLoggedIn.set(false);
     }
 
-    public void purchaseCart(NotificationBus bus, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception{
-        Purchase p = new Purchase(pinfo, sinfo, this, this.cart);
+    public void purchaseCart(NotificationBus bus, PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{
+        Purchase p = new Purchase(pinfo, sinfo, this, this.cart, psystem, ssystem);
         p.executePurchase(bus);
     }
 

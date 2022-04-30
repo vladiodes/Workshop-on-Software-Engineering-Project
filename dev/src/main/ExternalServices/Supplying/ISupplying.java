@@ -9,6 +9,6 @@ import java.util.Map;
 
 public interface ISupplying {
     boolean bookDelivery(SupplyingInformation si);
-    boolean supply(SupplyingInformation si, HashMap<Product, Integer> productToSupply);
+    boolean supply(SupplyingInformation si, Map<Product, Integer> productToSupply);
     void abort (SupplyingInformation si);
 }
