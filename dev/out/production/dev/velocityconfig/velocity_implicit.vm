@@ -4,3 +4,5 @@
 #* @vtlvariable name="response" type="java.lang.String" *#
 #* @vtlvariable name="userToken" type="java.lang.String" *#
 #* @vtlvariable name="currentUser" type="java.lang.String" *#
+#* @vtlvariable name="store" type="main.DTO.StoreDTO" *#
+#* @vtlvariable name="stores" type="java.lang.Iterable<main.DTO.StoreDTO>" *#

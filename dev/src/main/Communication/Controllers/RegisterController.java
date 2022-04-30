@@ -36,6 +36,7 @@ public class RegisterController {
         Map<String,Object> model = ViewUtil.baseModel(ctx);
         Response<String> response=service.guestConnect();
         model.put("userToken",response.getResult());
+        ctx.sessionAttribute("userToken",response.getResult());
         ctx.render("/velocity/notFound.vm",model);
     };
 }

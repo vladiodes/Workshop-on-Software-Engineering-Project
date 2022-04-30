@@ -32,7 +32,6 @@ public class Main {
         }).start(HerokuUtil.getHerokuAssignedPort());
 
         app.routes(() -> {
-            //post("/",registerController.handleSystemConnect);
             get("/home",ViewUtil.serveHomePage);
             get("/register",registerController.serveRegisterPage);
             post("/register",registerController.handleRegisterPost);
@@ -42,6 +41,11 @@ public class Main {
             post("/logout",loginController.handleLogoutPost);
             get("/openStore", storeController.openStorePage);
             post("/openStore",storeController.handleOpenStorePost);
+            get("/manageStoreInventory",storeController.openManageStoreInventoryPage);
+            get("/addProductToStore", storeController.openAddProductToStorePage);
+            post("/addProductToStore", storeController.handleAddProductToStorePost);
+            get("/updateProductInStore", storeController.openUpdateProductInStorePage);
+            post("/updateProductInStore", storeController.handleUpdateProductInStorePost);
             //before(Filters.handleLocaleChange);
             //before(LoginController.ensureLoginBeforeViewingBooks);
             //get(Path.Web.INDEX, IndexController.serveIndexPage);

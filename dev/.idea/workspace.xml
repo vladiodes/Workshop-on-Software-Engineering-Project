@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Implemented Register,Login,Logout view,viewmodels,controllers and get/post methods on server">
-      <change afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/openStore.vm" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Implemented openStore post/get and home page get">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/addProductToStore.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/updateProductInStore.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/book/all.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/book/one.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/index/index.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/book/all.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/book/one.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/index/index.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/book/all.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/book/one.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/index/index.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/velocityconfig/velocity_implicit.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/ViewUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/ViewUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/book/all.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/book/one.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/index/index.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/RequestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/RequestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +69,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/login",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -84,6 +83,7 @@
       <recent name="test.AcceptanceTests" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\login" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -192,7 +192,7 @@
       <workItem from="1650274728823" duration="359000" />
       <workItem from="1650275111935" duration="783000" />
       <workItem from="1651267792754" duration="2336000" />
-      <workItem from="1651302049421" duration="8388000" />
+      <workItem from="1651302049421" duration="13164000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -390,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651309584271</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Implemented openStore post/get and home page get">
+      <created>1651310622462</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1651310622462</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +443,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing REQ 2.4.6 - Appointing store manager" />
     <MESSAGE value="Finished implementing REQ 2.4.7 - Changing manager's permissions" />
     <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
     <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
@@ -461,7 +467,8 @@
     <MESSAGE value="concurrency bug fix in open store" />
     <MESSAGE value="Adding resource folder, adding dependencies for javalin application,&#10;adding UI template for the trading system web-application" />
     <MESSAGE value="Implemented Register,Login,Logout view,viewmodels,controllers and get/post methods on server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Register,Login,Logout view,viewmodels,controllers and get/post methods on server" />
+    <MESSAGE value="Implemented openStore post/get and home page get" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented openStore post/get and home page get" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -482,14 +489,9 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Market.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="9" />
+          <line>342</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

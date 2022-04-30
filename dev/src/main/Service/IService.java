@@ -349,4 +349,10 @@ public interface IService {
     Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date);
 
     Response<Boolean> isMemberLoggedOut(String userToken);
+
+    /**
+     * @param userToken
+     * @return Returns all the stores managed,owned,founded by a user
+     */
+    Response<List<StoreDTO>> getAllStoresOfUser(String userToken);
 }

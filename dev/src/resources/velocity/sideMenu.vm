@@ -13,7 +13,7 @@
             <li><a href="\login">Login</a></li>
             <li><a href="\logout">Logout</a></li>
             <li><a href="\openStore">Open store</a></li>
-            <li><a href="#0">Manage store</a></li>
+            <li><a href="/manageStoreInventory">Manage store inventory</a></li>
             <li><a href="#0">Search stores</a></li>
             <li><a href="#0">Search products</a></li>
         </ul>

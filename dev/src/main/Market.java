@@ -1,7 +1,6 @@
 package main;
 
-import main.Stores.ProductReview;
-import main.Stores.StoreReview;
+import main.Stores.*;
 
 import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
@@ -9,8 +8,6 @@ import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
-import main.Stores.IStore;
-import main.Stores.Product;
 import main.Users.StorePermission;
 import main.Users.User;
 
@@ -42,6 +39,14 @@ public class Market {
     private NotificationBus bus;
 
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+
+    public List<IStore> getAllStoresOf(String userToken) {
+        User user = connectedSessions.get(userToken);
+        if(user==null)
+            throw new IllegalArgumentException("This user isn't logged in");
+        return user.getAllStoresIsStaff();
+    }
+
     private enum StatsType{Register, Login, Purchase}
 
     public Market(){

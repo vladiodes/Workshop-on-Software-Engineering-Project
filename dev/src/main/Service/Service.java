@@ -5,7 +5,9 @@ package main.Service;
 import main.DTO.*;
 import main.Logger.Logger;
 import main.Shopping.ShoppingBasket;
+import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -730,6 +732,23 @@ public class Service implements IService {
         catch (Exception e)
         {
             Logger.getInstance().logBug("Service - isMemberLoggedOut", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<List<StoreDTO>> getAllStoresOfUser(String userToken) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to get all stores of user %s", userToken));
+        try {
+            List<IStore> stores = market.getAllStoresOf(userToken);
+            LinkedList<StoreDTO> storeList = new LinkedList<>();
+            for(IStore store:stores)
+                storeList.add(new StoreDTO(store));
+            return new Response<>(storeList);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - getAllStoresOfUser", e.getMessage());
             return new Response<>(e, false);
         }
     }

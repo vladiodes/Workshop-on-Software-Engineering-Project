@@ -520,4 +520,12 @@ public class User {
     public List<Pair<String, String>> getSecurityQNA() {
         return securityQNA;
     }
+
+    public List<IStore> getAllStoresIsStaff() {
+        LinkedList<IStore> stores=new LinkedList<>();
+        stores.addAll(getFoundedStores());
+        stores.addAll(getOwnedStores());
+        stores.addAll(getManagedStores());
+        return stores;
+    }
 }

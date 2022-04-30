@@ -10,22 +10,6 @@ public class RequestUtil {
         return ctx.queryParam("locale");
     }
 
-    public static String getParamIsbn(Context ctx) {
-        return ctx.pathParam("isbn");
-    }
-
-    public static String getQueryUsername(Context ctx) {
-        return ctx.formParam("username");
-    }
-
-    public static String getQueryPassword(Context ctx) {
-        return ctx.formParam("password");
-    }
-
-    public static String getFormParamRedirect(Context ctx) {
-        return ctx.formParam("loginRedirect");
-    }
-
     public static String getSessionLocale(Context ctx) {
         return (String) ctx.sessionAttribute("locale");
     }
