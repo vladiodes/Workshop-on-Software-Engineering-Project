@@ -1,11 +1,6 @@
 #* @implicitly included *#
-#* @vtlvariable name="WebPath" type="main.Communication.util.Path.Web" *#
-#* @vtlvariable name="msg" type="main.Communication.util.MessageBundle" *#
-#* @vtlvariable name="books" type="java.lang.Iterable<main.Communication.book.Book>" *#
-#* @vtlvariable name="book" type="main.Communication.book.Book" *#
-#* @vtlvariable name="users" type="java.lang.Iterable<main.Communication.user.User>" *#
+#* @vtlvariable name="success" type="java.lang.Boolean" *#
+#* @vtlvariable name="fail" type="java.lang.Boolean" *#
+#* @vtlvariable name="response" type="java.lang.String" *#
+#* @vtlvariable name="userToken" type="java.lang.String" *#
 #* @vtlvariable name="currentUser" type="java.lang.String" *#
-#* @vtlvariable name="loggedOut" type="java.lang.String" *#
-#* @vtlvariable name="authenticationFailed" type="java.lang.String" *#
-#* @vtlvariable name="authenticationSucceeded" type="java.lang.String" *#
-#* @vtlvariable name="loginRedirect" type="java.lang.String" *#

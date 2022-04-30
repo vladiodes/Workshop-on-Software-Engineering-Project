@@ -4,23 +4,19 @@
 #end
 <main>
     <div class="content">
-        <h2>Login:</h2>
-        <form id="login" method="post">
-            <input type="hidden" name="userToken" id="userToken" value="">
-            <script type="text/javascript">
-                document.getElementById("userToken").setAttribute('value',localStorage.getItem("userToken"));
-            </script>
+        <h2>Registration form:</h2>
+        <form id="register" method="post">
             <p>Username</p>
             <input type="text" name="username" placeholder="Enter username" value="" required>
             <p>Password</p>
             <input type="password" name="password" placeholder="Enter password" value="" required>
 
-            <p><input type="submit" value="Login"></p>
+            <p><input type="submit" value="Register"></p>
         </form>
         #if($fail)
             <p id="failed_response">$response</p>
         #elseif($success)
-            <p id="success_response">$response</p>
+            <p id="success_response">Successfully registered!</p>
         #end
     </div>
 </main>

@@ -3,15 +3,14 @@ package main.Communication;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import io.javalin.http.staticfiles.Location;
-import main.Communication.book.BookController;
+import main.Communication.Controllers.RegisterController;
 import main.Communication.book.BookDao;
-import main.Communication.index.IndexController;
-import main.Communication.login.LoginController;
+import main.Communication.Controllers.LoginController;
 import main.Communication.user.UserDao;
-import main.Communication.util.Filters;
 import main.Communication.util.HerokuUtil;
-import main.Communication.util.Path;
 import main.Communication.util.ViewUtil;
+import main.Service.IService;
+import main.Service.Service;
 
 import static io.javalin.apibuilder.ApiBuilder.before;
 import static io.javalin.apibuilder.ApiBuilder.get;
@@ -19,16 +18,11 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 
 
 public class Main {
-
-    // Declare dependencies
-    public static BookDao bookDao;
-    public static UserDao userDao;
-
+    private static final IService service=new Service();
     public static void main(String[] args) {
 
-        // Instantiate your dependencies
-        bookDao = new BookDao();
-        userDao = new UserDao();
+        RegisterController registerController=new RegisterController(service);
+        LoginController loginController=new LoginController(service);
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
@@ -36,17 +30,24 @@ public class Main {
         }).start(HerokuUtil.getHerokuAssignedPort());
 
         app.routes(() -> {
-            before(Filters.handleLocaleChange);
-            before(LoginController.ensureLoginBeforeViewingBooks);
-            get(Path.Web.INDEX, IndexController.serveIndexPage);
-            get(Path.Web.BOOKS, BookController.fetchAllBooks);
+            //post("/",registerController.handleSystemConnect);
+            get("/register",registerController.serveRegisterPage);
+            post("/register",registerController.handleRegisterPost);
+            get("/login",loginController.serveLoginPage);
+            post("/login",loginController.handleLoginPost);
+            get("/logout",loginController.serveLogoutPage);
+            post("/logout",loginController.handleLogoutPost);
+            //before(Filters.handleLocaleChange);
+            //before(LoginController.ensureLoginBeforeViewingBooks);
+            //get(Path.Web.INDEX, IndexController.serveIndexPage);
+            //get(Path.Web.BOOKS, BookController.fetchAllBooks);
             //get(Path.Web.ONE_BOOK, BookController.fetchOneBook);
-            get(Path.Web.LOGIN, LoginController.serveLoginPage);
-            post(Path.Web.LOGIN, LoginController.handleLoginPost);
-            post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
+            //get(Path.Web.LOGIN, LoginController.serveLoginPage);
+            //post(Path.Web.LOGIN, LoginController.handleLoginPost);
+            //post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
         });
 
-        app.error(404, ViewUtil.notFound);
+        app.error(404, registerController.handleSystemConnect);
     }
 
 }
