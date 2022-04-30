@@ -11,7 +11,7 @@
 <div class="page">
     <header tabindex="0">
         <div id="logo">TradeIt.</div>
-        <div id="cart"><a href="#0">Cart</a></div>
+        <div id="cart"><a href="/cart">Cart</a></div>
         <div id="profile"><a href="#0">Profile</a></div>
     </header>
     #@sideMenu()

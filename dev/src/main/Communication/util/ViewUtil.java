@@ -16,6 +16,10 @@ public class ViewUtil {
         Map<String, Object> model = new HashMap<>();
         model.put("msg", new MessageBundle(getSessionLocale(ctx)));
         model.put("currentUser", getSessionCurrentUser(ctx));
+        if(model.get("currentUser")==null)
+            model.put("isLoggedOut",true);
+        else
+            model.put("isLoggedIn",true);
         return model;
     }
 

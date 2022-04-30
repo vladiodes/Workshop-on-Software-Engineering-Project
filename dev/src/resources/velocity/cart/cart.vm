@@ -1,0 +1,24 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        #set($store_map = $cart.getBaskets())
+        #foreach($store_basket in $store_map.entrySet())
+            <h2>Products from store <span>$store_basket.key</span></h2>
+            #set($basket = $store_basket.value)
+            #foreach($product_quantity in $basket.getProductsQuantity().entrySet())
+                #set($total_price = $product_quantity.key.getPrice()*$product_quantity.value)
+                <p>Product: $product_quantity.key.getProductName()               In cart: $product_quantity.value        Total price: $total_price </p>
+            #end
+    #end
+        #if($cart)
+            <h2>Total price of all items: <span>$cart.getTotalPrice()</span></h2>
+            <h2><span><a href="/purchaseCart">Purchase cart</a></span></h2>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

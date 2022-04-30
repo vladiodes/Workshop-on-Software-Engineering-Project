@@ -178,9 +178,9 @@ public class Market {
         List<Product> result = new LinkedList<>();
         for (IStore currStr : this.stores.values())
             for (Product currPrd : currStr.getProductsByName().values()) {
-                if (productName == null || currPrd.getName().equals(productName))
-                    if (category == null || currPrd.getCategory().equals(category))
-                        if (keyWord == null || currPrd.hasKeyWord(keyWord))
+                if (productName == null ||productName.isBlank()|| currPrd.getName().equals(productName))
+                    if (category == null ||category.isBlank()|| currPrd.getCategory().equals(category))
+                        if (keyWord == null || keyWord.isBlank()|| currPrd.hasKeyWord(keyWord))
                             if (productRating == null) //TODO: || rating = productRating
                                 if (storeRating == null) //TODO: || rating = productRating
                                     if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
@@ -486,6 +486,7 @@ public class Market {
             throw new IllegalArgumentException("Member is not logged in");
         }
         u.logout();
+        connectedSessions.put(token,new User(token));
     }
 
     public void purchaseCart(String userToken, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception

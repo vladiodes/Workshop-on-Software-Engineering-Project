@@ -21,6 +21,9 @@ public class Path {
         public static final String MANAGE_STORE_INVENTORY = "/velocity/store/manageStoreInventory.vm";
         public static final String ADD_PRODUCT_TO_STORE = "/velocity/store/addProductToStore.vm";
         public static final String UPDATE_PRODUCT_IN_STORE = "/velocity/store/updateProductInStore.vm";
+        public static final String SEARCH_PRODUCT = "velocity/product/searchProduct.vm";
+        public static final String CART = "velocity/cart/cart.vm";
+        public static final String PURCHASE_CART = "velocity/cart/purchaseCart.vm";
     }
 
 }

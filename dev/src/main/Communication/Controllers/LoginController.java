@@ -1,7 +1,6 @@
 package main.Communication.Controllers;
 
 import io.javalin.http.Handler;
-import main.Communication.user.UserController;
 import main.Communication.util.Path;
 import main.Communication.util.ViewUtil;
 import main.DTO.UserDTO;
@@ -10,7 +9,6 @@ import main.utils.Response;
 
 import java.util.Map;
 
-import static main.Communication.util.RequestUtil.*;
 
 public class LoginController {
     private IService service;
@@ -39,6 +37,9 @@ public class LoginController {
             model.put("success",true);
             model.put("response",String.format("Successfully logged in, Welcome %s!",response.getResult().getUserName()));
             ctx.sessionAttribute("currentUser",ctx.formParam("username"));
+            model.put("currentUser",ctx.formParam("username"));
+            model.put("isLoggedIn",true);
+            model.remove("isLoggedOut");
         }
         ctx.render(Path.Template.LOGIN,model);
     };
@@ -55,6 +56,8 @@ public class LoginController {
             model.put("response","Successfully logged out");
             ctx.sessionAttribute("currentUser", null);
             ctx.sessionAttribute("loggedOut", "true");
+            model.put("isLoggedOut",true);
+            model.remove("isLoggedIn");
         }
         ctx.render(Path.Template.LOGOUT,model);
     };

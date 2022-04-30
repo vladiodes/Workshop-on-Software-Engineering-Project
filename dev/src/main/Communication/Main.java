@@ -3,9 +3,7 @@ package main.Communication;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import io.javalin.http.staticfiles.Location;
-import main.Communication.Controllers.RegisterController;
-import main.Communication.Controllers.StoreController;
-import main.Communication.Controllers.LoginController;
+import main.Communication.Controllers.*;
 import main.Communication.util.HerokuUtil;
 import main.Communication.util.ViewUtil;
 import main.Service.IService;
@@ -22,6 +20,8 @@ public class Main {
         RegisterController registerController=new RegisterController(service);
         LoginController loginController=new LoginController(service);
         StoreController storeController=new StoreController(service);
+        ProductController productController=new ProductController(service);
+        CartController cartController=new CartController(service);
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
@@ -43,14 +43,12 @@ public class Main {
             post("/addProductToStore", storeController.handleAddProductToStorePost);
             get("/updateProductInStore", storeController.openUpdateProductInStorePage);
             post("/updateProductInStore", storeController.handleUpdateProductInStorePost);
-            //before(Filters.handleLocaleChange);
-            //before(LoginController.ensureLoginBeforeViewingBooks);
-            //get(Path.Web.INDEX, IndexController.serveIndexPage);
-            //get(Path.Web.BOOKS, BookController.fetchAllBooks);
-            //get(Path.Web.ONE_BOOK, BookController.fetchOneBook);
-            //get(Path.Web.LOGIN, LoginController.serveLoginPage);
-            //post(Path.Web.LOGIN, LoginController.handleLoginPost);
-            //post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
+            get("/productSearch",productController.openSearchProductPage);
+            post("/productSearch",productController.handleSearchProductPost);
+            post("/addToCart",cartController.handleAddToCartPost);
+            get("/cart",cartController.openCartPage);
+            get("/purchaseCart",cartController.openPurchaseCartPage);
+            post("/purchaseCart", cartController.handlePurchaseCart);
         });
 
         app.error(404, registerController.handleSystemConnect);
