@@ -5,15 +5,12 @@ import io.javalin.core.util.RouteOverviewPlugin;
 import io.javalin.http.staticfiles.Location;
 import main.Communication.Controllers.RegisterController;
 import main.Communication.Controllers.StoreController;
-import main.Communication.book.BookDao;
 import main.Communication.Controllers.LoginController;
-import main.Communication.user.UserDao;
 import main.Communication.util.HerokuUtil;
 import main.Communication.util.ViewUtil;
 import main.Service.IService;
 import main.Service.Service;
 
-import static io.javalin.apibuilder.ApiBuilder.before;
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
 
