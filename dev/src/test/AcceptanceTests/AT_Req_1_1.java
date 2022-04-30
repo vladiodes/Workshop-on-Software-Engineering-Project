@@ -8,6 +8,7 @@ import main.utils.Response;
 import main.utils.SupplyingInformation;
 import org.junit.Before;
 import org.junit.Test;
+import test.testUtils.testsFactory;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,10 +26,8 @@ public class AT_Req_1_1 {
 
     @Before
     public void setUp() {
-        service = new Service();
+        service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         adminToken = service.guestConnect();
-        pInfo = new PaymentInformation(true);
-        sInfo = new SupplyingInformation(true);
         founder1token = service.guestConnect();
         service.register("founder1", "12345678");
         service.login(founder1token.getResult(), "founder1", "12345678");
@@ -49,7 +48,7 @@ public class AT_Req_1_1 {
     public void checkPaymentAndSupplySystemsAreAccesible() {
         Response<UserDTO> resLogin = service.login(adminToken.getResult(),"admin","admin");
         Response<Boolean> resAddToCart = service.addProductToCart(adminToken.getResult(),"MyStore1","Coca Cola", 5);
-        Response<Boolean> resPurchase = service.purchaseCart(adminToken.getResult(),pInfo,sInfo);
-        assertTrue(resPurchase.isError_occured() == false);
+        Response<Boolean> resPurchase = service.purchaseCart(adminToken.getResult(),testsFactory.getSomePI(), testsFactory.getSomeSI());
+        assertFalse(resPurchase.isError_occured());
     }
 }

@@ -3,6 +3,8 @@ package main.Service;
 
 
 import main.DTO.*;
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Supplying.ISupplying;
 import main.utils.Pair;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
