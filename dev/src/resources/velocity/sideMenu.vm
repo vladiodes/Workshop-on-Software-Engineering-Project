@@ -1,4 +1,17 @@
 #macro(sideMenu)
+<script type="text/javascript">
+    let ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/notifications");
+    ws.onopen = () => ws.send("Connected!");
+    let i = 0;
+    ws.onmessage = msg => {
+        let color = "#E8E8E8";
+        if(i%2===0){
+            color = "#DCDCDC";
+        }
+        document.getElementById("realTime").innerHTML += '<div style="background-color:' + color +'"> <p>'+msg.data+'</p></div>';
+        i++;
+    }
+</script>
 <div id="nav-container">
     <div class="bg"></div>
     <div class="button" tabindex="0">
@@ -19,6 +32,7 @@
                 <li><a href="/register">Register</a></li>
                 <li><a href="/login">Login</a></li>
             #end
+            <li id="realTime" class="notifications"><h2>Real time notifications:</h2><p></p></li>
         </ul>
     </div>
 </div>

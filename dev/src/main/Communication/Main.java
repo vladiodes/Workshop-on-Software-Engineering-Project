@@ -28,6 +28,22 @@ public class Main {
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
         }).start(HerokuUtil.getHerokuAssignedPort());
 
+        app.ws("/notifications", ws -> {
+            ws.onMessage(ctx -> {
+                Thread t = new Thread(()->{
+                    while (true){
+                        ctx.send("This is a real time notification using web-sockets, very very cool!");
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+                t.start();
+            });
+        });
+
         app.routes(() -> {
             get("/home",ViewUtil.serveHomePage);
             get("/register",registerController.serveRegisterPage);
