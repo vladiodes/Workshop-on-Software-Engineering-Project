@@ -2,6 +2,7 @@ package main.Service;
 
 
 
+import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.Logger.Logger;
 import main.Shopping.ShoppingBasket;
@@ -750,6 +751,38 @@ public class Service implements IService {
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - getAllStoresOfUser", e.getMessage());
             return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> assignWStoUserToken(String userToken, WsContext ctx) {
+        Logger.getInstance().logEvent("Service","Assigning a websocket to a user");
+        try{
+            return new Response<>(market.assignWStoUserToken(userToken,ctx));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->assignWSToUserToken",e.getMessage());
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> leaveWSforUserToken(String userToken) {
+        Logger.getInstance().logEvent("Service","Leaving websocket");
+        try{
+            return new Response<>(market.leaveWSforUserToken(userToken));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->leaveWSforUserToken",e.getMessage());
+            return new Response<>(e,false);
         }
     }
 

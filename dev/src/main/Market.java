@@ -1,5 +1,6 @@
 package main;
 
+import io.javalin.websocket.WsContext;
 import main.Stores.*;
 
 import main.DTO.ShoppingCartDTO;
@@ -45,6 +46,20 @@ public class Market {
         if(user==null)
             throw new IllegalArgumentException("This user isn't logged in");
         return user.getAllStoresIsStaff();
+    }
+
+    public boolean assignWStoUserToken(String userToken, WsContext ctx) {
+        User u = getConnectedUserByToken(userToken);
+        if(!membersByUserName.containsKey(u.getUserName()))
+            throw new IllegalArgumentException("This is a guest, it doesn't get any notifications");
+        bus.register(u,ctx);
+        return true;
+    }
+
+    public boolean leaveWSforUserToken(String userToken) {
+        User u = getConnectedUserByToken(userToken);
+        bus.unregisterWS(u);
+        return true;
     }
 
     private enum StatsType{Register, Login, Purchase}
@@ -144,7 +159,7 @@ public class Market {
         }
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         connectedSessions.put(token, u);
-        u.LogIn();
+        u.LogIn(bus);
         addStats(StatsType.Login);
         return u;
     }
@@ -485,7 +500,7 @@ public class Market {
         {
             throw new IllegalArgumentException("Member is not logged in");
         }
-        u.logout();
+        u.logout(bus);
         connectedSessions.put(token,new User(token));
     }
 
@@ -591,11 +606,11 @@ public class Market {
         this.bus.addMessage(store, userName, message);
     }
 
-    private User getConnectedUserByToken(String userToken) throws Exception
+    private User getConnectedUserByToken(String userToken)
     {
         if(!connectedSessions.containsKey(userToken))
         {
-            throw new Exception("Invalid user token");
+            throw new IllegalArgumentException("Invalid user token");
         }
         return connectedSessions.get(userToken);
     }

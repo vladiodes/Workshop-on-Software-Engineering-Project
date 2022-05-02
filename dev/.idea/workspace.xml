@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added remove items from cart view">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/openCloseStore.vm" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added re-open or make store inactive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/english.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/german.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/english.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/german.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/english.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/german.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/logo.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/public/img/english.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/public/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/public/img/german.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/public/img/logo.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +130,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AT_Req2_3.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_3" />
+      <option name="METHOD_NAME" value="testLogout" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <option name="PACKAGE_NAME" value="" />
@@ -133,20 +168,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.AcceptanceTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -164,10 +185,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.AT_Req2_3.testLogout" />
         <item itemvalue="JUnit.All in dev" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.test.UnitTests in dev" />
-        <item itemvalue="JUnit.test.AcceptanceTests in dev" />
       </list>
     </recent_temporary>
   </component>
@@ -423,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651515260660</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added re-open or make store inactive">
+      <created>1651517800842</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1651517800842</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +497,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="REQ 2.4.11 implemented" />
     <MESSAGE value="REQ 2.4.12 implemented" />
     <MESSAGE value="Req 2.6.1 implemented" />
     <MESSAGE value="Req 2.6.2 implemented" />
@@ -494,7 +521,8 @@
     <MESSAGE value="Added some cart functionality and fixed business logic" />
     <MESSAGE value="Cart purchase post and view" />
     <MESSAGE value="Added remove items from cart view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added remove items from cart view" />
+    <MESSAGE value="Added re-open or make store inactive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added re-open or make store inactive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -518,6 +546,11 @@
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/LoginController.java</url>
           <line>47</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/LoginController.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

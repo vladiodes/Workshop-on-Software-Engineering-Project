@@ -8,6 +8,7 @@ import main.Communication.util.HerokuUtil;
 import main.Communication.util.ViewUtil;
 import main.Service.IService;
 import main.Service.Service;
+import main.utils.Response;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
@@ -23,6 +24,14 @@ public class Main {
         ProductController productController=new ProductController(service);
         CartController cartController=new CartController(service);
 
+        Response<String> token=service.guestConnect();
+        service.register("vladiodes","123456");
+        service.login(token.getResult(),"admin","admin");
+        service.openStore(token.getResult(),"Apple store");
+        service.appointStoreOwner(token.getResult(),"vladiodes","Apple store");
+        service.logout(token.getResult());
+        service.guestDisconnect(token.getResult());
+
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
@@ -30,17 +39,11 @@ public class Main {
 
         app.ws("/notifications", ws -> {
             ws.onMessage(ctx -> {
-                Thread t = new Thread(()->{
-                    while (true){
-                        ctx.send("This is a real time notification using web-sockets, very very cool!");
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                });
-                t.start();
+                String userToken = ctx.message();
+                service.assignWStoUserToken(userToken,ctx);
+            });
+            ws.onClose(ctx->{
+                service.leaveWSforUserToken(ctx.sessionAttribute("userToken"));
             });
         });
 

@@ -105,8 +105,9 @@ public class User {
         return hashed_password;
     }
 
-    public void LogIn() {
+    public void LogIn(NotificationBus bus) {
         this.isLoggedIn.set(true);
+        bus.notify(this);
     }
 
     public Boolean getIsLoggedIn() {
@@ -361,8 +362,9 @@ public class User {
         this.securityQNA.add(new Pair<>(question, answer));
     }
 
-    public void logout() {
+    public void logout(NotificationBus bus) {
         this.isLoggedIn.set(false);
+        bus.unregisterWS(this);
     }
 
     public void purchaseCart(NotificationBus bus, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception{

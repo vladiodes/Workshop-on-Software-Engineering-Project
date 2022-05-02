@@ -1,5 +1,7 @@
 package main;
 
+import io.javalin.websocket.WsContext;
+import main.Communication.Controllers.LoginController;
 import main.Logger.Logger;
 import main.Stores.IStore;
 import main.Users.User;
@@ -12,15 +14,33 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class NotificationBus {
     private ConcurrentHashMap<User, ConcurrentLinkedQueue<String>> usersMessagesMap;
+    private ConcurrentHashMap<User,WsContext> usersWS;
     private ConcurrentHashMap<IStore, ConcurrentLinkedQueue<Pair<String,String>>> storesMessagesMap; //(username , message)
 
     public NotificationBus(){
         usersMessagesMap=new ConcurrentHashMap<>();
         storesMessagesMap = new ConcurrentHashMap<>();
+        usersWS=new ConcurrentHashMap<>();
     }
 
     public void register(User user){
         usersMessagesMap.putIfAbsent(user,new ConcurrentLinkedQueue<>());
+    }
+    public void register(User user, WsContext ctx){
+        usersWS.put(user,ctx);
+        notify(user);
+    }
+    public void unregisterWS(User user){
+        usersWS.remove(user);
+    }
+
+    public void notify(User user){
+        WsContext ctx = usersWS.get(user);
+        if(ctx==null)
+            return; //user isn't logged in.
+        for(String message:getMessagesFromUserRequest(user)){
+            ctx.send(message);
+        }
     }
 
 
@@ -34,6 +54,7 @@ public class NotificationBus {
             return;
         }
         usersMessagesMap.get(toUser).add(msg);
+        notify(toUser);
 
         // in the future - code for sending notifications to user only if he's logged in should be here!
     }

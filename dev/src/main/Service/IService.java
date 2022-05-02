@@ -2,6 +2,7 @@ package main.Service;
 
 
 
+import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.utils.Pair;
 import main.DTO.ProductDTO;
@@ -355,4 +356,14 @@ public interface IService {
      * @return Returns all the stores managed,owned,founded by a user
      */
     Response<List<StoreDTO>> getAllStoresOfUser(String userToken);
+
+    /**
+     * This function assigns a web-socket for a logged in user session
+     * @param userToken - token of a user that has logged in
+     * @param ctx - the context of the websocket
+     * @return true upon success/fail on failure
+     */
+    Response<Boolean> assignWStoUserToken(String userToken, WsContext ctx);
+
+    Response<Boolean> leaveWSforUserToken(String userToken);
 }

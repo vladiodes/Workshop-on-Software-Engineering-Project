@@ -1,13 +1,15 @@
 #macro(sideMenu)
 <script type="text/javascript">
+
     let ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/notifications");
-    ws.onopen = () => ws.send("Connected!");
+    ws.onopen = () => ws.send((localStorage.getItem("userToken")));
     let i = 0;
     ws.onmessage = msg => {
         let color = "#E8E8E8";
         if(i%2===0){
             color = "#DCDCDC";
         }
+        alert("New notification!");
         document.getElementById("realTime").innerHTML += '<div style="background-color:' + color +'"> <p>'+msg.data+'</p></div>';
         i++;
     }
