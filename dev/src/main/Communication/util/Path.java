@@ -23,6 +23,7 @@ public class Path {
         public static final String SEARCH_PRODUCT = "velocity/product/searchProduct.vm";
         public static final String CART = "velocity/cart/cart.vm";
         public static final String PURCHASE_CART = "velocity/cart/purchaseCart.vm";
+        public static final String OPEN_CLOSE_STORE = "velocity/store/openCloseStore.vm";
     }
 
 }

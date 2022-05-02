@@ -66,6 +66,8 @@ public class Main {
             get("/purchaseCart",cartController.openPurchaseCartPage);
             post("/purchaseCart", cartController.handlePurchaseCart);
             post("/removeProductFromCart", cartController.handleRemoveProductFromCart);
+            get("/openCloseStore",storeController.openCloseStorePage);
+            post("/openCloseStore",storeController.handleOpenCloseStorePost);
         });
 
         app.error(404, registerController.handleSystemConnect);

@@ -15,6 +15,8 @@ import java.util.Objects;
 
 public class StoreController {
 
+
+
     private IService service;
 
     public StoreController(IService service){
@@ -87,6 +89,12 @@ public class StoreController {
         ctx.render(Path.Template.MANAGE_STORE_INVENTORY, model);
     };
 
+    public Handler openCloseStorePage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.OPEN_CLOSE_STORE,model);
+    };
+
 
 
 
@@ -103,4 +111,41 @@ public class StoreController {
         }
         ctx.render(Path.Template.OPEN_STORE, model);
     };
+
+    public Handler handleOpenCloseStorePost = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        String open_close = ctx.formParam("closeOrOpen");
+        if(open_close.equals("open")){
+            reOpenStore(ctx, model);
+        }
+        else {
+            closeStore(ctx, model);
+        }
+        ctx.render(Path.Template.OPEN_CLOSE_STORE,model);
+    };
+
+    private void closeStore(Context ctx, Map<String, Object> model) {
+        Response<Boolean> response = service.closeStore(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else{
+            model.put("success",true);
+            model.put("response","Successfully closed the store");
+        }
+    }
+
+    private void reOpenStore(Context ctx, Map<String, Object> model) {
+        Response<Boolean> response = service.reopenStore(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else{
+            model.put("success",true);
+            model.put("response","Successfully re-opened the store");
+        }
+    }
 }
