@@ -74,4 +74,22 @@ public class CartController {
         ctx.render(Path.Template.SEARCH_PRODUCT, model);
     };
 
+    public Handler handleRemoveProductFromCart = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        String p_name = ctx.formParam("productName");
+        String s_name = ctx.formParam("storeName");
+        Response<Boolean> response = service.RemoveProductFromCart(ctx.sessionAttribute("userToken"),s_name,p_name,Integer.parseInt(Objects.requireNonNull(ctx.formParam("quantity"))));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response",String.format("Successfully deleted %s from cart",p_name));
+        }
+        Response<ShoppingCartDTO> r=service.getCartInfo(ctx.sessionAttribute("userToken"));
+        model.put("cart",r.getResult());
+        ctx.render(Path.Template.CART,model);
+    };
+
 }

@@ -1,33 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added some cart functionality and fixed business logic">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Cart purchase post and view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/localization/messages_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/localization/messages_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/localization/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/localization/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/public/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/localization/messages_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/localization/messages_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/localization/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/localization/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/public/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/layout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/velocity/layout.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/login/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/velocity/login/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/notFound.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/velocity/notFound.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/localization/messages_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/localization/messages_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/localization/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/localization/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/public/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/layout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/layout.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/login/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/login/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/notFound.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/notFound.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/layout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/velocity/layout.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/login/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/velocity/login/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/notFound.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/velocity/notFound.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/velocityconfig/velocity_implicit.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/SupplyingInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/SupplyingInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/cart/purchaseCart.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/cart/purchaseCart.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/cart/cart.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/cart/cart.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -429,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651353886319</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Cart purchase post and view">
+      <created>1651512686663</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1651512686663</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +460,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing REQ 2.4.10" />
     <MESSAGE value="Moved Pair to a public package" />
     <MESSAGE value="REQ 2.4.11 implemented" />
     <MESSAGE value="REQ 2.4.12 implemented" />
@@ -500,7 +484,8 @@
     <MESSAGE value="Implemented addProduct,updateProduct post/get" />
     <MESSAGE value="Deleting some files" />
     <MESSAGE value="Added some cart functionality and fixed business logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some cart functionality and fixed business logic" />
+    <MESSAGE value="Cart purchase post and view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cart purchase post and view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -519,6 +504,21 @@
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
           <line>185</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/LoginController.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

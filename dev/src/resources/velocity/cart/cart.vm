@@ -11,6 +11,12 @@
             #foreach($product_quantity in $basket.getProductsQuantity().entrySet())
                 #set($total_price = $product_quantity.key.getPrice()*$product_quantity.value)
                 <p>Product: $product_quantity.key.getProductName()               In cart: $product_quantity.value        Total price: $total_price </p>
+            <form id="remove_$product_quantity.key.getProductName()" method="post" action="/removeProductFromCart">
+                <input type="hidden" name="productName" id="productName" value="$product_quantity.key.getProductName()">
+                <input type="hidden" name="storeName" id="storeName" value="$product_quantity.key.getStoreName()">
+                <input type="hidden" name="quantity" id="quantity" value="$product_quantity.value">
+                <p><input type="submit" value="Remove $product_quantity.key.getProductName() from cart"></p>
+            </form>
             #end
     #end
         #if($cart)
