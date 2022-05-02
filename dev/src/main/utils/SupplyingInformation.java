@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class SupplyingInformation {
     private String address;
-    private LocalDateTime date;
+    private LocalDate date;
     private Boolean output;
 
     /***
@@ -15,7 +15,7 @@ public class SupplyingInformation {
         this.output = output;
     }
 
-    public SupplyingInformation(String address, LocalDateTime date) {
+    public SupplyingInformation(String address, LocalDate date) {
         this.address = address;
         this.date = date;
         output = null;
@@ -25,7 +25,7 @@ public class SupplyingInformation {
         return address;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

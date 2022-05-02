@@ -5,9 +5,12 @@ import main.Communication.util.Path;
 import main.Communication.util.ViewUtil;
 import main.DTO.ShoppingCartDTO;
 import main.Service.IService;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
 
-import java.util.HashMap;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -31,7 +34,28 @@ public class CartController {
 
     public Handler handlePurchaseCart = ctx ->{
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-//        Response<Boolean> response=service.purchaseCart()
+        String exp_date = ctx.formParam("ExpDate");
+        String[] exp_date_params = Objects.requireNonNull(exp_date).split("-");
+        String sup_date = ctx.formParam("supplyingDate");
+        String[] sup_date_params =Objects.requireNonNull(sup_date).split("-");
+        //yyyy-mm-dd
+        PaymentInformation pi = new PaymentInformation(ctx.formParam("cardNumber"),
+                Integer.parseInt(exp_date_params[0]),Integer.parseInt(exp_date_params[1]),Integer.parseInt(exp_date_params[2]),
+                Integer.parseInt(Objects.requireNonNull(ctx.formParam("cvv"))),ctx.formParam("name"),ctx.formParam("email"));
+
+        SupplyingInformation si = new SupplyingInformation(ctx.formParam("address"),
+                LocalDate.of(Integer.parseInt(sup_date_params[0]), Month.of(Integer.parseInt(sup_date_params[1])),Integer.parseInt(sup_date_params[2])));
+
+        Response<Boolean> response=service.purchaseCart(ctx.sessionAttribute("userToken"),pi,si);
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else{
+            model.put("success",true);
+            model.put("response","Successfully purchased the cart!");
+        }
+        ctx.render(Path.Template.PURCHASE_CART, model);
 
     };
     public Handler handleAddToCartPost = ctx -> {

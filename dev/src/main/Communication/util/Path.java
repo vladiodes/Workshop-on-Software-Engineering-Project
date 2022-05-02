@@ -1,5 +1,4 @@
-package main
-        .Communication.util;
+package main.Communication.util;
 
 public class Path {
 
