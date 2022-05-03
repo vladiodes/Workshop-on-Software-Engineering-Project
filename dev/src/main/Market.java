@@ -182,7 +182,7 @@ public class Market {
                         if (keyWord == null || currPrd.hasKeyWord(keyWord))
                             if (productRating == null) //TODO: || rating = productRating
                                 if (storeRating == null) //TODO: || rating = productRating
-                                    if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
+                                    if (minPrice == null || maxPrice == null || (currPrd.getCleanPrice() <= maxPrice && currPrd.getCleanPrice() >= minPrice))
                                         result.add(currPrd);
             }
         return result;

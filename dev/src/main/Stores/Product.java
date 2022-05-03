@@ -1,6 +1,9 @@
 package main.Stores;
 
 
+import main.Shopping.ShoppingBasket;
+import main.Stores.Discounts.Discount;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +16,8 @@ public class Product {
     private int quantity;
     private double price;
     private List<ProductReview> reviews;
+
+    private Discount discount;
 
     public Product(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if(productName==null || productName.trim().equals(""))
@@ -86,8 +91,21 @@ public class Product {
         this.quantity = this.quantity - quantity;
     }
 
-    public double getPrice() {
+    public double getCleanPrice() {
         return price;
+    }
+
+
+    public double getPriceWithDiscount(ShoppingBasket shoppingBasket) {
+        return this.discount.getPriceFor(this, shoppingBasket);
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 
     public void addReview(ProductReview review)

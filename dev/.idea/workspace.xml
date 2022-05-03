@@ -5,29 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36b65f5f-c497-443d-915d-42ec4467c5dd" name="Changes" comment="concurrency bug fix in open store">
-      <change afterPath="$PROJECT_DIR$/src/test/testUtils/testsFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/ConditionalDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/DirectDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/Discount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/SecretDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ExternalServices/Payment/PaymentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ExternalServices/Payment/PaymentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ExternalServices/Supplying/ISupplying.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ExternalServices/Supplying/ISupplying.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ExternalServices/Supplying/SupplyingAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ExternalServices/Supplying/SupplyingAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/PaymentInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/PaymentInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/SupplyingInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/SupplyingInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_1_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_1_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser1Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser1Requirements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ProductTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ProductTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/StoreTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/StoreTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -77,7 +67,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests",
+    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/Discounts",
     "last_opened_file_path": "C:/Users/banan/Desktop/Studies/SadnaTal/TradingSystem/Dev",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
@@ -103,7 +93,11 @@
       <recent name="main.Stores" />
       <recent name="main.Users" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="test.UnitTests" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="main.Stores.Discounts" />
       <recent name="test.UnitTests" />
       <recent name="test" />
     </key>
@@ -111,98 +105,98 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
-    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SecretDiscountTest">
+    <configuration name="ConditionalDiscountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.ConditionalDiscountTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.PurchaseCartFailedPayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DirectDiscountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="PurchaseCartFailedPayment" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.DirectDiscountTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SecretDiscountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.SecretDiscountTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SecretDiscountTest.calculateDiscountNoSecretCode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.SecretDiscountTest" />
+      <option name="METHOD_NAME" value="calculateDiscountNoSecretCode" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.PurchaseCartFailedSupply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SecretDiscountTest.calculateDiscountPastTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="PurchaseCartFailedSupply" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.SecretDiscountTest" />
+      <option name="METHOD_NAME" value="calculateDiscountPastTime" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ATuser2Requirements.PurchaseCartNotifies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="PurchaseCartNotifies" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ATuser2Requirements" />
-      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedPayment" />
-      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedSupply" />
-      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartNotifies" />
-      <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.ConditionalDiscountTest" />
+      <item itemvalue="JUnit.DirectDiscountTest" />
+      <item itemvalue="JUnit.SecretDiscountTest" />
+      <item itemvalue="JUnit.SecretDiscountTest.calculateDiscountNoSecretCode" />
+      <item itemvalue="JUnit.SecretDiscountTest.calculateDiscountPastTime" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedPayment" />
-        <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedSupply" />
-        <item itemvalue="JUnit.ATuser2Requirements" />
-        <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartNotifies" />
+        <item itemvalue="JUnit.SecretDiscountTest" />
+        <item itemvalue="JUnit.ConditionalDiscountTest" />
+        <item itemvalue="JUnit.DirectDiscountTest" />
+        <item itemvalue="JUnit.SecretDiscountTest.calculateDiscountPastTime" />
+        <item itemvalue="JUnit.SecretDiscountTest.calculateDiscountNoSecretCode" />
       </list>
     </recent_temporary>
   </component>
@@ -473,15 +467,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="concurrency bug fix in open store" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Shopping/Purchase.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="main.Market" memberName="stores" />

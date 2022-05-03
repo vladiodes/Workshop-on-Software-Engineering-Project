@@ -6,13 +6,17 @@ import main.Stores.IStore;
 import main.Stores.Product;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingBasket {
     private ConcurrentHashMap<Product,Integer> productsQuantity;
-    private IStore store;
+    private final IStore store;
     private final Object basketEditLock = new Object();
+
+    private final List<String> discountPasswords = new LinkedList<>();
 
     public ShoppingBasket(IStore store){
         this.store = store;
@@ -31,6 +35,21 @@ public class ShoppingBasket {
 
         this.store = oldShoppingBasket.store;
         this.productsQuantity = newProductsQuantity;
+    }
+
+    public void addDiscountPassword(String pass){
+        discountPasswords.add(pass);
+    }
+
+    public boolean hasAmount(Product product, Integer amount){
+        return productsQuantity.get(product) >= amount;
+    }
+
+    public boolean hasDiscountPassword(String pass){
+        for (String userPass : this.discountPasswords)
+            if (userPass.equals(pass))
+                return true;
+        return false;
     }
 
     private int setProductQuantity(String prodName, int additiveQuanity) {
@@ -97,7 +116,7 @@ public class ShoppingBasket {
     public double getPrice() {
         double res = 0;
         for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
-            res += en.getKey().getPrice() * en.getValue();
+            res += en.getKey().getPriceWithDiscount(this) * en.getValue();
         return res;
     }
 
