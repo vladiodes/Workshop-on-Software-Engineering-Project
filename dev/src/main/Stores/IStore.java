@@ -5,6 +5,9 @@ import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+import main.utils.Restriction;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -60,4 +63,13 @@ public interface IStore {
     void addReview(StoreReview sReview);
 
     boolean ValidateProduct(Product key, Integer value);
+
+    /***
+     * @param productName name of product add discount to.
+     * @param until discount is active until that date.
+     * @param percent 0.3 (for instance) means 30% off.
+     */
+    void addDirectDiscount(String productName, LocalDate until, Double percent);
+    void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode);
+    void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions);
 }

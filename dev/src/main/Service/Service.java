@@ -14,10 +14,7 @@ import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 import main.Market;
-import main.utils.Pair;
-import main.utils.PaymentInformation;
-import main.utils.Response;
-import main.utils.SupplyingInformation;
+import main.utils.*;
 
 
 import java.time.LocalDate;
@@ -376,6 +373,58 @@ public class Service implements IService {
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - updateProduct", "Bug in update product");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent) {
+        try {
+            market.addDirectDiscount(userToken, storeName, productName, until, percent);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in add discount");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode) {
+        try {
+            market.addSecretDiscount(userToken, storeName, productName, until, percent, secretCode);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in add discount");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+        try {
+            market.addConditionalDiscount(userToken, storeName, productName, until, restrictions);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in add discount");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password) {
+        try {
+            market.addDiscountPasswordToBasket(userToken, storeName,Password);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in adding discount password.");
             return new Response<>(e, false);
         }
     }

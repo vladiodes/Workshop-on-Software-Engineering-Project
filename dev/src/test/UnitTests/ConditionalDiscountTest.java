@@ -3,6 +3,7 @@ package test.UnitTests;
 import main.Shopping.ShoppingBasket;
 import main.Stores.Discounts.ConditionalDiscount;
 import main.Stores.Product;
+import main.utils.Restriction;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -69,13 +70,13 @@ class ConditionalDiscountTest {
 
     //2 prodcutMock1 => lowDiscount
     //1 productMock1 & 1 productMock2 => highDiscount
-    private HashMap<HashMap<Product, Integer>, Double> getRestrictions() {
-        HashMap<HashMap<Product, Integer>, Double> restrictions = new HashMap<>();
-        HashMap<Product, Integer> rest1 = new HashMap<>();
+    private HashMap<Restriction, Double> getRestrictions() {
+        HashMap<Restriction, Double> restrictions = new HashMap<>();
+        Restriction rest1 = new Restriction();
         rest1.put(productMock1, 2);
         double rest1discount = lowDiscount;
         restrictions.put(rest1, rest1discount);
-        HashMap<Product, Integer> rest2 = new HashMap<>();
+        Restriction rest2 = new Restriction();
         rest2.put(productMock1, 1);
         rest2.put(productMock2, 1);
         double rest2discount = highDiscount;

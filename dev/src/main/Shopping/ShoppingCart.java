@@ -119,6 +119,12 @@ public class ShoppingCart {
         return baskets;
     }
 
+    public ShoppingBasket getBasket(String storeName){
+        if (!this.getBaskets().containsKey(storeName))
+            throw new IllegalArgumentException("Basket for that store doesn't exist in this cart.");
+        return getBaskets().get(storeName);
+    }
+
     /***
      * @return amount of unique products.
      */

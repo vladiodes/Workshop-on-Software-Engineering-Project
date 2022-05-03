@@ -97,7 +97,9 @@ public class Product {
 
 
     public double getPriceWithDiscount(ShoppingBasket shoppingBasket) {
-        return this.discount.getPriceFor(this, shoppingBasket);
+        if(discount != null)
+            return this.discount.getPriceFor(this, shoppingBasket);
+        else return getCleanPrice();
     }
 
     public Discount getDiscount() {

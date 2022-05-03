@@ -72,8 +72,6 @@ public class ShoppingBasket {
     public boolean AddProduct (String prodName, int quantity) {
         synchronized (basketEditLock) {
             Product prodToAdd = this.store.getProduct(prodName);
-            if (prodToAdd == null)
-                throw new IllegalArgumentException(String.format("Product %s doesn't exist in the store.", prodName));
             if (quantity <= 0)
                 throw new IllegalArgumentException("Can't add negative number of product.");
             if (!store.ValidateProduct(prodToAdd, quantity))

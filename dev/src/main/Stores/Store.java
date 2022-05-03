@@ -2,13 +2,18 @@ package main.Stores;
 
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
+import main.Stores.Discounts.ConditionalDiscount;
+import main.Stores.Discounts.DirectDiscount;
+import main.Stores.Discounts.SecretDiscount;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Pair;
+import main.utils.Restriction;
 
 
 import javax.swing.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -130,6 +135,8 @@ public class Store implements IStore {
 
     @Override
     public Product getProduct(String name) {
+        if(!productsByName.containsKey(name))
+            throw new IllegalArgumentException("Request product doesn't exist");
         return productsByName.get(name);
     }
 
@@ -244,6 +251,24 @@ public class Store implements IStore {
     @Override
     public boolean ValidateProduct(Product product, Integer amount) {
         return this.getIsActive() && product.getQuantity() >= amount;
+    }
+
+    @Override
+    public void addDirectDiscount(String productName, LocalDate until, Double percent) {
+        Product product = getProduct(productName);
+        product.setDiscount(new DirectDiscount(percent, until));
+    }
+
+    @Override
+    public void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode) {
+        Product product = getProduct(productName);
+        product.setDiscount(new SecretDiscount(percent, until, secretCode));
+    }
+
+    @Override
+    public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+        Product product = getProduct(productName);
+        product.setDiscount(new ConditionalDiscount(restrictions, until));
     }
 
     private void purchaseProduct(Product product, Integer quantity) {

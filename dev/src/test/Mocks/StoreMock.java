@@ -9,7 +9,9 @@ import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Pair;
+import main.utils.Restriction;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -139,5 +141,20 @@ public class StoreMock implements IStore {
     @Override
     public boolean ValidateProduct(Product key, Integer value) {
         return false;
+    }
+
+    @Override
+    public void addDirectDiscount(String productName, LocalDate until, Double percent) {
+
+    }
+
+    @Override
+    public void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode) {
+
+    }
+
+    @Override
+    public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+
     }
 }

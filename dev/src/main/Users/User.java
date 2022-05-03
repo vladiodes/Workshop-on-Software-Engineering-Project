@@ -8,6 +8,8 @@ import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 
+import main.Stores.Discounts.ConditionalDiscount;
+import main.Stores.Discounts.SecretDiscount;
 import main.Stores.IStore;
 
 import main.Stores.Product;
@@ -17,9 +19,11 @@ import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.utils.Pair;
 import main.utils.PaymentInformation;
+import main.utils.Restriction;
 import main.utils.SupplyingInformation;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -497,6 +501,28 @@ public class User {
 
     public boolean RemoveProductFromCart(IStore st, String productName, int quantity) {
         return cart.RemoveProductFromCart(st, productName, quantity);
+    }
+
+    public void addDirectDiscount(IStore Store, String productName, LocalDate until, Double percent) {
+        if(!hasPermission(Store, StorePermission.DiscountPermission))
+            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
+        Store.addDirectDiscount(productName, until, percent);
+    }
+
+    public void addSecretDiscount(IStore Store, String productName, LocalDate until, Double percent, String secretCode) {
+        if(!hasPermission(Store, StorePermission.DiscountPermission))
+            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
+       Store.addSecretDiscount(productName, until, percent, secretCode);
+    }
+
+    public void addConditionalDiscount(IStore Store,String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+        if(!hasPermission(Store, StorePermission.DiscountPermission))
+            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
+        Store.addConditionalDiscount(productName, until, restrictions);
+    }
+
+    public void addDiscountPasswordToBasket(String storeName, String Password){
+        cart.getBasket(storeName).addDiscountPassword(Password);
     }
 
 

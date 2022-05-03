@@ -151,6 +151,8 @@ public class Market {
 
 
     public IStore getStoreByName(String name) {
+        if(!stores.containsKey(name))
+            throw new IllegalArgumentException("Requested store doesn't exist.");
         return this.stores.get(name);
     }
 
@@ -633,4 +635,21 @@ public class Market {
         return !u.getIsLoggedIn();
 
     }
+
+    public void addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent) throws Exception {
+        getConnectedUserByToken(userToken).addDirectDiscount(stores.get(storeName),productName,until,percent);
+    }
+
+    public void addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode) throws Exception {
+        getConnectedUserByToken(userToken).addSecretDiscount(stores.get(storeName),productName,until,percent, secretCode);
+    }
+
+    public void addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<Restriction, Double> restrictions) throws Exception {
+        getConnectedUserByToken(userToken).addConditionalDiscount(stores.get(storeName),productName,until,restrictions);
+    }
+
+    public void addDiscountPasswordToBasket(String userToken, String storeName, String Password) throws  Exception {
+        getConnectedUserByToken(userToken).addDiscountPasswordToBasket(storeName, Password);
+    }
+
 }
