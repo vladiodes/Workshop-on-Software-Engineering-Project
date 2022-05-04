@@ -48,6 +48,7 @@ public class Main {
         });
 
         app.routes(() -> {
+            get("/", registerController.handleSystemConnect);
             get("/home",ViewUtil.serveHomePage);
             get("/register",registerController.serveRegisterPage);
             post("/register",registerController.handleRegisterPost);
@@ -73,7 +74,6 @@ public class Main {
             post("/openCloseStore",storeController.handleOpenCloseStorePost);
         });
 
-        app.error(404, registerController.handleSystemConnect);
     }
 
 }

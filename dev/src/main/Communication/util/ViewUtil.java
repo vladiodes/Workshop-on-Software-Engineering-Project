@@ -24,7 +24,7 @@ public class ViewUtil {
     }
 
     public static Handler serveHomePage = ctx -> {
-        ctx.render(Path.Template.NOT_FOUND, baseModel(ctx));
+        ctx.render(Path.Template.MAIN, baseModel(ctx));
     };
 
 }

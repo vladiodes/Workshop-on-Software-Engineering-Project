@@ -1,32 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added re-open or make store inactive">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Implemented notification bus to use web-sockets, need to add interfaces of observer and observable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/english.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/german.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/public/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/english.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/german.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/english.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/german.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/public/img/english.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/public/img/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/public/img/german.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/public/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/ViewUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/ViewUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/index.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/notFound.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/main.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,21 +49,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -205,6 +187,9 @@
       <workItem from="1651267792754" duration="2336000" />
       <workItem from="1651302049421" duration="24718000" />
       <workItem from="1651392603950" duration="2630000" />
+      <workItem from="1651568122957" duration="355000" />
+      <workItem from="1651568512207" duration="290000" />
+      <workItem from="1651650186763" duration="952000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -451,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651517800842</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Implemented notification bus to use web-sockets, need to add interfaces of observer and observable">
+      <created>1651524850981</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1651524850981</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +489,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="REQ 2.4.12 implemented" />
     <MESSAGE value="Req 2.6.1 implemented" />
     <MESSAGE value="Req 2.6.2 implemented" />
     <MESSAGE value="Req 2.6.3 implemented" />
@@ -522,7 +513,8 @@
     <MESSAGE value="Cart purchase post and view" />
     <MESSAGE value="Added remove items from cart view" />
     <MESSAGE value="Added re-open or make store inactive" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added re-open or make store inactive" />
+    <MESSAGE value="Implemented notification bus to use web-sockets, need to add interfaces of observer and observable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented notification bus to use web-sockets, need to add interfaces of observer and observable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

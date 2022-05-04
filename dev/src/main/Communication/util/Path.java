@@ -16,7 +16,7 @@ public class Path {
         public static final String OPEN_STORE = "/velocity/store/openStore.vm";
 
 
-        public static final String NOT_FOUND = "/velocity/notFound.vm";
+        public static final String MAIN = "/velocity/main.vm";
         public static final String MANAGE_STORE_INVENTORY = "/velocity/store/manageStoreInventory.vm";
         public static final String ADD_PRODUCT_TO_STORE = "/velocity/store/addProductToStore.vm";
         public static final String UPDATE_PRODUCT_IN_STORE = "/velocity/store/updateProductInStore.vm";

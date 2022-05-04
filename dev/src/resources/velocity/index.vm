@@ -12,9 +12,6 @@
 <script>
         #if ($userToken)
         localStorage.setItem("userToken", "$userToken");
-        #else
-        if (!localStorage.getItem("userToken"))
-            document.forms["connect"].submit();
         #end
 </script>
 </html>

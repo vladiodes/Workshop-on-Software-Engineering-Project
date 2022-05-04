@@ -37,6 +37,6 @@ public class RegisterController {
         Response<String> response=service.guestConnect();
         model.put("userToken",response.getResult());
         ctx.sessionAttribute("userToken",response.getResult());
-        ctx.render("/velocity/notFound.vm",model);
+        ctx.render("/velocity/main.vm",model);
     };
 }
