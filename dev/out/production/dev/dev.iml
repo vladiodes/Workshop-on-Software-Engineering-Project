@@ -61,5 +61,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="mockito.all" level="project" />
+    <orderEntry type="library" name="net.stickycode.mockwire:sticky-mockwire-mockito:5.1" level="project" />
   </component>
 </module>

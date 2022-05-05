@@ -404,7 +404,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions) {
         try {
             market.addConditionalDiscount(userToken, storeName, productName, until, restrictions);
             return new Response<>(true);
