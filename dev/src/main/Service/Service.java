@@ -4,6 +4,8 @@ package main.Service;
 
 import io.javalin.websocket.WsContext;
 import main.DTO.*;
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
 import main.Shopping.ShoppingBasket;
 import main.Stores.IStore;
@@ -34,9 +36,9 @@ public class Service implements IService {
     private Market market;
 
 
-    public Service(){
+    public Service(IPayment Psystem, ISupplying Isystem){
         market=new Market();
-        market.initialize();
+        market.initialize(Psystem, Isystem);
 
     }
 

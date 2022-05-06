@@ -6,12 +6,12 @@ public class PaymentAdapter implements IPayment {
 
     @Override
     public boolean validateCard(PaymentInformation pi) {
-        return pi.getOutput();
+        return true;
     }
 
     @Override
     public boolean makePayment(PaymentInformation pi, double amountToPay) {
-        return pi.getOutput();
+        return true;
     }
 
     @Override

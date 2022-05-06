@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="deleted out folder">
       <change afterPath="$PROJECT_DIR$/src/resources/velocity/admin/viewPurchaseHistoryAdmin.vm" afterDir="false" />
@@ -27,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -123,6 +126,7 @@
       </method>
     </configuration>
     <configuration name="AT_Req2_3.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -160,20 +164,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="PACKAGE_NAME" value="test" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.ATuser2Requirements" />
+      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedPayment" />
+      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedSupply" />
+      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartNotifies" />
+      <item itemvalue="JUnit.test in dev" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -187,7 +198,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="" />
+      <changelist id="36b65f5f-c497-443d-915d-42ec4467c5dd" name="Changes" comment="concurrency bug fix in open store" />
       <created>1649831427176</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -552,19 +563,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
-          <line>185</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/main/Shopping/Purchase.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/Service/IService.java</url>
@@ -580,12 +581,17 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="main.Market" memberName="stores" />
+        <PinnedItemInfo parentTag="main.Users.User" memberName="purchaseHistory" />
       </pinned-members>
     </pin-to-top-manager>
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1650885421072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>test.*</FILTER>
+    <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.AcceptanceTests.*</FILTER>
     </SUITE>
   </component>
 </project>

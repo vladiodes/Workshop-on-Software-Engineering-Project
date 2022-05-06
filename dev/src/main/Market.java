@@ -1,7 +1,14 @@
 package main;
 
+
 import io.javalin.websocket.WsContext;
 import main.Stores.*;
+
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Supplying.ISupplying;
+import main.Stores.ProductReview;
+import main.Stores.StoreReview;
+
 
 import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
@@ -38,6 +45,8 @@ public class Market {
     private ConcurrentHashMap<String, IStore> stores; //key=store name
     private ISecurity security_controller;
     private NotificationBus bus;
+    private IPayment Psystem;
+    private ISupplying Ssystem;
 
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
 
@@ -437,15 +446,24 @@ public class Market {
     /**
      * Create Default system manager
      */
-    public void initialize() {
+    public void initialize(IPayment Psystem, ISupplying Isystem) {
         String adminUserName = "admin";
         String adminHashPassword = security_controller.hashPassword("admin");
         User admin = new User(true, adminUserName, adminHashPassword);
         membersByUserName.put("admin", admin);
         bus.register(admin);
         Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUserName));
+        setSsystem(Isystem);
+        setPsystem(Psystem);
     }
 
+    public void setPsystem(IPayment psystem) {
+        Psystem = psystem;
+    }
+
+    public void setSsystem(ISupplying ssystem) {
+        Ssystem = ssystem;
+    }
 
     public boolean openStore(String userToken, String storeName) throws Exception{
         User founder = connectedSessions.get(userToken);
@@ -508,7 +526,7 @@ public class Market {
     {
         //User purchase history update
         User u = getConnectedUserByToken(userToken);
-        u.purchaseCart(bus, pinfo, sinfo);
+        u.purchaseCart(bus, pinfo, sinfo, this.Psystem, this.Ssystem);
         addStats(StatsType.Purchase);
     }
 

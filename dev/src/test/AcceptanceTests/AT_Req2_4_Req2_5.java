@@ -8,6 +8,8 @@ import main.utils.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import test.testUtils.testsFactory;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AT_Req2_4_Req2_5 {
 
     Response<String> manager1token, manager2token, founder1token, founder2token, owner1token, user1token;
-    IService service = new Service();
+    IService service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
 
     @Before
     public void setUp() {
@@ -598,6 +600,6 @@ public class AT_Req2_4_Req2_5 {
 
     @After
     public void tearDown() {
-        service = new Service();
+        service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
     }
 }

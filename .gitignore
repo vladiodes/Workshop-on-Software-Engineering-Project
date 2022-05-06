@@ -25,3 +25,4 @@ hs_err_pid*
 dev/out/production/dev/LOG.txt
 dev/out/production/dev/.idea/.name
 dev/LOG.txt
+dev/.idea/*

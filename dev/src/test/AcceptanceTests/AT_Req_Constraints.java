@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import test.testUtils.testsFactory;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class AT_Req_Constraints {
 
     @Before
     public void setUp() {
-        service = new Service();
+        service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         adminToken = service.guestConnect();
         founder1token = service.guestConnect();
         user1token = service.guestConnect();
@@ -104,11 +105,9 @@ public class AT_Req_Constraints {
      */
     @Test
     public void checkPurchaseWithBadSupplyAndPayment() {
-        SupplyingInformation si  = new SupplyingInformation(false);
-        PaymentInformation pi = new PaymentInformation(false);
         Response<Boolean> res = service.addProductToStore(founder1token.getResult(),"Bamba","Snacks",null,"nice snack","MyStore1",20,22);
         Response<Boolean> res2 = service.addProductToCart(user1token.getResult(),"MyStore1","Bamba",5);
-        Response<Boolean> res3 = service.purchaseCart(user1token.getResult(),pi,si);
+        Response<Boolean> res3 = service.purchaseCart(user1token.getResult(), testsFactory.getSomePI(), testsFactory.getSomeSI());
         assertTrue(res3.isError_occured());
     }
 }
