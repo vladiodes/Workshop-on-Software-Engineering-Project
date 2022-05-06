@@ -23,6 +23,7 @@ public class Main {
         StoreController storeController=new StoreController(service);
         ProductController productController=new ProductController(service);
         CartController cartController=new CartController(service);
+        UserController userController=new UserController(service);
 
         Response<String> token=service.guestConnect();
         service.register("vladiodes","123456");
@@ -72,6 +73,26 @@ public class Main {
             post("/removeProductFromCart", cartController.handleRemoveProductFromCart);
             get("/openCloseStore",storeController.openCloseStorePage);
             post("/openCloseStore",storeController.handleOpenCloseStorePost);
+            get("/profile",userController.openUserProfilePage);
+            post("/changeUserName",userController.changeUserNamePost);
+            post("/changePassword",userController.changePasswordPost);
+            post("/addSecurityQuestion",userController.addSecurityQuestionPost);
+            get("/manageStoreStaff",storeController.openManageStoreStaffPage);
+            post("/viewStoreStaff",storeController.viewStoreStaffPost);
+            post("/appointOrDeleteManager",storeController.appointOrDeletePostHandle);
+            post("/grantRemovePermissions",storeController.allowDisallowPermissionPostHandle);
+            get("userPurchaseHistory",userController.handleGetPurchaseHistory);
+            get("/viewProductsInStore",storeController.viewStoreInventoryPage);
+            post("/viewProductsInStore",storeController.viewStoreInventoryPost);
+            get("/deleteUser",userController.deleteUserGet);
+            post("/deleteUser",userController.deleteUserPost);
+            get("/deleteStore",storeController.deleteStoreGet);
+            post("/deleteStore",storeController.deleteStorePost);
+            get("/systemStats",userController.systemStatsPage);
+            post("/systemStats",userController.systemStatsHandlePost);
+            get("/answerComplaints",userController.answerComplaintsPage);
+            post("/answerComplaints",userController.answerComplaintsPost);
+
         });
 
     }

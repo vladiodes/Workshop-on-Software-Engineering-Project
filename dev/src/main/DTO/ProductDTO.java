@@ -10,11 +10,15 @@ public class ProductDTO {
 
     private Double price;
 
+    private int quantity;
+
     public ProductDTO(Product product) {
         this.productName = product.getName();
         this.description = product.getDescription();
         this.storeName=product.getStore().getName();
         this.price=product.getPrice();
+        this.quantity=product.getQuantity();
+
     }
 
     public String getProductName() {
@@ -31,5 +35,9 @@ public class ProductDTO {
 
     public Double getPrice() {
         return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

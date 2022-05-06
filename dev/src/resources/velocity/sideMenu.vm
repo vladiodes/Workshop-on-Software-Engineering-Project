@@ -3,16 +3,9 @@
 
     let ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/notifications");
     ws.onopen = () => ws.send((localStorage.getItem("userToken")));
-    let i = 0;
     ws.onmessage = msg => {
-        let color = "#E8E8E8";
-        if(i%2===0){
-            color = "#DCDCDC";
-        }
-        alert("New notification!");
-        document.getElementById("realTime").innerHTML += '<div style="background-color:' + color +'"> <p>'+msg.data+'</p></div>';
-        i++;
-    }
+        alert(msg.data);
+    };
 </script>
 <div id="nav-container">
     <div class="bg"></div>
@@ -28,6 +21,7 @@
             #if($isLoggedIn)
                 <li><a href="/openStore">Open store</a></li>
                 <li><a href="/manageStoreInventory">Manage store inventory</a></li>
+                <li><a href="/manageStoreStaff">Manage store staff</a></li>
                 <li><a href="/openCloseStore">Re-Open/close your stores</a></li>
                 <li><a href="/logout">Logout</a></li>
             #end
@@ -35,7 +29,14 @@
                 <li><a href="/register">Register</a></li>
                 <li><a href="/login">Login</a></li>
             #end
-            <li id="realTime" class="notifications"><h2>Real time notifications:</h2><p></p></li>
+            #if($isAdmin)
+                <h2 style="text-decoration: underline">Admin actions</h2>
+                <li><a href="/deleteUser">Delete user</a></li>
+                <li><a href="/deleteStore">Delete store</a></li>
+                <li><a href="#">View purchase history</a></li>
+                <li><a href="/systemStats">View system stats</a></li>
+                <li><a href="/answerComplaints">Answer complaints</a></li>
+            #end
         </ul>
     </div>
 </div>

@@ -3,10 +3,7 @@ package main.Communication.util;
 public class Path {
 
     public static class Web {
-        public static final String INDEX = "/index";
         public static final String LOGIN = "/login";
-        public static final String LOGOUT = "/logout";
-        public static final String BOOKS = "/books";
        // public static final String ONE_BOOK = "/books/{isbn}";
     }
 
@@ -24,6 +21,13 @@ public class Path {
         public static final String CART = "velocity/cart/cart.vm";
         public static final String PURCHASE_CART = "velocity/cart/purchaseCart.vm";
         public static final String OPEN_CLOSE_STORE = "velocity/store/openCloseStore.vm";
+        public static final String PROFILE = "velocity/users/profile.vm";
+        public static final String MANAGE_STORE_STAFF = "velocity/store/manageStoreStaff.vm";
+        public static final String VIEW_STORE_INVENTORY = "velocity/store/viewStoreInventory.vm";
+        public static final String DELETE_USER = "velocity/admin/deleteUser.vm";
+        public static final String DELETE_STORE = "velocity/admin/deleteStore.vm";
+        public static final String VIEW_SYS_STATS = "velocity/admin/systemStats.vm";
+        public static final String ANSWER_COMPLAINTS = "velocity/admin/answerComplaints.vm";
     }
 
 }

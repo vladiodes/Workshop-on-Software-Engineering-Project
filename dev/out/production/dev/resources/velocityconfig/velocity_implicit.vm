@@ -6,6 +6,7 @@
 #* @vtlvariable name="currentUser" type="java.lang.String" *#
 #* @vtlvariable name="isLoggedIn" type="java.lang.Boolean" *#
 #* @vtlvariable name="isLoggedOut" type="java.lang.Boolean" *#
+#* @vtlvariable name="isAdmin" type="java.lang.Boolean" *#
 #* @vtlvariable name="cart_fail" type="java.lang.Boolean" *#
 #* @vtlvariable name="cart_success" type="java.lang.Boolean" *#
 #* @vtlvariable name="cart_response" type="java.lang.String" *#
@@ -14,3 +15,6 @@
 #* @vtlvariable name="products" type="java.lang.Iterable<main.DTO.ProductDTO>" *#
 #* @vtlvariable name="product" type="main.DTO.ProductDTO" *#
 #* @vtlvariable name="cart" type="main.DTO.ShoppingCartDTO" *#
+#* @vtlvariable name="staff" type="java.lang.Iterable<java.lang.String>" *#
+#* @vtlvariable name="history" type="java.lang.Iterable<java.lang.String>" *#
+#* @vtlvariable name="sys_stats" type="java.lang.String" *#

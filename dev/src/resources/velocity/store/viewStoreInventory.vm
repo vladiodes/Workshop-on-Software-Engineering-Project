@@ -1,0 +1,31 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Manage your stores' inventory:</h2>
+        <form id="view_inventory" method="post">
+            <p>Select your store</p>
+            <select name="storeName" onchange="this.form.submit()">
+                <option value=""></option>
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+            #foreach($name_product in $store.getProductsByName().entrySet())
+                <h2>$name_product.key</h2>
+                <p>Quantity: $name_product.value.getQuantity()</p>
+                <p>Price: $name_product.value.getPrice()</p>
+            #end
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

@@ -306,12 +306,16 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken, String userName) {
+    public Response<List<String>> getPurchaseHistory(String userToken, String userName) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get purchase history, userToken:%s userName:%s",userToken,userName));
         try
         {
+            // todo: market should return a list of string and not object.. nothing to do with the object...
             List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken, userName);
-            return new Response<>(carts, null);
+            List<String> output = new LinkedList<>();
+            for(ShoppingCartDTO cart:carts)
+                output.add(cart.toString());
+            return new Response<>(output);
         }
         catch (IllegalArgumentException e){
             return new Response<>(e,true);
@@ -538,15 +542,13 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<HashMap<UserDTO, String>> getStoreStaff(String userToken, String storeName) {
+    public Response<List<String>> getStoreStaff(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to view store staff in store:%s", storeName));
         try {
             HashMap<User, String> map = market.getStoreStaff(userToken, storeName);
-            HashMap<UserDTO, String> toReturn = new HashMap<>();
-            for (User u : map.keySet()) {
-                UserDTO dto = new UserDTO(u);
-                toReturn.put(dto, map.get(u));
-            }
+            List<String> toReturn=new LinkedList<>();
+            for (User u : map.keySet())
+                toReturn.add((u.getUserName() + ": " + map.get(u)));
             return new Response<>(toReturn);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);

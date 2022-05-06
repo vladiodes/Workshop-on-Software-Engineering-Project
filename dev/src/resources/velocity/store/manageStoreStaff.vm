@@ -1,0 +1,91 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <table style="border-spacing: 10rem 0;">
+        <tr>
+            <td>
+                <h2>View your stores' staff:</h2>
+                <form action="/viewStoreStaff" id="view_store_staff" method="post">
+                    <p>Select your store</p>
+                    <select name="storeName">
+                        #foreach($store in $stores)
+                            <option value="$store.getStoreName()">$store.getStoreName()</option>
+                        #end
+                    </select>
+                    <p><input type="submit" value="View store staff"></p>
+                </form>
+            </td>
+            <td>
+                <h2>Appoint/remove staff:</h2>
+                <form action="/appointOrDeleteManager" id="appoint_del_manager" method="post">
+                    <p>Select your store</p>
+                    <select name="storeName">
+                        #foreach($store in $stores)
+                            <option value="$store.getStoreName()">$store.getStoreName()</option>
+                        #end
+                    </select>
+                    <p>Username to appoint/remove:</p>
+                    <input type="text" name="userName" placeholder="user to appoint/remove" value="" required>
+                    <p>
+                        <input type="radio" name="appointOrDelete" value="appManager" checked> Appoint to manager
+                    </p>
+                    <p>
+                        <input type="radio" name="appointOrDelete" value="remManager"> Remove manager appointment
+                    </p>
+                    <p>
+                        <input type="radio" name="appointOrDelete" value="appOwner"> Appoint to owner
+                    </p>
+                    <p>
+                        <input type="radio" name="appointOrDelete" value="remOwner"> Remove owner appointment
+                    </p>
+                    <p><input type="submit" value="Execute action"></p>
+                </form>
+            </td>
+            <td>
+                <h2>Grant/remove permissions</h2>
+                <form action="/grantRemovePermissions" id="grant_rem_permission" method="post">
+                    <p>Select your store</p>
+                    <select name="storeName">
+                        #foreach($store in $stores)
+                            <option value="$store.getStoreName()">$store.getStoreName()</option>
+                        #end
+                    </select>
+                    <p>Username to grant/remove:</p>
+                    <input type="text" name="userName" placeholder="user to grant/remove" value="" required>
+                    <p>
+                        <input type="radio" name="allowOrDisallow" value="allow" checked> Grant
+                        <input type="radio" name="allowOrDisallow" value="disallow"> Remove
+                    </p>
+
+                    <p>
+                        <input type="radio" name="permissionType" value="Update_Products" checked> Update products
+                    </p>
+                    <p>
+                        <input type="radio" name="permissionType" value="Purchase_History"> View purchase history
+                    </p>
+                    <p>
+                        <input type="radio" name="permissionType" value="Requests"> Answer requests
+                    </p>
+                    <p><input type="submit" value="Execute action"></p>
+                </form>
+            </td>
+        </tr>
+        </table>
+<div style="text-align: center;">
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+                #foreach($str in $staff)
+                    <p id="success_response">$str</p>
+                #end
+        #end
+</div>
+    </div>
+</main>
+</div>
+</body>
+</html>

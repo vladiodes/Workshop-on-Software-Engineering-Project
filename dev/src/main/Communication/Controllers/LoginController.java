@@ -40,6 +40,10 @@ public class LoginController {
             model.put("currentUser",ctx.formParam("username"));
             model.put("isLoggedIn",true);
             model.remove("isLoggedOut");
+            if(response.getResult().isAdmin()) {
+                ctx.sessionAttribute("isAdmin",true);
+                model.put("isAdmin", true);
+            }
         }
         ctx.render(Path.Template.LOGIN,model);
     };
@@ -58,20 +62,10 @@ public class LoginController {
             ctx.sessionAttribute("loggedOut", "true");
             model.put("isLoggedOut",true);
             model.remove("isLoggedIn");
+            ctx.sessionAttribute("isAdmin",false);
+            model.put("isAdmin",false);
         }
         ctx.render(Path.Template.LOGOUT,model);
-    };
-
-    // The origin of the request (request.pathInfo()) is saved in the session so
-    // the user can be redirected back after login
-    public Handler ensureLoginBeforeViewingBooks = ctx -> {
-        if (!ctx.path().startsWith("/books")) {
-            return;
-        }
-        if (ctx.sessionAttribute("currentUser") == null) {
-            ctx.sessionAttribute("loginRedirect", ctx.path());
-            ctx.redirect(Path.Web.LOGIN);
-        }
     };
 
 }

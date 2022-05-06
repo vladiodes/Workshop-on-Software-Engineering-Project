@@ -147,7 +147,7 @@ public interface IService {
      * @param userToken - the user that invokes the action
      * @param userName - the user to check its history - admin can check for any user, non admin can only check for itself
      */
-    Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken,String userName);
+    Response<List<String>> getPurchaseHistory(String userToken,String userName);
 
     /**
      * REQ 2.3.8
@@ -266,11 +266,8 @@ public interface IService {
 
     /**
      * REQ 2.4.11
-     * @return a hash map in which the key-value pair is of the format <UserDTO,List<String>>:
-     * UserDTO - represents the user that has a role in the store (manager,owner,founder)
-     * List<String> - a list of all the permissions that the staff member has.
      */
-    Response<HashMap<UserDTO,String>> getStoreStaff(String userToken, String storeName);
+    Response<List<String>> getStoreStaff(String userToken, String storeName);
 
     /**
      * REQ 2.4.12
