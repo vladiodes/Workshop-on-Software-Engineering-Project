@@ -1,11 +1,13 @@
 package main.Stores;
 
+import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Restriction;
+import main.utils.SupplyingInformation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -58,11 +60,10 @@ public interface IStore {
 
     boolean removeProduct(String productName);
 
-    void purchaseBasket(NotificationBus bus,ShoppingBasket bask) ;
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, ShoppingBasket bask);
 
     void addReview(StoreReview sReview);
 
-    boolean ValidateProduct(Product key, Integer value);
 
     /***
      * @param productName name of product add discount to.

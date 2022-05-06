@@ -23,16 +23,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36b65f5f-c497-443d-915d-42ec4467c5dd" name="Changes" comment="concurrency bug fix in open store">
-      <change afterPath="$PROJECT_DIR$/src/main/DTO/DiscountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/DirectPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/Restriction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/Restriction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +87,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
@@ -113,8 +121,8 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
-    <configuration name="ATuser2Requirements.PurchaseWithCondtionalDiscountHighestDiscountCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ATuser2Requirements">
+    <configuration name="AT_Req2_3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -123,14 +131,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="PurchaseWithCondtionalDiscountHighestDiscountCase" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_3" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.PurchaseWithCondtionalDiscountLowestDiscountCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -139,14 +146,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="PurchaseWithCondtionalDiscountLowestDiscountCase" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.PurchaseWithCondtionalDiscountNoDiscountCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req_1_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -155,14 +161,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="PurchaseWithCondtionalDiscountNoDiscountCase" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req_1_1" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.PurchaseWithWrongSecretCodeDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -172,8 +177,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
       <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="PurchaseWithWrongSecretCodeDiscount" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -193,19 +197,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithWrongSecretCodeDiscount" />
-      <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithCondtionalDiscountHighestDiscountCase" />
-      <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithCondtionalDiscountLowestDiscountCase" />
-      <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithCondtionalDiscountNoDiscountCase" />
+      <item itemvalue="JUnit.AT_Req2_3" />
+      <item itemvalue="JUnit.AT_Req2_6" />
+      <item itemvalue="JUnit.AT_Req_1_1" />
       <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.ATuser2Requirements" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ATuser2Requirements" />
+        <item itemvalue="JUnit.AT_Req2_3" />
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithCondtionalDiscountNoDiscountCase" />
-        <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithCondtionalDiscountLowestDiscountCase" />
-        <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithCondtionalDiscountHighestDiscountCase" />
-        <item itemvalue="JUnit.ATuser2Requirements.PurchaseWithWrongSecretCodeDiscount" />
+        <item itemvalue="JUnit.AT_Req_1_1" />
+        <item itemvalue="JUnit.AT_Req2_6" />
       </list>
     </recent_temporary>
   </component>
@@ -480,30 +484,34 @@
     <option name="LAST_COMMIT_MESSAGE" value="concurrency bug fix in open store" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1651762708950">
+    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1651854501762">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651762708950" />
+    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651854501762" />
     <state x="705" y="312" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1651759319744">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="705" y="312" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651759319744" />
-    <state width="1995" height="310" key="GridCell.Tab.0.bottom" timestamp="1651762844356">
+    <state x="636" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1651857018365">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1995" height="310" key="GridCell.Tab.0.bottom/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651762844356" />
-    <state width="1995" height="310" key="GridCell.Tab.0.center" timestamp="1651762844356">
+    <state x="636" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651857018365" />
+    <state width="1993" height="306" key="GridCell.Tab.0.bottom" timestamp="1651854576768">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1995" height="310" key="GridCell.Tab.0.center/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651762844356" />
-    <state width="1995" height="310" key="GridCell.Tab.0.left" timestamp="1651762844356">
+    <state width="1993" height="306" key="GridCell.Tab.0.bottom/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651854576768" />
+    <state width="1993" height="306" key="GridCell.Tab.0.center" timestamp="1651854576768">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1995" height="310" key="GridCell.Tab.0.left/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651762844356" />
-    <state width="1995" height="310" key="GridCell.Tab.0.right" timestamp="1651762844356">
+    <state width="1993" height="306" key="GridCell.Tab.0.center/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651854576768" />
+    <state width="1993" height="306" key="GridCell.Tab.0.left" timestamp="1651854576768">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1995" height="310" key="GridCell.Tab.0.right/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651762844356" />
+    <state width="1993" height="306" key="GridCell.Tab.0.left/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651854576768" />
+    <state width="1993" height="306" key="GridCell.Tab.0.right" timestamp="1651854576768">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="306" key="GridCell.Tab.0.right/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651854576768" />
     <state width="1995" height="378" key="GridCell.Tab.1.bottom" timestamp="1651762193320">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
@@ -520,18 +528,30 @@
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state width="1995" height="378" key="GridCell.Tab.1.right/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651762193320" />
-    <state x="505" y="151" key="SettingsEditor" timestamp="1651760282557">
+    <state x="505" y="92" key="SettingsEditor" timestamp="1651850964732">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="505" y="151" key="SettingsEditor/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651760282557" />
+    <state x="505" y="92" key="SettingsEditor/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651850964732" />
     <state x="754" y="468" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1651759844037">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="754" y="468" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651759844037" />
-    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup" timestamp="1651760716562">
+    <state x="1118" y="362" key="extract.method.dialog" timestamp="1651851344125">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651760716562" />
+    <state x="1118" y="362" key="extract.method.dialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651851344125" />
+    <state x="665" y="75" width="718" height="1002" key="find.popup" timestamp="1651856996846">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="665" y="75" width="718" height="1002" key="find.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651856996846" />
+    <state x="597" y="265" key="run.anything.popup" timestamp="1651841966098">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="597" y="265" key="run.anything.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651841966098" />
+    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup" timestamp="1651841465805">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651841465805" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

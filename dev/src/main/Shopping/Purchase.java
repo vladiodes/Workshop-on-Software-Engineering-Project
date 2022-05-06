@@ -50,7 +50,7 @@ public class Purchase {
         this.user.resetCart();
         ConcurrentHashMap<String, ShoppingBasket> baskets = cart.getBaskets();
         for(ShoppingBasket sb : baskets.values())
-            sb.purchaseBasket(bus);
+            sb.purchaseBasket(this.user,supplyingSystem, this.sinfo, bus);
         this.user.addCartToHistory(this.cart);
     }
 }

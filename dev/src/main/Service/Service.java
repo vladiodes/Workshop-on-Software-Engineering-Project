@@ -179,6 +179,11 @@ public class Service implements IService {
     }
 
     @Override
+    public Response<Boolean> addProductToCart(String userToken, String storeName, String productName, double price) {
+        return null;
+    }
+
+    @Override
     public Response<Boolean> RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to remove product from cart, userToken:%s storeName:%s productName:%s quantity:%d",userToken,storeName, productName, quantity));
         try {

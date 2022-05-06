@@ -205,6 +205,14 @@ public class Market {
         return us.addProductToCart(st, productName, quantity);
     }
 
+    public boolean addProductToCart(String userToken, String storeName, String productName, double price) throws Exception{
+        if(price <= 0)
+            throw new IllegalArgumentException("can't pay 0 or less.");
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        return user.addProductToCart(store, productName, price);
+    }
+
     public boolean RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
         User us = this.connectedSessions.get(userToken);
         if (quantity <= 0)

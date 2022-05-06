@@ -1,5 +1,6 @@
 package main.Stores;
 
+import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Stores.Discounts.ConditionalDiscount;
@@ -10,6 +11,7 @@ import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Pair;
 import main.utils.Restriction;
+import main.utils.SupplyingInformation;
 
 
 import javax.swing.*;
@@ -223,9 +225,9 @@ public class Store implements IStore {
     }
 
     @Override
-    public void purchaseBasket(NotificationBus bus,ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
-            purchaseProduct(en.getKey(), en.getValue());
+            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, bus);
         this.purchaseHistory.put(bask,LocalDateTime.now());
         notifyPurchase(bus);
     }
@@ -243,15 +245,6 @@ public class Store implements IStore {
         this.storeReviews.add(sReview);
     }
 
-    /***
-     * @param product to check
-     * @param amount to buy
-     * @return returns if its purchesable for the current amount.
-     */
-    @Override
-    public boolean ValidateProduct(Product product, Integer amount) {
-        return this.getIsActive() && product.getQuantity() >= amount;
-    }
 
     @Override
     public void addDirectDiscount(String productName, LocalDate until, Double percent) {
@@ -271,14 +264,4 @@ public class Store implements IStore {
         product.setDiscount(new ConditionalDiscount(restrictions, until));
     }
 
-    private void purchaseProduct(Product product, Integer quantity) {
-        if (product.getQuantity() < quantity) {
-            throw new IllegalArgumentException("Not enough products in stock");
-        }
-        if (product.getQuantity() == quantity) {
-            removeProduct(product.getName());
-            return;
-        }
-        product.subtractQuantity(quantity);
-    }
 }

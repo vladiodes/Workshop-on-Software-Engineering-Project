@@ -87,6 +87,11 @@ public interface IService {
      */
     Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity);
 
+    /***
+     * used for when buying a product that is sold raffle.
+     */
+    Response<Boolean> addProductToCart(String userToken, String storeName, String productName, double price);
+
 
     /**
      * REQ 2.2.4
@@ -197,6 +202,11 @@ public interface IService {
     Response<Boolean> addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode);
     Response<Boolean> addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions);
     Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password);
+
+    /***
+     * REQ - purchase policies:
+     */
+//    Response<Boolean>
 
     /**
      * REQ 2.4.4

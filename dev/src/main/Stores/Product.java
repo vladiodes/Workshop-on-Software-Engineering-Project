@@ -1,8 +1,14 @@
 package main.Stores;
 
 
+import main.ExternalServices.Supplying.ISupplying;
+import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Stores.Discounts.Discount;
+import main.Stores.PurchasePolicy.Policy;
+import main.Stores.PurchasePolicy.normalPolicy;
+import main.Users.User;
+import main.utils.SupplyingInformation;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +22,7 @@ public class Product {
     private int quantity;
     private double price;
     private List<ProductReview> reviews;
+    private Policy policy;
 
     private Discount discount;
 
@@ -32,9 +39,10 @@ public class Product {
         this.quantity=quantity;
         this.price=price;
         this.reviews = new LinkedList<>();
+        this.policy = new normalPolicy();
     }
 
-    public Product(Product p) // Use this constructor to deep copy Product
+    public Product(Product p) // Use this constructor to deep copy Product //TODO fix
     {
         this.productName = p.productName;
         this.category = p.category;
@@ -61,6 +69,10 @@ public class Product {
         this.description=description;
         this.quantity=quantity;
         this.price=price;
+    }
+
+    public void setPolicy(Policy policy) {
+        this.policy = policy;
     }
 
     public String getCategory() {
@@ -104,6 +116,17 @@ public class Product {
 
     public Discount getDiscount() {
         return discount;
+    }
+
+    public boolean isPurchasableForAmount(Integer amount) {return this.policy.isPurchasable(this, amount);}
+    public boolean isPurchasableForPrice(Double price) {
+       return this.policy.isPurchasable(this, price);
+    }
+    public boolean Purchase(User user, Double costumePrice, int amount ,ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus){
+        return this.policy.purchase(this, user, costumePrice, amount, supplying, supplyingInformation, bus);
+    }
+    public boolean Bid(User user, Double costumePrice, NotificationBus bus){
+        return this.policy.bid(this, user, costumePrice, bus);
     }
 
     public void setDiscount(Discount discount) {

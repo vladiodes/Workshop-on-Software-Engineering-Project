@@ -3,20 +3,16 @@ package main.Users;
 
 import main.NotificationBus;
 import main.ExternalServices.Payment.IPayment;
-import main.ExternalServices.Payment.PaymentAdapter;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 
-import main.Stores.Discounts.ConditionalDiscount;
-import main.Stores.Discounts.SecretDiscount;
 import main.Stores.IStore;
 
 import main.Stores.Product;
 
 import main.Stores.Store;
 import main.ExternalServices.Supplying.ISupplying;
-import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.utils.Pair;
 import main.utils.PaymentInformation;
 import main.utils.Restriction;
@@ -497,6 +493,10 @@ public class User {
 
     public boolean addProductToCart(IStore st, String productName, int quantity) {
         return cart.addProductToCart(st, productName, quantity);
+    }
+
+    public boolean addProductToCart(IStore st, String productName, double price) {
+        return cart.setCostumeProductPrice(st, productName, price);
     }
 
     public boolean RemoveProductFromCart(IStore st, String productName, int quantity) {

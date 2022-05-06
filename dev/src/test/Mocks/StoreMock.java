@@ -1,5 +1,6 @@
 package test.Mocks;
 
+import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Stores.IStore;
@@ -10,6 +11,7 @@ import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Pair;
 import main.utils.Restriction;
+import main.utils.SupplyingInformation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -129,18 +131,14 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void purchaseBasket(NotificationBus bus, ShoppingBasket bask){
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, ShoppingBasket bask) {
 
     }
+
 
     @Override
     public void addReview(StoreReview sReview) {
 
-    }
-
-    @Override
-    public boolean ValidateProduct(Product key, Integer value) {
-        return false;
     }
 
     @Override
