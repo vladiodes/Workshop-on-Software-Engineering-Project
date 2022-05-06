@@ -28,6 +28,10 @@ public class Path {
         public static final String DELETE_STORE = "velocity/admin/deleteStore.vm";
         public static final String VIEW_SYS_STATS = "velocity/admin/systemStats.vm";
         public static final String ANSWER_COMPLAINTS = "velocity/admin/answerComplaints.vm";
+        public static final String VIEW_ADMIN_PURCHASE = "velocity/admin/viewPurchaseHistoryAdmin.vm";
+        public static final String VIEW_STORE_HISTORY = "velocity/store/purchaseHistory.vm";
+        public static final String SEND_COMPLAINT = "velocity/users/sendComplaint.vm";
+
     }
 
 }

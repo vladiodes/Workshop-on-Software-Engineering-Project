@@ -1,0 +1,37 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>View purchase history (user/store)</h2>
+        <table style="border-spacing: 10rem 0;">
+            <tr>
+                <td>
+                    <form action="/adminViewUserHistory" id="user_history" method="post">
+                        <p>Username</p>
+                        <input type="text" name="userName" placeholder="Enter username" value="" required>
+
+                        <p><input type="submit" value="View history"></p>
+                    </form>
+                </td>
+                <td>
+                    <form action="/adminViewStoreHistory" id="store_history" method="post">
+                        <p>Store name</p>
+                        <input type="text" name="storeName" placeholder="Enter store name" value="" required>
+
+                        <p><input type="submit" value="View history"></p>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

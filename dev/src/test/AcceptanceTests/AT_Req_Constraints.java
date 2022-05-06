@@ -42,8 +42,8 @@ public class AT_Req_Constraints {
 
     @Test
     public void checkOnlyOneUsernameIdentifierInSystem(){
-        Response<List<ShoppingCartDTO>> res = service.getPurchaseHistory(founder1token.getResult(),"founder");
-        Response<List<ShoppingCartDTO>> res2 = service.getPurchaseHistory(founder1token.getResult(),"founder1");
+        Response<List<String>> res = service.getPurchaseHistory(founder1token.getResult(),"founder");
+        Response<List<String>> res2 = service.getPurchaseHistory(founder1token.getResult(),"founder1");
         assertTrue(res.isError_occured() && !res2.isError_occured());
 
     }
@@ -74,10 +74,10 @@ public class AT_Req_Constraints {
     @Test
     public void checkAtLeaseOneOwnerForStore(){
         boolean ownerExists = false;
-       Response<HashMap<UserDTO, String>> staff = service.getStoreStaff(founder1token.getResult(), "MyStore1");
-        for (UserDTO u : staff.getResult().keySet()) {
-            ownerExists |= staff.getResult().get(u).equals("Owner of the store");
-            ownerExists |= staff.getResult().get(u).equals("Founder of the store");
+       Response<List<String>> staff = service.getStoreStaff(founder1token.getResult(), "MyStore1");
+        for (String u : staff.getResult()) {
+            ownerExists |= staff.getResult().contains("Owner of the store");
+            ownerExists |= staff.getResult().contains("Founder of the store");
         }
         assertTrue(ownerExists);
     }

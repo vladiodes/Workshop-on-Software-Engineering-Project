@@ -5,8 +5,12 @@
 <main>
     <div class="content">
         <h2>Manage your stores' inventory, select your preferred action:</h2>
-            <h2><span><a href="/addProductToStore">Add new product to the store</a> </span> | <span><a href="/updateProductInStore">Update product</a></span> |
-                <span><a href="/viewProductsInStore">View store's inventory</a></span></h2>
+            <h2><span><a href="/addProductToStore">Add new product to the store</a> </span> |
+                <span><a href="/updateProductInStore">Update product</a></span> |
+                <span><a href="/viewProductsInStore">View store's inventory</a></span> |
+                <span><a href="/viewStoreHistory">View store's purchase history</a></span></h2> |
+
+
     </div>
 </main>
 </div>

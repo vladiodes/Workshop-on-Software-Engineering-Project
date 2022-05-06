@@ -92,6 +92,13 @@ public class Main {
             post("/systemStats",userController.systemStatsHandlePost);
             get("/answerComplaints",userController.answerComplaintsPage);
             post("/answerComplaints",userController.answerComplaintsPost);
+            get("/viewPurchaseHistoryAdmin",userController.viewPurchaseHistoryAdminPage);
+            post("/adminViewUserHistory",userController.adminViewUserHistoryPost);
+            post("/adminViewStoreHistory",userController.adminViewStoreHistoryPost);
+            get("/viewStoreHistory",storeController.viewStorePurchaseHistoryPage);
+            post("/viewStoreHistory",storeController.viewStoreHistoryPost);
+            get("/sendComplaint",userController.sendComplaintPage);
+            post("/sendComplaint",userController.sendComplaintPost);
 
         });
 

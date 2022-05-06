@@ -23,6 +23,7 @@
                 <li><a href="/manageStoreInventory">Manage store inventory</a></li>
                 <li><a href="/manageStoreStaff">Manage store staff</a></li>
                 <li><a href="/openCloseStore">Re-Open/close your stores</a></li>
+                <li><a href="/sendComplaint">Send complaint</a></li>
                 <li><a href="/logout">Logout</a></li>
             #end
             #if($isLoggedOut)
@@ -33,7 +34,7 @@
                 <h2 style="text-decoration: underline">Admin actions</h2>
                 <li><a href="/deleteUser">Delete user</a></li>
                 <li><a href="/deleteStore">Delete store</a></li>
-                <li><a href="#">View purchase history</a></li>
+                <li><a href="/viewPurchaseHistoryAdmin">View purchase history</a></li>
                 <li><a href="/systemStats">View system stats</a></li>
                 <li><a href="/answerComplaints">Answer complaints</a></li>
             #end

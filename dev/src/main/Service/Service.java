@@ -585,16 +585,16 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<List<PurchaseDTO>> getStorePurchaseHistory(String userToken, String storeName) {
+    public Response<List<String>> getStorePurchaseHistory(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
         try {
             ConcurrentHashMap<ShoppingBasket, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
-            List<PurchaseDTO> output = new LinkedList<>();
+            List<String> output = new LinkedList<>();
             for (ShoppingBasket basket : baskets.keySet()) {
                 HashMap<ProductDTO, Integer> products = new HashMap<>();
                 for (Product product : basket.getProductsAndQuantities().keySet())
                     products.put(new ProductDTO(product), basket.getProductsAndQuantities().get(product));
-                output.add(new PurchaseDTO(products, baskets.get(basket)));
+                output.add(new PurchaseDTO(products, baskets.get(basket)).toString());
             }
             return new Response<>(output);
         } catch (IllegalArgumentException e) {

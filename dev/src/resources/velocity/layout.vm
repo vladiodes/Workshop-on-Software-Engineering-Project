@@ -12,7 +12,9 @@
     <header tabindex="0">
         <div id="logo">TradeIt.</div>
         <div id="cart"><a href="/cart">Cart</a></div>
+        #if($isLoggedIn)
         <div id="profile"><a href="/profile">Profile</a></div>
+        #end
     </header>
     #@sideMenu()
         #end

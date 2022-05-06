@@ -210,11 +210,11 @@ public class AT_Req2_3 {
         //Member is not logged in - fail
         assertTrue(service.getPurchaseHistory(loggedOutMember.getResult(),"notLoggedMember").isError_occured());
         //Empty history - success
-        Response<List<ShoppingCartDTO>> emptyHistory = service.getPurchaseHistory(memberNoCartToken.getResult(), "memberNoCart");
+        Response<List<String>> emptyHistory = service.getPurchaseHistory(memberNoCartToken.getResult(), "memberNoCart");
         assertFalse(emptyHistory.isError_occured());
         assertTrue(emptyHistory.getResult().isEmpty());
         //Non- empty history - success
-        Response<List<ShoppingCartDTO>> nonEmptyHistory = service.getPurchaseHistory(memberBoughtCola.getResult(), "boughtCola");
+        Response<List<String>> nonEmptyHistory = service.getPurchaseHistory(memberBoughtCola.getResult(), "boughtCola");
         assertFalse(nonEmptyHistory.isError_occured());
         assertFalse(nonEmptyHistory.getResult().isEmpty());
     }

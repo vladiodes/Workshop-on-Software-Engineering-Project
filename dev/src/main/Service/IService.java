@@ -289,7 +289,7 @@ public interface IService {
      * was bought at that date
      * the value is the dto of the product.
      */
-    Response<List<PurchaseDTO>> getStorePurchaseHistory(String userToken, String storeName);
+    Response<List<String>> getStorePurchaseHistory(String userToken, String storeName);
 
     /*
      ------------------------ System manager actions -------------------

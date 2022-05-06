@@ -33,7 +33,23 @@ public class StoreController {
         getUserStores(ctx, model);
         ctx.render(Path.Template.ADD_PRODUCT_TO_STORE, model);
     };
-
+    public Handler viewStoreHistoryPost = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        Response<List<String>> response=service.getStorePurchaseHistory(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            StringBuilder htmlQuery=new StringBuilder();
+            for(String str: response.getResult())
+                htmlQuery.append("<p>str</p>");
+            model.put("response",htmlQuery.toString());
+        }
+        ctx.render(Path.Template.VIEW_STORE_HISTORY,model);
+    };
     public Handler openUpdateProductInStorePage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         getUserStores(ctx, model);
@@ -337,5 +353,11 @@ public class StoreController {
             model.put("response",String.format("Successfully deleted the store %s",ctx.formParam("storeName")));
         }
         ctx.render(Path.Template.DELETE_STORE,model);
+    };
+
+    public Handler viewStorePurchaseHistoryPage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.VIEW_STORE_HISTORY,model);
     };
 }

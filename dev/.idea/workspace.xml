@@ -1,52 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="More options to web client">
-      <change afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/admin/answerComplaints.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/admin/deleteStore.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/admin/deleteUser.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/admin/systemStats.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreStaff.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/viewStoreInventory.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/users/profile.vm" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="deleted out folder">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/admin/viewPurchaseHistoryAdmin.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/purchaseHistory.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/users/sendComplaint.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/localization/messages_de.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/localization/messages_en.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/public/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/localization/messages_de.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/localization/messages_en.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/public/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/layout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/velocity/layout.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocity/notFound.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/localization/messages_de.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/localization/messages_en.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/public/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/layout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/layout.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocity/notFound.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/layout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/velocity/layout.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocity/notFound.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/velocityconfig/velocity_implicit.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/MessageBundle.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/RequestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/RequestUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/ViewUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/ViewUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/localization/messages_de.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/localization/messages_en.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/public/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/layout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/layout.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +67,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/admin",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/users",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -110,9 +81,9 @@
       <recent name="test.AcceptanceTests" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\admin" />
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\users" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\admin" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\cart" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\product" />
     </key>
@@ -206,9 +177,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.AT_Req2_3.testLogout" />
         <item itemvalue="JUnit.All in dev" />
-        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.test.UnitTests in dev" />
       </list>
     </recent_temporary>
@@ -229,7 +200,7 @@
       <workItem from="1651568122957" duration="355000" />
       <workItem from="1651568512207" duration="290000" />
       <workItem from="1651650186763" duration="1362000" />
-      <workItem from="1651829399829" duration="13223000" />
+      <workItem from="1651829399829" duration="15837000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -490,7 +461,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651651353785</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="work work work">
+      <created>1651844791222</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1651844791222</updated>
+    </task>
+    <task id="LOCAL-00039" summary="deleted out folder">
+      <created>1651844876356</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1651844876356</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,8 +521,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Req 2.6.3 implemented" />
-    <MESSAGE value="Changed service signatures to return responses" />
     <MESSAGE value="getter in response" />
     <MESSAGE value="Fixed compilation issues" />
     <MESSAGE value="Fixed ProductDTO constructor" />
@@ -561,7 +544,9 @@
     <MESSAGE value="Implemented notification bus to use web-sockets, need to add interfaces of observer and observable" />
     <MESSAGE value="Fixed a bug in handling connection to a new session" />
     <MESSAGE value="More options to web client" />
-    <option name="LAST_COMMIT_MESSAGE" value="More options to web client" />
+    <MESSAGE value="work work work" />
+    <MESSAGE value="deleted out folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted out folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -580,6 +565,15 @@
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
           <line>185</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/Service/IService.java</url>
+          <line>291</line>
+          <properties class="main.Service.IService" method="getStorePurchaseHistory">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

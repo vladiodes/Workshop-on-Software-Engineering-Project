@@ -18,10 +18,52 @@ public class UserController {
 
 
     private IService service;
-
     public UserController(IService service){
         this.service=service;
     }
+
+
+    public Handler viewPurchaseHistoryAdminPage = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        ctx.render(Path.Template.VIEW_ADMIN_PURCHASE,model);
+    };
+    public Handler adminViewUserHistoryPost = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        Response<List<String>> response=service.getPurchaseHistory(ctx.sessionAttribute("userToken"),ctx.formParam("userName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            StringBuilder htmlQuery=new StringBuilder();
+            for(String str: response.getResult())
+                htmlQuery.append("<p>str</p>");
+            model.put("response",htmlQuery.toString());
+        }
+
+        ctx.render(Path.Template.VIEW_ADMIN_PURCHASE,model);
+    };
+
+    public Handler adminViewStoreHistoryPost = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        Response<List<String>> response=service.getStorePurchaseHistory(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            StringBuilder htmlQuery=new StringBuilder();
+            for(String str: response.getResult())
+                htmlQuery.append("<p>str</p>");
+            model.put("response",htmlQuery.toString());
+        }
+        ctx.render(Path.Template.VIEW_ADMIN_PURCHASE,model);
+    };
+
+
+
 
     public Handler openUserProfilePage = ctx ->{
         Map<String,Object> model = ViewUtil.baseModel(ctx);
@@ -164,5 +206,22 @@ public class UserController {
         }
         ctx.render(Path.Template.ANSWER_COMPLAINTS,model);
     };
+    public Handler sendComplaintPage = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        ctx.render(Path.Template.SEND_COMPLAINT,model);
+    };
 
+    public Handler sendComplaintPost = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response = service.sendComplaint(ctx.sessionAttribute("userToken"),ctx.formParam("desc"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully sent the complaint, we'll come back to you");
+        }
+        ctx.render(Path.Template.SEND_COMPLAINT,model);
+    };
 }
