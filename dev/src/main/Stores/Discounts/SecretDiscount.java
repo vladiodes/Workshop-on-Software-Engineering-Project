@@ -13,7 +13,7 @@ public class SecretDiscount extends DirectDiscount{
         this.password = password;
     }
     protected Double CalculateDiscount(Product product, ShoppingBasket shoppingBasket) {
-        if (shoppingBasket.hasDiscountPassword(password))
+        if (shoppingBasket != null && shoppingBasket.hasDiscountPassword(password))
             return super.CalculateDiscount(product, shoppingBasket);
         else return product.getCleanPrice();
     }

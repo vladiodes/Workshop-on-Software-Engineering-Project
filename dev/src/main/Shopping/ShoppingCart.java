@@ -161,4 +161,11 @@ public class ShoppingCart {
             res &= basket.ValidateBasket();
         return res;
     }
+
+    public Map<Product, Integer> getProductsForPurchase() {
+        Map<Product,Integer> output = new HashMap<>();
+        for(ShoppingBasket basket : this.baskets.values())
+            output.putAll(basket.getProductsAndQuantitiesForPurchase());
+        return output;
+    }
 }

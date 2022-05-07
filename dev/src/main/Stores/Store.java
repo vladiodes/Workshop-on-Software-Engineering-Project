@@ -1,5 +1,6 @@
 package main.Stores;
 
+import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
@@ -10,6 +11,7 @@ import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.Pair;
+import main.utils.PaymentInformation;
 import main.utils.Restriction;
 import main.utils.SupplyingInformation;
 
@@ -225,9 +227,9 @@ public class Store implements IStore {
     }
 
     @Override
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment,  NotificationBus bus, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
-            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, bus);
+            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, bus, paymentInformation, payment);
         this.purchaseHistory.put(bask,LocalDateTime.now());
         notifyPurchase(bus);
     }

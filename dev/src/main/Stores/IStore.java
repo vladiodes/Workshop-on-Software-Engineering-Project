@@ -1,11 +1,13 @@
 package main.Stores;
 
+import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+import main.utils.PaymentInformation;
 import main.utils.Restriction;
 import main.utils.SupplyingInformation;
 
@@ -60,7 +62,7 @@ public interface IStore {
 
     boolean removeProduct(String productName);
 
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, ShoppingBasket bask);
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus, ShoppingBasket bask);
 
     void addReview(StoreReview sReview);
 

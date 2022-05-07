@@ -1,6 +1,7 @@
 package main.Stores;
 
 
+import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
@@ -8,6 +9,8 @@ import main.Stores.Discounts.Discount;
 import main.Stores.PurchasePolicy.Policy;
 import main.Stores.PurchasePolicy.normalPolicy;
 import main.Users.User;
+import main.utils.Bid;
+import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
 import java.util.LinkedList;
@@ -23,7 +26,6 @@ public class Product {
     private double price;
     private List<ProductReview> reviews;
     private Policy policy;
-
     private Discount discount;
 
     public Product(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -71,13 +73,16 @@ public class Product {
         this.price=price;
     }
 
-    public void setPolicy(Policy policy) {
+    public void setPolicy(Policy policy, NotificationBus bus) {
+        this.policy.close(bus);
         this.policy = policy;
     }
 
     public String getCategory() {
         return category;
     }
+
+    public boolean deliveredImmediately(){ return policy.deliveredImmediately();}
 
     public boolean hasKeyWord(String word) {
         for (String Keyword : this.keyWords)
@@ -108,7 +113,7 @@ public class Product {
     }
 
 
-    public double getPriceWithDiscount(ShoppingBasket shoppingBasket) {
+    public double getCurrentPrice(ShoppingBasket shoppingBasket) {
         if(discount != null)
             return this.discount.getPriceFor(this, shoppingBasket);
         else return getCleanPrice();
@@ -119,14 +124,14 @@ public class Product {
     }
 
     public boolean isPurchasableForAmount(Integer amount) {return this.policy.isPurchasable(this, amount);}
-    public boolean isPurchasableForPrice(Double price) {
-       return this.policy.isPurchasable(this, price);
+    public boolean isPurchasableForPrice(Double price, int amount) {
+       return this.policy.isPurchasable(this, price, amount);
     }
-    public boolean Purchase(User user, Double costumePrice, int amount ,ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus){
-        return this.policy.purchase(this, user, costumePrice, amount, supplying, supplyingInformation, bus);
+    public boolean Purchase(User user, Double costumePrice, int amount , ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
+        return this.policy.purchase(this, user, costumePrice, amount, supplying, supplyingInformation, bus, paymentInformation , payment );
     }
-    public boolean Bid(User user, Double costumePrice, NotificationBus bus){
-        return this.policy.bid(this, user, costumePrice, bus);
+    public boolean Bid(Bid bid){
+        return this.policy.bid(bid);
     }
 
     public void setDiscount(Discount discount) {

@@ -6,10 +6,13 @@ import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Logger.Logger;
 import main.NotificationBus;
+import main.Stores.Product;
 import main.Users.User;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Purchase {
@@ -36,7 +39,8 @@ public class Purchase {
             throw new Exception("Payment authentication failed.");
         if (!supplyingSystem.bookDelivery(sinfo))
             throw new Exception("Supplier authentication failed");
-        if (!(paymentSystem.makePayment(pinfo, this.cart.getPrice()) && supplyingSystem.supply(sinfo, this.cart.getProducts())))
+        Map<Product, Integer> toDeliver = this.cart.getProductsForPurchase();
+        if (!(paymentSystem.makePayment(pinfo, this.cart.getPrice()) && (toDeliver.size() == 0 || supplyingSystem.supply(sinfo, toDeliver))))
         {
             paymentSystem.abort(pinfo);
             supplyingSystem.abort(sinfo);

@@ -64,8 +64,10 @@ public class ShoppingBasket {
         if (prod == null)
             throw new IllegalArgumentException(String.format("Product %s doesn't exist in the basket.", prod));
         int newValue = productsQuantity.get(prod) + additiveQuanity;
-        if (newValue <= 0)
+        if (newValue <= 0) {
             productsQuantity.remove(prod);
+            costumePrice.remove(prod);
+        }
         else
             productsQuantity.put(prod, newValue);
         return Math.max(0, newValue);
@@ -96,7 +98,7 @@ public class ShoppingBasket {
     //used when adding product with costume price.
     public boolean setCostumePriceForProduct(String prodName, double price) {
         Product prodToSet = this.store.getProduct(prodName);
-        if(prodToSet.isPurchasableForPrice(price))
+        if(prodToSet.isPurchasableForPrice(price, 1))
             this.costumePrice.put(prodToSet, price);
         else throw new IllegalArgumentException("custom price is invalid.");
         return true;
@@ -131,7 +133,7 @@ public class ShoppingBasket {
         double res = 0;
         for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
             if(!costumePrice.containsKey(en.getKey()))
-                res += en.getKey().getPriceWithDiscount(this) * en.getValue();
+                res += en.getKey().getCurrentPrice(this) * en.getValue();
             else res += costumePrice.get(en.getKey()) * en.getValue();
         return res;
     }
@@ -149,9 +151,17 @@ public class ShoppingBasket {
         for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet() ) {
             res &= store.getIsActive() && ent.getKey().isPurchasableForAmount(ent.getValue());
             if(this.costumePrice.containsKey(ent.getKey()))
-                res &= ent.getKey().isPurchasableForPrice(costumePrice.get(ent.getKey()));
+                res &= ent.getKey().isPurchasableForPrice(costumePrice.get(ent.getKey()), ent.getValue());
         }
         return res;
+    }
+
+    public Map<Product, Integer> getProductsAndQuantitiesForPurchase() {
+        Map<Product, Integer> output= new HashMap<>();
+        for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet())
+            if(ent.getKey().deliveredImmediately())
+                output.put(ent.getKey(), ent.getValue());
+        return output;
     }
 }
 

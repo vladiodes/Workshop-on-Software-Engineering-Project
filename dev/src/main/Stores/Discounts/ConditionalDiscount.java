@@ -17,6 +17,8 @@ public class ConditionalDiscount extends Discount{
     }
 
     private boolean restrictionMet(HashMap<Product, Integer> rest, ShoppingBasket shoppingBasket){
+        if (shoppingBasket == null)
+            return false;
         for(Map.Entry<Product,Integer> entry: rest.entrySet())
             if(!shoppingBasket.hasAmount(entry.getKey(), entry.getValue()))
                 return false;

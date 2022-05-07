@@ -1,10 +1,13 @@
 package main.Stores.PurchasePolicy;
 
+import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
+import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
 import main.utils.Pair;
+import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
 import java.util.HashMap;
@@ -15,24 +18,32 @@ public class rafflePolicy extends DirectPolicy {
     private double accumaltivePrice;
     private ConcurrentHashMap<User, Double> participants;
     private ConcurrentHashMap<User, Pair<ISupplying,SupplyingInformation>> userSupplyInformation;
-
-    public rafflePolicy() {
+    private ConcurrentHashMap<User, Pair<IPayment,PaymentInformation>> userPaymentInformation;
+    private final IStore store;
+    public rafflePolicy(IStore store) {
+        this.store = store;
         this.accumaltivePrice = 0;
         this.participants = new ConcurrentHashMap<>();
         userSupplyInformation = new ConcurrentHashMap<>();
+        userPaymentInformation = new ConcurrentHashMap<>();
     }
 
     /***
      * doesn't work with discounts.
      */
     @Override
-    public boolean isPurchasable(Product product,Double costumePrice){
-        return costumePrice + this.accumaltivePrice <= product.getCleanPrice();
+    public boolean isPurchasable(Product product,Double costumePrice, int amount){
+        return amount * costumePrice + this.accumaltivePrice <= product.getCleanPrice();
+    }
+
+    @Override
+    public boolean isPurchasable(Product product, int amount) {
+        return product.getQuantity() >= 1;
     }
 
 
     @Override
-    public synchronized boolean  purchase(Product product, User user, Double costumePrice, int amount ,ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus){
+    public synchronized boolean  purchase(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
         double userMoney = costumePrice * amount;
         accumaltivePrice += userMoney;
         addUserToRaffle(user, userMoney, supplying, supplyingInformation);
@@ -44,10 +55,26 @@ public class rafflePolicy extends DirectPolicy {
         return true;
     }
 
+    @Override
+    public void close(NotificationBus bus) {
+        for (Map.Entry<User, Pair<IPayment,PaymentInformation>> entry : userPaymentInformation.entrySet()){
+            Pair<IPayment, PaymentInformation> pay = entry.getValue();
+            pay.first.abort(pay.second);
+            bus.addMessage(entry.getKey(), "Raffle was closed, you should get refunded according to the payment service policy.");
+        }
+        this.ResetRaffle();
+    }
+
+    @Override
+    public boolean deliveredImmediately() {
+        return false;
+    }
+
     private void ResetRaffle(){
         this.accumaltivePrice = 0;
         this.participants = new ConcurrentHashMap<>();
         userSupplyInformation = new ConcurrentHashMap<>();
+        userPaymentInformation = new ConcurrentHashMap<>();
     }
 
     private void executeRaffle(Product product, NotificationBus bus){
