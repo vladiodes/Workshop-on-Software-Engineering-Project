@@ -37,21 +37,21 @@ class SecretDiscountTest {
     void calculateDiscountHappy() {
         SecretDiscount discount = new SecretDiscount(DiscountAmount, LocalDate.MAX, secretCode);
         when(shoppingBasket.hasDiscountPassword(secretCode)).thenReturn(true);
-        Assertions.assertEquals((1-DiscountAmount) * cleanPrice, discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals((1-DiscountAmount) * cleanPrice, discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
     @Test
     void calculateDiscountNoSecretCode() {
         SecretDiscount discount = new SecretDiscount(DiscountAmount, LocalDate.MAX, secretCode);
         when(shoppingBasket.hasDiscountPassword(secretCode)).thenReturn(false);
-        Assertions.assertEquals(cleanPrice, discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals(cleanPrice, discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
     @Test
     void calculateDiscountPastTime() {
         SecretDiscount discount = new SecretDiscount(DiscountAmount, LocalDate.MIN, secretCode);
         when(shoppingBasket.hasDiscountPassword(secretCode)).thenReturn(true);
-        Assertions.assertEquals(cleanPrice, discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals(cleanPrice, discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
 

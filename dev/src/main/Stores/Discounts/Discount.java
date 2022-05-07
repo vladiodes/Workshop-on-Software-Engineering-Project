@@ -8,13 +8,13 @@ import java.time.LocalDate;
 public abstract class Discount {
     private LocalDate until;
 
-    public  Double getPriceFor(Product product, ShoppingBasket shoppingBasket){
+    public  Double getPriceFor(Double originalPrice, ShoppingBasket shoppingBasket){
         if (until.isAfter(LocalDate.now()))
-            return CalculateDiscount(product, shoppingBasket);
-        else return product.getCleanPrice();
+            return CalculateDiscount(originalPrice, shoppingBasket);
+        else return originalPrice;
     }
 
-    protected abstract Double CalculateDiscount(Product product, ShoppingBasket shoppingBasket);
+    protected abstract Double CalculateDiscount(Double originalPrice, ShoppingBasket shoppingBasket);
 
     public LocalDate getUntil() {
         return until;

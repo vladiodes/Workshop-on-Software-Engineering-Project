@@ -7,9 +7,11 @@ import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
+import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.Restriction;
 import main.utils.SupplyingInformation;
+import org.mockito.internal.matchers.Not;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -75,4 +77,11 @@ public interface IStore {
     void addDirectDiscount(String productName, LocalDate until, Double percent);
     void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode);
     void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions);
+
+    void addRafflePolicy(String productName, Double price, NotificationBus bus);
+    void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until);
+
+    void addNormalPolicy(String productName, Double price, NotificationBus bus);
+
+    void bidOnProduct(String productName, Bid bid);
 }

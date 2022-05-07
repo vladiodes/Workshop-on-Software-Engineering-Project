@@ -31,7 +31,7 @@ public class ATuser2Requirements {
     ISupplying mockSupplyer;
     @Mock
     IPayment mockPayment;
-    Response<String> founder1token, user1token, owner1token;
+    Response<String> founder1token, user1token, user2token, owner1token;
     IService service;
     PaymentInformation pi = testsFactory.getSomePI();
     SupplyingInformation si = testsFactory.getSomeSI();
@@ -49,19 +49,23 @@ public class ATuser2Requirements {
         service = new Service(mockPayment, mockSupplyer);
         founder1token = service.guestConnect();
         user1token = service.guestConnect();
+        user2token = service.guestConnect();
         owner1token = service.guestConnect();
 
         service.register("manager1", "12345678");
         service.register("founder1", "12345678");
         service.register("user1", "12345678");
+        service.register("user2", "12345678");
         service.register("owner1", "12345678");
         service.login(founder1token.getResult(), "founder1", "12345678");
         service.login(user1token.getResult(), "user1", "12345678");
+        service.login(user2token.getResult(), "user2", "12345678");
         service.login(owner1token.getResult(), "owner1", "12345678");
 
         service.openStore(founder1token.getResult(), "MyStore1");
         service.appointStoreOwner(founder1token.getResult(), "owner1", "MyStore1");
         service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
+        service.addProductToStore(founder1token.getResult(), "Sprite", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
     }
 
     /***
@@ -316,6 +320,53 @@ public class ATuser2Requirements {
         Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
         assertFalse(r.isError_occured());
         verify(mockPayment, times(1)).makePayment(pi, amount * CokePrice);
+        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
+    }
+
+    @Test
+    public void SetProductForRaffle() {
+        Assertions.assertFalse(service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", 50.0).isError_occured());
+    }
+
+    @Test
+    public void SetProductForRaffleNoPermissions() {
+        Assertions.assertTrue(service.addRafflePolicy(user1token.getResult(), "MyStore1", "Sprite", 50.0).isError_occured());
+    }
+
+    @Test
+    public void BuyRafflePartly() {
+        double pay = 25;
+        Assertions.assertFalse(service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", 50.0).isError_occured());
+        Assertions.assertFalse(service.addProductToCart(user2token.getResult(), "MyStore1", "Sprite", 1).isError_occured());
+        Assertions.assertFalse(service.setCostumPriceForProductInCart(user2token.getResult(), "MyStore1", "Sprite", pay).isError_occured());
+        Assertions.assertFalse(service.purchaseCart(user2token.getResult(), pi, si).isError_occured());
+        verify(mockPayment, times(1)).makePayment(pi, pay);
+        verify(mockSupplyer, times(0)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
+    }
+
+    @Test
+    public void cantPayOverRaffleAmount() {
+        double fullPrice = 50.0;
+        double pay = fullPrice + 1;
+        service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", fullPrice);
+        service.addProductToCart(user2token.getResult(), "MyStore1", "Sprite", 1);
+        Assertions.assertTrue(service.setCostumPriceForProductInCart(user2token.getResult(), "MyStore1", "Sprite", pay).isError_occured());
+    }
+
+    @Test
+    public void BuyRaffleFully() {
+        double fullPrice = 50.0;
+        double pay1 = 15;
+        double pay2 = fullPrice - pay1;
+        Assertions.assertFalse(service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", fullPrice).isError_occured());
+        service.addProductToCart(user2token.getResult(), "MyStore1", "Sprite", 1);
+        service.addProductToCart(user1token.getResult(), "MyStore1", "Sprite", 1);
+        service.setCostumPriceForProductInCart(user2token.getResult(), "MyStore1", "Sprite", pay2);
+        service.setCostumPriceForProductInCart(user1token.getResult(), "MyStore1", "Sprite", pay1);
+        service.purchaseCart(user2token.getResult(), pi, si);
+        service.purchaseCart(user1token.getResult(), pi, si);
+        verify(mockPayment, times(1)).makePayment(pi, pay1);
+        verify(mockPayment, times(1)).makePayment(pi, pay2);
         verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
     }
 

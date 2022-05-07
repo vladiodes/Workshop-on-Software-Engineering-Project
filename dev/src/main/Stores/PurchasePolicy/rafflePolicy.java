@@ -3,6 +3,8 @@ package main.Stores.PurchasePolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
+import main.Stores.Discounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
@@ -20,12 +22,14 @@ public class rafflePolicy extends DirectPolicy {
     private ConcurrentHashMap<User, Pair<ISupplying,SupplyingInformation>> userSupplyInformation;
     private ConcurrentHashMap<User, Pair<IPayment,PaymentInformation>> userPaymentInformation;
     private final IStore store;
-    public rafflePolicy(IStore store) {
+    private double originalPrice;
+    public rafflePolicy(IStore store, Double originalPrice) {
         this.store = store;
         this.accumaltivePrice = 0;
         this.participants = new ConcurrentHashMap<>();
         userSupplyInformation = new ConcurrentHashMap<>();
         userPaymentInformation = new ConcurrentHashMap<>();
+        this.setOriginalPrice(originalPrice);
     }
 
     /***
@@ -46,8 +50,8 @@ public class rafflePolicy extends DirectPolicy {
     public synchronized boolean  purchase(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
         double userMoney = costumePrice * amount;
         accumaltivePrice += userMoney;
-        addUserToRaffle(user, userMoney, supplying, supplyingInformation);
-        if (accumaltivePrice == product.getCleanPrice()){
+        addUserToRaffle(user, userMoney, supplying, supplyingInformation, payment, paymentInformation);
+        if (accumaltivePrice == this.originalPrice){
             executeRaffle(product, bus);
             ResetRaffle();
             product.subtractQuantity(1);
@@ -70,6 +74,33 @@ public class rafflePolicy extends DirectPolicy {
         return false;
     }
 
+    @Override
+    public double getCurrentPrice(ShoppingBasket basket) {
+        return this.originalPrice - accumaltivePrice;
+    }
+
+    @Override
+    public double getOriginalPrice() {
+        return this.originalPrice;
+    }
+
+    @Override
+    public void setDiscount(Discount discount) {
+        throw new IllegalArgumentException("Can't set discount for raffle");
+    }
+
+    @Override
+    public Discount getDiscount() {
+        return null;
+    }
+
+    @Override
+    public void setOriginalPrice(Double price) {
+        if (accumaltivePrice >= price)
+            throw new IllegalArgumentException("can't set price to be more than gathered so far.");
+        else this.originalPrice = price;
+    }
+
     private void ResetRaffle(){
         this.accumaltivePrice = 0;
         this.participants = new ConcurrentHashMap<>();
@@ -78,7 +109,7 @@ public class rafflePolicy extends DirectPolicy {
     }
 
     private void executeRaffle(Product product, NotificationBus bus){
-        User winner = evaluateWinner(product);
+        User winner = evaluateWinner();
         Pair<ISupplying, SupplyingInformation> supl = userSupplyInformation.get(winner);
         Map<Product, Integer> items = new HashMap<>();
         items.put(product, 1);
@@ -89,9 +120,9 @@ public class rafflePolicy extends DirectPolicy {
         }
     }
 
-    private User evaluateWinner(Product product) {
+    private User evaluateWinner() {
         Double curr = 0.0;
-        double winningNumber = Math.random() * product.getCleanPrice();
+        double winningNumber = Math.random() * this.originalPrice;
         User winner = null;
         for(Map.Entry<User, Double> entry : participants.entrySet()){
             if(entry.getValue() + curr > winningNumber && curr < winningNumber){
@@ -102,12 +133,13 @@ public class rafflePolicy extends DirectPolicy {
         return winner;
     }
 
-    private void addUserToRaffle(User user, Double price, ISupplying supplying, SupplyingInformation supplyingInformation){
+    private void addUserToRaffle(User user, Double price, ISupplying supplying, SupplyingInformation supplyingInformation, IPayment payment, PaymentInformation paymentInformation){
         double oldvalue;
         if(participants.containsKey(user)){
             oldvalue = participants.get(user);
         } else oldvalue = 0;
         userSupplyInformation.put(user, new Pair<>(supplying, supplyingInformation));
+        userPaymentInformation.put(user, new Pair<>(payment, paymentInformation));
         participants.put(user, oldvalue + price);
     }
 }

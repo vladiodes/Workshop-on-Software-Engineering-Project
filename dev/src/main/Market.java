@@ -71,6 +71,30 @@ public class Market {
         return true;
     }
 
+    public void addRafflePolicy(String userToken, String storeName, String productName, Double price) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.addRafflePolicy(store, productName, price, this.bus);
+    }
+
+    public void addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate Until) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.addAuctionPolicy(store, productName, price, this.bus, Until);
+    }
+
+    public void addNormalPolicy(String userToken, String storeName, String productName, Double price) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.addNormalPolicy(store, productName, price, this.bus);
+    }
+
+    public void bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem);
+    }
+
     private enum StatsType{Register, Login, Purchase}
 
     public Market(){

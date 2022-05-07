@@ -1,11 +1,13 @@
 package main.Shopping;
 
 
+import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
+import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
 import java.util.*;
@@ -98,7 +100,7 @@ public class ShoppingBasket {
     //used when adding product with costume price.
     public boolean setCostumePriceForProduct(String prodName, double price) {
         Product prodToSet = this.store.getProduct(prodName);
-        if(prodToSet.isPurchasableForPrice(price, 1))
+        if(prodToSet.isPurchasableForPrice(price, productsQuantity.get(prodToSet)))
             this.costumePrice.put(prodToSet, price);
         else throw new IllegalArgumentException("custom price is invalid.");
         return true;
@@ -124,9 +126,9 @@ public class ShoppingBasket {
         return store;
     }
 
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus)
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus)
     {
-        store.purchaseBasket(user, supplying, supplyingInformation, bus, this);
+        store.purchaseBasket(user, supplying, supplyingInformation, paymentInformation, payment, bus,this);
     }
 
     public double getPrice() {

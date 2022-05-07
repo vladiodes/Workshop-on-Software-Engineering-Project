@@ -182,8 +182,17 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> addProductToCart(String userToken, String storeName, String productName, double price) {
-        return null;
+    public Response<Boolean> setCostumPriceForProductInCart(String userToken, String storeName, String productName, double price) {
+        try {
+            return new Response<>(market.addProductToCart(userToken, storeName, productName, price));
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        }
+        catch (Exception e) {
+            Logger.getInstance().logBug("Service - addProductToCart", e.getMessage());
+            return new Response<>(e, false);
+        }
     }
 
     @Override
@@ -437,6 +446,58 @@ public class Service implements IService {
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service", "Bug in adding discount password.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> addNormalPolicy(String userToken, String storeName, String productName, Double price) {
+        try {
+            market.addNormalPolicy(userToken, storeName, productName, price);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in adding Policy.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> addRafflePolicy(String userToken, String storeName, String productName, Double price) {
+        try {
+            market.addRafflePolicy(userToken, storeName, productName, price);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in adding Policy.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate until) {
+        try {
+            market.addAuctionPolicy(userToken, storeName, productName, price, until);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in adding Policy.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> bidOnProduct(String userToken,  String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
+        try {
+            market.bidOnProduct(userToken, storeName, productName, costumePrice, paymentInformation, supplyingInformation);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in biding.");
             return new Response<>(e, false);
         }
     }

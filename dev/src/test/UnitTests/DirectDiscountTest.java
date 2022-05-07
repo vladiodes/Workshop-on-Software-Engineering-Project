@@ -38,12 +38,12 @@ class DirectDiscountTest {
     @Test
     void calculateDiscountHappy() {
         DirectDiscount discount = new DirectDiscount(DiscountAmount, LocalDate.MAX);
-        Assertions.assertEquals((1-DiscountAmount) * cleanPrice, discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals((1-DiscountAmount) * cleanPrice, discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
     @Test
     void calculateDiscountPastTime() {
         DirectDiscount discount = new DirectDiscount(DiscountAmount, LocalDate.MIN);
-        Assertions.assertEquals(cleanPrice, discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals(cleanPrice, discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 }

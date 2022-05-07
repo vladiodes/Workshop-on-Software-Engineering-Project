@@ -7,6 +7,7 @@ public enum StorePermission {
     ViewStoreHistory("View store history"),
     DiscountPermission("Permission to add discounts"),
     AnswerAndTakeRequests("Answer and take requests"),
+    PolicyPermission("Permision to add policy"),
     OwnerPermission("Owner permissions");//can do anything
 
 

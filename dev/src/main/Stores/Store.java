@@ -7,13 +7,13 @@ import main.Shopping.ShoppingBasket;
 import main.Stores.Discounts.ConditionalDiscount;
 import main.Stores.Discounts.DirectDiscount;
 import main.Stores.Discounts.SecretDiscount;
+import main.Stores.PurchasePolicy.AuctionPolicy;
+import main.Stores.PurchasePolicy.normalPolicy;
+import main.Stores.PurchasePolicy.rafflePolicy;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
-import main.utils.Pair;
-import main.utils.PaymentInformation;
-import main.utils.Restriction;
-import main.utils.SupplyingInformation;
+import main.utils.*;
 
 
 import javax.swing.*;
@@ -264,6 +264,30 @@ public class Store implements IStore {
     public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
         Product product = getProduct(productName);
         product.setDiscount(new ConditionalDiscount(restrictions, until));
+    }
+
+    @Override
+    public void addRafflePolicy(String productName, Double price, NotificationBus bus) {
+        Product product = getProduct(productName);
+        product.setPolicy(new rafflePolicy(this, price), bus);
+    }
+
+    @Override
+    public void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until) {
+        Product product = getProduct(productName);
+        product.setPolicy(new AuctionPolicy(until, price, bus,this, productName), bus);
+    }
+
+    @Override
+    public void addNormalPolicy(String productName, Double price, NotificationBus bus) {
+        Product product = getProduct(productName);
+        product.setPolicy(new normalPolicy(price, this), bus);
+    }
+
+    @Override
+    public void bidOnProduct(String productName, Bid bid) {
+        Product product = getProduct(productName);
+        product.bid(bid);
     }
 
 }

@@ -23,10 +23,8 @@ public class Product {
     private List<String> keyWords;
     private String description;
     private int quantity;
-    private double price;
     private List<ProductReview> reviews;
     private Policy policy;
-    private Discount discount;
 
     private IStore store;
 
@@ -41,9 +39,8 @@ public class Product {
         this.keyWords=keyWords;
         this.description=description;
         this.quantity=quantity;
-        this.price=price;
         this.reviews = new LinkedList<>();
-        this.policy = new normalPolicy();
+        this.policy = new normalPolicy(price, store);
         this.store=store;
     }
 
@@ -54,7 +51,6 @@ public class Product {
         this.keyWords = p.keyWords;
         this.description = p.description;
         this.quantity = p.quantity;
-        this.price = p.price;
         this.reviews = p.reviews;
     }
 
@@ -73,7 +69,11 @@ public class Product {
         this.keyWords=keyWords;
         this.description=description;
         this.quantity=quantity;
-        this.price=price;
+        this.setPrice(price);
+    }
+
+    public void setPrice(Double price){
+        this.policy.setOriginalPrice(price);
     }
 
     public void setPolicy(Policy policy, NotificationBus bus) {
@@ -112,18 +112,12 @@ public class Product {
     }
 
     public double getCleanPrice() {
-        return price;
+       return this.policy.getOriginalPrice();
     }
 
 
-    public double getCurrentPrice(ShoppingBasket shoppingBasket) {
-        if(discount != null)
-            return this.discount.getPriceFor(this, shoppingBasket);
-        else return getCleanPrice();
-    }
-
-    public Discount getDiscount() {
-        return discount;
+    public double getCurrentPrice(ShoppingBasket basket) {
+        return policy.getCurrentPrice(basket);
     }
 
     public boolean isPurchasableForAmount(Integer amount) {return this.policy.isPurchasable(this, amount);}
@@ -138,7 +132,7 @@ public class Product {
     }
 
     public void setDiscount(Discount discount) {
-        this.discount = discount;
+        this.policy.setDiscount(discount);
     }
 
     public void addReview(ProductReview review)
@@ -148,5 +142,9 @@ public class Product {
 
     public IStore getStore() {
         return store;
+    }
+
+    public void bid(Bid bid) {
+        this.policy.bid(bid);
     }
 }

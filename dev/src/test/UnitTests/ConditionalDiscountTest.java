@@ -41,7 +41,7 @@ class ConditionalDiscountTest {
     void calculateDiscountHighestDiscount() {
         ConditionalDiscount discount = new ConditionalDiscount(getRestrictions(), LocalDate.MAX);
         when(shoppingBasket.hasAmount(any(Product.class),any(Integer.class))).thenReturn(true);
-        Assertions.assertEquals(cleanPrice * (1 - highDiscount), discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals(cleanPrice * (1 - highDiscount), discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
     @Test
@@ -49,21 +49,21 @@ class ConditionalDiscountTest {
         ConditionalDiscount discount = new ConditionalDiscount(getRestrictions(), LocalDate.MAX);
         when(shoppingBasket.hasAmount(productMock1,2)).thenReturn(true);
         when(shoppingBasket.hasAmount(productMock2,1)).thenReturn(false);
-        Assertions.assertEquals(cleanPrice * (1 - lowDiscount), discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals(cleanPrice * (1 - lowDiscount), discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
     @Test
     void calculateDiscountNoRestrictionsMet() {
         ConditionalDiscount discount = new ConditionalDiscount(getRestrictions(), LocalDate.MAX);
         when(shoppingBasket.hasAmount(any(Product.class),any(Integer.class))).thenReturn(false);
-        Assertions.assertEquals(cleanPrice , discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals(cleanPrice , discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
     @Test
     void calculateDiscountPastTime() {
         ConditionalDiscount discount = new ConditionalDiscount(getRestrictions(), LocalDate.MIN);
         when(shoppingBasket.hasAmount(any(Product.class),any(Integer.class))).thenReturn(true);
-        Assertions.assertEquals(cleanPrice , discount.getPriceFor(productMock1, shoppingBasket));
+        Assertions.assertEquals(cleanPrice , discount.getPriceFor(cleanPrice, shoppingBasket));
     }
 
 

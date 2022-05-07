@@ -8,6 +8,7 @@ import main.Logger.Logger;
 import main.NotificationBus;
 import main.Stores.Product;
 import main.Users.User;
+import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
@@ -32,6 +33,15 @@ public class Purchase {
         this.supplyingSystem = supplyingSystem;
     }
 
+    public Purchase(Bid bid, ShoppingCart cart){
+        this.pinfo = bid.getPaymentInformation();
+        this.sinfo = bid.getSupplyingInformation();
+        this.user = bid.getUser();
+        this.cart = cart;
+        this.paymentSystem = bid.getPayment();
+        this.supplyingSystem = bid.getSupplying();
+    }
+
     public void executePurchase(NotificationBus bus) throws Exception {
         if (!this.cart.ValidateCart())
             throw new Exception("Cart is unpurchasable.");
@@ -54,7 +64,7 @@ public class Purchase {
         this.user.resetCart();
         ConcurrentHashMap<String, ShoppingBasket> baskets = cart.getBaskets();
         for(ShoppingBasket sb : baskets.values())
-            sb.purchaseBasket(this.user,supplyingSystem, this.sinfo, bus);
+            sb.purchaseBasket(this.user, supplyingSystem, this.sinfo , this.pinfo, this.paymentSystem,  bus);
         this.user.addCartToHistory(this.cart);
     }
 }

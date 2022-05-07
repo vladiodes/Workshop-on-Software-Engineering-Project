@@ -13,10 +13,7 @@ import main.Stores.Product;
 
 import main.Stores.Store;
 import main.ExternalServices.Supplying.ISupplying;
-import main.utils.Pair;
-import main.utils.PaymentInformation;
-import main.utils.Restriction;
-import main.utils.SupplyingInformation;
+import main.utils.*;
 
 
 import java.time.LocalDate;
@@ -555,5 +552,28 @@ public class User {
         stores.addAll(getOwnedStores());
         stores.addAll(getManagedStores());
         return stores;
+    }
+
+    public void addRafflePolicy(IStore store, String productName, Double price, NotificationBus bus) {
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.addRafflePolicy(productName, price, bus);
+    }
+
+    public void addAuctionPolicy(IStore store, String productName, Double price, NotificationBus bus, LocalDate Until) {
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.addAuctionPolicy(productName, price, bus, Until);
+    }
+
+    public void addNormalPolicy(IStore store, String productName, Double price, NotificationBus bus) {
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.addNormalPolicy(productName, price, bus);
+    }
+
+    public void bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
+        Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
+        store.bidOnProduct(productName, bid);
     }
 }

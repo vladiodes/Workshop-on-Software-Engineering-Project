@@ -91,7 +91,7 @@ public interface IService {
     /***
      * used for when buying a product that is sold raffle.
      */
-    Response<Boolean> addProductToCart(String userToken, String storeName, String productName, double price);
+    Response<Boolean> setCostumPriceForProductInCart(String userToken, String storeName, String productName, double price);
 
 
     /**
@@ -205,9 +205,14 @@ public interface IService {
     Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password);
 
     /***
-     * REQ - purchase policies:
+     * REQ - Define and set purchase policies for products:
      */
-//    Response<Boolean>
+    // used to reset policies
+    Response<Boolean> addNormalPolicy(String userToken, String storeName, String productName, Double price);
+    Response<Boolean> addRafflePolicy(String userToken, String storeName, String productName, Double price);
+    Response<Boolean> addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate until);
+    Response<Boolean> bidOnProduct(String userToken, String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation);
+
 
     /**
      * REQ 2.4.4

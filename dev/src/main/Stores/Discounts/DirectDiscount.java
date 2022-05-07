@@ -17,8 +17,8 @@ public class DirectDiscount extends Discount{
     }
 
     @Override
-    protected Double CalculateDiscount(Product product, ShoppingBasket shoppingBasket) {
-        return product.getCleanPrice() * (1 - this.getPercent());
+    protected Double CalculateDiscount(Double originalPrice, ShoppingBasket shoppingBasket) {
+        return originalPrice * (1 - this.getPercent());
     }
 
     public Double getPercent() {

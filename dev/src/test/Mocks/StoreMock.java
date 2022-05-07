@@ -1,5 +1,6 @@
 package test.Mocks;
 
+import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
@@ -9,9 +10,7 @@ import main.Stores.StoreReview;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
-import main.utils.Pair;
-import main.utils.Restriction;
-import main.utils.SupplyingInformation;
+import main.utils.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -131,7 +130,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus, ShoppingBasket bask) {
 
     }
 
@@ -153,6 +152,26 @@ public class StoreMock implements IStore {
 
     @Override
     public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+
+    }
+
+    @Override
+    public void addRafflePolicy(String productName, Double price, NotificationBus bus) {
+
+    }
+
+    @Override
+    public void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until) {
+
+    }
+
+    @Override
+    public void addNormalPolicy(String productName, Double price, NotificationBus bus) {
+
+    }
+
+    @Override
+    public void bidOnProduct(String productName, Bid bid) {
 
     }
 }

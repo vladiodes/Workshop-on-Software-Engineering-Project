@@ -3,6 +3,8 @@ package main.Stores.PurchasePolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
+import main.Stores.Discounts.Discount;
 import main.Stores.Product;
 import main.Users.User;
 import main.utils.PaymentInformation;
@@ -41,4 +43,19 @@ public interface Policy {
      * used to decide if the product should be delivered immediately
      */
     public boolean deliveredImmediately();
+
+    /***
+     * returns the current price.
+     * @param basket
+     */
+    public double getCurrentPrice(ShoppingBasket basket);
+
+    /***
+     * get original price
+     */
+    public double getOriginalPrice();
+    public void setDiscount(Discount discount);
+    public Discount getDiscount();
+    public void setOriginalPrice(Double price);
+
 }

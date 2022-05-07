@@ -26,11 +26,11 @@ public class ConditionalDiscount extends Discount{
     }
 
     @Override
-    protected Double CalculateDiscount(Product product, ShoppingBasket shoppingBasket) {
-        double output = product.getCleanPrice();
+    protected Double CalculateDiscount(Double originalPrice, ShoppingBasket shoppingBasket) {
+        double output = originalPrice;
         for(Map.Entry<Restriction, Double> restriction: restrictions.entrySet())
             if(restrictionMet(restriction.getKey(), shoppingBasket)){
-                double discountedValue = product.getCleanPrice() * (1- restriction.getValue());
+                double discountedValue = originalPrice * (1- restriction.getValue());
                 if(output > discountedValue)
                     output = discountedValue;
             }

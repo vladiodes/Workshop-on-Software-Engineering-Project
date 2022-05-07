@@ -12,10 +12,10 @@ public class SecretDiscount extends DirectDiscount{
         super(percent, until);
         this.password = password;
     }
-    protected Double CalculateDiscount(Product product, ShoppingBasket shoppingBasket) {
+    protected Double CalculateDiscount(Double originalPrice, ShoppingBasket shoppingBasket) {
         if (shoppingBasket != null && shoppingBasket.hasDiscountPassword(password))
-            return super.CalculateDiscount(product, shoppingBasket);
-        else return product.getCleanPrice();
+            return super.CalculateDiscount(originalPrice, shoppingBasket);
+        else return originalPrice;
     }
 
     @Override

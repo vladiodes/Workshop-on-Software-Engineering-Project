@@ -3,13 +3,21 @@ package main.Stores.PurchasePolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
+import main.Stores.Discounts.Discount;
+import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
 public class normalPolicy extends DirectPolicy {
-    public normalPolicy() {
+    private Discount discount;
+    private Double originalPrice;
+    private final IStore sellingStore;
+    public normalPolicy(Double price, IStore store) {
+        originalPrice = price;
+        this.sellingStore = store;
     }
 
 
@@ -37,6 +45,33 @@ public class normalPolicy extends DirectPolicy {
     @Override
     public boolean deliveredImmediately() {
         return true;
+    }
+
+    @Override
+    public double getCurrentPrice(ShoppingBasket basket) {
+        if (discount == null)
+            return this.originalPrice;
+        return discount.getPriceFor(this.getOriginalPrice(), basket);
+    }
+
+    @Override
+    public double getOriginalPrice() {
+        return this.originalPrice;
+    }
+
+    @Override
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+    @Override
+    public Discount getDiscount() {
+        return this.discount;
+    }
+
+    @Override
+    public void setOriginalPrice(Double price) {
+        this.originalPrice = price;
     }
 
 }
