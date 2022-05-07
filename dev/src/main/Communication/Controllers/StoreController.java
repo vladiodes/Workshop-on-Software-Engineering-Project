@@ -8,10 +8,7 @@ import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.utils.Response;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class StoreController {
 
@@ -64,7 +61,9 @@ public class StoreController {
 
     public Handler handleAddProductToStorePost = ctx ->{
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        List<String> keyWords = Arrays.stream(Objects.requireNonNull(ctx.formParam("keyWords")).split(",")).toList();
+        String [] keys = Objects.requireNonNull(ctx.formParam("keyWords")).split(",");
+        List<String> keyWords = new LinkedList<>(Arrays.asList(keys));
+
 
         Response<Boolean> response = service.addProductToStore(ctx.sessionAttribute("userToken"),ctx.formParam("productName"),
                 ctx.formParam("category"),keyWords,ctx.formParam("description"),ctx.formParam("storeName"),
@@ -83,7 +82,8 @@ public class StoreController {
 
     public Handler handleUpdateProductInStorePost = ctx ->{
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        List<String> keyWords = Arrays.stream(Objects.requireNonNull(ctx.formParam("keyWords")).split(",")).toList();
+        String [] keys = Objects.requireNonNull(ctx.formParam("keyWords")).split(",");
+        List<String> keyWords = new LinkedList<>(Arrays.asList(keys));
 
         Response<Boolean> response = service.updateProduct(ctx.sessionAttribute("userToken"),ctx.formParam("productName"),ctx.formParam("productName"),
                 ctx.formParam("category"),keyWords,ctx.formParam("description"),ctx.formParam("storeName"),

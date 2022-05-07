@@ -40,7 +40,7 @@ public class CartController {
         String[] sup_date_params =Objects.requireNonNull(sup_date).split("-");
         //yyyy-mm-dd
         PaymentInformation pi = new PaymentInformation(ctx.formParam("cardNumber"),
-                Integer.parseInt(exp_date_params[0]),Integer.parseInt(exp_date_params[1]),Integer.parseInt(exp_date_params[2]),
+                LocalDate.of(Integer.parseInt(exp_date_params[0]),Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
                 Integer.parseInt(Objects.requireNonNull(ctx.formParam("cvv"))),ctx.formParam("name"),ctx.formParam("email"));
 
         SupplyingInformation si = new SupplyingInformation(ctx.formParam("address"),

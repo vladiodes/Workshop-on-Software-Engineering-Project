@@ -15,7 +15,7 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 
 
 public class Main {
-    private static final IService service=new Service();
+    private static final IService service=new Service(null,null);
     public static void main(String[] args) {
 
         RegisterController registerController=new RegisterController(service);
