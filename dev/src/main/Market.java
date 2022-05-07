@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Market {
 
@@ -114,16 +115,6 @@ public class Market {
         user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem);
     }
 
-    private enum StatsType{Register, Login, Purchase}
-
-    public Market(){
-        membersByUserName =new ConcurrentHashMap<>();
-        connectedSessions =new ConcurrentHashMap<>();
-        stores=new ConcurrentHashMap<>();
-        bus =new NotificationBus();
-        systemStatsByDate=new ConcurrentHashMap<>();
-        security_controller = new Security();
-    }
 
     /***
      * This function should be called on every system start up.
@@ -252,7 +243,7 @@ public class Market {
                         if (keyWord == null || keyWord.isBlank()|| currPrd.hasKeyWord(keyWord))
                             if (productRating == null) //TODO: || rating = productRating
                                 if (storeRating == null) //TODO: || rating = productRating
-                                    if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
+                                    if (minPrice == null || maxPrice == null || (currPrd.getCleanPrice() <= maxPrice && currPrd.getCleanPrice() >= minPrice))
                                         result.add(currPrd);
             }
         return result;
