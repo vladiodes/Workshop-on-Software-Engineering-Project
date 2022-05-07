@@ -10,10 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import test.testUtils.testsFactory;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AT_Req_1_1 {

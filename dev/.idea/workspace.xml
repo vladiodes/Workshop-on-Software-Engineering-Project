@@ -3,15 +3,61 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="concurrency bug fix in open store">
+    <list default="true" id="36b65f5f-c497-443d-915d-42ec4467c5dd" name="Changes" comment="concurrency bug fix in open store">
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/admin/systemStats.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/admin/systemStats.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/ConditionalDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/DirectDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/DirectDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/SecretDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/SecretDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_1_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_1_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +68,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -52,43 +98,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/users&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="ToolWindowMessages.ShowToolbar" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="ignore.virus.scanning.warn.message" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/UnitTests" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+  </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="main.utils" />
-      <recent name="main.Stores" />
-      <recent name="main.DTO" />
-      <recent name="test.AcceptanceTests" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\users" />
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\admin" />
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\cart" />
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\product" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\register" />
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity" />
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="main" />
       <recent name="main.Stores" />
@@ -96,83 +122,89 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="test.UnitTests" />
+      <recent name="main.Stores.Discounts" />
       <recent name="test" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="test.UnitTests" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="test.UnitTests" />
     </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="main.utils" />
+      <recent name="main.Stores" />
+      <recent name="main.DTO" />
+      <recent name="test.AcceptanceTests" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
+  <component name="RunManager" selected="JUnit.rafflePolicyTest.cantDiscount">
+    <configuration name="rafflePolicyTest.cantDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.Communication.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AT_Req2_3.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_3" />
-      <option name="METHOD_NAME" value="testLogout" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
+      <option name="METHOD_NAME" value="cantDiscount" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="rafflePolicyTest.closeRefunds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ATuser2Requirements.SearchingForAStore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="SearchingForAStore" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
+      <option name="METHOD_NAME" value="closeRefunds" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="rafflePolicyTest.purchaseDoesntShip" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
+      <option name="METHOD_NAME" value="purchaseDoesntShip" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rafflePolicyTest.verify1winner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
+      <option name="METHOD_NAME" value="verify1winner" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -192,23 +224,26 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.AT_Req2_3.testLogout" />
-      <item itemvalue="JUnit.ATuser2Requirements.SearchingForAStore" />
-      <item itemvalue="JUnit.ATuser2Requirements" />
+      <item itemvalue="JUnit.rafflePolicyTest.purchaseDoesntShip" />
+      <item itemvalue="JUnit.rafflePolicyTest.verify1winner" />
+      <item itemvalue="JUnit.rafflePolicyTest.closeRefunds" />
       <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.rafflePolicyTest.cantDiscount" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.rafflePolicyTest.cantDiscount" />
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.ATuser2Requirements" />
-        <item itemvalue="JUnit.ATuser2Requirements.SearchingForAStore" />
-        <item itemvalue="JUnit.AT_Req2_3.testLogout" />
+        <item itemvalue="JUnit.rafflePolicyTest.closeRefunds" />
+        <item itemvalue="JUnit.rafflePolicyTest.verify1winner" />
+        <item itemvalue="JUnit.rafflePolicyTest.purchaseDoesntShip" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="36b65f5f-c497-443d-915d-42ec4467c5dd" name="Changes" comment="concurrency bug fix in open store" />
@@ -218,13 +253,6 @@
       <updated>1649831427176</updated>
       <workItem from="1650274728823" duration="359000" />
       <workItem from="1650275111935" duration="783000" />
-      <workItem from="1651267792754" duration="2336000" />
-      <workItem from="1651302049421" duration="24718000" />
-      <workItem from="1651392603950" duration="2630000" />
-      <workItem from="1651568122957" duration="355000" />
-      <workItem from="1651568512207" duration="290000" />
-      <workItem from="1651650186763" duration="1362000" />
-      <workItem from="1651829399829" duration="15837000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -408,119 +436,7 @@
       <option name="project" value="LOCAL" />
       <updated>1650747935414</updated>
     </task>
-    <task id="LOCAL-00027" summary="Adding resource folder, adding dependencies for javalin application,&#10;adding UI template for the trading system web-application">
-      <created>1651302182996</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1651302182996</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Implemented Register,Login,Logout view,viewmodels,controllers and get/post methods on server">
-      <created>1651309584271</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1651309584271</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Implemented openStore post/get and home page get">
-      <created>1651310622462</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1651310622462</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Implemented addProduct,updateProduct post/get">
-      <created>1651315450011</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1651315450011</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Deleting some files">
-      <created>1651315539479</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1651315539479</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Added some cart functionality and fixed business logic">
-      <created>1651353886319</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1651353886319</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Cart purchase post and view">
-      <created>1651512686663</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1651512686663</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Added remove items from cart view">
-      <created>1651515260660</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1651515260660</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Added re-open or make store inactive">
-      <created>1651517800842</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1651517800842</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Implemented notification bus to use web-sockets, need to add interfaces of observer and observable">
-      <created>1651524850981</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1651524850981</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Fixed a bug in handling connection to a new session">
-      <created>1651651353785</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1651651353785</updated>
-    </task>
-    <task id="LOCAL-00038" summary="work work work">
-      <created>1651844791222</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1651844791222</updated>
-    </task>
-    <task id="LOCAL-00039" summary="deleted out folder">
-      <created>1651844876356</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1651844876356</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Some compile issues">
-      <created>1651944573324</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1651944573324</updated>
-    </task>
-    <task id="LOCAL-00041" summary="fixed gitignore - deleted some SHIT">
-      <created>1651944873807</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1651944873807</updated>
-    </task>
-    <task id="LOCAL-00042" summary="fixed gitignore again...">
-      <created>1651945073439</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1651945073439</updated>
-    </task>
-    <option name="localTasksCounter" value="43" />
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,9 +479,27 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Finished implementing REQ 2.4.4 - Appointing an owner to a store" />
+    <MESSAGE value="Finished implementing REQ 2.4.5 - Deleting owner appointment" />
+    <MESSAGE value="Finished implementing REQ 2.4.6 - Appointing store manager" />
+    <MESSAGE value="Finished implementing REQ 2.4.7 - Changing manager's permissions" />
+    <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
+    <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
+    <MESSAGE value="Finished implementing REQ 2.4.10" />
+    <MESSAGE value="Moved Pair to a public package" />
+    <MESSAGE value="REQ 2.4.11 implemented" />
+    <MESSAGE value="REQ 2.4.12 implemented" />
+    <MESSAGE value="Req 2.6.1 implemented" />
+    <MESSAGE value="Req 2.6.2 implemented" />
+    <MESSAGE value="Req 2.6.3 implemented" />
+    <MESSAGE value="Changed service signatures to return responses" />
+    <MESSAGE value="getter in response" />
+    <MESSAGE value="Fixed compilation issues" />
+    <MESSAGE value="Fixed ProductDTO constructor" />
     <MESSAGE value="Unit tests for User" />
     <MESSAGE value="Changed AT class name to be more relevant" />
     <MESSAGE value="Added NotificationBus tests" />
@@ -574,48 +508,112 @@
     <MESSAGE value="Refactoring - moving store messages to Notificationbus" />
     <MESSAGE value="Refactoring - moving store messages to NotificationBus&#10;Refactoring - fixing all kinds of warnings and types" />
     <MESSAGE value="concurrency bug fix in open store" />
-    <MESSAGE value="Adding resource folder, adding dependencies for javalin application,&#10;adding UI template for the trading system web-application" />
-    <MESSAGE value="Implemented Register,Login,Logout view,viewmodels,controllers and get/post methods on server" />
-    <MESSAGE value="Implemented openStore post/get and home page get" />
-    <MESSAGE value="Implemented addProduct,updateProduct post/get" />
-    <MESSAGE value="Deleting some files" />
-    <MESSAGE value="Added some cart functionality and fixed business logic" />
-    <MESSAGE value="Cart purchase post and view" />
-    <MESSAGE value="Added remove items from cart view" />
-    <MESSAGE value="Added re-open or make store inactive" />
-    <MESSAGE value="Implemented notification bus to use web-sockets, need to add interfaces of observer and observable" />
-    <MESSAGE value="Fixed a bug in handling connection to a new session" />
-    <MESSAGE value="More options to web client" />
-    <MESSAGE value="work work work" />
-    <MESSAGE value="deleted out folder" />
-    <MESSAGE value="Some compile issues" />
-    <MESSAGE value="fixed gitignore - deleted some SHIT" />
-    <MESSAGE value="fixed gitignore again..." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed gitignore again..." />
+    <option name="LAST_COMMIT_MESSAGE" value="concurrency bug fix in open store" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1651954801117">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651954801117" />
+    <state x="980" y="228" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1651948820794">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="980" y="228" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651948820794" />
+    <state x="705" y="312" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1651759319744">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="705" y="312" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651759319744" />
+    <state x="312" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1651955500625">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="312" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651955500625" />
+    <state width="1993" height="306" key="GridCell.Tab.0.bottom" timestamp="1651957779651">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="306" key="GridCell.Tab.0.bottom/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
+    <state width="1993" height="306" key="GridCell.Tab.0.center" timestamp="1651957779651">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="306" key="GridCell.Tab.0.center/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
+    <state width="1993" height="306" key="GridCell.Tab.0.left" timestamp="1651957779651">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="306" key="GridCell.Tab.0.left/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
+    <state width="1993" height="306" key="GridCell.Tab.0.right" timestamp="1651957779651">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="306" key="GridCell.Tab.0.right/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
+    <state width="1993" height="374" key="GridCell.Tab.1.bottom" timestamp="1651957554582">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="374" key="GridCell.Tab.1.bottom/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
+    <state width="1993" height="374" key="GridCell.Tab.1.center" timestamp="1651957554582">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="374" key="GridCell.Tab.1.center/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
+    <state width="1993" height="374" key="GridCell.Tab.1.left" timestamp="1651957554582">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="374" key="GridCell.Tab.1.left/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
+    <state width="1993" height="374" key="GridCell.Tab.1.right" timestamp="1651957554582">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state width="1993" height="374" key="GridCell.Tab.1.right/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
+    <state x="505" y="92" key="SettingsEditor" timestamp="1651948822362">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="505" y="92" key="SettingsEditor/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651948822362" />
+    <state x="1361" y="375" key="chooseDestDirectoryDialog" timestamp="1651956373135">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="1361" y="375" key="chooseDestDirectoryDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651956373135" />
+    <state x="754" y="468" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1651948843450">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="754" y="468" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651948843450" />
+    <state x="1322" y="255" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1651956373144">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="1322" y="255" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651956373144" />
+    <state x="1118" y="362" key="extract.method.dialog" timestamp="1651851344125">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="1118" y="362" key="extract.method.dialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651851344125" />
+    <state x="665" y="75" width="718" height="1002" key="find.popup" timestamp="1651954841611">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="665" y="75" width="718" height="1002" key="find.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651954841611" />
+    <state x="742" y="273" key="refactoring.ChangeSignatureDialog" timestamp="1651952163838">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="742" y="273" key="refactoring.ChangeSignatureDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651952163838" />
+    <state x="597" y="265" key="run.anything.popup" timestamp="1651841966098">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="597" y="265" key="run.anything.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651841966098" />
+    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup" timestamp="1651841465805">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651841465805" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Shopping/Purchase.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="10" />
+          <line>45</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/Service/IService.java</url>
-          <line>291</line>
-          <properties class="main.Service.IService">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="18" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
-        <PinnedItemInfo parentTag="main.Market" memberName="stores" />
-        <PinnedItemInfo parentTag="main.Users.User" memberName="purchaseHistory" />
+        <PinnedItemInfo />
       </pinned-members>
     </pin-to-top-manager>
   </component>
@@ -624,8 +622,8 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1650885421072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>test.*</FILTER>
+    <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1649847909303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.AcceptanceTests.*</FILTER>
     </SUITE>
   </component>
 </project>

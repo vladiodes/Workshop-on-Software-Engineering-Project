@@ -3,7 +3,6 @@ package main.Users;
 
 import main.NotificationBus;
 import main.ExternalServices.Payment.IPayment;
-import main.ExternalServices.Payment.PaymentAdapter;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
@@ -14,12 +13,10 @@ import main.Stores.Product;
 
 import main.Stores.Store;
 import main.ExternalServices.Supplying.ISupplying;
-import main.ExternalServices.Supplying.SupplyingAdapter;
-import main.utils.Pair;
-import main.utils.PaymentInformation;
-import main.utils.SupplyingInformation;
+import main.utils.*;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -497,8 +494,34 @@ public class User {
         return cart.addProductToCart(st, productName, quantity);
     }
 
+    public boolean addProductToCart(IStore st, String productName, double price) {
+        return cart.setCostumeProductPrice(st, productName, price);
+    }
+
     public boolean RemoveProductFromCart(IStore st, String productName, int quantity) {
         return cart.RemoveProductFromCart(st, productName, quantity);
+    }
+
+    public void addDirectDiscount(IStore Store, String productName, LocalDate until, Double percent) {
+        if(!hasPermission(Store, StorePermission.DiscountPermission))
+            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
+        Store.addDirectDiscount(productName, until, percent);
+    }
+
+    public void addSecretDiscount(IStore Store, String productName, LocalDate until, Double percent, String secretCode) {
+        if(!hasPermission(Store, StorePermission.DiscountPermission))
+            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
+       Store.addSecretDiscount(productName, until, percent, secretCode);
+    }
+
+    public void addConditionalDiscount(IStore Store,String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+        if(!hasPermission(Store, StorePermission.DiscountPermission))
+            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
+        Store.addConditionalDiscount(productName, until, restrictions);
+    }
+
+    public void addDiscountPasswordToBasket(String storeName, String Password){
+        cart.getBasket(storeName).addDiscountPassword(Password);
     }
 
 
@@ -529,5 +552,28 @@ public class User {
         stores.addAll(getOwnedStores());
         stores.addAll(getManagedStores());
         return stores;
+    }
+
+    public void addRafflePolicy(IStore store, String productName, Double price, NotificationBus bus) {
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.addRafflePolicy(productName, price, bus);
+    }
+
+    public void addAuctionPolicy(IStore store, String productName, Double price, NotificationBus bus, LocalDate Until) {
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.addAuctionPolicy(productName, price, bus, Until);
+    }
+
+    public void addNormalPolicy(IStore store, String productName, Double price, NotificationBus bus) {
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.addNormalPolicy(productName, price, bus);
+    }
+
+    public void bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
+        Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
+        store.bidOnProduct(productName, bid);
     }
 }

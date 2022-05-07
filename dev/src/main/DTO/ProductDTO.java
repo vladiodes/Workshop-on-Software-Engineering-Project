@@ -1,6 +1,7 @@
 package main.DTO;
 
 import main.Stores.Product;
+import org.mockito.internal.matchers.Null;
 
 public class ProductDTO {
     private String productName;
@@ -16,9 +17,8 @@ public class ProductDTO {
         this.productName = product.getName();
         this.description = product.getDescription();
         this.storeName=product.getStore().getName();
-        this.price=product.getPrice();
+        this.price=product.getCleanPrice();
         this.quantity=product.getQuantity();
-
     }
 
     public String getProductName() {

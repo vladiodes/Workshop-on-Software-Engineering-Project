@@ -52,7 +52,7 @@ class StoreTest {
         assertEquals(after.getCategory(),"new_cat");
         assertEquals(after.getDescription(),"new_description");
         assertEquals(after.getQuantity(),12);
-        assertEquals(after.getPrice(),200);
+        assertEquals(after.getCleanPrice(),200);
     }
 
     @Test

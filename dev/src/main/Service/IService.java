@@ -6,14 +6,11 @@ import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.utils.Pair;
+import main.utils.*;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
-import main.utils.PaymentInformation;
-import main.utils.Response;
-import main.utils.SupplyingInformation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -90,6 +87,11 @@ public interface IService {
      * @return true/false upon success or failure
      */
     Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity);
+
+    /***
+     * used for when buying a product that is sold raffle.
+     */
+    Response<Boolean> setCostumPriceForProductInCart(String userToken, String storeName, String productName, double price);
 
 
     /**
@@ -193,6 +195,24 @@ public interface IService {
      * @return true/false upon success/failure
      */
     Response<Boolean> updateProduct(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price);
+
+    /***
+     * REQ 2.4.2 - adding discounts to products
+     */
+    Response<Boolean> addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent);
+    Response<Boolean> addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode);
+    Response<Boolean> addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions);
+    Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password);
+
+    /***
+     * REQ - Define and set purchase policies for products:
+     */
+    // used to reset policies
+    Response<Boolean> addNormalPolicy(String userToken, String storeName, String productName, Double price);
+    Response<Boolean> addRafflePolicy(String userToken, String storeName, String productName, Double price);
+    Response<Boolean> addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate until);
+    Response<Boolean> bidOnProduct(String userToken, String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation);
+
 
     /**
      * REQ 2.4.4

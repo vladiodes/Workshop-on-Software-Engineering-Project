@@ -1,14 +1,23 @@
 package main.Stores;
 
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
+import main.Stores.Discounts.ConditionalDiscount;
+import main.Stores.Discounts.DirectDiscount;
+import main.Stores.Discounts.SecretDiscount;
+import main.Stores.PurchasePolicy.AuctionPolicy;
+import main.Stores.PurchasePolicy.normalPolicy;
+import main.Stores.PurchasePolicy.rafflePolicy;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
-import main.utils.Pair;
+import main.utils.*;
 
 
 import javax.swing.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -130,6 +139,8 @@ public class Store implements IStore {
 
     @Override
     public Product getProduct(String name) {
+        if(!productsByName.containsKey(name))
+            throw new IllegalArgumentException("Request product doesn't exist");
         return productsByName.get(name);
     }
 
@@ -216,9 +227,9 @@ public class Store implements IStore {
     }
 
     @Override
-    public void purchaseBasket(NotificationBus bus,ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment,  NotificationBus bus, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
-            purchaseProduct(en.getKey(), en.getValue());
+            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, bus, paymentInformation, payment);
         this.purchaseHistory.put(bask,LocalDateTime.now());
         notifyPurchase(bus);
     }
@@ -236,24 +247,47 @@ public class Store implements IStore {
         this.storeReviews.add(sReview);
     }
 
-    /***
-     * @param product to check
-     * @param amount to buy
-     * @return returns if its purchesable for the current amount.
-     */
+
     @Override
-    public boolean ValidateProduct(Product product, Integer amount) {
-        return this.getIsActive() && product.getQuantity() >= amount;
+    public void addDirectDiscount(String productName, LocalDate until, Double percent) {
+        Product product = getProduct(productName);
+        product.setDiscount(new DirectDiscount(percent, until));
     }
 
-    private void purchaseProduct(Product product, Integer quantity) {
-        if (product.getQuantity() < quantity) {
-            throw new IllegalArgumentException("Not enough products in stock");
-        }
-        if (product.getQuantity() == quantity) {
-            removeProduct(product.getName());
-            return;
-        }
-        product.subtractQuantity(quantity);
+    @Override
+    public void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode) {
+        Product product = getProduct(productName);
+        product.setDiscount(new SecretDiscount(percent, until, secretCode));
     }
+
+    @Override
+    public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+        Product product = getProduct(productName);
+        product.setDiscount(new ConditionalDiscount(restrictions, until));
+    }
+
+    @Override
+    public void addRafflePolicy(String productName, Double price, NotificationBus bus) {
+        Product product = getProduct(productName);
+        product.setPolicy(new rafflePolicy(this, price), bus);
+    }
+
+    @Override
+    public void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until) {
+        Product product = getProduct(productName);
+        product.setPolicy(new AuctionPolicy(until, price, bus,this, productName), bus);
+    }
+
+    @Override
+    public void addNormalPolicy(String productName, Double price, NotificationBus bus) {
+        Product product = getProduct(productName);
+        product.setPolicy(new normalPolicy(price, this), bus);
+    }
+
+    @Override
+    public void bidOnProduct(String productName, Bid bid) {
+        Product product = getProduct(productName);
+        product.bid(bid);
+    }
+
 }

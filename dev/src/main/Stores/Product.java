@@ -1,6 +1,18 @@
 package main.Stores;
 
 
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Supplying.ISupplying;
+import main.NotificationBus;
+import main.Shopping.ShoppingBasket;
+import main.Stores.Discounts.Discount;
+import main.Stores.PurchasePolicy.Policy;
+import main.Stores.PurchasePolicy.normalPolicy;
+import main.Users.User;
+import main.utils.Bid;
+import main.utils.PaymentInformation;
+import main.utils.SupplyingInformation;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,8 +23,8 @@ public class Product {
     private List<String> keyWords;
     private String description;
     private int quantity;
-    private double price;
     private List<ProductReview> reviews;
+    private Policy policy;
 
     private IStore store;
 
@@ -27,19 +39,18 @@ public class Product {
         this.keyWords=keyWords;
         this.description=description;
         this.quantity=quantity;
-        this.price=price;
         this.reviews = new LinkedList<>();
+        this.policy = new normalPolicy(price, store);
         this.store=store;
     }
 
-    public Product(Product p) // Use this constructor to deep copy Product
+    public Product(Product p) // Use this constructor to deep copy Product //TODO fix
     {
         this.productName = p.productName;
         this.category = p.category;
         this.keyWords = p.keyWords;
         this.description = p.description;
         this.quantity = p.quantity;
-        this.price = p.price;
         this.reviews = p.reviews;
     }
 
@@ -58,12 +69,23 @@ public class Product {
         this.keyWords=keyWords;
         this.description=description;
         this.quantity=quantity;
-        this.price=price;
+        this.setPrice(price);
+    }
+
+    public void setPrice(Double price){
+        this.policy.setOriginalPrice(price);
+    }
+
+    public void setPolicy(Policy policy, NotificationBus bus) {
+        this.policy.close(bus);
+        this.policy = policy;
     }
 
     public String getCategory() {
         return category;
     }
+
+    public boolean deliveredImmediately(){ return policy.deliveredImmediately();}
 
     public boolean hasKeyWord(String word) {
         for (String Keyword : this.keyWords)
@@ -89,8 +111,28 @@ public class Product {
         this.quantity = this.quantity - quantity;
     }
 
-    public double getPrice() {
-        return price;
+    public double getCleanPrice() {
+       return this.policy.getOriginalPrice();
+    }
+
+
+    public double getCurrentPrice(ShoppingBasket basket) {
+        return policy.getCurrentPrice(basket);
+    }
+
+    public boolean isPurchasableForAmount(Integer amount) {return this.policy.isPurchasable(this, amount);}
+    public boolean isPurchasableForPrice(Double price, int amount) {
+       return this.policy.isPurchasable(this, price, amount);
+    }
+    public boolean Purchase(User user, Double costumePrice, int amount , ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
+        return this.policy.purchase(this, user, costumePrice, amount, supplying, supplyingInformation, bus, paymentInformation , payment );
+    }
+    public boolean Bid(Bid bid){
+        return this.policy.bid(bid);
+    }
+
+    public void setDiscount(Discount discount) {
+        this.policy.setDiscount(discount);
     }
 
     public void addReview(ProductReview review)
@@ -100,5 +142,9 @@ public class Product {
 
     public IStore getStore() {
         return store;
+    }
+
+    public void bid(Bid bid) {
+        this.policy.bid(bid);
     }
 }

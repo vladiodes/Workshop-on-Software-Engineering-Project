@@ -87,10 +87,34 @@ public class Market {
 
     public String getLoggedInVSRegistered(String userToken) {
         User admin = getConnectedUserByToken(userToken);
-        if(!admin.isAdmin())
+        if (!admin.isAdmin())
             throw new IllegalArgumentException("Only admin can do that");
-        return String.format("%d/%d are logged in right now",currentlyLoggedInMembers.get(),membersByUserName.size());
+        return String.format("%d/%d are logged in right now", currentlyLoggedInMembers.get(), membersByUserName.size());
     }
+    public void addRafflePolicy(String userToken, String storeName, String productName, Double price) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.addRafflePolicy(store, productName, price, this.bus);
+    }
+
+    public void addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate Until) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.addAuctionPolicy(store, productName, price, this.bus, Until);
+    }
+
+    public void addNormalPolicy(String userToken, String storeName, String productName, Double price) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.addNormalPolicy(store, productName, price, this.bus);
+    }
+
+    public void bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem);
+    }
+
 
     /***
      * This function should be called on every system start up.
@@ -179,7 +203,6 @@ public class Market {
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         connectedSessions.put(token, u);
         u.LogIn(bus);
-        currentlyLoggedInMembers.incrementAndGet();
         addStats(StatsType.Login);
         return u;
     }
@@ -187,6 +210,8 @@ public class Market {
 
 
     public IStore getStoreByName(String name) {
+        if(!stores.containsKey(name))
+            throw new IllegalArgumentException("Requested store doesn't exist.");
         return this.stores.get(name);
     }
 
@@ -218,7 +243,7 @@ public class Market {
                         if (keyWord == null || keyWord.isBlank()|| currPrd.hasKeyWord(keyWord))
                             if (productRating == null) //TODO: || rating = productRating
                                 if (storeRating == null) //TODO: || rating = productRating
-                                    if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
+                                    if (minPrice == null || maxPrice == null || (currPrd.getCleanPrice() <= maxPrice && currPrd.getCleanPrice() >= minPrice))
                                         result.add(currPrd);
             }
         return result;
@@ -237,6 +262,14 @@ public class Market {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
         return us.addProductToCart(st, productName, quantity);
+    }
+
+    public boolean addProductToCart(String userToken, String storeName, String productName, double price) throws Exception{
+        if(price <= 0)
+            throw new IllegalArgumentException("can't pay 0 or less.");
+        User user = getConnectedUserByToken(userToken);
+        IStore store = getStoreByName(storeName);
+        return user.addProductToCart(store, productName, price);
     }
 
     public boolean RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
@@ -530,7 +563,6 @@ public class Market {
             throw new IllegalArgumentException("Member is not logged in");
         }
         u.logout(bus);
-        currentlyLoggedInMembers.decrementAndGet();
         connectedSessions.put(token,new User(token));
     }
 
@@ -671,4 +703,21 @@ public class Market {
         return !u.getIsLoggedIn();
 
     }
+
+    public void addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent) throws Exception {
+        getConnectedUserByToken(userToken).addDirectDiscount(stores.get(storeName),productName,until,percent);
+    }
+
+    public void addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode) throws Exception {
+        getConnectedUserByToken(userToken).addSecretDiscount(stores.get(storeName),productName,until,percent, secretCode);
+    }
+
+    public void addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions) throws Exception {
+        getConnectedUserByToken(userToken).addConditionalDiscount(stores.get(storeName),productName,until,Restriction.getRestrictions(restrictions, stores.get(storeName)));
+    }
+
+    public void addDiscountPasswordToBasket(String userToken, String storeName, String Password) throws  Exception {
+        getConnectedUserByToken(userToken).addDiscountPasswordToBasket(storeName, Password);
+    }
+
 }

@@ -2,9 +2,7 @@ package test.AcceptanceTests;
 
 import main.Service.IService;
 import main.Service.Service;
-import main.utils.PaymentInformation;
 import main.utils.Response;
-import main.utils.SupplyingInformation;
 import org.junit.Before;
 import org.junit.Test;
 import test.testUtils.testsFactory;

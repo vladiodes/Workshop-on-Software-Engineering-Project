@@ -1,20 +1,13 @@
 package test.AcceptanceTests;
 
-import main.DTO.ShoppingCartDTO;
 import main.DTO.UserDTO;
 import main.Service.IService;
 import main.Service.Service;
-import main.utils.PaymentInformation;
 import main.utils.Response;
-import main.utils.SupplyingInformation;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import test.testUtils.testsFactory;
 
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
