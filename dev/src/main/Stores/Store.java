@@ -74,7 +74,7 @@ public class Store implements IStore {
         if (productsByName.containsKey(productName))
             throw new IllegalArgumentException("There's already such product with this name in the store");
 
-        Product product = new Product(productName, category, keyWords, description, quantity, price);
+        Product product = new Product(this,productName, category, keyWords, description, quantity, price);
         productsByName.put(productName, product);
         return true;
     }

@@ -28,7 +28,9 @@ public class Product {
     private Policy policy;
     private Discount discount;
 
-    public Product(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
+    private IStore store;
+
+    public Product(IStore store,String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if(productName==null || productName.trim().equals(""))
             throw new IllegalArgumentException("Bad name for product!");
         if(quantity<0 || price<=0)
@@ -42,6 +44,7 @@ public class Product {
         this.price=price;
         this.reviews = new LinkedList<>();
         this.policy = new normalPolicy();
+        this.store=store;
     }
 
     public Product(Product p) // Use this constructor to deep copy Product //TODO fix
@@ -143,4 +146,7 @@ public class Product {
         this.reviews.add(review);
     }
 
+    public IStore getStore() {
+        return store;
+    }
 }

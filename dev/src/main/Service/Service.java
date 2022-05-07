@@ -2,12 +2,15 @@ package main.Service;
 
 
 
+import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
 import main.Shopping.ShoppingBasket;
+import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -307,12 +310,16 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken, String userName) {
+    public Response<List<String>> getPurchaseHistory(String userToken, String userName) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get purchase history, userToken:%s userName:%s",userToken,userName));
         try
         {
+            // todo: market should return a list of string and not object.. nothing to do with the object...
             List<ShoppingCartDTO> carts = market.getPurchaseHistory(userToken, userName);
-            return new Response<>(carts, null);
+            List<String> output = new LinkedList<>();
+            for(ShoppingCartDTO cart:carts)
+                output.add(cart.toString());
+            return new Response<>(output);
         }
         catch (IllegalArgumentException e){
             return new Response<>(e,true);
@@ -591,15 +598,13 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<HashMap<UserDTO, String>> getStoreStaff(String userToken, String storeName) {
+    public Response<List<String>> getStoreStaff(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to view store staff in store:%s", storeName));
         try {
             HashMap<User, String> map = market.getStoreStaff(userToken, storeName);
-            HashMap<UserDTO, String> toReturn = new HashMap<>();
-            for (User u : map.keySet()) {
-                UserDTO dto = new UserDTO(u);
-                toReturn.put(dto, map.get(u));
-            }
+            List<String> toReturn=new LinkedList<>();
+            for (User u : map.keySet())
+                toReturn.add((u.getUserName() + ": " + map.get(u)));
             return new Response<>(toReturn);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
@@ -636,16 +641,16 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<List<PurchaseDTO>> getStorePurchaseHistory(String userToken, String storeName) {
+    public Response<List<String>> getStorePurchaseHistory(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
         try {
             ConcurrentHashMap<ShoppingBasket, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
-            List<PurchaseDTO> output = new LinkedList<>();
+            List<String> output = new LinkedList<>();
             for (ShoppingBasket basket : baskets.keySet()) {
                 HashMap<ProductDTO, Integer> products = new HashMap<>();
                 for (Product product : basket.getProductsAndQuantities().keySet())
                     products.put(new ProductDTO(product), basket.getProductsAndQuantities().get(product));
-                output.add(new PurchaseDTO(products, baskets.get(basket)));
+                output.add(new PurchaseDTO(products, baskets.get(basket)).toString());
             }
             return new Response<>(output);
         } catch (IllegalArgumentException e) {
@@ -787,6 +792,55 @@ public class Service implements IService {
         {
             Logger.getInstance().logBug("Service - isMemberLoggedOut", e.getMessage());
             return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<List<StoreDTO>> getAllStoresOfUser(String userToken) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to get all stores of user %s", userToken));
+        try {
+            List<IStore> stores = market.getAllStoresOf(userToken);
+            LinkedList<StoreDTO> storeList = new LinkedList<>();
+            for(IStore store:stores)
+                storeList.add(new StoreDTO(store));
+            return new Response<>(storeList);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - getAllStoresOfUser", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> assignWStoUserToken(String userToken, WsContext ctx) {
+        Logger.getInstance().logEvent("Service","Assigning a websocket to a user");
+        try{
+            return new Response<>(market.assignWStoUserToken(userToken,ctx));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->assignWSToUserToken",e.getMessage());
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> leaveWSforUserToken(String userToken) {
+        Logger.getInstance().logEvent("Service","Leaving websocket");
+        try{
+            return new Response<>(market.leaveWSforUserToken(userToken));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->leaveWSforUserToken",e.getMessage());
+            return new Response<>(e,false);
         }
     }
 

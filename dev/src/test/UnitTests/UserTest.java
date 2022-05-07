@@ -1,4 +1,4 @@
-package test.UnitTests;
+package UnitTests;
 
 import main.NotificationBus;
 import main.Stores.IStore;
@@ -51,7 +51,7 @@ class UserTest {
     @Test
     void checkLogin(){
         assertFalse(user.getIsLoggedIn());
-        user.LogIn();
+        user.LogIn(null);
         assertTrue(user.getIsLoggedIn());
     }
 

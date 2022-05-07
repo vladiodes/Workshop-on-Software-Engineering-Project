@@ -1,4 +1,4 @@
-package test.UnitTests;
+package UnitTests;
 
 import main.Stores.Product;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,8 +24,8 @@ class ProductTest {
         keyWordsPizza.add("Cheesy");
         keyWordsPizza.add("Tasty");
 
-        p1 = new Product("Coca Cola", "Drink", keyWordsCola, "So good", 50, 6);
-        p2 = new Product("Pizza", "Food", keyWordsPizza, "Cheesy", 100, 25);
+        p1 = new Product(null,"Coca Cola", "Drink", keyWordsCola, "So good", 50, 6);
+        p2 = new Product(null,"Pizza", "Food", keyWordsPizza, "Cheesy", 100, 25);
     }
 
     @Test
