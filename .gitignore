@@ -22,7 +22,6 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 *.xml
-dev/out/production/dev/LOG.txt
-dev/out/production/dev/.idea/.name
+dev/out/production/*
 dev/LOG.txt
 dev/.idea/*
