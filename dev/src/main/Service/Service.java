@@ -905,4 +905,20 @@ public class Service implements IService {
         }
     }
 
+    @Override
+    public Response<String> getLoggedInVSRegistered(String userToken) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get logged in vs registered stats by token:%s",userToken));
+        try {
+            return new Response<>(market.getLoggedInVSRegistered(userToken));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->getLoggedInVSRegistered",e.getMessage());
+            return new Response<>(e,false);
+        }
+    }
+
 }

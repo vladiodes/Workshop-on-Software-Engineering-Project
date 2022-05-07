@@ -48,7 +48,20 @@ public class Market {
     private IPayment Psystem;
     private ISupplying Ssystem;
 
+    private AtomicInteger currentlyLoggedInMembers;
+
+    private enum StatsType{Register, Login, Purchase}
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+
+    public Market(){
+        membersByUserName =new ConcurrentHashMap<>();
+        connectedSessions =new ConcurrentHashMap<>();
+        stores=new ConcurrentHashMap<>();
+        bus =new NotificationBus();
+        systemStatsByDate=new ConcurrentHashMap<>();
+        security_controller = new Security();
+        currentlyLoggedInMembers = new AtomicInteger(0);
+    }
 
     public List<IStore> getAllStoresOf(String userToken) {
         User user = connectedSessions.get(userToken);
@@ -71,6 +84,12 @@ public class Market {
         return true;
     }
 
+    public String getLoggedInVSRegistered(String userToken) {
+        User admin = getConnectedUserByToken(userToken);
+        if (!admin.isAdmin())
+            throw new IllegalArgumentException("Only admin can do that");
+        return String.format("%d/%d are logged in right now", currentlyLoggedInMembers.get(), membersByUserName.size());
+    }
     public void addRafflePolicy(String userToken, String storeName, String productName, Double price) {
         User user = getConnectedUserByToken(userToken);
         IStore store = getStoreByName(storeName);
@@ -233,7 +252,7 @@ public class Market {
                         if (keyWord == null || keyWord.isBlank()|| currPrd.hasKeyWord(keyWord))
                             if (productRating == null) //TODO: || rating = productRating
                                 if (storeRating == null) //TODO: || rating = productRating
-                                    if (minPrice == null || maxPrice == null || (currPrd.getCleanPrice() <= maxPrice && currPrd.getCleanPrice() >= minPrice))
+                                    if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
                                         result.add(currPrd);
             }
         return result;

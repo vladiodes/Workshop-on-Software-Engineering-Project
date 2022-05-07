@@ -10,6 +10,7 @@
             <input type="date" name="date" required>
             <p><input type="submit" value="View stats"></p>
         </form>
+        <p>$logged_in_vs_registered_stats</p>
         #if($fail)
             <p id="failed_response">$response</p>
         #elseif($success)

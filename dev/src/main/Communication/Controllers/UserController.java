@@ -149,6 +149,8 @@ public class UserController {
 
     public Handler systemStatsPage = ctx ->{
         Map<String,Object> model = ViewUtil.baseModel(ctx);
+        Response<String> response = service.getLoggedInVSRegistered(ctx.sessionAttribute("userToken"));
+        model.put("logged_in_vs_registered_stats",response.getResult());
         ctx.render(Path.Template.VIEW_SYS_STATS,model);
     };
 
@@ -185,6 +187,8 @@ public class UserController {
                     "<p>Number of users that registered: %s</p>" +
                     "<p>Number of purchases: %s</p>",loggedInUsersPerDate.getResult(),registeredUsersPerDate.getResult(),purchasesPerDate.getResult()));
         }
+        Response<String> response = service.getLoggedInVSRegistered(ctx.sessionAttribute("userToken"));
+        model.put("logged_in_vs_registered_stats",response.getResult());
         ctx.render(Path.Template.VIEW_SYS_STATS,model);
     };
 
