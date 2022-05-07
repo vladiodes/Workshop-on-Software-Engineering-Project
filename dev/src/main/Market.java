@@ -1,9 +1,14 @@
 package main;
 
+
+import io.javalin.websocket.WsContext;
+import main.Stores.*;
+
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.ProductReview;
 import main.Stores.StoreReview;
+
 
 import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
@@ -11,8 +16,6 @@ import main.Security.ISecurity;
 import main.Security.Security;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
-import main.Stores.IStore;
-import main.Stores.Product;
 import main.Users.StorePermission;
 import main.Users.User;
 
@@ -46,6 +49,28 @@ public class Market {
     private ISupplying Ssystem;
 
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+
+    public List<IStore> getAllStoresOf(String userToken) {
+        User user = connectedSessions.get(userToken);
+        if(user==null)
+            throw new IllegalArgumentException("This user isn't logged in");
+        return user.getAllStoresIsStaff();
+    }
+
+    public boolean assignWStoUserToken(String userToken, WsContext ctx) {
+        User u = getConnectedUserByToken(userToken);
+        if(!membersByUserName.containsKey(u.getUserName()))
+            throw new IllegalArgumentException("This is a guest, it doesn't get any notifications");
+        bus.register(u,ctx);
+        return true;
+    }
+
+    public boolean leaveWSforUserToken(String userToken) {
+        User u = getConnectedUserByToken(userToken);
+        bus.unregisterWS(u);
+        return true;
+    }
+
     private enum StatsType{Register, Login, Purchase}
 
     public Market(){
@@ -143,7 +168,7 @@ public class Market {
         }
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         connectedSessions.put(token, u);
-        u.LogIn();
+        u.LogIn(bus);
         addStats(StatsType.Login);
         return u;
     }
@@ -177,9 +202,9 @@ public class Market {
         List<Product> result = new LinkedList<>();
         for (IStore currStr : this.stores.values())
             for (Product currPrd : currStr.getProductsByName().values()) {
-                if (productName == null || currPrd.getName().equals(productName))
-                    if (category == null || currPrd.getCategory().equals(category))
-                        if (keyWord == null || currPrd.hasKeyWord(keyWord))
+                if (productName == null ||productName.isBlank()|| currPrd.getName().equals(productName))
+                    if (category == null ||category.isBlank()|| currPrd.getCategory().equals(category))
+                        if (keyWord == null || keyWord.isBlank()|| currPrd.hasKeyWord(keyWord))
                             if (productRating == null) //TODO: || rating = productRating
                                 if (storeRating == null) //TODO: || rating = productRating
                                     if (minPrice == null || maxPrice == null || (currPrd.getPrice() <= maxPrice && currPrd.getPrice() >= minPrice))
@@ -493,7 +518,8 @@ public class Market {
         {
             throw new IllegalArgumentException("Member is not logged in");
         }
-        u.logout();
+        u.logout(bus);
+        connectedSessions.put(token,new User(token));
     }
 
     public void purchaseCart(String userToken, PaymentInformation pinfo, SupplyingInformation sinfo) throws Exception
@@ -598,11 +624,11 @@ public class Market {
         this.bus.addMessage(store, userName, message);
     }
 
-    private User getConnectedUserByToken(String userToken) throws Exception
+    private User getConnectedUserByToken(String userToken)
     {
         if(!connectedSessions.containsKey(userToken))
         {
-            throw new Exception("Invalid user token");
+            throw new IllegalArgumentException("Invalid user token");
         }
         return connectedSessions.get(userToken);
     }

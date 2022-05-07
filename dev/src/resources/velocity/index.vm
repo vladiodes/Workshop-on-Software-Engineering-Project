@@ -1,0 +1,18 @@
+#macro(index)
+<main>
+    <div class="content">
+        <h2>Welcome to <span>TradeIt.</span></h2>
+        <p>Shop and sell, all in one place!</p>
+    </div>
+</main>
+</div>
+</body>
+<form id="connect" method="post">
+</form>
+<script>
+        #if ($userToken)
+        localStorage.setItem("userToken", "$userToken");
+        #end
+</script>
+</html>
+#end

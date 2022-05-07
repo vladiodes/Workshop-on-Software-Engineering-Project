@@ -2,6 +2,7 @@ package main.Service;
 
 
 
+import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
@@ -148,7 +149,7 @@ public interface IService {
      * @param userToken - the user that invokes the action
      * @param userName - the user to check its history - admin can check for any user, non admin can only check for itself
      */
-    Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken,String userName);
+    Response<List<String>> getPurchaseHistory(String userToken,String userName);
 
     /**
      * REQ 2.3.8
@@ -267,11 +268,8 @@ public interface IService {
 
     /**
      * REQ 2.4.11
-     * @return a hash map in which the key-value pair is of the format <UserDTO,List<String>>:
-     * UserDTO - represents the user that has a role in the store (manager,owner,founder)
-     * List<String> - a list of all the permissions that the staff member has.
      */
-    Response<HashMap<UserDTO,String>> getStoreStaff(String userToken, String storeName);
+    Response<List<String>> getStoreStaff(String userToken, String storeName);
 
     /**
      * REQ 2.4.12
@@ -293,7 +291,7 @@ public interface IService {
      * was bought at that date
      * the value is the dto of the product.
      */
-    Response<List<PurchaseDTO>> getStorePurchaseHistory(String userToken, String storeName);
+    Response<List<String>> getStorePurchaseHistory(String userToken, String storeName);
 
     /*
      ------------------------ System manager actions -------------------
@@ -351,4 +349,20 @@ public interface IService {
     Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date);
 
     Response<Boolean> isMemberLoggedOut(String userToken);
+
+    /**
+     * @param userToken
+     * @return Returns all the stores managed,owned,founded by a user
+     */
+    Response<List<StoreDTO>> getAllStoresOfUser(String userToken);
+
+    /**
+     * This function assigns a web-socket for a logged in user session
+     * @param userToken - token of a user that has logged in
+     * @param ctx - the context of the websocket
+     * @return true upon success/fail on failure
+     */
+    Response<Boolean> assignWStoUserToken(String userToken, WsContext ctx);
+
+    Response<Boolean> leaveWSforUserToken(String userToken);
 }

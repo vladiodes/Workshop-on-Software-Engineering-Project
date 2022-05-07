@@ -1,0 +1,25 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>$currentUser</h2>
+        <form id="logout" method="post">
+            <input type="hidden" name="userToken" id="userToken" value="">
+            <script type="text/javascript">
+                document.getElementById("userToken").setAttribute('value',localStorage.getItem("userToken"));
+            </script>
+            <p>Are you sure you want to log out?</p>
+            <p><input type="submit" value="Logout"></p>
+        </form>
+        #if($success)
+            <p id="success_response">$response</p>
+        #elseif($fail)
+            <p id="failed_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

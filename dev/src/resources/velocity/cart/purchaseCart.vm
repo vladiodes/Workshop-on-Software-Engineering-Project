@@ -1,0 +1,41 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <form id="purchaseCart" method="post">
+        <table style="border-spacing: 10rem 0;">
+            <tr>
+                <td>
+                    <p>Card number</p>
+                    <input type="text" name="cardNumber" value="" required>
+                    <p>Expiration date</p>
+                    <input type="date" name="ExpDate" required>
+                    <p>CVV</p>
+                    <input type="text" name="cvv" value="" required>
+                    <p>Card holder name</p>
+                    <input type="text" name="name" value="" required>
+                    <p>Email</p>
+                    <input type="text" name="email" value="" required>
+                </td>
+                <td>
+                    <p>Supplying date</p>
+                    <input type="date" name="supplyingDate" required>
+                    <p>Address</p>
+                    <input type="text" name="address" value="" required>
+                    <p><input type="submit" value="Purchase cart"></p>
+                    #if($fail)
+                        <p id="failed_response">$response</p>
+                    #elseif($success)
+                        <p id="success_response">$response</p>
+                    #end
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</main>
+</div>
+</body>
+</html>

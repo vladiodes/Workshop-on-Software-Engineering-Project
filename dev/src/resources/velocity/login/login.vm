@@ -1,0 +1,29 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Login:</h2>
+        <form id="login" method="post">
+            <input type="hidden" name="userToken" id="userToken" value="">
+            <script type="text/javascript">
+                document.getElementById("userToken").setAttribute('value',localStorage.getItem("userToken"));
+            </script>
+            <p>Username</p>
+            <input type="text" name="username" placeholder="Enter username" value="" required>
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter password" value="" required>
+
+            <p><input type="submit" value="Login"></p>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

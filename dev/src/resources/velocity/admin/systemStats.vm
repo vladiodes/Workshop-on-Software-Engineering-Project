@@ -1,0 +1,23 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Delete store:</h2>
+        <form id="systemStats" method="post">
+            <p>Select a date</p>
+            <input type="date" name="date" required>
+            <p><input type="submit" value="View stats"></p>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+            $sys_stats
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>
