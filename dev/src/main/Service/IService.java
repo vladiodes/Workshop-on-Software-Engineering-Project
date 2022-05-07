@@ -365,4 +365,14 @@ public interface IService {
     Response<Boolean> assignWStoUserToken(String userToken, WsContext ctx);
 
     Response<Boolean> leaveWSforUserToken(String userToken);
+
+    /**
+     * REQ 2.6.6
+     * @param userToken
+     * @return a string of the following format:
+     * "x/y are logged in right now"
+     * x - currently logged in MEMBERS
+     * y - total members in the system
+     */
+    Response<String> getLoggedInVSRegistered(String userToken);
 }

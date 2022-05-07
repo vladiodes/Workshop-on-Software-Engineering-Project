@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Market {
 
@@ -48,7 +49,20 @@ public class Market {
     private IPayment Psystem;
     private ISupplying Ssystem;
 
+    private AtomicInteger currentlyLoggedInMembers;
+
+    private enum StatsType{Register, Login, Purchase}
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
+
+    public Market(){
+        membersByUserName =new ConcurrentHashMap<>();
+        connectedSessions =new ConcurrentHashMap<>();
+        stores=new ConcurrentHashMap<>();
+        bus =new NotificationBus();
+        systemStatsByDate=new ConcurrentHashMap<>();
+        security_controller = new Security();
+        currentlyLoggedInMembers = new AtomicInteger(0);
+    }
 
     public List<IStore> getAllStoresOf(String userToken) {
         User user = connectedSessions.get(userToken);
@@ -71,15 +85,11 @@ public class Market {
         return true;
     }
 
-    private enum StatsType{Register, Login, Purchase}
-
-    public Market(){
-        membersByUserName =new ConcurrentHashMap<>();
-        connectedSessions =new ConcurrentHashMap<>();
-        stores=new ConcurrentHashMap<>();
-        bus =new NotificationBus();
-        systemStatsByDate=new ConcurrentHashMap<>();
-        security_controller = new Security();
+    public String getLoggedInVSRegistered(String userToken) {
+        User admin = getConnectedUserByToken(userToken);
+        if(!admin.isAdmin())
+            throw new IllegalArgumentException("Only admin can do that");
+        return String.format("%d/%d are logged in right now",currentlyLoggedInMembers.get(),membersByUserName.size());
     }
 
     /***
@@ -169,6 +179,7 @@ public class Market {
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         connectedSessions.put(token, u);
         u.LogIn(bus);
+        currentlyLoggedInMembers.incrementAndGet();
         addStats(StatsType.Login);
         return u;
     }
@@ -519,6 +530,7 @@ public class Market {
             throw new IllegalArgumentException("Member is not logged in");
         }
         u.logout(bus);
+        currentlyLoggedInMembers.decrementAndGet();
         connectedSessions.put(token,new User(token));
     }
 
