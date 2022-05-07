@@ -22,6 +22,7 @@ public interface Policy {
 
     /***
      * assumes payment was successful and updates values accordingly.
+     * timed policies doesn't allow purchase.
      * @return true if product quantity is was updated.
      */
     public boolean purchase(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment);
@@ -31,7 +32,13 @@ public interface Policy {
      */
     public boolean bid(Bid bid);
 
+    /***
+     *when changing policies we want to end the previous one gracefully (refunding if raffle for instance)
+     */
     public void close(NotificationBus bus);
 
+    /***
+     * used to decide if the product should be delivered immediately
+     */
     public boolean deliveredImmediately();
 }
