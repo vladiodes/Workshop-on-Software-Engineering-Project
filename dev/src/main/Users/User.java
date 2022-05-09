@@ -14,6 +14,7 @@ import main.Stores.Product;
 import main.Stores.Store;
 import main.ExternalServices.Supplying.ISupplying;
 import main.utils.*;
+import org.mockito.internal.matchers.Not;
 
 
 import java.time.LocalDate;
@@ -288,6 +289,10 @@ public class User {
         return true;
     }
 
+    public boolean ShouldBeNotfiedForBargaining(IStore store){
+        return hasPermission(store, StorePermission.BargainPermission);
+    }
+
     private void appointManagerPreconditions(IStore IStore, User user_to_appoint) {
         //first checking preconditions for the appointment
         if (!hasPermission(IStore, StorePermission.OwnerPermission)) {
@@ -367,6 +372,7 @@ public class User {
     public void purchaseCart(NotificationBus bus, PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{
         Purchase p = new Purchase(pinfo, sinfo, this, this.cart, psystem, ssystem);
         p.executePurchase(bus);
+        this.resetCart();
     }
 
     public List<ShoppingCart> getPurchaseHistory() {
@@ -495,7 +501,7 @@ public class User {
     }
 
     public boolean addProductToCart(IStore st, String productName, double price) {
-        return cart.setCostumeProductPrice(st, productName, price);
+        return cart.setCostumeProductPrice(st, productName, price,this );
     }
 
     public boolean RemoveProductFromCart(IStore st, String productName, int quantity) {
@@ -503,19 +509,19 @@ public class User {
     }
 
     public void addDirectDiscount(IStore Store, String productName, LocalDate until, Double percent) {
-        if(!hasPermission(Store, StorePermission.DiscountPermission))
+        if(!hasPermission(Store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
         Store.addDirectDiscount(productName, until, percent);
     }
 
     public void addSecretDiscount(IStore Store, String productName, LocalDate until, Double percent, String secretCode) {
-        if(!hasPermission(Store, StorePermission.DiscountPermission))
+        if(!hasPermission(Store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
        Store.addSecretDiscount(productName, until, percent, secretCode);
     }
 
     public void addConditionalDiscount(IStore Store,String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
-        if(!hasPermission(Store, StorePermission.DiscountPermission))
+        if(!hasPermission(Store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
         Store.addConditionalDiscount(productName, until, restrictions);
     }
@@ -572,8 +578,39 @@ public class User {
         store.addNormalPolicy(productName, price, bus);
     }
 
-    public void bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
-        Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
-        store.bidOnProduct(productName, bid);
+    public void addBargainPolicy(IStore store, String productName, Double originalPrice,NotificationBus bus) {
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.addBargainPolicy(productName, originalPrice, bus);
     }
+
+    public boolean bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem, NotificationBus bus) {
+        Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
+        return store.bidOnProduct(productName, bid, bus);
+    }
+
+    public List<Bid> getUserBids(IStore store, String productName){
+        if(!hasPermission(store, StorePermission.BargainPermission))
+            throw new IllegalArgumentException("No permission to view other user's bids.");
+        return store.getProduct(productName).getUserBids();
+    }
+
+    public void ApproveBid(IStore store, String productName, String userName, NotificationBus bus) throws Exception {
+        if(!hasPermission(store, StorePermission.BargainPermission))
+            throw new IllegalArgumentException("No permission to approve other user's bids.");
+        store.getProduct(productName).ApproveBid(userName, this, bus);
+    }
+
+    public void DeclineBid(IStore store, String productName, String user, NotificationBus bus) throws Exception {
+        if(!hasPermission(store, StorePermission.BargainPermission))
+            throw new IllegalArgumentException("No permission to decline other user's bids.");
+        store.getProduct(productName).DeclineBid(user, bus);
+    }
+
+    public void CounterOfferBid(IStore store, String productName, String user, Double offer, NotificationBus bus) throws Exception {
+        if (!hasPermission(store, StorePermission.BargainPermission))
+            throw new IllegalArgumentException("No permission to approve other user's bids.");
+        store.getProduct(productName).counterOfferBid(user, offer, bus);
+    }
+
 }

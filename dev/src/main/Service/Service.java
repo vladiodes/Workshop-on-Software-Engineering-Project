@@ -7,10 +7,10 @@ import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
+import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
 import main.Stores.IStore;
 import main.Stores.Product;
-import main.Stores.Store;
 import main.Users.User;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -213,7 +213,7 @@ public class Service implements IService {
     @Override
     public Response<ShoppingCartDTO> getCartInfo(String userToken) {
         try {
-            return new Response<>(new ShoppingCartDTO(market.getUserCart(userToken)), null);
+            return new Response<>(market.getUserCart(userToken));
         }
         catch (IllegalArgumentException e) {
             return new Response<>(e, true);
@@ -490,9 +490,72 @@ public class Service implements IService {
     }
 
     @Override
+    public Response<Boolean> addBargainPolicy(String userToken, String StoreName, String productName, Double originalPrice) {
+        try {
+            market.addBargainPolicy(userToken, StoreName, productName, originalPrice);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in adding Policy.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
     public Response<Boolean> bidOnProduct(String userToken,  String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         try {
-            market.bidOnProduct(userToken, storeName, productName, costumePrice, paymentInformation, supplyingInformation);
+            return new Response<>(market.bidOnProduct(userToken, storeName, productName, costumePrice, paymentInformation, supplyingInformation));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in biding.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<List<BidDTO>> getUserBids(String userToken, String storeName, String productName) {
+        try {
+            return new Response<>(market.getUserBids(userToken, storeName,  productName));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in biding.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> ApproveBid(String userToken, String storeName, String productName, String username) {
+        try {
+            market.ApproveBid( userToken, storeName, productName, username);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in biding.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> DeclineBid(String userToken, String storeName, String productName, String username) {
+        try {
+            market.DeclineBid( userToken, storeName, productName, username);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service", "Bug in biding.");
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> CounterOfferBid(String userToken, String storeName, String productName, String username, Double offer) {
+        try {
+            market.CounterOfferBid( userToken, storeName, productName, username, offer);
             return new Response<>(true);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
@@ -628,6 +691,54 @@ public class Service implements IService {
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - disAllowManagerAnswerAndTakeRequests", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> allowManagerBargainPreducts(String userToken, String managerName, String storeName) {
+        try {
+            return new Response<>(market.allowManagerBargainProducts(userToken, managerName, storeName));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - allowManagerBargainPreducts", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> disallowManagerBargainProducts(String userToken, String managerName, String storeName) {
+        try {
+            return new Response<>(market.disallowManagerBargainProducts(userToken, managerName, storeName));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - disallowManagerBargainProducts", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> allowManagerPolicyProducts(String userToken, String managerName, String storeName) {
+        try {
+            return new Response<>(market.allowManagerPolicyProducts(userToken, managerName, storeName));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - allowManagerPolicyProducts", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> disallowManagerPolicyProducts(String userToken, String managerName, String storeName) {
+        try {
+            return new Response<>(market.disallowManagerPolicyProducts(userToken, managerName, storeName));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - disallowManagerPolicyProducts", e.getMessage());
             return new Response<>(e, false);
         }
     }

@@ -9,7 +9,7 @@ public class UserDTO {
     private boolean isAdmin;
     public UserDTO(User u) {
         this.userName = u.getUserName();
-        this.cart = new ShoppingCartDTO(u.getCart());
+        this.cart = new ShoppingCartDTO(u.getCart(), u);
         this.isAdmin=u.isAdmin();
     }
 

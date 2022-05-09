@@ -6,6 +6,7 @@ import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.NotificationBus;
 import main.utils.*;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -211,8 +212,17 @@ public interface IService {
     Response<Boolean> addNormalPolicy(String userToken, String storeName, String productName, Double price);
     Response<Boolean> addRafflePolicy(String userToken, String storeName, String productName, Double price);
     Response<Boolean> addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate until);
-    Response<Boolean> bidOnProduct(String userToken, String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation);
+    Response<Boolean> addBargainPolicy(String userToken, String StoreName, String productName, Double OriginalPrice);
 
+
+    /***
+     * bidding operations.
+     */
+    Response<Boolean> bidOnProduct(String userToken, String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation);
+    Response<List<BidDTO>>  getUserBids(String userToken, String storeName, String productName);
+    Response<Boolean> ApproveBid(String userToken, String storeName, String productName, String username);
+    Response<Boolean> DeclineBid(String userToken, String storeName, String productName, String username);
+    Response<Boolean> CounterOfferBid(String userToken, String storeName, String productName, String username, Double offer);
 
     /**
      * REQ 2.4.4
@@ -273,6 +283,28 @@ public interface IService {
      * @return true/false upon success/failure
      */
     Response<Boolean> disAllowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName);
+
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> allowManagerBargainPreducts(String userToken, String managerName, String storeName);
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> disallowManagerBargainProducts(String userToken, String managerName, String storeName);
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> allowManagerPolicyProducts(String userToken, String managerName, String storeName);
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> disallowManagerPolicyProducts(String userToken, String managerName, String storeName);
+
 
     /**
      * REQ 2.4.9
@@ -395,4 +427,5 @@ public interface IService {
      * y - total members in the system
      */
     Response<String> getLoggedInVSRegistered(String userToken);
+
 }

@@ -141,6 +141,11 @@ public class StoreMock implements IStore {
     }
 
     @Override
+    public void notifyBargainingStaff(Bid newbid, NotificationBus bus) {
+
+    }
+
+    @Override
     public void addDirectDiscount(String productName, LocalDate until, Double percent) {
 
     }
@@ -171,7 +176,12 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void bidOnProduct(String productName, Bid bid) {
+    public boolean bidOnProduct(String productName, Bid bid, NotificationBus bus) {
+        return true;
+    }
+
+    @Override
+    public void addBargainPolicy(String productName, Double originalPrice, NotificationBus bus) {
 
     }
 }

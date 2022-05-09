@@ -38,7 +38,6 @@
     <orderEntry type="library" name="io.javalin" level="project" />
     <orderEntry type="library" name="j2html" level="project" />
     <orderEntry type="library" name="apache.velocity.engine.examples" level="project" />
-    <orderEntry type="library" name="slf4j.simple" level="project" />
     <orderEntry type="library" name="google.guava" level="project" />
     <orderEntry type="library" name="net.stickycode.mockwire.sticky.mockito" level="project" />
     <orderEntry type="library" name="mockito.all" level="project" />
@@ -64,5 +63,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="slf4j.simple" level="project" />
   </component>
 </module>

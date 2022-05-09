@@ -3,7 +3,6 @@ package main.Stores.PurchasePolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
-import main.Shopping.ShoppingBasket;
 import main.Stores.Discounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
@@ -36,7 +35,7 @@ public class rafflePolicy extends DirectPolicy {
      * doesn't work with discounts.
      */
     @Override
-    public boolean isPurchasable(Product product,Double costumePrice, int amount){
+    public boolean isPurchasable(Product product, Double costumePrice, int amount, User user){
         return amount * costumePrice + this.accumaltivePrice <= product.getCleanPrice();
     }
 
@@ -47,7 +46,7 @@ public class rafflePolicy extends DirectPolicy {
 
 
     @Override
-    public synchronized boolean  purchase(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
+    public synchronized boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
         double userMoney = costumePrice * amount;
         accumaltivePrice += userMoney;
         addUserToRaffle(user, userMoney, supplying, supplyingInformation, payment, paymentInformation);
@@ -70,12 +69,12 @@ public class rafflePolicy extends DirectPolicy {
     }
 
     @Override
-    public boolean deliveredImmediately() {
+    public boolean deliveredImmediately(User userToDeliver) {
         return false;
     }
 
     @Override
-    public double getCurrentPrice(ShoppingBasket basket) {
+    public double getCurrentPrice(User user) {
         return this.originalPrice - accumaltivePrice;
     }
 

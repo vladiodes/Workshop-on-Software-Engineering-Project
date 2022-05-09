@@ -2,6 +2,7 @@ package main;
 
 
 import io.javalin.websocket.WsContext;
+import main.DTO.BidDTO;
 import main.Stores.*;
 
 import main.ExternalServices.Payment.IPayment;
@@ -50,6 +51,10 @@ public class Market {
     private ISupplying Ssystem;
 
     private AtomicInteger currentlyLoggedInMembers;
+
+    public void addBargainPolicy(String userToken, String storeName, String productName, Double originalPrice) {
+        getConnectedUserByToken(userToken).addBargainPolicy(getStoreByName(storeName), productName, originalPrice, bus);
+    }
 
     private enum StatsType{Register, Login, Purchase}
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
@@ -109,10 +114,10 @@ public class Market {
         user.addNormalPolicy(store, productName, price, this.bus);
     }
 
-    public void bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
+    public boolean bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         User user = getConnectedUserByToken(userToken);
         IStore store = getStoreByName(storeName);
-        user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem);
+        return user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem, bus);
     }
 
 
@@ -287,13 +292,13 @@ public class Market {
         return us.RemoveProductFromCart(st, productName, quantity);
     }
 
-    public ShoppingCart getUserCart(String userToken) {
+    public ShoppingCartDTO getUserCart(String userToken) {
         User us = this.connectedSessions.get(userToken);
         if (us == null) {
             Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
             throw new IllegalArgumentException("Unkown user token.");
         }
-        return us.getCart();
+        return new ShoppingCartDTO(us.getCart(), us);
     }
 
 
@@ -355,6 +360,22 @@ public class Market {
             throw new IllegalArgumentException("There's no such manager");
 
         return p.first.grantOrDeletePermission(manager, p.second, shouldGrant, permission);
+    }
+
+    public boolean allowManagerBargainProducts(String userToken, String managerName, String storeName) {
+        return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.BargainPermission, true);
+    }
+
+    public boolean disallowManagerBargainProducts(String userToken, String managerName, String storeName) {
+        return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.BargainPermission, false);
+    }
+
+    public boolean allowManagerPolicyProducts(String userToken, String managerName, String storeName) {
+        return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.PolicyPermission, true);
+    }
+
+    public boolean disallowManagerPolicyProducts(String userToken, String managerName, String storeName) {
+        return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.PolicyPermission, false);
     }
 
     public boolean allowManagerUpdateProducts(String userToken, String managerName, String storeName) {
@@ -589,7 +610,7 @@ public class Market {
         List<ShoppingCartDTO> scDTO = new LinkedList<>();
         for(ShoppingCart sc : purchaseHistory)
         {
-            scDTO.add(new ShoppingCartDTO(sc));
+            scDTO.add(new ShoppingCartDTO(sc, u));
         }
         return scDTO;
     }
@@ -718,6 +739,26 @@ public class Market {
 
     public void addDiscountPasswordToBasket(String userToken, String storeName, String Password) throws  Exception {
         getConnectedUserByToken(userToken).addDiscountPasswordToBasket(storeName, Password);
+    }
+
+    public List<BidDTO> getUserBids(String userToken, String storeName, String productName){
+        List<Bid> toDTO = getConnectedUserByToken(userToken).getUserBids(getStoreByName(storeName), productName);
+        List<BidDTO> output = new LinkedList<>();
+        for(Bid bid : toDTO)
+            output.add(new BidDTO(bid));
+        return output;
+    }
+
+    public void ApproveBid(String userToken, String storeName, String productName, String username) throws Exception {
+        getConnectedUserByToken(userToken).ApproveBid(getStoreByName(storeName), productName, username, bus);
+    }
+
+    public void DeclineBid(String userToken, String storeName, String productName, String username) throws Exception {
+        getConnectedUserByToken(userToken).DeclineBid(getStoreByName(storeName), productName, username, bus);
+    }
+
+    public void CounterOfferBid(String userToken, String storeName, String productName, String username, Double offer) throws Exception {
+        getConnectedUserByToken(userToken).CounterOfferBid(getStoreByName(storeName), productName, username, offer, bus);
     }
 
 }

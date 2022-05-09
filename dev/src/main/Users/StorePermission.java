@@ -5,9 +5,9 @@ import java.util.HashMap;
 public enum StorePermission {
     UpdateAddProducts("Update and add products"),
     ViewStoreHistory("View store history"),
-    DiscountPermission("Permission to add discounts"),
     AnswerAndTakeRequests("Answer and take requests"),
     PolicyPermission("Permision to add policy"),
+    BargainPermission("Permission to bargain with buyers"),
     OwnerPermission("Owner permissions");//can do anything
 
 

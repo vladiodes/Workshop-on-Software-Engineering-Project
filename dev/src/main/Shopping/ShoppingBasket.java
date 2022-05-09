@@ -97,10 +97,10 @@ public class ShoppingBasket {
         return true;
     }
 
-    //used when adding product with costume price.
-    public boolean setCostumePriceForProduct(String prodName, double price) {
+    //used when adding product with costume price, used for raffles.
+    public boolean setCostumePriceForProduct(String prodName, double price, User user) {
         Product prodToSet = this.store.getProduct(prodName);
-        if(prodToSet.isPurchasableForPrice(price, productsQuantity.get(prodToSet)))
+        if(prodToSet.isPurchasableForPrice(price, productsQuantity.get(prodToSet), user))
             this.costumePrice.put(prodToSet, price);
         else throw new IllegalArgumentException("custom price is invalid.");
         return true;
@@ -131,11 +131,11 @@ public class ShoppingBasket {
         store.purchaseBasket(user, supplying, supplyingInformation, paymentInformation, payment, bus,this);
     }
 
-    public double getPrice() {
+    public double getPrice(User user) {
         double res = 0;
         for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
             if(!costumePrice.containsKey(en.getKey()))
-                res += en.getKey().getCurrentPrice(this) * en.getValue();
+                res += en.getKey().getCurrentPrice(user) * en.getValue();
             else res += costumePrice.get(en.getKey()) * en.getValue();
         return res;
     }
@@ -148,20 +148,20 @@ public class ShoppingBasket {
     /**
      * @return true/false depending if the basket is purchasable.
      */
-    public boolean ValidateBasket() {
+    public boolean ValidateBasket(User user) {
         boolean res = true;
         for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet() ) {
             res &= store.getIsActive() && ent.getKey().isPurchasableForAmount(ent.getValue());
             if(this.costumePrice.containsKey(ent.getKey()))
-                res &= ent.getKey().isPurchasableForPrice(costumePrice.get(ent.getKey()), ent.getValue());
+                res &= ent.getKey().isPurchasableForPrice(costumePrice.get(ent.getKey()), ent.getValue(), user);
         }
         return res;
     }
 
-    public Map<Product, Integer> getProductsAndQuantitiesForPurchase() {
+    public Map<Product, Integer> getProductsAndQuantitiesForPurchase(User user) {
         Map<Product, Integer> output= new HashMap<>();
         for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet())
-            if(ent.getKey().deliveredImmediately())
+            if(ent.getKey().deliveredImmediately(user))
                 output.put(ent.getKey(), ent.getValue());
         return output;
     }
