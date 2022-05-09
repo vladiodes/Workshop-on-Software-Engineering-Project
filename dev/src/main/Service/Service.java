@@ -505,8 +505,7 @@ public class Service implements IService {
     @Override
     public Response<Boolean> bidOnProduct(String userToken,  String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         try {
-            market.bidOnProduct(userToken, storeName, productName, costumePrice, paymentInformation, supplyingInformation);
-            return new Response<>(true);
+            return new Response<>(market.bidOnProduct(userToken, storeName, productName, costumePrice, paymentInformation, supplyingInformation));
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {

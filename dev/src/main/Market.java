@@ -114,10 +114,10 @@ public class Market {
         user.addNormalPolicy(store, productName, price, this.bus);
     }
 
-    public void bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
+    public boolean bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         User user = getConnectedUserByToken(userToken);
         IStore store = getStoreByName(storeName);
-        user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem, bus);
+        return user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem, bus);
     }
 
 

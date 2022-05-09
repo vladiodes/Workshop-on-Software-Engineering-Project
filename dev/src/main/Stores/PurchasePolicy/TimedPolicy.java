@@ -35,7 +35,7 @@ public abstract  class TimedPolicy implements Policy{
     }
 
     @Override
-    public boolean deliveredImmediately() {
+    public boolean deliveredImmediately(User userToDeliver) {
         return false;
     }
 }

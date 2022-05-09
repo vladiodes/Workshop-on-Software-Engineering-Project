@@ -31,7 +31,9 @@ public interface Policy {
     public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment);
 
     /***
-     * used by purchase policies that allow bargaining.
+     * used to bid on a product, used for timed policies.
+     * @param bid to place.
+     * @return true if should notify store staff.
      */
     public boolean bid(Bid bid);
     public List<Bid> getBids();
@@ -45,9 +47,9 @@ public interface Policy {
     public void close(NotificationBus bus);
 
     /***
-     * used to decide if the product should be delivered immediately
+     * used to decide if the product should be delivered immediately for a specific user.
      */
-    public boolean deliveredImmediately();
+    public boolean deliveredImmediately(User userToDeliver);
 
     /***
      * returns the current price.

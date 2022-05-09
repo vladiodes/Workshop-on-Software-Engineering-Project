@@ -46,7 +46,7 @@ public class Purchase {
             throw new Exception("Payment authentication failed.");
         if (!supplyingSystem.bookDelivery(sinfo))
             throw new Exception("Supplier authentication failed");
-        Map<Product, Integer> toDeliver = this.cart.getProductsForPurchase();
+        Map<Product, Integer> toDeliver = this.cart.getProductsForPurchase(this.user);
         if (!(paymentSystem.makePayment(pinfo, this.cart.getPrice(this.user)) && (toDeliver.size() == 0 || supplyingSystem.supply(sinfo, toDeliver))))
         {
             paymentSystem.abort(pinfo);

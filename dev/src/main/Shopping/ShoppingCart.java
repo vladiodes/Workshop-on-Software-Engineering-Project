@@ -163,10 +163,10 @@ public class ShoppingCart {
         return res;
     }
 
-    public Map<Product, Integer> getProductsForPurchase() {
+    public Map<Product, Integer> getProductsForPurchase(User user) {
         Map<Product,Integer> output = new HashMap<>();
         for(ShoppingBasket basket : this.baskets.values())
-            output.putAll(basket.getProductsAndQuantitiesForPurchase());
+            output.putAll(basket.getProductsAndQuantitiesForPurchase(user));
         return output;
     }
 }

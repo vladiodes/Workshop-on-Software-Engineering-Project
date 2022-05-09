@@ -176,8 +176,8 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void bidOnProduct(String productName, Bid bid, NotificationBus bus) {
-
+    public boolean bidOnProduct(String productName, Bid bid, NotificationBus bus) {
+        return true;
     }
 
     @Override

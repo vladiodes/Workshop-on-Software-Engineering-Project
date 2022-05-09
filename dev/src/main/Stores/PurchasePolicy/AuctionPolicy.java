@@ -11,9 +11,14 @@ import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class AuctionPolicy extends TimedPolicy {
     private final LocalDate  until;
@@ -44,7 +49,7 @@ public class AuctionPolicy extends TimedPolicy {
                     }
                 }
             }
-        }, Date.from(until.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        }, ChronoUnit.DAYS.between(LocalDate.now(), until));
     }
 
     @Override
@@ -53,12 +58,12 @@ public class AuctionPolicy extends TimedPolicy {
             throw new IllegalArgumentException("Auction for this product is past due.");
         if(highestBid == null && bid.getCostumePrice() >= originalPrice){
             highestBid = bid;
-            return true;
-        } else if (highestBid.compareTo(bid) < 0) {
+            return false;
+        } else if (highestBid.getCostumePrice() < bid.getCostumePrice()) {
             highestBid = bid;
-            return true;
+            return false;
         }
-        return false;
+        throw new IllegalArgumentException("Invalid bidding values.");
     }
 
     @Override
@@ -126,5 +131,10 @@ public class AuctionPolicy extends TimedPolicy {
         }
         Logger.getInstance().logBug("AuctionPolicy", "Attempt to purchase auction before its over.");
         throw  new IllegalArgumentException("can't buy yet");
+    }
+
+    @Override
+    public boolean deliveredImmediately(User user){
+        return until.isBefore(LocalDate.now()) && winningBid.getUser() == user;
     }
 }

@@ -23,16 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36b65f5f-c497-443d-915d-42ec4467c5dd" name="Changes" comment="concurrency bug fix in open store">
-      <change afterPath="$PROJECT_DIR$/src/main/DTO/BidDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
@@ -41,19 +33,14 @@
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/DirectPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/DirectPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,8 +122,8 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain">
-    <configuration name="ATuser2Requirements.biddingOnBargain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ATuser2Requirements">
+    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -146,13 +133,12 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
       <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="biddingOnBargain" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ATuser2Requirements.CantBidOnAuctionLowerPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -162,72 +148,74 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
       <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="biddingOnBargainTwiceUpdatesLastBargain" />
+      <option name="METHOD_NAME" value="CantBidOnAuctionLowerPrice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rafflePolicyTest.cantDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ATuser2Requirements.CantBidOnAuctionSamePrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
-      <option name="METHOD_NAME" value="cantDiscount" />
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="CantBidOnAuctionSamePrice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rafflePolicyTest.closeRefunds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ATuser2Requirements.HighestBidOnAuctionCounts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
-      <option name="METHOD_NAME" value="closeRefunds" />
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="HighestBidOnAuctionCounts" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ATuser2Requirements.biddingOnAuction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="biddingOnAuction" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargain" />
-      <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain" />
-      <item itemvalue="JUnit.rafflePolicyTest.closeRefunds" />
-      <item itemvalue="JUnit.test in dev" />
-      <item itemvalue="JUnit.rafflePolicyTest.cantDiscount" />
+      <item itemvalue="JUnit.ATuser2Requirements" />
+      <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
+      <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionSamePrice" />
+      <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
+      <item itemvalue="JUnit.ATuser2Requirements.biddingOnAuction" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain" />
-        <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargain" />
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.rafflePolicyTest.cantDiscount" />
-        <item itemvalue="JUnit.rafflePolicyTest.closeRefunds" />
+        <item itemvalue="JUnit.ATuser2Requirements" />
+        <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
+        <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
+        <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionSamePrice" />
+        <item itemvalue="JUnit.ATuser2Requirements.biddingOnAuction" />
       </list>
     </recent_temporary>
   </component>

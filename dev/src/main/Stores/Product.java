@@ -84,7 +84,7 @@ public class Product {
         return category;
     }
 
-    public boolean deliveredImmediately(){ return policy.deliveredImmediately();}
+    public boolean deliveredImmediately(User user){ return policy.deliveredImmediately(user);}
 
     public boolean hasKeyWord(String word) {
         for (String Keyword : this.keyWords)
@@ -143,8 +143,8 @@ public class Product {
         return store;
     }
 
-    public void bid(Bid bid) {
-        this.policy.bid(bid);
+    public boolean bid(Bid bid) {
+        return this.policy.bid(bid);
     }
 
     public List<Bid> getUserBids() {

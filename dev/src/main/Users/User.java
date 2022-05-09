@@ -584,9 +584,9 @@ public class User {
         store.addBargainPolicy(productName, originalPrice, bus);
     }
 
-    public void bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem, NotificationBus bus) {
+    public boolean bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem, NotificationBus bus) {
         Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
-        store.bidOnProduct(productName, bid, bus);
+        return store.bidOnProduct(productName, bid, bus);
     }
 
     public List<Bid> getUserBids(IStore store, String productName){

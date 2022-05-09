@@ -131,4 +131,9 @@ public class BargainingPolicy extends TimedPolicy{
     public void setOriginalPrice(Double price) {
         this.originalPrice = price;
     }
+
+    @Override
+    public boolean deliveredImmediately(User user){
+        return isApproved(this.bidApprovedBy.get(getUserBid(user)));
+    }
 }

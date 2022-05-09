@@ -42,7 +42,7 @@ public class normalPolicy extends DirectPolicy {
     }
 
     @Override
-    public boolean deliveredImmediately() {
+    public boolean deliveredImmediately(User userToDeliver) {
         return true;
     }
 

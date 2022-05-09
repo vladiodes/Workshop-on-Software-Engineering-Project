@@ -158,10 +158,10 @@ public class ShoppingBasket {
         return res;
     }
 
-    public Map<Product, Integer> getProductsAndQuantitiesForPurchase() {
+    public Map<Product, Integer> getProductsAndQuantitiesForPurchase(User user) {
         Map<Product, Integer> output= new HashMap<>();
         for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet())
-            if(ent.getKey().deliveredImmediately())
+            if(ent.getKey().deliveredImmediately(user))
                 output.put(ent.getKey(), ent.getValue());
         return output;
     }

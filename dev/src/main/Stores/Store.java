@@ -299,10 +299,13 @@ public class Store implements IStore {
     }
 
     @Override
-    public void bidOnProduct(String productName, Bid bid, NotificationBus bus) {
+    public boolean bidOnProduct(String productName, Bid bid, NotificationBus bus) {
         Product product = getProduct(productName);
-        product.bid(bid);
-        notifyBargainingStaff(bid, bus);
+        if (product.bid(bid)){
+            notifyBargainingStaff(bid, bus);
+            return true;
+        }
+        return false;
     }
 
 }

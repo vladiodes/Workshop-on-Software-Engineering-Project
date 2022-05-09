@@ -69,7 +69,7 @@ public class rafflePolicy extends DirectPolicy {
     }
 
     @Override
-    public boolean deliveredImmediately() {
+    public boolean deliveredImmediately(User userToDeliver) {
         return false;
     }
 

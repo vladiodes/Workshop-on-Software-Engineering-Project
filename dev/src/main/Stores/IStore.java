@@ -85,7 +85,7 @@ public interface IStore {
 
     void addNormalPolicy(String productName, Double price, NotificationBus bus);
 
-    void bidOnProduct(String productName, Bid bid, NotificationBus bus);
+    boolean bidOnProduct(String productName, Bid bid, NotificationBus bus);
 
     void addBargainPolicy(String productName, Double originalPrice, NotificationBus bus);
 }
