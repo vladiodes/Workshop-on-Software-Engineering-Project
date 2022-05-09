@@ -1,19 +1,20 @@
 package test.UnitTests;
 
 import main.Shopping.ShoppingBasket;
-import main.Shopping.ShoppingCart;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import test.Mocks.BusMock;
 
 import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 class ShoppingBasketTest {
     Store st1;
@@ -22,8 +23,11 @@ class ShoppingBasketTest {
     int phoneQuantity = 500;
     String productName1 = "Phone";
     String storeName1 = "Samsung";
+    @Mock
+    User userMock;
     @BeforeEach
     void Setup(){
+        userMock = mock(User.class);
         User founder = new User(false, "Founder123", "12345678");
         st1 = new Store(storeName1, founder );
         st1.addProduct(productName1, "Electronics", new LinkedList<>(), "good phone", phoneQuantity, phonePrice);
@@ -88,18 +92,18 @@ class ShoppingBasketTest {
 
     @Test
     void getPrice() {
-        Assertions.assertEquals(0, basket.getPrice());
+        Assertions.assertEquals(0, basket.getPrice(userMock));
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
         double expected = quantity * phonePrice;
-        Assertions.assertEquals(expected, basket.getPrice());
+        Assertions.assertEquals(expected, basket.getPrice(userMock));
     }
 
     @Test
     void validateBasket() {
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
-        Assertions.assertTrue(basket.ValidateBasket());
+        Assertions.assertTrue(basket.ValidateBasket(userMock));
     }
 
     @Test
@@ -107,7 +111,7 @@ class ShoppingBasketTest {
         int quantity = phoneQuantity;
         basket.AddProduct(productName1, quantity);
         st1.getProduct(productName1).subtractQuantity(5);
-        Assertions.assertFalse(basket.ValidateBasket());
+        Assertions.assertFalse(basket.ValidateBasket(userMock));
     }
 
     @Test
@@ -115,6 +119,6 @@ class ShoppingBasketTest {
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
         st1.closeStore(new BusMock());
-        Assertions.assertFalse(basket.ValidateBasket());
+        Assertions.assertFalse(basket.ValidateBasket(userMock));
     }
 }

@@ -59,6 +59,15 @@ public class NotificationBus {
         // in the future - code for sending notifications to user only if he's logged in should be here!
     }
 
+    public void addMessage(String toUser, String msg){
+        for (User user : usersMessagesMap.keySet())
+            if (user.getUserName().equals(toUser)) {
+                addMessage(user, msg);
+                return;
+            }
+        Logger.getInstance().logBug("Notification Bus","A user is not registered to the notification bus, this shouldn't happen");
+    }
+
     public void addMessage(IStore IStore, String username, String msg)
     {
         if(!storesMessagesMap.containsKey(IStore))

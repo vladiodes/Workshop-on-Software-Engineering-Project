@@ -7,12 +7,14 @@ import main.Users.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import test.Mocks.BusMock;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class ShoppingCartTest {
 
@@ -24,8 +26,11 @@ class ShoppingCartTest {
     String productName2 = "IPhone";
     String storeName1 = "Samsung";
     String storeName2 = "Apple";
+    @Mock
+    User userMock;
     @BeforeEach
     void Setup(){
+        userMock = mock(User.class);
         cart = new ShoppingCart();
         User founder = new User(false, "Founder123", "12345678");
         st1 = new Store(storeName1, founder );
@@ -106,7 +111,7 @@ class ShoppingCartTest {
         int amountOfPhones = (int) Math.floor(phoneQuantity * Math.random());
         double Expected = amountOfPhones * phonePrice;
         cart.addProductToCart(st1, productName1, amountOfPhones);
-        assertEquals(Expected, cart.getPrice());
+        assertEquals(Expected, cart.getPrice(userMock));
     }
 
     @Test
@@ -121,25 +126,25 @@ class ShoppingCartTest {
     @Test
     void validateCart() {
         cart.addProductToCart(st1, productName1, 1);
-        assertTrue(cart.ValidateCart());
+        assertTrue(cart.ValidateCart(userMock));
     }
 
     @Test
     void validateCartNoItems() {
-        assertFalse(cart.ValidateCart());
+        assertFalse(cart.ValidateCart(userMock));
     }
 
     @Test
     void validateCartNotEnoughQuantity() {
         cart.addProductToCart(st1, productName1, phoneQuantity);
         st1.getProductsByName().get(productName1).subtractQuantity(5);
-        assertFalse(cart.ValidateCart());
+        assertFalse(cart.ValidateCart(userMock));
     }
 
     @Test
     void validateCartStoreNoLongerOpen() {
         cart.addProductToCart(st1, productName1, phoneQuantity);
         st1.closeStore(new BusMock());
-        assertFalse(cart.ValidateCart());
+        assertFalse(cart.ValidateCart(userMock));
     }
 }

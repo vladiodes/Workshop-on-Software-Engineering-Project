@@ -1,4 +1,5 @@
 package test.AcceptanceTests;
+import main.DTO.BidDTO;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
@@ -31,16 +32,24 @@ public class ATuser2Requirements {
     ISupplying mockSupplyer;
     @Mock
     IPayment mockPayment;
+    @Mock
+    PaymentInformation mockPaymentInformation;
+    @Mock
+    SupplyingInformation mockSupplyingInformation;
     Response<String> founder1token, user1token, user2token, owner1token;
     IService service;
     PaymentInformation pi = testsFactory.getSomePI();
     SupplyingInformation si = testsFactory.getSomeSI();
     double CokePrice = 5;
+    String bargainedItem = "Pear";
+    double bargainedItemPrice = 50;
 
     @Before
     public void setUp() {
         mockSupplyer = mock(SupplyingAdapter.class);
         mockPayment = mock(PaymentAdapter.class);
+        mockPaymentInformation = mock(PaymentInformation.class);
+        mockSupplyingInformation = mock(SupplyingInformation.class);
         when(mockSupplyer.bookDelivery(any(SupplyingInformation.class))).thenReturn(true);
         when(mockPayment.validateCard(any(PaymentInformation.class))).thenReturn(true);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(true);
@@ -66,6 +75,8 @@ public class ATuser2Requirements {
         service.appointStoreOwner(founder1token.getResult(), "owner1", "MyStore1");
         service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
         service.addProductToStore(founder1token.getResult(), "Sprite", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
+        service.addProductToStore(founder1token.getResult(), bargainedItem, "Drinks", null, "tasty drink", "MyStore1", 100, bargainedItemPrice);
+        service.addBargainPolicy(founder1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice);
     }
 
     /***
@@ -369,6 +380,25 @@ public class ATuser2Requirements {
         verify(mockPayment, times(1)).makePayment(pi, pay2);
         verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
     }
+
+    @Test
+    public void biddingOnBargain(){
+        Assertions.assertFalse(service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation).isError_occured());
+        Assertions.assertEquals(service.getUserBids(founder1token.getResult(), "MyStore1", bargainedItem).getResult().size(), 1);
+    }
+
+    @Test
+    public void biddingOnBargainTwiceUpdatesLastBargain(){
+        Double costumePrice1 = bargainedItemPrice + 1;
+        Double costumePrice2 = bargainedItemPrice + 3;
+        Assertions.assertFalse(service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, costumePrice1 , mockPaymentInformation, mockSupplyingInformation).isError_occured());
+        Assertions.assertFalse(service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, costumePrice2 , mockPaymentInformation, mockSupplyingInformation).isError_occured());
+        List<BidDTO> bids = service.getUserBids(founder1token.getResult(), "MyStore1", bargainedItem).getResult();
+        Assertions.assertEquals(bids.get(0).getCostumePrice(), costumePrice2);
+        Assertions.assertEquals(bids.size(), 1);
+    }
+
+
 
 
     @After

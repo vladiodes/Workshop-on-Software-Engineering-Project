@@ -16,17 +16,7 @@ import main.utils.SupplyingInformation;
 public abstract  class TimedPolicy implements Policy{
 
     @Override
-    public abstract boolean purchase(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment);
-
-    @Override
-    public boolean isPurchasable(Product product, Double costumePrice, int amount) {
-        return false;
-    }
-
-    @Override
-    public boolean isPurchasable(Product product, int amount) {
-        return false;
-    }
+    public abstract boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment);
 
     @Override
     public void setDiscount(Discount discount){
@@ -37,9 +27,9 @@ public abstract  class TimedPolicy implements Policy{
         return null;
     }
 
-    protected void purchaseBid(IStore store, Bid bid, String productName, NotificationBus bus) throws Exception {
+    protected void purchaseBid(IStore store, Bid bid, NotificationBus bus) throws Exception {
         ShoppingCart tempCart = new ShoppingCart();
-        tempCart.addProductToCart(store, productName, 1); //purchased 1 at a time.
+        tempCart.addProductToCart(store, bid.getProduct().getName(), 1); //purchased 1 at a time.
         Purchase temp = new Purchase(bid, tempCart);
         temp.executePurchase(bus);
     }

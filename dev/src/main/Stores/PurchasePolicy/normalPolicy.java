@@ -3,7 +3,6 @@ package main.Stores.PurchasePolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
-import main.Shopping.ShoppingBasket;
 import main.Stores.Discounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
@@ -22,7 +21,7 @@ public class normalPolicy extends DirectPolicy {
 
 
     @Override
-    public boolean isPurchasable(Product product, Double costumePrice, int amount) {
+    public boolean isPurchasable(Product product, Double costumePrice, int amount, User user) {
         return false;
     }
 
@@ -32,7 +31,7 @@ public class normalPolicy extends DirectPolicy {
     }
 
     @Override
-    public boolean purchase(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment) {
+    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment) {
         product.subtractQuantity(amount);
         return true;
     }
@@ -48,10 +47,10 @@ public class normalPolicy extends DirectPolicy {
     }
 
     @Override
-    public double getCurrentPrice(ShoppingBasket basket) {
+    public double getCurrentPrice(User user) {
         if (discount == null)
             return this.originalPrice;
-        return discount.getPriceFor(this.getOriginalPrice(), basket);
+        return discount.getPriceFor(this.getOriginalPrice(), user.getCart().getBasket(sellingStore.getName()));
     }
 
     @Override

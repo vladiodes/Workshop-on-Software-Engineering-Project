@@ -23,25 +23,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36b65f5f-c497-443d-915d-42ec4467c5dd" name="Changes" comment="concurrency bug fix in open store">
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DTO/BidDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/NotificationBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/NotificationBus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/ConditionalDiscount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/DirectDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/DirectDiscount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/SecretDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Discounts/SecretDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/DirectPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/DirectPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" afterDir="false" />
@@ -49,15 +49,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_1_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_1_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,8 +64,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -98,32 +94,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="ToolWindowMessages.ShowToolbar" value="false" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="create.test.in.the.same.root" value="true" />
-    <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/UnitTests" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
   <component name="RecentsManager">
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="main" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="main.utils" />
       <recent name="main.Stores" />
-      <recent name="main.Users" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="test.UnitTests" />
-      <recent name="main.Stores.Discounts" />
-      <recent name="test" />
+      <recent name="main.DTO" />
+      <recent name="test.AcceptanceTests" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -131,20 +118,56 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="main" />
+      <recent name="main.Stores" />
+      <recent name="main.Users" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="test.UnitTests" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.UnitTests" />
+      <recent name="main.Stores.Discounts" />
+      <recent name="test" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="test.UnitTests" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="main.utils" />
-      <recent name="main.Stores" />
-      <recent name="main.DTO" />
-      <recent name="test.AcceptanceTests" />
-    </key>
   </component>
-  <component name="RunManager" selected="JUnit.rafflePolicyTest.cantDiscount">
+  <component name="RunManager" selected="JUnit.ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain">
+    <configuration name="ATuser2Requirements.biddingOnBargain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="biddingOnBargain" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="biddingOnBargainTwiceUpdatesLastBargain" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="rafflePolicyTest.cantDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -177,38 +200,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rafflePolicyTest.purchaseDoesntShip" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
-      <option name="METHOD_NAME" value="purchaseDoesntShip" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rafflePolicyTest.verify1winner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.rafflePolicyTest" />
-      <option name="METHOD_NAME" value="verify1winner" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -224,23 +215,23 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.rafflePolicyTest.purchaseDoesntShip" />
-      <item itemvalue="JUnit.rafflePolicyTest.verify1winner" />
+      <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargain" />
+      <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain" />
       <item itemvalue="JUnit.rafflePolicyTest.closeRefunds" />
       <item itemvalue="JUnit.test in dev" />
       <item itemvalue="JUnit.rafflePolicyTest.cantDiscount" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.rafflePolicyTest.cantDiscount" />
+        <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargainTwiceUpdatesLastBargain" />
+        <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargain" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.rafflePolicyTest.cantDiscount" />
         <item itemvalue="JUnit.rafflePolicyTest.closeRefunds" />
-        <item itemvalue="JUnit.rafflePolicyTest.verify1winner" />
-        <item itemvalue="JUnit.rafflePolicyTest.purchaseDoesntShip" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -479,7 +470,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -510,110 +500,12 @@
     <MESSAGE value="concurrency bug fix in open store" />
     <option name="LAST_COMMIT_MESSAGE" value="concurrency bug fix in open store" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1651954801117">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="783" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651954801117" />
-    <state x="980" y="228" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1651948820794">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="980" y="228" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651948820794" />
-    <state x="705" y="312" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1651759319744">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="705" y="312" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651759319744" />
-    <state x="312" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1651955500625">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="312" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651955500625" />
-    <state width="1993" height="306" key="GridCell.Tab.0.bottom" timestamp="1651957779651">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="306" key="GridCell.Tab.0.bottom/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
-    <state width="1993" height="306" key="GridCell.Tab.0.center" timestamp="1651957779651">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="306" key="GridCell.Tab.0.center/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
-    <state width="1993" height="306" key="GridCell.Tab.0.left" timestamp="1651957779651">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="306" key="GridCell.Tab.0.left/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
-    <state width="1993" height="306" key="GridCell.Tab.0.right" timestamp="1651957779651">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="306" key="GridCell.Tab.0.right/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957779651" />
-    <state width="1993" height="374" key="GridCell.Tab.1.bottom" timestamp="1651957554582">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="374" key="GridCell.Tab.1.bottom/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
-    <state width="1993" height="374" key="GridCell.Tab.1.center" timestamp="1651957554582">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="374" key="GridCell.Tab.1.center/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
-    <state width="1993" height="374" key="GridCell.Tab.1.left" timestamp="1651957554582">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="374" key="GridCell.Tab.1.left/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
-    <state width="1993" height="374" key="GridCell.Tab.1.right" timestamp="1651957554582">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state width="1993" height="374" key="GridCell.Tab.1.right/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651957554582" />
-    <state x="505" y="92" key="SettingsEditor" timestamp="1651948822362">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="505" y="92" key="SettingsEditor/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651948822362" />
-    <state x="1361" y="375" key="chooseDestDirectoryDialog" timestamp="1651956373135">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="1361" y="375" key="chooseDestDirectoryDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651956373135" />
-    <state x="754" y="468" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1651948843450">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="754" y="468" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651948843450" />
-    <state x="1322" y="255" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1651956373144">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="1322" y="255" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651956373144" />
-    <state x="1118" y="362" key="extract.method.dialog" timestamp="1651851344125">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="1118" y="362" key="extract.method.dialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651851344125" />
-    <state x="665" y="75" width="718" height="1002" key="find.popup" timestamp="1651954841611">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="665" y="75" width="718" height="1002" key="find.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651954841611" />
-    <state x="742" y="273" key="refactoring.ChangeSignatureDialog" timestamp="1651952163838">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="742" y="273" key="refactoring.ChangeSignatureDialog/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651952163838" />
-    <state x="597" y="265" key="run.anything.popup" timestamp="1651841966098">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="597" y="265" key="run.anything.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651841966098" />
-    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup" timestamp="1651841465805">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="603" y="117" width="840" height="1034" key="search.everywhere.popup/0.0.2048.1152/-1920.229.1920.1080@0.0.2048.1152" timestamp="1651841465805" />
-  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Shopping/Purchase.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo />
+        <PinnedItemInfo parentTag="main.Market" memberName="stores" />
+        <PinnedItemInfo parentTag="main.Users.User" memberName="purchaseHistory" />
       </pinned-members>
     </pin-to-top-manager>
   </component>

@@ -2,21 +2,20 @@ package main.DTO;
 
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
-import main.Stores.Store;
+import main.Users.User;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingCartDTO {
     private HashMap<String, ShoppingBasketDTO> baskets;
     private double totalPrice;
-    public ShoppingCartDTO(ShoppingCart cart) {
+    public ShoppingCartDTO(ShoppingCart cart, User user) {
         baskets = new HashMap<>();
         for (Map.Entry<String, ShoppingBasket> kv : cart.getBasketInfo().entrySet()){
-            baskets.put(kv.getKey(), new ShoppingBasketDTO(kv.getValue()));
+            baskets.put(kv.getKey(), new ShoppingBasketDTO(kv.getValue(), user));
         }
-        totalPrice=cart.getPrice();
+        totalPrice=cart.getPrice(user);
     }
 
     public HashMap<String, ShoppingBasketDTO> getBaskets() {

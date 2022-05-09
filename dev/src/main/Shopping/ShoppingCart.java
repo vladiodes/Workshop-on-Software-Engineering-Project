@@ -8,6 +8,7 @@ import main.Stores.IStore;
 import java.util.*;
 
 import main.Stores.Product;
+import main.Users.User;
 
 import java.util.HashMap;
 
@@ -51,10 +52,10 @@ public class ShoppingCart {
         }
     }
 
-    public  boolean setCostumeProductPrice(IStore IStore, String productName, double price) {
+    public  boolean setCostumeProductPrice(IStore IStore, String productName, double price, User user) {
         synchronized (carteditLock) {
             if (baskets.containsKey(IStore.getName()))
-                return baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price);
+                return baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price, user);
             else {
                 throw new IllegalArgumentException("No basket for this store.");
             }
@@ -117,10 +118,10 @@ public class ShoppingCart {
         return baskets.get(storeName).getStore();
     }
 
-    public double getPrice(){
+    public double getPrice(User user){
         double result = 0;
         for (Map.Entry<String, ShoppingBasket> basketEntry : this.baskets.entrySet())
-            result += basketEntry.getValue().getPrice();
+            result += basketEntry.getValue().getPrice(user);
         return result;
     }
 
@@ -155,10 +156,10 @@ public class ShoppingCart {
      *
      * @return true/false if cart is purchasable.
      */
-    public boolean ValidateCart() {
+    public boolean ValidateCart(User user) {
         boolean res = getAmountOfProducts() > 0;
         for(ShoppingBasket basket : this.baskets.values())
-            res &= basket.ValidateBasket();
+            res &= basket.ValidateBasket(user);
         return res;
     }
 

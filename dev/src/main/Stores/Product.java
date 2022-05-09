@@ -4,7 +4,6 @@ package main.Stores;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
-import main.Shopping.ShoppingBasket;
 import main.Stores.Discounts.Discount;
 import main.Stores.PurchasePolicy.Policy;
 import main.Stores.PurchasePolicy.normalPolicy;
@@ -116,16 +115,16 @@ public class Product {
     }
 
 
-    public double getCurrentPrice(ShoppingBasket basket) {
-        return policy.getCurrentPrice(basket);
+    public double getCurrentPrice(User user) {
+        return policy.getCurrentPrice(user);
     }
 
     public boolean isPurchasableForAmount(Integer amount) {return this.policy.isPurchasable(this, amount);}
-    public boolean isPurchasableForPrice(Double price, int amount) {
-       return this.policy.isPurchasable(this, price, amount);
+    public boolean isPurchasableForPrice(Double price, int amount, User user) {
+       return this.policy.isPurchasable(this, price, amount, user);
     }
     public boolean Purchase(User user, Double costumePrice, int amount , ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
-        return this.policy.purchase(this, user, costumePrice, amount, supplying, supplyingInformation, bus, paymentInformation , payment );
+        return this.policy.productPurchased(this, user, costumePrice, amount, supplying, supplyingInformation, bus, paymentInformation , payment );
     }
     public boolean Bid(Bid bid){
         return this.policy.bid(bid);
@@ -146,5 +145,21 @@ public class Product {
 
     public void bid(Bid bid) {
         this.policy.bid(bid);
+    }
+
+    public List<Bid> getUserBids() {
+        return policy.getBids();
+    }
+
+    public void ApproveBid(String userName, User apporvingUser, NotificationBus bus) throws Exception {
+        policy.approveBid(userName, apporvingUser, bus);
+    }
+
+    public void DeclineBid(String username, NotificationBus bus) {
+        policy.declineBid(username, bus);
+    }
+
+    public void counterOfferBid(String username, Double offer, NotificationBus bus) {
+        policy.counterOfferBid(username, offer, bus);
     }
 }

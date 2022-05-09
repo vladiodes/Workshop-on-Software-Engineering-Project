@@ -4,9 +4,6 @@ import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
 import main.NotificationBus;
-import main.Shopping.Purchase;
-import main.Shopping.ShoppingBasket;
-import main.Shopping.ShoppingCart;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
@@ -16,9 +13,7 @@ import main.utils.SupplyingInformation;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class AuctionPolicy extends TimedPolicy {
     private final LocalDate  until;
@@ -43,7 +38,7 @@ public class AuctionPolicy extends TimedPolicy {
                 else {
                     winningBid = highestBid;
                     try {
-                        purchaseBid(sellingStore, highestBid, prouctName, bus);
+                        purchaseBid(sellingStore, highestBid, bus);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -67,12 +62,35 @@ public class AuctionPolicy extends TimedPolicy {
     }
 
     @Override
-    public void close(NotificationBus bus) {
-        bus.addMessage(highestBid.getUser(), "Auction was closed, no winner declared.");
+    public List<Bid> getBids() {
+        List<Bid> output = new LinkedList<>();
+        output.add(this.highestBid);
+        return output;
     }
 
     @Override
-    public double getCurrentPrice(ShoppingBasket basket) {
+    public void approveBid(String username, User approvingUser, NotificationBus bus) {
+        throw new IllegalArgumentException("In auction bids don't need aproval.");
+    }
+
+    @Override
+    public void declineBid(String username, NotificationBus bus) {
+        throw new IllegalArgumentException("In auction bids can't be dismissed.");
+    }
+
+    @Override
+    public void counterOfferBid(String username, Double offer, NotificationBus bus) {
+        throw new IllegalArgumentException("In auction bids can't be countered.");
+    }
+
+    @Override
+    public void close(NotificationBus bus) {
+        bus.addMessage(highestBid.getUser(), "Auction was closed, no winner declared.");
+        timer.cancel();
+    }
+
+    @Override
+    public double getCurrentPrice(User user) {
         return highestBid.getCostumePrice();
     }
 
@@ -91,8 +109,18 @@ public class AuctionPolicy extends TimedPolicy {
     }
 
     @Override
-    public boolean purchase(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment) {
-        if(winningBid.getUser() == user){
+    public boolean isPurchasable(Product product, Double costumePrice, int amount, User user) {
+        return until.isBefore(LocalDate.now()) && user == winningBid.getUser();
+    }
+
+    @Override
+    public boolean isPurchasable(Product product, int amount) {
+        return until.isBefore(LocalDate.now()) && amount == 1;
+    }
+
+    @Override
+    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment) {
+        if(winningBid.getUser() == user && until.isBefore(LocalDate.now())){
             product.subtractQuantity(1);
             return true;
         }

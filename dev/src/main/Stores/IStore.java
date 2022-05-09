@@ -68,6 +68,8 @@ public interface IStore {
 
     void addReview(StoreReview sReview);
 
+    void notifyBargainingStaff(Bid newbid, NotificationBus bus);
+
 
     /***
      * @param productName name of product add discount to.
@@ -83,5 +85,7 @@ public interface IStore {
 
     void addNormalPolicy(String productName, Double price, NotificationBus bus);
 
-    void bidOnProduct(String productName, Bid bid);
+    void bidOnProduct(String productName, Bid bid, NotificationBus bus);
+
+    void addBargainPolicy(String productName, Double originalPrice, NotificationBus bus);
 }

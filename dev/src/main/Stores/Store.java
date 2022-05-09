@@ -8,6 +8,7 @@ import main.Stores.Discounts.ConditionalDiscount;
 import main.Stores.Discounts.DirectDiscount;
 import main.Stores.Discounts.SecretDiscount;
 import main.Stores.PurchasePolicy.AuctionPolicy;
+import main.Stores.PurchasePolicy.BargainingPolicy;
 import main.Stores.PurchasePolicy.normalPolicy;
 import main.Stores.PurchasePolicy.rafflePolicy;
 import main.Users.ManagerPermissions;
@@ -247,6 +248,13 @@ public class Store implements IStore {
         this.storeReviews.add(sReview);
     }
 
+    @Override
+    public void notifyBargainingStaff(Bid newbid, NotificationBus bus) {
+        for (User staff: getStoreStaff().keySet())
+            if(staff.ShouldBeNotfiedForBargaining(this))
+                bus.addMessage(staff, String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName()));
+    }
+
 
     @Override
     public void addDirectDiscount(String productName, LocalDate until, Double percent) {
@@ -285,9 +293,16 @@ public class Store implements IStore {
     }
 
     @Override
-    public void bidOnProduct(String productName, Bid bid) {
+    public void addBargainPolicy(String productName,Double originalPrice, NotificationBus bus) {
+        Product product = getProduct(productName);
+        product.setPolicy(new BargainingPolicy(this, originalPrice, product), bus);
+    }
+
+    @Override
+    public void bidOnProduct(String productName, Bid bid, NotificationBus bus) {
         Product product = getProduct(productName);
         product.bid(bid);
+        notifyBargainingStaff(bid, bus);
     }
 
 }
