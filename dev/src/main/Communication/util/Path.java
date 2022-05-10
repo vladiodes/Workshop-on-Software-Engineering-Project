@@ -34,6 +34,7 @@ public class Path {
 
         public static final String SEARCH_STORE = "velocity/store/searchStore.vm";
         public static final String WRITE_REVIEW = "velocity/writeReview.vm";
+        public static final String ANSWER_QUERIES = "velocity/store/answerQueries.vm";
     }
 
 }

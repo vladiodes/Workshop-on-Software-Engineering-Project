@@ -12,6 +12,7 @@ import java.util.*;
 
 public class StoreController {
 
+
     private IService service;
 
     public StoreController(IService service){
@@ -397,5 +398,27 @@ public class StoreController {
         }
         getUserStores(ctx,model);
         ctx.render(Path.Template.UPDATE_PRODUCT_IN_STORE,model);
+    };
+
+    public Handler answerQueriesPage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ANSWER_QUERIES,model);
+
+    };
+    public Handler answerQueriesPost = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response = service.sendRespondToBuyers(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("userName"),
+                ctx.formParam("respond"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response",String.format("Successfully send a respond to user %s",ctx.formParam("userName")));
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ANSWER_QUERIES,model);
     };
 }
