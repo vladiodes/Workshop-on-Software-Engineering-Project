@@ -11,9 +11,6 @@ import main.utils.Response;
 import java.util.*;
 
 public class StoreController {
-
-
-
     private IService service;
 
     public StoreController(IService service){
@@ -359,5 +356,30 @@ public class StoreController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         getUserStores(ctx,model);
         ctx.render(Path.Template.VIEW_STORE_HISTORY,model);
+    };
+
+    public Handler storeSearchPage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        ctx.render(Path.Template.SEARCH_STORE,model);
+    };
+
+    public Handler handleStoreSearch = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<StoreDTO> response = service.getStoreInfo(ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            if(response.getResult().getProductsByName().size()==0){
+                model.put("fail",true);
+                model.put("response","There are no products in this store for sale");
+            }
+            else {
+                model.put("success", true);
+                model.put("store", response.getResult());
+            }
+        }
+        ctx.render(Path.Template.SEARCH_STORE,model);
     };
 }

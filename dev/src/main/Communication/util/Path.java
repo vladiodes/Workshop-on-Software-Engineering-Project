@@ -32,6 +32,7 @@ public class Path {
         public static final String VIEW_STORE_HISTORY = "velocity/store/purchaseHistory.vm";
         public static final String SEND_COMPLAINT = "velocity/users/sendComplaint.vm";
 
+        public static final String SEARCH_STORE = "velocity/store/searchStore.vm";
     }
 
 }

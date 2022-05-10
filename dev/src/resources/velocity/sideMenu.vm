@@ -18,6 +18,7 @@
         <ul>
             <li><a href="/home">Home</a></li>
             <li><a href="/productSearch">Search products</a></li>
+            <li><a href="/storeSearch">Search store</a></li>
             #if($isLoggedIn)
                 <li><a href="/openStore">Open store</a></li>
                 <li><a href="/manageStoreInventory">Manage store inventory</a></li>
