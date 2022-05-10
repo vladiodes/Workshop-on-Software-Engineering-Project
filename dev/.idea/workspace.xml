@@ -22,12 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added sending questions to store functionality">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/users/viewPurchaseHistory.vm" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Better history of user view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/PurchaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/PurchaseDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -439,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652206380647</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Better history of user view">
+      <created>1652207210508</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1652207210508</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,7 +490,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
     <MESSAGE value="Finished implementing REQ 2.4.10" />
     <MESSAGE value="Moved Pair to a public package" />
     <MESSAGE value="REQ 2.4.11 implemented" />
@@ -510,7 +514,8 @@
     <MESSAGE value="Added deleting products from store functionality to gui" />
     <MESSAGE value="Answering buyers' queries functionality" />
     <MESSAGE value="Added sending questions to store functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sending questions to store functionality" />
+    <MESSAGE value="Better history of user view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better history of user view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
