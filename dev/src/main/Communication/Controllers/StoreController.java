@@ -7,7 +7,10 @@ import main.Communication.util.ViewUtil;
 import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.utils.Response;
+import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 
 public class StoreController {
@@ -442,5 +445,124 @@ public class StoreController {
             model.put("response","Successfully send a question to the store staff");
         }
         ctx.render(Path.Template.ASK_QUERIES,model);
+    };
+
+    public Handler addPolicyPage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ADD_POLICY,model);
+
+    };
+
+    public Handler addPolicySelectStorePost = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<StoreDTO> response = service.getStoreInfo(ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("response",response.getError_message());
+            model.put("fail",true);
+        }
+        else {
+            model.put("success",true);
+            model.put("store",response.getResult());
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ADD_POLICY,model);
+    };
+
+    public Handler addRafflePolicyPost = ctx ->{
+        Map<String, Object> model = getParams(ctx);
+        ctx.render(Path.Template.ADD_RAFFLE_POLICY,model);
+    };
+
+    public Handler handleAddRafflePolicy = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response = service.addRafflePolicy(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
+                Double.valueOf(Objects.requireNonNull(ctx.formParam("price"))));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully added raffle policy");
+        }
+        ctx.render(Path.Template.ADD_RAFFLE_POLICY,model);
+    };
+
+    public Handler addAuctionPolicyPost = ctx ->{
+        Map<String, Object> model = getParams(ctx);
+        ctx.render(Path.Template.ADD_AUCTION_POLICY,model);
+    };
+
+    @NotNull
+    private Map<String, Object> getParams(Context ctx) {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        model.put("storeName", ctx.formParam("storeName"));
+        model.put("productName", ctx.formParam("productName"));
+        return model;
+    }
+
+    public Handler handleAddAuctionPolicy = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        String[] until_date_params = Objects.requireNonNull(ctx.formParam("untilDate")).split("-");
+
+        Response<Boolean> response = service.addAuctionPolicy(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
+                Double.valueOf(Objects.requireNonNull(ctx.formParam("price"))),
+                LocalDate.of(Integer.parseInt(until_date_params[0]), Month.of(Integer.parseInt(until_date_params[1])),Integer.parseInt(until_date_params[2])));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully added auction policy");
+        }
+        ctx.render(Path.Template.ADD_AUCTION_POLICY,model);
+    };
+
+    public Handler addBargainPolicyPost = ctx ->{
+        Map<String, Object> model = getParams(ctx);
+        ctx.render(Path.Template.ADD_BARGAIN_POLICY,model);
+    };
+    public Handler handleAddBargainPolicy = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+
+        Response<Boolean> response = service.addBargainPolicy(ctx.sessionAttribute("userToken"),
+                ctx.formParam("storeName"),
+                ctx.formParam("productName"),
+                Double.valueOf(Objects.requireNonNull(ctx.formParam("price"))));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully added auction policy");
+        }
+        ctx.render(Path.Template.ADD_BARGAIN_POLICY,model);
+
+    };
+
+    public Handler resetPolicy = ctx ->{
+        Map<String, Object> model = getParams(ctx);
+        ctx.render(Path.Template.RESET_POLICIES,model);
+    };
+
+    public Handler handleResetPolicy = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+
+        Response<Boolean> response = service.addNormalPolicy(ctx.sessionAttribute("userToken"),
+                ctx.formParam("storeName"),
+                ctx.formParam("productName"),
+                Double.valueOf(Objects.requireNonNull(ctx.formParam("price"))));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully added regular policy");
+        }
+        ctx.render(Path.Template.RESET_POLICIES,model);
     };
 }

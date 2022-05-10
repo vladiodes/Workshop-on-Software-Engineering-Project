@@ -22,10 +22,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Better store history view">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Bug fix in user purchase history when invoked by admin">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addAuctionPolicy.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addBargainPolicy.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addRafflePolicy.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/resetPolicies.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/addPolicy.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +80,7 @@
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/users",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/product",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
@@ -86,8 +94,9 @@
       <recent name="test.AcceptanceTests" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\users" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\product" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\users" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\admin" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -451,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652207756365</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Bug fix in user purchase history when invoked by admin">
+      <created>1652208278153</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1652208278153</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +513,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Moved Pair to a public package" />
     <MESSAGE value="REQ 2.4.11 implemented" />
     <MESSAGE value="REQ 2.4.12 implemented" />
     <MESSAGE value="Req 2.6.1 implemented" />
@@ -522,7 +537,8 @@
     <MESSAGE value="Added sending questions to store functionality" />
     <MESSAGE value="Better history of user view" />
     <MESSAGE value="Better store history view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better store history view" />
+    <MESSAGE value="Bug fix in user purchase history when invoked by admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix in user purchase history when invoked by admin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
