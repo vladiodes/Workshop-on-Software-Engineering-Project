@@ -1,0 +1,47 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>View bids</h2>
+        <form method="post">
+            <p>Store name</p>
+            <input type="text" name="storeName">
+            <p>Product name</p>
+            <input type="text" name="productName">
+            <p><input type="submit" value="View bids"></p>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+            #foreach($bid in $bids)
+                <h2>Bidding user: $bid.getBiddingUser()</h2>
+                <p>Bid price: $bid.getCostumePrice()</p>
+                <form method="post" action="/approveBid">
+                    <input type="hidden" name="storeName" value="$storeName">
+                    <input type="hidden" name="productName" value="$productName">
+                    <input type="hidden" name="userName" value="$bid.getBiddingUser()">
+                    <input type="submit" value="Approve bid">
+                </form>
+                <form method="post" action="/declineBid">
+                    <input type="hidden" name="storeName" value="$storeName">
+                    <input type="hidden" name="productName" value="$productName">
+                    <input type="hidden" name="userName" value="$bid.getBiddingUser()">
+                    <input type="submit" value="Decline bid">
+                </form>
+            #end
+        #end
+
+        #if($bid_fail)
+            <p id="failed_response">$response_bid</p>
+        #elseif($bid_success)
+            <p id="success_response">$response_bid</p>
+        #end
+
+    </div>
+</main>
+</div>
+</body>
+</html>

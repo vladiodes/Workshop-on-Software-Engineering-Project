@@ -1,5 +1,6 @@
 package main.Communication.Controllers;
 
+import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import main.Communication.util.Path;
 import main.Communication.util.ViewUtil;
@@ -8,6 +9,7 @@ import main.Service.IService;
 import main.utils.PaymentInformation;
 import main.utils.Response;
 import main.utils.SupplyingInformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -16,6 +18,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class CartController {
+
+
     private IService service;
 
     public CartController(IService service){
@@ -59,6 +63,17 @@ public class CartController {
 
     };
     public Handler handleAddToCartPost = ctx -> {
+        Map<String, Object> model = addToCart(ctx);
+        ctx.render(Path.Template.SEARCH_PRODUCT, model);
+    };
+
+    public Handler handleAddToCartAfterStoreSearchPost = ctx ->{
+        Map<String, Object> model = addToCart(ctx);
+        ctx.render(Path.Template.SEARCH_STORE, model);
+    };
+
+    @NotNull
+    private Map<String, Object> addToCart(Context ctx) {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         List<String> params = List.of(Objects.requireNonNull(ctx.formParam("productStoreName")).split(","));
         Response<Boolean> response=service.addProductToCart(ctx.sessionAttribute("userToken"),params.get(1),params.get(0),
@@ -71,8 +86,8 @@ public class CartController {
             model.put("cart_success",true);
             model.put("cart_response","Successfully added to cart");
         }
-        ctx.render(Path.Template.SEARCH_PRODUCT, model);
-    };
+        return model;
+    }
 
     public Handler handleRemoveProductFromCart = ctx ->{
         Map<String, Object> model = ViewUtil.baseModel(ctx);
@@ -90,6 +105,17 @@ public class CartController {
         Response<ShoppingCartDTO> r=service.getCartInfo(ctx.sessionAttribute("userToken"));
         model.put("cart",r.getResult());
         ctx.render(Path.Template.CART,model);
+    };
+
+    public Handler handleAddSecretCode = ctx->
+    {
+            Map<String, Object> model = ViewUtil.baseModel(ctx);
+            Response<Boolean> r = service.addDiscountPasswordToBasket(ctx.sessionAttribute("userToken"),
+                    ctx.formParam("storeName"),
+                    ctx.formParam("secretCode"));
+            Response<ShoppingCartDTO> response=service.getCartInfo(ctx.sessionAttribute("userToken"));
+            model.put("cart",response.getResult());
+            ctx.render(Path.Template.CART,model);
     };
 
 }

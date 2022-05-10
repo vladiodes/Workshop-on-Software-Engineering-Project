@@ -7,6 +7,12 @@
         #set($store_map = $cart.getBaskets())
         #foreach($store_basket in $store_map.entrySet())
             <h2>Products from store <span>$store_basket.key</span></h2>
+            <form action="/insertSecretCode" method="post">
+                <input type="hidden" value="$store_basket.key" name="storeName">
+                <p>Secret code</p>
+                <input type="text" name="secretCode" required>
+                <p><input type="submit" value="Add discount"></p>
+            </form>
             #set($basket = $store_basket.value)
             #foreach($product_quantity in $basket.getProductsQuantity().entrySet())
                 #set($total_price = $product_quantity.key.getPrice()*$product_quantity.value)
