@@ -22,17 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added purchase policies for products in GUI">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addCondDiscount.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addDirectDiscount.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addSecretDiscount.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/addDiscount.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added discounts functionality to gui">
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/cart/cart.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/cart/cart.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -473,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652211136020</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Added discounts functionality to gui">
+      <created>1652214067750</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1652214067750</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -519,7 +519,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="REQ 2.4.12 implemented" />
     <MESSAGE value="Req 2.6.1 implemented" />
     <MESSAGE value="Req 2.6.2 implemented" />
     <MESSAGE value="Req 2.6.3 implemented" />
@@ -544,7 +543,8 @@
     <MESSAGE value="Better store history view" />
     <MESSAGE value="Bug fix in user purchase history when invoked by admin" />
     <MESSAGE value="Added purchase policies for products in GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added purchase policies for products in GUI" />
+    <MESSAGE value="Added discounts functionality to gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added discounts functionality to gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -19,6 +19,7 @@ import java.util.Objects;
 
 public class CartController {
 
+
     private IService service;
 
     public CartController(IService service){
@@ -104,6 +105,17 @@ public class CartController {
         Response<ShoppingCartDTO> r=service.getCartInfo(ctx.sessionAttribute("userToken"));
         model.put("cart",r.getResult());
         ctx.render(Path.Template.CART,model);
+    };
+
+    public Handler handleAddSecretCode = ctx->
+    {
+            Map<String, Object> model = ViewUtil.baseModel(ctx);
+            Response<Boolean> r = service.addDiscountPasswordToBasket(ctx.sessionAttribute("userToken"),
+                    ctx.formParam("storeName"),
+                    ctx.formParam("secretCode"));
+            Response<ShoppingCartDTO> response=service.getCartInfo(ctx.sessionAttribute("userToken"));
+            model.put("cart",response.getResult());
+            ctx.render(Path.Template.CART,model);
     };
 
 }

@@ -128,6 +128,7 @@ public class Main {
             post("/handleAddDirectDiscount",productController.handleAddDirectDiscount);
             post("/handleAddSecretDiscount",productController.handleAddSecretDiscount);
             post("/handleAddConditionalDiscount",productController.handleAddCondDiscount);
+            post("/insertSecretCode",cartController.handleAddSecretCode);
         });
 
     }
