@@ -38,7 +38,7 @@ public class UserController {
             model.put("success",true);
             StringBuilder htmlQuery=new StringBuilder();
             for(String str: response.getResult())
-                htmlQuery.append("<p>str</p>");
+                htmlQuery.append("<p>" + str + "</p>");
             model.put("response",htmlQuery.toString());
         }
 
@@ -56,7 +56,7 @@ public class UserController {
             model.put("success",true);
             StringBuilder htmlQuery=new StringBuilder();
             for(String str: response.getResult())
-                htmlQuery.append("<p>str</p>");
+                htmlQuery.append("<p>" + str + "</p>");
             model.put("response",htmlQuery.toString());
         }
         ctx.render(Path.Template.VIEW_ADMIN_PURCHASE,model);

@@ -606,7 +606,7 @@ public class Market {
         User uToReturn = membersByUserName.get(userName);
         if(uToReturn == null)
             throw new IllegalArgumentException("User doesn't exist.");
-        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
+        List<ShoppingCart> purchaseHistory = uToReturn.getPurchaseHistory();
         List<ShoppingCartDTO> scDTO = new LinkedList<>();
         for(ShoppingCart sc : purchaseHistory)
         {

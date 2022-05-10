@@ -22,10 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Better history of user view">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Better store history view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/PurchaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/PurchaseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -444,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652207210508</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Better store history view">
+      <created>1652207756365</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1652207756365</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +497,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing REQ 2.4.10" />
     <MESSAGE value="Moved Pair to a public package" />
     <MESSAGE value="REQ 2.4.11 implemented" />
     <MESSAGE value="REQ 2.4.12 implemented" />
@@ -515,7 +521,8 @@
     <MESSAGE value="Answering buyers' queries functionality" />
     <MESSAGE value="Added sending questions to store functionality" />
     <MESSAGE value="Better history of user view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better history of user view" />
+    <MESSAGE value="Better store history view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better store history view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -524,6 +531,11 @@
           <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
           <line>364</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
