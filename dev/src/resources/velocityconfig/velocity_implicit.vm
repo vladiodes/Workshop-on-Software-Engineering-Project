@@ -21,3 +21,8 @@
 #* @vtlvariable name="logged_in_vs_registered_stats" type="java.lang.String" *#
 #* @vtlvariable name="productName" type="java.lang.String" *#
 #* @vtlvariable name="storeName" type="java.lang.String" *#
+#* @vtlvariable name="bids" type="java.lang.Iterable<main.DTO.BidDTO>" *#
+#* @vtlvariable name="bid_fail" type="java.lang.Boolean" *#
+#* @vtlvariable name="bid_success" type="java.lang.Boolean" *#
+#* @vtlvariable name="response_bid" type="java.lang.String" *#
+

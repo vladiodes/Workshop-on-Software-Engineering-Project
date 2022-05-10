@@ -8,7 +8,9 @@ import main.DTO.ProductDTO;
 import main.Service.IService;
 import main.Stores.IStore;
 import main.Stores.Product;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -18,7 +20,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class ProductController {
-
 
 
     private IService service;
@@ -117,5 +118,71 @@ public class ProductController {
         }
         ctx.render(Path.Template.ADD_COND_DISCOUNT, model);
 
+    };
+
+    public Handler makeBidPage = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        String[] s_p = Objects.requireNonNull(ctx.formParam("store_productName")).split(",");
+        model.put("storeName",s_p[1]);
+        model.put("productName",s_p[0]);
+        ctx.render(Path.Template.MAKE_BID_ON_PRODUCT,model);
+    };
+
+    public Handler handleAddBidToProduct = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        String exp_date = ctx.formParam("ExpDate");
+        String[] exp_date_params = Objects.requireNonNull(exp_date).split("-");
+        String sup_date = ctx.formParam("supplyingDate");
+        String[] sup_date_params =Objects.requireNonNull(sup_date).split("-");
+        //yyyy-mm-dd
+        PaymentInformation pi = new PaymentInformation(ctx.formParam("cardNumber"),
+                LocalDate.of(Integer.parseInt(exp_date_params[0]),Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
+                Integer.parseInt(Objects.requireNonNull(ctx.formParam("cvv"))),ctx.formParam("name"),ctx.formParam("email"));
+
+        SupplyingInformation si = new SupplyingInformation(ctx.formParam("address"),
+                LocalDate.of(Integer.parseInt(sup_date_params[0]), Month.of(Integer.parseInt(sup_date_params[1])),Integer.parseInt(sup_date_params[2])));
+
+        Response<Boolean> response = service.bidOnProduct(ctx.sessionAttribute("userToken"),
+                ctx.formParam("storeName"),
+                ctx.formParam("productName"),
+                Double.valueOf(Objects.requireNonNull(ctx.formParam("bidPrice"))),
+                pi,
+                si);
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully added a bid on the product");
+        }
+        ctx.render(Path.Template.MAKE_BID_ON_PRODUCT,model);
+    };
+
+    public Handler approveBidPost = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response=service.ApproveBid(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),ctx.formParam("userName"));
+        if(response.isError_occured()){
+            model.put("bid_fail",true);
+            model.put("response_bid",response.getError_message());
+        }
+        else {
+            model.put("bid_success",true);
+            model.put("response_bid","Bid successfully approved");
+        }
+        ctx.render(Path.Template.VIEW_BIDS,model);
+    };
+    public Handler declineBidPost = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response=service.DeclineBid(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),ctx.formParam("userName"));
+        if(response.isError_occured()){
+            model.put("bid_fail",true);
+            model.put("response_bid",response.getError_message());
+        }
+        else {
+            model.put("bid_success",true);
+            model.put("response_bid","Bid successfully declined");
+        }
+        ctx.render(Path.Template.VIEW_BIDS,model);
     };
 }

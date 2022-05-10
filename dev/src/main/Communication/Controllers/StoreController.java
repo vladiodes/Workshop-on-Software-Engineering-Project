@@ -4,6 +4,7 @@ import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import main.Communication.util.Path;
 import main.Communication.util.ViewUtil;
+import main.DTO.BidDTO;
 import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.utils.Response;
@@ -604,5 +605,27 @@ public class StoreController {
                 break;
         }
 
+    };
+
+    public Handler viewBidsPage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        ctx.render(Path.Template.VIEW_BIDS,model);
+    };
+
+    public Handler handleViewBidsPost = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<List<BidDTO>> response=service.getUserBids(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","The bids are:");
+            model.put("bids",response.getResult());
+            model.put("storeName",ctx.formParam("storeName"));
+            model.put("productName",ctx.formParam("productName"));
+        }
+        ctx.render(Path.Template.VIEW_BIDS,model);
     };
 }

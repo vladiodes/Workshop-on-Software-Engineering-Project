@@ -129,6 +129,13 @@ public class Main {
             post("/handleAddSecretDiscount",productController.handleAddSecretDiscount);
             post("/handleAddConditionalDiscount",productController.handleAddCondDiscount);
             post("/insertSecretCode",cartController.handleAddSecretCode);
+            post("/makeBid",productController.makeBidPage);
+            post("/addBid",productController.handleAddBidToProduct);
+            get("/viewBids",storeController.viewBidsPage);
+            post("/viewBids",storeController.handleViewBidsPost);
+            post("/approveBid",productController.approveBidPost);
+            post("/declineBid",productController.declineBidPost);
+
         });
 
     }

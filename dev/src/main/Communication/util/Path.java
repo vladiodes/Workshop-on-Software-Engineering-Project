@@ -46,6 +46,8 @@ public class Path {
         public static final String ADD_DIRECT_DISCOUNT = "velocity/product/addDirectDiscount.vm";
         public static final String ADD_SECRET_DISCOUNT = "velocity/product/addSecretDiscount.vm";
         public static final String ADD_COND_DISCOUNT = "velocity/product/addCondDiscount.vm";
+        public static final String MAKE_BID_ON_PRODUCT = "velocity/product/addBidOnProduct.vm";
+        public static final String VIEW_BIDS = "velocity/store/viewBids.vm";
     }
 
 }
