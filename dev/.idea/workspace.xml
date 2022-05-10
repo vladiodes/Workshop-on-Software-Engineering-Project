@@ -22,14 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Answering buyers' queries functionality">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/askQueries.vm" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added sending questions to store functionality">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/users/viewPurchaseHistory.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +74,7 @@
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/users",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
@@ -90,6 +88,7 @@
       <recent name="test.AcceptanceTests" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\users" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\admin" />
     </key>
@@ -433,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652205932645</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added sending questions to store functionality">
+      <created>1652206380647</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1652206380647</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +485,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
     <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
     <MESSAGE value="Finished implementing REQ 2.4.10" />
     <MESSAGE value="Moved Pair to a public package" />
@@ -504,9 +509,19 @@
     <MESSAGE value="Added write review functionality to client" />
     <MESSAGE value="Added deleting products from store functionality to gui" />
     <MESSAGE value="Answering buyers' queries functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Answering buyers' queries functionality" />
+    <MESSAGE value="Added sending questions to store functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sending questions to store functionality" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
+          <line>364</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo />

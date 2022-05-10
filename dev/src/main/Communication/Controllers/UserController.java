@@ -125,7 +125,7 @@ public class UserController {
              model.put("response","The history is:");
              model.put("history",response.getResult());
          }
-        ctx.render(Path.Template.PROFILE,model);
+        ctx.render(Path.Template.VIEW_USER_PURCHASE_HISTORY,model);
     };
 
     public Handler deleteUserGet = ctx ->{

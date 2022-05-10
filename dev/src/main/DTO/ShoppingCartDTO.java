@@ -25,4 +25,16 @@ public class ShoppingCartDTO {
     public double getTotalPrice() {
         return totalPrice;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for(String basket: baskets.keySet()){
+            builder.append("From store " + basket + ":");
+            for(ProductDTO p : baskets.get(basket).getProductsQuantity().keySet()){
+                builder.append("Bought " + p.getProductName() + " X" + String.valueOf(baskets.get(basket).getProductsQuantity().get(p)));
+            }
+        }
+        return builder.toString();
+    }
 }
