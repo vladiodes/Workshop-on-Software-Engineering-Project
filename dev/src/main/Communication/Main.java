@@ -66,6 +66,7 @@ public class Main {
             post("/addProductToStore", storeController.handleAddProductToStorePost);
             get("/updateProductInStore", storeController.openUpdateProductInStorePage);
             post("/updateProductInStore", storeController.handleUpdateProductInStorePost);
+            post("/deleteProduct",storeController.handleDeleteProductPost);
             get("/productSearch",productController.openSearchProductPage);
             post("/productSearch",productController.handleSearchProductPost);
             post("/addToCart",cartController.handleAddToCartPost);

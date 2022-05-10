@@ -11,6 +11,7 @@ import main.utils.Response;
 import java.util.*;
 
 public class StoreController {
+
     private IService service;
 
     public StoreController(IService service){
@@ -381,5 +382,20 @@ public class StoreController {
             }
         }
         ctx.render(Path.Template.SEARCH_STORE,model);
+    };
+
+    public Handler handleDeleteProductPost = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response = service.removeProductFromStore(ctx.sessionAttribute("userToken"),ctx.formParam("productName"),ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully removed a product from the store");
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.UPDATE_PRODUCT_IN_STORE,model);
     };
 }
