@@ -8,7 +8,7 @@
             <h2><span><a href="/addProductToStore">Add product to store</a> </span> |
                 <span><a href="/updateProductInStore">Update product</a></span> |
                 <span><a href="/viewProductsInStore">View inventory</a></span> |
-                <span><a href="/viewStoreHistory">View purchase history</a></span></h2> |
+                <span><a href="/viewStoreHistory">View purchase history</a></span></h2>
 
 
     </div>

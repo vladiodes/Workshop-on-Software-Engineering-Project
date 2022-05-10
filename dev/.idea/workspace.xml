@@ -22,12 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added deleting products from store functionality to gui">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/answerQueries.vm" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Answering buyers' queries functionality">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/askQueries.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652205171475</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Answering buyers' queries functionality">
+      <created>1652205932645</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1652205932645</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +479,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing REQ 2.4.7 - Changing manager's permissions" />
     <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
     <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
     <MESSAGE value="Finished implementing REQ 2.4.10" />
@@ -495,7 +503,8 @@
     <MESSAGE value="Added search store function to gui" />
     <MESSAGE value="Added write review functionality to client" />
     <MESSAGE value="Added deleting products from store functionality to gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added deleting products from store functionality to gui" />
+    <MESSAGE value="Answering buyers' queries functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Answering buyers' queries functionality" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

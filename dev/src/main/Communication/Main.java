@@ -110,6 +110,8 @@ public class Main {
             post("/writeStoreReview",userController.writeStoreReviewPost);
             get("/answerQueries",storeController.answerQueriesPage);
             post("/answerQueries",storeController.answerQueriesPost);
+            get("/askQueries",storeController.askQueriesPage);
+            post("/askQueries",storeController.askQueriesPost);
         });
 
     }
