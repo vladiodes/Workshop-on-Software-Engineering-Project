@@ -22,18 +22,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Bug fix in user purchase history when invoked by admin">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addAuctionPolicy.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addBargainPolicy.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addRafflePolicy.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/resetPolicies.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/addPolicy.vm" afterDir="false" />
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added purchase policies for products in GUI">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addCondDiscount.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addDirectDiscount.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addSecretDiscount.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/addDiscount.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652208278153</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added purchase policies for products in GUI">
+      <created>1652211136020</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1652211136020</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +519,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="REQ 2.4.11 implemented" />
     <MESSAGE value="REQ 2.4.12 implemented" />
     <MESSAGE value="Req 2.6.1 implemented" />
     <MESSAGE value="Req 2.6.2 implemented" />
@@ -538,7 +543,8 @@
     <MESSAGE value="Better history of user view" />
     <MESSAGE value="Better store history view" />
     <MESSAGE value="Bug fix in user purchase history when invoked by admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix in user purchase history when invoked by admin" />
+    <MESSAGE value="Added purchase policies for products in GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added purchase policies for products in GUI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -552,6 +558,11 @@
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java</url>
           <line>30</line>
           <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,0 +1,37 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Add discount to product</h2>
+        <form action="/addDiscountSelectStore" method="post">
+            <p>Select your store</p>
+            <select id="mainStore" name="storeName" onchange="this.form.submit()">
+                <option value=""></option>
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <form action="/addDiscount" method="post">
+                <input type="hidden" name="storeName" value="$store.getStoreName()">
+            <select id="mainProduct" name="productName">
+            #foreach($name_product in $store.getProductsByName().entrySet())
+                <option value="$name_product.key">$name_product.key</option>
+                #end
+            </select>
+                <p><input type="radio" name="discount" value="direct" checked> Direct discount</p>
+                <p><input type="radio" name="discount" value="secret"> Secret discount</p>
+                <p><input type="radio" name="discount" value="cond"> Conditional discount</p>
+                <input type="submit" value="Add discount">
+            </form>
+            #end
+    </div>
+</main>
+</div>
+</body>
+</html>

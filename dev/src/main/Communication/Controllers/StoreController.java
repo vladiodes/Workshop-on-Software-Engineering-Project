@@ -565,4 +565,44 @@ public class StoreController {
         }
         ctx.render(Path.Template.RESET_POLICIES,model);
     };
+
+    public Handler addDiscountSelectStore = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<StoreDTO> response = service.getStoreInfo(ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("response",response.getError_message());
+            model.put("fail",true);
+        }
+        else {
+            model.put("success",true);
+            model.put("store",response.getResult());
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ADD_DISCOUNT,model);
+
+    };
+
+    public Handler addDiscountPage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ADD_DISCOUNT,model);
+    };
+
+    public Handler addDiscountPost = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        model.put("storeName",ctx.formParam("storeName"));
+        model.put("productName",ctx.formParam("productName"));
+        switch (Objects.requireNonNull(ctx.formParam("discount"))){
+            case "direct":
+                ctx.render(Path.Template.ADD_DIRECT_DISCOUNT,model);
+                break;
+            case "secret":
+                ctx.render(Path.Template.ADD_SECRET_DISCOUNT,model);
+                break;
+            case "cond":
+                ctx.render(Path.Template.ADD_COND_DISCOUNT,model);
+                break;
+        }
+
+    };
 }

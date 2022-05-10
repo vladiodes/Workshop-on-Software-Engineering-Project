@@ -9,7 +9,9 @@
                 <span><a href="/updateProductInStore">Update product</a></span> |
                 <span><a href="/viewProductsInStore">View inventory</a></span> |
                 <span><a href="/viewStoreHistory">View purchase history</a></span></h2>
-        <h2><span><a href="/addPolicy">Add purchase policy to product</a> </span></h2>
+        <br />
+        <h2><span><a href="/addPolicy">Add purchase policy to product</a> </span> |
+            <span><a href="/addDiscount">Add discount to product</a> </span></h2>
 
 
     </div>

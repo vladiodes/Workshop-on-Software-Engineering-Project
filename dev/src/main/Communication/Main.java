@@ -122,6 +122,12 @@ public class Main {
             post("/handleAddBargainPolicy",storeController.handleAddBargainPolicy);
             post("/resetPolicy",storeController.resetPolicy);
             post("/resetPolicies",storeController.handleResetPolicy);
+            post("/addDiscountSelectStore",storeController.addDiscountSelectStore);
+            get("/addDiscount", storeController.addDiscountPage);
+            post("/addDiscount",storeController.addDiscountPost);
+            post("/handleAddDirectDiscount",productController.handleAddDirectDiscount);
+            post("/handleAddSecretDiscount",productController.handleAddSecretDiscount);
+            post("/handleAddConditionalDiscount",productController.handleAddCondDiscount);
         });
 
     }

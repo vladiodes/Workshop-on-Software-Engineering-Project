@@ -42,6 +42,10 @@ public class Path {
         public static final String ADD_AUCTION_POLICY = "velocity/product/addAuctionPolicy.vm";
         public static final String ADD_BARGAIN_POLICY = "velocity/product/addBargainPolicy.vm";
         public static final String RESET_POLICIES = "velocity/product/resetPolicies.vm";
+        public static final String ADD_DISCOUNT = "velocity/store/addDiscount.vm";
+        public static final String ADD_DIRECT_DISCOUNT = "velocity/product/addDirectDiscount.vm";
+        public static final String ADD_SECRET_DISCOUNT = "velocity/product/addSecretDiscount.vm";
+        public static final String ADD_COND_DISCOUNT = "velocity/product/addCondDiscount.vm";
     }
 
 }
