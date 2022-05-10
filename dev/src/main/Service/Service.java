@@ -42,12 +42,14 @@ public class Service implements IService {
     @Override
 
     public Response<String> guestConnect() {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to connect a guest"));
         return new Response<>(market.ConnectGuest());
     }
 
     @Override
     public Response<UserDTO> guestDisconnect(String userToken) {
         try {
+            Logger.getInstance().logEvent("Service",String.format("Attempting to disconnect a guest, userToken:%s" ,userToken));
             User r = market.DisconnectGuest(userToken);
             return new Response<>(new UserDTO(r), null);
         } catch (Exception e) {
@@ -64,6 +66,7 @@ public class Service implements IService {
             return new Response<>(true);
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to register, userName:%s, Error:%s" ,userName, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -79,6 +82,7 @@ public class Service implements IService {
             return new Response<>(new UserDTO(market.Login(token, userName, password)));
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to login, userToken:%s, Error:%s" ,token, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -93,9 +97,11 @@ public class Service implements IService {
         try
         {
             market.logout(token);
+            Logger.getInstance().logEvent("Service",String.format("Logged out successfully, userToken:%s" ,token));
             return new Response<>(true);
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to logout, userToken:%s, Error:%s" ,token, e.getMessage()));
             return new Response<>(e, true);
         }
         catch(Exception e){
@@ -111,6 +117,7 @@ public class Service implements IService {
             return new Response<>(new StoreDTO(market.getStoreByName(storeName)));
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get store info, storeName:%s, Error:%s" ,storeName, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e){
@@ -121,10 +128,12 @@ public class Service implements IService {
 
     @Override
     public Response<List<String>> getSmilliarStores(String storeName) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get similliar stores, storeName:%s" ,storeName));
         try {
             return new Response<>(market.getStoresByString(storeName));
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get similliar sores, storeName:%s, Error:%s" ,storeName, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -134,6 +143,7 @@ public class Service implements IService {
 
     @Override
     public Response<List<ProductDTO>> getStoreProducts(String storeName) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get store products, storeName:%s" ,storeName));
         try {
             List<ProductDTO> res = new LinkedList<>();
             for (Product p : market.getStoreProducts(storeName))
@@ -141,6 +151,7 @@ public class Service implements IService {
             return new Response<>(res);
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get store products, storeName:%s, Error:%s" ,storeName, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -151,6 +162,7 @@ public class Service implements IService {
 
     @Override
     public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get product by info, productName:%s, category:%s, keyWord:%s, productRating:%.2f, storeRating:%.2f, minPrice:%.2f, maxPrice:%.2f" ,productName,category, keyWord,productRating,storeRating, minPrice, maxPrice));
         try {
             List<ProductDTO> res = new LinkedList<>();
             for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
@@ -158,6 +170,7 @@ public class Service implements IService {
             return new Response<>(res);
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get product by info, productName:%s, category:%s, keyWord:%s, productRating:%.2f, storeRating:%.2f, minPrice:%.2f, maxPrice:%.2f, Error:%s" ,productName,category, keyWord,productRating,storeRating, minPrice, maxPrice, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -173,6 +186,7 @@ public class Service implements IService {
             return new Response<>(market.addProductToCart(userToken, storeName, productName, quantity));
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to add product to cart, userToken:%s, storeName:%s, productName:%s, quantity:%d, Error:%s" ,userToken, storeName, productName, quantity, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -202,6 +216,7 @@ public class Service implements IService {
             return new Response<>(market.RemoveProductFromCart(userToken, storeName, productName, quantity), null);
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to add product to cart, userToken:%s, storeName:%s, productName:%s, quantity:%d, Error:%s" ,userToken, storeName, productName, quantity, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -212,10 +227,12 @@ public class Service implements IService {
 
     @Override
     public Response<ShoppingCartDTO> getCartInfo(String userToken) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get cart info, userToken:%s" ,userToken));
         try {
             return new Response<>(market.getUserCart(userToken));
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get cart info, userToken:%s, Error:%s" ,userToken, e.getMessage()));
             return new Response<>(e, true);
         }
         catch (Exception e) {
@@ -226,12 +243,14 @@ public class Service implements IService {
 
     @Override
     public Response<Boolean> purchaseCart(String userToken, PaymentInformation pi, SupplyingInformation si) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to purchase cart, userToken:%s" ,userToken));
         try
         {
             market.purchaseCart(userToken, pi, si);
             return new Response<>(true);
         }
         catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to purchase cart, userToken:%s, Error:%s" ,userToken, e.getMessage()));
             return new Response<>(e, true);
         }
         catch(Exception e)
@@ -250,6 +269,7 @@ public class Service implements IService {
             return new Response<>(market.openStore(userToken,storeName));
         }
         catch (IllegalArgumentException e){
+            Logger.getInstance().logEvent("Service",String.format("Failed to open store, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
             return new Response<>(e,true);
         }
         catch (Exception e){
@@ -260,10 +280,15 @@ public class Service implements IService {
 
     @Override
     public Response<Boolean> writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to write product review, userToken:%s, productName:%s, storeName:%s, reviewDescription:%s, points:%.2f" ,userToken, productName,storeName, reviewDescription, points));
         try
         {
             market.writeProductReview(userToken, productName, storeName, reviewDescription, points);
             return new Response<>(true, null);
+        }
+        catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to write product review, userToken:%s, productName:%s, storeName:%s, reviewDescription:%s, points:%.2f, Error:%s" ,userToken, productName, storeName, reviewDescription, points, e.getMessage()));
+            return new Response<>(e, true);
         }
         catch(Exception e)
         {
@@ -274,10 +299,15 @@ public class Service implements IService {
 
     @Override
     public Response<Boolean> writeStoreReview(String userToken, String storeName, String reviewDescription, double points) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to write store review, userToken:%s, storeName:%s, reviewDescription:%s, points:%.2f" ,userToken, storeName, reviewDescription, points));
         try
         {
             market.writeStoreReview(userToken, storeName, reviewDescription, points);
             return new Response<>(true, null);
+        }
+        catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to write store review, userToken:%s, storeName:%s, reviewDescription:%s, points:%.2f, Error:%s" ,userToken, storeName, reviewDescription, points, e.getMessage()));
+            return new Response<>(e, true);
         }
         catch(Exception e)
         {
@@ -295,6 +325,10 @@ public class Service implements IService {
             market.sendQuestionsToStore(userToken, storeName, message);
             return new Response<>(true, null);
         }
+        catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to send questions to store, userToken:%s, storeName:%s, message:%s, Error:%s" ,userToken, storeName, message, e.getMessage()));
+            return new Response<>(e, true);
+        }
         catch (Exception e)
         {
             Logger.getInstance().logBug("Service - sendQuestionsToStore", e.getMessage());
@@ -310,6 +344,10 @@ public class Service implements IService {
         {
             market.sendComplaint(userToken, msg);
             return new Response<>(true, null);
+        }
+        catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to send compliant, userToken:%s, message:%s, Error:%s" ,userToken, msg, e.getMessage()));
+            return new Response<>(e, true);
         }
         catch (Exception e)
         {
@@ -331,6 +369,7 @@ public class Service implements IService {
             return new Response<>(output);
         }
         catch (IllegalArgumentException e){
+            Logger.getInstance().logEvent("Service",String.format("Failed to get purchase history, userToken:%s, userName:%s Error:%s" ,userToken,userName, e.getMessage()));
             return new Response<>(e,true);
         }
         catch(Exception e)
@@ -349,6 +388,10 @@ public class Service implements IService {
             market.addSecurityQuestion(userToken, question, answer);
             return new Response<>(true, null);
         }
+        catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to add security question, userToken:%s, question:%s, answer:%s, Error:%s" ,userToken, question, answer, e.getMessage()));
+            return new Response<>(e, true);
+        }
         catch (Exception e)
         {
             Logger.getInstance().logBug("Service - addSecurityQuestions", e.getMessage());
@@ -363,6 +406,7 @@ public class Service implements IService {
             boolean res = market.addProductToStore(userToken, productName, category, keyWords, description, storeName, quantity, price);
             return new Response<>(res);
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to add product to store, userToken:%s, productName:%s, category:%s, description:%s, storeName:%s, quantity:%d, price:%.2f, Error:%s" ,userToken, productName, category, description, storeName, quantity, price, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - addProductToStore", "Bug in addProductToStore!");
@@ -377,6 +421,7 @@ public class Service implements IService {
             return new Response<>(market.removeProductFromStore(userToken,productName,storeName));
         }
         catch (IllegalArgumentException e){
+            Logger.getInstance().logEvent("Service",String.format("Failed to remove product from store, userToken:%s, productName:%s, storeName:%s, Error:%s" ,userToken,productName, storeName, e.getMessage()));
             return new Response<>(e,true);
         }
         catch (Exception e){
@@ -391,6 +436,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.updateProductInStore(userToken, oldProductName,newProductName, category, keyWords, description, storeName, quantity, price));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to update product, userToken:%s, oldProductName:%s, newProductName:%s, category:%s, description:%s, storeName:%s, quantity:%d, price:%.2f, Error:%s" ,userToken, oldProductName, newProductName, category, description, storeName, quantity, price, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - updateProduct", "Bug in update product");
@@ -571,6 +617,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.appointStoreOwner(userToken, userToAppoint, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to appoint store owner, userToken:%s, userToAppoint:%s, storeName:%s, Error:%s" ,userToken, userToAppoint,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - appointStoreOwner", e.getMessage());
@@ -584,6 +631,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.removeStoreOwnerAppointment(userToken, userAppointed, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to remove store owner appointment, userToken:%s, userAppointed:%s, storeName:%s, Error:%s" ,userToken, userAppointed,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - removeStoreOwnerAppointment", e.getMessage());
@@ -597,6 +645,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.appointStoreManager(userToken, userToAppoint, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to appoint store manager, userToken:%s, userToAppoint:%s, storeName:%s, Error:%s" ,userToken, userToAppoint,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - appointStoreManager", e.getMessage());
@@ -610,6 +659,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.removeStoreManager(userToken, userAppointed, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to remove store manager appointment, userToken:%s, userAppointed:%s, storeName:%s, Error:%s" ,userToken, userAppointed,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - removeStoreManagerAppointment", e.getMessage());
@@ -623,6 +673,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.allowManagerUpdateProducts(userToken, managerName, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to allow manager update products, userToken:%s, managerName:%s, storeName:%s, Error:%s" ,userToken, managerName,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - allowManagerUpdateProducts", e.getMessage());
@@ -636,6 +687,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.disallowManagerUpdateProducts(userToken, managerName, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to disallow manager update products, userToken:%s, managerName:%s, storeName:%s, Error:%s" ,userToken, managerName,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - disAllowManagerUpdateProducts", e.getMessage());
@@ -649,6 +701,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.allowManagerViewPurchaseHistory(userToken, managerName, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to allow manager to get history, userToken:%s, managerName:%s, storeName:%s, Error:%s" ,userToken, managerName,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - allowManagerGetHistory", e.getMessage());
@@ -662,9 +715,10 @@ public class Service implements IService {
         try {
             return new Response<>(market.disallowManagerViewPurchaseHistory(userToken, managerName, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to disallow manager to get history, userToken:%s, managerName:%s, storeName:%s, Error:%s" ,userToken, managerName,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Serivce - disAllowManagerGetHistory", e.getMessage());
+            Logger.getInstance().logBug("Service - disAllowManagerGetHistory", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -675,6 +729,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.allowManagerAnswerAndTakeRequests(userToken, managerName, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to allow manager answer and take requests, userToken:%s, managerName:%s, storeName:%s, Error:%s" ,userToken, managerName,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - allowManagerAnswerAndTakeRequests", e.getMessage());
@@ -688,6 +743,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.disallowManagerAnswerAndTakeRequests(userToken, managerName, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to disallow manager answer and take requests, userToken:%s, managerName:%s, storeName:%s, Error:%s" ,userToken, managerName,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - disAllowManagerAnswerAndTakeRequests", e.getMessage());
@@ -749,6 +805,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.closeStore(userToken, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to close store, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - closeStore", e.getMessage());
@@ -762,6 +819,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.reopenStore(userToken, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to reopen store, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - reopenStore", e.getMessage());
@@ -779,6 +837,7 @@ public class Service implements IService {
                 toReturn.add((u.getUserName() + ": " + map.get(u)));
             return new Response<>(toReturn);
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get store stuff, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - getStoreStaff", e.getMessage());
@@ -792,6 +851,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.receiveQuestionsFromBuyers(userToken, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to receive questions from buyers, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - receiveQuestionsFromBuyers", e.getMessage());
@@ -805,6 +865,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.sendRespondToBuyer(userToken, storeName, userToRespond, msg));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to send response to buyers, userToken:%s, storeName:%s, userToRespond:%s, msg:%s, Error:%s" ,userToken,storeName,userToRespond, msg, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - sendRespondToBuyers", e.getMessage());
@@ -826,6 +887,7 @@ public class Service implements IService {
             }
             return new Response<>(output);
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get store purchase history, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
             return new Response<>(e, true);
 
         } catch (Exception e) {
@@ -840,6 +902,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.deleteStore(userToken, storeName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to delete store, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - deleteStore", e.getMessage());
@@ -853,6 +916,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.deleteUser(userToken, userName));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to delete user, userToken:%s, userName:%s, Error:%s" ,userToken,userName, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - deleteUser", e.getMessage());
@@ -866,6 +930,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.receiveMessages(userToken));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to receive messages, userToken:%s, Error:%s" ,userToken, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - receiveMessages", e.getMessage());
@@ -879,6 +944,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.respondToMessage(userToken, userToRespond, msg));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to respond to message, userToken:%s, userToRespond:%s, msg:%s, Error:%s" ,userToken,userToRespond, msg, e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - respondToMessage", e.getMessage());
@@ -892,6 +958,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.getNumberOfLoggedInUsersPerDate(userToken, date));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get number of logged in users per date, userToken:%s, date:%s, Error:%s" ,userToken,date.toString(), e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - getNumberOfLoggedInUsersPerDate", e.getMessage());
@@ -905,6 +972,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.getNumberOfPurchasesPerDate(userToken, date));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get number of purchases per date, userToken:%s, date:%s, Error:%s" ,userToken,date.toString(), e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - getNumberOfPurchasesPerDate", e.getMessage());
@@ -918,6 +986,7 @@ public class Service implements IService {
         try {
             return new Response<>(market.getNumberOfRegisteredUsersPerDate(userToken, date));
         } catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to get number of registered users per date, userToken:%s, date:%s, Error:%s" ,userToken,date.toString(), e.getMessage()));
             return new Response<>(e, true);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - getNumberOfRegisteredUsersPerDate", e.getMessage());
@@ -927,10 +996,15 @@ public class Service implements IService {
 
     public Response<Boolean> changePassword(String userToken, String oldPassword, String newPassword)
     {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to change password: userToken: %s", userToken));
         try
         {
             market.changePassword(userToken, oldPassword, newPassword);
             return new Response<>(true, null);
+        }
+        catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to change password, userToken:%s" ,userToken, e.getMessage()));
+            return new Response<>(e, true);
         }
         catch (Exception e)
         {
@@ -941,10 +1015,15 @@ public class Service implements IService {
 
     public Response<Boolean> changeUsername(String userToken, String newUsername)
     {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to change username: userToken: %s, newUserName:%s", userToken, newUsername));
         try
         {
             market.changeUsername(userToken, newUsername);
             return new Response<>(true, null);
+        }
+        catch (IllegalArgumentException e) {
+            Logger.getInstance().logEvent("Service",String.format("Failed to change username, userToken:%s, newUserName:%s" ,userToken,newUsername, e.getMessage()));
+            return new Response<>(e, true);
         }
         catch (Exception e)
         {
@@ -955,6 +1034,7 @@ public class Service implements IService {
 
     public Response<Boolean> isMemberLoggedOut(String userToken)
     {
+        Logger.getInstance().logEvent("Service", String.format("Checking if member is logged out: userToken: %s", userToken));
         try
         {
             boolean res = market.isMemberLoggedOut(userToken);
