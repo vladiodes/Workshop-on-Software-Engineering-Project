@@ -25,6 +25,7 @@
                 <li><a href="/manageStoreStaff">Manage store staff</a></li>
                 <li><a href="/openCloseStore">Re-Open/close your stores</a></li>
                 <li><a href="/sendComplaint">Send complaint</a></li>
+                <li><a href="/writeReview">Write review</a></li>
                 <li><a href="/logout">Logout</a></li>
             #end
             #if($isLoggedOut)

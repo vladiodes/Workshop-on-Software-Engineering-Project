@@ -104,6 +104,9 @@ public class Main {
             get("/storeSearch",storeController.storeSearchPage);
             post("/storeSearch",storeController.handleStoreSearch);
             post("/addToCartAfterStoreSearch",cartController.handleAddToCartAfterStoreSearchPost);
+            get("/writeReview",userController.reviewPage);
+            post("/writeProductReview",userController.writeProductReviewPost);
+            post("/writeStoreReview",userController.writeStoreReviewPost);
 
         });
 
