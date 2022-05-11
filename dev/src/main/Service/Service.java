@@ -471,9 +471,9 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions) {
+    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<String, Integer> restrictions, double percent) {
         try {
-            market.addConditionalDiscount(userToken, storeName, productName, until, restrictions);
+            market.addConditionalDiscount(userToken, storeName, productName, until, restrictions, percent);
             return new Response<>(true);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);

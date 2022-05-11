@@ -78,7 +78,7 @@ public interface IStore {
      */
     void addDirectDiscount(String productName, LocalDate until, Double percent);
     void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode);
-    void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions);
+    void addConditionalDiscount(String productName, LocalDate until, Restriction restrictions, Double percent);
 
     void addRafflePolicy(String productName, Double price, NotificationBus bus);
     void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until);

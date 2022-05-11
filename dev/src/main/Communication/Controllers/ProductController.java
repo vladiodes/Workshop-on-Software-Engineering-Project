@@ -6,7 +6,6 @@ import main.Communication.util.Path;
 import main.Communication.util.ViewUtil;
 import main.DTO.ProductDTO;
 import main.Service.IService;
-import main.Stores.IStore;
 import main.Stores.Product;
 import main.utils.PaymentInformation;
 import main.utils.Response;
@@ -95,30 +94,30 @@ public class ProductController {
         }
         ctx.render(Path.Template.ADD_SECRET_DISCOUNT, model);
     };
-    public Handler handleAddCondDiscount = ctx->{
-        Map<String, Object> model = ViewUtil.baseModel(ctx);
-
-        HashMap<HashMap<String,Integer>,Double> restrictions=new HashMap<>();
-        HashMap<String,Integer> single_restriction= new HashMap<>();
-        single_restriction.put(ctx.formParam("productName"),Integer.valueOf(Objects.requireNonNull(ctx.formParam("quantity"))));
-        restrictions.put(single_restriction,Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))));
-
-        String[] exp_date_params = Objects.requireNonNull(ctx.formParam("expDate")).split("-");
-        Response <Boolean> response = service.addConditionalDiscount(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
-                LocalDate.of(Integer.parseInt(exp_date_params[0]), Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
-        restrictions);
-
-        if(response.isError_occured()){
-            model.put("fail",true);
-            model.put("response",response.getError_message());
-        }
-        else {
-            model.put("success",true);
-            model.put("response","Successfully added conditional discount");
-        }
-        ctx.render(Path.Template.ADD_COND_DISCOUNT, model);
-
-    };
+//    public Handler handleAddCondDiscount = ctx->{ //TODO fix
+//        Map<String, Object> model = ViewUtil.baseModel(ctx);
+//
+//        HashMap<HashMap<String,Integer>,Double> restrictions=new HashMap<>();
+//        HashMap<String,Integer> single_restriction= new HashMap<>();
+//        single_restriction.put(ctx.formParam("productName"),Integer.valueOf(Objects.requireNonNull(ctx.formParam("quantity"))));
+//        restrictions.put(single_restriction,Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))));
+//
+//        String[] exp_date_params = Objects.requireNonNull(ctx.formParam("expDate")).split("-");
+//        Response <Boolean> response = service.addConditionalDiscount(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
+//                LocalDate.of(Integer.parseInt(exp_date_params[0]), Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
+//        restrictions);
+//
+//        if(response.isError_occured()){
+//            model.put("fail",true);
+//            model.put("response",response.getError_message());
+//        }
+//        else {
+//            model.put("success",true);
+//            model.put("response","Successfully added conditional discount");
+//        }
+//        ctx.render(Path.Template.ADD_COND_DISCOUNT, model);
+//
+//    };
 
     public Handler makeBidPage = ctx->{
         Map<String, Object> model = ViewUtil.baseModel(ctx);

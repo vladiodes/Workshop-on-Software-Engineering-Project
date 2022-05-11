@@ -1,7 +1,6 @@
-package main.Stores.Discounts;
+package main.Stores.SingleProductDiscounts;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.Product;
 
 import java.time.LocalDate;
 

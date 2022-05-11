@@ -3,7 +3,7 @@ package main.Stores.PurchasePolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
-import main.Stores.Discounts.Discount;
+import main.Stores.SingleProductDiscounts.Discount;
 import main.Stores.Product;
 import main.Users.User;
 import main.utils.PaymentInformation;

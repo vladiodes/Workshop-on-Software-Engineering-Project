@@ -4,7 +4,7 @@ package main.Stores;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
-import main.Stores.Discounts.Discount;
+import main.Stores.SingleProductDiscounts.Discount;
 import main.Stores.PurchasePolicy.Policy;
 import main.Stores.PurchasePolicy.normalPolicy;
 import main.Users.User;

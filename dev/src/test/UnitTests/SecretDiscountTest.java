@@ -1,7 +1,7 @@
 package test.UnitTests;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.Discounts.SecretDiscount;
+import main.Stores.SingleProductDiscounts.SecretDiscount;
 import main.Stores.Product;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

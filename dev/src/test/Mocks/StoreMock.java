@@ -156,9 +156,10 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+    public void addConditionalDiscount(String productName, LocalDate until, Restriction restrictions, Double percent) {
 
     }
+
 
     @Override
     public void addRafflePolicy(String productName, Double price, NotificationBus bus) {

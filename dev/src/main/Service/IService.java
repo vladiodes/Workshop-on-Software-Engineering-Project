@@ -202,7 +202,7 @@ public interface IService {
      */
     Response<Boolean> addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent);
     Response<Boolean> addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode);
-    Response<Boolean> addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions);
+    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<String, Integer> restrictions, double percent);
     Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password);
 
     /***

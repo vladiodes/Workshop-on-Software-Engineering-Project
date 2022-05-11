@@ -1,8 +1,7 @@
 package test.UnitTests;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.Discounts.DirectDiscount;
-import main.Stores.Discounts.SecretDiscount;
+import main.Stores.SingleProductDiscounts.DirectDiscount;
 import main.Stores.Product;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +11,6 @@ import org.mockito.Mock;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

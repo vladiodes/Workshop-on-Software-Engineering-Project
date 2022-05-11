@@ -5,7 +5,7 @@ import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingCart;
-import main.Stores.Discounts.Discount;
+import main.Stores.SingleProductDiscounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;

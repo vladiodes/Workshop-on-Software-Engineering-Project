@@ -307,38 +307,38 @@ public class ATuser2Requirements {
         return output;
     }
 
-    @Test
-    public void PurchaseWithCondtionalDiscountHighestDiscountCase() {
-        int amount = 5;
-        service.addConditionalDiscount(owner1token.getResult(), "MyStore1", "Coca Cola", LocalDate.MAX, getRestrictions());
-        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", amount);
-        Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
-        assertFalse(r.isError_occured());
-        verify(mockPayment, times(1)).makePayment(pi, amount * CokePrice * 0.6);
-        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
-    }
+//    @Test
+//    public void PurchaseWithCondtionalDiscountHighestDiscountCase() {
+//        int amount = 5;
+//        service.addConditionalDiscount(owner1token.getResult(), "MyStore1", "Coca Cola", LocalDate.MAX, getRestrictions());
+//        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", amount);
+//        Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
+//        assertFalse(r.isError_occured());
+//        verify(mockPayment, times(1)).makePayment(pi, amount * CokePrice * 0.6);
+//        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
+//    }
 
-    @Test
-    public void PurchaseWithCondtionalDiscountLowestDiscountCase() {
-        int amount = 2;
-        service.addConditionalDiscount(owner1token.getResult(), "MyStore1", "Coca Cola", LocalDate.MAX, getRestrictions());
-        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", amount);
-        Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
-        assertFalse(r.isError_occured());
-        verify(mockPayment, times(1)).makePayment(pi, amount * CokePrice * 0.8);
-        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
-    }
+//    @Test
+//    public void PurchaseWithCondtionalDiscountLowestDiscountCase() {
+//        int amount = 2;
+//        service.addConditionalDiscount(owner1token.getResult(), "MyStore1", "Coca Cola", LocalDate.MAX, getRestrictions());
+//        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", amount);
+//        Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
+//        assertFalse(r.isError_occured());
+//        verify(mockPayment, times(1)).makePayment(pi, amount * CokePrice * 0.8);
+//        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
+//    }
 
-    @Test
-    public void PurchaseWithCondtionalDiscountNoDiscountCase() {
-        int amount = 1;
-        service.addConditionalDiscount(owner1token.getResult(), "MyStore1", "Coca Cola", LocalDate.MAX, getRestrictions());
-        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", amount);
-        Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
-        assertFalse(r.isError_occured());
-        verify(mockPayment, times(1)).makePayment(pi, amount * CokePrice);
-        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
-    }
+//    @Test
+//    public void PurchaseWithCondtionalDiscountNoDiscountCase() {
+//        int amount = 1;
+//        service.addConditionalDiscount(owner1token.getResult(), "MyStore1", "Coca Cola", LocalDate.MAX, getRestrictions());
+//        service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", amount);
+//        Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
+//        assertFalse(r.isError_occured());
+//        verify(mockPayment, times(1)).makePayment(pi, amount * CokePrice);
+//        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
+//    }
 
     @Test
     public void SetProductForRaffle() {

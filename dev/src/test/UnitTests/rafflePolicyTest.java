@@ -5,7 +5,7 @@ import main.ExternalServices.Payment.PaymentAdapter;
 import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.NotificationBus;
-import main.Stores.Discounts.Discount;
+import main.Stores.SingleProductDiscounts.Discount;
 import main.Stores.Product;
 import main.Stores.PurchasePolicy.rafflePolicy;
 import main.Stores.Store;

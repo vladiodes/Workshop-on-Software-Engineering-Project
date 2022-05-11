@@ -733,8 +733,8 @@ public class Market {
         getConnectedUserByToken(userToken).addSecretDiscount(stores.get(storeName),productName,until,percent, secretCode);
     }
 
-    public void addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions) throws Exception {
-        getConnectedUserByToken(userToken).addConditionalDiscount(stores.get(storeName),productName,until,Restriction.getRestrictions(restrictions, stores.get(storeName)));
+    public void addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until,HashMap<String, Integer> restrictions, double percent) throws Exception {
+        getConnectedUserByToken(userToken).addConditionalDiscount(stores.get(storeName),productName,until,Restriction.getRestriction(restrictions, stores.get(storeName)), percent);
     }
 
     public void addDiscountPasswordToBasket(String userToken, String storeName, String Password) throws  Exception {

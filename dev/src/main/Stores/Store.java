@@ -4,9 +4,9 @@ import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.NotificationBus;
 import main.Shopping.ShoppingBasket;
-import main.Stores.Discounts.ConditionalDiscount;
-import main.Stores.Discounts.DirectDiscount;
-import main.Stores.Discounts.SecretDiscount;
+import main.Stores.SingleProductDiscounts.ConditionalDiscount;
+import main.Stores.SingleProductDiscounts.DirectDiscount;
+import main.Stores.SingleProductDiscounts.SecretDiscount;
 import main.Stores.PurchasePolicy.AuctionPolicy;
 import main.Stores.PurchasePolicy.BargainingPolicy;
 import main.Stores.PurchasePolicy.normalPolicy;
@@ -17,7 +17,6 @@ import main.Users.User;
 import main.utils.*;
 
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -269,9 +268,9 @@ public class Store implements IStore {
     }
 
     @Override
-    public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+    public void addConditionalDiscount(String productName, LocalDate until, Restriction restrictions, Double percent) {
         Product product = getProduct(productName);
-        product.setDiscount(new ConditionalDiscount(restrictions, until));
+        product.setDiscount(new ConditionalDiscount(restrictions, percent, until));
     }
 
     @Override

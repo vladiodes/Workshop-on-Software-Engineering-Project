@@ -520,10 +520,10 @@ public class User {
        Store.addSecretDiscount(productName, until, percent, secretCode);
     }
 
-    public void addConditionalDiscount(IStore Store,String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+    public void addConditionalDiscount(IStore Store,String productName, LocalDate until, Restriction restrictions, Double percent) {
         if(!hasPermission(Store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
-        Store.addConditionalDiscount(productName, until, restrictions);
+        Store.addConditionalDiscount(productName, until, restrictions, percent);
     }
 
     public void addDiscountPasswordToBasket(String storeName, String Password){

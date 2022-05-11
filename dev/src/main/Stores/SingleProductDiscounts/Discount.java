@@ -1,9 +1,9 @@
-package main.Stores.Discounts;
+package main.Stores.SingleProductDiscounts;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.Product;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public abstract class Discount {
     private LocalDate until;
@@ -26,4 +26,14 @@ public abstract class Discount {
 
     @Override
     public abstract String toString();
+
+    public abstract boolean isEligible(ShoppingBasket shoppingBasket);
+
+    public void addDiscount(Discount toadd){
+        throw new IllegalArgumentException("Not composite discount.");
+    }
+
+    public List<Discount> getDiscounts(){
+        throw new IllegalArgumentException("Not composite discount.");
+    }
 }
