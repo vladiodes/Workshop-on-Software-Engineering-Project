@@ -127,7 +127,7 @@ public class Main {
             post("/addDiscount",storeController.addDiscountPost);
             post("/handleAddDirectDiscount",productController.handleAddDirectDiscount);
             post("/handleAddSecretDiscount",productController.handleAddSecretDiscount);
-            post("/handleAddConditionalDiscount",productController.handleAddCondDiscount);
+//            post("/handleAddConditionalDiscount",productController.handleAddCondDiscount);
             post("/insertSecretCode",cartController.handleAddSecretCode);
             post("/makeBid",productController.makeBidPage);
             post("/addBid",productController.handleAddBidToProduct);

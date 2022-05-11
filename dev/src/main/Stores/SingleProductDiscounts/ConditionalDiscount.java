@@ -9,22 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConditionalDiscount extends Discount{
-    private Restriction restriction;
-    private double percent;
+    private final Restriction restriction;
+    private final double percent;
 
     public ConditionalDiscount(Restriction restrictions,Double percent ,LocalDate until) {
         this.setUntil(until);
         this.restriction = restrictions;
         this.percent = percent;
-    }
-
-    private boolean restrictionMet(Restriction rest, ShoppingBasket shoppingBasket){
-        if (shoppingBasket == null)
-            return false;
-        for(Map.Entry<Product,Integer> entry: rest.entrySet())
-            if(!shoppingBasket.hasAmount(entry.getKey(), entry.getValue()))
-                return false;
-        return true;
     }
 
     @Override
@@ -48,6 +39,11 @@ public class ConditionalDiscount extends Discount{
 
     @Override
     public boolean isEligible(ShoppingBasket shoppingBasket) {
-        return false;
+        if (shoppingBasket == null)
+            return false;
+        for(Map.Entry<Product,Integer> entry: this.restriction.entrySet())
+            if(!shoppingBasket.hasAmount(entry.getKey(), entry.getValue()))
+                return false;
+        return true;
     }
 }

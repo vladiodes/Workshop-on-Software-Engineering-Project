@@ -29,4 +29,9 @@ public class DirectDiscount extends Discount{
         String formattedDate = this.getUntil().format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
         return String.format("%.0f %% off, ends on %s!", getPercent() * 100, formattedDate);
     }
+
+    @Override
+    public boolean isEligible(ShoppingBasket shoppingBasket) {
+        return true;
+    }
 }

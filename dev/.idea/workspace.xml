@@ -24,30 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added option to enter secret code for basket in cart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/DiscountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/DiscountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/ConditionalDiscount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/DirectDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/DirectDiscount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Discounts/SecretDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/SecretDiscount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/Restriction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/Restriction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/ConditionalDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/DirectDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/DirectDiscount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,18 +67,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
