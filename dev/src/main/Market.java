@@ -174,7 +174,7 @@ public class Market {
         if (membersByUserName.containsKey(userName)) {
             throw new IllegalArgumentException("username is taken.");
         }
-        if (!isValidPass(password, userName)) {
+        if (!security_controller.isValidPassword(password,userName)) {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
@@ -639,9 +639,8 @@ public class Market {
 
     public void changePassword(String userToken, String oldPassword, String newPassword)throws Exception {
         User u = getConnectedUserByToken(userToken);
-        if(!isValidPass(newPassword, u.getUserName()))
-        {
-            throw new IllegalArgumentException("Invalid password");
+        if (!security_controller.isValidPassword(newPassword,u.getUserName())) {
+            throw new IllegalArgumentException("password is not secure enough.");
         }
         String oldPassHashed = this.security_controller.hashPassword(oldPassword);
         if(!oldPassHashed.equals(u.getHashed_password()))
@@ -668,12 +667,6 @@ public class Market {
             this.membersByUserName.put(newUsername, u);
         }
     }
-
-    private boolean isValidPass(String pass, String userName)
-    {
-        return !pass.isBlank() && pass.length() >= 6 && (!pass.contains(userName));
-    }
-
     public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
         if(!stores.containsKey(storeName))
         {
