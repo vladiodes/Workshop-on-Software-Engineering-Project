@@ -58,7 +58,8 @@ public interface IStore {
 
     boolean respondToBuyer(User toRespond, String msg, NotificationBus bus);
 
-    ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory();
+    ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime();
+    ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser();
 
     void CancelStaffRoles();
 

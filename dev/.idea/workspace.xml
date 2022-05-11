@@ -23,16 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added option to enter secret code for basket in cart">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addBidOnProduct.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/viewBids.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/StoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/StoreDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,18 +73,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -122,7 +110,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
@@ -132,6 +120,33 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req_Constraints.checkAtLeaseOneOwnerForStore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req_Constraints" />
+      <option name="METHOD_NAME" value="checkAtLeaseOneOwnerForStore" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -167,22 +182,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.HighestBidOnAuctionCounts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="HighestBidOnAuctionCounts" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -202,15 +201,15 @@
       <item itemvalue="JUnit.test in dev" />
       <item itemvalue="JUnit.ATuser2Requirements" />
       <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
-      <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
+      <item itemvalue="JUnit.AT_Req_Constraints.checkAtLeaseOneOwnerForStore" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.AT_Req_Constraints.checkAtLeaseOneOwnerForStore" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ATuser2Requirements" />
         <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
-        <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
       </list>
     </recent_temporary>
   </component>
@@ -530,6 +529,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -560,12 +560,62 @@
     <MESSAGE value="Added option to enter secret code for basket in cart" />
     <option name="LAST_COMMIT_MESSAGE" value="Added option to enter secret code for basket in cart" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="-1828" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1652275534259">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1828" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275534259" />
+    <state x="-1920" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1652274703936">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1920" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652274703936" />
+    <state width="400" height="466" key="DebuggerActiveHint" timestamp="1652275454736">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="400" height="466" key="DebuggerActiveHint/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275454736" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1652275574370">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275574370" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1652275574370">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275574370" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1652275574370">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275574370" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1652275574370">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275574370" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1652275566426">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275566426" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1652275566426">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275566426" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1652275566426">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275566426" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1652275566426">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652275566426" />
+    <state x="-1304" y="240" key="run.anything.popup" timestamp="1652274936788">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1304" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1652274936788" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
-          <line>364</line>
+          <line>362</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -580,8 +630,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Market.java</url>
-          <line>744</line>
+          <line>760</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req_Constraints.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

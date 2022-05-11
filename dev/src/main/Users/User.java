@@ -14,7 +14,6 @@ import main.Stores.Product;
 import main.Stores.Store;
 import main.ExternalServices.Supplying.ISupplying;
 import main.utils.*;
-import org.mockito.internal.matchers.Not;
 
 
 import java.time.LocalDate;
@@ -431,9 +430,14 @@ public class User {
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(IStore IStore) {
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistoryByTime(IStore IStore) {
         if (isSystemManager || hasPermission(IStore, StorePermission.ViewStoreHistory))
-            return IStore.getPurchaseHistory();
+            return IStore.getPurchaseHistoryByTime();
+        throw new IllegalArgumentException("The user doesn't have permissions to do that!");
+    }
+    public ConcurrentHashMap<ShoppingBasket, User> getStorePurchaseHistoryByUser(IStore IStore) {
+        if (isSystemManager || hasPermission(IStore, StorePermission.ViewStoreHistory))
+            return IStore.getPurchaseHistoryByUser();
         throw new IllegalArgumentException("The user doesn't have permissions to do that!");
     }
 

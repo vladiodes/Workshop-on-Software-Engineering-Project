@@ -2,7 +2,7 @@ package main;
 
 
 import io.javalin.websocket.WsContext;
-import main.DTO.BidDTO;
+import main.DTO.*;
 import main.Stores.*;
 
 import main.ExternalServices.Payment.IPayment;
@@ -11,7 +11,6 @@ import main.Stores.ProductReview;
 import main.Stores.StoreReview;
 
 
-import main.DTO.ShoppingCartDTO;
 import main.Logger.Logger;
 import main.Security.ISecurity;
 import main.Security.Security;
@@ -25,10 +24,7 @@ import main.utils.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -53,7 +49,7 @@ public class Market {
     private AtomicInteger currentlyLoggedInMembers;
 
     public void addBargainPolicy(String userToken, String storeName, String productName, Double originalPrice) {
-        getConnectedUserByToken(userToken).addBargainPolicy(getStoreByName(storeName), productName, originalPrice, bus);
+        getConnectedUserByToken(userToken).addBargainPolicy(getDomainStoreByName(storeName), productName, originalPrice, bus);
     }
 
     private enum StatsType{Register, Login, Purchase}
@@ -69,11 +65,16 @@ public class Market {
         currentlyLoggedInMembers = new AtomicInteger(0);
     }
 
-    public List<IStore> getAllStoresOf(String userToken) {
+    public List<StoreDTO> getAllStoresOf(String userToken) {
         User user = connectedSessions.get(userToken);
         if(user==null)
             throw new IllegalArgumentException("This user isn't logged in");
-        return user.getAllStoresIsStaff();
+        List<IStore> domainRes = user.getAllStoresIsStaff();
+        List<StoreDTO> serviceRes = new LinkedList<>();
+        for (IStore s : domainRes) {
+            serviceRes.add(new StoreDTO(s));
+        }
+        return serviceRes;
     }
 
     public boolean assignWStoUserToken(String userToken, WsContext ctx) {
@@ -98,25 +99,25 @@ public class Market {
     }
     public void addRafflePolicy(String userToken, String storeName, String productName, Double price) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getStoreByName(storeName);
+        IStore store = getDomainStoreByName(storeName);
         user.addRafflePolicy(store, productName, price, this.bus);
     }
 
     public void addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate Until) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getStoreByName(storeName);
+        IStore store = getDomainStoreByName(storeName);
         user.addAuctionPolicy(store, productName, price, this.bus, Until);
     }
 
     public void addNormalPolicy(String userToken, String storeName, String productName, Double price) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getStoreByName(storeName);
+        IStore store = getDomainStoreByName(storeName);
         user.addNormalPolicy(store, productName, price, this.bus);
     }
 
     public boolean bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getStoreByName(storeName);
+        IStore store = getDomainStoreByName(storeName);
         return user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem, bus);
     }
 
@@ -133,7 +134,7 @@ public class Market {
         return new_token;
     }
 
-    public User DisconnectGuest(String user_token) {
+    public UserDTO DisconnectGuest(String user_token) {
         if (!connectedSessions.containsKey(user_token)) {
             Logger.getInstance().logBug("Market", String.format("invalid user token attempted to disconnect %s", user_token));
             throw new IllegalArgumentException("user token isn't connected.");
@@ -143,7 +144,7 @@ public class Market {
         }
         User leaving_user = connectedSessions.remove(user_token);
         Logger.getInstance().logEvent("Market", String.format("User %s left the system.", leaving_user.getUserName()));
-        return leaving_user;
+        return new UserDTO(leaving_user);
     }
 
     private void addStats(StatsType type)
@@ -190,7 +191,7 @@ public class Market {
         return UUID.randomUUID().toString();
     }
 
-    public User Login(String token, String userName, String password) {
+    public UserDTO Login(String token, String userName, String password) {
         if (!membersByUserName.containsKey(userName)) {
             throw new IllegalArgumentException("username doesn't exist.");
         }
@@ -209,15 +210,19 @@ public class Market {
         connectedSessions.put(token, u);
         u.LogIn(bus);
         addStats(StatsType.Login);
-        return u;
+        return new UserDTO(u);
     }
 
 
-
-    public IStore getStoreByName(String name) {
+    private IStore getDomainStoreByName(String name) {
         if(!stores.containsKey(name))
             throw new IllegalArgumentException("Requested store doesn't exist.");
         return this.stores.get(name);
+    }
+    public StoreDTO getStoreByName(String name) {
+        if(!stores.containsKey(name))
+            throw new IllegalArgumentException("Requested store doesn't exist.");
+        return new StoreDTO(this.stores.get(name));
     }
 
     public List<String> getStoresByString(String name) {
@@ -229,9 +234,9 @@ public class Market {
         return res;
     }
 
-    public List<Product> getStoreProducts(String storeName) {
-        List<Product> res = new LinkedList<>();
-        IStore st = this.getStoreByName(storeName);
+    public List<ProductDTO> getStoreProducts(String storeName) {
+        List<ProductDTO> res = new LinkedList<>();
+        StoreDTO st = this.getStoreByName(storeName);
         if (st == null)
             throw new IllegalArgumentException("store doesn't exist.");
         for (String productName : st.getProductsByName().keySet())
@@ -239,8 +244,8 @@ public class Market {
         return res;
     }
 
-    public List<Product> getProductsByAttributes(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice){
-        List<Product> result = new LinkedList<>();
+    public List<ProductDTO> getProductsByAttributes(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice){
+        List<ProductDTO> result = new LinkedList<>();
         for (IStore currStr : this.stores.values())
             for (Product currPrd : currStr.getProductsByName().values()) {
                 if (productName == null ||productName.isBlank()|| currPrd.getName().equals(productName))
@@ -249,7 +254,7 @@ public class Market {
                             if (productRating == null) //TODO: || rating = productRating
                                 if (storeRating == null) //TODO: || rating = productRating
                                     if (minPrice == null || maxPrice == null || (currPrd.getCleanPrice() <= maxPrice && currPrd.getCleanPrice() >= minPrice))
-                                        result.add(currPrd);
+                                        result.add(new ProductDTO(currPrd));
             }
         return result;
     }
@@ -262,7 +267,7 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
             throw new IllegalArgumentException("Unkown user token.");
         }
-        IStore st = this.getStoreByName(storeName);
+        IStore st = this.getDomainStoreByName(storeName);
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
@@ -273,7 +278,7 @@ public class Market {
         if(price <= 0)
             throw new IllegalArgumentException("can't pay 0 or less.");
         User user = getConnectedUserByToken(userToken);
-        IStore store = getStoreByName(storeName);
+        IStore store = getDomainStoreByName(storeName);
         return user.addProductToCart(store, productName, price);
     }
 
@@ -285,7 +290,7 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
             throw new IllegalArgumentException("Unkown user token.");
         }
-        IStore st = this.getStoreByName(storeName);
+        IStore st = this.getDomainStoreByName(storeName);
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
@@ -439,9 +444,20 @@ public class Market {
         return p.first.sendRespondFromStore(p.second, toRespond, msg, bus);
     }
 
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
+    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
-        return p.first.getStorePurchaseHistory(p.second);
+        ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistoryByTime = p.first.getStorePurchaseHistoryByTime(p.second);
+        ConcurrentHashMap<ShoppingBasket, User> purchaseHistoryByUser = p.first.getStorePurchaseHistoryByUser(p.second);
+
+        ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> serviceRes = new ConcurrentHashMap<>();
+        for(Map.Entry<ShoppingBasket,LocalDateTime> res : purchaseHistoryByTime.entrySet()) {
+            ShoppingBasket currBasket = res.getKey();
+            LocalDateTime currTime = res.getValue();
+            User currUser = purchaseHistoryByUser.get(currBasket);
+            serviceRes.put(new ShoppingBasketDTO(currBasket,currUser),currTime);
+
+        }
+        return serviceRes;
     }
 
     public boolean deleteStore(String userToken, String storeName) {
@@ -742,7 +758,7 @@ public class Market {
     }
 
     public List<BidDTO> getUserBids(String userToken, String storeName, String productName){
-        List<Bid> toDTO = getConnectedUserByToken(userToken).getUserBids(getStoreByName(storeName), productName);
+        List<Bid> toDTO = getConnectedUserByToken(userToken).getUserBids(getDomainStoreByName(storeName), productName);
         List<BidDTO> output = new LinkedList<>();
         for(Bid bid : toDTO)
             output.add(new BidDTO(bid));
@@ -750,15 +766,15 @@ public class Market {
     }
 
     public void ApproveBid(String userToken, String storeName, String productName, String username) throws Exception {
-        getConnectedUserByToken(userToken).ApproveBid(getStoreByName(storeName), productName, username, bus);
+        getConnectedUserByToken(userToken).ApproveBid(getDomainStoreByName(storeName), productName, username, bus);
     }
 
     public void DeclineBid(String userToken, String storeName, String productName, String username) throws Exception {
-        getConnectedUserByToken(userToken).DeclineBid(getStoreByName(storeName), productName, username, bus);
+        getConnectedUserByToken(userToken).DeclineBid(getDomainStoreByName(storeName), productName, username, bus);
     }
 
     public void CounterOfferBid(String userToken, String storeName, String productName, String username, Double offer) throws Exception {
-        getConnectedUserByToken(userToken).CounterOfferBid(getStoreByName(storeName), productName, username, offer, bus);
+        getConnectedUserByToken(userToken).CounterOfferBid(getDomainStoreByName(storeName), productName, username, offer, bus);
     }
 
 }

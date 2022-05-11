@@ -333,15 +333,15 @@ class UserTest {
     void getStorePurchaseHistoryOwnerOrFounderGood(){
         user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
-        assertDoesNotThrow(()->user2.getStorePurchaseHistory(store_mock));
-        assertDoesNotThrow(()->user.getStorePurchaseHistory(store_mock));
+        assertDoesNotThrow(()->user2.getStorePurchaseHistoryByTime(store_mock));
+        assertDoesNotThrow(()->user.getStorePurchaseHistoryByTime(store_mock));
     }
 
     @Test
     void getStorePurchaseHistoryManagerWithPermissions(){
         user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
-        assertDoesNotThrow(()->user2.getStorePurchaseHistory(store_mock));
+        assertDoesNotThrow(()->user2.getStorePurchaseHistoryByTime(store_mock));
     }
 
     @Test
@@ -349,7 +349,7 @@ class UserTest {
         user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
         user.grantOrDeletePermission(user2,store_mock,false,StorePermission.ViewStoreHistory);
-        assertThrows(IllegalArgumentException.class,()->user2.getStorePurchaseHistory(store_mock));
+        assertThrows(IllegalArgumentException.class,()->user2.getStorePurchaseHistoryByTime(store_mock));
     }
 
     @Test

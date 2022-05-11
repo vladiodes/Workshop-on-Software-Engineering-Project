@@ -17,7 +17,6 @@ import main.Users.User;
 import main.utils.*;
 
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -36,7 +35,8 @@ public class Store implements IStore {
     private boolean isActive;
     private String storeName;
     private List<StoreReview> storeReviews;
-    private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
+    private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistoryByTime;
+    private ConcurrentHashMap<ShoppingBasket, User> purchaseHistoryByUser;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
 
     @Override
@@ -65,9 +65,10 @@ public class Store implements IStore {
         isActive = true;
         this.storeName = storeName;
         this.founder = founder;
-        purchaseHistory = new ConcurrentHashMap<>();
+        purchaseHistoryByTime = new ConcurrentHashMap<>();
         buyingBaskets = new ConcurrentLinkedQueue<>();
         this.storeReviews = new LinkedList<>();
+        this.purchaseHistoryByUser = new ConcurrentHashMap<>();
     }
 
     @Override
@@ -196,10 +197,10 @@ public class Store implements IStore {
     }
 
     @Override
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
-        return purchaseHistory;
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime() {
+        return purchaseHistoryByTime;
     }
-
+    public ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser() {return this.purchaseHistoryByUser;}
     @Override
     public void CancelStaffRoles() {
         //first removing founder
@@ -231,7 +232,8 @@ public class Store implements IStore {
     public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment,  NotificationBus bus, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
             en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, bus, paymentInformation, payment);
-        this.purchaseHistory.put(bask,LocalDateTime.now());
+        this.purchaseHistoryByTime.put(bask,LocalDateTime.now());
+        this.purchaseHistoryByUser.put(bask, user);
         notifyPurchase(bus);
     }
 

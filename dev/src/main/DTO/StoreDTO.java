@@ -16,6 +16,7 @@ public class StoreDTO {
         this.setIsActive(st.getIsActive());
     }
 
+
     public String getStoreName() {
         return storeName;
     }

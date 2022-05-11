@@ -70,8 +70,8 @@ public class AT_Req_Constraints {
         boolean ownerExists = false;
        Response<List<String>> staff = service.getStoreStaff(founder1token.getResult(), "MyStore1");
         for (String u : staff.getResult()) {
-            ownerExists |= staff.getResult().contains("Owner of the store");
-            ownerExists |= staff.getResult().contains("Founder of the store");
+            ownerExists |= u.contains("Owner of the store");
+            ownerExists |= u.contains("Founder of the store");
         }
         assertTrue(ownerExists);
     }
