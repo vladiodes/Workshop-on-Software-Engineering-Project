@@ -2,7 +2,7 @@ package main.Stores.PurchasePolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
+import main.Publisher.PersonalNotification;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
@@ -40,7 +40,7 @@ public class BargainingPolicy extends TimedPolicy{
     }
 
     @Override
-    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment) {
+    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment) {
         bidApprovedBy.remove(getUserBid(user));
         product.subtractQuantity(1);
         return true;
@@ -86,34 +86,35 @@ public class BargainingPolicy extends TimedPolicy{
     }
 
     @Override
-    public void approveBid(String username, User approvingUser, NotificationBus bus) throws Exception {
-        Bid bid = getUserBid(username);
+    public void approveBid(User user, User approvingUser) throws Exception {
+        Bid bid = getUserBid(user.getUserName());
         List<User> approvers = bidApprovedBy.get(bid);
         approvers.add(approvingUser);
         if (isApproved(approvers)) {
-            this.purchaseBid(sellingStore, getUserBid(username), bus);
-            bus.addMessage(username, String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName()));
+            this.purchaseBid(sellingStore, getUserBid(user.getUserName()));
+            user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName())));
         }
     }
 
     @Override
-    public void declineBid(String username, NotificationBus bus) {
-        Bid toDecline = getUserBid(username);
+    public void declineBid(User user) {
+        Bid toDecline = getUserBid(user.getUserName());
         bidApprovedBy.remove(toDecline);
-        bus.addMessage(username, String.format("Your offer for %s has been declined by store staff.", toDecline.getProduct().getName()));
+        user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been declined by store staff.", toDecline.getProduct().getName())));
     }
 
     @Override
-    public void counterOfferBid(String username, Double offer, NotificationBus bus) {
-        Bid toDecline = getUserBid(username);
+    public void counterOfferBid(User user, Double offer) {
+        Bid toDecline = getUserBid(user.getUserName());
         bidApprovedBy.remove(toDecline);
-        bus.addMessage(username, String.format("Your offer for %s has been declined by store staff, a counter offer was suggested: %d", toDecline.getProduct().getName(), offer));
+        user.notifyObserver(new PersonalNotification(sellingStore.getName(),
+                String.format("Your offer for %s has been declined by store staff, a counter offer was suggested: %d", toDecline.getProduct().getName(), offer)));
     }
 
     @Override
-    public void close(NotificationBus bus) {
+    public void close() {
         for (Bid bidkey : bidApprovedBy.keySet()) {
-            bus.addMessage(bidkey.getUser(), "Product is not up for bargaining anymore.");
+            bidkey.getUser().notifyObserver(new PersonalNotification(sellingStore.getName(), String.format("%s is not up for bargaining anymore",product.getName())));
         }
     }
 

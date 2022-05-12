@@ -2,7 +2,6 @@ package main.Stores.PurchasePolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
 import main.Stores.Discounts.Discount;
 import main.Stores.Product;
 import main.Users.User;
@@ -28,7 +27,7 @@ public interface Policy {
      * timed policies doesn't allow purchase.
      * @return true if product quantity is was updated.
      */
-    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment);
+    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment);
 
     /***
      * used to bid on a product, used for timed policies.
@@ -37,14 +36,14 @@ public interface Policy {
      */
     public boolean bid(Bid bid);
     public List<Bid> getBids();
-    public void approveBid(String username, User approvingUser, NotificationBus bus) throws Exception;
-    public void declineBid(String username, NotificationBus bus);
-    public void counterOfferBid(String username, Double offer, NotificationBus bus);
+    public void approveBid(User user, User approvingUser) throws Exception;
+    public void declineBid(User user);
+    public void counterOfferBid(User user, Double offer);
 
     /***
      *when changing policies we want to end the previous one gracefully (refunding if raffle for instance)
      */
-    public void close(NotificationBus bus);
+    public void close();
 
     /***
      * used to decide if the product should be delivered immediately for a specific user.

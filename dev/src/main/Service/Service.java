@@ -7,10 +7,6 @@ import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
-import main.NotificationBus;
-import main.Shopping.ShoppingBasket;
-import main.Stores.IStore;
-import main.Stores.Product;
 import main.Users.User;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -843,7 +839,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<List<Pair<String, String>>> receiveQuestionsFromBuyers(String userToken, String storeName) {
+    public Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to receive questions from buyers from store:%s", storeName));
         try {
             return new Response<>(market.receiveQuestionsFromBuyers(userToken, storeName));

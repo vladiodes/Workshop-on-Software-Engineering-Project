@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import test.Mocks.BusMock;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -144,7 +143,7 @@ class ShoppingCartTest {
     @Test
     void validateCartStoreNoLongerOpen() {
         cart.addProductToCart(st1, productName1, phoneQuantity);
-        st1.closeStore(new BusMock());
+        st1.closeStore();
         assertFalse(cart.ValidateCart(userMock));
     }
 }

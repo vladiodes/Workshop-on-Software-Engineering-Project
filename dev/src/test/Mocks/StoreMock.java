@@ -2,7 +2,7 @@ package test.Mocks;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
+import main.Publisher.Notification;
 import main.Shopping.ShoppingBasket;
 import main.Stores.IStore;
 import main.Stores.Product;
@@ -75,7 +75,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void closeStore(NotificationBus bus) {
+    public void closeStore() {
 
     }
 
@@ -100,7 +100,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void reOpen(NotificationBus bus) {
+    public void reOpen() {
 
     }
 
@@ -110,7 +110,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public boolean respondToBuyer(User toRespond, String msg, NotificationBus bus) {
+    public boolean respondToBuyer(User toRespond, String msg) {
         return false;
     }
 
@@ -133,7 +133,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus, ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
 
     }
 
@@ -144,7 +144,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void notifyBargainingStaff(Bid newbid, NotificationBus bus) {
+    public void notifyBargainingStaff(Bid newbid) {
 
     }
 
@@ -164,27 +164,42 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void addRafflePolicy(String productName, Double price, NotificationBus bus) {
+    public void addRafflePolicy(String productName, Double price) {
 
     }
 
     @Override
-    public void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until) {
+    public void addAuctionPolicy(String productName, Double price, LocalDate until) {
 
     }
 
     @Override
-    public void addNormalPolicy(String productName, Double price, NotificationBus bus) {
+    public void addNormalPolicy(String productName, Double price) {
 
     }
 
     @Override
-    public boolean bidOnProduct(String productName, Bid bid, NotificationBus bus) {
-        return true;
+    public boolean bidOnProduct(String productName, Bid bid) {
+        return false;
     }
 
     @Override
-    public void addBargainPolicy(String productName, Double originalPrice, NotificationBus bus) {
+    public void addBargainPolicy(String productName, Double originalPrice) {
+
+    }
+
+    @Override
+    public void sendMessageToStaffOfStore(Notification notification) {
+
+    }
+
+    @Override
+    public List<String> getStoreMessages() {
+        return null;
+    }
+
+    @Override
+    public void addQuestionToStore(String userName, String message) {
 
     }
 }

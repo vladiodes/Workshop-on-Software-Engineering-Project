@@ -3,7 +3,6 @@ package main.Stores;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
 import main.Stores.Discounts.Discount;
 import main.Stores.PurchasePolicy.Policy;
 import main.Stores.PurchasePolicy.normalPolicy;
@@ -75,8 +74,8 @@ public class Product {
         this.policy.setOriginalPrice(price);
     }
 
-    public void setPolicy(Policy policy, NotificationBus bus) {
-        this.policy.close(bus);
+    public void setPolicy(Policy policy) {
+        this.policy.close();
         this.policy = policy;
     }
 
@@ -123,8 +122,8 @@ public class Product {
     public boolean isPurchasableForPrice(Double price, int amount, User user) {
        return this.policy.isPurchasable(this, price, amount, user);
     }
-    public boolean Purchase(User user, Double costumePrice, int amount , ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
-        return this.policy.productPurchased(this, user, costumePrice, amount, supplying, supplyingInformation, bus, paymentInformation , payment );
+    public boolean Purchase(User user, Double costumePrice, int amount , ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment){
+        return this.policy.productPurchased(this, user, costumePrice, amount, supplying, supplyingInformation, paymentInformation , payment );
     }
     public boolean Bid(Bid bid){
         return this.policy.bid(bid);
@@ -151,15 +150,15 @@ public class Product {
         return policy.getBids();
     }
 
-    public void ApproveBid(String userName, User apporvingUser, NotificationBus bus) throws Exception {
-        policy.approveBid(userName, apporvingUser, bus);
+    public void ApproveBid(User user, User apporvingUser) throws Exception {
+        policy.approveBid(user, apporvingUser);
     }
 
-    public void DeclineBid(String username, NotificationBus bus) {
-        policy.declineBid(username, bus);
+    public void DeclineBid(User user) {
+        policy.declineBid(user);
     }
 
-    public void counterOfferBid(String username, Double offer, NotificationBus bus) {
-        policy.counterOfferBid(username, offer, bus);
+    public void counterOfferBid(User user, Double offer) {
+        policy.counterOfferBid(user, offer);
     }
 }

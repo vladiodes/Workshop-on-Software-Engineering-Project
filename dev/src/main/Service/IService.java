@@ -4,9 +4,6 @@ package main.Service;
 
 import io.javalin.websocket.WsContext;
 import main.DTO.*;
-import main.ExternalServices.Payment.IPayment;
-import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
 import main.utils.*;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -14,7 +11,6 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -325,9 +321,10 @@ public interface IService {
 
     /**
      * REQ 2.4.12
+     *
      * @return a collection of all the questions from all the buyers
      */
-    Response<List<Pair<String,String>>> receiveQuestionsFromBuyers(String userToken, String storeName);
+    Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName);
 
     /**
      * REQ 2.4.12

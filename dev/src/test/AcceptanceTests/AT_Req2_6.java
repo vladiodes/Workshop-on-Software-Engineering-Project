@@ -87,7 +87,7 @@ public class AT_Req2_6 {
         service.sendComplaint(user1token.getResult(), "complaint");
         List<String> messageList = service.receiveMessages(adminToken.getResult()).getResult();
         assertFalse(messageList.isEmpty());
-        assertEquals("complaint", messageList.get(0));
+        assertEquals(messageList.size(), 1);
     }
 
     /***
