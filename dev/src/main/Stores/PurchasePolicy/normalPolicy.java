@@ -2,7 +2,6 @@ package main.Stores.PurchasePolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
 import main.Stores.Discounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
@@ -31,13 +30,13 @@ public class normalPolicy extends DirectPolicy {
     }
 
     @Override
-    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment) {
+    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment) {
         product.subtractQuantity(amount);
         return true;
     }
 
     @Override
-    public void close(NotificationBus bus) {
+    public void close() {
 
     }
 

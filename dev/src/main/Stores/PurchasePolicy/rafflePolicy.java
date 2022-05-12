@@ -2,7 +2,7 @@ package main.Stores.PurchasePolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
+import main.Publisher.PersonalNotification;
 import main.Stores.Discounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
@@ -46,12 +46,12 @@ public class rafflePolicy extends DirectPolicy {
 
 
     @Override
-    public synchronized boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment){
+    public synchronized boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment){
         double userMoney = costumePrice * amount;
         accumaltivePrice += userMoney;
         addUserToRaffle(user, userMoney, supplying, supplyingInformation, payment, paymentInformation);
         if (accumaltivePrice == this.originalPrice){
-            executeRaffle(product, bus);
+            executeRaffle(product);
             ResetRaffle();
             product.subtractQuantity(1);
         }
@@ -59,11 +59,11 @@ public class rafflePolicy extends DirectPolicy {
     }
 
     @Override
-    public void close(NotificationBus bus) {
+    public void close() {
         for (Map.Entry<User, Pair<IPayment,PaymentInformation>> entry : userPaymentInformation.entrySet()){
             Pair<IPayment, PaymentInformation> pay = entry.getValue();
             pay.first.abort(pay.second);
-            bus.addMessage(entry.getKey(), "Raffle was closed, you should get refunded according to the payment service policy.");
+            entry.getKey().notifyObserver(new PersonalNotification(store.getName(),"Raffle was closed, you should get refunded according to the payment service policy."));
         }
         this.ResetRaffle();
     }
@@ -107,15 +107,16 @@ public class rafflePolicy extends DirectPolicy {
         userPaymentInformation = new ConcurrentHashMap<>();
     }
 
-    private void executeRaffle(Product product, NotificationBus bus){
+    private void executeRaffle(Product product){
         User winner = evaluateWinner();
         Pair<ISupplying, SupplyingInformation> supl = userSupplyInformation.get(winner);
         Map<Product, Integer> items = new HashMap<>();
         items.put(product, 1);
         if(supl.first.supply(supl.second, items)){
-            bus.addMessage(winner, String.format("You have won the raffle for %s!", product.getName()));
+            winner.notifyObserver(new PersonalNotification(store.getName(),String.format("You have won the raffle for %s!", product.getName())));
         } else {
-            bus.addMessage(winner, String.format("You have won the raffle for %s! however the delivery service failed, please contact a store staff!", product.getName()));
+            winner.notifyObserver(new PersonalNotification(store.getName(),
+                    String.format("You have won the raffle for %s! however the delivery service failed, please contact a store staff!", product.getName())));
         }
     }
 

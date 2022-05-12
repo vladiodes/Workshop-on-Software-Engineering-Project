@@ -2,16 +2,12 @@ package main.Stores;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
+import main.Publisher.Notification;
 import main.Shopping.ShoppingBasket;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
-import main.utils.Bid;
-import main.utils.PaymentInformation;
-import main.utils.Restriction;
-import main.utils.SupplyingInformation;
-import org.mockito.internal.matchers.Not;
+import main.utils.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,7 +38,7 @@ public interface IStore {
 
     void removeOwner(OwnerPermissions ow);
 
-    void closeStore(NotificationBus bus);
+    void closeStore();
 
     ConcurrentHashMap<String, Product> getProductsByName();
 
@@ -52,11 +48,11 @@ public interface IStore {
 
     Boolean getIsActive();
 
-    void reOpen(NotificationBus bus);
+    void reOpen();
 
     HashMap<User, String> getStoreStaff();
 
-    boolean respondToBuyer(User toRespond, String msg, NotificationBus bus);
+    boolean respondToBuyer(User toRespond, String msg);
 
     ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime();
     ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser();
@@ -65,11 +61,11 @@ public interface IStore {
 
     boolean removeProduct(String productName);
 
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus, ShoppingBasket bask);
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask);
 
     void addReview(StoreReview sReview);
 
-    void notifyBargainingStaff(Bid newbid, NotificationBus bus);
+    void notifyBargainingStaff(Bid newbid);
 
 
     /***
@@ -81,12 +77,18 @@ public interface IStore {
     void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode);
     void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions);
 
-    void addRafflePolicy(String productName, Double price, NotificationBus bus);
-    void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until);
+    void addRafflePolicy(String productName, Double price);
+    void addAuctionPolicy(String productName, Double price, LocalDate until);
 
-    void addNormalPolicy(String productName, Double price, NotificationBus bus);
+    void addNormalPolicy(String productName, Double price);
 
-    boolean bidOnProduct(String productName, Bid bid, NotificationBus bus);
+    boolean bidOnProduct(String productName, Bid bid);
 
-    void addBargainPolicy(String productName, Double originalPrice, NotificationBus bus);
+    void addBargainPolicy(String productName, Double originalPrice);
+
+    void sendMessageToStaffOfStore(Notification notification);
+
+    List<String> getStoreMessages();
+
+    void addQuestionToStore(String userName, String message);
 }

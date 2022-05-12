@@ -3,7 +3,8 @@ package main.Stores.PurchasePolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
-import main.NotificationBus;
+import main.Publisher.PersonalNotification;
+import main.Publisher.StoreNotification;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
@@ -11,26 +12,19 @@ import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class AuctionPolicy extends TimedPolicy {
     private final LocalDate  until;
     private Double originalPrice;
     private Bid highestBid;
-    private Bid winningBid;
-    private NotificationBus bus;
+    private Bid winningBid;;
     private  final Timer timer;
     private final IStore sellingStore;
-    public AuctionPolicy(LocalDate until, Double originalPrice, NotificationBus bus, IStore sellingStore, String prouctName) {
+    public AuctionPolicy(LocalDate until, Double originalPrice, IStore sellingStore, String prouctName) {
         this.sellingStore = sellingStore;
-        this.bus = bus;
         this.until = until;
         this.originalPrice = originalPrice;
         this.highestBid = null;
@@ -39,11 +33,11 @@ public class AuctionPolicy extends TimedPolicy {
             @Override
             public void run() {
                 if(highestBid == null)
-                    bus.addMessage(sellingStore, "System notification","Product wasn't sold, no valid bid was submitted.");
+                    sellingStore.sendMessageToStaffOfStore(new StoreNotification(sellingStore.getName(),String.format("%s wasn't sold, no valid bid was submitted",prouctName)));
                 else {
                     winningBid = highestBid;
                     try {
-                        purchaseBid(sellingStore, highestBid, bus);
+                        purchaseBid(sellingStore, highestBid);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -74,23 +68,23 @@ public class AuctionPolicy extends TimedPolicy {
     }
 
     @Override
-    public void approveBid(String username, User approvingUser, NotificationBus bus) {
+    public void approveBid(User user, User approvingUser) {
         throw new IllegalArgumentException("In auction bids don't need aproval.");
     }
 
     @Override
-    public void declineBid(String username, NotificationBus bus) {
+    public void declineBid(User user) {
         throw new IllegalArgumentException("In auction bids can't be dismissed.");
     }
 
     @Override
-    public void counterOfferBid(String username, Double offer, NotificationBus bus) {
+    public void counterOfferBid(User user, Double offer) {
         throw new IllegalArgumentException("In auction bids can't be countered.");
     }
 
     @Override
-    public void close(NotificationBus bus) {
-        bus.addMessage(highestBid.getUser(), "Auction was closed, no winner declared.");
+    public void close() {
+        highestBid.getUser().notifyObserver(new PersonalNotification(sellingStore.getName(),"Auction was closed, no winner declared."));
         timer.cancel();
     }
 
@@ -124,7 +118,7 @@ public class AuctionPolicy extends TimedPolicy {
     }
 
     @Override
-    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, NotificationBus bus, PaymentInformation paymentInformation, IPayment payment) {
+    public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment) {
         if(winningBid.getUser() == user && until.isBefore(LocalDate.now())){
             product.subtractQuantity(1);
             return true;

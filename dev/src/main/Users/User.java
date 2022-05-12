@@ -1,8 +1,8 @@
 package main.Users;
 
 
-import main.NotificationBus;
 import main.ExternalServices.Payment.IPayment;
+import main.Publisher.*;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class User {
+public class User implements Observable {
 
     private boolean isSystemManager;
     private String userName;
@@ -35,6 +35,8 @@ public class User {
     private ConcurrentLinkedQueue<String> messages = new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
     private List<ShoppingCart> purchaseHistory;
+
+    private Observer observer;
 
 
     // stores connections
@@ -71,6 +73,7 @@ public class User {
         isLoggedIn = new AtomicBoolean(false);
         foundedStores = new LinkedList<>();
         cart = new ShoppingCart();
+        registerObserver(new Publisher());
     }
 
     /**
@@ -88,6 +91,7 @@ public class User {
         messages=new ConcurrentLinkedQueue<>();
 		securityQNA = new LinkedList<>();
         purchaseHistory = new LinkedList<>();
+        registerObserver(new Publisher());
     }
 
     public ShoppingCart getCart() {
@@ -102,9 +106,13 @@ public class User {
         return hashed_password;
     }
 
-    public void LogIn(NotificationBus bus) {
+    public Observer getObserver(){
+        return observer;
+    }
+
+    public void LogIn() {
         this.isLoggedIn.set(true);
-        bus.notify(this);
+        notifyObserver();
     }
 
     public Boolean getIsLoggedIn() {
@@ -333,17 +341,17 @@ public class User {
     }
 
 
-    public boolean closeStore(IStore IStore, NotificationBus bus) {
+    public boolean closeStore(IStore IStore) {
         if (!foundedStores.contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
-        IStore.closeStore(bus);
+        IStore.closeStore();
         return true;
     }
 
-    public boolean reOpenStore(IStore IStore, NotificationBus bus) {
+    public boolean reOpenStore(IStore IStore) {
         if (!foundedStores.contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
-        IStore.reOpen(bus);
+        IStore.reOpen();
         return true;
     }
 
@@ -363,14 +371,14 @@ public class User {
         this.securityQNA.add(new Pair<>(question, answer));
     }
 
-    public void logout(NotificationBus bus) {
+    public void logout() {
         this.isLoggedIn.set(false);
-        bus.unregisterWS(this);
+        observer.setWebSocket(null);
     }
 
-    public void purchaseCart(NotificationBus bus, PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{
+    public void purchaseCart(PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{
         Purchase p = new Purchase(pinfo, sinfo, this, this.cart, psystem, ssystem);
-        p.executePurchase(bus);
+        p.executePurchase();
         this.resetCart();
     }
 
@@ -417,16 +425,16 @@ public class User {
         return null;
     }
 
-    public List<Pair<String, String>> receiveQuestionsFromStore(IStore store,NotificationBus bus) {
+    public List<String> receiveQuestionsFromStore(IStore store) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
-            return bus.getStoreMessages(store);
+            return store.getStoreMessages();
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
 
-    public boolean sendRespondFromStore(IStore IStore, User toRespond, String msg, NotificationBus bus) {
+    public boolean sendRespondFromStore(IStore IStore, User toRespond, String msg) {
         if (hasPermission(IStore, StorePermission.AnswerAndTakeRequests))
-            return IStore.respondToBuyer(toRespond, msg, bus);
+            return IStore.respondToBuyer(toRespond, msg);
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
@@ -564,33 +572,33 @@ public class User {
         return stores;
     }
 
-    public void addRafflePolicy(IStore store, String productName, Double price, NotificationBus bus) {
+    public void addRafflePolicy(IStore store, String productName, Double price) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
-        store.addRafflePolicy(productName, price, bus);
+        store.addRafflePolicy(productName, price);
     }
 
-    public void addAuctionPolicy(IStore store, String productName, Double price, NotificationBus bus, LocalDate Until) {
+    public void addAuctionPolicy(IStore store, String productName, Double price, LocalDate Until) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
-        store.addAuctionPolicy(productName, price, bus, Until);
+        store.addAuctionPolicy(productName, price, Until);
     }
 
-    public void addNormalPolicy(IStore store, String productName, Double price, NotificationBus bus) {
+    public void addNormalPolicy(IStore store, String productName, Double price) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
-        store.addNormalPolicy(productName, price, bus);
+        store.addNormalPolicy(productName, price);
     }
 
-    public void addBargainPolicy(IStore store, String productName, Double originalPrice,NotificationBus bus) {
+    public void addBargainPolicy(IStore store, String productName, Double originalPrice) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
-        store.addBargainPolicy(productName, originalPrice, bus);
+        store.addBargainPolicy(productName, originalPrice);
     }
 
-    public boolean bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem, NotificationBus bus) {
+    public boolean bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
         Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
-        return store.bidOnProduct(productName, bid, bus);
+        return store.bidOnProduct(productName, bid);
     }
 
     public List<Bid> getUserBids(IStore store, String productName){
@@ -599,22 +607,37 @@ public class User {
         return store.getProduct(productName).getUserBids();
     }
 
-    public void ApproveBid(IStore store, String productName, String userName, NotificationBus bus) throws Exception {
+    public void ApproveBid(IStore store, String productName, User user) throws Exception {
         if(!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to approve other user's bids.");
-        store.getProduct(productName).ApproveBid(userName, this, bus);
+        store.getProduct(productName).ApproveBid(user, this);
     }
 
-    public void DeclineBid(IStore store, String productName, String user, NotificationBus bus) throws Exception {
+    public void DeclineBid(IStore store, String productName, User user) throws Exception {
         if(!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to decline other user's bids.");
-        store.getProduct(productName).DeclineBid(user, bus);
+        store.getProduct(productName).DeclineBid(user);
     }
 
-    public void CounterOfferBid(IStore store, String productName, String user, Double offer, NotificationBus bus) throws Exception {
+    public void CounterOfferBid(IStore store, String productName, User user, Double offer) throws Exception {
         if (!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to approve other user's bids.");
-        store.getProduct(productName).counterOfferBid(user, offer, bus);
+        store.getProduct(productName).counterOfferBid(user, offer);
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        this.observer=observer;
+    }
+
+    @Override
+    public void notifyObserver(Notification notification) {
+        observer.update(notification);
+    }
+
+    @Override
+    public void notifyObserver() {
+        observer.update();
     }
 
 }
