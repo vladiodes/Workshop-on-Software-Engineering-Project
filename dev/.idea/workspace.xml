@@ -118,7 +118,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
@@ -213,8 +213,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ATuser2Requirements" />
         <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
         <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
@@ -587,7 +587,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
-          <line>364</line>
+          <line>363</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -602,7 +602,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Market.java</url>
-          <line>737</line>
+          <line>746</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>

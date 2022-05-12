@@ -21,6 +21,7 @@ import main.Users.StorePermission;
 import main.Users.User;
 
 import main.utils.*;
+import org.hamcrest.core.Is;
 
 
 import java.time.LocalDate;
@@ -59,7 +60,7 @@ public class Market {
     private enum StatsType{Register, Login, Purchase}
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
 
-    public Market(){
+    public Market(IPayment Psystem, ISupplying Isystem){
         membersByUserName =new ConcurrentHashMap<>();
         connectedSessions =new ConcurrentHashMap<>();
         stores=new ConcurrentHashMap<>();
@@ -67,6 +68,7 @@ public class Market {
         systemStatsByDate=new ConcurrentHashMap<>();
         security_controller = new Security();
         currentlyLoggedInMembers = new AtomicInteger(0);
+        this.initialize(Psystem, Isystem);
     }
 
     public List<IStore> getAllStoresOf(String userToken) {
@@ -511,7 +513,7 @@ public class Market {
     /**
      * Create Default system manager
      */
-    public void initialize(IPayment Psystem, ISupplying Isystem) {
+    private void initialize(IPayment Psystem, ISupplying Isystem) {
         String adminUserName = "admin";
         String adminHashPassword = security_controller.hashPassword("admin");
         User admin = new User(true, adminUserName, adminHashPassword);
