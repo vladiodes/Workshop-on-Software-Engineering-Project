@@ -34,8 +34,7 @@ public class Service implements IService {
 
 
     public Service(IPayment Psystem, ISupplying Isystem){
-        market=new Market();
-        market.initialize(Psystem, Isystem);
+        market=new Market(Psystem, Isystem);
 
     }
 

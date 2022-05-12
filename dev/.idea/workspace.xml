@@ -23,16 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added option to enter secret code for basket in cart">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/product/addBidOnProduct.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/viewBids.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,18 +66,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -122,7 +103,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
@@ -132,6 +113,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -206,8 +198,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ATuser2Requirements" />
         <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
         <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
@@ -530,6 +522,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -565,7 +558,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
-          <line>364</line>
+          <line>363</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -580,7 +573,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Market.java</url>
-          <line>744</line>
+          <line>746</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
