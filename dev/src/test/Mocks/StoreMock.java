@@ -115,10 +115,13 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime() {
         return null;
     }
-
+    @Override
+    public ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser() {
+        return null;
+    }
     @Override
     public void CancelStaffRoles() {
 

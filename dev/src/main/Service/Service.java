@@ -49,8 +49,8 @@ public class Service implements IService {
     public Response<UserDTO> guestDisconnect(String userToken) {
         try {
             Logger.getInstance().logEvent("Service",String.format("Attempting to disconnect a guest, userToken:%s" ,userToken));
-            User r = market.DisconnectGuest(userToken);
-            return new Response<>(new UserDTO(r), null);
+            UserDTO r = market.DisconnectGuest(userToken);
+            return new Response<>(r, null);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - guestDisconnect", e.getMessage());
             return new Response<>(e, false);
@@ -78,7 +78,8 @@ public class Service implements IService {
     public Response<UserDTO> login(String token, String userName, String password) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get login, userName:%s", userName));
         try {
-            return new Response<>(new UserDTO(market.Login(token, userName, password)));
+            UserDTO u = market.Login(token, userName, password);
+            return new Response<>(u);
         }
         catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to login, userToken:%s, Error:%s" ,token, e.getMessage()));
@@ -113,7 +114,8 @@ public class Service implements IService {
     public Response<StoreDTO> getStoreInfo(String storeName) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get store info, storeName:%s" ,storeName));
         try {
-            return new Response<>(new StoreDTO(market.getStoreByName(storeName)));
+            StoreDTO s = market.getStoreByName(storeName);
+            return new Response<>(s);
         }
         catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to get store info, storeName:%s, Error:%s" ,storeName, e.getMessage()));
@@ -144,9 +146,7 @@ public class Service implements IService {
     public Response<List<ProductDTO>> getStoreProducts(String storeName) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get store products, storeName:%s" ,storeName));
         try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getStoreProducts(storeName))
-                res.add(new ProductDTO(p));
+            List<ProductDTO> res = market.getStoreProducts(storeName);
             return new Response<>(res);
         }
         catch (IllegalArgumentException e) {
@@ -163,9 +163,7 @@ public class Service implements IService {
     public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get product by info, productName:%s, category:%s, keyWord:%s, productRating:%.2f, storeRating:%.2f, minPrice:%.2f, maxPrice:%.2f" ,productName,category, keyWord,productRating,storeRating, minPrice, maxPrice));
         try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
-                res.add(new ProductDTO(p));
+            List<ProductDTO> res = market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice);
             return new Response<>(res);
         }
         catch (IllegalArgumentException e) {
@@ -876,12 +874,12 @@ public class Service implements IService {
     public Response<List<String>> getStorePurchaseHistory(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
         try {
-            ConcurrentHashMap<ShoppingBasket, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
+            ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
             List<String> output = new LinkedList<>();
-            for (ShoppingBasket basket : baskets.keySet()) {
+            for (ShoppingBasketDTO basket : baskets.keySet()) {
                 HashMap<ProductDTO, Integer> products = new HashMap<>();
-                for (Product product : basket.getProductsAndQuantities().keySet())
-                    products.put(new ProductDTO(product), basket.getProductsAndQuantities().get(product));
+                for (ProductDTO product : basket.getProductsQuantity().keySet())
+                    products.put(product, basket.getProductsQuantity().get(product));
                 output.add(new PurchaseDTO(products, baskets.get(basket)).toString());
             }
             return new Response<>(output);
@@ -1050,10 +1048,8 @@ public class Service implements IService {
     public Response<List<StoreDTO>> getAllStoresOfUser(String userToken) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get all stores of user %s", userToken));
         try {
-            List<IStore> stores = market.getAllStoresOf(userToken);
-            LinkedList<StoreDTO> storeList = new LinkedList<>();
-            for(IStore store:stores)
-                storeList.add(new StoreDTO(store));
+            List<StoreDTO> storeList = market.getAllStoresOf(userToken);
+//            LinkedList<StoreDTO> storeList = new LinkedList<>();
             return new Response<>(storeList);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
