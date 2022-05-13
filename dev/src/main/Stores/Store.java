@@ -2,7 +2,9 @@ package main.Stores;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
+import main.Publisher.Notification;
+import main.Publisher.PersonalNotification;
+import main.Publisher.StoreNotification;
 import main.Shopping.ShoppingBasket;
 import main.Stores.SingleProductDiscounts.ConditionalDiscount;
 import main.Stores.SingleProductDiscounts.DirectDiscount;
@@ -35,8 +37,11 @@ public class Store implements IStore {
     private boolean isActive;
     private String storeName;
     private List<StoreReview> storeReviews;
-    private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
+    private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistoryByTime;
+    private ConcurrentHashMap<ShoppingBasket, User> purchaseHistoryByUser;
     private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
+
+    private ConcurrentLinkedQueue<PersonalNotification> storeQuestions;
 
     @Override
     public List<User> getOwnersOfStore() {
@@ -64,9 +69,11 @@ public class Store implements IStore {
         isActive = true;
         this.storeName = storeName;
         this.founder = founder;
-        purchaseHistory = new ConcurrentHashMap<>();
+        purchaseHistoryByTime = new ConcurrentHashMap<>();
         buyingBaskets = new ConcurrentLinkedQueue<>();
         this.storeReviews = new LinkedList<>();
+        this.purchaseHistoryByUser = new ConcurrentHashMap<>();
+        this.storeQuestions=new ConcurrentLinkedQueue<>();
     }
 
     @Override
@@ -125,11 +132,11 @@ public class Store implements IStore {
         owners.remove(ow);
     }
 
-    public synchronized void closeStore(NotificationBus bus) {
+    public synchronized void closeStore() {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
         isActive = false;
-        sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()), bus);
+        sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now inactive"));
     }
 
     @Override
@@ -144,12 +151,29 @@ public class Store implements IStore {
         return productsByName.get(name);
     }
 
-    private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
-        bus.addMessage(founder, msg);
+    @Override
+    public void sendMessageToStaffOfStore(Notification notification) {
+        founder.notifyObserver(notification);
         for (User u : getOwnersOfStore())
-            bus.addMessage(u, msg);
+            u.notifyObserver(notification);
         for (User u : getManagersOfStore())
-            bus.addMessage(u, msg);
+            u.notifyObserver(notification);
+    }
+
+    @Override
+    public List<String> getStoreMessages() {
+        LinkedList<String> lst = new LinkedList<>();
+        for(PersonalNotification notification : storeQuestions){
+            lst.add(notification.print());
+        }
+        return lst;
+    }
+
+    @Override
+    public void addQuestionToStore(String userName, String message) {
+        PersonalNotification n = new PersonalNotification(userName,message);
+        storeQuestions.add(n);
+        sendMessageToStaffOfStore(n);
     }
 
     @Override
@@ -163,11 +187,11 @@ public class Store implements IStore {
     }
 
     @Override
-    public synchronized void reOpen(NotificationBus bus) {
+    public synchronized void reOpen() {
         if (isActive)
             throw new IllegalArgumentException("The store is already opened!");
         isActive = true;
-        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()), bus);
+        sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now open again"));
     }
 
     @Override
@@ -188,17 +212,17 @@ public class Store implements IStore {
     }
 
     @Override
-    public boolean respondToBuyer(User toRespond, String msg, NotificationBus bus) {
-        bus.addMessage(toRespond, msg);
+    public boolean respondToBuyer(User toRespond, String msg) {
+        toRespond.notifyObserver(new PersonalNotification(storeName,msg));
         // here we can add any history of messages between user-store if necessary
         return true;
     }
 
     @Override
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
-        return purchaseHistory;
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime() {
+        return purchaseHistoryByTime;
     }
-
+    public ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser() {return this.purchaseHistoryByUser;}
     @Override
     public void CancelStaffRoles() {
         //first removing founder
@@ -227,16 +251,17 @@ public class Store implements IStore {
     }
 
     @Override
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment,  NotificationBus bus, ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
-            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, bus, paymentInformation, payment);
-        this.purchaseHistory.put(bask,LocalDateTime.now());
-        notifyPurchase(bus);
+            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, paymentInformation, payment);
+        this.purchaseHistoryByTime.put(bask,LocalDateTime.now());
+        this.purchaseHistoryByUser.put(bask, user);
+        notifyPurchase();
     }
 
-    private void notifyPurchase(NotificationBus bus) {
+    private void notifyPurchase() {
         for (User manager: getOwnersOfStore())
-            bus.addMessage(manager, "Product/s were bought from your store!");
+            manager.notifyObserver(new PersonalNotification(storeName,"Products were bought from your store!"));
     }
 
     @Override
@@ -248,10 +273,12 @@ public class Store implements IStore {
     }
 
     @Override
-    public void notifyBargainingStaff(Bid newbid, NotificationBus bus) {
+    public void notifyBargainingStaff(Bid newbid) {
         for (User staff: getStoreStaff().keySet())
             if(staff.ShouldBeNotfiedForBargaining(this))
-                bus.addMessage(staff, String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName()));
+                staff.notifyObserver(new PersonalNotification(
+                        storeName,
+                        String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName())));
     }
 
 
@@ -274,34 +301,34 @@ public class Store implements IStore {
     }
 
     @Override
-    public void addRafflePolicy(String productName, Double price, NotificationBus bus) {
+    public void addRafflePolicy(String productName, Double price) {
         Product product = getProduct(productName);
-        product.setPolicy(new rafflePolicy(this, price), bus);
+        product.setPolicy(new rafflePolicy(this, price));
     }
 
     @Override
-    public void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until) {
+    public void addAuctionPolicy(String productName, Double price, LocalDate until) {
         Product product = getProduct(productName);
-        product.setPolicy(new AuctionPolicy(until, price, bus,this, productName), bus);
+        product.setPolicy(new AuctionPolicy(until, price,this, productName));
     }
 
     @Override
-    public void addNormalPolicy(String productName, Double price, NotificationBus bus) {
+    public void addNormalPolicy(String productName, Double price) {
         Product product = getProduct(productName);
-        product.setPolicy(new normalPolicy(price, this), bus);
+        product.setPolicy(new normalPolicy(price, this));
     }
 
     @Override
-    public void addBargainPolicy(String productName,Double originalPrice, NotificationBus bus) {
+    public void addBargainPolicy(String productName,Double originalPrice) {
         Product product = getProduct(productName);
-        product.setPolicy(new BargainingPolicy(this, originalPrice, product), bus);
+        product.setPolicy(new BargainingPolicy(this, originalPrice, product));
     }
 
     @Override
-    public boolean bidOnProduct(String productName, Bid bid, NotificationBus bus) {
+    public boolean bidOnProduct(String productName, Bid bid) {
         Product product = getProduct(productName);
         if (product.bid(bid)){
-            notifyBargainingStaff(bid, bus);
+            notifyBargainingStaff(bid);
             return true;
         }
         return false;

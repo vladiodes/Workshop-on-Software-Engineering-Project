@@ -3,7 +3,6 @@ package main.Shopping;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
@@ -126,9 +125,9 @@ public class ShoppingBasket {
         return store;
     }
 
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus)
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment)
     {
-        store.purchaseBasket(user, supplying, supplyingInformation, paymentInformation, payment, bus,this);
+        store.purchaseBasket(user, supplying, supplyingInformation, paymentInformation, payment,this);
     }
 
     public double getPrice(User user) {

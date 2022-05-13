@@ -4,6 +4,7 @@ import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Payment.PaymentAdapter;
 import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
+import main.Stores.Discounts.Discount;
 import main.NotificationBus;
 import main.Stores.SingleProductDiscounts.Discount;
 import main.Stores.Product;
@@ -43,8 +44,6 @@ class rafflePolicyTest {
     User userMock3;
     @Mock
     Discount discountMock;
-    @Mock
-    NotificationBus busMock;
     rafflePolicy subject;
     Double originalPrice;
     @BeforeEach
@@ -54,7 +53,6 @@ class rafflePolicyTest {
         userMock2 = mock(User.class);
         userMock3 = mock(User.class);
         discountMock = mock(Discount.class);
-        busMock = mock(NotificationBus.class);
         mockSupplyer = mock(SupplyingAdapter.class);
         mockPayment = mock(PaymentAdapter.class);
         storeMock = mock(Store.class);
@@ -63,25 +61,25 @@ class rafflePolicyTest {
     }
     @Test
     void IncompletepurchaseDoesntShip() {
-        subject.productPurchased(productMock,userMock1, originalPrice / 3 - 1, 1, mockSupplyer, si, busMock, pi, mockPayment);
-        subject.productPurchased(productMock,userMock2, originalPrice / 3 - 1, 1, mockSupplyer, si, busMock, pi, mockPayment);
-        subject.productPurchased(productMock,userMock3, originalPrice / 3 - 1, 1, mockSupplyer, si, busMock, pi, mockPayment);
+        subject.productPurchased(productMock,userMock1, originalPrice / 3 - 1, 1, mockSupplyer, si, pi, mockPayment);
+        subject.productPurchased(productMock,userMock2, originalPrice / 3 - 1, 1, mockSupplyer, si, pi, mockPayment);
+        subject.productPurchased(productMock,userMock3, originalPrice / 3 - 1, 1, mockSupplyer, si, pi, mockPayment);
         verify(mockSupplyer, times(0)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
     }
 
     @Test
     void verify1winner() {
-        subject.productPurchased(productMock,userMock1, originalPrice / 3 , 1, mockSupplyer, si, busMock, pi, mockPayment);
-        subject.productPurchased(productMock,userMock2, originalPrice / 3 , 1, mockSupplyer, si, busMock, pi, mockPayment);
-        subject.productPurchased(productMock,userMock3, originalPrice / 3 , 1, mockSupplyer, si, busMock, pi, mockPayment);
+        subject.productPurchased(productMock,userMock1, originalPrice / 3 , 1, mockSupplyer, si, pi, mockPayment);
+        subject.productPurchased(productMock,userMock2, originalPrice / 3 , 1, mockSupplyer, si, pi, mockPayment);
+        subject.productPurchased(productMock,userMock3, originalPrice / 3 , 1, mockSupplyer, si, pi, mockPayment);
         verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
     }
 
     @Test
     void closeRefunds() {
-        subject.productPurchased(productMock,userMock1, originalPrice / 3 , 1, mockSupplyer, si, busMock, pi, mockPayment);
-        subject.productPurchased(productMock,userMock2, originalPrice / 3 , 1, mockSupplyer, si, busMock, pi, mockPayment);
-        subject.close(busMock);
+        subject.productPurchased(productMock,userMock1, originalPrice / 3 , 1, mockSupplyer, si, pi, mockPayment);
+        subject.productPurchased(productMock,userMock2, originalPrice / 3 , 1, mockSupplyer, si, pi, mockPayment);
+        subject.close();
         verify(mockPayment, times(2)).abort(pi);
     }
 

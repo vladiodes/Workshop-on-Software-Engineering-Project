@@ -22,11 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added option to enter secret code for basket in cart">
+    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Deleted NotificationBus, added publisher component for each user, which implements the observer pattern.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/ConditionalDiscount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/DirectDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/DirectDiscount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -45,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="web-client-cont" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -67,18 +65,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/TradingSystem-2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -100,6 +95,7 @@
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="main.Publisher" />
       <recent name="main" />
       <recent name="main.Stores" />
       <recent name="main.Users" />
@@ -117,6 +113,17 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
@@ -130,7 +137,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -139,29 +146,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ATuser2Requirements.CantBidOnAuctionLowerPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="CantBidOnAuctionLowerPrice" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Req2_5" />
+      <option name="METHOD_NAME" value="allowManagerAnswerAndTakeRequests" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.HighestBidOnAuctionCounts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_4_Req2_5.appointStoreManager" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -170,8 +162,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="HighestBidOnAuctionCounts" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Req2_5" />
+      <option name="METHOD_NAME" value="appointStoreManager" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_6.receiveMessages" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6" />
+      <option name="METHOD_NAME" value="receiveMessages" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -193,18 +201,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" />
+      <item itemvalue="JUnit.AT_Req2_4_Req2_5.appointStoreManager" />
+      <item itemvalue="JUnit.AT_Req2_6.receiveMessages" />
       <item itemvalue="JUnit.test in dev" />
-      <item itemvalue="JUnit.ATuser2Requirements" />
-      <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
-      <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.ATuser2Requirements" />
-        <item itemvalue="JUnit.ATuser2Requirements.CantBidOnAuctionLowerPrice" />
-        <item itemvalue="JUnit.ATuser2Requirements.HighestBidOnAuctionCounts" />
+        <item itemvalue="JUnit.AT_Req2_4_Req2_5.appointStoreManager" />
+        <item itemvalue="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" />
+        <item itemvalue="JUnit.AT_Req2_6.receiveMessages" />
       </list>
     </recent_temporary>
   </component>
@@ -214,13 +222,16 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Added option to enter secret code for basket in cart" />
+      <changelist id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Deleted NotificationBus, added publisher component for each user, which implements the observer pattern." />
       <created>1649831427176</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1649831427176</updated>
       <workItem from="1650274728823" duration="359000" />
       <workItem from="1650275111935" duration="783000" />
+      <workItem from="1652270450456" duration="845000" />
+      <workItem from="1652379905686" duration="390000" />
+      <workItem from="1652425121753" duration="639000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -559,13 +570,33 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
-          <line>407</line>
+          <line>359</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java</url>
           <line>30</line>
           <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
+          <line>510</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Market.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Users/User.java</url>
+          <line>639</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

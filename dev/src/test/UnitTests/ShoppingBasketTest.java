@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import test.Mocks.BusMock;
 
 import java.util.LinkedList;
 
@@ -56,7 +55,7 @@ class ShoppingBasketTest {
 
     @Test
     void addClosedStoreProduct() {
-        st1.closeStore(new BusMock());
+        st1.closeStore();
         Assertions.assertThrows(IllegalArgumentException.class, ()->basket.AddProduct("NoneExisting", 1));
     }
 
@@ -118,7 +117,7 @@ class ShoppingBasketTest {
     void validateClosedStoreBasket() {
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
-        st1.closeStore(new BusMock());
+        st1.closeStore();
         Assertions.assertFalse(basket.ValidateBasket(userMock));
     }
 }

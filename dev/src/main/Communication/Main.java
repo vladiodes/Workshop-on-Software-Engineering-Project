@@ -2,7 +2,6 @@ package main.Communication;
 
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
-import io.javalin.http.staticfiles.Location;
 import main.Communication.Controllers.*;
 import main.Communication.util.HerokuUtil;
 import main.Communication.util.ViewUtil;
@@ -11,6 +10,10 @@ import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Service.IService;
 import main.Service.Service;
 import main.utils.Response;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
@@ -36,10 +39,18 @@ public class Main {
         service.guestDisconnect(token.getResult());
 
         Javalin app = Javalin.create(config -> {
-            config.addStaticFiles("/public", Location.CLASSPATH);
+            config.server(() -> {
+                Server server = new Server();
+                ServerConnector sslConnector = new ServerConnector(server, getSslContextFactory());
+                sslConnector.setPort(443);
+                ServerConnector connector = new ServerConnector(server);
+                connector.setPort(80);
+                server.setConnectors(new Connector[]{sslConnector, connector});
+                return server;
+            });
+            config.addStaticFiles("/public");
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
         }).start(HerokuUtil.getHerokuAssignedPort());
-
         app.ws("/notifications", ws -> {
             ws.onMessage(ctx -> {
                 String userToken = ctx.message();
@@ -138,6 +149,14 @@ public class Main {
 
         });
 
+    }
+
+    private static SslContextFactory getSslContextFactory() {
+        SslContextFactory sslContextFactory = new SslContextFactory();
+        sslContextFactory.setKeyStoreType("PKCS12");
+        sslContextFactory.setKeyStorePath(Main.class.getResource("/keystore/localhost.p12").toExternalForm());
+        sslContextFactory.setKeyStorePassword("password");
+        return sslContextFactory;
     }
 
 }
