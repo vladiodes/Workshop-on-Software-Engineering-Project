@@ -22,9 +22,52 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Deleted NotificationBus, added publisher component for each user, which implements the observer pattern.">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositeCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalOrCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalXorCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/CategoryAmountCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/ProductAmountCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimpleCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/ConditionalDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/MaximumCompositeDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/PlusCompositeDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SecretDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SingleDiscount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/DiscountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/DiscountDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/DirectPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/DirectPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/TimedPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/ConditionalDiscount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/DirectDiscount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/SecretDiscount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +144,7 @@
       <recent name="main.Users" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="main.Stores.PurchasePolicy.Discounts" />
       <recent name="test.UnitTests" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -592,11 +636,6 @@
           <url>file://$PROJECT_DIR$/src/main/Market.java</url>
           <line>82</line>
           <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Users/User.java</url>
-          <line>639</line>
-          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

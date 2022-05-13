@@ -17,9 +17,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ShoppingCart {
     private ConcurrentHashMap<String, ShoppingBasket> baskets; // (store name, basket)
     private final Object carteditLock = new Object();
-    public ShoppingCart() {
+    public ShoppingCart(User user) {
         this.baskets = new ConcurrentHashMap<>();
+        this.user = user;
     }
+    private User user;
 
     public ShoppingCart(ShoppingCart oldCart) //use this constructor to deep copy a ShoppingCart
     {
@@ -45,7 +47,7 @@ public class ShoppingCart {
                     throw new IllegalArgumentException("Store is not active.");
                 if (!IStore.getProductsByName().containsKey(productName))
                     throw new IllegalArgumentException("Product does not exist in store");
-                ShoppingBasket basket = new ShoppingBasket(IStore);
+                ShoppingBasket basket = new ShoppingBasket(IStore, this.user);
                 baskets.put(IStore.getName(), basket);
                 return basket.AddProduct(productName, quantity);
             }
@@ -118,10 +120,10 @@ public class ShoppingCart {
         return baskets.get(storeName).getStore();
     }
 
-    public double getPrice(User user){
+    public double getPrice(){
         double result = 0;
         for (Map.Entry<String, ShoppingBasket> basketEntry : this.baskets.entrySet())
-            result += basketEntry.getValue().getPrice(user);
+            result += basketEntry.getValue().getPrice();
         return result;
     }
 

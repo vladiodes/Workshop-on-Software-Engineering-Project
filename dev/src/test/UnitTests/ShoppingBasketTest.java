@@ -30,7 +30,7 @@ class ShoppingBasketTest {
         User founder = new User(false, "Founder123", "12345678");
         st1 = new Store(storeName1, founder );
         st1.addProduct(productName1, "Electronics", new LinkedList<>(), "good phone", phoneQuantity, phonePrice);
-        basket = new ShoppingBasket(st1);
+        basket = new ShoppingBasket(st1, userMock);
     }
 
     @Test
@@ -91,11 +91,11 @@ class ShoppingBasketTest {
 
     @Test
     void getPrice() {
-        Assertions.assertEquals(0, basket.getPrice(userMock));
+        Assertions.assertEquals(0, basket.getPrice());
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
         double expected = quantity * phonePrice;
-        Assertions.assertEquals(expected, basket.getPrice(userMock));
+        Assertions.assertEquals(expected, basket.getPrice());
     }
 
     @Test

@@ -15,7 +15,7 @@ public class ShoppingCartDTO {
         for (Map.Entry<String, ShoppingBasket> kv : cart.getBasketInfo().entrySet()){
             baskets.put(kv.getKey(), new ShoppingBasketDTO(kv.getValue(), user));
         }
-        totalPrice=cart.getPrice(user);
+        totalPrice=cart.getPrice();
     }
 
     public HashMap<String, ShoppingBasketDTO> getBaskets() {

@@ -148,21 +148,6 @@ public class StoreMock implements IStore {
 
     }
 
-    @Override
-    public void addDirectDiscount(String productName, LocalDate until, Double percent) {
-
-    }
-
-    @Override
-    public void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode) {
-
-    }
-
-    @Override
-    public void addConditionalDiscount(String productName, LocalDate until, Restriction restrictions, Double percent) {
-
-    }
-
 
     @Override
     public void addRafflePolicy(String productName, Double price) {
@@ -202,5 +187,90 @@ public class StoreMock implements IStore {
     @Override
     public void addQuestionToStore(String userName, String message) {
 
+    }
+
+    @Override
+    public int CreateSimpleDiscount(LocalDate until, Double percent) {
+        return 0;
+    }
+
+    @Override
+    public int CreateSecretDiscount(LocalDate until, Double percent, String secretCode) {
+        return 0;
+    }
+
+    @Override
+    public int CreateConditionalDiscount(LocalDate until, Double percent, int condID) {
+        return 0;
+    }
+
+    @Override
+    public int CreateMaximumCompositeDiscount(LocalDate until, List<Integer> discounts) {
+        return 0;
+    }
+
+    @Override
+    public int CreatePlusCompositeDiscount(LocalDate until, List<Integer> discounts) {
+        return 0;
+    }
+
+    @Override
+    public void SetDiscountToProduct(int discountID, String productName) {
+
+    }
+
+    @Override
+    public void SetDiscountToStore(int discountID) {
+
+    }
+
+    @Override
+    public int CreateBasketValueCondition(double requiredValue) {
+        return 0;
+    }
+
+    @Override
+    public int CreateCategoryAmountCondition(String category, int amount) {
+        return 0;
+    }
+
+    @Override
+    public int CreateProductAmountCondition(String productName, int amount) {
+        return 0;
+    }
+
+    @Override
+    public int CreateLogicalAndCondition(List<Integer> conditionIds) {
+        return 0;
+    }
+
+    @Override
+    public int CreateLogicalOrCondition(List<Integer> conditionIds) {
+        return 0;
+    }
+
+    @Override
+    public int CreateLogicalXorCondition(int id1, int id2) {
+        return 0;
+    }
+
+    @Override
+    public void SetConditionToDiscount(int discountId, int ConditionID) {
+
+    }
+
+    @Override
+    public void SetConditionToStore(int ConditionID) {
+
+    }
+
+    @Override
+    public double getPriceForProduct(Product product, User user) {
+        return 0;
+    }
+
+    @Override
+    public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
+        return false;
     }
 }

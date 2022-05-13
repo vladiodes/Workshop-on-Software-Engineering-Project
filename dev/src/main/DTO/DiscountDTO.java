@@ -1,6 +1,6 @@
 package main.DTO;
 
-import main.Stores.SingleProductDiscounts.Discount;
+import main.Stores.PurchasePolicy.Discounts.Discount;
 
 public class DiscountDTO {
     String Description;

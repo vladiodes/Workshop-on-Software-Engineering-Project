@@ -72,7 +72,7 @@ public class User implements Observable {
         hashed_password = null;
         isLoggedIn = new AtomicBoolean(false);
         foundedStores = new LinkedList<>();
-        cart = new ShoppingCart();
+        cart = new ShoppingCart(this);
         registerObserver(new Publisher());
     }
 
@@ -85,7 +85,7 @@ public class User implements Observable {
         this.hashed_password = hashed_password;
         isLoggedIn = new AtomicBoolean(false);
         foundedStores = new LinkedList<>();
-        cart = new ShoppingCart();
+        cart = new ShoppingCart(this);
         ownedStores = new LinkedList<>();
         managedStores = new LinkedList<>();
         messages=new ConcurrentLinkedQueue<>();
@@ -387,7 +387,7 @@ public class User implements Observable {
     }
 
     public void resetCart(){
-        this.cart = new ShoppingCart();
+        this.cart = new ShoppingCart(this);
     }
 
     public void addCartToHistory(ShoppingCart cart){
@@ -520,24 +520,6 @@ public class User implements Observable {
         return cart.RemoveProductFromCart(st, productName, quantity);
     }
 
-    public void addDirectDiscount(IStore Store, String productName, LocalDate until, Double percent) {
-        if(!hasPermission(Store, StorePermission.PolicyPermission))
-            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
-        Store.addDirectDiscount(productName, until, percent);
-    }
-
-    public void addSecretDiscount(IStore Store, String productName, LocalDate until, Double percent, String secretCode) {
-        if(!hasPermission(Store, StorePermission.PolicyPermission))
-            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
-       Store.addSecretDiscount(productName, until, percent, secretCode);
-    }
-
-    public void addConditionalDiscount(IStore Store,String productName, LocalDate until, Restriction restrictions, Double percent) {
-        if(!hasPermission(Store, StorePermission.PolicyPermission))
-            throw new IllegalArgumentException("You don't have permission to add discounts to this store.");
-        Store.addConditionalDiscount(productName, until, restrictions, percent);
-    }
-
     public void addDiscountPasswordToBasket(String storeName, String Password){
         cart.getBasket(storeName).addDiscountPassword(Password);
     }
@@ -638,6 +620,85 @@ public class User implements Observable {
     @Override
     public void notifyObserver() {
         observer.update();
+    }
+
+    public int CreateSimpleDiscount(IStore store, LocalDate until, Double percent){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateSimpleDiscount(until, percent);
+    }
+    public int CreateSecretDiscount(IStore store, LocalDate until, Double percent, String secretCode){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateSecretDiscount(until, percent, secretCode);
+    }
+    public int CreateConditionalDiscount(IStore store, LocalDate until, Double percent, int condID){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateConditionalDiscount(until, percent, condID);
+    }
+    public int CreateMaximumCompositeDiscount(IStore store, LocalDate until, List<Integer> discounts){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateMaximumCompositeDiscount(until, discounts);
+    }
+    public int CreatePlusCompositeDiscount(IStore store, LocalDate until, List<Integer> discounts){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreatePlusCompositeDiscount(until, discounts);
+    }
+
+    public void SetDiscountToProduct(IStore store, int discountID, String productName){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.SetDiscountToProduct(discountID, productName);
+    }
+    public void SetDiscountToStore(IStore store, int discountID){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.SetDiscountToStore(discountID);
+    }
+
+    public int CreateBasketValueCondition(IStore store, double requiredValue){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateBasketValueCondition(requiredValue);
+    }
+    public int CreateCategoryAmountCondition(IStore store, String category, int amount){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateCategoryAmountCondition(category, amount);
+    }
+    public int CreateProductAmountCondition(IStore store, String productName, int amount){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateProductAmountCondition(productName, amount);
+    }
+    public int CreateLogicalAndCondition(IStore store, List<Integer> conditionIds){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateLogicalAndCondition(conditionIds);
+    }
+    public int CreateLogicalOrCondition(IStore store, List<Integer> conditionIds){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateLogicalOrCondition(conditionIds);
+    }
+    public int CreateLogicalXorCondition(IStore store, int id1, int id2){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        return store.CreateLogicalXorCondition(id1, id2);
+    }
+    public void SetConditionToDiscount(IStore store, int discountId, int ConditionID){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.SetConditionToDiscount(discountId, ConditionID);
+    }
+
+    public void SetConditionToStore(IStore store, int ConditionID){
+        if(!hasPermission(store, StorePermission.PolicyPermission))
+            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
+        store.SetConditionToStore(ConditionID);
     }
 
 }
