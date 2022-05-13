@@ -459,12 +459,12 @@ public class Market {
         if (admin == null)
             throw new IllegalArgumentException("No such admin in the system");
         User toDelete = membersByUserName.get(userName);
-        // removing all stores founded by the user
-        for(IStore store:admin.deleteUser(toDelete))
-            stores.remove(store.getName());
 
-            membersByUserName.remove(toDelete.getUserName());
-            return true;
+        // Check to see if user has any role
+        if(toDelete.isManager() || toDelete.isFounder() || toDelete.isOwner())
+            throw new IllegalArgumentException("Cant delete a user with a role");
+        membersByUserName.remove(toDelete.getUserName());
+        return true;
     }
 
     public List<String> receiveMessages(String userToken) {

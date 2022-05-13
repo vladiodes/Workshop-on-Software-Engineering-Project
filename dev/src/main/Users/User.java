@@ -613,4 +613,15 @@ public class User {
         store.getProduct(productName).counterOfferBid(user, offer, bus);
     }
 
+    public boolean isManager() {
+        return (!this.managedStores.isEmpty());
+    }
+
+    public boolean isFounder() {
+        return (!this.foundedStores.isEmpty());
+    }
+
+    public boolean isOwner() {
+        return (!this.ownedStores.isEmpty());
+    }
 }
