@@ -1,6 +1,7 @@
 package main.Users;
 
 
+import main.DTO.ShoppingCartDTO;
 import main.NotificationBus;
 import main.ExternalServices.Payment.IPayment;
 import main.Shopping.Purchase;
@@ -8,8 +9,6 @@ import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 
 import main.Stores.IStore;
-
-import main.Stores.Product;
 
 import main.Stores.Store;
 import main.ExternalServices.Supplying.ISupplying;
@@ -35,7 +34,7 @@ public class User {
     private AtomicBoolean isLoggedIn;
     private ConcurrentLinkedQueue<String> messages = new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
-    private List<ShoppingCart> purchaseHistory;
+    private List<ShoppingCartDTO> purchaseHistory;
 
 
     // stores connections
@@ -72,6 +71,7 @@ public class User {
         isLoggedIn = new AtomicBoolean(false);
         foundedStores = new LinkedList<>();
         cart = new ShoppingCart();
+        purchaseHistory =  new LinkedList<>();
     }
 
     /**
@@ -375,7 +375,7 @@ public class User {
         this.resetCart();
     }
 
-    public List<ShoppingCart> getPurchaseHistory() {
+    public List<ShoppingCartDTO> getPurchaseHistory() {
         return this.purchaseHistory;
     }
 
@@ -384,7 +384,8 @@ public class User {
     }
 
     public void addCartToHistory(ShoppingCart cart){
-        this.purchaseHistory.add(cart);
+        ShoppingCartDTO historyCart = new ShoppingCartDTO(cart, this);
+        this.purchaseHistory.add(historyCart);
     }
 
     public void setStoreFounder(IStore IStore) throws Exception
@@ -396,26 +397,25 @@ public class User {
         this.foundedStores.add(IStore);
     }
 
-    public Product findProductInHistoryByNameAndStore(String productName, String storeName) {
-        for(ShoppingCart sc : purchaseHistory)
+    public boolean isProductInHistoryByNameAndStore(String productName, String storeName) {
+        for(ShoppingCartDTO sc : purchaseHistory)
         {
-            if(sc.isProductInCart(productName, storeName)) // Only true if product is in the user's purchase history for that specific store
+            if(sc.isProductInHistory(productName, storeName))  // Only true if product is in the user's purchase history for that specific store
             {
-                return sc.getProduct(productName, storeName);
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
-    public IStore getStoreInPurchaseHistory(String storeName) {
-        for(ShoppingCart sc : purchaseHistory)
+    public boolean isStoreInHistory(String storeName)
+    {
+        for(ShoppingCartDTO sc : this.purchaseHistory)
         {
-            if(sc.isStoreInCart(storeName))
-            {
-                return sc.getStore(storeName);
-            }
+            if(sc.isStoreInHistory(storeName))
+                return true;
         }
-        return null;
+        return false;
     }
 
     public List<Pair<String, String>> receiveQuestionsFromStore(IStore store,NotificationBus bus) {

@@ -606,38 +606,39 @@ public class Market {
         User uToReturn = membersByUserName.get(userName);
         if(uToReturn == null)
             throw new IllegalArgumentException("User doesn't exist.");
-        List<ShoppingCart> purchaseHistory = u.getPurchaseHistory();
-        List<ShoppingCartDTO> scDTO = new LinkedList<>();
-        for(ShoppingCart sc : purchaseHistory)
-        {
-            scDTO.add(new ShoppingCartDTO(sc, u));
-        }
-        return scDTO;
+        return u.getPurchaseHistory();
     }
 
-    public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) throws Exception{
+    public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points){
         User u = getConnectedUserByToken(userToken);
-        Product prod = u.findProductInHistoryByNameAndStore(productName, storeName);
-        if(prod == null)
+        if(!u.isProductInHistoryByNameAndStore(productName, storeName))
             throw new IllegalArgumentException("Product was not found in user's purchase history");
+
+        Product prod = getProductByNameAndStore(productName, storeName);
         ProductReview pReview = new ProductReview(u, prod, reviewDescription, points);
         prod.addReview(pReview);
+    }
+
+    private Product getProductByNameAndStore(String productName, String storeName) {
+        if(!this.stores.containsKey(storeName))
+            throw new IllegalArgumentException("No such store in history");
+        IStore store = this.stores.get(storeName);
+        return store.getProduct(productName);
     }
 
     public void writeStoreReview(String userToken, String storeName, String reviewDescription, double points) throws Exception{
         User u = getConnectedUserByToken(userToken);
         if(!u.getIsLoggedIn())
             throw new IllegalArgumentException("Only members can write reviews.");
-        IStore store = u.getStoreInPurchaseHistory(storeName);
-        if(store==null)
-        {
+        if(!u.isStoreInHistory(storeName))
             throw new IllegalArgumentException("Store was not found in user's purchase history");
-        }
+
+        IStore store = stores.get(storeName);
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
     }
 
-    public void changePassword(String userToken, String oldPassword, String newPassword)throws Exception {
+    public void changePassword(String userToken, String oldPassword, String newPassword){
         User u = getConnectedUserByToken(userToken);
         if(!isValidPass(newPassword, u.getUserName()))
         {
@@ -674,7 +675,7 @@ public class Market {
         return !pass.isBlank() && pass.length() >= 6 && (!pass.contains(userName));
     }
 
-    public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
+    public void sendQuestionsToStore(String userToken, String storeName, String message){
         if(!stores.containsKey(storeName))
         {
             throw new IllegalArgumentException("No such store "+ storeName);
@@ -719,7 +720,7 @@ public class Market {
         throw new Exception("This is a bug : No admin was found in the system");
     }
 
-    public boolean isMemberLoggedOut(String userToken) throws Exception{
+    public boolean isMemberLoggedOut(String userToken){
         User u = getConnectedUserByToken(userToken);
         return !u.getIsLoggedIn();
 

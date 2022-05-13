@@ -25,4 +25,16 @@ public class ShoppingCartDTO {
     public double getTotalPrice() {
         return totalPrice;
     }
+
+    public boolean isProductInHistory(String productName, String storeName)
+    {
+        if(!this.baskets.containsKey(storeName))
+            return false;
+        return this.baskets.get(storeName).isProductInHistory(productName);
+    }
+    public boolean isStoreInHistory(String storeName)
+    {
+        return this.baskets.containsKey(storeName);
+    }
+
 }

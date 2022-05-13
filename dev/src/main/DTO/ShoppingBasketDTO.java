@@ -31,4 +31,8 @@ public class ShoppingBasketDTO {
     public double getTotalPrice() {
         return totalPrice;
     }
+
+    public boolean isProductInHistory(String productName) {
+        return productsQuantity.containsKey(productName);
+    }
 }
