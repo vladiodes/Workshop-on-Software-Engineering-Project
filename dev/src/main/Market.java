@@ -461,7 +461,7 @@ public class Market {
         User toDelete = membersByUserName.get(userName);
 
         // Check to see if user has any role
-        if(toDelete.isManager() || toDelete.isFounder() || toDelete.isOwner())
+        if(toDelete.isAdmin() || toDelete.isManager() || toDelete.isFounder() || toDelete.isOwner())
             throw new IllegalArgumentException("Cant delete a user with a role");
         membersByUserName.remove(toDelete.getUserName());
         return true;
