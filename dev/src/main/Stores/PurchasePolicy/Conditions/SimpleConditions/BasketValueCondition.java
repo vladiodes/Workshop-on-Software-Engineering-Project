@@ -12,6 +12,6 @@ public class BasketValueCondition extends SimpleCondition {
 
     @Override
     public boolean pass(ShoppingBasket shoppingBasket) {
-        return requiredAmount <= shoppingBasket.getPrice();
+        return requiredAmount <= shoppingBasket.getCleanPrice();
     }
 }

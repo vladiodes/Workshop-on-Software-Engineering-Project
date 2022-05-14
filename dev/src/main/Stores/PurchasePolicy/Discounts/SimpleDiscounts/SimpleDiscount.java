@@ -1,7 +1,6 @@
-package main.Stores.PurchasePolicy.Discounts;
+package main.Stores.PurchasePolicy.Discounts.SimpleDiscounts;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Discounts.Discount;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +19,7 @@ public class SimpleDiscount extends SingleDiscount {
     }
 
     @Override
-    protected Double getPercent(ShoppingBasket shoppingBasket) {
+    public Double getPercent(ShoppingBasket shoppingBasket) {
         return this.percent;
     }
 

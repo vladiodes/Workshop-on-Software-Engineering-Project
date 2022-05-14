@@ -1,4 +1,4 @@
-package main.Stores.PurchasePolicy.Discounts;
+package main.Stores.PurchasePolicy.Discounts.SimpleDiscounts;
 
 import main.Shopping.ShoppingBasket;
 import main.Stores.PurchasePolicy.Conditions.Condition;
@@ -13,7 +13,7 @@ public class ConditionalDiscount extends SingleDiscount{
     }
 
     @Override
-    protected Double getPercent(ShoppingBasket shoppingBasket) {
+    public Double getPercent(ShoppingBasket shoppingBasket) {
         if(isEligible(shoppingBasket))
             return  this.percent;
         else return 0.0;

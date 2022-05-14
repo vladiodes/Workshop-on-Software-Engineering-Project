@@ -21,7 +21,7 @@ public abstract class Discount {
 
     protected abstract Double CalculateDiscount(Double originalPrice, ShoppingBasket basket);
 
-    protected abstract Double getPercent(ShoppingBasket shoppingBasket);
+    public abstract Double getPercent(ShoppingBasket shoppingBasket);
 
     public LocalDate getUntil() {
         return until;

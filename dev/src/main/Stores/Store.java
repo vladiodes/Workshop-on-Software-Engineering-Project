@@ -14,6 +14,11 @@ import main.Stores.PurchasePolicy.Conditions.SimpleConditions.BasketValueConditi
 import main.Stores.PurchasePolicy.Conditions.SimpleConditions.CategoryAmountCondition;
 import main.Stores.PurchasePolicy.Conditions.SimpleConditions.ProductAmountCondition;
 import main.Stores.PurchasePolicy.Discounts.*;
+import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.MaximumCompositeDiscount;
+import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.PlusCompositeDiscount;
+import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.ConditionalDiscount;
+import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.SecretDiscount;
+import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.SimpleDiscount;
 import main.Stores.PurchasePolicy.ProductPolicy.AuctionPolicy;
 import main.Stores.PurchasePolicy.ProductPolicy.BargainingPolicy;
 import main.Stores.PurchasePolicy.ProductPolicy.normalPolicy;
@@ -290,6 +295,7 @@ public class Store implements IStore {
         int out = getID(ConditionsInStore);
         for(Integer condid : conditionIds)
             cond.addCondition(getConditionbyID(condid));
+        ConditionsInStore.put(out, cond);
         return out;
     }
 
@@ -299,6 +305,7 @@ public class Store implements IStore {
         int out = getID(ConditionsInStore);
         for(Integer condid : conditionIds)
             cond.addCondition(getConditionbyID(condid));
+        ConditionsInStore.put(out, cond);
         return out;
     }
 
@@ -308,6 +315,7 @@ public class Store implements IStore {
         int out = getID(ConditionsInStore);
         cond.addCondition(getConditionbyID(id1));
         cond.addCondition(getConditionbyID(id2));
+        ConditionsInStore.put(out, cond);
         return out;
     }
 

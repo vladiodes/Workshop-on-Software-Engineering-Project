@@ -1,6 +1,7 @@
-package main.Stores.PurchasePolicy.Discounts;
+package main.Stores.PurchasePolicy.Discounts.CompositeDiscounts;
 
 import main.Shopping.ShoppingBasket;
+import main.Stores.PurchasePolicy.Discounts.Discount;
 
 import java.time.LocalDate;
 
@@ -16,7 +17,7 @@ public class MaximumCompositeDiscount extends  CompositeDiscount{
     }
 
     @Override
-    protected Double getPercent(ShoppingBasket shoppingBasket) {
+    public Double getPercent(ShoppingBasket shoppingBasket) {
         Double percent = 0.0;
         for(Discount d : this.discounts) {
             double dpercent = d.getPercent(shoppingBasket);

@@ -142,6 +142,15 @@ public class ShoppingBasket {
         return res;
     }
 
+    public double getCleanPrice(){ // no discounts, used for calculating discount conditions relying on price.
+        double res = 0;
+        for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
+            if(!costumePrice.containsKey(en.getKey()))
+                res += en.getKey().getCleanPrice() * en.getValue();
+            else res += costumePrice.get(en.getKey()) * en.getValue();
+        return res;
+    }
+
     public Double getCostumePriceForProduct(Product product) {
         return this.costumePrice.get(product);
     }

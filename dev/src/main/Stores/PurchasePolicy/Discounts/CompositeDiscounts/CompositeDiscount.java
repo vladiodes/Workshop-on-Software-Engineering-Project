@@ -1,12 +1,13 @@
-package main.Stores.PurchasePolicy.Discounts;
+package main.Stores.PurchasePolicy.Discounts.CompositeDiscounts;
 
 import main.Shopping.ShoppingBasket;
+import main.Stores.PurchasePolicy.Discounts.Discount;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class CompositeDiscount extends  Discount{
+public abstract class CompositeDiscount extends Discount {
     protected List<Discount> discounts;
 
     public CompositeDiscount(LocalDate until) {

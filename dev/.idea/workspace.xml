@@ -23,51 +23,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositeCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalOrCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalXorCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/CategoryAmountCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/ProductAmountCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimpleCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/ConditionalDiscount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/MaximumCompositeDiscount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/PlusCompositeDiscount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SecretDiscount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SingleDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Discounts_Conditions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/DiscountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/DiscountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/DirectPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/DirectPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/TimedPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/ConditionalDiscount.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/DirectDiscount.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/SingleProductDiscounts/SecretDiscount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/CompositeDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/ConditionalDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/MaximumCompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/MaximumCompositeDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/PlusCompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/PlusCompositeDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SecretDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SecretDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SimpleDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SingleDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SingleDiscount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/DirectDiscountTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingBasketTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ShoppingCartTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,15 +82,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/TradingSystem-2&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/TradingSystem-2",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -156,7 +132,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.AT_Req2_4_Discounts_Conditions.PlusDiscountsCaseWhereNotAllDiscountsAllow">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -168,20 +144,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.Communication.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_4_Discounts_Conditions.CreatingPlusDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -190,14 +153,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Req2_5" />
-      <option name="METHOD_NAME" value="allowManagerAnswerAndTakeRequests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Discounts_Conditions" />
+      <option name="METHOD_NAME" value="CreatingPlusDiscount" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AT_Req2_4_Req2_5.appointStoreManager" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_4_Discounts_Conditions.CreatingPlusDiscountBadDiscountIDS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -206,14 +169,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Req2_5" />
-      <option name="METHOD_NAME" value="appointStoreManager" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Discounts_Conditions" />
+      <option name="METHOD_NAME" value="CreatingPlusDiscountBadDiscountIDS" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AT_Req2_6.receiveMessages" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_4_Discounts_Conditions.MaximumCompositeDiscountChoosesMaxCaseMaxDoesntApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -222,41 +185,59 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6" />
-      <option name="METHOD_NAME" value="receiveMessages" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Discounts_Conditions" />
+      <option name="METHOD_NAME" value="MaximumCompositeDiscountChoosesMaxCaseMaxDoesntApply" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_4_Discounts_Conditions.PlusDiscountsCaseWhereNotAllDiscountsAllow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Discounts_Conditions" />
+      <option name="METHOD_NAME" value="PlusDiscountsCaseWhereNotAllDiscountsAllow" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_4_Discounts_Conditions.PlusDiscountsWork" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Discounts_Conditions" />
+      <option name="METHOD_NAME" value="PlusDiscountsWork" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" />
-      <item itemvalue="JUnit.AT_Req2_4_Req2_5.appointStoreManager" />
-      <item itemvalue="JUnit.AT_Req2_6.receiveMessages" />
-      <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.CreatingPlusDiscount" />
+      <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.CreatingPlusDiscountBadDiscountIDS" />
+      <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.MaximumCompositeDiscountChoosesMaxCaseMaxDoesntApply" />
+      <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.PlusDiscountsCaseWhereNotAllDiscountsAllow" />
+      <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.PlusDiscountsWork" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.AT_Req2_4_Req2_5.appointStoreManager" />
-        <item itemvalue="JUnit.AT_Req2_4_Req2_5.allowManagerAnswerAndTakeRequests" />
-        <item itemvalue="JUnit.AT_Req2_6.receiveMessages" />
+        <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.PlusDiscountsCaseWhereNotAllDiscountsAllow" />
+        <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.PlusDiscountsWork" />
+        <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.CreatingPlusDiscountBadDiscountIDS" />
+        <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.CreatingPlusDiscount" />
+        <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.MaximumCompositeDiscountChoosesMaxCaseMaxDoesntApply" />
       </list>
     </recent_temporary>
   </component>
@@ -266,7 +247,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Deleted NotificationBus, added publisher component for each user, which implements the observer pattern." />
+      <changelist id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="" />
       <created>1649831427176</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -623,11 +604,6 @@
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
           <line>510</line>
           <option name="timeStamp" value="28" />
@@ -637,11 +613,17 @@
           <line>82</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo />
+        <PinnedItemInfo parentTag="main.Stores.Store" memberName="ConditionsInStore" />
         <PinnedItemInfo parentTag="main.Market" memberName="stores" />
         <PinnedItemInfo parentTag="main.Users.User" memberName="purchaseHistory" />
       </pinned-members>

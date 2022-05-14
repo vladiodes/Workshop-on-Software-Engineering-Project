@@ -60,40 +60,40 @@ public class ProductController {
         return Double.valueOf(Objects.requireNonNull(ctx.formParam(param)));
     }
 
-    public Handler handleAddDirectDiscount = ctx ->{
-        Map<String, Object> model = ViewUtil.baseModel(ctx);
-        String[] exp_date_params = Objects.requireNonNull(ctx.formParam("expDate")).split("-");
-        Response <Boolean> response = service.addDirectDiscount(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
-                LocalDate.of(Integer.parseInt(exp_date_params[0]), Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
-                Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))));
-        if(response.isError_occured()){
-            model.put("fail",true);
-            model.put("response",response.getError_message());
-        }
-        else {
-            model.put("success",true);
-            model.put("response","Successfully added direct discount");
-        }
-        ctx.render(Path.Template.ADD_DIRECT_DISCOUNT, model);
-    };
+//    public Handler handleAddDirectDiscount = ctx ->{ //TODO fix
+//        Map<String, Object> model = ViewUtil.baseModel(ctx);
+//        String[] exp_date_params = Objects.requireNonNull(ctx.formParam("expDate")).split("-");
+//        Response <Boolean> response = service.addDirectDiscount(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
+//                LocalDate.of(Integer.parseInt(exp_date_params[0]), Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
+//                Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))));
+//        if(response.isError_occured()){
+//            model.put("fail",true);
+//            model.put("response",response.getError_message());
+//        }
+//        else {
+//            model.put("success",true);
+//            model.put("response","Successfully added direct discount");
+//        }
+//        ctx.render(Path.Template.ADD_DIRECT_DISCOUNT, model);
+//    };
 
-    public Handler handleAddSecretDiscount = ctx ->{
-        Map<String, Object> model = ViewUtil.baseModel(ctx);
-        String[] exp_date_params = Objects.requireNonNull(ctx.formParam("expDate")).split("-");
-        Response <Boolean> response = service.addSecretDiscount(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
-                LocalDate.of(Integer.parseInt(exp_date_params[0]), Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
-                Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))),
-                ctx.formParam("secretCode"));
-        if(response.isError_occured()){
-            model.put("fail",true);
-            model.put("response",response.getError_message());
-        }
-        else {
-            model.put("success",true);
-            model.put("response","Successfully added direct discount");
-        }
-        ctx.render(Path.Template.ADD_SECRET_DISCOUNT, model);
-    };
+//    public Handler handleAddSecretDiscount = ctx ->{//TODO fix
+//        Map<String, Object> model = ViewUtil.baseModel(ctx);
+//        String[] exp_date_params = Objects.requireNonNull(ctx.formParam("expDate")).split("-");
+//        Response <Boolean> response = service.addSecretDiscount(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
+//                LocalDate.of(Integer.parseInt(exp_date_params[0]), Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
+//                Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))),
+//                ctx.formParam("secretCode"));
+//        if(response.isError_occured()){
+//            model.put("fail",true);
+//            model.put("response",response.getError_message());
+//        }
+//        else {
+//            model.put("success",true);
+//            model.put("response","Successfully added direct discount");
+//        }
+//        ctx.render(Path.Template.ADD_SECRET_DISCOUNT, model);
+//    };
 //    public Handler handleAddCondDiscount = ctx->{ //TODO fix
 //        Map<String, Object> model = ViewUtil.baseModel(ctx);
 //

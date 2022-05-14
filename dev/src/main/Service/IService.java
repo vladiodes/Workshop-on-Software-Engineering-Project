@@ -196,9 +196,23 @@ public interface IService {
     /***
      * REQ 2.4.2 - adding discounts to products
      */
-    Response<Boolean> addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent);
-    Response<Boolean> addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode);
-    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<String, Integer> restrictions, double percent);
+    Response<Integer> CreateSimpleDiscount(String userToken, String store, LocalDate until, Double percent);
+    Response<Integer> CreateSecretDiscount(String userToken, String store, LocalDate until, Double percent, String secretCode);
+    Response<Integer> CreateConditionalDiscount(String userToken, String store, LocalDate until, Double percent, int condID);
+    Response<Integer> CreateMaximumCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts);
+    Response<Integer> CreatePlusCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts);
+
+    Response<Boolean> SetDiscountToProduct(String userToken, String store, int discountID, String productName);
+    Response<Boolean>SetDiscountToStore(String userToken, String store, int discountID);
+    Response<Integer> CreateBasketValueCondition(String userToken, String store, double requiredValue);
+    Response<Integer> CreateCategoryAmountCondition(String userToken, String store, String category, int amount);
+    Response<Integer> CreateProductAmountCondition(String userToken, String store, String productName, int amount);
+    Response<Integer> CreateLogicalAndCondition(String userToken, String store, List<Integer> conditionIds);
+    Response<Integer> CreateLogicalOrCondition(String userToken, String store, List<Integer> conditionIds);
+    Response<Integer> CreateLogicalXorCondition(String userToken, String store, int id1, int id2);
+    Response<Boolean> SetConditionToDiscount(String userToken, String store, int discountId, int ConditionID);
+
+    Response<Boolean> SetConditionToStore(String userToken, String store, int ConditionID);
     Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password);
 
     /***

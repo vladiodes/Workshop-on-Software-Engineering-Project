@@ -1,10 +1,11 @@
-package main.Stores.PurchasePolicy.Discounts;
+package main.Stores.PurchasePolicy.Discounts.SimpleDiscounts;
 
 import main.Shopping.ShoppingBasket;
+import main.Stores.PurchasePolicy.Discounts.Discount;
 
 import java.time.LocalDate;
 
-public abstract class SingleDiscount extends Discount{
+public abstract class SingleDiscount extends Discount {
     protected Double percent;
     public SingleDiscount(LocalDate until, Double percent) {
         super(until);
