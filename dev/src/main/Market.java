@@ -813,4 +813,19 @@ public class Market {
         getConnectedUserByToken(userToken).SetConditionToStore(getDomainStoreByName(store), ConditionID);
     }
 
+    public void setMembersByUserName(ConcurrentHashMap<String, User> membersByUserName) {
+        this.membersByUserName = membersByUserName;
+    }
+
+    public void setConnectedSessions(ConcurrentHashMap<String, User> connectedSessions) {
+        this.connectedSessions = connectedSessions;
+    }
+
+    public void setStores(ConcurrentHashMap<String, IStore> stores) {
+        this.stores = stores;
+    }
+
+    public void setSecurity_controller(ISecurity security_controller) {
+        this.security_controller = security_controller;
+    }
 }

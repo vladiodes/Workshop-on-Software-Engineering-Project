@@ -533,10 +533,10 @@ public class User implements Observable {
         this.hashed_password = newPassHashed;
     }
 
-    public void changeUsername(String newUsername) throws Exception{
+    public void changeUsername(String newUsername){
         if(newUsername.isBlank())
         {
-            throw new Exception("Username cant be blank");
+            throw new IllegalArgumentException("Username cant be blank");
         }
         this.userName = newUsername;
 
