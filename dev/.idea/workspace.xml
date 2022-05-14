@@ -22,20 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added option to enter secret code for basket in cart">
-      <change afterPath="$PROJECT_DIR$/src/resources/keystore.jks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/keystore/localhost.p12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/ca.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/ca.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/ca.srl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/cert.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/keystore.jks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/localhost.crt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/localhost.csr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/localhost.ext" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/localhost.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssl/localhost.p12" beforeDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleted some files regarding HTTPS">
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652214498492</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Deleted some files regarding HTTPS">
+      <created>1652520345439</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1652520345439</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,7 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Req 2.6.2 implemented" />
     <MESSAGE value="Req 2.6.3 implemented" />
     <MESSAGE value="Changed service signatures to return responses" />
     <MESSAGE value="getter in response" />
@@ -584,7 +578,8 @@
     <MESSAGE value="Added purchase policies for products in GUI" />
     <MESSAGE value="Added discounts functionality to gui" />
     <MESSAGE value="Added option to enter secret code for basket in cart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added option to enter secret code for basket in cart" />
+    <MESSAGE value="Deleted some files regarding HTTPS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted some files regarding HTTPS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

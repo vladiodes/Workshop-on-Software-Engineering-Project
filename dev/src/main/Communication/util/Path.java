@@ -2,11 +2,6 @@ package main.Communication.util;
 
 public class Path {
 
-    public static class Web {
-        public static final String LOGIN = "/login";
-       // public static final String ONE_BOOK = "/books/{isbn}";
-    }
-
     public static class Template {
         public static final String LOGIN = "/velocity/login/login.vm";
         public static final String LOGOUT = "/velocity/login/logout.vm";
