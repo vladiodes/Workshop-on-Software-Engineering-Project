@@ -122,7 +122,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MarketTest">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -165,22 +165,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketTest.GuestCantchangePassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
-      <option name="METHOD_NAME" value="GuestCantchangePassword" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MarketTest.changeUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -213,20 +197,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.MarketTest" />
       <item itemvalue="JUnit.MarketTest.GuestCantChangeUserName" />
-      <item itemvalue="JUnit.MarketTest.GuestCantchangePassword" />
       <item itemvalue="JUnit.MarketTest.changeUsername" />
       <item itemvalue="JUnit.MarketTest.changeUsernameBadUserName" />
+      <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.MarketTest" />
         <item itemvalue="JUnit.MarketTest.GuestCantChangeUserName" />
         <item itemvalue="JUnit.MarketTest.changeUsernameBadUserName" />
         <item itemvalue="JUnit.MarketTest.changeUsername" />
-        <item itemvalue="JUnit.MarketTest.GuestCantchangePassword" />
       </list>
     </recent_temporary>
   </component>
