@@ -22,10 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/MarketTest.java" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleted unused class">
+      <change afterPath="$PROJECT_DIR$/src/main/Publisher/WebSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/NotificationTests/PublisherTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Publisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,8 +40,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -122,7 +125,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
+  <component name="RunManager" selected="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -134,97 +137,99 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PublisherTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.NotificationTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketTest.GuestCantChangeUserName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PublisherTests.checkingSuspendedNotificationsNotSent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.NotificationTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
-      <option name="METHOD_NAME" value="GuestCantChangeUserName" />
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
+      <option name="METHOD_NAME" value="checkingSuspendedNotificationsNotSent" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketTest.changeUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PublisherTests.notSendingNotificationsWhenNotLoggedIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.NotificationTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
-      <option name="METHOD_NAME" value="changeUsername" />
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
+      <option name="METHOD_NAME" value="notSendingNotificationsWhenNotLoggedIn" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketTest.changeUsernameBadUserName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PublisherTests.sendingLotsOfNotificationsConcurrently" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.NotificationTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
-      <option name="METHOD_NAME" value="changeUsernameBadUserName" />
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
+      <option name="METHOD_NAME" value="sendingLotsOfNotificationsConcurrently" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PublisherTests.whenLoggedInSendingAllNotifications" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.NotificationTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
+      <option name="METHOD_NAME" value="whenLoggedInSendingAllNotifications" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.MarketTest" />
-      <item itemvalue="JUnit.MarketTest.GuestCantChangeUserName" />
-      <item itemvalue="JUnit.MarketTest.changeUsername" />
-      <item itemvalue="JUnit.MarketTest.changeUsernameBadUserName" />
-      <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.PublisherTests" />
+      <item itemvalue="JUnit.PublisherTests.checkingSuspendedNotificationsNotSent" />
+      <item itemvalue="JUnit.PublisherTests.notSendingNotificationsWhenNotLoggedIn" />
+      <item itemvalue="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently" />
+      <item itemvalue="JUnit.PublisherTests.whenLoggedInSendingAllNotifications" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.MarketTest" />
-        <item itemvalue="JUnit.MarketTest.GuestCantChangeUserName" />
-        <item itemvalue="JUnit.MarketTest.changeUsernameBadUserName" />
-        <item itemvalue="JUnit.MarketTest.changeUsername" />
+        <item itemvalue="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently" />
+        <item itemvalue="JUnit.PublisherTests" />
+        <item itemvalue="JUnit.PublisherTests.checkingSuspendedNotificationsNotSent" />
+        <item itemvalue="JUnit.PublisherTests.whenLoggedInSendingAllNotifications" />
+        <item itemvalue="JUnit.PublisherTests.notSendingNotificationsWhenNotLoggedIn" />
       </list>
     </recent_temporary>
   </component>
@@ -244,6 +249,7 @@
       <workItem from="1652270450456" duration="845000" />
       <workItem from="1652379905686" duration="390000" />
       <workItem from="1652425121753" duration="639000" />
+      <workItem from="1652544225913" duration="3188000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>

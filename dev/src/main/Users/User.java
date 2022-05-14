@@ -73,7 +73,7 @@ public class User implements Observable {
         isLoggedIn = new AtomicBoolean(false);
         foundedStores = new LinkedList<>();
         cart = new ShoppingCart(this);
-        registerObserver(new Publisher());
+        registerObserver(new Publisher(this));
     }
 
     /**
@@ -91,7 +91,7 @@ public class User implements Observable {
         messages=new ConcurrentLinkedQueue<>();
 		securityQNA = new LinkedList<>();
         purchaseHistory = new LinkedList<>();
-        registerObserver(new Publisher());
+        registerObserver(new Publisher(this));
     }
 
     public ShoppingCart getCart() {
@@ -373,7 +373,6 @@ public class User implements Observable {
 
     public void logout() {
         this.isLoggedIn.set(false);
-        observer.setWebSocket(null);
     }
 
     public void purchaseCart(PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{

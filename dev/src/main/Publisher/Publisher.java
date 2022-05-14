@@ -1,6 +1,6 @@
 package main.Publisher;
 
-import io.javalin.websocket.WsContext;
+import main.Users.User;
 
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -8,28 +8,32 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Publisher implements Observer {
     private ConcurrentLinkedQueue<Notification> allNotifications;
     private ConcurrentLinkedQueue<Notification> notPublishedYetNotifications;
-    private WsContext webSocket=null;
+    private WebSocket webSocket = null;
 
-    public Publisher(){
-        allNotifications=new ConcurrentLinkedQueue<>();
-        notPublishedYetNotifications=new ConcurrentLinkedQueue<>();
+    private User observableUser;
+
+    public Publisher(User observableUser) {
+        allNotifications = new ConcurrentLinkedQueue<>();
+        notPublishedYetNotifications = new ConcurrentLinkedQueue<>();
+        this.observableUser=observableUser;
     }
 
     @Override
-    public void setWebSocket(WsContext webSocket) {
+    public void setWebSocket(WebSocket webSocket) {
         this.webSocket = webSocket;
         publishNotifications();
     }
 
     @Override
-    public void update(Notification newNotification){
+    public void update(Notification newNotification) {
         notPublishedYetNotifications.add(newNotification);
         allNotifications.add(newNotification);
-        publishNotifications();
+        if(observableUser.getIsLoggedIn())
+            publishNotifications();
     }
 
     @Override
-    public void update(){
+    public void update() {
         publishNotifications();
     }
 
@@ -39,10 +43,10 @@ public class Publisher implements Observer {
     }
 
     private void publishNotifications() {
-        if(webSocket!=null){
-            while (!notPublishedYetNotifications.isEmpty()){
+        if (webSocket != null) {
+            while (!notPublishedYetNotifications.isEmpty()) {
                 Notification notification = notPublishedYetNotifications.poll();
-                webSocket.send(notification.print());
+                webSocket.send(notification);
             }
         }
     }

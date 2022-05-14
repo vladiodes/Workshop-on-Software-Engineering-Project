@@ -5,6 +5,7 @@ import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
+import main.Publisher.WebSocket;
 import main.Stores.*;
 
 import main.ExternalServices.Payment.IPayment;
@@ -83,7 +84,7 @@ public class Market {
         User u = getConnectedUserByToken(userToken);
         if(!membersByUserName.containsKey(u.getUserName()))
             throw new IllegalArgumentException("This is a guest, it doesn't get any notifications");
-        u.getObserver().setWebSocket(ctx);
+        u.getObserver().setWebSocket(new WebSocket(ctx));
         return true;
     }
 
