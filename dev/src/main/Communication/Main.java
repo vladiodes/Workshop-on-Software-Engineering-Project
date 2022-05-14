@@ -153,8 +153,7 @@ public class Main {
 
     private static SslContextFactory getSslContextFactory() {
         SslContextFactory sslContextFactory = new SslContextFactory();
-        sslContextFactory.setKeyStoreType("PKCS12");
-        sslContextFactory.setKeyStorePath(Main.class.getResource("/keystore/localhost.p12").toExternalForm());
+        sslContextFactory.setKeyStorePath(Main.class.getResource("/keystore.jks").toExternalForm());
         sslContextFactory.setKeyStorePassword("password");
         return sslContextFactory;
     }
