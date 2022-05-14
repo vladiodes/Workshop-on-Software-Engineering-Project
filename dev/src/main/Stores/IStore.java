@@ -67,16 +67,6 @@ public interface IStore {
 
     void notifyBargainingStaff(Bid newbid);
 
-
-    /***
-     * @param productName name of product add discount to.
-     * @param until discount is active until that date.
-     * @param percent 0.3 (for instance) means 30% off.
-     */
-    void addDirectDiscount(String productName, LocalDate until, Double percent);
-    void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode);
-    void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions);
-
     void addRafflePolicy(String productName, Double price);
     void addAuctionPolicy(String productName, Double price, LocalDate until);
 
@@ -91,4 +81,48 @@ public interface IStore {
     List<String> getStoreMessages();
 
     void addQuestionToStore(String userName, String message);
+
+    /***
+     * @param until discounts can last until a certain date or LocalDate.MAX (forever)
+     * @param percent 0.3 -> 30% off
+     * @return id of the discount.
+     */
+    int CreateSimpleDiscount(LocalDate until, Double percent);
+    int CreateSecretDiscount(LocalDate until, Double percent, String secretCode);
+    int CreateConditionalDiscount(LocalDate until, Double percent, int condID);
+    int CreateMaximumCompositeDiscount(LocalDate until, List<Integer> discounts);
+    int CreatePlusCompositeDiscount(LocalDate until, List<Integer> discounts);
+    /***
+     *
+     * @param -1 to remove.
+     */
+    void SetDiscountToProduct(int discountID, String productName);
+    /***
+     *
+     * @param -1 to remove.
+     */
+    void SetDiscountToStore(int discountID);
+
+    /***
+     * @return condition's ID.
+     */
+    int CreateBasketValueCondition(double requiredValue);
+    int CreateCategoryAmountCondition(String category, int amount);
+    int CreateProductAmountCondition(String productName, int amount);
+    int CreateLogicalAndCondition(List<Integer> conditionIds);
+    int CreateLogicalOrCondition(List<Integer> conditionIds);
+    int CreateLogicalXorCondition(int id1, int id2);
+    void SetConditionToDiscount(int discountId, int ConditionID);
+
+    /***
+     *
+     * @param -1 to remove.
+     */
+    void SetConditionToStore(int ConditionID);
+
+
+    double getPriceForProduct(Product product, User user);
+
+    boolean ValidateBasket(User user, ShoppingBasket shoppingBasket);
+
 }

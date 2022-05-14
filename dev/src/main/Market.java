@@ -737,18 +737,6 @@ public class Market {
 
     }
 
-    public void addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent) throws Exception {
-        getConnectedUserByToken(userToken).addDirectDiscount(stores.get(storeName),productName,until,percent);
-    }
-
-    public void addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode) throws Exception {
-        getConnectedUserByToken(userToken).addSecretDiscount(stores.get(storeName),productName,until,percent, secretCode);
-    }
-
-    public void addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions) throws Exception {
-        getConnectedUserByToken(userToken).addConditionalDiscount(stores.get(storeName),productName,until,Restriction.getRestrictions(restrictions, stores.get(storeName)));
-    }
-
     public void addDiscountPasswordToBasket(String userToken, String storeName, String Password) throws  Exception {
         getConnectedUserByToken(userToken).addDiscountPasswordToBasket(storeName, Password);
     }
@@ -774,6 +762,55 @@ public class Market {
     public void CounterOfferBid(String userToken, String storeName, String productName, String username, Double offer) throws Exception {
         User user = membersByUserName.get(username);
         getConnectedUserByToken(userToken).CounterOfferBid(getDomainStoreByName(storeName), productName, user, offer);
+    }
+
+    public int CreateSimpleDiscount(String userToken, String store, LocalDate until, Double percent){
+        return getConnectedUserByToken(userToken).CreateSimpleDiscount(getDomainStoreByName(store), until, percent);
+    }
+    public int CreateSecretDiscount(String userToken, String store, LocalDate until, Double percent, String secretCode){
+        return getConnectedUserByToken(userToken).CreateSecretDiscount(getDomainStoreByName(store), until, percent, secretCode);
+    }
+    public int CreateConditionalDiscount(String userToken, String store, LocalDate until, Double percent, int condID){
+        return getConnectedUserByToken(userToken).CreateConditionalDiscount(getDomainStoreByName(store), until, percent, condID);
+    }
+    public int CreateMaximumCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts){
+        return getConnectedUserByToken(userToken).CreateMaximumCompositeDiscount(getDomainStoreByName(store), until, discounts);
+    }
+    public int CreatePlusCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts){
+        return getConnectedUserByToken(userToken).CreatePlusCompositeDiscount(getDomainStoreByName(store), until, discounts);
+    }
+
+    public void SetDiscountToProduct(String userToken, String store, int discountID, String productName){
+        getConnectedUserByToken(userToken).SetDiscountToProduct(getDomainStoreByName(store), discountID, productName);
+    }
+    public void SetDiscountToStore(String userToken, String store, int discountID){
+        getConnectedUserByToken(userToken).SetDiscountToStore(getDomainStoreByName(store), discountID);
+    }
+
+    public int CreateBasketValueCondition(String userToken, String store, double requiredValue){
+        return getConnectedUserByToken(userToken).CreateBasketValueCondition(getDomainStoreByName(store), requiredValue);
+    }
+    public int CreateCategoryAmountCondition(String userToken, String store, String category, int amount){
+        return getConnectedUserByToken(userToken).CreateCategoryAmountCondition(getDomainStoreByName(store), category, amount);
+    }
+    public int CreateProductAmountCondition(String userToken, String store, String productName, int amount){
+        return getConnectedUserByToken(userToken).CreateProductAmountCondition(getDomainStoreByName(store), productName, amount);
+    }
+    public int CreateLogicalAndCondition(String userToken, String store, List<Integer> conditionIds){
+        return getConnectedUserByToken(userToken).CreateLogicalAndCondition(getDomainStoreByName(store), conditionIds);
+    }
+    public int CreateLogicalOrCondition(String userToken, String store, List<Integer> conditionIds){
+        return getConnectedUserByToken(userToken).CreateLogicalOrCondition(getDomainStoreByName(store), conditionIds);
+    }
+    public int CreateLogicalXorCondition(String userToken, String store, int id1, int id2){
+        return getConnectedUserByToken(userToken).CreateLogicalXorCondition(getDomainStoreByName(store), id1, id2);
+    }
+    public void SetConditionToDiscount(String userToken, String store, int discountId, int ConditionID){
+        getConnectedUserByToken(userToken).SetConditionToDiscount(getDomainStoreByName(store), discountId, ConditionID);
+    }
+
+    public void SetConditionToStore(String userToken, String store, int ConditionID){
+        getConnectedUserByToken(userToken).SetConditionToStore(getDomainStoreByName(store), ConditionID);
     }
 
 }

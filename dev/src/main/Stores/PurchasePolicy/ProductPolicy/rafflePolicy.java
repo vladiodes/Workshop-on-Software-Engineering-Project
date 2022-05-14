@@ -1,9 +1,9 @@
-package main.Stores.PurchasePolicy;
+package main.Stores.PurchasePolicy.ProductPolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Publisher.PersonalNotification;
-import main.Stores.Discounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;

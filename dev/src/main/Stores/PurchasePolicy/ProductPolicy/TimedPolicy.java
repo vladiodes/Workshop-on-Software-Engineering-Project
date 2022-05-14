@@ -1,10 +1,10 @@
-package main.Stores.PurchasePolicy;
+package main.Stores.PurchasePolicy.ProductPolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingCart;
-import main.Stores.Discounts.Discount;
+import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
@@ -27,7 +27,7 @@ public abstract  class TimedPolicy implements Policy{
     }
 
     protected void purchaseBid(IStore store, Bid bid) throws Exception {
-        ShoppingCart tempCart = new ShoppingCart();
+        ShoppingCart tempCart = new ShoppingCart(bid.getUser());
         tempCart.addProductToCart(store, bid.getProduct().getName(), 1); //purchased 1 at a time.
         Purchase temp = new Purchase(bid, tempCart);
         temp.executePurchase();

@@ -1,8 +1,8 @@
-package main.Stores.PurchasePolicy;
+package main.Stores.PurchasePolicy.ProductPolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.Stores.Discounts.Discount;
+import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Stores.Product;
 import main.Users.User;
 import main.utils.PaymentInformation;

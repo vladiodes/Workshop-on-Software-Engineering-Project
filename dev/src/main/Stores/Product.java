@@ -3,9 +3,9 @@ package main.Stores;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.Stores.Discounts.Discount;
-import main.Stores.PurchasePolicy.Policy;
-import main.Stores.PurchasePolicy.normalPolicy;
+import main.Stores.PurchasePolicy.Discounts.Discount;
+import main.Stores.PurchasePolicy.ProductPolicy.Policy;
+import main.Stores.PurchasePolicy.ProductPolicy.normalPolicy;
 import main.Users.User;
 import main.utils.Bid;
 import main.utils.PaymentInformation;
