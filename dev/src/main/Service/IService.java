@@ -4,9 +4,6 @@ package main.Service;
 
 import io.javalin.websocket.WsContext;
 import main.DTO.*;
-import main.ExternalServices.Payment.IPayment;
-import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
 import main.utils.*;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -14,7 +11,6 @@ import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -200,9 +196,23 @@ public interface IService {
     /***
      * REQ 2.4.2 - adding discounts to products
      */
-    Response<Boolean> addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent);
-    Response<Boolean> addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode);
-    Response<Boolean> addConditionalDiscount(String userToken, String storeName,String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions);
+    Response<Integer> CreateSimpleDiscount(String userToken, String store, LocalDate until, Double percent);
+    Response<Integer> CreateSecretDiscount(String userToken, String store, LocalDate until, Double percent, String secretCode);
+    Response<Integer> CreateConditionalDiscount(String userToken, String store, LocalDate until, Double percent, int condID);
+    Response<Integer> CreateMaximumCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts);
+    Response<Integer> CreatePlusCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts);
+
+    Response<Boolean> SetDiscountToProduct(String userToken, String store, int discountID, String productName);
+    Response<Boolean>SetDiscountToStore(String userToken, String store, int discountID);
+    Response<Integer> CreateBasketValueCondition(String userToken, String store, double requiredValue);
+    Response<Integer> CreateCategoryAmountCondition(String userToken, String store, String category, int amount);
+    Response<Integer> CreateProductAmountCondition(String userToken, String store, String productName, int amount);
+    Response<Integer> CreateLogicalAndCondition(String userToken, String store, List<Integer> conditionIds);
+    Response<Integer> CreateLogicalOrCondition(String userToken, String store, List<Integer> conditionIds);
+    Response<Integer> CreateLogicalXorCondition(String userToken, String store, int id1, int id2);
+    Response<Boolean> SetConditionToDiscount(String userToken, String store, int discountId, int ConditionID);
+
+    Response<Boolean> SetConditionToStore(String userToken, String store, int ConditionID);
     Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password);
 
     /***
@@ -325,9 +335,10 @@ public interface IService {
 
     /**
      * REQ 2.4.12
+     *
      * @return a collection of all the questions from all the buyers
      */
-    Response<List<Pair<String,String>>> receiveQuestionsFromBuyers(String userToken, String storeName);
+    Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName);
 
     /**
      * REQ 2.4.12

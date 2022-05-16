@@ -15,7 +15,7 @@ public class ShoppingCartDTO {
         for (Map.Entry<String, ShoppingBasket> kv : cart.getBasketInfo().entrySet()){
             baskets.put(kv.getKey(), new ShoppingBasketDTO(kv.getValue(), user));
         }
-        totalPrice=cart.getPrice(user);
+        totalPrice=cart.getPrice();
     }
 
     public HashMap<String, ShoppingBasketDTO> getBaskets() {
@@ -26,6 +26,7 @@ public class ShoppingCartDTO {
         return totalPrice;
     }
 
+
     public boolean isProductInHistory(String productName, String storeName)
     {
         if(!this.baskets.containsKey(storeName))
@@ -35,6 +36,19 @@ public class ShoppingCartDTO {
     public boolean isStoreInHistory(String storeName)
     {
         return this.baskets.containsKey(storeName);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for(String basket: baskets.keySet()){
+            builder.append("From store " + basket + ":");
+            for(ProductDTO p : baskets.get(basket).getProductsQuantity().keySet()){
+                builder.append("Bought " + p.getProductName() + " X" + String.valueOf(baskets.get(basket).getProductsQuantity().get(p)));
+            }
+        }
+        return builder.toString();
     }
 
 }

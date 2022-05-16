@@ -7,10 +7,6 @@ import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
-import main.NotificationBus;
-import main.Shopping.ShoppingBasket;
-import main.Stores.IStore;
-import main.Stores.Product;
 import main.Users.User;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -34,8 +30,7 @@ public class Service implements IService {
 
 
     public Service(IPayment Psystem, ISupplying Isystem){
-        market=new Market();
-        market.initialize(Psystem, Isystem);
+        market=new Market(Psystem, Isystem);
 
     }
 
@@ -50,8 +45,8 @@ public class Service implements IService {
     public Response<UserDTO> guestDisconnect(String userToken) {
         try {
             Logger.getInstance().logEvent("Service",String.format("Attempting to disconnect a guest, userToken:%s" ,userToken));
-            User r = market.DisconnectGuest(userToken);
-            return new Response<>(new UserDTO(r), null);
+            UserDTO r = market.DisconnectGuest(userToken);
+            return new Response<>(r, null);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - guestDisconnect", e.getMessage());
             return new Response<>(e, false);
@@ -79,7 +74,8 @@ public class Service implements IService {
     public Response<UserDTO> login(String token, String userName, String password) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get login, userName:%s", userName));
         try {
-            return new Response<>(new UserDTO(market.Login(token, userName, password)));
+            UserDTO u = market.Login(token, userName, password);
+            return new Response<>(u);
         }
         catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to login, userToken:%s, Error:%s" ,token, e.getMessage()));
@@ -114,7 +110,8 @@ public class Service implements IService {
     public Response<StoreDTO> getStoreInfo(String storeName) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get store info, storeName:%s" ,storeName));
         try {
-            return new Response<>(new StoreDTO(market.getStoreByName(storeName)));
+            StoreDTO s = market.getStoreByName(storeName);
+            return new Response<>(s);
         }
         catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to get store info, storeName:%s, Error:%s" ,storeName, e.getMessage()));
@@ -145,9 +142,7 @@ public class Service implements IService {
     public Response<List<ProductDTO>> getStoreProducts(String storeName) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get store products, storeName:%s" ,storeName));
         try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getStoreProducts(storeName))
-                res.add(new ProductDTO(p));
+            List<ProductDTO> res = market.getStoreProducts(storeName);
             return new Response<>(res);
         }
         catch (IllegalArgumentException e) {
@@ -164,9 +159,7 @@ public class Service implements IService {
     public Response<List<ProductDTO>> getProductsByInfo(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get product by info, productName:%s, category:%s, keyWord:%s, productRating:%.2f, storeRating:%.2f, minPrice:%.2f, maxPrice:%.2f" ,productName,category, keyWord,productRating,storeRating, minPrice, maxPrice));
         try {
-            List<ProductDTO> res = new LinkedList<>();
-            for (Product p : market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice))
-                res.add(new ProductDTO(p));
+            List<ProductDTO> res = market.getProductsByAttributes(productName, category, keyWord, productRating, storeRating, minPrice, maxPrice);
             return new Response<>(res);
         }
         catch (IllegalArgumentException e) {
@@ -445,40 +438,185 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> addDirectDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent) {
+    public Response<Integer> CreateSimpleDiscount(String userToken, String store, LocalDate until, Double percent) {
         try {
-            market.addDirectDiscount(userToken, storeName, productName, until, percent);
-            return new Response<>(true);
+            return new Response<>(market.CreateSimpleDiscount(userToken, store, until, percent));
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in add discount");
+            Logger.getInstance().logBug("Service - CreateSimpleDiscount", "Bug in update product");
             return new Response<>(e, false);
         }
     }
 
     @Override
-    public Response<Boolean> addSecretDiscount(String userToken, String storeName, String productName, LocalDate until, Double percent, String secretCode) {
+    public Response<Integer> CreateSecretDiscount(String userToken, String store, LocalDate until, Double percent, String secretCode) {
         try {
-            market.addSecretDiscount(userToken, storeName, productName, until, percent, secretCode);
-            return new Response<>(true);
+            return new Response<>(market.CreateSecretDiscount(userToken, store, until, percent, secretCode));
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in add discount");
+            Logger.getInstance().logBug("Service - CreateSecretDiscount", e.getMessage());
             return new Response<>(e, false);
         }
     }
 
     @Override
-    public Response<Boolean> addConditionalDiscount(String userToken, String storeName, String productName, LocalDate until, HashMap<HashMap<String, Integer>, Double> restrictions) {
+    public Response<Integer> CreateConditionalDiscount(String userToken, String store, LocalDate until, Double percent, int condID) {
         try {
-            market.addConditionalDiscount(userToken, storeName, productName, until, restrictions);
+            return new Response<>(market.CreateConditionalDiscount(userToken, store, until, percent, condID));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateConditionalDiscount", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreateMaximumCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts) {
+        try {
+            return new Response<>(market.CreateMaximumCompositeDiscount(userToken, store, until, discounts));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateMaximumCompositeDiscount", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreatePlusCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts) {
+        try {
+            return new Response<>(market.CreatePlusCompositeDiscount(userToken, store, until, discounts));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreatePlusCompositeDiscount", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> SetDiscountToProduct(String userToken, String store, int discountID, String productName) {
+        try {
+            market.SetDiscountToProduct(userToken, store, discountID, productName);
             return new Response<>(true);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in add discount");
+            Logger.getInstance().logBug("Service - SetDiscountToProduct", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> SetDiscountToStore(String userToken, String store, int discountID) {
+        try {
+            market.SetDiscountToStore(userToken, store, discountID);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - SetDiscountToStore",  e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreateBasketValueCondition(String userToken, String store, double requiredValue) {
+        try {
+            return new Response<>(market.CreateBasketValueCondition(userToken, store, requiredValue));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateBasketValueCondition",  e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreateCategoryAmountCondition(String userToken, String store, String category, int amount) {
+        try {
+            return new Response<>(market.CreateCategoryAmountCondition(userToken, store, category, amount));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateCategoryAmountCondition",  e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreateProductAmountCondition(String userToken, String store, String productName, int amount) {
+        try {
+            return new Response<>(market.CreateProductAmountCondition(userToken, store, productName, amount));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateProductAmountCondition", e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreateLogicalAndCondition(String userToken, String store, List<Integer> conditionIds) {
+        try {
+            return new Response<>(market.CreateLogicalAndCondition(userToken, store, conditionIds));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateLogicalAndCondition",  e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreateLogicalOrCondition(String userToken, String store, List<Integer> conditionIds) {
+        try {
+            return new Response<>(market.CreateLogicalOrCondition(userToken, store, conditionIds));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateLogicalOrCondition",  e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Integer> CreateLogicalXorCondition(String userToken, String store, int id1, int id2) {
+        try {
+            return new Response<>(market.CreateLogicalXorCondition(userToken, store, id1, id2));
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - CreateLogicalXorCondition",  e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> SetConditionToDiscount(String userToken, String store, int discountId, int ConditionID) {
+        try {
+            market.SetConditionToDiscount(userToken, store, discountId, ConditionID);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - SetConditionToDiscount",  e.getMessage());
+            return new Response<>(e, false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> SetConditionToStore(String userToken, String store, int ConditionID) {
+        try {
+            market.SetConditionToStore(userToken, store, ConditionID);
+            return new Response<>(true);
+        } catch (IllegalArgumentException e) {
+            return new Response<>(e, true);
+        } catch (Exception e) {
+            Logger.getInstance().logBug("Service - SetConditionToStore", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -486,12 +624,12 @@ public class Service implements IService {
     @Override
     public Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password) {
         try {
-            market.addDiscountPasswordToBasket(userToken, storeName,Password);
+            market.addDiscountPasswordToBasket(userToken, storeName, Password);
             return new Response<>(true);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);
         } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in adding discount password.");
+            Logger.getInstance().logBug("Service - addDiscountPasswordToBasket", e.getMessage());
             return new Response<>(e, false);
         }
     }
@@ -846,7 +984,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<List<Pair<String, String>>> receiveQuestionsFromBuyers(String userToken, String storeName) {
+    public Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to receive questions from buyers from store:%s", storeName));
         try {
             return new Response<>(market.receiveQuestionsFromBuyers(userToken, storeName));
@@ -877,12 +1015,12 @@ public class Service implements IService {
     public Response<List<String>> getStorePurchaseHistory(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
         try {
-            ConcurrentHashMap<ShoppingBasket, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
+            ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
             List<String> output = new LinkedList<>();
-            for (ShoppingBasket basket : baskets.keySet()) {
+            for (ShoppingBasketDTO basket : baskets.keySet()) {
                 HashMap<ProductDTO, Integer> products = new HashMap<>();
-                for (Product product : basket.getProductsAndQuantities().keySet())
-                    products.put(new ProductDTO(product), basket.getProductsAndQuantities().get(product));
+                for (ProductDTO product : basket.getProductsQuantity().keySet())
+                    products.put(product, basket.getProductsQuantity().get(product));
                 output.add(new PurchaseDTO(products, baskets.get(basket)).toString());
             }
             return new Response<>(output);
@@ -1051,10 +1189,8 @@ public class Service implements IService {
     public Response<List<StoreDTO>> getAllStoresOfUser(String userToken) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get all stores of user %s", userToken));
         try {
-            List<IStore> stores = market.getAllStoresOf(userToken);
-            LinkedList<StoreDTO> storeList = new LinkedList<>();
-            for(IStore store:stores)
-                storeList.add(new StoreDTO(store));
+            List<StoreDTO> storeList = market.getAllStoresOf(userToken);
+//            LinkedList<StoreDTO> storeList = new LinkedList<>();
             return new Response<>(storeList);
         } catch (IllegalArgumentException e) {
             return new Response<>(e, true);

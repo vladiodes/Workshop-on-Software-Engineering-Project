@@ -1,0 +1,48 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Add purchase policy</h2>
+        <form action="/addPolicySelectStore" method="post">
+            <p>Select your store</p>
+            <select id="mainStore" name="storeName" onchange="this.form.submit()">
+                <option value=""></option>
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            #foreach($name_product in $store.getProductsByName().entrySet())
+                <h2>$name_product.key</h2>
+                <form action="/addRafflePolicy" method="post">
+                    <input type="hidden" name="storeName" value="$store.getStoreName()">
+                    <input type="hidden" name="productName" value="$name_product.key">
+                    <input type="submit" value="Add raffle policy">
+                </form>
+                <form action="/addAuctionPolicy" method="post">
+                    <input type="hidden" name="storeName" value="$store.getStoreName()">
+                    <input type="hidden" name="productName" value="$name_product.key">
+                    <input type="submit" value="Add auction policy">
+                </form>
+                <form action="/addBargainPolicy" method="post">
+                    <input type="hidden" name="storeName" value="$store.getStoreName()">
+                    <input type="hidden" name="productName" value="$name_product.key">
+                    <input type="submit" value="Add bargain policy">
+                </form>
+                <form action="/resetPolicy" method="post">
+                    <input type="hidden" name="storeName" value="$store.getStoreName()">
+                    <input type="hidden" name="productName" value="$name_product.key">
+                    <input type="submit" value="Reset all policies">
+                </form>
+            #end
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

@@ -2,7 +2,7 @@ package test.Mocks;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
+import main.Publisher.Notification;
 import main.Shopping.ShoppingBasket;
 import main.Stores.IStore;
 import main.Stores.Product;
@@ -75,7 +75,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void closeStore(NotificationBus bus) {
+    public void closeStore() {
 
     }
 
@@ -100,7 +100,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void reOpen(NotificationBus bus) {
+    public void reOpen() {
 
     }
 
@@ -110,15 +110,18 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public boolean respondToBuyer(User toRespond, String msg, NotificationBus bus) {
+    public boolean respondToBuyer(User toRespond, String msg) {
         return false;
     }
 
     @Override
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime() {
         return null;
     }
-
+    @Override
+    public ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser() {
+        return null;
+    }
     @Override
     public void CancelStaffRoles() {
 
@@ -130,7 +133,7 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus, ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
 
     }
 
@@ -141,47 +144,133 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public void notifyBargainingStaff(Bid newbid, NotificationBus bus) {
+    public void notifyBargainingStaff(Bid newbid) {
+
+    }
+
+
+    @Override
+    public void addRafflePolicy(String productName, Double price) {
 
     }
 
     @Override
-    public void addDirectDiscount(String productName, LocalDate until, Double percent) {
+    public void addAuctionPolicy(String productName, Double price, LocalDate until) {
 
     }
 
     @Override
-    public void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode) {
+    public void addNormalPolicy(String productName, Double price) {
 
     }
 
     @Override
-    public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+    public boolean bidOnProduct(String productName, Bid bid) {
+        return false;
+    }
+
+    @Override
+    public void addBargainPolicy(String productName, Double originalPrice) {
 
     }
 
     @Override
-    public void addRafflePolicy(String productName, Double price, NotificationBus bus) {
+    public void sendMessageToStaffOfStore(Notification notification) {
 
     }
 
     @Override
-    public void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until) {
+    public List<String> getStoreMessages() {
+        return null;
+    }
+
+    @Override
+    public void addQuestionToStore(String userName, String message) {
 
     }
 
     @Override
-    public void addNormalPolicy(String productName, Double price, NotificationBus bus) {
+    public int CreateSimpleDiscount(LocalDate until, Double percent) {
+        return 0;
+    }
+
+    @Override
+    public int CreateSecretDiscount(LocalDate until, Double percent, String secretCode) {
+        return 0;
+    }
+
+    @Override
+    public int CreateConditionalDiscount(LocalDate until, Double percent, int condID) {
+        return 0;
+    }
+
+    @Override
+    public int CreateMaximumCompositeDiscount(LocalDate until, List<Integer> discounts) {
+        return 0;
+    }
+
+    @Override
+    public int CreatePlusCompositeDiscount(LocalDate until, List<Integer> discounts) {
+        return 0;
+    }
+
+    @Override
+    public void SetDiscountToProduct(int discountID, String productName) {
 
     }
 
     @Override
-    public boolean bidOnProduct(String productName, Bid bid, NotificationBus bus) {
-        return true;
+    public void SetDiscountToStore(int discountID) {
+
     }
 
     @Override
-    public void addBargainPolicy(String productName, Double originalPrice, NotificationBus bus) {
+    public int CreateBasketValueCondition(double requiredValue) {
+        return 0;
+    }
 
+    @Override
+    public int CreateCategoryAmountCondition(String category, int amount) {
+        return 0;
+    }
+
+    @Override
+    public int CreateProductAmountCondition(String productName, int amount) {
+        return 0;
+    }
+
+    @Override
+    public int CreateLogicalAndCondition(List<Integer> conditionIds) {
+        return 0;
+    }
+
+    @Override
+    public int CreateLogicalOrCondition(List<Integer> conditionIds) {
+        return 0;
+    }
+
+    @Override
+    public int CreateLogicalXorCondition(int id1, int id2) {
+        return 0;
+    }
+
+    @Override
+    public void SetConditionToDiscount(int discountId, int ConditionID) {
+
+    }
+
+    @Override
+    public void SetConditionToStore(int ConditionID) {
+
+    }
+
+    @Override
+    public double getPriceForProduct(Product product, User user) {
+        return 0;
+    }
+
+    @Override
+    public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
+        return false;
     }
 }

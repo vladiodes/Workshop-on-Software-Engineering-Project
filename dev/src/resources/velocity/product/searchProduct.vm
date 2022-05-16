@@ -29,7 +29,7 @@
         #elseif($success)
             <p id="success_response">Search results:</p>
             <form action="/addToCart" method="post">
-                <select name="productStoreName">
+                <select id="s_p" name="productStoreName">
                     #foreach($product in $products)
                     <option value="$product.getProductName(),$product.getStoreName()">$product.getProductName() sold by $product.getStoreName(), price: $product.getPrice()</option>
                     #end
@@ -37,6 +37,14 @@
                 <p>Quantity to add:</p>
                 <input type="number" name="quantity" placeholder="quantity to add" value="1">
                 <p><input type="submit" value="Add to cart"></p>
+            </form>
+            <form action="/makeBid" method="post">
+                <input id="store_product" type="hidden" name="store_productName">
+                <script type="text/javascript">
+                    document.getElementById("store_product").value=document.getElementById("s_p").value;
+                </script>
+
+                <input type="submit" value="Place a bid">
             </form>
         #end
         #if($cart_success)

@@ -38,7 +38,7 @@ public class UserController {
             model.put("success",true);
             StringBuilder htmlQuery=new StringBuilder();
             for(String str: response.getResult())
-                htmlQuery.append("<p>str</p>");
+                htmlQuery.append("<p>" + str + "</p>");
             model.put("response",htmlQuery.toString());
         }
 
@@ -56,7 +56,7 @@ public class UserController {
             model.put("success",true);
             StringBuilder htmlQuery=new StringBuilder();
             for(String str: response.getResult())
-                htmlQuery.append("<p>str</p>");
+                htmlQuery.append("<p>" + str + "</p>");
             model.put("response",htmlQuery.toString());
         }
         ctx.render(Path.Template.VIEW_ADMIN_PURCHASE,model);
@@ -125,7 +125,7 @@ public class UserController {
              model.put("response","The history is:");
              model.put("history",response.getResult());
          }
-        ctx.render(Path.Template.PROFILE,model);
+        ctx.render(Path.Template.VIEW_USER_PURCHASE_HISTORY,model);
     };
 
     public Handler deleteUserGet = ctx ->{
@@ -227,5 +227,39 @@ public class UserController {
             model.put("response","Successfully sent the complaint, we'll come back to you");
         }
         ctx.render(Path.Template.SEND_COMPLAINT,model);
+    };
+
+    public Handler reviewPage = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        ctx.render(Path.Template.WRITE_REVIEW,model);
+    };
+
+    public Handler writeProductReviewPost = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response = service.writeProductReview(ctx.sessionAttribute("userToken"),ctx.formParam("productName"),ctx.formParam("storeName"),
+                ctx.formParam("review"),Double.parseDouble(Objects.requireNonNull(ctx.formParam("points"))));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully recorded the review, thank you!");
+        }
+        ctx.render(Path.Template.WRITE_REVIEW,model);
+    };
+    public Handler writeStoreReviewPost = ctx ->{
+        Map<String,Object> model = ViewUtil.baseModel(ctx);
+        Response<Boolean> response = service.writeStoreReview(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("review"),
+                Double.parseDouble(Objects.requireNonNull(ctx.formParam("points"))));
+        if(response.isError_occured()){
+            model.put("fail",true);
+            model.put("response",response.getError_message());
+        }
+        else {
+            model.put("success",true);
+            model.put("response","Successfully recorded the review, thank you!");
+        }
+        ctx.render(Path.Template.WRITE_REVIEW,model);
     };
 }

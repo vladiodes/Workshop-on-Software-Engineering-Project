@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import test.Mocks.BusMock;
 
 import java.util.LinkedList;
 
@@ -31,7 +30,7 @@ class ShoppingBasketTest {
         User founder = new User(false, "Founder123", "12345678");
         st1 = new Store(storeName1, founder );
         st1.addProduct(productName1, "Electronics", new LinkedList<>(), "good phone", phoneQuantity, phonePrice);
-        basket = new ShoppingBasket(st1);
+        basket = new ShoppingBasket(st1, userMock);
     }
 
     @Test
@@ -56,7 +55,7 @@ class ShoppingBasketTest {
 
     @Test
     void addClosedStoreProduct() {
-        st1.closeStore(new BusMock());
+        st1.closeStore();
         Assertions.assertThrows(IllegalArgumentException.class, ()->basket.AddProduct("NoneExisting", 1));
     }
 
@@ -92,11 +91,11 @@ class ShoppingBasketTest {
 
     @Test
     void getPrice() {
-        Assertions.assertEquals(0, basket.getPrice(userMock));
+        Assertions.assertEquals(0, basket.getPrice());
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
         double expected = quantity * phonePrice;
-        Assertions.assertEquals(expected, basket.getPrice(userMock));
+        Assertions.assertEquals(expected, basket.getPrice());
     }
 
     @Test
@@ -118,7 +117,7 @@ class ShoppingBasketTest {
     void validateClosedStoreBasket() {
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
-        st1.closeStore(new BusMock());
+        st1.closeStore();
         Assertions.assertFalse(basket.ValidateBasket(userMock));
     }
 }

@@ -2,11 +2,6 @@ package main.Communication.util;
 
 public class Path {
 
-    public static class Web {
-        public static final String LOGIN = "/login";
-       // public static final String ONE_BOOK = "/books/{isbn}";
-    }
-
     public static class Template {
         public static final String LOGIN = "/velocity/login/login.vm";
         public static final String LOGOUT = "/velocity/login/logout.vm";
@@ -32,6 +27,22 @@ public class Path {
         public static final String VIEW_STORE_HISTORY = "velocity/store/purchaseHistory.vm";
         public static final String SEND_COMPLAINT = "velocity/users/sendComplaint.vm";
 
+        public static final String SEARCH_STORE = "velocity/store/searchStore.vm";
+        public static final String WRITE_REVIEW = "velocity/writeReview.vm";
+        public static final String ANSWER_QUERIES = "velocity/store/answerQueries.vm";
+        public static final String ASK_QUERIES = "velocity/store/askQueries.vm";
+        public static final String VIEW_USER_PURCHASE_HISTORY = "velocity/users/viewPurchaseHistory.vm";
+        public static final String ADD_POLICY = "velocity/store/addPolicy.vm";
+        public static final String ADD_RAFFLE_POLICY = "velocity/product/addRafflePolicy.vm";
+        public static final String ADD_AUCTION_POLICY = "velocity/product/addAuctionPolicy.vm";
+        public static final String ADD_BARGAIN_POLICY = "velocity/product/addBargainPolicy.vm";
+        public static final String RESET_POLICIES = "velocity/product/resetPolicies.vm";
+        public static final String ADD_DISCOUNT = "velocity/store/addDiscount.vm";
+        public static final String ADD_DIRECT_DISCOUNT = "velocity/product/addDirectDiscount.vm";
+        public static final String ADD_SECRET_DISCOUNT = "velocity/product/addSecretDiscount.vm";
+        public static final String ADD_COND_DISCOUNT = "velocity/product/addCondDiscount.vm";
+        public static final String MAKE_BID_ON_PRODUCT = "velocity/product/addBidOnProduct.vm";
+        public static final String VIEW_BIDS = "velocity/store/viewBids.vm";
     }
 
 }

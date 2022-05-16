@@ -2,22 +2,33 @@ package main.Stores;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
+import main.Publisher.Notification;
+import main.Publisher.PersonalNotification;
+import main.Publisher.StoreNotification;
 import main.Shopping.ShoppingBasket;
-import main.Stores.Discounts.ConditionalDiscount;
-import main.Stores.Discounts.DirectDiscount;
-import main.Stores.Discounts.SecretDiscount;
-import main.Stores.PurchasePolicy.AuctionPolicy;
-import main.Stores.PurchasePolicy.BargainingPolicy;
-import main.Stores.PurchasePolicy.normalPolicy;
-import main.Stores.PurchasePolicy.rafflePolicy;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalAndCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalOrCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalXorCondition;
+import main.Stores.PurchasePolicy.Conditions.Condition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.BasketValueCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.CategoryAmountCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.ProductAmountCondition;
+import main.Stores.PurchasePolicy.Discounts.*;
+import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.MaximumCompositeDiscount;
+import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.PlusCompositeDiscount;
+import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.ConditionalDiscount;
+import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.SecretDiscount;
+import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.SimpleDiscount;
+import main.Stores.PurchasePolicy.ProductPolicy.AuctionPolicy;
+import main.Stores.PurchasePolicy.ProductPolicy.BargainingPolicy;
+import main.Stores.PurchasePolicy.ProductPolicy.normalPolicy;
+import main.Stores.PurchasePolicy.ProductPolicy.rafflePolicy;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.*;
 
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -36,8 +47,14 @@ public class Store implements IStore {
     private boolean isActive;
     private String storeName;
     private List<StoreReview> storeReviews;
-    private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistory;
-    private ConcurrentLinkedQueue<ShoppingBasket> buyingBaskets;
+    private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistoryByTime;
+    private ConcurrentHashMap<ShoppingBasket, User> purchaseHistoryByUser;
+    private ConcurrentHashMap<Integer, Discount> DiscountsInStore;
+    private ConcurrentHashMap<Integer, Condition> ConditionsInStore;
+    private Discount StoreDiscount;
+    private Condition StorePurchaseCondition;
+
+    private ConcurrentLinkedQueue<PersonalNotification> storeQuestions;
 
     @Override
     public List<User> getOwnersOfStore() {
@@ -58,16 +75,20 @@ public class Store implements IStore {
     }
 
     public Store(String storeName, User founder) {
+        DiscountsInStore = new ConcurrentHashMap<>();
+        ConditionsInStore = new ConcurrentHashMap<>();
+        StoreDiscount = null;
+        StorePurchaseCondition = null;
         this.owners = new ConcurrentLinkedQueue<>();
-
         this.managers = new ConcurrentLinkedQueue<>();
         this.productsByName = new ConcurrentHashMap<>();
         isActive = true;
         this.storeName = storeName;
         this.founder = founder;
-        purchaseHistory = new ConcurrentHashMap<>();
-        buyingBaskets = new ConcurrentLinkedQueue<>();
+        purchaseHistoryByTime = new ConcurrentHashMap<>();
         this.storeReviews = new LinkedList<>();
+        this.purchaseHistoryByUser = new ConcurrentHashMap<>();
+        this.storeQuestions=new ConcurrentLinkedQueue<>();
     }
 
     @Override
@@ -126,11 +147,11 @@ public class Store implements IStore {
         owners.remove(ow);
     }
 
-    public synchronized void closeStore(NotificationBus bus) {
+    public synchronized void closeStore() {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
         isActive = false;
-        sendMessageToStaffOfStore(String.format("The store %s is now inactive!", getName()), bus);
+        sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now inactive"));
     }
 
     @Override
@@ -145,12 +166,189 @@ public class Store implements IStore {
         return productsByName.get(name);
     }
 
-    private void sendMessageToStaffOfStore(String msg, NotificationBus bus) {
-        bus.addMessage(founder, msg);
+    @Override
+    public void sendMessageToStaffOfStore(Notification notification) {
+        founder.notifyObserver(notification);
         for (User u : getOwnersOfStore())
-            bus.addMessage(u, msg);
+            u.notifyObserver(notification);
         for (User u : getManagersOfStore())
-            bus.addMessage(u, msg);
+            u.notifyObserver(notification);
+    }
+
+    @Override
+    public List<String> getStoreMessages() {
+        LinkedList<String> lst = new LinkedList<>();
+        for(PersonalNotification notification : storeQuestions){
+            lst.add(notification.print());
+        }
+        return lst;
+    }
+
+    @Override
+    public void addQuestionToStore(String userName, String message) {
+        PersonalNotification n = new PersonalNotification(userName,message);
+        storeQuestions.add(n);
+        sendMessageToStaffOfStore(n);
+    }
+
+    private synchronized <K, V> int getID(ConcurrentHashMap<K, V> map){
+        return map.size();
+    }
+
+    private Condition getConditionbyID(int id){
+        if (!this.ConditionsInStore.containsKey(id))
+            throw new IllegalArgumentException("Requested condition ID doesn't exist");
+        return ConditionsInStore.get(id);
+    }
+
+    private Discount getDiscountByID(int id){
+        if (!this.DiscountsInStore.containsKey(id))
+            throw new IllegalArgumentException("Requested condition ID doesn't exist");
+        return DiscountsInStore.get(id);
+    }
+
+    @Override
+    public int CreateSimpleDiscount(LocalDate until, Double percent) {
+        SimpleDiscount disc = new SimpleDiscount(until, percent);
+        int id = getID(this.DiscountsInStore);
+        this.DiscountsInStore.put(id, disc);
+        return id;
+    }
+
+    @Override
+    public int CreateSecretDiscount(LocalDate until, Double percent, String secretCode) {
+        SecretDiscount disc = new SecretDiscount(until, percent, secretCode);
+        int id = getID(this.DiscountsInStore);
+        this.DiscountsInStore.put(id, disc);
+        return id;
+    }
+
+    @Override
+    public int CreateConditionalDiscount(LocalDate until, Double percent, int condID) {
+        ConditionalDiscount disc = new ConditionalDiscount(until, percent, getConditionbyID(condID));
+        int id = getID(this.DiscountsInStore);
+        this.DiscountsInStore.put(id, disc);
+        return id;
+    }
+
+    @Override
+    public int CreateMaximumCompositeDiscount(LocalDate until, List<Integer> discounts) {
+        MaximumCompositeDiscount disc = new MaximumCompositeDiscount(until);
+        int id = getID(this.DiscountsInStore);
+        this.DiscountsInStore.put(id, disc);
+        for(Integer discid : discounts)
+            disc.addDiscount(getDiscountByID(discid));
+        return id;
+    }
+
+    @Override
+    public int CreatePlusCompositeDiscount(LocalDate until, List<Integer> discounts) {
+        PlusCompositeDiscount disc = new PlusCompositeDiscount(until);
+        int id = getID(this.DiscountsInStore);
+        this.DiscountsInStore.put(id, disc);
+        for(Integer discid : discounts)
+            disc.addDiscount(getDiscountByID(discid));
+        return id;
+    }
+
+    @Override
+    public void SetDiscountToProduct(int discountID, String productName) {
+        if (discountID == -1)
+            this.getProduct(productName).setDiscount(null);
+        else this.getProduct(productName).setDiscount(getDiscountByID(discountID));
+    }
+
+    @Override
+    public void SetDiscountToStore(int discountID) {
+        if (discountID == -1)
+            this.StoreDiscount = null;
+        else this.StoreDiscount = this.getDiscountByID(discountID);
+    }
+
+    @Override
+    public int CreateBasketValueCondition(double requiredValue) {
+        Condition cond = new BasketValueCondition(requiredValue);
+        int out = getID(ConditionsInStore);
+        ConditionsInStore.put(out, cond);
+        return out;
+    }
+
+    @Override
+    public int CreateCategoryAmountCondition(String category, int amount) {
+        Condition cond = new CategoryAmountCondition(category, amount);
+        int out = getID(ConditionsInStore);
+        ConditionsInStore.put(out, cond);
+        return out;
+    }
+
+    @Override
+    public int CreateProductAmountCondition(String productName, int amount) {
+        Condition cond = new ProductAmountCondition(amount, getProduct(productName));
+        int out = getID(ConditionsInStore);
+        ConditionsInStore.put(out, cond);
+        return out;
+    }
+
+    @Override
+    public int CreateLogicalAndCondition(List<Integer> conditionIds) {
+        Condition cond = new LogicalAndCondition();
+        int out = getID(ConditionsInStore);
+        for(Integer condid : conditionIds)
+            cond.addCondition(getConditionbyID(condid));
+        ConditionsInStore.put(out, cond);
+        return out;
+    }
+
+    @Override
+    public int CreateLogicalOrCondition(List<Integer> conditionIds) {
+        Condition cond = new LogicalOrCondition();
+        int out = getID(ConditionsInStore);
+        for(Integer condid : conditionIds)
+            cond.addCondition(getConditionbyID(condid));
+        ConditionsInStore.put(out, cond);
+        return out;
+    }
+
+    @Override
+    public int CreateLogicalXorCondition(int id1, int id2) {
+        Condition cond = new LogicalXorCondition();
+        int out = getID(ConditionsInStore);
+        cond.addCondition(getConditionbyID(id1));
+        cond.addCondition(getConditionbyID(id2));
+        ConditionsInStore.put(out, cond);
+        return out;
+    }
+
+    @Override
+    public void SetConditionToDiscount(int discountId, int ConditionID) {
+        getDiscountByID(discountId).setCondition(getConditionbyID(ConditionID));
+    }
+
+    @Override
+    public void SetConditionToStore(int ConditionID) {
+        if(ConditionID == -1)
+            this.StorePurchaseCondition = null;
+        else this.StorePurchaseCondition = getConditionbyID(ConditionID);
+    }
+
+    @Override
+    public double getPriceForProduct(Product product, User user) {
+        if(this.StoreDiscount != null)
+            return StoreDiscount.getPriceFor(product.getCurrentPrice(user), user.getCart().getBasket(this.getName()));
+        else return product.getCurrentPrice(user);
+    }
+
+    @Override
+    public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
+        boolean res = this.getIsActive();
+        if(StorePurchaseCondition != null)
+            res &= StorePurchaseCondition.pass(shoppingBasket);
+        for (Map.Entry<Product, Integer> ent: shoppingBasket.getProductsAndQuantities().entrySet() ) {
+            res &=  ent.getKey().isPurchasableForAmount(ent.getValue());
+            if(shoppingBasket.getCostumePriceForProduct(ent.getKey()) != null)
+                res &= ent.getKey().isPurchasableForPrice(shoppingBasket.getCostumePriceForProduct(ent.getKey()), ent.getValue(), user);
+        }
+        return res;
     }
 
     @Override
@@ -164,11 +362,11 @@ public class Store implements IStore {
     }
 
     @Override
-    public synchronized void reOpen(NotificationBus bus) {
+    public synchronized void reOpen() {
         if (isActive)
             throw new IllegalArgumentException("The store is already opened!");
         isActive = true;
-        sendMessageToStaffOfStore(String.format("The store %s is now active again!", getName()), bus);
+        sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now open again"));
     }
 
     @Override
@@ -189,17 +387,17 @@ public class Store implements IStore {
     }
 
     @Override
-    public boolean respondToBuyer(User toRespond, String msg, NotificationBus bus) {
-        bus.addMessage(toRespond, msg);
+    public boolean respondToBuyer(User toRespond, String msg) {
+        toRespond.notifyObserver(new PersonalNotification(storeName,msg));
         // here we can add any history of messages between user-store if necessary
         return true;
     }
 
     @Override
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistory() {
-        return purchaseHistory;
+    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime() {
+        return purchaseHistoryByTime;
     }
-
+    public ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser() {return this.purchaseHistoryByUser;}
     @Override
     public void CancelStaffRoles() {
         //first removing founder
@@ -228,16 +426,17 @@ public class Store implements IStore {
     }
 
     @Override
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment,  NotificationBus bus, ShoppingBasket bask) {
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
-            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, bus, paymentInformation, payment);
-        this.purchaseHistory.put(bask,LocalDateTime.now());
-        notifyPurchase(bus);
+            en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, paymentInformation, payment);
+        this.purchaseHistoryByTime.put(bask,LocalDateTime.now());
+        this.purchaseHistoryByUser.put(bask, user);
+        notifyPurchase();
     }
 
-    private void notifyPurchase(NotificationBus bus) {
+    private void notifyPurchase() {
         for (User manager: getOwnersOfStore())
-            bus.addMessage(manager, "Product/s were bought from your store!");
+            manager.notifyObserver(new PersonalNotification(storeName,"Products were bought from your store!"));
     }
 
     @Override
@@ -249,63 +448,47 @@ public class Store implements IStore {
     }
 
     @Override
-    public void notifyBargainingStaff(Bid newbid, NotificationBus bus) {
+    public void notifyBargainingStaff(Bid newbid) {
         for (User staff: getStoreStaff().keySet())
             if(staff.ShouldBeNotfiedForBargaining(this))
-                bus.addMessage(staff, String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName()));
+                staff.notifyObserver(new PersonalNotification(
+                        storeName,
+                        String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName())));
     }
 
-
     @Override
-    public void addDirectDiscount(String productName, LocalDate until, Double percent) {
+    public void addRafflePolicy(String productName, Double price) {
         Product product = getProduct(productName);
-        product.setDiscount(new DirectDiscount(percent, until));
+        product.setPolicy(new rafflePolicy(this, price));
     }
 
     @Override
-    public void addSecretDiscount(String productName, LocalDate until, Double percent, String secretCode) {
+    public void addAuctionPolicy(String productName, Double price, LocalDate until) {
         Product product = getProduct(productName);
-        product.setDiscount(new SecretDiscount(percent, until, secretCode));
+        product.setPolicy(new AuctionPolicy(until, price,this, productName));
     }
 
     @Override
-    public void addConditionalDiscount(String productName, LocalDate until, HashMap<Restriction, Double> restrictions) {
+    public void addNormalPolicy(String productName, Double price) {
         Product product = getProduct(productName);
-        product.setDiscount(new ConditionalDiscount(restrictions, until));
+        product.setPolicy(new normalPolicy(price, this));
     }
 
     @Override
-    public void addRafflePolicy(String productName, Double price, NotificationBus bus) {
+    public void addBargainPolicy(String productName,Double originalPrice) {
         Product product = getProduct(productName);
-        product.setPolicy(new rafflePolicy(this, price), bus);
+        product.setPolicy(new BargainingPolicy(this, originalPrice, product));
     }
 
     @Override
-    public void addAuctionPolicy(String productName, Double price, NotificationBus bus, LocalDate until) {
-        Product product = getProduct(productName);
-        product.setPolicy(new AuctionPolicy(until, price, bus,this, productName), bus);
-    }
-
-    @Override
-    public void addNormalPolicy(String productName, Double price, NotificationBus bus) {
-        Product product = getProduct(productName);
-        product.setPolicy(new normalPolicy(price, this), bus);
-    }
-
-    @Override
-    public void addBargainPolicy(String productName,Double originalPrice, NotificationBus bus) {
-        Product product = getProduct(productName);
-        product.setPolicy(new BargainingPolicy(this, originalPrice, product), bus);
-    }
-
-    @Override
-    public boolean bidOnProduct(String productName, Bid bid, NotificationBus bus) {
+    public boolean bidOnProduct(String productName, Bid bid) {
         Product product = getProduct(productName);
         if (product.bid(bid)){
-            notifyBargainingStaff(bid, bus);
+            notifyBargainingStaff(bid);
             return true;
         }
         return false;
     }
+
 
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import test.Mocks.BusMock;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -31,7 +30,7 @@ class ShoppingCartTest {
     @BeforeEach
     void Setup(){
         userMock = mock(User.class);
-        cart = new ShoppingCart();
+        cart = new ShoppingCart(userMock);
         User founder = new User(false, "Founder123", "12345678");
         st1 = new Store(storeName1, founder );
         st1.addProduct(productName1, "Electronics", new LinkedList<>(), "good phone", phoneQuantity, phonePrice);
@@ -111,7 +110,7 @@ class ShoppingCartTest {
         int amountOfPhones = (int) Math.floor(phoneQuantity * Math.random());
         double Expected = amountOfPhones * phonePrice;
         cart.addProductToCart(st1, productName1, amountOfPhones);
-        assertEquals(Expected, cart.getPrice(userMock));
+        assertEquals(Expected, cart.getPrice());
     }
 
     @Test
@@ -144,7 +143,7 @@ class ShoppingCartTest {
     @Test
     void validateCartStoreNoLongerOpen() {
         cart.addProductToCart(st1, productName1, phoneQuantity);
-        st1.closeStore(new BusMock());
+        st1.closeStore();
         assertFalse(cart.ValidateCart(userMock));
     }
 }

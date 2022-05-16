@@ -2,20 +2,25 @@ package main.Communication;
 
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
-import io.javalin.http.staticfiles.Location;
 import main.Communication.Controllers.*;
 import main.Communication.util.HerokuUtil;
 import main.Communication.util.ViewUtil;
+import main.ExternalServices.Payment.PaymentAdapter;
+import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Service.IService;
 import main.Service.Service;
 import main.utils.Response;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
 
 
 public class Main {
-    private static final IService service=new Service(null,null);
+    private static final IService service=new Service(new PaymentAdapter(),new SupplyingAdapter());
     public static void main(String[] args) {
 
         RegisterController registerController=new RegisterController(service);
@@ -34,10 +39,18 @@ public class Main {
         service.guestDisconnect(token.getResult());
 
         Javalin app = Javalin.create(config -> {
-            config.addStaticFiles("/public", Location.CLASSPATH);
+            config.server(() -> {
+                Server server = new Server();
+                ServerConnector sslConnector = new ServerConnector(server, getSslContextFactory());
+                sslConnector.setPort(443);
+                ServerConnector connector = new ServerConnector(server);
+                connector.setPort(80);
+                server.setConnectors(new Connector[]{sslConnector, connector});
+                return server;
+            });
+            config.addStaticFiles("/public");
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
         }).start(HerokuUtil.getHerokuAssignedPort());
-
         app.ws("/notifications", ws -> {
             ws.onMessage(ctx -> {
                 String userToken = ctx.message();
@@ -64,6 +77,7 @@ public class Main {
             post("/addProductToStore", storeController.handleAddProductToStorePost);
             get("/updateProductInStore", storeController.openUpdateProductInStorePage);
             post("/updateProductInStore", storeController.handleUpdateProductInStorePost);
+            post("/deleteProduct",storeController.handleDeleteProductPost);
             get("/productSearch",productController.openSearchProductPage);
             post("/productSearch",productController.handleSearchProductPost);
             post("/addToCart",cartController.handleAddToCartPost);
@@ -99,9 +113,49 @@ public class Main {
             post("/viewStoreHistory",storeController.viewStoreHistoryPost);
             get("/sendComplaint",userController.sendComplaintPage);
             post("/sendComplaint",userController.sendComplaintPost);
+            get("/storeSearch",storeController.storeSearchPage);
+            post("/storeSearch",storeController.handleStoreSearch);
+            post("/addToCartAfterStoreSearch",cartController.handleAddToCartAfterStoreSearchPost);
+            get("/writeReview",userController.reviewPage);
+            post("/writeProductReview",userController.writeProductReviewPost);
+            post("/writeStoreReview",userController.writeStoreReviewPost);
+            get("/answerQueries",storeController.answerQueriesPage);
+            post("/answerQueries",storeController.answerQueriesPost);
+            get("/askQueries",storeController.askQueriesPage);
+            post("/askQueries",storeController.askQueriesPost);
+            get("/addPolicy",storeController.addPolicyPage);
+            post("/addPolicySelectStore",storeController.addPolicySelectStorePost);
+            post("/addRafflePolicy",storeController.addRafflePolicyPost);
+            post("/handleAddRafflePolicy",storeController.handleAddRafflePolicy);
+            post("/addAuctionPolicy",storeController.addAuctionPolicyPost);
+            post("/handleAddAuctionPolicy",storeController.handleAddAuctionPolicy);
+            post("/addBargainPolicy",storeController.addBargainPolicyPost);
+            post("/handleAddBargainPolicy",storeController.handleAddBargainPolicy);
+            post("/resetPolicy",storeController.resetPolicy);
+            post("/resetPolicies",storeController.handleResetPolicy);
+            post("/addDiscountSelectStore",storeController.addDiscountSelectStore);
+            get("/addDiscount", storeController.addDiscountPage);
+            post("/addDiscount",storeController.addDiscountPost);
+//            post("/handleAddDirectDiscount",productController.handleAddDirectDiscount); //TODO fix
+//            post("/handleAddSecretDiscount",productController.handleAddSecretDiscount);
+//            post("/handleAddConditionalDiscount",productController.handleAddCondDiscount);
+            post("/insertSecretCode",cartController.handleAddSecretCode);
+            post("/makeBid",productController.makeBidPage);
+            post("/addBid",productController.handleAddBidToProduct);
+            get("/viewBids",storeController.viewBidsPage);
+            post("/viewBids",storeController.handleViewBidsPost);
+            post("/approveBid",productController.approveBidPost);
+            post("/declineBid",productController.declineBidPost);
 
         });
 
+    }
+
+    private static SslContextFactory getSslContextFactory() {
+        SslContextFactory sslContextFactory = new SslContextFactory();
+        sslContextFactory.setKeyStorePath(Main.class.getResource("/keystore.jks").toExternalForm());
+        sslContextFactory.setKeyStorePassword("password");
+        return sslContextFactory;
     }
 
 }

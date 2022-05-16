@@ -3,7 +3,6 @@ package main.Shopping;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.NotificationBus;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Users.User;
@@ -21,10 +20,13 @@ public class ShoppingBasket {
 
     private final List<String> discountPasswords = new LinkedList<>();
 
-    public ShoppingBasket(IStore store){
+    private User user;
+
+    public ShoppingBasket(IStore store, User user){
         this.store = store;
         productsQuantity=new ConcurrentHashMap<>();
         costumePrice=new WeakHashMap<>();
+        this.user = user;
     }
 
     public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
@@ -126,16 +128,25 @@ public class ShoppingBasket {
         return store;
     }
 
-    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, NotificationBus bus)
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment)
     {
-        store.purchaseBasket(user, supplying, supplyingInformation, paymentInformation, payment, bus,this);
+        store.purchaseBasket(user, supplying, supplyingInformation, paymentInformation, payment,this);
     }
 
-    public double getPrice(User user) {
+    public double getPrice() {
         double res = 0;
         for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
             if(!costumePrice.containsKey(en.getKey()))
-                res += en.getKey().getCurrentPrice(user) * en.getValue();
+                res += store.getPriceForProduct(en.getKey(), this.user) * en.getValue();
+            else res += costumePrice.get(en.getKey()) * en.getValue();
+        return res;
+    }
+
+    public double getCleanPrice(){ // no discounts, used for calculating discount conditions relying on price.
+        double res = 0;
+        for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
+            if(!costumePrice.containsKey(en.getKey()))
+                res += en.getKey().getCleanPrice() * en.getValue();
             else res += costumePrice.get(en.getKey()) * en.getValue();
         return res;
     }
@@ -149,13 +160,7 @@ public class ShoppingBasket {
      * @return true/false depending if the basket is purchasable.
      */
     public boolean ValidateBasket(User user) {
-        boolean res = true;
-        for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet() ) {
-            res &= store.getIsActive() && ent.getKey().isPurchasableForAmount(ent.getValue());
-            if(this.costumePrice.containsKey(ent.getKey()))
-                res &= ent.getKey().isPurchasableForPrice(costumePrice.get(ent.getKey()), ent.getValue(), user);
-        }
-        return res;
+        return store.ValidateBasket(user, this);
     }
 
     public Map<Product, Integer> getProductsAndQuantitiesForPurchase(User user) {
