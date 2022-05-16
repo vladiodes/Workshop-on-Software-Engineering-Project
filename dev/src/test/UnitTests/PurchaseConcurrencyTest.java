@@ -1,5 +1,8 @@
 package test.UnitTests;
 
+import main.DTO.ProductDTO;
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Supplying.ISupplying;
 import main.Market;
 import main.Stores.Product;
 import main.utils.PaymentInformation;
@@ -7,16 +10,27 @@ import main.utils.SupplyingInformation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 class PurchaseConcurrencyTest {
 
     Market market;
+    @Mock
     PaymentInformation pi;
+    @Mock
     SupplyingInformation si;
+    @Mock
+    IPayment paymentSystem;
+    @Mock
+    ISupplying supplyingSystem;
     String founder;
     double phonePrice = 50;
     int productQuanitity = 5000;
@@ -26,9 +40,15 @@ class PurchaseConcurrencyTest {
     String tempUser;
     @BeforeEach
     void setUp() throws Exception {
-        pi = new PaymentInformation(true);
-        si = new SupplyingInformation(true);
-        market = new Market();
+        pi = mock(PaymentInformation.class);
+        si = mock(SupplyingInformation.class);
+        paymentSystem = mock(IPayment.class);
+        supplyingSystem = mock(ISupplying.class);
+        when(paymentSystem.makePayment(any(PaymentInformation.class),any(double.class))).thenReturn(true);
+        when(paymentSystem.validateCard(any(PaymentInformation.class))).thenReturn(true);
+        when(supplyingSystem.supply(any(),any())).thenReturn(true);
+        when(supplyingSystem.bookDelivery(any())).thenReturn(true);
+        market = new Market(paymentSystem, supplyingSystem);
         founder = market.ConnectGuest();
         market.Register("Founder123", "12345678");
         market.Login(founder, "Founder123", "12345678");
@@ -83,8 +103,8 @@ class PurchaseConcurrencyTest {
         for (Thread thread : ts) thread.run();
         for (Thread t : ts) t.join();
         Assertions.assertEquals(userAmount,market.getStorePurchaseHistory(founder, storeName1).size());
-        List<Product> ps = market.getStoreProducts(storeName1);
-        Assertions.assertEquals(0, ps.size());
+        List<ProductDTO> ps = market.getStoreProducts(storeName1);
+        Assertions.assertEquals(0, ps.get(0).getQuantity());
     }
 
     @Test
@@ -108,8 +128,8 @@ class PurchaseConcurrencyTest {
         Assertions.assertEquals(productQuanitity,market.getStorePurchaseHistory(founder, storeName1).size());
         Assertions.assertEquals(productQuanitity,market.getStorePurchaseHistory(founder, storeName2).size());
         Assertions.assertEquals(userAmount - productQuanitity, counter.get());
-        List<Product> ps = market.getStoreProducts(storeName1);
-        Assertions.assertEquals(0, ps.size());
+        List<ProductDTO> ps = market.getStoreProducts(storeName1);
+        Assertions.assertEquals(0, ps.get(0).getQuantity());
     }
 
 
