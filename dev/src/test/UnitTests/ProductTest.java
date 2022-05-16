@@ -1,10 +1,6 @@
-package test.UnitTests;
+package UnitTests;
 
-import main.NotificationBus;
-import main.Stores.IStore;
 import main.Stores.Product;
-import main.Users.*;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +24,8 @@ class ProductTest {
         keyWordsPizza.add("Cheesy");
         keyWordsPizza.add("Tasty");
 
-        p1 = new Product("Coca Cola", "Drink", keyWordsCola, "So good", 50, 6);
-        p2 = new Product("Pizza", "Food", keyWordsPizza, "Cheesy", 100, 25);
+        p1 = new Product(null,"Coca Cola", "Drink", keyWordsCola, "So good", 50, 6);
+        p2 = new Product(null,"Pizza", "Food", keyWordsPizza, "Cheesy", 100, 25);
     }
 
     @Test
@@ -39,7 +35,7 @@ class ProductTest {
         assertTrue(p1.getCategory().equals("Drink"));
         assertTrue(p1.getDescription().equals("So good"));
         assertTrue(p1.getQuantity() == 50);
-        assertTrue(p1.getPrice()==6);
+        assertTrue(p1.getCleanPrice()==6);
 
         List<String> keyWordsFanta = new LinkedList<>();
         keyWordsFanta.add("Fanta");
@@ -51,7 +47,7 @@ class ProductTest {
         assertTrue(p1.getCategory().equals("Drink"));
         assertTrue(p1.getDescription().equals("Yummy"));
         assertEquals(p1.getQuantity(), 60);
-        assertEquals(p1.getPrice(),5);
+        assertEquals(p1.getCleanPrice(),5);
     }
 
     @Test

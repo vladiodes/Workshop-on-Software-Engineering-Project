@@ -1,0 +1,60 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <table style="border-spacing: 10rem 0;">
+            <tr>
+                <td>
+                    <h2>Write product review</h2>
+                    <form action="/writeProductReview" method="post">
+                        <p>Product name</p>
+                        <input type="text" name="productName" value="" placeholder="Write product to review" required>
+                        <p>Store bought from</p>
+                        <input type="text" name="storeName" value="" placeholder="Write store selling the product" required>
+                        <p>Review</p>
+                        <input type="text" name="review" value="" placeholder="Write your review" required>
+                        <p>Points</p>
+                        <select name="points" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <p><input type="submit" value="Send review"></p>
+                    </form>
+                </td>
+                <td>
+                    <h2>Write store review</h2>
+                    <form action="/writeStoreReview" method="post">
+                        <p>Store name</p>
+                        <input type="text" name="storeName" value="" placeholder="Write store to review" required>
+                        <p>Review</p>
+                        <input type="text" name="review" value="" placeholder="Write your review" required>
+                        <p>Points</p>
+                        <select name="points" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <p><input type="submit" value="Send review"></p>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: center;">
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+        #end
+        </div>
+    </div>
+</main>
+</div>
+</body>
+</html>

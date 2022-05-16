@@ -1,0 +1,24 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Add raffle policy to product $productName</h2>
+        <form action="/handleAddRafflePolicy" method="post">
+            <input type="hidden" value="$productName" name="productName">
+            <input type="hidden" value="$storeName" name="storeName">
+            <p>Price</p>
+            <input type="number" name="price" required>
+            <p><input type="submit" value="Add policy"></p>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

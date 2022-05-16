@@ -1,0 +1,59 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Search for products:</h2>
+        <form action="/productSearch" id="search product" method="post">
+            <input type="hidden" name="userToken" id="userToken" value="">
+            <script type="text/javascript">
+                document.getElementById("userToken").setAttribute('value',localStorage.getItem("userToken"));
+            </script>
+            <p>Product name</p>
+            <input type="text" name="productName" placeholder="Enter product name" value="">
+            <p>Product category</p>
+            <input type="text" name="category" placeholder="Enter product category" value="" >
+            <p>Product keyword</p>
+            <input type="text" name="keyWord" placeholder="Enter key word" value="" >
+            <p>Product rating</p>
+            <input type="number" name="productRating" placeholder="Enter product rating" value="">
+            <p>Store rating</p>
+            <input type="number" name="storeRating" placeholder="Enter store rating" value="">
+            <p>Product price range</p>
+            <input type="number" name="priceMin" placeholder="Min price" value="">    <input type="number" name="priceMax" placeholder="Max price" value="">
+            <p><input type="submit" value="Search for products"></p>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">Search results:</p>
+            <form action="/addToCart" method="post">
+                <select id="s_p" name="productStoreName">
+                    #foreach($product in $products)
+                    <option value="$product.getProductName(),$product.getStoreName()">$product.getProductName() sold by $product.getStoreName(), price: $product.getPrice()</option>
+                    #end
+                </select>
+                <p>Quantity to add:</p>
+                <input type="number" name="quantity" placeholder="quantity to add" value="1">
+                <p><input type="submit" value="Add to cart"></p>
+            </form>
+            <form action="/makeBid" method="post">
+                <input id="store_product" type="hidden" name="store_productName">
+                <script type="text/javascript">
+                    document.getElementById("store_product").value=document.getElementById("s_p").value;
+                </script>
+
+                <input type="submit" value="Place a bid">
+            </form>
+        #end
+        #if($cart_success)
+            <p id="success_response">$cart_response</p>
+        #elseif($cart_fail)
+            <p id="failed_response">$cart_response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

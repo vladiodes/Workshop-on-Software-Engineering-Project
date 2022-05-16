@@ -28,4 +28,8 @@ public class Security implements ISecurity {
     public String hashPassword(String password) {
         return get_SHA_512_SecurePassword(password);
     }
+    public boolean isValidPassword(String pass, String userName)
+    {
+        return !pass.isBlank() && pass.length() >= 6 && (!pass.contains(userName));
+    }
 }

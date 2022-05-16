@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="Deleting unnecessary files">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleted unused class">
+      <change afterPath="$PROJECT_DIR$/src/main/Users/states/GuestState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Users/states/UserStates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/NotificationTests/PublisherTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/NotificationTests/PublisherTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/MarketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/MarketTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,15 +43,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="web-client-cont" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -34,31 +64,31 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="27jRI4CyYtbVR4afKDi00JXHKi0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/banan/Downloads/Statistic-4.1.10.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -66,19 +96,32 @@
       <recent name="main.DTO" />
       <recent name="test.AcceptanceTests" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\product" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\users" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\admin" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity" />
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="main.Publisher" />
       <recent name="main" />
       <recent name="main.Stores" />
       <recent name="main.Users" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="main.Stores.PurchasePolicy.Discounts" />
+      <recent name="test.UnitTests" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="test.UnitTests" />
+      <recent name="main.Stores.Discounts" />
       <recent name="test" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -86,7 +129,18 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.test in dev">
-    <configuration name="AT_Req2_6.getNumberOfRegisteredUsersPerDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_3.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -95,24 +149,55 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6" />
-      <option name="METHOD_NAME" value="getNumberOfRegisteredUsersPerDate" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_3" />
+      <option name="METHOD_NAME" value="testLogout" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MarketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PublisherTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PublisherTests.checkingSuspendedNotificationsNotSent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
+      <option name="METHOD_NAME" value="checkingSuspendedNotificationsNotSent" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -131,54 +216,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.AcceptanceTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="JUnit.AT_Req2_3.testLogout" />
+      <item itemvalue="JUnit.MarketTest" />
+      <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.PublisherTests" />
+      <item itemvalue="JUnit.PublisherTests.checkingSuspendedNotificationsNotSent" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.test.UnitTests in dev" />
-        <item itemvalue="JUnit.test.AcceptanceTests in dev" />
-        <item itemvalue="JUnit.AT_Req2_6.getNumberOfRegisteredUsersPerDate" />
-        <item itemvalue="JUnit.ATuser2Requirements" />
+        <item itemvalue="JUnit.PublisherTests" />
+        <item itemvalue="JUnit.PublisherTests.checkingSuspendedNotificationsNotSent" />
+        <item itemvalue="JUnit.AT_Req2_3.testLogout" />
+        <item itemvalue="JUnit.MarketTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="faed02e6-808f-4639-9c73-cb18ae8c52b4" name="Changes" comment="" />
+      <changelist id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="" />
       <created>1649831427176</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1649831427176</updated>
       <workItem from="1650274728823" duration="359000" />
       <workItem from="1650275111935" duration="783000" />
+      <workItem from="1652270450456" duration="845000" />
+      <workItem from="1652379905686" duration="390000" />
+      <workItem from="1652425121753" duration="639000" />
+      <workItem from="1652544225913" duration="3188000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -362,7 +433,91 @@
       <option name="project" value="LOCAL" />
       <updated>1650747935414</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added search store function to gui">
+      <created>1652202889343</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1652202889343</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Added write review functionality to client">
+      <created>1652204105329</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1652204105329</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added deleting products from store functionality to gui">
+      <created>1652205171475</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1652205171475</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Answering buyers' queries functionality">
+      <created>1652205932645</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1652205932645</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added sending questions to store functionality">
+      <created>1652206380647</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1652206380647</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Better history of user view">
+      <created>1652207210508</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1652207210508</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Better store history view">
+      <created>1652207756365</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1652207756365</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Bug fix in user purchase history when invoked by admin">
+      <created>1652208278153</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1652208278153</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Added purchase policies for products in GUI">
+      <created>1652211136020</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1652211136020</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Added discounts functionality to gui">
+      <created>1652214067750</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1652214067750</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Added option to enter secret code for basket in cart">
+      <created>1652214498492</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1652214498492</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Deleted some files regarding HTTPS">
+      <created>1652520345439</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1652520345439</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,22 +560,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing REQ 2.4.4 - Appointing an owner to a store" />
-    <MESSAGE value="Finished implementing REQ 2.4.5 - Deleting owner appointment" />
-    <MESSAGE value="Finished implementing REQ 2.4.6 - Appointing store manager" />
-    <MESSAGE value="Finished implementing REQ 2.4.7 - Changing manager's permissions" />
-    <MESSAGE value="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7" />
-    <MESSAGE value="Finished implementing REQ 2.4.9 - making a store inactive" />
-    <MESSAGE value="Finished implementing REQ 2.4.10" />
-    <MESSAGE value="Moved Pair to a public package" />
-    <MESSAGE value="REQ 2.4.11 implemented" />
-    <MESSAGE value="REQ 2.4.12 implemented" />
-    <MESSAGE value="Req 2.6.1 implemented" />
-    <MESSAGE value="Req 2.6.2 implemented" />
     <MESSAGE value="Req 2.6.3 implemented" />
     <MESSAGE value="Changed service signatures to return responses" />
     <MESSAGE value="getter in response" />
@@ -434,33 +576,57 @@
     <MESSAGE value="Refactoring - moving store messages to Notificationbus" />
     <MESSAGE value="Refactoring - moving store messages to NotificationBus&#10;Refactoring - fixing all kinds of warnings and types" />
     <MESSAGE value="concurrency bug fix in open store" />
-    <option name="LAST_COMMIT_MESSAGE" value="concurrency bug fix in open store" />
+    <MESSAGE value="Added search store function to gui" />
+    <MESSAGE value="Added write review functionality to client" />
+    <MESSAGE value="Added deleting products from store functionality to gui" />
+    <MESSAGE value="Answering buyers' queries functionality" />
+    <MESSAGE value="Added sending questions to store functionality" />
+    <MESSAGE value="Better history of user view" />
+    <MESSAGE value="Better store history view" />
+    <MESSAGE value="Bug fix in user purchase history when invoked by admin" />
+    <MESSAGE value="Added purchase policies for products in GUI" />
+    <MESSAGE value="Added discounts functionality to gui" />
+    <MESSAGE value="Added option to enter secret code for basket in cart" />
+    <MESSAGE value="Deleted some files regarding HTTPS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted some files regarding HTTPS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
+          <line>359</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6.java</url>
-          <line>185</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
+          <line>510</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo />
+        <PinnedItemInfo parentTag="main.Stores.Store" memberName="ConditionsInStore" />
         <PinnedItemInfo parentTag="main.Market" memberName="stores" />
+        <PinnedItemInfo parentTag="main.Users.User" memberName="purchaseHistory" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TradingSystem$test_in_dev.ic" NAME="test in dev Coverage Results" MODIFIED="1650885421072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

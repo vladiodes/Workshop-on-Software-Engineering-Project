@@ -5,17 +5,18 @@ import main.Stores.Product;
 import main.utils.SupplyingInformation;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SupplyingAdapter implements ISupplying {
 
     @Override
     public boolean bookDelivery(SupplyingInformation si) {
-        return si.getOutput();
+        return true;
     }
 
     @Override
-    public boolean supply(SupplyingInformation si, HashMap<Product, Integer> productToSupply) {
-        return si.getOutput();
+    public boolean supply(SupplyingInformation si, Map<Product, Integer> productToSupply) {
+        return true;
     }
 
     @Override

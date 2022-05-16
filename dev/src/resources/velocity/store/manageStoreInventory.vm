@@ -1,0 +1,22 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Manage your stores' inventory, select your preferred action:</h2>
+            <h2><span><a href="/addProductToStore">Add product to store</a> </span> |
+                <span><a href="/updateProductInStore">Update product</a></span> |
+                <span><a href="/viewProductsInStore">View inventory</a></span> |
+                <span><a href="/viewStoreHistory">View purchase history</a></span></h2>
+        <br />
+        <h2><span><a href="/addPolicy">Add purchase policy to product</a> </span> |
+            <span><a href="/addDiscount">Add discount to product</a> </span> |
+            <span><a href="/viewBids">View bids</a> </span></h2>
+
+
+    </div>
+</main>
+</div>
+</body>
+</html>

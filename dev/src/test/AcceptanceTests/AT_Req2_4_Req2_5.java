@@ -8,6 +8,8 @@ import main.utils.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import test.testUtils.testsFactory;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AT_Req2_4_Req2_5 {
 
     Response<String> manager1token, manager2token, founder1token, founder2token, owner1token, user1token;
-    IService service = new Service();
+    IService service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
 
     @Before
     public void setUp() {
@@ -242,7 +244,7 @@ public class AT_Req2_4_Req2_5 {
         // A new manager can only receive questions from buyers and get store purchase history
         assertNotNull(service.receiveQuestionsFromBuyers(user1token.getResult(), "MyStore1").getResult());
         assertTrue(service.sendRespondToBuyers(user1token.getResult(), "MyStore1", "manager1", "check").getResult());
-        assertEquals("check", service.receiveMessages(manager1token.getResult()).getResult().get(0));
+        assertEquals("A new notification from:MyStore1, Content:check", service.receiveMessages(manager1token.getResult()).getResult().get(0));
 
         assertNotNull(service.getStorePurchaseHistory(manager2token.getResult(), "MyStore1").getResult());
         assertTrue(service.updateProduct(manager2token.getResult(), "Crystal Cola", "Crystal Cola", "Drinks", null, "ew", "MyStore1", 100, 6).isWas_expected_error());
@@ -510,7 +512,7 @@ public class AT_Req2_4_Req2_5 {
         assertTrue(service.allowManagerAnswerAndTakeRequests(owner1token.getResult(), "user1", "MyStore1").getResult());
         assertNotNull(service.receiveQuestionsFromBuyers(user1token.getResult(), "MyStore1").getResult());
         assertTrue(service.sendRespondToBuyers(user1token.getResult(), "MyStore1", "manager1", "check").getResult());
-        assertEquals("check", service.receiveMessages(manager1token.getResult()).getResult().get(0));
+        assertEquals("A new notification from:MyStore1, Content:check", service.receiveMessages(manager1token.getResult()).getResult().get(0));
 
         assertTrue(service.disAllowManagerAnswerAndTakeRequests(owner1token.getResult(), "user1", "MyStore1").getResult());
         assertTrue(service.receiveQuestionsFromBuyers(user1token.getResult(), "MyStore1").isWas_expected_error());
@@ -598,6 +600,6 @@ public class AT_Req2_4_Req2_5 {
 
     @After
     public void tearDown() {
-        service = new Service();
+        service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
     }
 }

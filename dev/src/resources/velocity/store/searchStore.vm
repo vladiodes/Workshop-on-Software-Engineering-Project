@@ -1,0 +1,37 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Search for store:</h2>
+        <form action="/storeSearch" id="search store" method="post">
+            <p>Store name</p>
+            <input type="text" name="storeName" placeholder="Enter store name" value="" required>
+            <p><input type="submit" value="Search for store"></p>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">Search results:</p>
+            <form action="/addToCartAfterStoreSearch" method="post">
+                <select name="productStoreName">
+                    #foreach($pname_product in $store.productsByName.entrySet())
+                    <option value="$pname_product.value.getProductName(),$store.getStoreName()">$pname_product.value.getProductName() , price: $pname_product.value.getPrice()</option>
+                    #end
+                </select>
+                <p>Quantity to add:</p>
+                <input type="number" name="quantity" placeholder="quantity to add" value="1">
+                <p><input type="submit" value="Add to cart"></p>
+            </form>
+        #end
+        #if($cart_success)
+            <p id="success_response">$cart_response</p>
+        #elseif($cart_fail)
+            <p id="failed_response">$cart_response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

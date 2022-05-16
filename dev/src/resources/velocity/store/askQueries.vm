@@ -1,0 +1,24 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Ask store a question</h2>
+                    <form method="post">
+                        <p>Store to ask</p>
+                        <input type="text" name="storeName" value="" required>
+                        <p>Question</p>
+                        <input type="text" name="question" value="" required>
+                        <p><input type="submit" value="Send question"></p>
+                    </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

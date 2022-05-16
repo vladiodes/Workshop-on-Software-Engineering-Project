@@ -8,7 +8,7 @@ import main.Stores.IStore;
 import java.util.*;
 
 import main.Stores.Product;
-import main.Stores.Store;
+import main.Users.User;
 
 import java.util.HashMap;
 
@@ -17,9 +17,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ShoppingCart {
     private ConcurrentHashMap<String, ShoppingBasket> baskets; // (store name, basket)
     private final Object carteditLock = new Object();
-    public ShoppingCart() {
+    public ShoppingCart(User user) {
         this.baskets = new ConcurrentHashMap<>();
+        this.user = user;
     }
+    private User user;
 
     public ShoppingCart(ShoppingCart oldCart) //use this constructor to deep copy a ShoppingCart
     {
@@ -45,9 +47,19 @@ public class ShoppingCart {
                     throw new IllegalArgumentException("Store is not active.");
                 if (!IStore.getProductsByName().containsKey(productName))
                     throw new IllegalArgumentException("Product does not exist in store");
-                ShoppingBasket basket = new ShoppingBasket(IStore);
+                ShoppingBasket basket = new ShoppingBasket(IStore, this.user);
                 baskets.put(IStore.getName(), basket);
                 return basket.AddProduct(productName, quantity);
+            }
+        }
+    }
+
+    public  boolean setCostumeProductPrice(IStore IStore, String productName, double price, User user) {
+        synchronized (carteditLock) {
+            if (baskets.containsKey(IStore.getName()))
+                return baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price, user);
+            else {
+                throw new IllegalArgumentException("No basket for this store.");
             }
         }
     }
@@ -119,9 +131,12 @@ public class ShoppingCart {
         return baskets;
     }
 
-    /***
-     * @return amount of unique products.
-     */
+    public ShoppingBasket getBasket(String storeName){
+        if (!this.getBaskets().containsKey(storeName))
+            throw new IllegalArgumentException("Basket for that store doesn't exist in this cart.");
+        return getBaskets().get(storeName);
+    }
+
     public HashMap<Product, Integer> getProducts() {
         HashMap<Product, Integer> res = new HashMap<>();
         for (Map.Entry<String, ShoppingBasket> basketEntry : this.baskets.entrySet())
@@ -129,6 +144,9 @@ public class ShoppingCart {
         return res;
     }
 
+    /***
+     * @return amount of unique products.
+     */
     public int getAmountOfProducts(){
         int res = 0;
         for(ShoppingBasket basket : this.baskets.values())
@@ -138,12 +156,19 @@ public class ShoppingCart {
 
     /***
      *
-     * @return true/false if cart is purchaseable.
+     * @return true/false if cart is purchasable.
      */
-    public boolean ValidateCart() {
+    public boolean ValidateCart(User user) {
         boolean res = getAmountOfProducts() > 0;
         for(ShoppingBasket basket : this.baskets.values())
-            res &= basket.ValidateBasket();
+            res &= basket.ValidateBasket(user);
         return res;
+    }
+
+    public Map<Product, Integer> getProductsForPurchase(User user) {
+        Map<Product,Integer> output = new HashMap<>();
+        for(ShoppingBasket basket : this.baskets.values())
+            output.putAll(basket.getProductsAndQuantitiesForPurchase(user));
+        return output;
     }
 }

@@ -1,22 +1,32 @@
 package main.Shopping;
 
 
-import main.NotificationBus;
+import main.ExternalServices.Payment.IPayment;
+import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.IStore;
 import main.Stores.Product;
+import main.Users.User;
+import main.utils.PaymentInformation;
+import main.utils.SupplyingInformation;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ShoppingBasket {
     private ConcurrentHashMap<Product,Integer> productsQuantity;
-    private IStore store;
+    private WeakHashMap<Product, Double> costumePrice;
+    private final IStore store;
     private final Object basketEditLock = new Object();
 
-    public ShoppingBasket(IStore store){
+    private final List<String> discountPasswords = new LinkedList<>();
+
+    private User user;
+
+    public ShoppingBasket(IStore store, User user){
         this.store = store;
         productsQuantity=new ConcurrentHashMap<>();
+        costumePrice=new WeakHashMap<>();
+        this.user = user;
     }
 
     public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
@@ -33,6 +43,21 @@ public class ShoppingBasket {
         this.productsQuantity = newProductsQuantity;
     }
 
+    public void addDiscountPassword(String pass){
+        discountPasswords.add(pass);
+    }
+
+    public boolean hasAmount(Product product, Integer amount){
+        return productsQuantity.get(product) >= amount;
+    }
+
+    public boolean hasDiscountPassword(String pass){
+        for (String userPass : this.discountPasswords)
+            if (userPass.equals(pass))
+                return true;
+        return false;
+    }
+
     private int setProductQuantity(String prodName, int additiveQuanity) {
         Product prod = null;
         for (Product p : productsQuantity.keySet())
@@ -43,30 +68,44 @@ public class ShoppingBasket {
         if (prod == null)
             throw new IllegalArgumentException(String.format("Product %s doesn't exist in the basket.", prod));
         int newValue = productsQuantity.get(prod) + additiveQuanity;
-        if (newValue <= 0)
+        if (newValue <= 0) {
             productsQuantity.remove(prod);
+            costumePrice.remove(prod);
+        }
         else
             productsQuantity.put(prod, newValue);
         return Math.max(0, newValue);
     }
 
     public boolean AddProduct (String prodName, int quantity) {
+        return addProduct(this.store.getProduct(prodName), quantity);
+    }
+
+    private boolean addProduct(Product prodToAdd, int quantity) {
         synchronized (basketEditLock) {
-            Product prodToAdd = this.store.getProduct(prodName);
-            if (prodToAdd == null)
-                throw new IllegalArgumentException(String.format("Product %s doesn't exist in the store.", prodName));
             if (quantity <= 0)
                 throw new IllegalArgumentException("Can't add negative number of product.");
-            if (!store.ValidateProduct(prodToAdd, quantity))
-                throw new IllegalArgumentException(String.format("Product %s isnt available.", prodName));
+            if (!prodToAdd.isPurchasableForAmount(quantity))
+                throw new IllegalArgumentException("amount too high for product.");
+            if (!store.getIsActive())
+                throw new IllegalArgumentException(String.format("Product %s isnt available.", prodToAdd.getName()));
             for (Product pr : productsQuantity.keySet())
-                if (pr.getName().equals(prodName)) {
+                if (pr.getName().equals(prodToAdd.getName())) {
                     productsQuantity.put(pr, productsQuantity.get(pr) + quantity);
                     return true;
                 }
             productsQuantity.put(prodToAdd, quantity);
-            return true;
         }
+        return true;
+    }
+
+    //used when adding product with costume price, used for raffles.
+    public boolean setCostumePriceForProduct(String prodName, double price, User user) {
+        Product prodToSet = this.store.getProduct(prodName);
+        if(prodToSet.isPurchasableForPrice(price, productsQuantity.get(prodToSet), user))
+            this.costumePrice.put(prodToSet, price);
+        else throw new IllegalArgumentException("custom price is invalid.");
+        return true;
     }
 
     public int RemoveProduct(String productName, int quantity) {
@@ -89,26 +128,47 @@ public class ShoppingBasket {
         return store;
     }
 
-    public void purchaseBasket(NotificationBus bus)
+    public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment)
     {
-        store.purchaseBasket(bus, this);
+        store.purchaseBasket(user, supplying, supplyingInformation, paymentInformation, payment,this);
     }
 
     public double getPrice() {
         double res = 0;
         for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
-            res += en.getKey().getPrice() * en.getValue();
+            if(!costumePrice.containsKey(en.getKey()))
+                res += store.getPriceForProduct(en.getKey(), this.user) * en.getValue();
+            else res += costumePrice.get(en.getKey()) * en.getValue();
         return res;
     }
 
-    /**
-     * @return true/false depending if the basket is purchesable.
-     */
-    public boolean ValidateBasket() {
-        boolean res = true;
-        for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet() )
-            res &= this.store.ValidateProduct(ent.getKey(), ent.getValue());
+    public double getCleanPrice(){ // no discounts, used for calculating discount conditions relying on price.
+        double res = 0;
+        for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
+            if(!costumePrice.containsKey(en.getKey()))
+                res += en.getKey().getCleanPrice() * en.getValue();
+            else res += costumePrice.get(en.getKey()) * en.getValue();
         return res;
+    }
+
+    public Double getCostumePriceForProduct(Product product) {
+        return this.costumePrice.get(product);
+    }
+
+
+    /**
+     * @return true/false depending if the basket is purchasable.
+     */
+    public boolean ValidateBasket(User user) {
+        return store.ValidateBasket(user, this);
+    }
+
+    public Map<Product, Integer> getProductsAndQuantitiesForPurchase(User user) {
+        Map<Product, Integer> output= new HashMap<>();
+        for (Map.Entry<Product, Integer> ent: this.getProductsAndQuantities().entrySet())
+            if(ent.getKey().deliveredImmediately(user))
+                output.put(ent.getKey(), ent.getValue());
+        return output;
     }
 }
 

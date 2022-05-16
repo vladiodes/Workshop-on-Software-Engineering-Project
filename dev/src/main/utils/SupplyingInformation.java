@@ -4,32 +4,19 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SupplyingInformation {
-    private String address;
-    private LocalDateTime date;
-    private Boolean output;
+    private final String address;
+    private final LocalDate date;
 
-    /***
-     * used for testing only.
-     */
-    public SupplyingInformation(Boolean output) {
-        this.output = output;
-    }
-
-    public SupplyingInformation(String address, LocalDateTime date) {
+    public SupplyingInformation(String address, LocalDate date) {
         this.address = address;
         this.date = date;
-        output = null;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
-    }
-
-    public Boolean getOutput() {
-        return output;
     }
 }

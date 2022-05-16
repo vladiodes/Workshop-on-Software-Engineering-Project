@@ -7,6 +7,8 @@ import main.utils.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import test.testUtils.testsFactory;
+
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +21,7 @@ public class ATuser1Requirements {
     String securePassword = "Ligma123";
     @Before
     public void setUp(){
-        System =new Service();
+        System = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         usertoken1 = System.guestConnect();
         usertoken2 = System.guestConnect();
         usertoken3 = System.guestConnect();

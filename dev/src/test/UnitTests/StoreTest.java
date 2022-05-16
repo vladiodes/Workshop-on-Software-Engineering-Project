@@ -1,6 +1,5 @@
 package test.UnitTests;
 
-import main.NotificationBus;
 import main.Stores.IStore;
 import main.Stores.Product;
 import main.Stores.Store;
@@ -18,14 +17,11 @@ class StoreTest {
 
     private IStore store;
     private User founder;
-    private NotificationBus bus;
 
     @BeforeEach
     void setUp(){
         founder=new User(false,"founder","password");
         store=new Store("store1",founder);
-        bus=new NotificationBus();
-        bus.register(founder);
     }
 
     @Test
@@ -52,7 +48,7 @@ class StoreTest {
         assertEquals(after.getCategory(),"new_cat");
         assertEquals(after.getDescription(),"new_description");
         assertEquals(after.getQuantity(),12);
-        assertEquals(after.getPrice(),200);
+        assertEquals(after.getCleanPrice(),200);
     }
 
     @Test
@@ -64,46 +60,42 @@ class StoreTest {
 
     @Test
     void closeStoreAlreadyClosed(){
-        store.closeStore(bus);
-        assertThrows(IllegalArgumentException.class,()->store.closeStore(bus));
+        store.closeStore();
+        assertThrows(IllegalArgumentException.class,()->store.closeStore());
     }
 
     @Test
     void closeStoreGood(){
         User owner = new User(false,"owner","password");
         User manager = new User(false,"manager","password");
-        bus.register(owner);
-        bus.register(manager);
         OwnerPermissions op = new OwnerPermissions(owner,founder,store);
         ManagerPermissions mp = new ManagerPermissions(manager,owner,store);
         store.addOwnerToStore(op);
         store.addManager(mp);
-        store.closeStore(bus);
-        assertEquals(1, bus.getMessagesFromUserRequest(owner).size());
-        assertEquals(1, bus.getMessagesFromUserRequest(founder).size());
-        assertEquals(1, bus.getMessagesFromUserRequest(manager).size());
+        store.closeStore();
+//        assertEquals(1, bus.getMessagesFromUserRequest(owner).size());
+//        assertEquals(1, bus.getMessagesFromUserRequest(founder).size());
+//        assertEquals(1, bus.getMessagesFromUserRequest(manager).size());
     }
 
     @Test
     void reOpenAlreadyOpened(){
-        assertThrows(IllegalArgumentException.class,()->store.reOpen(bus));
+        assertThrows(IllegalArgumentException.class,()->store.reOpen());
     }
 
     @Test
     void reOpenGood(){
         User owner = new User(false,"owner","password");
         User manager = new User(false,"manager","password");
-        bus.register(owner);
-        bus.register(manager);
         OwnerPermissions op = new OwnerPermissions(owner,founder,store);
         ManagerPermissions mp = new ManagerPermissions(manager,owner,store);
         store.addOwnerToStore(op);
         store.addManager(mp);
-        store.closeStore(bus);
-        store.reOpen(bus);
-        assertEquals(2, bus.getMessagesFromUserRequest(owner).size());
-        assertEquals(2, bus.getMessagesFromUserRequest(founder).size());
-        assertEquals(2, bus.getMessagesFromUserRequest(manager).size());
+        store.closeStore();
+        store.reOpen();
+//        assertEquals(2, bus.getMessagesFromUserRequest(owner).size());
+//        assertEquals(2, bus.getMessagesFromUserRequest(founder).size());
+//        assertEquals(2, bus.getMessagesFromUserRequest(manager).size());
     }
 
     @Test

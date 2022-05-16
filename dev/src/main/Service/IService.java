@@ -2,18 +2,15 @@ package main.Service;
 
 
 
+import io.javalin.websocket.WsContext;
 import main.DTO.*;
-import main.utils.Pair;
+import main.utils.*;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
-import main.utils.PaymentInformation;
-import main.utils.Response;
-import main.utils.SupplyingInformation;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -88,6 +85,11 @@ public interface IService {
      */
     Response<Boolean> addProductToCart(String userToken, String storeName, String productName, int quantity);
 
+    /***
+     * used for when buying a product that is sold raffle.
+     */
+    Response<Boolean> setCostumPriceForProductInCart(String userToken, String storeName, String productName, double price);
+
 
     /**
      * REQ 2.2.4
@@ -146,7 +148,7 @@ public interface IService {
      * @param userToken - the user that invokes the action
      * @param userName - the user to check its history - admin can check for any user, non admin can only check for itself
      */
-    Response<List<ShoppingCartDTO>> getPurchaseHistory(String userToken,String userName);
+    Response<List<String>> getPurchaseHistory(String userToken,String userName);
 
     /**
      * REQ 2.3.8
@@ -190,6 +192,47 @@ public interface IService {
      * @return true/false upon success/failure
      */
     Response<Boolean> updateProduct(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price);
+
+    /***
+     * REQ 2.4.2 - adding discounts to products
+     */
+    Response<Integer> CreateSimpleDiscount(String userToken, String store, LocalDate until, Double percent);
+    Response<Integer> CreateSecretDiscount(String userToken, String store, LocalDate until, Double percent, String secretCode);
+    Response<Integer> CreateConditionalDiscount(String userToken, String store, LocalDate until, Double percent, int condID);
+    Response<Integer> CreateMaximumCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts);
+    Response<Integer> CreatePlusCompositeDiscount(String userToken, String store, LocalDate until, List<Integer> discounts);
+
+    Response<Boolean> SetDiscountToProduct(String userToken, String store, int discountID, String productName);
+    Response<Boolean>SetDiscountToStore(String userToken, String store, int discountID);
+    Response<Integer> CreateBasketValueCondition(String userToken, String store, double requiredValue);
+    Response<Integer> CreateCategoryAmountCondition(String userToken, String store, String category, int amount);
+    Response<Integer> CreateProductAmountCondition(String userToken, String store, String productName, int amount);
+    Response<Integer> CreateLogicalAndCondition(String userToken, String store, List<Integer> conditionIds);
+    Response<Integer> CreateLogicalOrCondition(String userToken, String store, List<Integer> conditionIds);
+    Response<Integer> CreateLogicalXorCondition(String userToken, String store, int id1, int id2);
+    Response<Boolean> SetConditionToDiscount(String userToken, String store, int discountId, int ConditionID);
+
+    Response<Boolean> SetConditionToStore(String userToken, String store, int ConditionID);
+    Response<Boolean> addDiscountPasswordToBasket(String userToken, String storeName, String Password);
+
+    /***
+     * REQ - Define and set purchase policies for products:
+     */
+    // used to reset policies
+    Response<Boolean> addNormalPolicy(String userToken, String storeName, String productName, Double price);
+    Response<Boolean> addRafflePolicy(String userToken, String storeName, String productName, Double price);
+    Response<Boolean> addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate until);
+    Response<Boolean> addBargainPolicy(String userToken, String StoreName, String productName, Double OriginalPrice);
+
+
+    /***
+     * bidding operations.
+     */
+    Response<Boolean> bidOnProduct(String userToken, String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation);
+    Response<List<BidDTO>>  getUserBids(String userToken, String storeName, String productName);
+    Response<Boolean> ApproveBid(String userToken, String storeName, String productName, String username);
+    Response<Boolean> DeclineBid(String userToken, String storeName, String productName, String username);
+    Response<Boolean> CounterOfferBid(String userToken, String storeName, String productName, String username, Double offer);
 
     /**
      * REQ 2.4.4
@@ -252,6 +295,28 @@ public interface IService {
     Response<Boolean> disAllowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName);
 
     /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> allowManagerBargainPreducts(String userToken, String managerName, String storeName);
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> disallowManagerBargainProducts(String userToken, String managerName, String storeName);
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> allowManagerPolicyProducts(String userToken, String managerName, String storeName);
+    /**
+     * REQ 2.4.7
+     * @return true/false upon success/failure
+     */
+    Response<Boolean> disallowManagerPolicyProducts(String userToken, String managerName, String storeName);
+
+
+    /**
      * REQ 2.4.9
      * @return true/false upon success/failure
      */
@@ -265,17 +330,15 @@ public interface IService {
 
     /**
      * REQ 2.4.11
-     * @return a hash map in which the key-value pair is of the format <UserDTO,List<String>>:
-     * UserDTO - represents the user that has a role in the store (manager,owner,founder)
-     * List<String> - a list of all the permissions that the staff member has.
      */
-    Response<HashMap<UserDTO,String>> getStoreStaff(String userToken, String storeName);
+    Response<List<String>> getStoreStaff(String userToken, String storeName);
 
     /**
      * REQ 2.4.12
+     *
      * @return a collection of all the questions from all the buyers
      */
-    Response<List<Pair<String,String>>> receiveQuestionsFromBuyers(String userToken, String storeName);
+    Response<List<String>> receiveQuestionsFromBuyers(String userToken, String storeName);
 
     /**
      * REQ 2.4.12
@@ -291,7 +354,7 @@ public interface IService {
      * was bought at that date
      * the value is the dto of the product.
      */
-    Response<List<PurchaseDTO>> getStorePurchaseHistory(String userToken, String storeName);
+    Response<List<String>> getStorePurchaseHistory(String userToken, String storeName);
 
     /*
      ------------------------ System manager actions -------------------
@@ -349,4 +412,31 @@ public interface IService {
     Response<String> getNumberOfRegisteredUsersPerDate(String userToken, LocalDate date);
 
     Response<Boolean> isMemberLoggedOut(String userToken);
+
+    /**
+     * @param userToken
+     * @return Returns all the stores managed,owned,founded by a user
+     */
+    Response<List<StoreDTO>> getAllStoresOfUser(String userToken);
+
+    /**
+     * This function assigns a web-socket for a logged in user session
+     * @param userToken - token of a user that has logged in
+     * @param ctx - the context of the websocket
+     * @return true upon success/fail on failure
+     */
+    Response<Boolean> assignWStoUserToken(String userToken, WsContext ctx);
+
+    Response<Boolean> leaveWSforUserToken(String userToken);
+
+    /**
+     * REQ 2.6.6
+     * @param userToken
+     * @return a string of the following format:
+     * "x/y are logged in right now"
+     * x - currently logged in MEMBERS
+     * y - total members in the system
+     */
+    Response<String> getLoggedInVSRegistered(String userToken);
+
 }

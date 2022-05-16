@@ -1,0 +1,52 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>$currentUser profile:</h2>
+        <table style="border-spacing: 10rem 0;">
+            <tr>
+                <td>
+                    <form action="/changeUserName" id="change_details" method="post">
+                        <p>Username</p>
+                        <input type="text" name="userName" placeholder="$currentUser" value="$currentUser" required>
+                        <p><input type="submit" value="Change username"></p>
+                    </form>
+
+                    <form action="/changePassword" id="change_password" method="post">
+                        <p>Old password</p>
+                        <input type="password" name="oldPassword" value="" required>
+                        <p>New password</p>
+                        <input type="password" name="newPassword" value="" required>
+                        <p><input type="submit" value="Change password"></p>
+                    </form>
+                </td>
+                <td>
+                    <form action="/addSecurityQuestion" id="add_question" method="post">
+                        <p>Security question</p>
+                        <input type="text" name="question" placeholder="e.g: What was the name of your first pet" value="" required>
+                        <p>Answer</p>
+                        <input type="text" name="answer" placeholder="Doggy the dog" value="" required>
+                        <p><input type="submit" value="Add security question"></p>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <h2><a href="/userPurchaseHistory">View purchase history</a></h2>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: center;">
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+        #end
+        </div>
+    </div>
+</main>
+</div>
+</body>
+</html>

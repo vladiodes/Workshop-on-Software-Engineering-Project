@@ -5,12 +5,11 @@ import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.Service.Service;
-import main.utils.PaymentInformation;
 import main.utils.Response;
-import main.utils.SupplyingInformation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import test.testUtils.testsFactory;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AT_Req2_3 {
 
     private Response<String> guest1Token, memberNoCartToken, memberWithCartToken, founder1token, founder2token, loggedOutMember, founder3token, memberBoughtCola, memberToChange1, memberToChange2, bloggerMember;
-    private IService service = new Service();
+    private IService service;
     String longString;
 
     //===========================================Setup========================================
@@ -35,7 +34,7 @@ public class AT_Req2_3 {
         {
             longString = longString + "a";
         }
-        service = new Service();
+        service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         guest1Token = service.guestConnect();
         memberNoCartToken = service.guestConnect();
         memberWithCartToken = service.guestConnect();
@@ -82,7 +81,7 @@ public class AT_Req2_3 {
         //Others
         service.addProductToCart(memberWithCartToken.getResult(), "MyStore1", "Coca Cola", 2);
         service.addProductToCart(memberBoughtCola.getResult(), "MyStore1", "Coca Cola", 1);
-        service.purchaseCart(memberBoughtCola.getResult(),new PaymentInformation(true), new SupplyingInformation(true));
+        service.purchaseCart(memberBoughtCola.getResult(), testsFactory.getSomePI(), testsFactory.getSomeSI());
 
 
 
@@ -111,7 +110,7 @@ public class AT_Req2_3 {
         //Member logout with cart - success
         assertFalse(service.logout(memberWithCartToken.getResult()).isError_occured());
         ShoppingCartDTO ShoppingCartMemberWithCart = service.getCartInfo(memberWithCartToken.getResult()).getResult();
-        assertFalse(ShoppingCartMemberWithCart.getBaskets().isEmpty());
+        assertTrue(ShoppingCartMemberWithCart.getBaskets().isEmpty());
         assertTrue(service.isMemberLoggedOut(memberWithCartToken.getResult()).getResult());
 
     }
@@ -164,7 +163,7 @@ public class AT_Req2_3 {
         //only someone who bought from the store can write a review.
         assertTrue(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
         service.addProductToCart(bloggerMember.getResult(), "MyStore1", "Coca Cola", 1);
-        service.purchaseCart(bloggerMember.getResult(),new PaymentInformation(true), new SupplyingInformation(true));
+        service.purchaseCart(bloggerMember.getResult(),testsFactory.getSomePI(), testsFactory.getSomeSI());
         assertTrue(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", -2).isError_occured());
         assertFalse(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
         //same user can't write a review twice to the same store.
@@ -210,11 +209,11 @@ public class AT_Req2_3 {
         //Member is not logged in - fail
         assertTrue(service.getPurchaseHistory(loggedOutMember.getResult(),"notLoggedMember").isError_occured());
         //Empty history - success
-        Response<List<ShoppingCartDTO>> emptyHistory = service.getPurchaseHistory(memberNoCartToken.getResult(), "memberNoCart");
+        Response<List<String>> emptyHistory = service.getPurchaseHistory(memberNoCartToken.getResult(), "memberNoCart");
         assertFalse(emptyHistory.isError_occured());
         assertTrue(emptyHistory.getResult().isEmpty());
         //Non- empty history - success
-        Response<List<ShoppingCartDTO>> nonEmptyHistory = service.getPurchaseHistory(memberBoughtCola.getResult(), "boughtCola");
+        Response<List<String>> nonEmptyHistory = service.getPurchaseHistory(memberBoughtCola.getResult(), "boughtCola");
         assertFalse(nonEmptyHistory.isError_occured());
         assertFalse(nonEmptyHistory.getResult().isEmpty());
     }
@@ -313,6 +312,6 @@ public class AT_Req2_3 {
     @After
     public void tearDown()
     {
-        service = new Service();
+        service= new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
     }
 }

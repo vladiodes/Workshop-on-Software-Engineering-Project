@@ -2,11 +2,11 @@ package test.AcceptanceTests;
 
 import main.Service.IService;
 import main.Service.Service;
-import main.utils.PaymentInformation;
 import main.utils.Response;
-import main.utils.SupplyingInformation;
 import org.junit.Before;
 import org.junit.Test;
+import test.testUtils.testsFactory;
+
 import java.time.LocalDate;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AT_Req2_6 {
 
     Response<String> adminToken, founder1token, user1token, user2token, user3token;
-    IService service = new Service();
+    IService service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
 
     @Before
     public void setUp() {
@@ -83,11 +83,11 @@ public class AT_Req2_6 {
     @Test
     public void receiveMessages() {
         service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 1);
-        service.purchaseCart(user1token.getResult(), new PaymentInformation(true), new SupplyingInformation(true));
+        service.purchaseCart(user1token.getResult(), testsFactory.getSomePI(), testsFactory.getSomeSI());
         service.sendComplaint(user1token.getResult(), "complaint");
         List<String> messageList = service.receiveMessages(adminToken.getResult()).getResult();
         assertFalse(messageList.isEmpty());
-        assertEquals("complaint", messageList.get(0));
+        assertEquals(messageList.size(), 1);
     }
 
     /***
@@ -96,7 +96,7 @@ public class AT_Req2_6 {
     @Test
     public void receiveComplaintsOnlyAdmin() {
         service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 1);
-        service.purchaseCart(user1token.getResult(), new PaymentInformation(true), new SupplyingInformation(true));
+        service.purchaseCart(user1token.getResult(), testsFactory.getSomePI(), testsFactory.getSomeSI());
         service.sendComplaint(user1token.getResult(), "complaint");
         assertEquals(0, service.receiveMessages(founder1token.getResult()).getResult().size());
         assertEquals(0, service.receiveMessages(user1token.getResult()).getResult().size());

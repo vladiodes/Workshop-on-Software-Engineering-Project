@@ -1,0 +1,21 @@
+#parse("/velocity/sideMenu.vm")
+#parse("/velocity/index.vm")
+#macro(mainLayout)
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Trading System</title>
+    <link rel="stylesheet" href="/main.css" />
+</head>
+<body>
+<div class="page">
+    <header tabindex="0">
+        <div id="logo">TradeIt.</div>
+        <div id="cart"><a href="/cart">Cart</a></div>
+        #if($isLoggedIn)
+        <div id="profile"><a href="/profile">Profile</a></div>
+        #end
+    </header>
+    #@sideMenu()
+        #end
+#end

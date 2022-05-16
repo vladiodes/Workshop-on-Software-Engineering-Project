@@ -6,7 +6,10 @@ public enum StorePermission {
     UpdateAddProducts("Update and add products"),
     ViewStoreHistory("View store history"),
     AnswerAndTakeRequests("Answer and take requests"),
+    PolicyPermission("Permision to add policy"),
+    BargainPermission("Permission to bargain with buyers"),
     OwnerPermission("Owner permissions");//can do anything
+
 
     private String str;
     private static HashMap<StorePermission,String> toString_map = createMapping();

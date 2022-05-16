@@ -1,0 +1,30 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>Send a respond to buyer's query:</h2>
+                    <form method="post">
+                        <p>Select your store</p>
+                        <select name="storeName">
+                            #foreach($store in $stores)
+                                <option value="$store.getStoreName()">$store.getStoreName()</option>
+                            #end
+                        </select>
+                        <p>Buyer to respond</p>
+                        <input type="text" name="userName" value="" required>
+                        <p>Respond</p>
+                        <input type="text" name="respond" value="" required>
+                        <p><input type="submit" value="Send response"></p>
+                    </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

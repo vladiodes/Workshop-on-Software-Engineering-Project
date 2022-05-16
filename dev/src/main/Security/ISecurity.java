@@ -9,4 +9,5 @@ public interface ISecurity {
      * @return hashed password.
      */
     public String hashPassword(String password);
+    public boolean isValidPassword(String password, String userName);
 }
