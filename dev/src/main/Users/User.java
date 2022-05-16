@@ -3,6 +3,7 @@ package main.Users;
 
 import main.ExternalServices.Payment.IPayment;
 import main.Publisher.*;
+import main.Security.ISecurity;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
@@ -11,8 +12,10 @@ import main.Stores.IStore;
 
 import main.Stores.Product;
 
-import main.Stores.Store;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Users.states.GuestState;
+import main.Users.states.MemberState;
+import main.Users.states.UserStates;
 import main.utils.*;
 
 
@@ -24,23 +27,21 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class User implements Observable {
 
     private boolean isSystemManager;
-    private String userName;
-    private String hashed_password;
-    private AtomicBoolean isLoggedIn;
     private ConcurrentLinkedQueue<String> messages = new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
     private List<ShoppingCart> purchaseHistory;
 
     private Observer observer;
 
+    private UserStates state;
+
 
     // stores connections
-    private List<IStore> foundedStores;
+
     private List<ManagerPermissions> managedStores;
     private List<OwnerPermissions> ownedStores;
     private List<Pair<String,String>> securityQNA;
@@ -68,12 +69,9 @@ public class User implements Observable {
 
     public User(String guestID) {
         isSystemManager = false;
-        userName = "Guest".concat(guestID);
-        hashed_password = null;
-        isLoggedIn = new AtomicBoolean(false);
-        foundedStores = new LinkedList<>();
         cart = new ShoppingCart(this);
         registerObserver(new Publisher(this));
+        state = new GuestState(guestID);
     }
 
     /**
@@ -81,10 +79,6 @@ public class User implements Observable {
      */
     public User(boolean isSystemManager, String userName, String hashed_password) {
         this.isSystemManager = isSystemManager;
-        this.userName = userName;
-        this.hashed_password = hashed_password;
-        isLoggedIn = new AtomicBoolean(false);
-        foundedStores = new LinkedList<>();
         cart = new ShoppingCart(this);
         ownedStores = new LinkedList<>();
         managedStores = new LinkedList<>();
@@ -92,6 +86,11 @@ public class User implements Observable {
 		securityQNA = new LinkedList<>();
         purchaseHistory = new LinkedList<>();
         registerObserver(new Publisher(this));
+        state = new MemberState(userName, hashed_password);
+    }
+
+    public void setState(UserStates state) {
+        this.state = state;
     }
 
     public ShoppingCart getCart() {
@@ -99,24 +98,20 @@ public class User implements Observable {
     }
 
     public String getUserName() {
-        return userName;
-    }
-
-    public String getHashed_password() {
-        return hashed_password;
+        return this.state.getUserName();
     }
 
     public Observer getObserver(){
         return observer;
     }
 
-    public void LogIn() {
-        this.isLoggedIn.set(true);
+    public void LogIn(String password, ISecurity security_controller) {
+        this.state.login(password, security_controller);
         notifyObserver();
     }
 
     public Boolean getIsLoggedIn() {
-        return isLoggedIn.get();
+        return this.state.getIsLoggedIn();
     }
 
 
@@ -133,7 +128,7 @@ public class User implements Observable {
     }
 
     private boolean hasPermission(IStore IStore, StorePermission permission) {
-        if (foundedStores.contains(IStore)) {
+        if (getFoundedStores().contains(IStore)) {
             //founder can do whatever he likes...
             return true;
         }
@@ -174,7 +169,7 @@ public class User implements Observable {
         //second checking if the user to appoint isn't already an owner/manager/founder of the store
         if (user.getOwnedStores().contains(IStore))
             return true;
-        if (user.foundedStores.contains(IStore))
+        if (user.getFoundedStores().contains(IStore))
             return true;
         return user.getManagedStores().contains(IStore);
     }
@@ -342,14 +337,14 @@ public class User implements Observable {
 
 
     public boolean closeStore(IStore IStore) {
-        if (!foundedStores.contains(IStore))
+        if (!getFoundedStores().contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
         IStore.closeStore();
         return true;
     }
 
     public boolean reOpenStore(IStore IStore) {
-        if (!foundedStores.contains(IStore))
+        if (!getFoundedStores().contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
         IStore.reOpen();
         return true;
@@ -364,15 +359,11 @@ public class User implements Observable {
 
     public void addSecurityQuestion(String question, String answer) throws Exception
     {
-        if(question.isBlank() || answer.isBlank())
-        {
-            throw new Exception("Question or Answer cant be empty");
-        }
-        this.securityQNA.add(new Pair<>(question, answer));
+        this.state.addSecurityQuestion(question, answer);
     }
 
     public void logout() {
-        this.isLoggedIn.set(false);
+        this.state.logout();
     }
 
     public void purchaseCart(PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{
@@ -393,13 +384,13 @@ public class User implements Observable {
         this.purchaseHistory.add(cart);
     }
 
-    public void setStoreFounder(IStore IStore) throws Exception
+    public void setStoreFounder(IStore IStore)
     {
-        if(!this.foundedStores.isEmpty())
+        if(!this.getFoundedStores().isEmpty())
         {
-            throw new Exception("There is already a store founder");
+            throw new IllegalArgumentException("There is already a store founder");
         }
-        this.foundedStores.add(IStore);
+        this.getFoundedStores().add(IStore);
     }
 
     public Product findProductInHistoryByNameAndStore(String productName, String storeName) {
@@ -457,7 +448,7 @@ public class User implements Observable {
     }
 
     public void removeFounderRole(IStore IStore) {
-        foundedStores.remove(IStore);
+        getFoundedStores().remove(IStore);
     }
 
     public void removeOwnerRole(OwnerPermissions ownerPermissions) {
@@ -475,7 +466,7 @@ public class User implements Observable {
         List<IStore> deletedStores=new LinkedList<>();
 
         //removing all the stores that the user has founded
-        for (IStore IStore : toDelete.foundedStores) {
+        for (IStore IStore : toDelete.getFoundedStores()) {
             if(removeStore(IStore))
                 deletedStores.add(IStore);
         }
@@ -496,9 +487,7 @@ public class User implements Observable {
     }
 
     public IStore openStore(String storeName) {
-        IStore IStore = new Store(storeName,this);
-        foundedStores.add(IStore);
-        return IStore;
+        return this.state.openStore(storeName, this);
     }
 
     public boolean removeProductFromStore(String productName, IStore IStore) {
@@ -525,24 +514,19 @@ public class User implements Observable {
 
 
     public List<IStore> getFoundedStores() {
-        return foundedStores;
+        return this.state.getFoundedStores();
     }
 
-    public void changePassword(String newPassHashed) {
-        this.hashed_password = newPassHashed;
+    public void changePassword(String newPassHashed, ISecurity security_controller, String oldPassword) {
+        this.state.changePassword(newPassHashed, security_controller, oldPassword);
     }
 
     public void changeUsername(String newUsername){
-        if(newUsername.isBlank())
-        {
-            throw new IllegalArgumentException("Username cant be blank");
-        }
-        this.userName = newUsername;
-
+        this.state.changeUsername(newUsername);
     }
 
     public List<Pair<String, String>> getSecurityQNA() {
-        return securityQNA;
+        return this.state.getSecurityQNA();
     }
 
     public List<IStore> getAllStoresIsStaff() {

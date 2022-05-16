@@ -110,7 +110,7 @@ public class AT_Req2_3 {
         //Member logout with cart - success
         assertFalse(service.logout(memberWithCartToken.getResult()).isError_occured());
         ShoppingCartDTO ShoppingCartMemberWithCart = service.getCartInfo(memberWithCartToken.getResult()).getResult();
-        assertFalse(ShoppingCartMemberWithCart.getBaskets().isEmpty());
+        assertTrue(ShoppingCartMemberWithCart.getBaskets().isEmpty());
         assertTrue(service.isMemberLoggedOut(memberWithCartToken.getResult()).getResult());
 
     }

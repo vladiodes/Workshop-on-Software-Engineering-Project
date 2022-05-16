@@ -87,7 +87,6 @@ class MarketTest {
         when(membersByUserName.containsKey(GuestUserName)).thenReturn(false);
         when(security_controller.isValidPassword(any(String.class), any(String.class))).thenReturn(true);
         when(security_controller.hashPassword(memberPassword)).thenReturn(memberPassword);
-        when(MemberUserMock.getHashed_password()).thenReturn(memberPassword);
         doThrow(new IllegalArgumentException()).when(MemberUserMock).changeUsername(baduserName);
     }
 
@@ -166,38 +165,6 @@ class MarketTest {
     void logout() {
         assertDoesNotThrow(() -> m.logout(MemberUserToken));
         verify(MemberUserMock, times(1)).logout();
-    }
-
-    @Test
-    void GuestCantlogout() {
-        assertThrows(Exception.class,() -> m.logout(GuestuserToken));
-    }
-
-    @Test
-    void changePassword() {
-        String newpass = "bla";
-        String hashed = "Blabla";
-        when(security_controller.hashPassword(newpass)).thenReturn(hashed);
-        assertDoesNotThrow(() -> m.changePassword(MemberUserToken, memberPassword, newpass));
-        verify(MemberUserMock, times(1)).changePassword(hashed);
-    }
-
-    @Test
-    void changePasswordBadOldPassword() {
-        assertThrows(Exception.class,() -> m.changePassword(MemberUserToken, "incorrect", "New password"));
-        verify(MemberUserMock, times(0)).changePassword(any(String.class));
-    }
-
-    @Test
-    void BadNewPassword() {
-        String password = "bla";
-        when(security_controller.isValidPassword(password, memberUserName)).thenReturn(false);
-        assertThrows(Exception.class,() -> m.changePassword(MemberUserToken, memberPassword, password));
-        verify(MemberUserMock, times(0)).changePassword(any(String.class));
-    }
-    @Test
-    void GuestCantchangePassword() {
-        assertThrows(Exception.class,() -> m.changePassword(GuestuserToken, "doesnt", "matter"));
     }
 
     @Test

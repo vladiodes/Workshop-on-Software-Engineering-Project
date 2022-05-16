@@ -45,13 +45,6 @@ class UserTest {
     }
 
     @Test
-    void checkLogin(){
-        assertFalse(user.getIsLoggedIn());
-        user.LogIn();
-        assertTrue(user.getIsLoggedIn());
-    }
-
-    @Test
     void addProductToStoreWithFounderPermissions(){
         user.getFoundedStores().add(store_mock);
         boolean res = user.addProductToStore(store_mock,"product","category",null,null,5,15);

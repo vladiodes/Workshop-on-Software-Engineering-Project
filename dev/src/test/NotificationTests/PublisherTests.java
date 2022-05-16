@@ -2,6 +2,7 @@ package test.NotificationTests;
 
 import main.Publisher.*;
 import main.Users.User;
+import main.Users.states.UserStates;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -18,6 +19,8 @@ public class PublisherTests {
     Notification notification;
     @Mock
     Notification notification2;
+    @Mock
+    UserStates userState;
 
 
     @Before
@@ -30,6 +33,7 @@ public class PublisherTests {
         observableUser.registerObserver(publisher);
         publisher.setWebSocket(mockWebSocket);
         configMocks();
+        userState = mock(UserStates.class);
     }
 
     private void configMocks() {
@@ -40,7 +44,10 @@ public class PublisherTests {
 
     @Test
     public void sendingNotificationWhenLoggedIn(){
-        ((User)observableUser).LogIn();
+        User observableUserUser = ((User)observableUser);
+        observableUserUser.setState(userState);
+        when(userState.getIsLoggedIn()).thenReturn(true);
+        observableUserUser.LogIn(null, null);
         observableUser.notifyObserver(notification);
         verify(mockWebSocket,times(1)).send(notification);
     }
@@ -67,14 +74,20 @@ public class PublisherTests {
         for(int i=1;i<=notifications_num;i++){
             observableUser.notifyObserver(notification);
         }
-        ((User)observableUser).LogIn();
+        User observableUserUser = ((User)observableUser);
+        observableUserUser.setState(userState);
+        when(userState.getIsLoggedIn()).thenReturn(true);
+        observableUserUser.LogIn(null, null);
         verify(mockWebSocket,times(notifications_num)).send(notification);
         Assertions.assertEquals(publisher.getAllNotifications().size(), notifications_num);
     }
 
     @Test
     public void whenLoggedInSendingAllNotifications(){
-        ((User)observableUser).LogIn();
+        User observableUserUser = ((User)observableUser);
+        observableUserUser.setState(userState);
+        when(userState.getIsLoggedIn()).thenReturn(true);
+        observableUserUser.LogIn(null, null);
         int notifications_num=20;
         for(int i=1;i<=notifications_num;i++){
             observableUser.notifyObserver(notification);
@@ -85,12 +98,16 @@ public class PublisherTests {
 
     @Test
     public void checkingSuspendedNotificationsNotSent(){
-        ((User)observableUser).LogIn();
+        User observableUserUser = ((User)observableUser);
+        observableUserUser.setState(userState);
+        when(userState.getIsLoggedIn()).thenReturn(true);
+        observableUserUser.LogIn(null, null);
         int notifications_received=20,suspended=10;
         for(int i=1;i<=notifications_received;i++){
             observableUser.notifyObserver(notification);
         }
         ((User)observableUser).logout();
+        when(userState.getIsLoggedIn()).thenReturn(false);
         for(int i=1;i<=suspended;i++){
             observableUser.notifyObserver(notification2);
         }
@@ -101,13 +118,21 @@ public class PublisherTests {
     @Test
     public void complexScenarioOfLoggingSequencesReceivingSuspendedNotifications(){
         for(int i=1;i<=100;i++) {
-            ((User) observableUser).LogIn();
-            ((User) observableUser).logout();
+            User observableUserUser = ((User)observableUser);
+            observableUserUser.setState(userState);
+            when(userState.getIsLoggedIn()).thenReturn(true);
+            observableUserUser.LogIn(null, null);
+            observableUserUser.logout();
+            when(userState.getIsLoggedIn()).thenReturn(false);
         }
         observableUser.notifyObserver(notification);
         for(int i=1;i<=100;i++) {
-            ((User) observableUser).LogIn();
-            ((User) observableUser).logout();
+            User observableUserUser = ((User)observableUser);
+            observableUserUser.setState(userState);
+            when(userState.getIsLoggedIn()).thenReturn(true);;
+            observableUserUser.LogIn(null, null);
+            observableUserUser.logout();
+            when(userState.getIsLoggedIn()).thenReturn(false);
         }
         verify(mockWebSocket,times(1)).send(notification);
     }
@@ -117,9 +142,16 @@ public class PublisherTests {
         for(int i=1;i<=20;i++){
             observableUser.notifyObserver(notification);
         }
-        ((User) observableUser).LogIn();
-        ((User) observableUser).logout();
-        ((User) observableUser).LogIn();
+        User observableUserUser = ((User)observableUser);
+        observableUserUser.setState(userState);
+        when(userState.getIsLoggedIn()).thenReturn(true);
+        observableUserUser.LogIn(null, null);
+        observableUserUser.logout();
+        when(userState.getIsLoggedIn()).thenReturn(false);
+        observableUserUser = ((User)observableUser);
+        observableUserUser.setState(userState);
+        observableUserUser.LogIn(null, null);
+        when(userState.getIsLoggedIn()).thenReturn(true);
         verify(mockWebSocket,times(20)).send(notification);
     }
 
@@ -141,7 +173,10 @@ public class PublisherTests {
         t1.join();
         t2.join();
         verify(mockWebSocket,times(0)).send(any());
-        ((User) observableUser).LogIn();
+        User observableUserUser = ((User)observableUser);
+        observableUserUser.setState(userState);
+        observableUserUser.LogIn(null, null);
+        when(userState.getIsLoggedIn()).thenReturn(true);
         verify(mockWebSocket,times(first_thread+second_thread)).send(any());
         Assertions.assertEquals(publisher.getAllNotifications().size(), first_thread + second_thread);
     }
