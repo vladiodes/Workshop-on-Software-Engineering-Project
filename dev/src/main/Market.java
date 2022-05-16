@@ -23,7 +23,6 @@ import main.Users.StorePermission;
 import main.Users.User;
 
 import main.utils.*;
-import org.hamcrest.core.Is;
 
 
 import java.time.LocalDate;
@@ -201,26 +200,20 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("token %s isn't in the system and attempted to log in.", token));
             throw new IllegalArgumentException("token isn't connected in the system.");
         }
-        if (connectedSessions.get(token).getIsLoggedIn()) {
-            throw new IllegalArgumentException("user already logged in.");
-        }
         User u = membersByUserName.get(userName);
-        if (!u.getHashed_password().equals(security_controller.hashPassword(password))) {
-            throw new IllegalArgumentException("Incorrect password.");
-        }
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
+        u.LogIn(password, this.security_controller);
         connectedSessions.put(token, u);
-        u.LogIn();
         addStats(StatsType.Login);
         return new UserDTO(u);
     }
-
 
     private IStore getDomainStoreByName(String name) {
         if(!stores.containsKey(name))
             throw new IllegalArgumentException("Requested store doesn't exist.");
         return this.stores.get(name);
     }
+
     public StoreDTO getStoreByName(String name) {
         if(!stores.containsKey(name))
             throw new IllegalArgumentException("Requested store doesn't exist.");
@@ -589,20 +582,8 @@ public class Market {
 
     public void logout(String token) throws Exception
     {
-        if(!connectedSessions.containsKey(token))
-        {
-            throw new IllegalArgumentException("User is not logged in");
-        }
-        User u = connectedSessions.get(token);
+        User u = getConnectedUserByToken(token);
         String userName = u.getUserName();
-        if(!membersByUserName.containsKey(userName))
-        {
-            throw new IllegalArgumentException("User is not a member");
-        }
-        if(!u.getIsLoggedIn())
-        {
-            throw new IllegalArgumentException("Member is not logged in");
-        }
         u.logout();
         connectedSessions.put(token,new User(token));
     }
@@ -661,15 +642,7 @@ public class Market {
 
     public void changePassword(String userToken, String oldPassword, String newPassword){
         User u = getConnectedUserByToken(userToken);
-        if (!security_controller.isValidPassword(newPassword,u.getUserName())) {
-            throw new IllegalArgumentException("password is not secure enough.");
-        }
-        String oldPassHashed = this.security_controller.hashPassword(oldPassword);
-        if(!oldPassHashed.equals(u.getHashed_password()))
-        {
-            throw new IllegalArgumentException("Old password is incorrect");
-        }
-        u.changePassword(this.security_controller.hashPassword(newPassword));
+        u.changePassword(newPassword, this.security_controller, oldPassword);
     }
 
     public void changeUsername(String userToken, String newUsername) throws Exception {

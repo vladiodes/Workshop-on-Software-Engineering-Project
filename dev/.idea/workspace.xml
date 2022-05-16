@@ -22,14 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleted unused class">
-      <change afterPath="$PROJECT_DIR$/src/main/Publisher/WebSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/NotificationTests/PublisherTests.java" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleting unnecessary files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +34,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -125,7 +120,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently">
+  <component name="RunManager" selected="JUnit.PurchaseConcurrencyTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -133,6 +128,22 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_3.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_3" />
+      <option name="METHOD_NAME" value="testLogout" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -168,68 +179,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PublisherTests.notSendingNotificationsWhenNotLoggedIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PurchaseConcurrencyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
-      <option name="METHOD_NAME" value="notSendingNotificationsWhenNotLoggedIn" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.PurchaseConcurrencyTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PublisherTests.sendingLotsOfNotificationsConcurrently" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
-      <option name="METHOD_NAME" value="sendingLotsOfNotificationsConcurrently" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PublisherTests.whenLoggedInSendingAllNotifications" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
-      <option name="METHOD_NAME" value="whenLoggedInSendingAllNotifications" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.PurchaseConcurrencyTest" />
+      <item itemvalue="JUnit.AT_Req2_3.testLogout" />
+      <item itemvalue="JUnit.test in dev" />
       <item itemvalue="JUnit.PublisherTests" />
       <item itemvalue="JUnit.PublisherTests.checkingSuspendedNotificationsNotSent" />
-      <item itemvalue="JUnit.PublisherTests.notSendingNotificationsWhenNotLoggedIn" />
-      <item itemvalue="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently" />
-      <item itemvalue="JUnit.PublisherTests.whenLoggedInSendingAllNotifications" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently" />
+        <item itemvalue="JUnit.PurchaseConcurrencyTest" />
+        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.PublisherTests" />
         <item itemvalue="JUnit.PublisherTests.checkingSuspendedNotificationsNotSent" />
-        <item itemvalue="JUnit.PublisherTests.whenLoggedInSendingAllNotifications" />
-        <item itemvalue="JUnit.PublisherTests.notSendingNotificationsWhenNotLoggedIn" />
+        <item itemvalue="JUnit.AT_Req2_3.testLogout" />
       </list>
     </recent_temporary>
   </component>
@@ -612,14 +604,6 @@
           <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java</url>
           <line>9</line>
           <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/UnitTests/MarketTest.java</url>
-          <line>172</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
