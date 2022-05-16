@@ -33,6 +33,11 @@ public class ShoppingBasketDTO {
     }
 
     public boolean isProductInHistory(String productName) {
-        return productsQuantity.containsKey(productName);
+        for(HashMap.Entry<ProductDTO, Integer> element : productsQuantity.entrySet())
+        {
+            if(element.getKey().getProductName().equals(productName))
+                return true;
+        }
+        return false;
     }
 }

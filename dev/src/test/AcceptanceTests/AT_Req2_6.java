@@ -65,8 +65,8 @@ public class AT_Req2_6 {
      */
     @Test
     public void deleteUserWithStore() {
-        assertTrue(service.deleteUser(adminToken.getResult(), "founder1").getResult());
-        assertTrue(service.getStoreInfo("MyStore1").isError_occured());
+        assertTrue(service.deleteUser(adminToken.getResult(), "founder1").isWas_expected_error());
+        assertFalse(service.getStoreInfo("MyStore1").isError_occured());
     }
 
     /***
