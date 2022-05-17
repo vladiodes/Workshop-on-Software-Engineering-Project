@@ -347,7 +347,7 @@ public class StoreController {
 
     public Handler deleteStorePost = ctx ->{
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        Response<Boolean> response = service.deleteStore(ctx.sessionAttribute("storeToken"),ctx.formParam("storeName"));
+        Response<Boolean> response = service.deleteStore(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"));
         if(response.isError_occured()){
             model.put("fail",true);
             model.put("response",response.getError_message());
