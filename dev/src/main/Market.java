@@ -470,12 +470,12 @@ public class Market {
         if (admin == null)
             throw new IllegalArgumentException("No such admin in the system");
         User toDelete = membersByUserName.get(userName);
-        // removing all stores founded by the user
-        for(IStore store:admin.deleteUser(toDelete))
-            stores.remove(store.getName());
 
-            membersByUserName.remove(toDelete.getUserName());
-            return true;
+        // Check to see if user has any role
+        if(toDelete.isAdmin() || toDelete.isManager() || toDelete.isFounder() || toDelete.isOwner())
+            throw new IllegalArgumentException("Cant delete a user with a role");
+        membersByUserName.remove(toDelete.getUserName());
+        return true;
     }
 
     public List<String> receiveMessages(String userToken) {
@@ -607,38 +607,40 @@ public class Market {
         User uToReturn = membersByUserName.get(userName);
         if(uToReturn == null)
             throw new IllegalArgumentException("User doesn't exist.");
-        List<ShoppingCart> purchaseHistory = uToReturn.getPurchaseHistory();
-        List<ShoppingCartDTO> scDTO = new LinkedList<>();
-        for(ShoppingCart sc : purchaseHistory)
-        {
-            scDTO.add(new ShoppingCartDTO(sc, u));
-        }
-        return scDTO;
+        return u.getPurchaseHistory();
+
     }
 
-    public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points) throws Exception{
+    public void writeProductReview(String userToken, String productName, String storeName, String reviewDescription, double points){
         User u = getConnectedUserByToken(userToken);
-        Product prod = u.findProductInHistoryByNameAndStore(productName, storeName);
-        if(prod == null)
+        if(!u.isProductInHistoryByNameAndStore(productName, storeName))
             throw new IllegalArgumentException("Product was not found in user's purchase history");
+
+        Product prod = getProductByNameAndStore(productName, storeName);
         ProductReview pReview = new ProductReview(u, prod, reviewDescription, points);
         prod.addReview(pReview);
+    }
+
+    private Product getProductByNameAndStore(String productName, String storeName) {
+        if(!this.stores.containsKey(storeName))
+            throw new IllegalArgumentException("No such store in history");
+        IStore store = this.stores.get(storeName);
+        return store.getProduct(productName);
     }
 
     public void writeStoreReview(String userToken, String storeName, String reviewDescription, double points) throws Exception{
         User u = getConnectedUserByToken(userToken);
         if(!u.getIsLoggedIn())
             throw new IllegalArgumentException("Only members can write reviews.");
-        IStore store = u.getStoreInPurchaseHistory(storeName);
-        if(store==null)
-        {
+        if(!u.isStoreInHistory(storeName))
             throw new IllegalArgumentException("Store was not found in user's purchase history");
-        }
+
+        IStore store = stores.get(storeName);
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
     }
 
-    public void changePassword(String userToken, String oldPassword, String newPassword)throws Exception {
+    public void changePassword(String userToken, String oldPassword, String newPassword){
         User u = getConnectedUserByToken(userToken);
         u.changePassword(newPassword, this.security_controller, oldPassword);
     }
@@ -660,6 +662,7 @@ public class Market {
             this.membersByUserName.put(newUsername, u);
         }
     }
+
     public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
         if(!stores.containsKey(storeName))
         {
@@ -705,7 +708,7 @@ public class Market {
         throw new Exception("This is a bug : No admin was found in the system");
     }
 
-    public boolean isMemberLoggedOut(String userToken) throws Exception{
+    public boolean isMemberLoggedOut(String userToken){
         User u = getConnectedUserByToken(userToken);
         return !u.getIsLoggedIn();
 

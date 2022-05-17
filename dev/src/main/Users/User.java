@@ -1,31 +1,29 @@
 package main.Users;
 
 
+
+import main.DTO.ShoppingCartDTO;
+import main.NotificationBus;
 import main.ExternalServices.Payment.IPayment;
 import main.Publisher.*;
 import main.Security.ISecurity;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
-
 import main.Stores.IStore;
-
+import main.Stores.Store;
 import main.Stores.Product;
-
 import main.ExternalServices.Supplying.ISupplying;
 import main.Users.states.GuestState;
 import main.Users.states.MemberState;
 import main.Users.states.UserStates;
 import main.utils.*;
-
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class User implements Observable {
@@ -33,7 +31,7 @@ public class User implements Observable {
     private boolean isSystemManager;
     private ConcurrentLinkedQueue<String> messages = new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
-    private List<ShoppingCart> purchaseHistory;
+    private List<ShoppingCartDTO> purchaseHistory;
 
     private Observer observer;
 
@@ -372,7 +370,7 @@ public class User implements Observable {
         this.resetCart();
     }
 
-    public List<ShoppingCart> getPurchaseHistory() {
+    public List<ShoppingCartDTO> getPurchaseHistory() {
         return this.purchaseHistory;
     }
 
@@ -381,7 +379,8 @@ public class User implements Observable {
     }
 
     public void addCartToHistory(ShoppingCart cart){
-        this.purchaseHistory.add(cart);
+        ShoppingCartDTO historyCart = new ShoppingCartDTO(cart, this);
+        this.purchaseHistory.add(historyCart);
     }
 
     public void setStoreFounder(IStore IStore)
@@ -393,26 +392,25 @@ public class User implements Observable {
         this.getFoundedStores().add(IStore);
     }
 
-    public Product findProductInHistoryByNameAndStore(String productName, String storeName) {
-        for(ShoppingCart sc : purchaseHistory)
+    public boolean isProductInHistoryByNameAndStore(String productName, String storeName) {
+        for(ShoppingCartDTO sc : purchaseHistory)
         {
-            if(sc.isProductInCart(productName, storeName)) // Only true if product is in the user's purchase history for that specific store
+            if(sc.isProductInHistory(productName, storeName))  // Only true if product is in the user's purchase history for that specific store
             {
-                return sc.getProduct(productName, storeName);
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
-    public IStore getStoreInPurchaseHistory(String storeName) {
-        for(ShoppingCart sc : purchaseHistory)
+    public boolean isStoreInHistory(String storeName)
+    {
+        for(ShoppingCartDTO sc : this.purchaseHistory)
         {
-            if(sc.isStoreInCart(storeName))
-            {
-                return sc.getStore(storeName);
-            }
+            if(sc.isStoreInHistory(storeName))
+                return true;
         }
-        return null;
+        return false;
     }
 
     public List<String> receiveQuestionsFromStore(IStore store) {
@@ -684,4 +682,15 @@ public class User implements Observable {
         store.SetConditionToStore(ConditionID);
     }
 
+    public boolean isManager() {
+        return (!this.managedStores.isEmpty());
+    }
+
+    public boolean isFounder() {
+        return (!this.foundedStores.isEmpty());
+    }
+
+    public boolean isOwner() {
+        return (!this.ownedStores.isEmpty());
+    }
 }
