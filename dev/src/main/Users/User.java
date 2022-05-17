@@ -69,6 +69,8 @@ public class User implements Observable {
         cart = new ShoppingCart(this);
         registerObserver(new Publisher(this));
         state = new GuestState(guestID);
+        purchaseHistory = new LinkedList<>();
+
     }
 
     /**
