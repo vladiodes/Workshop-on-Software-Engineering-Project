@@ -119,18 +119,35 @@ public class AT_Req2_3 {
      * use case: openStore req 3.2 :
      */
     @Test
-    public void testOpenStore()
-    {
+    public void testOpenStoreGuestFail() {
         //Guest open store - fail
         assertTrue(service.openStore(guest1Token.getResult(), "GuestStore").isError_occured());
+    }
 
+    /***
+     * use case: openStore req 3.2 :
+     */
+    @Test
+    public void testOpenStoreMemberNotLoggedInFail() {
         //Member not logged in opens store - fail
         assertTrue(service.openStore(loggedOutMember.getResult(), "Abcde").isError_occured());
+    }
 
+    /***
+     * use case: openStore req 3.2 :
+     */
+    @Test
+    public void testOpenStoreInvalidArgsFail() {
         //Member opens store invalid attributes - fail
         assertTrue(service.openStore(guest1Token.getResult(), "").isError_occured()); //Empty store name
         assertTrue(service.openStore(guest1Token.getResult(), "MyStore1").isError_occured()); //Store name already exists
+    }
 
+    /***
+     * use case: openStore req 3.2 :
+     */
+    @Test
+    public void testOpenStoreSuccess() {
         //Member open store - success
         assertFalse(service.openStore(founder3token.getResult(), "MyStore3").isError_occured());
         Response<StoreDTO> myStore3 = service.getStoreInfo("MyStore3");
@@ -142,12 +159,26 @@ public class AT_Req2_3 {
      * use case: productReview req 3.3, 3.4:
      */
     @Test
-    public void testProductReview()
-    {
+    public void testProductReviewLongReviewFail() {
         //Member write 500+ character review
         assertTrue(service.writeProductReview(memberBoughtCola.getResult(),"Coca Cola", "MyStore1",longString, 5).isError_occured());
+    }
+
+    /***
+     * use case: productReview req 3.3, 3.4:
+     */
+    @Test
+    public void testProductReviewDidntBuyFail() {
         //Member Writes product review on product he didnt buy - fail
         assertTrue(service.writeProductReview(memberNoCartToken.getResult(),"Coca Cola", "MyStore1", "Taam Hahaim", 5).isError_occured());
+    }
+
+    /***
+     * use case: productReview req 3.3, 3.4:
+     */
+    @Test
+    public void testProductReviewSuccess()
+    {
         //Member writes product review - success
         assertFalse(service.writeProductReview(memberBoughtCola.getResult(), "Coca Cola", "MyStore1", "Taam Hahaim", 5).isError_occured());
     }
@@ -156,10 +187,18 @@ public class AT_Req2_3 {
      * use case: storeReview req 3.4 :
      */
     @Test
-    public void testStoreReview()
+    public void testStoreReviewGuestFail()
     {
         //guest can't write a review.
         assertTrue(service.writeStoreReview(guest1Token.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
+    }
+
+    /***
+     * use case: storeReview req 3.4 :
+     */
+    @Test
+    public void testStoreReview()
+    {
         //only someone who bought from the store can write a review.
         assertTrue(service.writeStoreReview(bloggerMember.getResult(),"MyStore1", "OMG pepsi is so much better!", 3).isError_occured());
         service.addProductToCart(bloggerMember.getResult(), "MyStore1", "Coca Cola", 1);
@@ -175,12 +214,28 @@ public class AT_Req2_3 {
      * use case: sendQuestionsToStore req 3.5 :
      */
     @Test
-    public void testSendQuestionsToStore()
+    public void testSendQuestionsToStoreInvalidMessageFail()
     {
         //Invalid message content - fail
         assertTrue(service.sendQuestionsToStore(memberWithCartToken.getResult(),"MyStore1", "").isError_occured());
+    }
+
+    /***
+     * use case: sendQuestionsToStore req 3.5 :
+     */
+    @Test
+    public void testSendQuestionsToStoreStoreDoesntExistFail()
+    {
         //Store doesnt exist - fail
         assertTrue(service.sendQuestionsToStore(memberWithCartToken.getResult(),"NoSuchStore", "Such a great and valid message").isError_occured());
+    }
+
+    /***
+     * use case: sendQuestionsToStore req 3.5 :
+     */
+    @Test
+    public void testSendQuestionsToStoreSuccess()
+    {
         //Sends to store - success
         assertFalse(service.sendQuestionsToStore(memberWithCartToken.getResult(),"MyStore1", "Such a great and valid message").isError_occured());
     }
@@ -189,34 +244,65 @@ public class AT_Req2_3 {
      * use case: sendComplaintToAdmin req 3.6 :
      */
     @Test
-    public void testSendComplaint()
+    public void testSendComplaintInvalidMessageFail()
     {
         //Invalid message - fail
         assertTrue(service.sendComplaint(memberBoughtCola.getResult(),"").isError_occured());
+    }
+
+    /***
+     * use case: sendComplaintToAdmin req 3.6 :
+     */
+    @Test
+    public void testSendComplaintNoPurchaseHistoryFail()
+    {
         //No purchase history - fail
         assertTrue(service.sendComplaint(memberNoCartToken.getResult(), "This is wrong dammit!").isError_occured());
+    }
+
+    /***
+     * use case: sendComplaintToAdmin req 3.6 :
+     */
+    @Test
+    public void testSendComplaintSuccess()
+    {
         //Sends complaint to admin - success
         assertFalse(service.sendComplaint(memberBoughtCola.getResult(), "This is wrong dammit!").isError_occured());
     }
-
 
     /***
      * use case: purchaseHistory req 3.7 :
      */
     @Test
-    public void testPurchaseHistory()
+    public void testPurchaseHistoryNotLoggedInFail()
     {
         //Member is not logged in - fail
         assertTrue(service.getPurchaseHistory(loggedOutMember.getResult(),"notLoggedMember").isError_occured());
+    }
+
+    /***
+     * use case: purchaseHistory req 3.7 :
+     */
+    @Test
+    public void testPurchaseHistoryEmptyStoresSuccess() {
         //Empty history - success
         Response<List<String>> emptyHistory = service.getPurchaseHistory(memberNoCartToken.getResult(), "memberNoCart");
         assertFalse(emptyHistory.isError_occured());
         assertTrue(emptyHistory.getResult().isEmpty());
+    }
+
+    /***
+     * use case: purchaseHistory req 3.7 :
+     */
+    @Test
+    public void testPurchaseHistoryNonEmptyStoresSuccess()
+    {
         //Non- empty history - success
         Response<List<String>> nonEmptyHistory = service.getPurchaseHistory(memberBoughtCola.getResult(), "boughtCola");
         assertFalse(nonEmptyHistory.isError_occured());
         assertFalse(nonEmptyHistory.getResult().isEmpty());
     }
+
 
 
     /***
@@ -264,15 +350,38 @@ public class AT_Req2_3 {
      * use case: addSecurityQuestion req 3.9 :
      */
     @Test
-    public void testAddSecurityQuestion()
+    public void testAddSecurityQuestionEmptyQuestionFail()
     {
-        //Empty answer / question - fail
+        //Empty question - fail
         assertTrue(service.addSecurityQuestion(memberNoCartToken.getResult(), "", "Answer").isError_occured());
-        assertTrue(service.addSecurityQuestion(memberNoCartToken.getResult(), "Quesion", "").isError_occured());
+    }
 
+    /***
+     * use case: addSecurityQuestion req 3.9 :
+     */
+    @Test
+    public void testAddSecurityQuestionEmptyAnswerFail()
+    {
+        //Empty answer - fail
+        assertTrue(service.addSecurityQuestion(memberNoCartToken.getResult(), "Quesion", "").isError_occured());
+    }
+
+    /***
+     * use case: addSecurityQuestion req 3.9 :
+     */
+    @Test
+    public void testAddSecurityQuestionGuestFail()
+    {
         //Guest tries to add security question - fail
         assertTrue(service.addSecurityQuestion(guest1Token.getResult(),"Question", "Answer").isError_occured());
+    }
 
+    /***
+     * use case: addSecurityQuestion req 3.9 :
+     */
+    @Test
+    public void testAddSecurityQuestionSuccess()
+    {
         //Sends non empty question and answer - success
         assertFalse(service.addSecurityQuestion(memberNoCartToken.getResult(), "Question", "Answer").isError_occured());
     }
