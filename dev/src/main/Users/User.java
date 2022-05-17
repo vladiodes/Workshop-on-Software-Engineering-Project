@@ -3,7 +3,6 @@ package main.Users;
 
 
 import main.DTO.ShoppingCartDTO;
-import main.NotificationBus;
 import main.ExternalServices.Payment.IPayment;
 import main.Publisher.*;
 import main.Security.ISecurity;
@@ -457,29 +456,6 @@ public class User implements Observable {
         managedStores.remove(managerPermissions);
     }
 
-    public List<IStore> deleteUser(User toDelete) {
-        if (!isSystemManager)
-            throw new IllegalArgumentException("You're not a system manager!");
-
-        List<IStore> deletedStores=new LinkedList<>();
-
-        //removing all the stores that the user has founded
-        for (IStore IStore : toDelete.getFoundedStores()) {
-            if(removeStore(IStore))
-                deletedStores.add(IStore);
-        }
-
-        for (OwnerPermissions ownerPermissions : ownedStores) {
-            ownerPermissions.getAppointedBy().removeOwnerAppointment(ownerPermissions.getStore(), this);
-        }
-
-        for (ManagerPermissions managerPermissions : managedStores) {
-            managerPermissions.getAppointedBy().removeManagerAppointment(managerPermissions.getStore(), this);
-        }
-
-        return deletedStores;
-    }
-
     public boolean isAdmin() {
         return isSystemManager;
     }
@@ -683,14 +659,18 @@ public class User implements Observable {
     }
 
     public boolean isManager() {
-        return (!this.managedStores.isEmpty());
+        return (!getManagedStores().isEmpty());
     }
 
-    public boolean isFounder() {
-        return (!this.foundedStores.isEmpty());
+    public boolean isFounder()
+    {
+        List<IStore> foundedStores = getFoundedStores();
+        if(foundedStores == null)
+            return false;
+        return (!getFoundedStores().isEmpty());
     }
 
     public boolean isOwner() {
-        return (!this.ownedStores.isEmpty());
+        return (!getOwnedStores().isEmpty());
     }
 }

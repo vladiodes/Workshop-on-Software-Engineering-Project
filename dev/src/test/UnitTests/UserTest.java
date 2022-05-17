@@ -351,15 +351,6 @@ class UserTest {
         assertTrue(admin.removeStore(store_mock));
     }
 
-    @Test
-    void removeUserAdmin(){
-        assertNotNull(admin.deleteUser(user));
-    }
-
-    @Test
-    void removeUserNotAdmin(){
-        assertThrows(IllegalArgumentException.class,()->user.deleteUser(user2));
-    }
 
     @Test
     void openStoreGood(){
