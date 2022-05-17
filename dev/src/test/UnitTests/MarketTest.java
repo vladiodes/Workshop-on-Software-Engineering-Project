@@ -29,6 +29,20 @@ class MarketTest {
     User guestuserMock;
     @Mock
     User MemberUserMock;
+    @Mock
+    User adminMock;
+    @Mock
+    User notAdminMock;
+    @Mock
+    User toDeleteUserMock;
+    @Mock
+    User admin2Mock;
+    @Mock
+    User ownerMock;
+    @Mock
+    User founderMock;
+    @Mock
+    User managerMock;
     Market m;
     @Mock
     ConcurrentHashMap<String, User> membersByUserName;
@@ -40,14 +54,31 @@ class MarketTest {
     ISecurity security_controller;
     String GuestuserToken;
     String MemberUserToken;
+    String ownerToken;
+    String founderToken;
+    String managerToken;
     String memberUserName;
     String memberPassword;
     String baduserName;
     String GuestUserName;
+    String admin2Username;
+    String adminToken;
+    String managerUsername;
+    String founderUsername;
+    String ownerUsername;
+    String notAdminToken;
+    String toDeleteUsername;
+
+
     @BeforeEach
     void Setup(){
         MemberUserToken = "Dummy token";
         GuestuserToken = "Dummy token2";
+        ownerToken = "Owner";
+        toDeleteUsername = "toDeleteUsername";
+        founderToken = "Founder";
+        managerToken = "Manager";
+        notAdminToken = "NotAdmin";
         mockSupplyer = mock(SupplyingAdapter.class);
         MemberUserMock = mock(User.class);
         membersByUserName = mock(ConcurrentHashMap.class);
@@ -56,6 +87,14 @@ class MarketTest {
         security_controller = mock(ISecurity.class);
         mockPayment = mock(PaymentAdapter.class);
         guestuserMock = mock(User.class);
+        adminMock = mock(User.class);
+        admin2Mock = mock(User.class);
+        ownerMock = mock(User.class);
+        founderMock = mock(User.class);
+        managerMock = mock(User.class);
+        notAdminMock = mock(User.class);
+        toDeleteUserMock = mock(User.class);
+
         m = new Market(mockPayment,mockSupplyer);
         m.setConnectedSessions(connectedSessions);
         m.setMembersByUserName(membersByUserName);
@@ -67,12 +106,68 @@ class MarketTest {
     private void ConfigMocks(){
         memberUserName = "SlayerFan123";
         GuestUserName = "Guest2934723875";
+        admin2Username = "Admin2";
+        managerUsername ="Manager";
+        founderUsername = "Founder";
+        ownerUsername = "Owner";
         memberPassword = "RainingBlood";
         baduserName = "Metallica";
         when(connectedSessions.get(GuestuserToken)).thenReturn(guestuserMock);
         when(connectedSessions.containsKey(GuestuserToken)).thenReturn(true);
         when(connectedSessions.get(MemberUserToken)).thenReturn(MemberUserMock);
         when(connectedSessions.containsKey(MemberUserToken)).thenReturn(true);
+
+        when(connectedSessions.get(adminToken)).thenReturn(adminMock);
+        when(connectedSessions.containsKey(adminToken)).thenReturn(true);
+        when(adminMock.isAdmin()).thenReturn(true);
+
+        //admin2
+        when(admin2Mock.isAdmin()).thenReturn(true);
+        when(admin2Mock.isFounder()).thenReturn(false);
+        when(admin2Mock.isManager()).thenReturn(false);
+        when(admin2Mock.isOwner()).thenReturn(false);
+        when(membersByUserName.get(admin2Username)).thenReturn(admin2Mock);
+        when(membersByUserName.containsKey(admin2Username)).thenReturn(true);
+
+        //owner
+
+        when(ownerMock.isAdmin()).thenReturn(false);
+        when(ownerMock.isFounder()).thenReturn(false);
+        when(ownerMock.isManager()).thenReturn(false);
+        when(ownerMock.isOwner()).thenReturn(true);
+        when(membersByUserName.get(ownerUsername)).thenReturn(ownerMock);
+        when(membersByUserName.containsKey(ownerUsername)).thenReturn(true);
+
+        //founder
+        when(founderMock.isAdmin()).thenReturn(false);
+        when(founderMock.isFounder()).thenReturn(true);
+        when(founderMock.isManager()).thenReturn(false);
+        when(founderMock.isOwner()).thenReturn(false);
+        when(membersByUserName.get(founderUsername)).thenReturn(founderMock);
+        when(membersByUserName.containsKey(founderUsername)).thenReturn(true);
+
+        //manager
+        when(managerMock.isAdmin()).thenReturn(false);
+        when(managerMock.isFounder()).thenReturn(false);
+        when(managerMock.isManager()).thenReturn(true);
+        when(managerMock.isOwner()).thenReturn(false);
+        when(membersByUserName.get(managerUsername)).thenReturn(managerMock);
+        when(membersByUserName.containsKey(managerUsername)).thenReturn(true);
+
+        //notAdmin
+        when(connectedSessions.containsKey(notAdminToken)).thenReturn(false);
+        when(connectedSessions.get(notAdminToken)).thenReturn(null);
+        when(notAdminMock.isAdmin()).thenReturn(false);
+
+        //toDeleteUser
+        when(membersByUserName.containsKey(toDeleteUsername)).thenReturn(true);
+        when(membersByUserName.get(toDeleteUsername)).thenReturn(toDeleteUserMock);
+        when(toDeleteUserMock.isAdmin()).thenReturn(false);
+        when(toDeleteUserMock.isOwner()).thenReturn(false);
+        when(toDeleteUserMock.isManager()).thenReturn(false);
+        when(toDeleteUserMock.isFounder()).thenReturn(false);
+
+
         when(guestuserMock.getIsLoggedIn()).thenReturn(false);
         when(guestuserMock.getUserName()).thenReturn(GuestUserName);
         when(guestuserMock.getCart()).thenReturn(new ShoppingCart(guestuserMock));
@@ -190,4 +285,43 @@ class MarketTest {
         verify(membersByUserName, times(0)).remove(any(String.class));
         verify(membersByUserName, times(0)).put(any(String.class), any(User.class));
     }
+
+    @Test
+    void deleteUserAdminFail() {
+        assertThrows(IllegalArgumentException.class, ()->m.deleteUser(adminToken, admin2Username));
+        verify(membersByUserName, times(0)).remove(any(String.class));
+    }
+
+    @Test
+    void deleteUserManagerFail() {
+        assertThrows(IllegalArgumentException.class, ()->m.deleteUser(adminToken, managerUsername));
+        verify(membersByUserName, times(0)).remove(any(String.class));
+    }
+
+    @Test
+    void deleteUserFounderFail() {
+        assertThrows(IllegalArgumentException.class, ()->m.deleteUser(adminToken, founderUsername));
+        verify(membersByUserName, times(0)).remove(any(String.class));
+    }
+
+    @Test
+    void deleteUserOwnerFail() {
+        assertThrows(IllegalArgumentException.class, ()->m.deleteUser(adminToken, ownerUsername));
+        verify(membersByUserName, times(0)).remove(any(String.class));
+    }
+
+    @Test
+    void deleteUserNotAnAdminFail() {
+        assertThrows(IllegalArgumentException.class, ()->m.deleteUser(notAdminToken, toDeleteUsername));
+        verify(membersByUserName, times(0)).remove(any(String.class));
+    }
+
+    @Test
+    void deleteUserSuccess() {
+        assertDoesNotThrow(()->m.deleteUser(adminToken, toDeleteUsername));
+        verify(membersByUserName, times(1)).remove(any(String.class));
+    }
+
+
+
 }
