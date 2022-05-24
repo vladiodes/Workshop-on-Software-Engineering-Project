@@ -24,7 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleting unnecessary files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +121,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PurchaseConcurrencyTest">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -217,8 +218,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PurchaseConcurrencyTest" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.PurchaseConcurrencyTest" />
         <item itemvalue="JUnit.PublisherTests" />
         <item itemvalue="JUnit.PublisherTests.checkingSuspendedNotificationsNotSent" />
         <item itemvalue="JUnit.AT_Req2_3.testLogout" />

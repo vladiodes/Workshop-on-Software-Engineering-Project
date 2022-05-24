@@ -56,7 +56,7 @@ public class Product {
         return productName;
     }
 
-    public void setProperties(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
+    public synchronized void setProperties(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if(productName==null || productName.trim().equals(""))
             throw new IllegalArgumentException("Bad name for product!");
         if(quantity<0 || price<=0)
@@ -100,7 +100,7 @@ public class Product {
         return quantity;
     }
 
-    public void subtractQuantity(Integer quantity)
+    public synchronized void subtractQuantity(Integer quantity)
     {
         if(quantity>this.quantity)
         {

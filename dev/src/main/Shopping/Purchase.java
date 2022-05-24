@@ -52,7 +52,15 @@ public class Purchase {
             supplyingSystem.abort(sinfo);
             throw new Exception("Unexpected purchase error, aborting.");
         }
-        updateMarket();
+        try {
+            updateMarket();
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Purchase",String.format( "Updating market on purchase failed: %s", e.getMessage()));
+            paymentSystem.abort(pinfo);
+            supplyingSystem.abort(sinfo);
+            throw e;
+        }
         Logger.getInstance().logEvent("Purchase", String.format("User %s executed a purchase.", user.getUserName()));
     }
 
