@@ -1,8 +1,9 @@
 package main.Publisher;
 
 public class StoreNotification implements Notification {
-    String storeName;
-    String content;
+    private String storeName;
+    private String content;
+
 
     public StoreNotification(String storeName,String content){
         this.storeName=storeName;

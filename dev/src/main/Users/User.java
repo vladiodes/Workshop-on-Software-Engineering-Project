@@ -28,11 +28,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class User implements Observable {
 
     private boolean isSystemManager;
-    private ConcurrentLinkedQueue<String> messages = new ConcurrentLinkedQueue<>();
     private ShoppingCart cart;
     private List<ShoppingCartDTO> purchaseHistory;
 
     private Observer observer;
+    // maps notification to a bool value: true - if was published to user, false - if wasn't
+    private ConcurrentHashMap<Notification,Boolean> notifications;
 
     private UserStates state;
 
@@ -67,9 +68,10 @@ public class User implements Observable {
     public User(String guestID) {
         isSystemManager = false;
         cart = new ShoppingCart(this);
-        registerObserver(new Publisher(this));
         state = new GuestState(guestID);
-        purchaseHistory = new LinkedList<>();
+        notifications=new ConcurrentHashMap<>();
+        purchaseHistory=new LinkedList<>();
+        registerObserver(new Publisher(this,null));
 
     }
 
@@ -81,11 +83,11 @@ public class User implements Observable {
         cart = new ShoppingCart(this);
         ownedStores = new LinkedList<>();
         managedStores = new LinkedList<>();
-        messages=new ConcurrentLinkedQueue<>();
 		securityQNA = new LinkedList<>();
         purchaseHistory = new LinkedList<>();
-        registerObserver(new Publisher(this));
         state = new MemberState(userName, hashed_password);
+        notifications=new ConcurrentHashMap<>();
+        registerObserver(new Publisher(this,null));
     }
 
     public void setState(UserStates state) {
@@ -100,9 +102,6 @@ public class User implements Observable {
         return this.state.getUserName();
     }
 
-    public Observer getObserver(){
-        return observer;
-    }
 
     public void LogIn(String password, ISecurity security_controller) {
         this.state.login(password, security_controller);
@@ -363,6 +362,7 @@ public class User implements Observable {
 
     public void logout() {
         this.state.logout();
+        observer=new Publisher(this,null);
     }
 
     public void purchaseCart(PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{
@@ -569,16 +569,24 @@ public class User implements Observable {
     @Override
     public void registerObserver(Observer observer) {
         this.observer=observer;
+        notifyObserver();
     }
 
     @Override
     public void notifyObserver(Notification notification) {
-        observer.update(notification);
+        if(Boolean.TRUE.equals(notifications.putIfAbsent(notification, false)))
+            return; //was already published...
+
+        notifications.put(notification,false);
+        if(observer.update(notification))
+            notifications.put(notification,true);
     }
 
     @Override
     public void notifyObserver() {
-        observer.update();
+        for(Notification notification:notifications.keySet()){
+            notifyObserver(notification);
+        }
     }
 
     public int CreateSimpleDiscount(IStore store, LocalDate until, Double percent){
@@ -674,5 +682,9 @@ public class User implements Observable {
 
     public boolean isOwner() {
         return (!getOwnedStores().isEmpty());
+    }
+
+    public LinkedList<Notification> getAllNotifications() {
+        return new LinkedList<>(notifications.keySet());
     }
 }
