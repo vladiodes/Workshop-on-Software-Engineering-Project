@@ -142,7 +142,7 @@ public class Main {
 
         });
         try {
-            if(args.length == 0)
+            if(args.length == 0 || (args[0].equals("NONE")))
                 ServiceLoader.loadFromFile("DefaultVladi.json", service);
             else
                 ServiceLoader.loadFromFile(args[0], service);

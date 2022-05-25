@@ -1,0 +1,9 @@
+[{"command":"main.Service.CommandExecutor.Commands.guestConnectCommand","params":"{\"name\":\"User0\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.registerCommand","params":"{\"userName\":\"Founder\",\"password\":\"123456\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.loginCommand","params":"{\"tokenName\":\"User0\",\"userName\":\"Founder\",\"password\":\"123456\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.openStoreCommand","params":"{\"name\":\"User0\",\"storeName\":\"Samsung\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.registerCommand","params":"{\"userName\":\"Manager\",\"password\":\"123456\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.appointStoreManagerCommand","params":"{\"name\":\"User0\",\"userToAppoint\":\"Manager\",\"storeName\":\"Samsung\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.addProductToStoreCommand","params":"{\"name\":\"User0\",\"prodName\":\"S7\",\"category\":\"Phone\",\"keyWords\":[\"TouchScreen\",\"Cool\"],\"description\":\"Very good korean phone.\",\"storeName\":\"Samsung\",\"quantity\":10,\"price\":2700.0}"},
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User0\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.guestDisconnectCommand","params":"{\"name\":\"User0\"}"}]
