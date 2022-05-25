@@ -2,52 +2,28 @@ package main.Publisher;
 
 import main.Users.User;
 
-import java.util.LinkedList;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 public class Publisher implements Observer {
-    private ConcurrentLinkedQueue<Notification> allNotifications;
-    private ConcurrentLinkedQueue<Notification> notPublishedYetNotifications;
-    private WebSocket webSocket = null;
+    private WebSocket webSocket ;
 
     private User observableUser;
 
-    public Publisher(User observableUser) {
-        allNotifications = new ConcurrentLinkedQueue<>();
-        notPublishedYetNotifications = new ConcurrentLinkedQueue<>();
+    public Publisher(User observableUser,WebSocket webSocket) {
         this.observableUser=observableUser;
+        this.webSocket=webSocket;
     }
 
     @Override
-    public void setWebSocket(WebSocket webSocket) {
-        this.webSocket = webSocket;
-        publishNotifications();
-    }
-
-    @Override
-    public void update(Notification newNotification) {
-        notPublishedYetNotifications.add(newNotification);
-        allNotifications.add(newNotification);
+    public boolean update(Notification newNotification) {
         if(observableUser.getIsLoggedIn())
-            publishNotifications();
+            return publishNotifications(newNotification);
+        return false;
     }
 
-    @Override
-    public void update() {
-        publishNotifications();
-    }
-
-    @Override
-    public LinkedList<Notification> getAllNotifications() {
-        return new LinkedList<>(allNotifications);
-    }
-
-    private void publishNotifications() {
+    private boolean publishNotifications(Notification notification) {
         if (webSocket != null) {
-            while (!notPublishedYetNotifications.isEmpty()) {
-                Notification notification = notPublishedYetNotifications.poll();
-                webSocket.send(notification);
-            }
+            webSocket.send(notification);
+            return true;
         }
+        return false;
     }
 }

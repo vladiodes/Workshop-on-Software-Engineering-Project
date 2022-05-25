@@ -5,6 +5,7 @@ import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
+import main.Publisher.Publisher;
 import main.Publisher.WebSocket;
 import main.Stores.*;
 
@@ -83,13 +84,13 @@ public class Market {
         User u = getConnectedUserByToken(userToken);
         if(!membersByUserName.containsKey(u.getUserName()))
             throw new IllegalArgumentException("This is a guest, it doesn't get any notifications");
-        u.getObserver().setWebSocket(new WebSocket(ctx));
+        u.registerObserver(new Publisher(u,new WebSocket(ctx)));
         return true;
     }
 
     public boolean leaveWSforUserToken(String userToken) {
         User u = getConnectedUserByToken(userToken);
-        u.getObserver().setWebSocket(null);
+        u.registerObserver(new Publisher(u,null));
         return true;
     }
 
@@ -482,7 +483,7 @@ public class Market {
         User user = connectedSessions.get(userToken);
         if (user == null)
             throw new IllegalArgumentException("User isn't connected");
-         LinkedList<Notification> lst = user.getObserver().getAllNotifications();
+         LinkedList<Notification> lst = user.getAllNotifications();
          LinkedList<String> output = new LinkedList<>();
          for(Notification n : lst)
              output.add(n.print());
