@@ -66,5 +66,6 @@
     <orderEntry type="library" name="slf4j.simple" level="project" />
     <orderEntry type="library" name="Simple Logging Facade for Java:1.7.26" level="project" />
     <orderEntry type="library" name="org.mockito:mockito-all:1.10.19" level="project" />
+    <orderEntry type="library" name="fasterxml.jackson.core.databind" level="project" />
   </component>
 </module>

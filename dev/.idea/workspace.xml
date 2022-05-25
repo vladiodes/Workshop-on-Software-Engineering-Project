@@ -22,15 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added tests for publisher &amp; notifications">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleting unnecessary files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/PersonalNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/PersonalNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/StoreNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/StoreNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/NotificationTests/PublisherTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/NotificationTests/PublisherTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,15 +35,16 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="web-client-cont" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -71,22 +66,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/banan/Downloads/Statistic-4.1.10.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests",
+    "last_opened_file_path": "C:/Users/banan/Downloads/Statistic-4.1.10.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.statistic.project.settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -114,6 +113,7 @@
       <recent name="main.Users" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="main.Service.CommandExecutor" />
       <recent name="main.Stores.PurchasePolicy.Discounts" />
       <recent name="test.UnitTests" />
     </key>
@@ -126,7 +126,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -138,9 +138,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Service.ServiceLoader" />
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.Communication.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
+      <option name="PROGRAM_PARAMETERS" value="store_with_manager.json" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.Communication.*" />
@@ -166,34 +180,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PublisherTests.complexScenarioOfLoggingSequencesReceivingSuspendedNotifications" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PurchaseConcurrencyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
-      <option name="METHOD_NAME" value="complexScenarioOfLoggingSequencesReceivingSuspendedNotifications" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PublisherTests.sendingLotsOfNotificationsConcurrently" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
-      <option name="METHOD_NAME" value="sendingLotsOfNotificationsConcurrently" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.PurchaseConcurrencyTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -213,19 +210,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.main.Communication.Main" />
+      <item itemvalue="Application.ServiceLoader" />
+      <item itemvalue="JUnit.PurchaseConcurrencyTest" />
       <item itemvalue="JUnit.test in dev" />
-      <item itemvalue="JUnit.PublisherTests.complexScenarioOfLoggingSequencesReceivingSuspendedNotifications" />
-      <item itemvalue="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently" />
       <item itemvalue="JUnit.PublisherTests" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="Application.main.Communication.Main" />
+        <item itemvalue="Application.ServiceLoader" />
+        <item itemvalue="JUnit.PurchaseConcurrencyTest" />
         <item itemvalue="JUnit.PublisherTests" />
-        <item itemvalue="JUnit.PublisherTests.complexScenarioOfLoggingSequencesReceivingSuspendedNotifications" />
-        <item itemvalue="JUnit.PublisherTests.sendingLotsOfNotificationsConcurrently" />
       </list>
     </recent_temporary>
   </component>
@@ -246,8 +243,6 @@
       <workItem from="1652379905686" duration="390000" />
       <workItem from="1652425121753" duration="639000" />
       <workItem from="1652544225913" duration="3188000" />
-      <workItem from="1653462504050" duration="172000" />
-      <workItem from="1653469261268" duration="1056000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -592,11 +587,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
-          <line>359</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java</url>
           <line>30</line>
           <option name="timeStamp" value="24" />
@@ -610,11 +600,6 @@
           <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java</url>
           <line>9</line>
           <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
