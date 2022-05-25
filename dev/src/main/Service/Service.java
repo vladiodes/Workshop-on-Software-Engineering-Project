@@ -2,11 +2,15 @@ package main.Service;
 
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
+import main.Service.CommandExecutor.Commands.*;
+import main.Service.CommandExecutor.Invoker;
+import main.Service.CommandExecutor.utils.UserTokens;
 import main.Users.User;
 import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
@@ -16,8 +20,10 @@ import main.Market;
 import main.utils.*;
 
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,18 +33,64 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Service implements IService {
 
     private Market market;
-
-
+    private boolean logCommandsFlag = false;
+    private UserTokens uTokens = new UserTokens();
+    private String logFileName = "DefaultVladi.json";
+    private List<Invoker<?>> commands;
     public Service(IPayment Psystem, ISupplying Isystem){
         market=new Market(Psystem, Isystem);
+    }
 
+    public UserTokens getuTokens() {
+        return uTokens;
+    }
+
+    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag){
+        market=new Market(Psystem, Isystem);
+        this.logCommandsFlag = logCommandsFlag;
+        if(logCommandsFlag) {
+            uTokens = new UserTokens();
+            commands = new ArrayList<>();
+        }
+    }
+
+    public <T> void logCommand(Class<? extends Command<T>> cl,Command<T> command){
+        if(!logCommandsFlag)
+            return;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String commJson = objectMapper.writeValueAsString(command);
+            Invoker<?> invoker = new Invoker<>(cl, commJson);
+            this.commands.add(invoker);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service",String.format("Failed to log command %s", e.getMessage()));
+        }
+    }
+
+    public void SaveRecording(){
+        if(!logCommandsFlag)
+            return;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue(new File(this.logFileName), commands);
+        }
+        catch (Exception e){
+            System.out.println(String.format("Couldn't save recording: %s", e.getMessage()));
+        }
+    }
+
+    public void setLogFileName(String logFileName) {
+        this.logFileName = logFileName;
     }
 
     @Override
 
     public Response<String> guestConnect() {
         Logger.getInstance().logEvent("Service",String.format("Attempting to connect a guest"));
-        return new Response<>(market.ConnectGuest());
+        Response<String> output = new Response<>(market.ConnectGuest());
+        this.logCommand(guestConnectCommand.class, new guestConnectCommand(this.uTokens, output.getResult()));
+        return output;
     }
 
     @Override
@@ -46,6 +98,7 @@ public class Service implements IService {
         try {
             Logger.getInstance().logEvent("Service",String.format("Attempting to disconnect a guest, userToken:%s" ,userToken));
             UserDTO r = market.DisconnectGuest(userToken);
+            this.logCommand(guestDisconnectCommand.class, new guestDisconnectCommand(this.uTokens, userToken));
             return new Response<>(r, null);
         } catch (Exception e) {
             Logger.getInstance().logBug("Service - guestDisconnect", e.getMessage());
@@ -58,6 +111,7 @@ public class Service implements IService {
         Logger.getInstance().logEvent("Service",String.format("Attempting to register, userName:%s",userName));
         try {
             market.Register(userName, password);
+            logCommand(registerCommand.class, new registerCommand(userName, password));
             return new Response<>(true);
         }
         catch (IllegalArgumentException e) {
@@ -75,6 +129,7 @@ public class Service implements IService {
         Logger.getInstance().logEvent("Service",String.format("Attempting to get login, userName:%s", userName));
         try {
             UserDTO u = market.Login(token, userName, password);
+            logCommand(loginCommand.class, new loginCommand(this.uTokens, token, userName, password));
             return new Response<>(u);
         }
         catch (IllegalArgumentException e) {
@@ -94,6 +149,7 @@ public class Service implements IService {
         {
             market.logout(token);
             Logger.getInstance().logEvent("Service",String.format("Logged out successfully, userToken:%s" ,token));
+            logCommand(logoutCommand.class, new logoutCommand(this.uTokens, token));
             return new Response<>(true);
         }
         catch (IllegalArgumentException e) {
@@ -259,7 +315,9 @@ public class Service implements IService {
     public Response<Boolean> openStore(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service",String.format("Attempting to open store, userToken:%s storeName:%s" ,userToken,storeName));
         try{
-            return new Response<>(market.openStore(userToken,storeName));
+            Response<Boolean> output = new Response<>(market.openStore(userToken,storeName));
+            this.logCommand(openStoreCommand.class, new openStoreCommand(this.uTokens, userToken, storeName));
+            return output;
         }
         catch (IllegalArgumentException e){
             Logger.getInstance().logEvent("Service",String.format("Failed to open store, userToken:%s, storeName:%s, Error:%s" ,userToken,storeName, e.getMessage()));
@@ -397,6 +455,7 @@ public class Service implements IService {
         Logger.getInstance().logEvent("Service", String.format("Add product to store invoked with parameters: token: %s productName:%s storeName:%s", userToken, productName, storeName));
         try {
             boolean res = market.addProductToStore(userToken, productName, category, keyWords, description, storeName, quantity, price);
+            this.logCommand(addProductToStoreCommand.class, new addProductToStoreCommand(this.uTokens, userToken, productName, category, keyWords, description, storeName, quantity, price));
             return new Response<>(res);
         } catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to add product to store, userToken:%s, productName:%s, category:%s, description:%s, storeName:%s, quantity:%d, price:%.2f, Error:%s" ,userToken, productName, category, description, storeName, quantity, price, e.getMessage()));
@@ -753,7 +812,9 @@ public class Service implements IService {
     public Response<Boolean> appointStoreOwner(String userToken, String userToAppoint, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to appoint store owner with parameters: token: %s userToAppoint: %s storeName:%s", userToken, userToAppoint, storeName));
         try {
-            return new Response<>(market.appointStoreOwner(userToken, userToAppoint, storeName));
+            Response<Boolean> output = new Response<>(market.appointStoreOwner(userToken, userToAppoint, storeName));
+            this.logCommand(appointStoreOwnerCommand.class, new appointStoreOwnerCommand(this.uTokens, userToken, userToAppoint, storeName));
+            return output;
         } catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to appoint store owner, userToken:%s, userToAppoint:%s, storeName:%s, Error:%s" ,userToken, userToAppoint,storeName, e.getMessage()));
             return new Response<>(e, true);
@@ -781,7 +842,9 @@ public class Service implements IService {
     public Response<Boolean> appointStoreManager(String userToken, String userToAppoint, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to appoint store manager with parameters: token: %s userToAppoint: %s storeName:%s", userToken, userToAppoint, storeName));
         try {
-            return new Response<>(market.appointStoreManager(userToken, userToAppoint, storeName));
+            Response<Boolean> r = new Response<>(market.appointStoreManager(userToken, userToAppoint, storeName));
+            logCommand(appointStoreManagerCommand.class, new appointStoreManagerCommand(this.uTokens, userToken, userToAppoint, storeName));
+            return r;
         } catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to appoint store manager, userToken:%s, userToAppoint:%s, storeName:%s, Error:%s" ,userToken, userToAppoint,storeName, e.getMessage()));
             return new Response<>(e, true);

@@ -9,7 +9,7 @@ import main.ExternalServices.Payment.PaymentAdapter;
 import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Service.IService;
 import main.Service.Service;
-import main.utils.Response;
+import main.Service.ServiceLoader;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -20,9 +20,8 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 
 
 public class Main {
-    private static final IService service=new Service(new PaymentAdapter(),new SupplyingAdapter());
+    private static IService service = new Service(new PaymentAdapter(), new SupplyingAdapter());
     public static void main(String[] args) {
-
         RegisterController registerController=new RegisterController(service);
         LoginController loginController=new LoginController(service);
         StoreController storeController=new StoreController(service);
@@ -30,13 +29,7 @@ public class Main {
         CartController cartController=new CartController(service);
         UserController userController=new UserController(service);
 
-        Response<String> token=service.guestConnect();
-        service.register("vladiodes","123456");
-        service.login(token.getResult(),"admin","admin");
-        service.openStore(token.getResult(),"Apple store");
-        service.appointStoreOwner(token.getResult(),"vladiodes","Apple store");
-        service.logout(token.getResult());
-        service.guestDisconnect(token.getResult());
+
 
         Javalin app = Javalin.create(config -> {
             config.server(() -> {
@@ -148,6 +141,15 @@ public class Main {
             post("/declineBid",productController.declineBidPost);
 
         });
+        try {
+            if(args.length == 0)
+                ServiceLoader.loadFromFile("DefaultVladi.json", service);
+            else
+                ServiceLoader.loadFromFile(args[0], service);
+        }
+        catch (Exception e) {
+            System.out.println(String.format("Couldn't load service from file: %s",e.getMessage()));
+        }
 
     }
 
