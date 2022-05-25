@@ -56,6 +56,7 @@ public class Main {
 
         app.routes(() -> {
             get("/", registerController.handleSystemConnect);
+            post("/boot", registerController.verifyAdmin);
             get("/home",ViewUtil.serveHomePage);
             get("/register",registerController.serveRegisterPage);
             post("/register",registerController.handleRegisterPost);

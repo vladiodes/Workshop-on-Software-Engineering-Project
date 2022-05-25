@@ -439,4 +439,11 @@ public interface IService {
      */
     Response<String> getLoggedInVSRegistered(String userToken);
 
+    /**
+     * This method is used to fulfil the constraint that there's always 1 admin in the system
+     * @param username
+     * @param password
+     * @return true upon success
+     */
+    Response<Boolean> verifyAdminDetails(String username, String password);
 }

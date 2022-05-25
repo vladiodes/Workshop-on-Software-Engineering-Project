@@ -1311,4 +1311,19 @@ public class Service implements IService {
         }
     }
 
+    @Override
+    public Response<Boolean> verifyAdminDetails(String username, String password) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to boot system"));
+        try{
+            return new Response<>(market.verifyAdmin(username,password));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->verifyAdminDetails",e.getMessage());
+            return new Response<>(e,false);
+        }
+    }
+
 }
