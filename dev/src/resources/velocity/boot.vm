@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Trading System</title>
+    <link rel="stylesheet" href="/boot.css" />
+    <script type="text/javascript">
+        alert("$response");
+    </script>
+</head>
+<body>
+<div class="login">
+    <form method="post" action="/boot">
+    <input type="text" placeholder="Username" name="username">
+    <input type="password" placeholder="password" name="password">
+    <input type="submit" value="Boot System">
+    </form>
+</div>
+</body>
+</html>
+
+
+
+

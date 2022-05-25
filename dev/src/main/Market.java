@@ -54,6 +54,20 @@ public class Market {
         getConnectedUserByToken(userToken).addBargainPolicy(getDomainStoreByName(storeName), productName, originalPrice);
     }
 
+    public boolean verifyAdmin(String username, String password) {
+        User admin = membersByUserName.get(username);
+        if(admin==null || !admin.isAdmin())
+            return false;
+        try{
+            admin.LogIn(password,security_controller);
+            admin.logout();
+            return true;
+        }
+        catch (IllegalArgumentException e){
+            return false;
+        }
+    }
+
     private enum StatsType{Register, Login, Purchase}
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
 
