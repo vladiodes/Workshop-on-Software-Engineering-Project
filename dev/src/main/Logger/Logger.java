@@ -1,6 +1,5 @@
 package main.Logger;
 
-import jdk.jshell.spi.ExecutionControl;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,6 +15,7 @@ public class Logger {
     }
 
     private String logFileName = "LOG.txt";
+    private String bugFileName = "BUG.txt";
 
     private Logger() {
 
@@ -26,18 +26,18 @@ public class Logger {
     }
 
     public synchronized void logEvent(String className, String msg) {
-        appendStrToFile(String.format("[EVENT] - %s in class: %s\n",msg,className));
+        appendStrToFile(String.format("[EVENT] - %s in class: %s\n",msg,className),logFileName);
     }
 
     public synchronized void logBug(String className, String msg) {
-        appendStrToFile(String.format("[BUG] - %s in class: %s\n",msg,className));
+        appendStrToFile(String.format("[BUG] - %s in class: %s\n",msg,className),bugFileName);
     }
 
-    private void appendStrToFile(String msg) {
+    private void appendStrToFile(String msg,String fileName) {
 
         try {
             BufferedWriter out = new BufferedWriter(
-                    new FileWriter(logFileName, true));
+                    new FileWriter(fileName, true));
 
             out.write(msg);
             out.close();

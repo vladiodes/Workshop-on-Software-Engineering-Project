@@ -24,3 +24,4 @@ hs_err_pid*
 *.xml
 dev/out/production/*
 dev/LOG.txt
+dev/BUG.txt
