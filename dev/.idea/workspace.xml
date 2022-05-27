@@ -22,12 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added simple conditions for store in gui">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/composeConditionFromPrevRules.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added composing complex conditions for store in gui">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +247,7 @@
       <workItem from="1652544225913" duration="3188000" />
       <workItem from="1653552678868" duration="657000" />
       <workItem from="1653553957518" duration="172000" />
-      <workItem from="1653633326592" duration="20175000" />
+      <workItem from="1653633326592" duration="24513000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -546,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653660840407</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Added composing complex conditions for store in gui">
+      <created>1653661821093</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1653661821093</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +596,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed ProductDTO constructor" />
     <MESSAGE value="Unit tests for User" />
     <MESSAGE value="Changed AT class name to be more relevant" />
     <MESSAGE value="Added NotificationBus tests" />
@@ -617,7 +620,8 @@
     <MESSAGE value="some work on discounts" />
     <MESSAGE value="Added discounts to GUI" />
     <MESSAGE value="Added simple conditions for store in gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added simple conditions for store in gui" />
+    <MESSAGE value="Added composing complex conditions for store in gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added composing complex conditions for store in gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -651,6 +655,26 @@
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
           <line>39</line>
           <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Market.java</url>
+          <line>745</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Users/User.java</url>
+          <line>382</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

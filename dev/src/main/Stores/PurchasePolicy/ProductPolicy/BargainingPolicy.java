@@ -41,7 +41,6 @@ public class BargainingPolicy extends TimedPolicy{
 
     @Override
     public boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment) {
-        bidApprovedBy.remove(getUserBid(user));
         product.subtractQuantity(1);
         return true;
     }
@@ -93,6 +92,7 @@ public class BargainingPolicy extends TimedPolicy{
         if (isApproved(approvers)) {
             this.purchaseBid(sellingStore, getUserBid(user.getUserName()));
             user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName())));
+            //bidApprovedBy.remove(getUserBid(user));
         }
     }
 
