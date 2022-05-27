@@ -4,15 +4,40 @@
 #end
 <main>
     <div class="content">
-        <h2>Manage your stores' inventory, select your preferred action:</h2>
+        <style>
+            hr.solid {
+                border-top: 3px solid #bbb;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+        </style>
+
+        <h2>Products</h2>
             <h2><span><a href="/addProductToStore">Add product to store</a> </span> |
                 <span><a href="/updateProductInStore">Update product</a></span> |
-                <span><a href="/viewProductsInStore">View inventory</a></span> |
-                <span><a href="/viewStoreHistory">View purchase history</a></span></h2>
+                <span><a href="/viewProductsInStore">View inventory</a></span></h2>
+
         <br />
+
+                <hr class="solid">
+
+                <h2>Purchase policies</h2>
         <h2><span><a href="/addPolicy">Add purchase policy to product</a> </span> |
-            <span><a href="/addDiscount">Add discount to product</a> </span> |
             <span><a href="/viewBids">View bids</a> </span></h2>
+
+        <br/>
+                <hr class="solid">
+
+                <h2>Discounts</h2>
+            <h2><span><a href="/addDiscount">Add discount to product</a> </span> |
+            <span><a href="/addDiscountToStore">Add discount to store</a> </span> |
+            <span><a href="/composeDiscount">Compose new discount rule</a></span></h2>
+
+                <br />
+                <hr class="solid">
+
+                <h2>Purchase history</h2>
+                <h2><span><a href="/viewStoreHistory">View purchase history</a></span></h2>
 
 
     </div>

@@ -25,4 +25,6 @@
 #* @vtlvariable name="bid_fail" type="java.lang.Boolean" *#
 #* @vtlvariable name="bid_success" type="java.lang.Boolean" *#
 #* @vtlvariable name="response_bid" type="java.lang.String" *#
+#* @vtlvariable name="fail_discount" type="java.lang.Boolean" *#
+#* @vtlvariable name="success_discount" type="java.lang.Boolean" *#
 

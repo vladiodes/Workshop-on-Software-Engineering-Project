@@ -1,0 +1,86 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <style>
+        hr.solid {
+            border-top: 3px solid #bbb;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <div class="content">
+        <h2>Create conditional discount to store</h2>
+        <p>Select a store, and then select types of discount to compose a new discount</p>
+        <hr class="solid">
+        <form action="/addDiscountSelectStoreCompose" method="post">
+            <p>Select your store</p>
+            <select id="mainStore" name="storeName" onchange="this.form.submit()">
+                <option value=""></option>
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <form action="/addDiscountToStore" method="post">
+                <input type="hidden" name="storeName" value="$store.getStoreName()">
+                <hr class="solid">
+                <h2>Category discount:</h2>
+                <p><input type="radio" value="V" name="category_discount"> Select to combine</p>
+                <p>Category name</p>
+                <input type="text" name="category_name" placeholder="Enter category name" value="">
+                <p>Amount above discount is valid</p>
+                <input type="number" name="category_amount" value="0">
+
+                <hr class="solid">
+
+                <h2>Total value discount:</h2>
+                <p><input type="radio" value="V" name="total_value_discount"> Select to combine</p>
+                <p>Total value above discount is valid</p>
+                <input type="number" name="total_value" value="0">
+
+                <hr class="solid">
+
+                <h2>Product amount conditional discount:</h2>
+                <p><input type="radio" value="V" name="product_amount_discount"> Select to combine</p>
+                <p>Product name</p>
+                <input type="text" name="product_name" placeholder="Enter product name" value="">
+                <p>Amount above discount is valid</p>
+                <input type="number" name="product_amount" value="0">
+
+                <hr class="solid">
+
+                <h2>Discount details</h2>
+                <p>Discount percent</p>
+                <input type="number" name="percent" step="0.01" required>
+                <p>Date of discount expiration</p>
+                <input type="date" name="expDate" required>
+
+                <hr class="solid">
+
+                <h2>Select logical operation between all discounts</h2>
+                <p><input type="radio" value="or" name="logical"> Or</p>
+                <p><input type="radio" value="xor" name="logical"> Xor</p>
+                <p><input type="radio" value="and" name="logical"> And</p>
+                <p><input type="radio" value="single" name="logical"> Single condition</p>
+
+                <hr class="solid">
+
+                <input type="submit" value="Create discount" style="margin-bottom: 10px;">
+            </form>
+            #end
+
+        #if($fail_discount)
+            <p id="failed_response">$response</p>
+        #elseif($success_discount)
+                <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

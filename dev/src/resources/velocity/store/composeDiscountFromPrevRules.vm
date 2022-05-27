@@ -1,0 +1,69 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <style>
+        hr.solid {
+            border-top: 3px solid #bbb;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <div class="content">
+        <h2>Compose new discount rule from previous discounts to a store</h2>
+        <p>Select a store, and then select previous ids of discounts to compose a new discount</p>
+        <hr class="solid">
+        <form action="/addDiscountSelectStoreComposeFromPrevious" method="post">
+            <p>Select your store</p>
+            <select id="mainStore" name="storeName" onchange="this.form.submit()">
+                <option value=""></option>
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <form action="/composeDiscount" method="post">
+                <input type="hidden" name="storeName" value="$store.getStoreName()">
+                <hr class="solid">
+                <h2>First discount:</h2>
+                <p>Discount ID</p>
+                <input type="number" name="discount1_id" value="0" required>
+
+                <hr class="solid">
+
+                <h2>Second discount:</h2>
+                <p>Discount ID</p>
+                <input type="number" name="discount2_id" value="0" required>
+
+                <hr class="solid">
+
+                <h2>Discount details</h2>
+                <p>Date of discount expiration</p>
+                <input type="date" name="expDate" required>
+
+                <hr class="solid">
+
+                <h2>Select how to compose</h2>
+                <p><input type="radio" value="max" name="compose"> Maximal discount between the 2</p>
+                <p><input type="radio" value="plus" name="compose"> Add both discounts (כפל מבצעים)</p>
+
+                <hr class="solid">
+
+                <input type="submit" value="Create new discount rule and assign to store" style="margin-bottom: 10px;">
+            </form>
+            #end
+
+        #if($fail_discount)
+            <p id="failed_response">$response</p>
+        #elseif($success_discount)
+                <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>
