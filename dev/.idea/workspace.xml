@@ -22,19 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="some work on discounts">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/composeDiscountFromPrevRules.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/composeDiscountToStore.vm" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added discounts to GUI">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/addSimpleConditionToStore.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/public/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/public/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/addCondDiscount.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/addDiscount.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/addDiscount.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreInventory.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +251,7 @@
       <workItem from="1652544225913" duration="3188000" />
       <workItem from="1653552678868" duration="657000" />
       <workItem from="1653553957518" duration="172000" />
-      <workItem from="1653633326592" duration="17178000" />
+      <workItem from="1653633326592" duration="19416000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -539,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653635537320</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Added discounts to GUI">
+      <created>1653658582623</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1653658582623</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +586,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="getter in response" />
     <MESSAGE value="Fixed compilation issues" />
     <MESSAGE value="Fixed ProductDTO constructor" />
     <MESSAGE value="Unit tests for User" />
@@ -610,7 +610,8 @@
     <MESSAGE value="Deleted some files regarding HTTPS" />
     <MESSAGE value="Logger now writes bug events to BUG.txt" />
     <MESSAGE value="some work on discounts" />
-    <option name="LAST_COMMIT_MESSAGE" value="some work on discounts" />
+    <MESSAGE value="Added discounts to GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added discounts to GUI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -634,6 +635,16 @@
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
           <line>654</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
+          <line>913</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

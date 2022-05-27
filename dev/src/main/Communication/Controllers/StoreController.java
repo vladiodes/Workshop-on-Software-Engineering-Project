@@ -670,38 +670,46 @@ public class StoreController {
 
         switch (Objects.requireNonNull(ctx.formParam("logical"))) {
             case "or" -> {
-                caseOr(ctx, model, conditionsToCompose);
+                caseOr(ctx, model, conditionsToCompose,true);
             }
             case "xor" -> {
-                caseXor(ctx, model, conditionsToCompose);
+                caseXor(ctx, model, conditionsToCompose,true);
             }
             case "and" -> {
-                caseAnd(ctx, model, conditionsToCompose);
+                caseAnd(ctx, model, conditionsToCompose,true);
             }
             case "single" ->{
-                caseSingle(ctx,model,conditionsToCompose);
+                caseSingle(ctx,model,conditionsToCompose,true);
             }
         }
 
         ctx.render(Path.Template.ADD_DISCOUNT_TO_STORE,model);
     };
 
-    private void caseSingle(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose) {
+    private void caseSingle(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose,boolean isDiscount) {
         if(conditionsToCompose.size()!=1){
             model.put("fail_discount",true);
             model.put("response","Must be exactly 1 condition!");
             return;
         }
 
-        Response<Integer> response = service.CreateConditionalDiscount(ctx.sessionAttribute("userToken"),
-                ctx.formParam("storeName"),
-                strArrToDate(ctx),
-                Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))),
-                        conditionsToCompose.get(0));
+        if(isDiscount) {
+            Response<Integer> response = service.CreateConditionalDiscount(ctx.sessionAttribute("userToken"),
+                    ctx.formParam("storeName"),
+                    strArrToDate(ctx),
+                    Double.valueOf(Objects.requireNonNull(ctx.formParam("percent"))),
+                    conditionsToCompose.get(0));
 
-        generateResponseMessageOnDiscountCreation(model,
-                service.SetDiscountToStore(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),response.getResult()),
-                response.getResult());
+            generateResponseMessageOnDiscountCreation(model,
+                    service.SetDiscountToStore(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"), response.getResult()),
+                    response.getResult());
+        }
+
+        else{
+            service.SetConditionToStore(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),conditionsToCompose.get(0));
+            model.put("success_discount",true);
+            model.put("response",String.format("Successfully added the condition %d to the store",conditionsToCompose.get(0)));
+        }
     }
 
     private LocalDate strArrToDate(Context ctx) {
@@ -743,9 +751,26 @@ public class StoreController {
         createConditionAndAddToLst(model, conditionsToCompose, response);
     }
 
-    private void caseAnd(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose) {
+    private void caseAnd(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose,boolean isDiscount) {
         Response<Integer> response = service.CreateLogicalAndCondition(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"), conditionsToCompose);
-        generateDiscountFromCondition(ctx, model, response);
+        if(isDiscount) {
+            generateDiscountFromCondition(ctx, model, response);
+        }
+        else{
+            assignConditionToStore(ctx, model, response);
+        }
+    }
+
+    private void assignConditionToStore(Context ctx, Map<String, Object> model, Response<Integer> response) {
+        if(response.isError_occured()){
+            model.put("fail_discount",true);
+            model.put("response", response.getError_message());
+        }
+        else{
+            service.SetConditionToStore(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"), response.getResult());
+            model.put("success_discount",true);
+            model.put("response",String.format("Successfully set the condition :%d to the store", response.getResult()));
+        }
     }
 
     private void generateDiscountFromCondition(Context ctx, Map<String, Object> model, Response<Integer> response) {
@@ -776,20 +801,30 @@ public class StoreController {
         }
     }
 
-    private void caseXor(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose) {
+    private void caseXor(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose,boolean isDiscount) {
         if (conditionsToCompose.size() != 2) {
             model.put("fail_discount", true);
             model.put("response", "Xor has to be between exactly 2 conditions");
         } else {
 
             Response<Integer> response = service.CreateLogicalXorCondition(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"), conditionsToCompose.get(0), conditionsToCompose.get(1));
-            generateDiscountFromCondition(ctx, model, response);
+            if(isDiscount) {
+                generateDiscountFromCondition(ctx, model, response);
+            }
+            else{
+                assignConditionToStore(ctx, model, response);
+            }
         }
     }
 
-    private void caseOr(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose) {
+    private void caseOr(Context ctx, Map<String, Object> model, LinkedList<Integer> conditionsToCompose,boolean isDiscount) {
         Response<Integer> response = service.CreateLogicalOrCondition(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"), conditionsToCompose);
-        generateDiscountFromCondition(ctx, model, response);
+        if(isDiscount)
+            generateDiscountFromCondition(ctx, model, response);
+
+        else{
+            assignConditionToStore(ctx, model, response);
+        }
     }
 
     public Handler composeDiscountPage = ctx->{
@@ -853,4 +888,59 @@ public class StoreController {
         Response<Integer> response = service.CreateMaximumCompositeDiscount(ctx.sessionAttribute("userToken"), ctx.formParam("storeName"), strArrToDate(ctx), discounts);
         composeDiscountsResponse(ctx, model, response);
     }
+
+    public Handler addSimpleConditionPage = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ADD_SIMPLE_CONDITION,model);
+    };
+
+    public Handler addSimpleConditionStoreSelectPost = ctx ->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<StoreDTO> response = service.getStoreInfo(ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("response",response.getError_message());
+            model.put("fail",true);
+        }
+        else {
+            model.put("success",true);
+            model.put("store",response.getResult());
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ADD_SIMPLE_CONDITION,model);
+    };
+
+    public Handler addSimpleConditionPost = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        LinkedList<Integer> conditionsToCompose=new LinkedList<>();
+
+        if(ctx.formParam("category_condition")!=null){
+            categoryCondition(ctx, model, conditionsToCompose);
+        }
+
+        if(ctx.formParam("total_value_condition")!=null){
+            totalValueCondition(ctx, model, conditionsToCompose);
+        }
+
+        if(ctx.formParam("product_amount_condition")!=null){
+            productAmountCondition(ctx, model, conditionsToCompose);
+        }
+
+        switch (Objects.requireNonNull(ctx.formParam("logical"))) {
+            case "or" -> {
+                caseOr(ctx, model, conditionsToCompose,false);
+            }
+            case "xor" -> {
+                caseXor(ctx, model, conditionsToCompose,false);
+            }
+            case "and" -> {
+                caseAnd(ctx, model, conditionsToCompose,false);
+            }
+            case "single" ->{
+                caseSingle(ctx,model,conditionsToCompose,false);            }
+        }
+
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.ADD_SIMPLE_CONDITION,model);
+    };
 }

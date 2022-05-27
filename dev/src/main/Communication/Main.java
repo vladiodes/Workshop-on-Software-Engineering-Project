@@ -145,6 +145,9 @@ public class Main {
             get("/composeDiscount",storeController.composeDiscountPage);
             post("/addDiscountSelectStoreComposeFromPrevious",storeController.ComposeDiscountFromPrevSelectStore);
             post("/composeDiscount",storeController.composeNewDiscountHandler);
+            get("/addConditionToStore",storeController.addSimpleConditionPage);
+            post("/addSimpleConditionSelectStore",storeController.addSimpleConditionStoreSelectPost);
+            post("/addConditionToStore",storeController.addSimpleConditionPost);
 
 
         });
