@@ -22,10 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleting unnecessary files">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Logger now writes bug events to BUG.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Logger/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/addDirectDiscount.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/addDirectDiscount.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,6 +245,9 @@
       <workItem from="1652379905686" duration="390000" />
       <workItem from="1652425121753" duration="639000" />
       <workItem from="1652544225913" duration="3188000" />
+      <workItem from="1653552678868" duration="657000" />
+      <workItem from="1653553957518" duration="172000" />
+      <workItem from="1653633326592" duration="2171000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -511,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652520345439</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Logger now writes bug events to BUG.txt">
+      <created>1653544285137</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1653544285137</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +568,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Req 2.6.3 implemented" />
     <MESSAGE value="Changed service signatures to return responses" />
     <MESSAGE value="getter in response" />
     <MESSAGE value="Fixed compilation issues" />
@@ -582,7 +592,8 @@
     <MESSAGE value="Added discounts functionality to gui" />
     <MESSAGE value="Added option to enter secret code for basket in cart" />
     <MESSAGE value="Deleted some files regarding HTTPS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted some files regarding HTTPS" />
+    <MESSAGE value="Logger now writes bug events to BUG.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logger now writes bug events to BUG.txt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

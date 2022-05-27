@@ -5,7 +5,7 @@
 <main>
     <div class="content">
         <h2>Add direct discount</h2>
-        <form action="/handleAddDirectDiscount" method="post">
+        <form action="/handleAddDirectDiscountToProduct" method="post">
             <input type="hidden" value="$productName" name="productName">
             <input type="hidden" value="$storeName" name="storeName">
             <p>Discount percent</p>
