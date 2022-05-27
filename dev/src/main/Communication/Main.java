@@ -129,10 +129,9 @@ public class Main {
             post("/resetPolicies",storeController.handleResetPolicy);
             post("/addDiscountSelectStore",storeController.addDiscountSelectStore);
             get("/addDiscount", storeController.addDiscountPage);
-            post("/addDiscount",storeController.addDiscountPost);
-            post("/handleAddDirectDiscountToProduct",productController.handleAddDirectDiscountToProduct); //TODO fix
+            post("/addDiscount",storeController.addDiscountToProductPost);
+            post("/handleAddDirectDiscountToProduct",productController.handleAddDirectDiscountToProduct);
             post("/handleAddSecretDiscount",productController.handleAddSecretDiscount);
-//            post("/handleAddConditionalDiscount",productController.handleAddCondDiscount);
             post("/insertSecretCode",cartController.handleAddSecretCode);
             post("/makeBid",productController.makeBidPage);
             post("/addBid",productController.handleAddBidToProduct);
@@ -140,6 +139,20 @@ public class Main {
             post("/viewBids",storeController.handleViewBidsPost);
             post("/approveBid",productController.approveBidPost);
             post("/declineBid",productController.declineBidPost);
+            get("/addDiscountToStore",storeController.addDiscountToStorePage);
+            post("/addDiscountSelectStoreCompose",storeController.addDiscountSelectStoreCompose);
+            post("/addDiscountToStore",storeController.addDiscountToStoreComposePage);
+            get("/composeDiscount",storeController.composeDiscountPage);
+            post("/addDiscountSelectStoreComposeFromPrevious",storeController.ComposeDiscountFromPrevSelectStore);
+            post("/composeDiscount",storeController.composeNewDiscountHandler);
+            get("/addConditionToStore",storeController.addSimpleConditionPage);
+            post("/addSimpleConditionSelectStore",storeController.addSimpleConditionStoreSelectPost);
+            post("/addConditionToStore",storeController.addSimpleConditionPost);
+            get("/composeRestrictions",storeController.composeRestrictionsPage);
+            post("/composeConditionSelectStorePost",storeController.composeConditionSelectStorePost);
+            post("/composeRestrictions",storeController.composeRestrictionPostHandle);
+
+
 
         });
         try {

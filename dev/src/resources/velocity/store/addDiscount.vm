@@ -26,7 +26,6 @@
             </select>
                 <p><input type="radio" name="discount" value="direct" checked> Direct discount</p>
                 <p><input type="radio" name="discount" value="secret"> Secret discount</p>
-                <p><input type="radio" name="discount" value="cond"> Conditional discount</p>
                 <input type="submit" value="Add discount">
             </form>
             #end

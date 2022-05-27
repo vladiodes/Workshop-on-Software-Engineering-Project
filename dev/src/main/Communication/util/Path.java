@@ -40,9 +40,12 @@ public class Path {
         public static final String ADD_DISCOUNT = "velocity/store/addDiscount.vm";
         public static final String ADD_DIRECT_DISCOUNT = "velocity/product/addDirectDiscount.vm";
         public static final String ADD_SECRET_DISCOUNT = "velocity/product/addSecretDiscount.vm";
-        public static final String ADD_COND_DISCOUNT = "velocity/product/addCondDiscount.vm";
         public static final String MAKE_BID_ON_PRODUCT = "velocity/product/addBidOnProduct.vm";
         public static final String VIEW_BIDS = "velocity/store/viewBids.vm";
+        public static final String ADD_DISCOUNT_TO_STORE = "velocity/store/composeDiscountToStore.vm";
+        public static final String COMPOSE_NEW_DISCOUNT_RULE_FROM_EXISTING_RULES = "velocity/store/composeDiscountFromPrevRules.vm";
+        public static final String ADD_SIMPLE_CONDITION = "velocity/store/addSimpleConditionToStore.vm";
+        public static final String COMPOSE_CONDITIONS_TO_STORE = "velocity/store/composeConditionFromPrevRules.vm";
     }
 
 }

@@ -28,6 +28,7 @@ header {
     justify-content: center;
     align-items: center;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    z-index: 5;
 }
 
 #cart{
@@ -84,6 +85,7 @@ main small {
     height: 100vh;
     width: 100%;
     pointer-events: none;
+    z-index: 10;
 }
 #nav-container .bg {
     position: absolute;
@@ -258,4 +260,8 @@ img {
 
 #failed_response{
     color: red;
+}
+
+.content{
+    z-index: 3;
 }

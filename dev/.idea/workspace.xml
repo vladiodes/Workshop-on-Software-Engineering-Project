@@ -22,11 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Logger now writes bug events to BUG.txt">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added composing complex conditions for store in gui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/addDirectDiscount.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/addDirectDiscount.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="web-client-cont" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -68,26 +66,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/banan/Downloads/Statistic-4.1.10.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.statistic.project.settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.utils" />
@@ -105,6 +103,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
     </key>
@@ -167,17 +166,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PublisherTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AT_Req2_4_Discounts_Conditions.ConditionalDiscountOnStoreWorks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="MAIN_CLASS_NAME" value="test.NotificationTests.PublisherTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Discounts_Conditions" />
+      <option name="METHOD_NAME" value="ConditionalDiscountOnStoreWorks" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -214,17 +214,17 @@
     <list>
       <item itemvalue="Application.main.Communication.Main" />
       <item itemvalue="Application.ServiceLoader" />
+      <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.ConditionalDiscountOnStoreWorks" />
       <item itemvalue="JUnit.PurchaseConcurrencyTest" />
       <item itemvalue="JUnit.test in dev" />
-      <item itemvalue="JUnit.PublisherTests" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.main.Communication.Main" />
+        <item itemvalue="JUnit.AT_Req2_4_Discounts_Conditions.ConditionalDiscountOnStoreWorks" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="Application.ServiceLoader" />
         <item itemvalue="JUnit.PurchaseConcurrencyTest" />
-        <item itemvalue="JUnit.PublisherTests" />
       </list>
     </recent_temporary>
   </component>
@@ -247,7 +247,7 @@
       <workItem from="1652544225913" duration="3188000" />
       <workItem from="1653552678868" duration="657000" />
       <workItem from="1653553957518" duration="172000" />
-      <workItem from="1653633326592" duration="2171000" />
+      <workItem from="1653633326592" duration="24513000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -522,7 +522,35 @@
       <option name="project" value="LOCAL" />
       <updated>1653544285137</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="some work on discounts">
+      <created>1653635537320</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1653635537320</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added discounts to GUI">
+      <created>1653658582623</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1653658582623</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Added simple conditions for store in gui">
+      <created>1653660840407</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1653660840407</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added composing complex conditions for store in gui">
+      <created>1653661821093</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1653661821093</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,10 +596,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changed service signatures to return responses" />
-    <MESSAGE value="getter in response" />
-    <MESSAGE value="Fixed compilation issues" />
-    <MESSAGE value="Fixed ProductDTO constructor" />
     <MESSAGE value="Unit tests for User" />
     <MESSAGE value="Changed AT class name to be more relevant" />
     <MESSAGE value="Added NotificationBus tests" />
@@ -593,7 +617,11 @@
     <MESSAGE value="Added option to enter secret code for basket in cart" />
     <MESSAGE value="Deleted some files regarding HTTPS" />
     <MESSAGE value="Logger now writes bug events to BUG.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logger now writes bug events to BUG.txt" />
+    <MESSAGE value="some work on discounts" />
+    <MESSAGE value="Added discounts to GUI" />
+    <MESSAGE value="Added simple conditions for store in gui" />
+    <MESSAGE value="Added composing complex conditions for store in gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added composing complex conditions for store in gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -612,6 +640,41 @@
           <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java</url>
           <line>9</line>
           <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
+          <line>654</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
+          <line>913</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Market.java</url>
+          <line>745</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Users/User.java</url>
+          <line>382</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
