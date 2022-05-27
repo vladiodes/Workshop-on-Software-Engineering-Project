@@ -148,6 +148,10 @@ public class Main {
             get("/addConditionToStore",storeController.addSimpleConditionPage);
             post("/addSimpleConditionSelectStore",storeController.addSimpleConditionStoreSelectPost);
             post("/addConditionToStore",storeController.addSimpleConditionPost);
+            get("/composeRestrictions",storeController.composeRestrictionsPage);
+            post("/composeConditionSelectStorePost",storeController.composeConditionSelectStorePost);
+            post("/composeRestrictions",storeController.composeRestrictionPostHandle);
+
 
 
         });

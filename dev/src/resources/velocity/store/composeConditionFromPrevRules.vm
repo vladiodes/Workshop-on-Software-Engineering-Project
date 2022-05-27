@@ -1,0 +1,64 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <style>
+        hr.solid {
+            border-top: 3px solid #bbb;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <div class="content">
+        <h2>Compose new restriction rule from previous rules to a store</h2>
+        <p>Select a store, and then select previous ids of conditions to compose a new condition</p>
+        <hr class="solid">
+        <form action="/composeConditionSelectStorePost" method="post">
+            <p>Select your store</p>
+            <select id="mainStore" name="storeName" onchange="this.form.submit()">
+                <option value=""></option>
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <form action="/composeRestrictions" method="post">
+                <input type="hidden" name="storeName" value="$store.getStoreName()">
+                <hr class="solid">
+                <h2>First condition:</h2>
+                <p>Condition ID</p>
+                <input type="number" name="condition1_id" value="0" required>
+
+                <hr class="solid">
+
+                <h2>Second condition:</h2>
+                <p>Discount ID</p>
+                <input type="number" name="condition2_id" value="0" required>
+
+                <hr class="solid">
+
+                <h2>Select logical operation between conditions</h2>
+                <p><input type="radio" value="or" name="logical"> Or</p>
+                <p><input type="radio" value="xor" name="logical"> Xor</p>
+                <p><input type="radio" value="and" name="logical"> And</p>
+
+                <hr class="solid">
+
+                <input type="submit" value="Create new condition rule and assign to store" style="margin-bottom: 10px;">
+            </form>
+            #end
+
+        #if($fail_discount)
+            <p id="failed_response">$response</p>
+        #elseif($success_discount)
+                <p id="success_response">$response</p>
+        #end
+    </div>
+</main>
+</div>
+</body>
+</html>

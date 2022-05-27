@@ -22,9 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added discounts to GUI">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/addSimpleConditionToStore.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added simple conditions for store in gui">
+      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/composeConditionFromPrevRules.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
@@ -251,7 +250,7 @@
       <workItem from="1652544225913" duration="3188000" />
       <workItem from="1653552678868" duration="657000" />
       <workItem from="1653553957518" duration="172000" />
-      <workItem from="1653633326592" duration="19416000" />
+      <workItem from="1653633326592" duration="20175000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -540,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653658582623</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Added simple conditions for store in gui">
+      <created>1653660840407</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1653660840407</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,7 +592,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed compilation issues" />
     <MESSAGE value="Fixed ProductDTO constructor" />
     <MESSAGE value="Unit tests for User" />
     <MESSAGE value="Changed AT class name to be more relevant" />
@@ -611,7 +616,8 @@
     <MESSAGE value="Logger now writes bug events to BUG.txt" />
     <MESSAGE value="some work on discounts" />
     <MESSAGE value="Added discounts to GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added discounts to GUI" />
+    <MESSAGE value="Added simple conditions for store in gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added simple conditions for store in gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

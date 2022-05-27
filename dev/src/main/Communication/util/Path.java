@@ -45,6 +45,7 @@ public class Path {
         public static final String ADD_DISCOUNT_TO_STORE = "velocity/store/composeDiscountToStore.vm";
         public static final String COMPOSE_NEW_DISCOUNT_RULE_FROM_EXISTING_RULES = "velocity/store/composeDiscountFromPrevRules.vm";
         public static final String ADD_SIMPLE_CONDITION = "velocity/store/addSimpleConditionToStore.vm";
+        public static final String COMPOSE_CONDITIONS_TO_STORE = "velocity/store/composeConditionFromPrevRules.vm";
     }
 
 }

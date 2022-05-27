@@ -943,4 +943,46 @@ public class StoreController {
         getUserStores(ctx,model);
         ctx.render(Path.Template.ADD_SIMPLE_CONDITION,model);
     };
+
+    public Handler composeRestrictionsPage = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx, model);
+        ctx.render(Path.Template.COMPOSE_CONDITIONS_TO_STORE, model);
+    };
+
+    public Handler composeConditionSelectStorePost = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        Response<StoreDTO> response = service.getStoreInfo(ctx.formParam("storeName"));
+        if(response.isError_occured()){
+            model.put("response",response.getError_message());
+            model.put("fail",true);
+        }
+        else {
+            model.put("success",true);
+            model.put("store",response.getResult());
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.COMPOSE_CONDITIONS_TO_STORE,model);
+    };
+
+    public Handler composeRestrictionPostHandle = ctx->{
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        LinkedList<Integer> conditionsToCompose=new LinkedList<>();
+        conditionsToCompose.add(Integer.valueOf(Objects.requireNonNull(ctx.formParam("condition1_id"))));
+        conditionsToCompose.add(Integer.valueOf(Objects.requireNonNull(ctx.formParam("condition2_id"))));
+
+        switch (Objects.requireNonNull(ctx.formParam("logical"))) {
+            case "or" -> {
+                caseOr(ctx, model, conditionsToCompose,false);
+            }
+            case "xor" -> {
+                caseXor(ctx, model, conditionsToCompose,false);
+            }
+            case "and" -> {
+                caseAnd(ctx, model, conditionsToCompose,false);
+            }
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.COMPOSE_CONDITIONS_TO_STORE,model);
+    };
 }

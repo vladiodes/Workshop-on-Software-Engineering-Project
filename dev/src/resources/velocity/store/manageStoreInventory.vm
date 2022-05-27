@@ -24,7 +24,8 @@
                 <h2>Purchase policies</h2>
         <h2><span><a href="/addPolicy">Add purchase policy to product</a> </span> |
             <span><a href="/viewBids">View bids</a> </span> |
-            <span><a href="/addConditionToStore">Add restricting conditions</a> </span></h2>
+            <span><a href="/addConditionToStore">Add restricting conditions</a> </span> |
+            <span><a href="/composeRestrictions">Compose restrictions</a></span></h2>
 
         <br/>
                 <hr class="solid">
