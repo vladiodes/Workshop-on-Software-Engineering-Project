@@ -108,6 +108,11 @@ public class AuctionPolicy extends TimedPolicy {
     }
 
     @Override
+    public boolean isAddableToBasket() {
+        return false;
+    }
+
+    @Override
     public boolean isPurchasable(Product product, Double costumePrice, int amount, User user) {
         return until.isBefore(LocalDate.now()) && user == winningBid.getUser();
     }

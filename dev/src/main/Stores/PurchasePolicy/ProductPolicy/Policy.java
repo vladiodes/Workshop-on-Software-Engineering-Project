@@ -64,4 +64,5 @@ public interface Policy {
     public Discount getDiscount();
     public void setOriginalPrice(Double price);
 
+    boolean isAddableToBasket();
 }

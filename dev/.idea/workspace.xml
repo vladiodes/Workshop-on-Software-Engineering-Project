@@ -22,17 +22,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed bidding">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Logger/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/addBidOnProduct.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/addBidOnProduct.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +136,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
+  <component name="RunManager" selected="Application.main.Communication.Main">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -143,6 +144,20 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.Communication.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
+      <module name="dev" />
+      <option name="PROGRAM_PARAMETERS" value="store_with_manager.json" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.Communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -173,22 +188,6 @@
       <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
       <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
       <option name="METHOD_NAME" value="allStaffApprovesBargain" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ATuser2Requirements.userBidsOnTwoDifferentProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="userBidsOnTwoDifferentProducts" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -225,19 +224,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.main.Communication.Main" />
       <item itemvalue="JUnit.ATuser2Requirements" />
       <item itemvalue="JUnit.ATuser2Requirements.allStaffApprovesBargain" />
-      <item itemvalue="JUnit.ATuser2Requirements.userBidsOnTwoDifferentProducts" />
       <item itemvalue="JUnit.ATuser2Requirements.userBidsOnTwoDifferentProductsAndApprovedOneOfThem" />
       <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.main.Communication.Main" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.ATuser2Requirements" />
         <item itemvalue="JUnit.ATuser2Requirements.allStaffApprovesBargain" />
         <item itemvalue="JUnit.ATuser2Requirements.userBidsOnTwoDifferentProductsAndApprovedOneOfThem" />
-        <item itemvalue="JUnit.ATuser2Requirements.userBidsOnTwoDifferentProducts" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +260,7 @@
       <workItem from="1653552678868" duration="657000" />
       <workItem from="1653553957518" duration="172000" />
       <workItem from="1653633326592" duration="24513000" />
-      <workItem from="1653717820849" duration="2198000" />
+      <workItem from="1653717820849" duration="4271000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -564,7 +563,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653661821093</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store">
+      <created>1653726346170</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1653726346170</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +616,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Unit tests for User" />
     <MESSAGE value="Changed AT class name to be more relevant" />
     <MESSAGE value="Added NotificationBus tests" />
     <MESSAGE value="Added ManagerPermissions tests" />
@@ -635,7 +640,8 @@
     <MESSAGE value="Added discounts to GUI" />
     <MESSAGE value="Added simple conditions for store in gui" />
     <MESSAGE value="Added composing complex conditions for store in gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added composing complex conditions for store in gui" />
+    <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -657,12 +663,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
-          <line>654</line>
+          <line>660</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
-          <line>913</line>
+          <line>919</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -679,6 +685,16 @@
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
           <line>37</line>
           <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

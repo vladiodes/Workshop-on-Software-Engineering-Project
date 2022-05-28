@@ -161,4 +161,8 @@ public class Product {
     public void counterOfferBid(User user, Double offer) {
         policy.counterOfferBid(user, offer);
     }
+
+    public boolean isAddableToBasket() {
+        return policy.isAddableToBasket();
+    }
 }

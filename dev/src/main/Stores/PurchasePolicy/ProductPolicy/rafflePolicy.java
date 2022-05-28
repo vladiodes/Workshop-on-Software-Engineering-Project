@@ -100,6 +100,11 @@ public class rafflePolicy extends DirectPolicy {
         else this.originalPrice = price;
     }
 
+    @Override
+    public boolean isAddableToBasket() {
+        return false;
+    }
+
     private void ResetRaffle(){
         this.accumaltivePrice = 0;
         this.participants = new ConcurrentHashMap<>();

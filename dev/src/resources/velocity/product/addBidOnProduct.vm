@@ -30,7 +30,7 @@
                     <input type="date" name="supplyingDate" required>
                     <p>Address</p>
                     <input type="text" name="address" value="" required>
-                    <p><input type="submit" value="Purchase cart"></p>
+                    <p><input type="submit" value="Add bid"></p>
                     #if($fail)
                         <p id="failed_response">$response</p>
                     #elseif($success)

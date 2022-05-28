@@ -518,6 +518,8 @@ public class StoreController {
             model.put("success",true);
             model.put("response","Successfully added auction policy");
         }
+        model.put("storeName", ctx.formParam("storeName"));
+        model.put("productName", ctx.formParam("productName"));
         ctx.render(Path.Template.ADD_AUCTION_POLICY,model);
     };
 
@@ -538,8 +540,10 @@ public class StoreController {
         }
         else {
             model.put("success",true);
-            model.put("response","Successfully added auction policy");
+            model.put("response","Successfully added bargain policy");
         }
+        model.put("storeName", ctx.formParam("storeName"));
+        model.put("productName", ctx.formParam("productName"));
         ctx.render(Path.Template.ADD_BARGAIN_POLICY,model);
 
     };
@@ -562,8 +566,10 @@ public class StoreController {
         }
         else {
             model.put("success",true);
-            model.put("response","Successfully added regular policy");
+            model.put("response","Successfully reset policy");
         }
+        model.put("storeName", ctx.formParam("storeName"));
+        model.put("productName", ctx.formParam("productName"));
         ctx.render(Path.Template.RESET_POLICIES,model);
     };
 

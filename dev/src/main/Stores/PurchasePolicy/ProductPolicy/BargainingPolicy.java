@@ -134,6 +134,11 @@ public class BargainingPolicy extends TimedPolicy{
     }
 
     @Override
+    public boolean isAddableToBasket() {
+        return false;
+    }
+
+    @Override
     public boolean deliveredImmediately(User user){
         return isApproved(this.bidApprovedBy.get(getUserBid(user)));
     }

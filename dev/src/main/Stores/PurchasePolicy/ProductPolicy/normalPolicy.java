@@ -72,4 +72,9 @@ public class normalPolicy extends DirectPolicy {
         this.originalPrice = price;
     }
 
+    @Override
+    public boolean isAddableToBasket() {
+        return true;
+    }
+
 }
