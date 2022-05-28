@@ -44,6 +44,8 @@ public class ATuser2Requirements {
     double CokePrice = 5;
     String bargainedItem = "Pear";
     double bargainedItemPrice = 50;
+    String bargainedItem2 = "Airpods";
+    double bargainedItemPrice2 = 100;
 
     String AuctionedItem = "Apple juice";
     double auctionedItemPrice = 50;
@@ -80,8 +82,10 @@ public class ATuser2Requirements {
         service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
         service.addProductToStore(founder1token.getResult(), "Sprite", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
         service.addProductToStore(founder1token.getResult(), bargainedItem, "Drinks", null, "tasty drink", "MyStore1", 100, bargainedItemPrice);
+        service.addProductToStore(founder1token.getResult(), bargainedItem2, "Apple", null, "good", "MyStore1", 100, bargainedItemPrice2);
         service.addProductToStore(founder1token.getResult(), AuctionedItem, "Drinks", null, "tasty drink", "MyStore1", 100, auctionedItemPrice);
         service.addBargainPolicy(founder1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice);
+        service.addBargainPolicy(founder1token.getResult(), "MyStore1", bargainedItem2, bargainedItemPrice2);
         service.addAuctionPolicy(founder1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice, LocalDate.now().plusDays(5));
     }
 
@@ -321,10 +325,16 @@ public class ATuser2Requirements {
     @Test
     public void allStaffApprovesBargain(){
         service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation).isError_occured();
-        service.ApproveBid(owner1token.getResult(), "MyStore1", bargainedItem, "user1");
-        service.ApproveBid(founder1token.getResult(), "MyStore1", bargainedItem, "user1");
+        assertFalse(service.ApproveBid(owner1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
+        assertFalse(service.ApproveBid(founder1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
         verify(mockPayment, times(1)).makePayment(mockPaymentInformation, bargainedItemPrice + 1);
         verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), any(HashMap.class));
+        Response<List<String>> history=service.getPurchaseHistory(user1token.getResult(),"user1");
+        Response<List<String>> store_history=service.getStorePurchaseHistory(founder1token.getResult(),"MyStore1");
+        assertFalse(history.isError_occured());
+        assertEquals(1, history.getResult().size());
+        assertFalse(store_history.isError_occured());
+        assertEquals(1, store_history.getResult().size());
     }
 
     @Test
@@ -384,6 +394,25 @@ public class ATuser2Requirements {
         service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice , mockPaymentInformation, mockSupplyingInformation);
         service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation);
         Assertions.assertEquals(auctionedItemPrice + 1, service.getUserBids(founder1token.getResult(),"MyStore1", AuctionedItem).getResult().get(0).getCostumePrice());
+    }
+
+    @Test
+    public void userBidsOnTwoDifferentProducts(){
+        assertFalse(service.bidOnProduct(user1token.getResult(),"MyStore1",bargainedItem2,bargainedItemPrice2+1,mockPaymentInformation,mockSupplyingInformation).isError_occured());
+        assertFalse(service.bidOnProduct(user1token.getResult(),"MyStore1",bargainedItem,bargainedItemPrice+1,mockPaymentInformation,mockSupplyingInformation).isError_occured());
+        assertEquals(1,service.getUserBids(founder1token.getResult(),"MyStore1",bargainedItem).getResult().size());
+        assertEquals(1,service.getUserBids(founder1token.getResult(),"MyStore1",bargainedItem2).getResult().size());
+    }
+
+    @Test
+    public void userBidsOnTwoDifferentProductsAndApprovedOneOfThem(){
+        assertFalse(service.bidOnProduct(user1token.getResult(),"MyStore1",bargainedItem2,bargainedItemPrice2+1,mockPaymentInformation,mockSupplyingInformation).isError_occured());
+        assertFalse(service.bidOnProduct(user1token.getResult(),"MyStore1",bargainedItem,bargainedItemPrice+1,mockPaymentInformation,mockSupplyingInformation).isError_occured());
+        assertFalse(service.ApproveBid(owner1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
+        assertFalse(service.ApproveBid(founder1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
+        assertEquals(1,service.getUserBids(founder1token.getResult(),"MyStore1",bargainedItem2).getResult().size());
+
+
     }
 
     @After

@@ -4,6 +4,7 @@ package main.Logger;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class Logger {
     /**
@@ -26,11 +27,12 @@ public class Logger {
     }
 
     public synchronized void logEvent(String className, String msg) {
-        appendStrToFile(String.format("[EVENT] - %s in class: %s\n",msg,className),logFileName);
+
+        appendStrToFile(String.format("[EVENT][%s] - %s in class: %s\n", LocalDateTime.now(),msg,className),logFileName);
     }
 
     public synchronized void logBug(String className, String msg) {
-        appendStrToFile(String.format("[BUG] - %s in class: %s\n",msg,className),bugFileName);
+        appendStrToFile(String.format("[BUG][%s] - %s in class: %s\n", LocalDateTime.now(),msg,className),bugFileName);
     }
 
     private void appendStrToFile(String msg,String fileName) {

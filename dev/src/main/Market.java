@@ -456,18 +456,7 @@ public class Market {
 
     public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
         Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
-        ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistoryByTime = p.first.getStorePurchaseHistoryByTime(p.second);
-        ConcurrentHashMap<ShoppingBasket, User> purchaseHistoryByUser = p.first.getStorePurchaseHistoryByUser(p.second);
-
-        ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> serviceRes = new ConcurrentHashMap<>();
-        for(Map.Entry<ShoppingBasket,LocalDateTime> res : purchaseHistoryByTime.entrySet()) {
-            ShoppingBasket currBasket = res.getKey();
-            LocalDateTime currTime = res.getValue();
-            User currUser = purchaseHistoryByUser.get(currBasket);
-            serviceRes.put(new ShoppingBasketDTO(currBasket,currUser),currTime);
-
-        }
-        return serviceRes;
+        return p.first.getStorePurchaseHistoryByTime(p.second);
     }
 
     public boolean deleteStore(String userToken, String storeName) {

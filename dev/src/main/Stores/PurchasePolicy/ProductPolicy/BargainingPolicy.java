@@ -92,7 +92,7 @@ public class BargainingPolicy extends TimedPolicy{
         if (isApproved(approvers)) {
             this.purchaseBid(sellingStore, getUserBid(user.getUserName()));
             user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName())));
-            //bidApprovedBy.remove(getUserBid(user));
+            bidApprovedBy.remove(getUserBid(user));
         }
     }
 

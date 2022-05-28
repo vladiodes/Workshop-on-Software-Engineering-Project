@@ -1,5 +1,6 @@
 package main.Stores;
 
+import main.DTO.ShoppingBasketDTO;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Publisher.Notification;
@@ -54,8 +55,7 @@ public interface IStore {
 
     boolean respondToBuyer(User toRespond, String msg);
 
-    ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime();
-    ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser();
+    ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime();
 
     void CancelStaffRoles();
 

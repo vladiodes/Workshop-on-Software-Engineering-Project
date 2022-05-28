@@ -1,5 +1,6 @@
 package main.Stores;
 
+import main.DTO.ShoppingBasketDTO;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Publisher.Notification;
@@ -47,8 +48,7 @@ public class Store implements IStore {
     private boolean isActive;
     private String storeName;
     private List<StoreReview> storeReviews;
-    private ConcurrentHashMap<ShoppingBasket, LocalDateTime> purchaseHistoryByTime;
-    private ConcurrentHashMap<ShoppingBasket, User> purchaseHistoryByUser;
+    private ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
     private ConcurrentHashMap<Integer, Discount> DiscountsInStore;
     private ConcurrentHashMap<Integer, Condition> ConditionsInStore;
     private Discount StoreDiscount;
@@ -87,7 +87,6 @@ public class Store implements IStore {
         this.founder = founder;
         purchaseHistoryByTime = new ConcurrentHashMap<>();
         this.storeReviews = new LinkedList<>();
-        this.purchaseHistoryByUser = new ConcurrentHashMap<>();
         this.storeQuestions=new ConcurrentLinkedQueue<>();
     }
 
@@ -394,10 +393,10 @@ public class Store implements IStore {
     }
 
     @Override
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime() {
+    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime() {
         return purchaseHistoryByTime;
     }
-    public ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser() {return this.purchaseHistoryByUser;}
+
     @Override
     public void CancelStaffRoles() {
         //first removing founder
@@ -429,8 +428,8 @@ public class Store implements IStore {
     public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
             en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, paymentInformation, payment);
-        this.purchaseHistoryByTime.put(bask,LocalDateTime.now());
-        this.purchaseHistoryByUser.put(bask, user);
+        ShoppingBasketDTO basketDTO = new ShoppingBasketDTO(bask,user);
+        this.purchaseHistoryByTime.put(basketDTO,LocalDateTime.now());
         notifyPurchase();
     }
 

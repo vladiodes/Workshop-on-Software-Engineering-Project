@@ -1,5 +1,6 @@
 package test.Mocks;
 
+import main.DTO.ShoppingBasketDTO;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Publisher.Notification;
@@ -115,13 +116,10 @@ public class StoreMock implements IStore {
     }
 
     @Override
-    public ConcurrentHashMap<ShoppingBasket, LocalDateTime> getPurchaseHistoryByTime() {
+    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime() {
         return null;
     }
-    @Override
-    public ConcurrentHashMap<ShoppingBasket, User> getPurchaseHistoryByUser() {
-        return null;
-    }
+
     @Override
     public void CancelStaffRoles() {
 

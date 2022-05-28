@@ -41,7 +41,11 @@
             <form action="/makeBid" method="post">
                 <input id="store_product" type="hidden" name="store_productName">
                 <script type="text/javascript">
-                    document.getElementById("store_product").value=document.getElementById("s_p").value;
+                    document.getElementById("s_p").onchange = function(){
+                        document.getElementById("store_product").value=document.getElementById("s_p").value;
+                        alert("hahaha");
+                    };
+
                 </script>
 
                 <input type="submit" value="Place a bid">
