@@ -351,6 +351,11 @@ public class Store implements IStore {
     }
 
     @Override
+    public boolean isProductAddable(String productName) {
+        return productsByName.get(productName)!=null && productsByName.get(productName).isAddableToBasket();
+    }
+
+    @Override
     public String getName() {
         return storeName;
     }

@@ -281,6 +281,8 @@ public class Market {
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
+        if(!st.isProductAddable(productName))
+            throw new IllegalArgumentException("Can't add this product to the cart - its policy doesn't allow to do so");
         return us.addProductToCart(st, productName, quantity);
     }
 

@@ -102,7 +102,7 @@ public class rafflePolicy extends DirectPolicy {
 
     @Override
     public boolean isAddableToBasket() {
-        return false;
+        return true;
     }
 
     private void ResetRaffle(){

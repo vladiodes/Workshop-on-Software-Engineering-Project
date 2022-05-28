@@ -22,18 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Some more fixed to bidding...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/addBidOnProduct.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/addBidOnProduct.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/product/searchProduct.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +132,7 @@
       <recent name="test.UnitTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main.Communication.Main">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -232,8 +228,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.main.Communication.Main" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="Application.main.Communication.Main" />
         <item itemvalue="JUnit.ATuser2Requirements" />
         <item itemvalue="JUnit.ATuser2Requirements.allStaffApprovesBargain" />
         <item itemvalue="JUnit.ATuser2Requirements.userBidsOnTwoDifferentProductsAndApprovedOneOfThem" />
@@ -260,7 +256,7 @@
       <workItem from="1653552678868" duration="657000" />
       <workItem from="1653553957518" duration="172000" />
       <workItem from="1653633326592" duration="24513000" />
-      <workItem from="1653717820849" duration="4271000" />
+      <workItem from="1653717820849" duration="5447000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -570,7 +566,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653726346170</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Some more fixed to bidding...">
+      <created>1653728369634</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1653728369634</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +619,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changed AT class name to be more relevant" />
     <MESSAGE value="Added NotificationBus tests" />
     <MESSAGE value="Added ManagerPermissions tests" />
     <MESSAGE value="Fixed compilation issues, still refactoring" />
@@ -641,7 +643,8 @@
     <MESSAGE value="Added simple conditions for store in gui" />
     <MESSAGE value="Added composing complex conditions for store in gui" />
     <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
+    <MESSAGE value="Some more fixed to bidding..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some more fixed to bidding..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

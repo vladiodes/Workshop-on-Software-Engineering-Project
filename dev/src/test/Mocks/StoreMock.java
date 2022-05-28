@@ -271,4 +271,9 @@ public class StoreMock implements IStore {
     public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
         return false;
     }
+
+    @Override
+    public boolean isProductAddable(String productName) {
+        return false;
+    }
 }

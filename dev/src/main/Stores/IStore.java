@@ -125,4 +125,5 @@ public interface IStore {
 
     boolean ValidateBasket(User user, ShoppingBasket shoppingBasket);
 
+    boolean isProductAddable(String productName);
 }

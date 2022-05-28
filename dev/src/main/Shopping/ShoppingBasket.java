@@ -89,9 +89,6 @@ public class ShoppingBasket {
                 throw new IllegalArgumentException("amount too high for product.");
             if (!store.getIsActive())
                 throw new IllegalArgumentException(String.format("Product %s isnt available.", prodToAdd.getName()));
-            if(!prodToAdd.isAddableToBasket()){
-                throw new IllegalArgumentException(String.format("The product %s isn't sold in direct policy purchase!",prodToAdd.getName()));
-            }
             for (Product pr : productsQuantity.keySet())
                 if (pr.getName().equals(prodToAdd.getName())) {
                     productsQuantity.put(pr, productsQuantity.get(pr) + quantity);
