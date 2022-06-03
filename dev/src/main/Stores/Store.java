@@ -38,12 +38,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import javax.persistence.*;
 
+@Entity
 public class Store implements IStore {
 
+    @Id
     private ConcurrentHashMap<String, Product> productsByName;
     private ConcurrentLinkedQueue<OwnerPermissions> owners;
     private ConcurrentLinkedQueue<ManagerPermissions> managers;
+    @OneToOne
     private User founder;
     private boolean isActive;
     private String storeName;
@@ -51,7 +55,9 @@ public class Store implements IStore {
     private ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
     private ConcurrentHashMap<Integer, Discount> DiscountsInStore;
     private ConcurrentHashMap<Integer, Condition> ConditionsInStore;
+    @OneToOne
     private Discount StoreDiscount;
+    @OneToOne
     private Condition StorePurchaseCondition;
 
     private ConcurrentLinkedQueue<PersonalNotification> storeQuestions;

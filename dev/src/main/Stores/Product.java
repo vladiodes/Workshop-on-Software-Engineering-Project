@@ -1,6 +1,5 @@
 package main.Stores;
 
-
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.PurchasePolicy.Discounts.Discount;
@@ -11,10 +10,11 @@ import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
-
+@Entity
 public class Product {
     private String productName;
     private String category;
@@ -23,7 +23,6 @@ public class Product {
     private int quantity;
     private List<ProductReview> reviews;
     private Policy policy;
-
     private IStore store;
 
     public Product(IStore store,String productName, String category, List<String> keyWords, String description, int quantity, double price) {

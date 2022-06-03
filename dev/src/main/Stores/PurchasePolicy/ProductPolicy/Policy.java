@@ -8,9 +8,12 @@ import main.Users.User;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 import main.utils.Bid;
-
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "policies")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public interface Policy {
     /***
      * @return if its possible to buy this at this costume price according to the policy.

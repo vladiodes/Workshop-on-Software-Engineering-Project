@@ -1,27 +1,25 @@
 package main.Shopping;
 
-
-
 import main.Stores.IStore;
-
-
 import java.util.*;
-
 import main.Stores.Product;
 import main.Users.User;
-
-import java.util.HashMap;
-
+import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
 public class ShoppingCart {
+
+    @OneToMany
     private ConcurrentHashMap<String, ShoppingBasket> baskets; // (store name, basket)
     private final Object carteditLock = new Object();
+    @OneToOne
+    private User user;
+
     public ShoppingCart(User user) {
         this.baskets = new ConcurrentHashMap<>();
         this.user = user;
     }
-    private User user;
 
     public ShoppingCart(ShoppingCart oldCart) //use this constructor to deep copy a ShoppingCart
     {

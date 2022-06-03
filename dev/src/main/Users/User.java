@@ -1,7 +1,5 @@
 package main.Users;
 
-
-
 import main.DTO.ShoppingBasketDTO;
 import main.DTO.ShoppingCartDTO;
 import main.ExternalServices.Payment.IPayment;
@@ -18,18 +16,21 @@ import main.Users.states.GuestState;
 import main.Users.states.MemberState;
 import main.Users.states.UserStates;
 import main.utils.*;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
+@Entity
 public class User implements Observable {
 
     private boolean isSystemManager;
+    @OneToOne
     private ShoppingCart cart;
+    @ElementCollection
     private List<ShoppingCartDTO> purchaseHistory;
 
     private Observer observer;

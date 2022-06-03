@@ -2,10 +2,13 @@ package main.Stores.PurchasePolicy.Discounts;
 
 import main.Shopping.ShoppingBasket;
 import main.Stores.PurchasePolicy.Conditions.Condition;
-
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "discounts")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Discount {
     private LocalDate until;
 

@@ -1,6 +1,5 @@
 package main.Shopping;
 
-
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.IStore;
@@ -8,13 +7,17 @@ import main.Stores.Product;
 import main.Users.User;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
-
+import javax.persistence.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
 public class ShoppingBasket {
+
+    @OneToMany
     private ConcurrentHashMap<Product,Integer> productsQuantity;
     private WeakHashMap<Product, Double> costumePrice;
+    @OneToOne
     private final IStore store;
     private final Object basketEditLock = new Object();
 
