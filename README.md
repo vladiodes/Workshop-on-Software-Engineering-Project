@@ -8,3 +8,4 @@ List of dependencies to install:
 - org.mockito:mockito-all:1.10.19
 - io.javalin:javalin:3.13.7
 - com.fasterxml.jackson.core:jackson-databind:2.0.2
+- org.hibernate:hibernate-core:5.2.12.Final
