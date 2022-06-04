@@ -32,37 +32,49 @@ import main.utils.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import javax.persistence.*;
 
-@Entity
-public class Store implements IStore {
 
-    @Id
-    private ConcurrentHashMap<String, Product> productsByName;
-    private ConcurrentLinkedQueue<OwnerPermissions> owners;
-    private ConcurrentLinkedQueue<ManagerPermissions> managers;
-    @OneToOne
+public class Store {
+
+
+    private int store_id;
+
+
+    private Map<String, Product> productsByName;
+
+    private Collection<OwnerPermissions> owners;
+
+    private Collection<ManagerPermissions> managers;
+
+
     private User founder;
     private boolean isActive;
     private String storeName;
+
     private List<StoreReview> storeReviews;
+
     private ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
+
     private ConcurrentHashMap<Integer, Discount> DiscountsInStore;
     private ConcurrentHashMap<Integer, Condition> ConditionsInStore;
-    @OneToOne
+
+
     private Discount StoreDiscount;
-    @OneToOne
+
+
     private Condition StorePurchaseCondition;
+
 
     private ConcurrentLinkedQueue<PersonalNotification> storeQuestions;
 
-    @Override
+    public Store() {
+
+    }
+
     public List<User> getOwnersOfStore() {
         LinkedList<User> storeOwners = new LinkedList<>();
         for (OwnerPermissions ow : owners) {
@@ -71,7 +83,6 @@ public class Store implements IStore {
         return storeOwners;
     }
 
-    @Override
     public List<User> getManagersOfStore() {
         LinkedList<User> storeManagers = new LinkedList<>();
         for (ManagerPermissions mp : managers) {
@@ -96,7 +107,6 @@ public class Store implements IStore {
         this.storeQuestions=new ConcurrentLinkedQueue<>();
     }
 
-    @Override
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (productsByName.containsKey(productName))
             throw new IllegalArgumentException("There's already such product with this name in the store");
@@ -106,7 +116,6 @@ public class Store implements IStore {
         return true;
     }
 
-    @Override
     public boolean updateProduct(String oldProductName, String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
         Product product = productsByName.get(oldProductName);
         if (product == null)
@@ -122,32 +131,26 @@ public class Store implements IStore {
         return true;
     }
 
-    @Override
     public ConcurrentLinkedQueue<OwnerPermissions> getOwnersAppointments() {
-        return owners;
+        return (ConcurrentLinkedQueue<OwnerPermissions>)owners;
     }
 
-    @Override
     public ConcurrentLinkedQueue<ManagerPermissions> getManagersAppointments() {
-        return managers;
+        return (ConcurrentLinkedQueue<ManagerPermissions>)managers;
     }
 
-    @Override
     public void addOwnerToStore(OwnerPermissions newOwnerAppointment) {
         owners.add(newOwnerAppointment);
     }
 
-    @Override
     public void addManager(ManagerPermissions newManagerAppointment) {
         managers.add(newManagerAppointment);
     }
 
-    @Override
     public void removeManager(ManagerPermissions mp) {
         managers.remove(mp);
     }
 
-    @Override
     public void removeOwner(OwnerPermissions ow) {
         owners.remove(ow);
     }
@@ -159,19 +162,16 @@ public class Store implements IStore {
         sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now inactive"));
     }
 
-    @Override
     public ConcurrentHashMap<String, Product> getProductsByName() {
-        return productsByName;
+        return (ConcurrentHashMap<String, Product>)productsByName;
     }
 
-    @Override
     public Product getProduct(String name) {
         if(!productsByName.containsKey(name))
             throw new IllegalArgumentException("Request product doesn't exist");
         return productsByName.get(name);
     }
 
-    @Override
     public void sendMessageToStaffOfStore(Notification notification) {
         founder.notifyObserver(notification);
         for (User u : getOwnersOfStore())
@@ -180,7 +180,6 @@ public class Store implements IStore {
             u.notifyObserver(notification);
     }
 
-    @Override
     public List<String> getStoreMessages() {
         LinkedList<String> lst = new LinkedList<>();
         for(PersonalNotification notification : storeQuestions){
@@ -189,7 +188,6 @@ public class Store implements IStore {
         return lst;
     }
 
-    @Override
     public void addQuestionToStore(String userName, String message) {
         PersonalNotification n = new PersonalNotification(userName,message);
         storeQuestions.add(n);
@@ -212,7 +210,6 @@ public class Store implements IStore {
         return DiscountsInStore.get(id);
     }
 
-    @Override
     public int CreateSimpleDiscount(LocalDate until, Double percent) {
         SimpleDiscount disc = new SimpleDiscount(until, percent);
         int id = getID(this.DiscountsInStore);
@@ -220,7 +217,6 @@ public class Store implements IStore {
         return id;
     }
 
-    @Override
     public int CreateSecretDiscount(LocalDate until, Double percent, String secretCode) {
         SecretDiscount disc = new SecretDiscount(until, percent, secretCode);
         int id = getID(this.DiscountsInStore);
@@ -228,7 +224,6 @@ public class Store implements IStore {
         return id;
     }
 
-    @Override
     public int CreateConditionalDiscount(LocalDate until, Double percent, int condID) {
         ConditionalDiscount disc = new ConditionalDiscount(until, percent, getConditionbyID(condID));
         int id = getID(this.DiscountsInStore);
@@ -236,7 +231,6 @@ public class Store implements IStore {
         return id;
     }
 
-    @Override
     public int CreateMaximumCompositeDiscount(LocalDate until, List<Integer> discounts) {
         MaximumCompositeDiscount disc = new MaximumCompositeDiscount(until);
         int id = getID(this.DiscountsInStore);
@@ -246,7 +240,6 @@ public class Store implements IStore {
         return id;
     }
 
-    @Override
     public int CreatePlusCompositeDiscount(LocalDate until, List<Integer> discounts) {
         PlusCompositeDiscount disc = new PlusCompositeDiscount(until);
         int id = getID(this.DiscountsInStore);
@@ -256,21 +249,18 @@ public class Store implements IStore {
         return id;
     }
 
-    @Override
     public void SetDiscountToProduct(int discountID, String productName) {
         if (discountID == -1)
             this.getProduct(productName).setDiscount(null);
         else this.getProduct(productName).setDiscount(getDiscountByID(discountID));
     }
 
-    @Override
     public void SetDiscountToStore(int discountID) {
         if (discountID == -1)
             this.StoreDiscount = null;
         else this.StoreDiscount = this.getDiscountByID(discountID);
     }
 
-    @Override
     public int CreateBasketValueCondition(double requiredValue) {
         Condition cond = new BasketValueCondition(requiredValue);
         int out = getID(ConditionsInStore);
@@ -278,7 +268,6 @@ public class Store implements IStore {
         return out;
     }
 
-    @Override
     public int CreateCategoryAmountCondition(String category, int amount) {
         Condition cond = new CategoryAmountCondition(category, amount);
         int out = getID(ConditionsInStore);
@@ -286,7 +275,6 @@ public class Store implements IStore {
         return out;
     }
 
-    @Override
     public int CreateProductAmountCondition(String productName, int amount) {
         Condition cond = new ProductAmountCondition(amount, getProduct(productName));
         int out = getID(ConditionsInStore);
@@ -294,7 +282,6 @@ public class Store implements IStore {
         return out;
     }
 
-    @Override
     public int CreateLogicalAndCondition(List<Integer> conditionIds) {
         Condition cond = new LogicalAndCondition();
         int out = getID(ConditionsInStore);
@@ -304,7 +291,6 @@ public class Store implements IStore {
         return out;
     }
 
-    @Override
     public int CreateLogicalOrCondition(List<Integer> conditionIds) {
         Condition cond = new LogicalOrCondition();
         int out = getID(ConditionsInStore);
@@ -314,7 +300,6 @@ public class Store implements IStore {
         return out;
     }
 
-    @Override
     public int CreateLogicalXorCondition(int id1, int id2) {
         Condition cond = new LogicalXorCondition();
         int out = getID(ConditionsInStore);
@@ -324,26 +309,22 @@ public class Store implements IStore {
         return out;
     }
 
-    @Override
     public void SetConditionToDiscount(int discountId, int ConditionID) {
         getDiscountByID(discountId).setCondition(getConditionbyID(ConditionID));
     }
 
-    @Override
     public void SetConditionToStore(int ConditionID) {
         if(ConditionID == -1)
             this.StorePurchaseCondition = null;
         else this.StorePurchaseCondition = getConditionbyID(ConditionID);
     }
 
-    @Override
     public double getPriceForProduct(Product product, User user) {
         if(this.StoreDiscount != null)
             return StoreDiscount.getPriceFor(product.getCurrentPrice(user), user.getCart().getBasket(this.getName()));
         else return product.getCurrentPrice(user);
     }
 
-    @Override
     public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
         boolean res = this.getIsActive();
         if(StorePurchaseCondition != null)
@@ -356,22 +337,18 @@ public class Store implements IStore {
         return res;
     }
 
-    @Override
     public boolean isProductAddable(String productName) {
         return productsByName.get(productName)!=null && productsByName.get(productName).isAddableToBasket();
     }
 
-    @Override
     public String getName() {
         return storeName;
     }
 
-    @Override
     public Boolean getIsActive() {
         return isActive;
     }
 
-    @Override
     public synchronized void reOpen() {
         if (isActive)
             throw new IllegalArgumentException("The store is already opened!");
@@ -379,7 +356,6 @@ public class Store implements IStore {
         sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now open again"));
     }
 
-    @Override
     public HashMap<User, String> getStoreStaff() {
         HashMap<User, String> staff = new HashMap<>();
         //founder
@@ -396,19 +372,16 @@ public class Store implements IStore {
         return staff;
     }
 
-    @Override
     public boolean respondToBuyer(User toRespond, String msg) {
         toRespond.notifyObserver(new PersonalNotification(storeName,msg));
         // here we can add any history of messages between user-store if necessary
         return true;
     }
 
-    @Override
     public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime() {
         return purchaseHistoryByTime;
     }
 
-    @Override
     public void CancelStaffRoles() {
         //first removing founder
         founder.removeFounderRole(this);
@@ -427,7 +400,6 @@ public class Store implements IStore {
         }
     }
 
-    @Override
     public boolean removeProduct(String productName) {
         Product toRemove = productsByName.get(productName);
         if (toRemove == null)
@@ -435,7 +407,6 @@ public class Store implements IStore {
         return productsByName.remove(productName) != null;
     }
 
-    @Override
     public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
             en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, paymentInformation, payment);
@@ -449,7 +420,6 @@ public class Store implements IStore {
             manager.notifyObserver(new PersonalNotification(storeName,"Products were bought from your store!"));
     }
 
-    @Override
     public void addReview(StoreReview sReview) {
         for (StoreReview sr : this.storeReviews)
             if(sr.getUser().equals(sReview.getUser()))
@@ -457,7 +427,6 @@ public class Store implements IStore {
         this.storeReviews.add(sReview);
     }
 
-    @Override
     public void notifyBargainingStaff(Bid newbid) {
         for (User staff: getStoreStaff().keySet())
             if(staff.ShouldBeNotfiedForBargaining(this))
@@ -466,31 +435,26 @@ public class Store implements IStore {
                         String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName())));
     }
 
-    @Override
     public void addRafflePolicy(String productName, Double price) {
         Product product = getProduct(productName);
         product.setPolicy(new rafflePolicy(this, price));
     }
 
-    @Override
     public void addAuctionPolicy(String productName, Double price, LocalDate until) {
         Product product = getProduct(productName);
         product.setPolicy(new AuctionPolicy(until, price,this, productName));
     }
 
-    @Override
     public void addNormalPolicy(String productName, Double price) {
         Product product = getProduct(productName);
         product.setPolicy(new normalPolicy(price, this));
     }
 
-    @Override
     public void addBargainPolicy(String productName,Double originalPrice) {
         Product product = getProduct(productName);
         product.setPolicy(new BargainingPolicy(this, originalPrice, product));
     }
 
-    @Override
     public boolean bidOnProduct(String productName, Bid bid) {
         Product product = getProduct(productName);
         if (product.bid(bid)){

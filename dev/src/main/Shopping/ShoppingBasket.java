@@ -2,30 +2,41 @@ package main.Shopping;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Entity
-public class ShoppingBasket {
 
-    @OneToMany
-    private ConcurrentHashMap<Product,Integer> productsQuantity;
-    private WeakHashMap<Product, Double> costumePrice;
-    @OneToOne
-    private final IStore store;
+
+public class ShoppingBasket implements Serializable {
+
+
+    @ElementCollection
+    private Map<Product,Integer> productsQuantity;
+    @ElementCollection
+    private Map<Product, Double> costumePrice;
+
+
+
+    private final Store store;
+
     private final Object basketEditLock = new Object();
+
 
     private final List<String> discountPasswords = new LinkedList<>();
 
+
+
     private User user;
 
-    public ShoppingBasket(IStore store, User user){
+    public ShoppingBasket(Store store, User user){
         this.store = store;
         productsQuantity=new ConcurrentHashMap<>();
         costumePrice=new WeakHashMap<>();
@@ -45,6 +56,11 @@ public class ShoppingBasket {
         this.store = oldShoppingBasket.store;
         this.productsQuantity = newProductsQuantity;
     }
+
+    public ShoppingBasket() {
+        store=new Store();
+    }
+
 
     public void addDiscountPassword(String pass){
         discountPasswords.add(pass);
@@ -127,7 +143,7 @@ public class ShoppingBasket {
         return new ConcurrentHashMap<>(productsQuantity);
     }
 
-    public IStore getStore() {
+    public Store getStore() {
         return store;
     }
 

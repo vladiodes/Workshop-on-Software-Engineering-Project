@@ -1,17 +1,22 @@
 package main.Users;
 
-import main.Stores.IStore;
+import main.Stores.Store;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class ManagerPermissions {
-
+public class ManagerPermissions implements Serializable {
     private User appointedToManager;
-    private User appointedBy;
-    private IStore IStore;
-    private ConcurrentLinkedQueue<StorePermission> permissions;
 
-    public ManagerPermissions(User appointedToManager, User appointedBy, IStore IStore){
+
+    private User appointedBy;
+
+    private Store IStore;
+    private Collection<StorePermission> permissions;
+
+    public ManagerPermissions(User appointedToManager, User appointedBy, Store IStore){
         permissions=new ConcurrentLinkedQueue<>();
         this.appointedToManager=appointedToManager;
         this.IStore = IStore;
@@ -19,12 +24,16 @@ public class ManagerPermissions {
         addDefaultPermissions();
     }
 
+    public ManagerPermissions() {
+
+    }
+
     private void addDefaultPermissions() {
         permissions.add(StorePermission.AnswerAndTakeRequests);
         permissions.add(StorePermission.ViewStoreHistory);
     }
 
-    public IStore getStore() {
+    public Store getStore() {
         return IStore;
     }
 
@@ -59,7 +68,7 @@ public class ManagerPermissions {
         return builder.toString();
     }
 
-    public ConcurrentLinkedQueue<StorePermission> getPermissions() {
+    public Collection<StorePermission> getPermissions() {
         return permissions;
     }
 }

@@ -3,6 +3,7 @@ package main;
 
 import io.javalin.websocket.WsContext;
 import main.DTO.*;
+import main.Persistence.DAO;
 import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
 import main.Publisher.Publisher;
@@ -44,7 +45,7 @@ public class Market {
      */
     private ConcurrentHashMap<String, User> membersByUserName; //key=username
     private ConcurrentHashMap<String, User> connectedSessions; //key=userToken, generated randomly by system
-    private ConcurrentHashMap<String, IStore> stores; //key=store name
+    private ConcurrentHashMap<String, Store> stores; //key=store name
     private ISecurity security_controller;
     private IPayment Psystem;
     private ISupplying Ssystem;
@@ -86,9 +87,9 @@ public class Market {
         User user = connectedSessions.get(userToken);
         if(user==null)
             throw new IllegalArgumentException("This user isn't logged in");
-        List<IStore> domainRes = user.getAllStoresIsStaff();
+        List<Store> domainRes = user.getAllStoresIsStaff();
         List<StoreDTO> serviceRes = new LinkedList<>();
-        for (IStore s : domainRes) {
+        for (Store s : domainRes) {
             serviceRes.add(new StoreDTO(s));
         }
         return serviceRes;
@@ -116,25 +117,25 @@ public class Market {
     }
     public void addRafflePolicy(String userToken, String storeName, String productName, Double price) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getDomainStoreByName(storeName);
+        Store store = getDomainStoreByName(storeName);
         user.addRafflePolicy(store, productName, price);
     }
 
     public void addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate Until) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getDomainStoreByName(storeName);
+        Store store = getDomainStoreByName(storeName);
         user.addAuctionPolicy(store, productName, price, Until);
     }
 
     public void addNormalPolicy(String userToken, String storeName, String productName, Double price) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getDomainStoreByName(storeName);
+        Store store = getDomainStoreByName(storeName);
         user.addNormalPolicy(store, productName, price);
     }
 
     public boolean bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         User user = getConnectedUserByToken(userToken);
-        IStore store = getDomainStoreByName(storeName);
+        Store store = getDomainStoreByName(storeName);
         return user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem);
     }
 
@@ -223,7 +224,7 @@ public class Market {
         return new UserDTO(u);
     }
 
-    private IStore getDomainStoreByName(String name) {
+    private Store getDomainStoreByName(String name) {
         if(!stores.containsKey(name))
             throw new IllegalArgumentException("Requested store doesn't exist.");
         return this.stores.get(name);
@@ -256,7 +257,7 @@ public class Market {
 
     public List<ProductDTO> getProductsByAttributes(String productName, String category, String keyWord, Double productRating, Double storeRating, Double minPrice, Double maxPrice){
         List<ProductDTO> result = new LinkedList<>();
-        for (IStore currStr : this.stores.values())
+        for (Store currStr : this.stores.values())
             for (Product currPrd : currStr.getProductsByName().values()) {
                 if (productName == null ||productName.isBlank()|| currPrd.getName().equals(productName))
                     if (category == null ||category.isBlank()|| currPrd.getCategory().equals(category))
@@ -277,7 +278,7 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
             throw new IllegalArgumentException("Unkown user token.");
         }
-        IStore st = this.getDomainStoreByName(storeName);
+        Store st = this.getDomainStoreByName(storeName);
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
@@ -290,7 +291,7 @@ public class Market {
         if(price <= 0)
             throw new IllegalArgumentException("can't pay 0 or less.");
         User user = getConnectedUserByToken(userToken);
-        IStore store = getDomainStoreByName(storeName);
+        Store store = getDomainStoreByName(storeName);
         return user.addProductToCart(store, productName, price);
     }
 
@@ -302,7 +303,7 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("Unknown user token, %s.", userToken));
             throw new IllegalArgumentException("Unkown user token.");
         }
-        IStore st = this.getDomainStoreByName(storeName);
+        Store st = this.getDomainStoreByName(storeName);
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
@@ -320,17 +321,17 @@ public class Market {
 
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
-        Pair<User, IStore> p=getConnectedUserAndStore(userToken,storeName);
+        Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
         return p.first.addProductToStore(p.second,productName,category,keyWords,description,quantity,price);
     }
 
     public boolean updateProductInStore(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.updateProductToStore(p.second, oldProductName,newProductName, category, keyWords, description, quantity, price);
     }
 
     public boolean appointStoreOwner(String userToken, String userToAppoint, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User user_to_appoint = membersByUserName.get(userToAppoint);
         if (user_to_appoint == null)
             throw new IllegalArgumentException("The user to appoint doesn't exist!");
@@ -339,7 +340,7 @@ public class Market {
     }
 
     public boolean removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User appointed_user = membersByUserName.get(userAppointed);
         if (appointed_user == null)
             throw new IllegalArgumentException("The user appointed doesn't exist in the system");
@@ -347,20 +348,20 @@ public class Market {
         return p.first.removeOwnerAppointment(p.second, appointed_user);
     }
 
-    private Pair<User, IStore> getConnectedUserAndStore(String userToken, String storeName) {
+    private Pair<User, Store> getConnectedUserAndStore(String userToken, String storeName) {
         User user = connectedSessions.get(userToken);
         if (user == null)
             throw new IllegalArgumentException("User not logged in");
 
-        IStore IStore = stores.get(storeName);
-        if (IStore == null)
+        Store Store = stores.get(storeName);
+        if (Store == null)
             throw new IllegalArgumentException("No such store");
 
-        return new Pair<>(user, IStore);
+        return new Pair<>(user, Store);
     }
 
     public boolean appointStoreManager(String userToken, String userToAppoint, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User user_to_appoint = membersByUserName.get(userToAppoint);
         if (user_to_appoint == null)
             throw new IllegalArgumentException("The user to appoint doesn't exist!");
@@ -371,7 +372,7 @@ public class Market {
     }
 
     private boolean allowOrDisallowPermission(String userToken, String managerName, String storeName, StorePermission permission, boolean shouldGrant) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User manager = membersByUserName.get(managerName);
         if (manager == null)
             throw new IllegalArgumentException("There's no such manager");
@@ -420,7 +421,7 @@ public class Market {
     }
 
     public boolean removeStoreManager(String userToken, String userAppointed, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User manager = membersByUserName.get(userAppointed);
         if (manager == null)
             throw new IllegalArgumentException("The user doesn't exist in the system!");
@@ -429,27 +430,27 @@ public class Market {
     }
 
     public boolean closeStore(String userToken, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.closeStore(p.second);
     }
 
     public boolean reopenStore(String userToken, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.reOpenStore(p.second);
     }
 
     public HashMap<User, String> getStoreStaff(String userToken, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.getStoreStaff(p.second);
     }
 
     public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.receiveQuestionsFromStore(p.second);
     }
 
     public boolean sendRespondToBuyer(String userToken, String storeName, String userToRespond, String msg) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User toRespond = membersByUserName.get(userToRespond);
         if (toRespond == null)
             throw new IllegalArgumentException("No such user to respond to");
@@ -457,12 +458,12 @@ public class Market {
     }
 
     public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.getStorePurchaseHistoryByTime(p.second);
     }
 
     public boolean deleteStore(String userToken, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         if (p.first.removeStore(p.second)) {
             stores.remove(storeName);
             return true;
@@ -561,14 +562,14 @@ public class Market {
                 throw new IllegalArgumentException("This user isn't registered to the system!");
             if (stores.containsKey(storeName))
                 throw new IllegalArgumentException("There's already a store with that name in the system");
-        IStore newIStore =founder.openStore(storeName);
-        stores.put(storeName, newIStore);
+        Store newStore =founder.openStore(storeName);
+        stores.put(storeName, newStore);
         }
         return true;
     }
 
     public boolean removeProductFromStore(String userToken, String productName, String storeName) {
-        Pair<User, IStore> p = getConnectedUserAndStore(userToken, storeName);
+        Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.removeProductFromStore(productName,p.second);
     }
 
@@ -630,7 +631,7 @@ public class Market {
     private Product getProductByNameAndStore(String productName, String storeName) {
         if(!this.stores.containsKey(storeName))
             throw new IllegalArgumentException("No such store in history");
-        IStore store = this.stores.get(storeName);
+        Store store = this.stores.get(storeName);
         return store.getProduct(productName);
     }
 
@@ -641,7 +642,7 @@ public class Market {
         if(!u.isStoreInHistory(storeName))
             throw new IllegalArgumentException("Store was not found in user's purchase history");
 
-        IStore store = stores.get(storeName);
+        Store store = stores.get(storeName);
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
     }
@@ -678,7 +679,7 @@ public class Market {
         {
             throw new IllegalArgumentException("Illegal message body");
         }
-        IStore store = stores.get(storeName);
+        Store store = stores.get(storeName);
         User u = getConnectedUserByToken(userToken);
         String userName = u.getUserName();
         store.addQuestionToStore(userName,message);
@@ -804,11 +805,17 @@ public class Market {
         this.connectedSessions = connectedSessions;
     }
 
-    public void setStores(ConcurrentHashMap<String, IStore> stores) {
+    public void setStores(ConcurrentHashMap<String, Store> stores) {
         this.stores = stores;
     }
 
     public void setSecurity_controller(ISecurity security_controller) {
         this.security_controller = security_controller;
+    }
+
+    public static void main(String[] args){
+        DAO dao = new DAO();
+        User u1 = new User(false,"user1","123456");
+        dao.persist(u1);
     }
 }

@@ -1,7 +1,8 @@
 package main.DTO;
 
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
+
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -10,7 +11,7 @@ public class StoreDTO {
     private String storeName;
     private Boolean isActive;
 
-    public StoreDTO(IStore st) {
+    public StoreDTO(Store st) {
         this.setStoreName(st.getName());
         this.setProductsByName(st.getProductsByName());
         this.setIsActive(st.getIsActive());

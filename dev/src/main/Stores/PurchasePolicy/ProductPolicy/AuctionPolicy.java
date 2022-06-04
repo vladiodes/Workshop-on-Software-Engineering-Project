@@ -5,8 +5,8 @@ import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
 import main.Publisher.PersonalNotification;
 import main.Publisher.StoreNotification;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Bid;
 import main.utils.PaymentInformation;
@@ -22,8 +22,8 @@ public class AuctionPolicy extends TimedPolicy {
     private Bid highestBid;
     private Bid winningBid;;
     private  final Timer timer;
-    private final IStore sellingStore;
-    public AuctionPolicy(LocalDate until, Double originalPrice, IStore sellingStore, String prouctName) {
+    private final Store sellingStore;
+    public AuctionPolicy(LocalDate until, Double originalPrice, Store sellingStore, String prouctName) {
         this.sellingStore = sellingStore;
         this.until = until;
         this.originalPrice = originalPrice;

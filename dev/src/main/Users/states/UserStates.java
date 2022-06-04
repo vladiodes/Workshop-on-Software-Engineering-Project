@@ -1,30 +1,35 @@
 package main.Users.states;
 
 import main.Security.ISecurity;
-import main.Stores.IStore;
+import main.Stores.Store;
+import main.Users.Qna;
 import main.Users.User;
 import main.utils.Pair;
 
+import javax.persistence.*;
 import java.util.List;
 
-public interface UserStates {
-    public Boolean getIsLoggedIn();
 
-    public void changePassword(String newPassHashed, ISecurity security_controller, String oldPassword);
+public abstract class UserStates {
 
-    public void changeUsername(String newUsername);
+    private int id;
+    public abstract Boolean getIsLoggedIn();
 
-    public IStore openStore(String storeName, User openingUser);
+    public abstract void changePassword(String newPassHashed, ISecurity security_controller, String oldPassword);
 
-    public void addSecurityQuestion(String question, String answer);
+    public abstract void changeUsername(String newUsername);
 
-    public void login(String password, ISecurity security_controller);
+    public abstract Store openStore(String storeName, User openingUser);
 
-    public void logout();
+    public abstract void addSecurityQuestion(String question, String answer);
 
-    List<IStore> getFoundedStores();
+    public abstract void login(String password, ISecurity security_controller);
 
-    List<Pair<String, String>> getSecurityQNA();
+    public abstract void logout();
 
-    String getUserName();
+    public abstract List<Store> getFoundedStores();
+
+    public abstract List<Qna> getSecurityQNA();
+
+    public abstract String getUserName();
 }

@@ -1,12 +1,13 @@
 package test.UnitTests;
 
-import main.Stores.IStore;
+import main.Stores.Store;
 import main.Users.*;
 import org.junit.jupiter.api.BeforeEach;
-import test.Mocks.StoreMock;
+import org.mockito.Mock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class UserTest {
     private User user;
@@ -15,7 +16,8 @@ class UserTest {
     private User user3;
     private User user4;
     private User user5;
-    private IStore store_mock;
+    @Mock
+    private Store store_mock;
 
     @BeforeEach
     void setUp() {
@@ -25,7 +27,7 @@ class UserTest {
         user3 = new User(false,"user3","password");
         user4 = new User(false,"user4","password");
         user5 = new User(false,"user5","password");
-        store_mock = new StoreMock();
+        store_mock = mock(Store.class);
     }
 
     @Test
@@ -113,12 +115,12 @@ class UserTest {
         assertFalse(user.getOwnedStores().contains(store_mock));
     }
 
-    private void appointStoreOwner(User appointing,User appointed,IStore in_store) {
+    private void appointStoreOwner(User appointing,User appointed,Store in_store) {
         appointing.appointOwnerToStore(in_store,appointed);
         in_store.getOwnersAppointments().add(new OwnerPermissions(appointed,appointing,in_store));
     }
 
-    private void appointStoreManager(User appointing,User appointed,IStore in_store) {
+    private void appointStoreManager(User appointing,User appointed,Store in_store) {
         appointing.appointManagerToStore(in_store,appointed);
         in_store.getManagersAppointments().add(new ManagerPermissions(appointed,appointing,in_store));
     }
@@ -354,7 +356,7 @@ class UserTest {
 
     @Test
     void openStoreGood(){
-        IStore store=user.openStore("store1");
+        Store store=user.openStore("store1");
         assertNotNull(store);
         assertEquals(1,user.getFoundedStores().size());
         assertTrue(user.getFoundedStores().contains(store));

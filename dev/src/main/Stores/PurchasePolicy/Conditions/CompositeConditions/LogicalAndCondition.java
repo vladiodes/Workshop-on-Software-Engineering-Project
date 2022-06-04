@@ -4,6 +4,8 @@ import main.Shopping.ShoppingBasket;
 import main.Stores.PurchasePolicy.Conditions.Condition;
 import main.Stores.PurchasePolicy.Discounts.Discount;
 
+import javax.persistence.Entity;
+
 public class LogicalAndCondition extends CompositeCondition{
     @Override
     public boolean pass(ShoppingBasket shoppingBasket) {

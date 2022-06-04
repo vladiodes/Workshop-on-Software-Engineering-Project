@@ -2,13 +2,19 @@ package main.Stores;
 
 import main.Users.User;
 
-public class StoreReview {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import java.io.Serializable;
+
+public class StoreReview implements Serializable {
     private User user;
-    private IStore IStore;
+
+    private Store IStore;
     private String desc;
     private double points;
 
-    public StoreReview(User user, IStore IStore, String desc, double points) throws Exception
+    public StoreReview(User user, Store IStore, String desc, double points) throws Exception
     {
         this.user = user;
         this.IStore = IStore;
@@ -20,6 +26,10 @@ public class StoreReview {
         if(points<0)
             throw new IllegalArgumentException("Review points cant be negative");
         this.points = points;
+    }
+
+    public StoreReview() {
+
     }
 
     public User getUser() {

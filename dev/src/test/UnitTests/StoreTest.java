@@ -1,6 +1,5 @@
 package test.UnitTests;
 
-import main.Stores.IStore;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.ManagerPermissions;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StoreTest {
 
-    private IStore store;
+    private Store store;
     private User founder;
 
     @BeforeEach

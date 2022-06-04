@@ -7,7 +7,7 @@ import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Market;
 import main.Security.ISecurity;
 import main.Shopping.ShoppingCart;
-import main.Stores.IStore;
+import main.Stores.Store;
 import main.Users.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ class MarketTest {
     @Mock
     ConcurrentHashMap<String, User> connectedSessions;
     @Mock
-    ConcurrentHashMap<String, IStore> stores;
+    ConcurrentHashMap<String, Store> stores;
     @Mock
     ISecurity security_controller;
     String GuestuserToken;
@@ -239,13 +239,13 @@ class MarketTest {
     @Test
     void openStore() {
         assertDoesNotThrow(()->m.openStore(MemberUserToken, "Mystore1"));
-        verify(stores, times(1)).put(any(String.class),any(IStore.class));
+        verify(stores, times(1)).put(any(String.class),any(Store.class));
     }
 
     @Test
     void GuestCantopenStore() {
         assertThrows(Exception.class,()->m.openStore(GuestuserToken, "Mystore1"));
-        verify(stores, times(0)).put(any(String.class),any(IStore.class));
+        verify(stores, times(0)).put(any(String.class),any(Store.class));
     }
 
     @Test
@@ -253,7 +253,7 @@ class MarketTest {
         String storeName = "Mystore1";
         when(stores.containsKey(storeName)).thenReturn(true);
         assertThrows(Exception.class,()->m.openStore(GuestuserToken, storeName));
-        verify(stores, times(0)).put(any(String.class),any(IStore.class));
+        verify(stores, times(0)).put(any(String.class),any(Store.class));
     }
 
     @Test

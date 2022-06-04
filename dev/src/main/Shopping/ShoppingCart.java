@@ -1,19 +1,21 @@
 package main.Shopping;
 
-import main.Stores.IStore;
 import java.util.*;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Entity
+
 public class ShoppingCart {
 
-    @OneToMany
-    private ConcurrentHashMap<String, ShoppingBasket> baskets; // (store name, basket)
+    private int cart_id;
+
+
+    private Map<String, ShoppingBasket> baskets; // (store name, basket)
     private final Object carteditLock = new Object();
-    @OneToOne
+
     private User user;
 
     public ShoppingCart(User user) {
@@ -21,22 +23,15 @@ public class ShoppingCart {
         this.user = user;
     }
 
-    public ShoppingCart(ShoppingCart oldCart) //use this constructor to deep copy a ShoppingCart
-    {
-        ConcurrentHashMap<String, ShoppingBasket> oldBaskets = oldCart.getBaskets();
-        ConcurrentHashMap<String, ShoppingBasket> newBaskets = new ConcurrentHashMap<>();
+    public ShoppingCart() {
 
-        for(HashMap.Entry<String , ShoppingBasket> element : oldBaskets.entrySet())
-        {
-            newBaskets.put(element.getKey(), new ShoppingBasket(element.getValue()));
-        }
-        this.baskets = newBaskets;
     }
+
     public HashMap<String, ShoppingBasket> getBasketInfo() {
         return new HashMap<>(baskets);
     }
 
-    public  boolean addProductToCart(IStore IStore, String productName, int quantity) {
+    public  boolean addProductToCart(Store IStore, String productName, int quantity) {
         synchronized (carteditLock) {
             if (baskets.containsKey(IStore.getName()))
                 return baskets.get(IStore.getName()).AddProduct(productName, quantity);
@@ -52,7 +47,7 @@ public class ShoppingCart {
         }
     }
 
-    public  boolean setCostumeProductPrice(IStore IStore, String productName, double price, User user) {
+    public  boolean setCostumeProductPrice(Store IStore, String productName, double price, User user) {
         synchronized (carteditLock) {
             if (baskets.containsKey(IStore.getName()))
                 return baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price, user);
@@ -62,7 +57,7 @@ public class ShoppingCart {
         }
     }
 
-    public boolean RemoveProductFromCart(IStore st, String prodName, int quantity) {
+    public boolean RemoveProductFromCart(Store st, String prodName, int quantity) {
         if (!baskets.containsKey(st.getName()))
             throw new IllegalArgumentException("Basket for that store doesn't exist yet.");
         synchronized (carteditLock) {
@@ -112,7 +107,7 @@ public class ShoppingCart {
         return baskets.containsKey(storeName);
     }
 
-    public IStore getStore(String storeName) {
+    public Store getStore(String storeName) {
         if(!baskets.containsKey(storeName))
             return null;
         return baskets.get(storeName).getStore();
@@ -126,7 +121,7 @@ public class ShoppingCart {
     }
 
     public ConcurrentHashMap<String, ShoppingBasket> getBaskets() {
-        return baskets;
+        return (ConcurrentHashMap<String, ShoppingBasket>)baskets;
     }
 
     public ShoppingBasket getBasket(String storeName){

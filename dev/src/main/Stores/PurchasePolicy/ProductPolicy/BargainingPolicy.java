@@ -3,8 +3,8 @@ package main.Stores.PurchasePolicy.ProductPolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Publisher.PersonalNotification;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Bid;
 import main.utils.PaymentInformation;
@@ -18,11 +18,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BargainingPolicy extends TimedPolicy{
 
     private ConcurrentHashMap<Bid, List<User>> bidApprovedBy;
-    private IStore sellingStore;
+    private Store sellingStore;
     private Double originalPrice;
     private Product product;
 
-    public BargainingPolicy(IStore sellingStore, Double originalPrice, Product product) {
+    public BargainingPolicy(Store sellingStore, Double originalPrice, Product product) {
         this.bidApprovedBy = new ConcurrentHashMap<>();
         this.sellingStore = sellingStore;
         this.originalPrice = originalPrice;

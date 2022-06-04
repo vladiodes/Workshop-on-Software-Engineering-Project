@@ -1,20 +1,32 @@
 package main.Users;
 
-import main.Stores.IStore;
+import main.Stores.Store;
 
-public class OwnerPermissions {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import java.io.Serializable;
+
+public class OwnerPermissions implements Serializable {
+
     private User appointedToOwner;
-    private User appointedBy;
-    private IStore IStore;
 
-    public OwnerPermissions(User appointedToOwner, User appointedBy, IStore IStore){
+    private User appointedBy;
+
+    private Store IStore;
+
+    public OwnerPermissions(User appointedToOwner, User appointedBy, Store IStore){
         this.appointedToOwner=appointedToOwner;
         this.appointedBy=appointedBy;
         this.IStore = IStore;
     }
 
+    public OwnerPermissions() {
 
-    public IStore getStore() {
+    }
+
+
+    public Store getStore() {
         return IStore;
     }
 

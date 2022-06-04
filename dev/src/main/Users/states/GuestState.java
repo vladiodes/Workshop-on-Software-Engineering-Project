@@ -1,13 +1,15 @@
 package main.Users.states;
 
 import main.Security.ISecurity;
-import main.Stores.IStore;
+import main.Stores.Store;
+import main.Users.Qna;
 import main.Users.User;
 import main.utils.Pair;
 
+import javax.persistence.Entity;
 import java.util.List;
 
-public class GuestState implements UserStates {
+public class GuestState extends UserStates {
     private final String userName;
     public GuestState(String guestID) {
         userName = "Guest" + guestID;
@@ -29,7 +31,7 @@ public class GuestState implements UserStates {
     }
 
     @Override
-    public IStore openStore(String storeName, User openingUser) {
+    public Store openStore(String storeName, User openingUser) {
         throw new IllegalArgumentException("Guest can't oepn a store.");
     }
 
@@ -49,12 +51,12 @@ public class GuestState implements UserStates {
     }
 
     @Override
-    public List<IStore> getFoundedStores() {
+    public List<Store> getFoundedStores() {
         return null;
     }
 
     @Override
-    public List<Pair<String, String>> getSecurityQNA() {
+    public List<Qna> getSecurityQNA() {
         return null;
     }
 

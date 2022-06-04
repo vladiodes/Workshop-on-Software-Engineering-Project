@@ -6,12 +6,9 @@ import main.ExternalServices.Payment.IPayment;
 import main.Publisher.*;
 import main.Security.ISecurity;
 import main.Shopping.Purchase;
-import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
-import main.Stores.IStore;
-import main.Stores.Store;
-import main.Stores.Product;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Stores.Store;
 import main.Users.states.GuestState;
 import main.Users.states.MemberState;
 import main.Users.states.UserStates;
@@ -24,39 +21,53 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 @Entity
 public class User implements Observable {
 
+    @Id
+    @GeneratedValue
+    private int user_id;
     private boolean isSystemManager;
-    @OneToOne
+
+    @Transient
     private ShoppingCart cart;
-    @ElementCollection
+
+    @Transient
     private List<ShoppingCartDTO> purchaseHistory;
 
+    @Transient
     private Observer observer;
     // maps notification to a bool value: true - if was published to user, false - if wasn't
+
+    @Transient
     private ConcurrentHashMap<Notification,Boolean> notifications;
 
+    @Transient
     private UserStates state;
 
 
     // stores connections
 
+    @Transient
     private List<ManagerPermissions> managedStores;
+    @Transient
     private List<OwnerPermissions> ownedStores;
-    private List<Pair<String,String>> securityQNA;
-    private Boolean isGuest;
 
-    public List<IStore> getManagedStores() {
-        List<IStore> IStores = new LinkedList<>();
+    public User() {
+
+    }
+
+    public List<Store> getManagedStores() {
+        List<Store> IStores = new LinkedList<>();
         for (ManagerPermissions permission : managedStores) {
             IStores.add(permission.getStore());
         }
         return IStores;
     }
 
-    public List<IStore> getOwnedStores() {
-        List<IStore> IStores = new LinkedList<>();
+    public List<Store> getOwnedStores() {
+        List<Store> IStores = new LinkedList<>();
         for (OwnerPermissions permissions : ownedStores) {
             IStores.add(permissions.getStore());
         }
@@ -85,7 +96,6 @@ public class User implements Observable {
         cart = new ShoppingCart(this);
         ownedStores = new LinkedList<>();
         managedStores = new LinkedList<>();
-		securityQNA = new LinkedList<>();
         purchaseHistory = new LinkedList<>();
         state = new MemberState(userName, hashed_password);
         notifications=new ConcurrentHashMap<>();
@@ -115,19 +125,19 @@ public class User implements Observable {
     }
 
 
-    public boolean addProductToStore(IStore IStore, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
+    public boolean addProductToStore(Store IStore, String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(IStore, StorePermission.UpdateAddProducts))
             return IStore.addProduct(productName, category, keyWords, description, quantity, price);
         throw new IllegalArgumentException("This user doesn't have permissions to do that!");
     }
 
-    public boolean updateProductToStore(IStore IStore, String oldProductName,String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
+    public boolean updateProductToStore(Store IStore, String oldProductName,String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (hasPermission(IStore, StorePermission.UpdateAddProducts))
             return IStore.updateProduct(oldProductName,newProductName, category, keyWords, description, quantity, price);
         throw new IllegalArgumentException("This user doesn't have permissions to do that!");
     }
 
-    private boolean hasPermission(IStore IStore, StorePermission permission) {
+    private boolean hasPermission(Store IStore, StorePermission permission) {
         if (getFoundedStores().contains(IStore)) {
             //founder can do whatever he likes...
             return true;
@@ -144,7 +154,7 @@ public class User implements Observable {
         return false;
     }
 
-    public boolean appointOwnerToStore(IStore IStore, User user_to_appoint) {
+    public boolean appointOwnerToStore(Store IStore, User user_to_appoint) {
 
         //first checking preconditions to make the appointment
         appointOwnerPreconditions(IStore, user_to_appoint);
@@ -155,7 +165,7 @@ public class User implements Observable {
         return true;
     }
 
-    private void appointOwnerPreconditions(IStore IStore, User user_to_appoint) {
+    private void appointOwnerPreconditions(Store IStore, User user_to_appoint) {
         //first checking if the appointing (this) user can appoint a owner to the store
 
         if (!hasPermission(IStore, StorePermission.OwnerPermission))
@@ -165,7 +175,7 @@ public class User implements Observable {
 
     }
 
-    private boolean checkIfAlreadyStaff(IStore IStore, User user) {
+    private boolean checkIfAlreadyStaff(Store IStore, User user) {
         //second checking if the user to appoint isn't already an owner/manager/founder of the store
         if (user.getOwnedStores().contains(IStore))
             return true;
@@ -184,7 +194,7 @@ public class User implements Observable {
      *
      * @return true upon success
      */
-    public boolean removeOwnerAppointment(IStore IStore, User appointed_user) {
+    public boolean removeOwnerAppointment(Store IStore, User appointed_user) {
 
         OwnerPermissions ow = CheckPreConditionsAndFindOwnerAppointment(IStore, appointed_user);
 
@@ -201,7 +211,7 @@ public class User implements Observable {
         return true;
     }
 
-    private void deleteAllAppointedBy(IStore IStore, List<User> ownersAppointedBy, List<User> managersAppointedBy, User appointing_user) {
+    private void deleteAllAppointedBy(Store IStore, List<User> ownersAppointedBy, List<User> managersAppointedBy, User appointing_user) {
         for (User owner : ownersAppointedBy) {
             appointing_user.removeOwnerAppointment(IStore, owner);
         }
@@ -210,7 +220,7 @@ public class User implements Observable {
         }
     }
 
-    private OwnerPermissions CheckPreConditionsAndFindOwnerAppointment(IStore IStore, User appointed_user) {
+    private OwnerPermissions CheckPreConditionsAndFindOwnerAppointment(Store IStore, User appointed_user) {
         OwnerPermissions ow = null;
         //checking preconditions
         //first checking if this user is an owner of the store
@@ -229,7 +239,7 @@ public class User implements Observable {
         return ow;
     }
 
-    public boolean removeManagerAppointment(IStore IStore, User manager) {
+    public boolean removeManagerAppointment(Store IStore, User manager) {
         ManagerPermissions mp = CheckPreConditionsAndFindManagerAppointment(IStore, manager);
 
         //deleting the appointment to manager from the appointed_user
@@ -239,7 +249,7 @@ public class User implements Observable {
 
     }
 
-    private ManagerPermissions CheckPreConditionsAndFindManagerAppointment(IStore IStore, User manager) {
+    private ManagerPermissions CheckPreConditionsAndFindManagerAppointment(Store IStore, User manager) {
         ManagerPermissions mp = null;
         //checking preconditions
         //first checking if the appointed user is a manager of the store
@@ -261,7 +271,7 @@ public class User implements Observable {
     /**
      * This function returns all users that are managers and were appointed by AppointedByUser
      */
-    private List<User> getAllStoreManagersAppointedBy(User AppointedByUser, IStore IStore) {
+    private List<User> getAllStoreManagersAppointedBy(User AppointedByUser, Store IStore) {
         LinkedList<User> managersAppointedBy = new LinkedList<>();
         for (ManagerPermissions managerAppointment : IStore.getManagersAppointments()) {
             if (managerAppointment.getAppointedBy() == AppointedByUser)
@@ -273,7 +283,7 @@ public class User implements Observable {
     /**
      * This function returns all users that are owners and were appointed by AppointedByUser
      */
-    private List<User> getAllStoreOwnersAppointedBy(User AppointedByUser, IStore IStore) {
+    private List<User> getAllStoreOwnersAppointedBy(User AppointedByUser, Store IStore) {
         LinkedList<User> ownersAppointedBy = new LinkedList<>();
         for (OwnerPermissions ownerAppointment : IStore.getOwnersAppointments()) {
             if (ownerAppointment.getAppointedBy() == AppointedByUser)
@@ -282,7 +292,7 @@ public class User implements Observable {
         return ownersAppointedBy;
     }
 
-    public boolean appointManagerToStore(IStore IStore, User user_to_appoint) {
+    public boolean appointManagerToStore(Store IStore, User user_to_appoint) {
         appointManagerPreconditions(IStore, user_to_appoint);
 
         ManagerPermissions newManagerAppointment = new ManagerPermissions(user_to_appoint, this, IStore);
@@ -291,11 +301,11 @@ public class User implements Observable {
         return true;
     }
 
-    public boolean ShouldBeNotfiedForBargaining(IStore store){
+    public boolean ShouldBeNotfiedForBargaining(Store store){
         return hasPermission(store, StorePermission.BargainPermission);
     }
 
-    private void appointManagerPreconditions(IStore IStore, User user_to_appoint) {
+    private void appointManagerPreconditions(Store IStore, User user_to_appoint) {
         //first checking preconditions for the appointment
         if (!hasPermission(IStore, StorePermission.OwnerPermission)) {
             throw new IllegalArgumentException("This user doesn't have permission to do that");
@@ -314,7 +324,7 @@ public class User implements Observable {
      * This function removes/adds (according to the shouldGrant flag)
      * a permission to a manager of the store (should be appointed by this user).
      */
-    public boolean grantOrDeletePermission(User manager, IStore IStore, boolean shouldGrant, StorePermission permission) {
+    public boolean grantOrDeletePermission(User manager, Store IStore, boolean shouldGrant, StorePermission permission) {
 
         if (!checkIfAlreadyStaff(IStore, this))
             throw new IllegalArgumentException("This user can't grant permissions!");
@@ -336,14 +346,14 @@ public class User implements Observable {
     }
 
 
-    public boolean closeStore(IStore IStore) {
+    public boolean closeStore(Store IStore) {
         if (!getFoundedStores().contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
         IStore.closeStore();
         return true;
     }
 
-    public boolean reOpenStore(IStore IStore) {
+    public boolean reOpenStore(Store IStore) {
         if (!getFoundedStores().contains(IStore))
             throw new IllegalArgumentException("You're not the founder of the store!");
         IStore.reOpen();
@@ -351,7 +361,7 @@ public class User implements Observable {
     }
 
 
-    public HashMap<User, String> getStoreStaff(IStore IStore) {
+    public HashMap<User, String> getStoreStaff(Store IStore) {
         if (hasPermission(IStore, StorePermission.OwnerPermission))
             return IStore.getStoreStaff();
         throw new IllegalArgumentException("You don't have permission to do that");
@@ -386,7 +396,7 @@ public class User implements Observable {
         this.purchaseHistory.add(historyCart);
     }
 
-    public void setStoreFounder(IStore IStore)
+    public void setStoreFounder(Store IStore)
     {
         if(!this.getFoundedStores().isEmpty())
         {
@@ -416,26 +426,26 @@ public class User implements Observable {
         return false;
     }
 
-    public List<String> receiveQuestionsFromStore(IStore store) {
+    public List<String> receiveQuestionsFromStore(Store store) {
         if (hasPermission(store, StorePermission.AnswerAndTakeRequests))
             return store.getStoreMessages();
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
 
-    public boolean sendRespondFromStore(IStore IStore, User toRespond, String msg) {
+    public boolean sendRespondFromStore(Store IStore, User toRespond, String msg) {
         if (hasPermission(IStore, StorePermission.AnswerAndTakeRequests))
             return IStore.respondToBuyer(toRespond, msg);
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistoryByTime(IStore IStore) {
+    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistoryByTime(Store IStore) {
         if (isSystemManager || hasPermission(IStore, StorePermission.ViewStoreHistory))
             return IStore.getPurchaseHistoryByTime();
         throw new IllegalArgumentException("The user doesn't have permissions to do that!");
     }
 
-    public boolean removeStore(IStore IStore) {
+    public boolean removeStore(Store IStore) {
         if (!isSystemManager)
             throw new IllegalArgumentException("You're not a system manager!");
 
@@ -443,7 +453,7 @@ public class User implements Observable {
         return true;
     }
 
-    public void removeFounderRole(IStore IStore) {
+    public void removeFounderRole(Store IStore) {
         getFoundedStores().remove(IStore);
     }
 
@@ -459,25 +469,25 @@ public class User implements Observable {
         return isSystemManager;
     }
 
-    public IStore openStore(String storeName) {
+    public Store openStore(String storeName) {
         return this.state.openStore(storeName, this);
     }
 
-    public boolean removeProductFromStore(String productName, IStore IStore) {
+    public boolean removeProductFromStore(String productName, Store IStore) {
         if(!hasPermission(IStore,StorePermission.UpdateAddProducts))
             throw new IllegalArgumentException("You don't have permissions to do that");
         return IStore.removeProduct(productName);
     }
 
-    public boolean addProductToCart(IStore st, String productName, int quantity) {
+    public boolean addProductToCart(Store st, String productName, int quantity) {
         return cart.addProductToCart(st, productName, quantity);
     }
 
-    public boolean addProductToCart(IStore st, String productName, double price) {
+    public boolean addProductToCart(Store st, String productName, double price) {
         return cart.setCostumeProductPrice(st, productName, price,this );
     }
 
-    public boolean RemoveProductFromCart(IStore st, String productName, int quantity) {
+    public boolean RemoveProductFromCart(Store st, String productName, int quantity) {
         return cart.RemoveProductFromCart(st, productName, quantity);
     }
 
@@ -486,7 +496,7 @@ public class User implements Observable {
     }
 
 
-    public List<IStore> getFoundedStores() {
+    public List<Store> getFoundedStores() {
         return this.state.getFoundedStores();
     }
 
@@ -498,66 +508,66 @@ public class User implements Observable {
         this.state.changeUsername(newUsername);
     }
 
-    public List<Pair<String, String>> getSecurityQNA() {
+    public List<Qna> getSecurityQNA() {
         return this.state.getSecurityQNA();
     }
 
-    public List<IStore> getAllStoresIsStaff() {
-        LinkedList<IStore> stores=new LinkedList<>();
+    public List<Store> getAllStoresIsStaff() {
+        LinkedList<Store> stores=new LinkedList<>();
         stores.addAll(getFoundedStores());
         stores.addAll(getOwnedStores());
         stores.addAll(getManagedStores());
         return stores;
     }
 
-    public void addRafflePolicy(IStore store, String productName, Double price) {
+    public void addRafflePolicy(Store store, String productName, Double price) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.addRafflePolicy(productName, price);
     }
 
-    public void addAuctionPolicy(IStore store, String productName, Double price, LocalDate Until) {
+    public void addAuctionPolicy(Store store, String productName, Double price, LocalDate Until) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.addAuctionPolicy(productName, price, Until);
     }
 
-    public void addNormalPolicy(IStore store, String productName, Double price) {
+    public void addNormalPolicy(Store store, String productName, Double price) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.addNormalPolicy(productName, price);
     }
 
-    public void addBargainPolicy(IStore store, String productName, Double originalPrice) {
+    public void addBargainPolicy(Store store, String productName, Double originalPrice) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.addBargainPolicy(productName, originalPrice);
     }
 
-    public boolean bidOnProduct(IStore store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
+    public boolean bidOnProduct(Store store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
         Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
         return store.bidOnProduct(productName, bid);
     }
 
-    public List<Bid> getUserBids(IStore store, String productName){
+    public List<Bid> getUserBids(Store store, String productName){
         if(!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to view other user's bids.");
         return store.getProduct(productName).getUserBids();
     }
 
-    public void ApproveBid(IStore store, String productName, User user) throws Exception {
+    public void ApproveBid(Store store, String productName, User user) throws Exception {
         if(!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to approve other user's bids.");
         store.getProduct(productName).ApproveBid(user, this);
     }
 
-    public void DeclineBid(IStore store, String productName, User user) throws Exception {
+    public void DeclineBid(Store store, String productName, User user) throws Exception {
         if(!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to decline other user's bids.");
         store.getProduct(productName).DeclineBid(user);
     }
 
-    public void CounterOfferBid(IStore store, String productName, User user, Double offer) throws Exception {
+    public void CounterOfferBid(Store store, String productName, User user, Double offer) throws Exception {
         if (!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to approve other user's bids.");
         store.getProduct(productName).counterOfferBid(user, offer);
@@ -586,80 +596,80 @@ public class User implements Observable {
         }
     }
 
-    public int CreateSimpleDiscount(IStore store, LocalDate until, Double percent){
+    public int CreateSimpleDiscount(Store store, LocalDate until, Double percent){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateSimpleDiscount(until, percent);
     }
-    public int CreateSecretDiscount(IStore store, LocalDate until, Double percent, String secretCode){
+    public int CreateSecretDiscount(Store store, LocalDate until, Double percent, String secretCode){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateSecretDiscount(until, percent, secretCode);
     }
-    public int CreateConditionalDiscount(IStore store, LocalDate until, Double percent, int condID){
+    public int CreateConditionalDiscount(Store store, LocalDate until, Double percent, int condID){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateConditionalDiscount(until, percent, condID);
     }
-    public int CreateMaximumCompositeDiscount(IStore store, LocalDate until, List<Integer> discounts){
+    public int CreateMaximumCompositeDiscount(Store store, LocalDate until, List<Integer> discounts){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateMaximumCompositeDiscount(until, discounts);
     }
-    public int CreatePlusCompositeDiscount(IStore store, LocalDate until, List<Integer> discounts){
+    public int CreatePlusCompositeDiscount(Store store, LocalDate until, List<Integer> discounts){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreatePlusCompositeDiscount(until, discounts);
     }
 
-    public void SetDiscountToProduct(IStore store, int discountID, String productName){
+    public void SetDiscountToProduct(Store store, int discountID, String productName){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.SetDiscountToProduct(discountID, productName);
     }
-    public void SetDiscountToStore(IStore store, int discountID){
+    public void SetDiscountToStore(Store store, int discountID){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.SetDiscountToStore(discountID);
     }
 
-    public int CreateBasketValueCondition(IStore store, double requiredValue){
+    public int CreateBasketValueCondition(Store store, double requiredValue){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateBasketValueCondition(requiredValue);
     }
-    public int CreateCategoryAmountCondition(IStore store, String category, int amount){
+    public int CreateCategoryAmountCondition(Store store, String category, int amount){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateCategoryAmountCondition(category, amount);
     }
-    public int CreateProductAmountCondition(IStore store, String productName, int amount){
+    public int CreateProductAmountCondition(Store store, String productName, int amount){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateProductAmountCondition(productName, amount);
     }
-    public int CreateLogicalAndCondition(IStore store, List<Integer> conditionIds){
+    public int CreateLogicalAndCondition(Store store, List<Integer> conditionIds){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateLogicalAndCondition(conditionIds);
     }
-    public int CreateLogicalOrCondition(IStore store, List<Integer> conditionIds){
+    public int CreateLogicalOrCondition(Store store, List<Integer> conditionIds){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateLogicalOrCondition(conditionIds);
     }
-    public int CreateLogicalXorCondition(IStore store, int id1, int id2){
+    public int CreateLogicalXorCondition(Store store, int id1, int id2){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         return store.CreateLogicalXorCondition(id1, id2);
     }
-    public void SetConditionToDiscount(IStore store, int discountId, int ConditionID){
+    public void SetConditionToDiscount(Store store, int discountId, int ConditionID){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.SetConditionToDiscount(discountId, ConditionID);
     }
 
-    public void SetConditionToStore(IStore store, int ConditionID){
+    public void SetConditionToStore(Store store, int ConditionID){
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
         store.SetConditionToStore(ConditionID);
@@ -671,7 +681,7 @@ public class User implements Observable {
 
     public boolean isFounder()
     {
-        List<IStore> foundedStores = getFoundedStores();
+        List<Store> foundedStores = getFoundedStores();
         if(foundedStores == null)
             return false;
         return (!getFoundedStores().isEmpty());

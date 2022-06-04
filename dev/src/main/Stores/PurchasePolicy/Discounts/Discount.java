@@ -6,14 +6,18 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
 
-@Entity
-@Table(name = "discounts")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
 public abstract class Discount {
+
+    private int id;
     private LocalDate until;
 
     public Discount(LocalDate until) {
         this.until = until;
+    }
+
+    public Discount() {
+
     }
 
     public Double getPriceFor(Double originalPrice, ShoppingBasket shoppingBasket) {

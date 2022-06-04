@@ -4,13 +4,14 @@ import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Publisher.PersonalNotification;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Pair;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,15 +21,20 @@ public class rafflePolicy extends DirectPolicy {
     private ConcurrentHashMap<User, Double> participants;
     private ConcurrentHashMap<User, Pair<ISupplying,SupplyingInformation>> userSupplyInformation;
     private ConcurrentHashMap<User, Pair<IPayment,PaymentInformation>> userPaymentInformation;
-    private final IStore store;
+    private final Store store;
     private double originalPrice;
-    public rafflePolicy(IStore store, Double originalPrice) {
+    public rafflePolicy(Store store, Double originalPrice) {
         this.store = store;
         this.accumaltivePrice = 0;
         this.participants = new ConcurrentHashMap<>();
         userSupplyInformation = new ConcurrentHashMap<>();
         userPaymentInformation = new ConcurrentHashMap<>();
         this.setOriginalPrice(originalPrice);
+    }
+
+    public rafflePolicy() {
+        store=new Store();
+
     }
 
     /***

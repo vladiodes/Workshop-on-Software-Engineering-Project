@@ -4,10 +4,16 @@ import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 import main.Users.User;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ShoppingCartDTO {
+
+
+    private int cartDTO_id;
     private HashMap<String, ShoppingBasketDTO> baskets;
     private double totalPrice;
     public ShoppingCartDTO(ShoppingCart cart, User user) {
