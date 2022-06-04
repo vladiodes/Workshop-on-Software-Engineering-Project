@@ -3,6 +3,7 @@ package main.Users;
 import main.DTO.ShoppingBasketDTO;
 import main.DTO.ShoppingCartDTO;
 import main.ExternalServices.Payment.IPayment;
+import main.Persistence.DAO;
 import main.Publisher.*;
 import main.Security.ISecurity;
 import main.Shopping.Purchase;
@@ -43,7 +44,7 @@ public class User implements Observable {
     @Transient
     private ConcurrentHashMap<Notification,Boolean> notifications;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private UserStates state;
 
 
@@ -85,7 +86,6 @@ public class User implements Observable {
         notifications=new ConcurrentHashMap<>();
         purchaseHistory=new LinkedList<>();
         registerObserver(new Publisher(this,null));
-
     }
 
     /**

@@ -10,8 +10,12 @@ import javax.persistence.*;
 import java.util.List;
 
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class UserStates {
 
+    @Id
+    @GeneratedValue
     private int id;
     public abstract Boolean getIsLoggedIn();
 

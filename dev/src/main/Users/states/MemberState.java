@@ -9,20 +9,22 @@ import main.utils.Pair;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
+@Entity
 public class MemberState extends UserStates {
-
-
+    @Transient
     private List<Store> foundedStores;
     private AtomicBoolean isLoggedIn;
     private String username;
     private String hashedPassword;
 
+    @Transient
     private List<Qna> securityQNA;
 
     public MemberState(String userName, String hashed_password) {

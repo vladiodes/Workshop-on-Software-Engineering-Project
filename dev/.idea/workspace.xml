@@ -22,53 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Test fixes">
-      <change afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Users/Qna.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Need to annotate and map all classes...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/StoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/StoreDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Persistence/Persistence.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/ProductReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/ProductReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositeCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositeCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimpleCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimpleCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/DirectPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/DirectPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/TimedPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/StoreReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/StoreReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/states/GuestState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/GuestState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/states/UserStates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/UserStates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/Pair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/ManagerPermissionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/ManagerPermissionsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/MarketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/MarketTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/StoreTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/StoreTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,7 +264,7 @@
       <workItem from="1654271742871" duration="462000" />
       <workItem from="1654272885772" duration="651000" />
       <workItem from="1654323545795" duration="15106000" />
-      <workItem from="1654352103856" duration="417000" />
+      <workItem from="1654352103856" duration="1211000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -630,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653729568629</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Need to annotate and map all classes...">
+      <created>1654352618493</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1654352618493</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -676,7 +641,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added ManagerPermissions tests" />
     <MESSAGE value="Fixed compilation issues, still refactoring" />
     <MESSAGE value="Refactoring - moving store messages to Notificationbus" />
     <MESSAGE value="Refactoring - moving store messages to NotificationBus&#10;Refactoring - fixing all kinds of warnings and types" />
@@ -701,7 +665,8 @@
     <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
     <MESSAGE value="Some more fixed to bidding..." />
     <MESSAGE value="Test fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test fixes" />
+    <MESSAGE value="Need to annotate and map all classes..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Need to annotate and map all classes..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
