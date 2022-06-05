@@ -1,14 +1,20 @@
 package main.Persistence;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import main.Users.User;
+
+import javax.persistence.*;
+import java.util.List;
 
 public class DAO {
-    private EntityManager entityManager;
+    private static DAO instance;
+    public static DAO getInstance(){
+        if(instance==null)
+            instance=new DAO();
+        return instance;
+    }
+    private final EntityManager entityManager;
     private String persistence_unit = "Market";
-    public DAO(){
+    private DAO(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistence_unit);
         entityManager= emf.createEntityManager();
     }
@@ -27,6 +33,37 @@ public class DAO {
                     et.rollback();
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    public <T> void merge(T obj){
+        EntityTransaction et = null;
+        synchronized (entityManager) {
+            try{
+                et = entityManager.getTransaction();
+                et.begin();
+                entityManager.merge(obj);
+                et.commit();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                if(et != null)
+                    et.rollback();
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public List<User> getUsers() {
+        String query = "select u from User u where u.user_id is not null";
+        TypedQuery<User> tq = entityManager.createQuery(query, User.class);
+        List<User> list;
+        try{
+            list = tq.getResultList();
+            return list;
+        }
+        catch(NoResultException e) {
+            throw new RuntimeException(e);
         }
     }
 

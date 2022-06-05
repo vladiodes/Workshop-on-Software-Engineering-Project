@@ -5,15 +5,20 @@ import main.Shopping.ShoppingCart;
 import main.Users.User;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.HashMap;
 import java.util.Map;
 
 
+@Entity
 public class ShoppingCartDTO {
 
-
+    @Id
+    @GeneratedValue
     private int cartDTO_id;
+    @Transient
     private HashMap<String, ShoppingBasketDTO> baskets;
     private double totalPrice;
     public ShoppingCartDTO(ShoppingCart cart, User user) {
@@ -22,6 +27,10 @@ public class ShoppingCartDTO {
             baskets.put(kv.getKey(), new ShoppingBasketDTO(kv.getValue(), user));
         }
         totalPrice=cart.getPrice();
+    }
+
+    public ShoppingCartDTO() {
+
     }
 
     public HashMap<String, ShoppingBasketDTO> getBaskets() {

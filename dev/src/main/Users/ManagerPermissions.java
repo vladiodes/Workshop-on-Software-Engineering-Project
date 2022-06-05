@@ -7,13 +7,22 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+@Entity
 public class ManagerPermissions implements Serializable {
+
+    @Id
+    @OneToOne(cascade = CascadeType.ALL)
     private User appointedToManager;
 
-
+    @Id
+    @OneToOne(cascade = CascadeType.ALL)
     private User appointedBy;
-
+    @Id
+    @OneToOne(cascade = CascadeType.ALL)
     private Store IStore;
+    @ElementCollection(targetClass = StorePermission.class)
+    @CollectionTable
+    @Enumerated(EnumType.STRING)
     private Collection<StorePermission> permissions;
 
     public ManagerPermissions(User appointedToManager, User appointedBy, Store IStore){

@@ -37,38 +37,39 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import javax.persistence.*;
 
-
+@Entity
 public class Store {
 
-
+    @Id
+    @GeneratedValue
     private int store_id;
-
-
+    @Transient
     private Map<String, Product> productsByName;
-
+    @Transient
     private Collection<OwnerPermissions> owners;
-
+    @Transient
     private Collection<ManagerPermissions> managers;
 
-
+    @OneToOne
     private User founder;
     private boolean isActive;
     private String storeName;
-
+    @Transient
     private List<StoreReview> storeReviews;
-
+    @Transient
     private ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
-
+    @Transient
     private ConcurrentHashMap<Integer, Discount> DiscountsInStore;
+    @Transient
     private ConcurrentHashMap<Integer, Condition> ConditionsInStore;
 
-
+    @Transient
     private Discount StoreDiscount;
 
-
+    @Transient
     private Condition StorePurchaseCondition;
 
-
+    @Transient
     private ConcurrentLinkedQueue<PersonalNotification> storeQuestions;
 
     public Store() {

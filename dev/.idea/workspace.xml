@@ -22,11 +22,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Need to annotate and map all classes...">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added simple mapping for user-user_state... working.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/states/UserStates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/UserStates.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,7 +270,8 @@
       <workItem from="1654271742871" duration="462000" />
       <workItem from="1654272885772" duration="651000" />
       <workItem from="1654323545795" duration="15106000" />
-      <workItem from="1654352103856" duration="1211000" />
+      <workItem from="1654352103856" duration="1356000" />
+      <workItem from="1654439930316" duration="4045000" />
     </task>
     <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
       <created>1649926452757</created>
@@ -595,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654352618493</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Added simple mapping for user-user_state... working.">
+      <created>1654353466993</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1654353466993</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +655,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed compilation issues, still refactoring" />
     <MESSAGE value="Refactoring - moving store messages to Notificationbus" />
     <MESSAGE value="Refactoring - moving store messages to NotificationBus&#10;Refactoring - fixing all kinds of warnings and types" />
     <MESSAGE value="concurrency bug fix in open store" />
@@ -666,7 +679,8 @@
     <MESSAGE value="Some more fixed to bidding..." />
     <MESSAGE value="Test fixes" />
     <MESSAGE value="Need to annotate and map all classes..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Need to annotate and map all classes..." />
+    <MESSAGE value="Added simple mapping for user-user_state... working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added simple mapping for user-user_state... working." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

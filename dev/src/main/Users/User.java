@@ -34,7 +34,7 @@ public class User implements Observable {
     @Transient
     private ShoppingCart cart;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ShoppingCartDTO> purchaseHistory;
 
     @Transient
@@ -50,9 +50,9 @@ public class User implements Observable {
 
     // stores connections
 
-    @Transient
+    @OneToMany
     private List<ManagerPermissions> managedStores;
-    @Transient
+    @OneToMany
     private List<OwnerPermissions> ownedStores;
 
     public User() {
@@ -296,8 +296,11 @@ public class User implements Observable {
         appointManagerPreconditions(IStore, user_to_appoint);
 
         ManagerPermissions newManagerAppointment = new ManagerPermissions(user_to_appoint, this, IStore);
+        DAO.getInstance().persist(newManagerAppointment);
         user_to_appoint.addManagedStores(newManagerAppointment);
+        DAO.getInstance().merge(user_to_appoint);
         IStore.addManager(newManagerAppointment);
+        DAO.getInstance().merge(IStore);
         return true;
     }
 

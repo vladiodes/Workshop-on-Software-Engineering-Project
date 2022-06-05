@@ -1,7 +1,6 @@
 package main.Users;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.util.HashMap;
 
 public enum StorePermission {
@@ -13,10 +12,8 @@ public enum StorePermission {
     OwnerPermission("Owner permissions");//can do anything
 
 
-    @Id
     private String str;
     private static HashMap<StorePermission,String> toString_map = createMapping();
-
 
     private static HashMap<StorePermission, String> createMapping() {
         HashMap<StorePermission,String> map=new HashMap<>();

@@ -5,11 +5,9 @@ import main.Stores.Store;
 import main.Users.Qna;
 import main.Users.User;
 import main.utils.Pair;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Entity
 public class MemberState extends UserStates {
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Store> foundedStores;
     private AtomicBoolean isLoggedIn;
     private String username;

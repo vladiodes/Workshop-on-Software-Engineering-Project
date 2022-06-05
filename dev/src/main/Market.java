@@ -814,8 +814,18 @@ public class Market {
     }
 
     public static void main(String[] args){
-        DAO dao = new DAO();
-        User u1 = new User(false,"user1","123456");
-        dao.persist(u1);
+        DAO dao = DAO.getInstance();
+//        User u1 = new User(false,"user1","123456");
+//        dao.persist(u1);
+//        User manager = new User(false,"manager","123456");
+//        dao.persist(manager);
+//        Store store = u1.openStore("store1");
+//        dao.persist(store);
+//        dao.merge(u1);
+//        u1.appointManagerToStore(store,manager);
+//
+//        System.out.println("ok");
+        List<User> users = dao.getUsers();
+        System.out.println(users.get(0).getUserName());
     }
 }
