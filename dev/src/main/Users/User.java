@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -442,7 +443,7 @@ public class User implements Observable {
         throw new IllegalArgumentException("You don't have permission to do that");
     }
 
-    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistoryByTime(Store IStore) {
+    public Map<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistoryByTime(Store IStore) {
         if (isSystemManager || hasPermission(IStore, StorePermission.ViewStoreHistory))
             return IStore.getPurchaseHistoryByTime();
         throw new IllegalArgumentException("The user doesn't have permissions to do that!");

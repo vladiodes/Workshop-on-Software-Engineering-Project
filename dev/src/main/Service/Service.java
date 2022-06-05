@@ -23,10 +23,7 @@ import main.utils.*;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -1078,7 +1075,7 @@ public class Service implements IService {
     public Response<List<String>> getStorePurchaseHistory(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
         try {
-            ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
+            Map<ShoppingBasketDTO, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
             List<String> output = new LinkedList<>();
             for (ShoppingBasketDTO basket : baskets.keySet()) {
                 HashMap<ProductDTO, Integer> products = new HashMap<>();

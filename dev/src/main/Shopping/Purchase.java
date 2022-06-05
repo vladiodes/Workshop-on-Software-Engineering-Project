@@ -65,7 +65,7 @@ public class Purchase {
     }
 
     private void updateMarket() {
-        ConcurrentHashMap<String, ShoppingBasket> baskets = cart.getBaskets();
+        Map<String, ShoppingBasket> baskets = cart.getBaskets();
         for(ShoppingBasket sb : baskets.values())
             sb.purchaseBasket(this.user, supplyingSystem, this.sinfo , this.pinfo, this.paymentSystem);
         this.user.addCartToHistory(this.cart);

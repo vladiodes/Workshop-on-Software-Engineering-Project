@@ -64,11 +64,11 @@ public class Store {
     @Transient
     private List<StoreReview> storeReviews;
     @Transient
-    private ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
+    private Map<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
     @Transient
-    private ConcurrentHashMap<Integer, Discount> DiscountsInStore;
+    private Map<Integer, Discount> DiscountsInStore;
     @Transient
-    private ConcurrentHashMap<Integer, Condition> ConditionsInStore;
+    private Map<Integer, Condition> ConditionsInStore;
 
     @Transient
     private Discount StoreDiscount;
@@ -100,17 +100,17 @@ public class Store {
     }
 
     public Store(String storeName, User founder) {
-        DiscountsInStore = new ConcurrentHashMap<>();
-        ConditionsInStore = new ConcurrentHashMap<>();
+        DiscountsInStore = Collections.synchronizedMap(new HashMap<>());
+        ConditionsInStore = Collections.synchronizedMap(new HashMap<>());
         StoreDiscount = null;
         StorePurchaseCondition = null;
         this.owners = new ConcurrentLinkedQueue<>();
         this.managers = new ConcurrentLinkedQueue<>();
-        this.productsByName = new ConcurrentHashMap<>();
+        this.productsByName = Collections.synchronizedMap(new HashMap<>());
         isActive = true;
         this.storeName = storeName;
         this.founder = founder;
-        purchaseHistoryByTime = new ConcurrentHashMap<>();
+        purchaseHistoryByTime = Collections.synchronizedMap(new HashMap<>());
         this.storeReviews = new LinkedList<>();
         this.storeQuestions=new ConcurrentLinkedQueue<>();
     }
@@ -172,8 +172,8 @@ public class Store {
         sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now inactive"));
     }
 
-    public ConcurrentHashMap<String, Product> getProductsByName() {
-        return (ConcurrentHashMap<String, Product>)productsByName;
+    public Map<String, Product> getProductsByName() {
+        return productsByName;
     }
 
     public Product getProduct(String name) {
@@ -204,7 +204,7 @@ public class Store {
         sendMessageToStaffOfStore(n);
     }
 
-    private synchronized <K, V> int getID(ConcurrentHashMap<K, V> map){
+    private synchronized <K, V> int getID(Map<K, V> map){
         return map.size();
     }
 
@@ -388,7 +388,7 @@ public class Store {
         return true;
     }
 
-    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime() {
+    public Map<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime() {
         return purchaseHistoryByTime;
     }
 

@@ -26,6 +26,8 @@ public class DB_Tests {
 //
 //        service.addProductToStore(user1Token.getResult(),"product1","category",null,"desc","store1",100,200);
 //
+//        service.addProductToCart(managerToken.getResult(),"store1","product1",10);
+//
 //        System.out.println("ok");
         readFromDB();
     }

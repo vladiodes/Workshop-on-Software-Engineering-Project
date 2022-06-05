@@ -1,6 +1,8 @@
 package main.Shopping;
 
 import java.util.*;
+
+import main.Persistence.DAO;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.User;
@@ -26,7 +28,7 @@ public class ShoppingCart {
     private User user;
 
     public ShoppingCart(User user) {
-        this.baskets = new ConcurrentHashMap<>();
+        this.baskets = Collections.synchronizedMap(new HashMap<>());
         this.user = user;
     }
 
@@ -40,16 +42,24 @@ public class ShoppingCart {
 
     public  boolean addProductToCart(Store IStore, String productName, int quantity) {
         synchronized (carteditLock) {
-            if (baskets.containsKey(IStore.getName()))
-                return baskets.get(IStore.getName()).AddProduct(productName, quantity);
+            if (baskets.containsKey(IStore.getName())) {
+                boolean output= baskets.get(IStore.getName()).AddProduct(productName, quantity);
+                DAO.getInstance().merge(baskets.get(IStore.getName()));
+                return output;
+            }
             else {
                 if (!IStore.getIsActive())
                     throw new IllegalArgumentException("Store is not active.");
                 if (!IStore.getProductsByName().containsKey(productName))
                     throw new IllegalArgumentException("Product does not exist in store");
                 ShoppingBasket basket = new ShoppingBasket(IStore, this.user);
+
+                DAO.getInstance().persist(basket);
+
                 baskets.put(IStore.getName(), basket);
-                return basket.AddProduct(productName, quantity);
+                boolean output= basket.AddProduct(productName, quantity);
+                DAO.getInstance().merge(basket);
+                return output;
             }
         }
     }
@@ -82,7 +92,7 @@ public class ShoppingCart {
             return false;
         }
         ShoppingBasket sb = baskets.get(storeName);
-        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        Map<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
         for(Product p : productsQuantities.keySet())
         {
             if(p.getName().equals(productName))
@@ -99,7 +109,7 @@ public class ShoppingCart {
             return null;
         }
         ShoppingBasket sb = baskets.get(storeName);
-        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        Map<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
         for(Product p : productsQuantities.keySet())
         {
             if(p.getName().equals(productName))
@@ -127,8 +137,8 @@ public class ShoppingCart {
         return result;
     }
 
-    public ConcurrentHashMap<String, ShoppingBasket> getBaskets() {
-        return (ConcurrentHashMap<String, ShoppingBasket>)baskets;
+    public Map<String, ShoppingBasket> getBaskets() {
+        return baskets;
     }
 
     public ShoppingBasket getBasket(String storeName){

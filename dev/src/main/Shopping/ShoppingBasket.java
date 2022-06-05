@@ -41,7 +41,7 @@ public class ShoppingBasket implements Serializable {
 
     public ShoppingBasket(Store store, User user){
         this.store = store;
-        productsQuantity=new ConcurrentHashMap<>();
+        productsQuantity=Collections.synchronizedMap(new HashMap<>());
         costumePrice=new WeakHashMap<>();
         this.user = user;
         store_name=store.getName();
@@ -49,8 +49,8 @@ public class ShoppingBasket implements Serializable {
 
     public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
     {
-        ConcurrentHashMap<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
-        ConcurrentHashMap<Product,Integer> newProductsQuantity = new ConcurrentHashMap<>();
+        Map<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
+        Map<Product,Integer> newProductsQuantity = Collections.synchronizedMap(new HashMap<>());
 
         for(HashMap.Entry<Product, Integer> element : oldProductsQuantity.entrySet())
         {
@@ -144,8 +144,8 @@ public class ShoppingBasket implements Serializable {
         return productsQuantity.size();
     }
 
-    public ConcurrentHashMap<Product, Integer> getProductsAndQuantities() {
-        return new ConcurrentHashMap<>(productsQuantity);
+    public Map<Product, Integer> getProductsAndQuantities() {
+        return productsQuantity;
     }
 
     public Store getStore() {

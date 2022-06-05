@@ -288,7 +288,9 @@ public class Market {
         }
         if(!st.isProductAddable(productName))
             throw new IllegalArgumentException("Can't add this product to the cart - its policy doesn't allow to do so");
-        return us.addProductToCart(st, productName, quantity);
+        boolean output= us.addProductToCart(st, productName, quantity);
+        dao.merge(us);
+        return output;
     }
 
     public boolean addProductToCart(String userToken, String storeName, String productName, double price) throws Exception{
@@ -461,7 +463,7 @@ public class Market {
         return p.first.sendRespondFromStore(p.second, toRespond, msg);
     }
 
-    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
+    public Map<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.getStorePurchaseHistoryByTime(p.second);
     }

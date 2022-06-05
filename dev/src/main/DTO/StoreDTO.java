@@ -4,6 +4,7 @@ import main.Stores.Product;
 import main.Stores.Store;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreDTO {
@@ -34,7 +35,7 @@ public class StoreDTO {
         this.storeName = storeName;
     }
 
-    public void setProductsByName(ConcurrentHashMap<String, Product> productsByName) {
+    public void setProductsByName(Map<String, Product> productsByName) {
         this.productsByName = new HashMap<>();
         for (String key : productsByName.keySet())
             this.productsByName.put(key, new ProductDTO(productsByName.get(key)));
