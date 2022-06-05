@@ -8,14 +8,21 @@ import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
+@Entity
 public class ShoppingCart {
-
+    @Id
+    @GeneratedValue
     private int cart_id;
 
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "shopping_cart_baskets",
+    joinColumns = {@JoinColumn(name="cart_id",referencedColumnName = "cart_id")},
+            inverseJoinColumns = {@JoinColumn(name="shopping_basket_id",referencedColumnName = "id")})
+    @MapKey(name="store_name")
     private Map<String, ShoppingBasket> baskets; // (store name, basket)
+    @Transient
     private final Object carteditLock = new Object();
-
+    @OneToOne
     private User user;
 
     public ShoppingCart(User user) {

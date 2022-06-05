@@ -3,6 +3,7 @@ package main.Stores;
 import main.DTO.ShoppingBasketDTO;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Persistence.DAO;
 import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
 import main.Publisher.StoreNotification;
@@ -43,11 +44,17 @@ public class Store {
     @Id
     @GeneratedValue
     private int store_id;
-    @Transient
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "store_products",
+            joinColumns = {@JoinColumn(name="store_id",referencedColumnName = "store_id")},
+            inverseJoinColumns = {@JoinColumn(name="product_id",referencedColumnName = "id")})
+    @MapKey(name="productName")
     private Map<String, Product> productsByName;
-    @Transient
+
+    @OneToMany
     private Collection<OwnerPermissions> owners;
-    @Transient
+    @OneToMany
     private Collection<ManagerPermissions> managers;
 
     @OneToOne
@@ -113,7 +120,9 @@ public class Store {
             throw new IllegalArgumentException("There's already such product with this name in the store");
 
         Product product = new Product(this,productName, category, keyWords, description, quantity, price);
+        DAO.getInstance().persist(product);
         productsByName.put(productName, product);
+        DAO.getInstance().merge(this);
         return true;
     }
 

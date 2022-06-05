@@ -15,20 +15,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue
     private int id;
     private String productName;
     private String category;
 
+    @ElementCollection
     private List<String> keyWords;
     private String description;
     private int quantity;
 
+    @Transient
     private List<ProductReview> reviews;
-
+    @Transient
     private Policy policy;
-
+    @OneToOne
     private Store store;
 
     public Product(Store store,String productName, String category, List<String> keyWords, String description, int quantity, double price) {

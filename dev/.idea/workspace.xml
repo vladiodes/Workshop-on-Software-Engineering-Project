@@ -22,17 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added simple mapping for user-user_state... working.">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="More general function in DAO">
+      <change afterPath="$PROJECT_DIR$/src/main/DB_Tests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/StorePermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/StorePermission.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +140,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Market">
+  <component name="RunManager" selected="Application.DB_Tests">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -150,6 +148,19 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DB_Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.DB_Tests" />
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -196,22 +207,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.allStaffApprovesBargain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="allStaffApprovesBargain" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -227,19 +222,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.DB_Tests" />
       <item itemvalue="Application.Market" />
       <item itemvalue="Application.main.Communication.Main" />
       <item itemvalue="JUnit.ATuser2Requirements" />
-      <item itemvalue="JUnit.ATuser2Requirements.allStaffApprovesBargain" />
       <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DB_Tests" />
         <item itemvalue="Application.Market" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="Application.main.Communication.Main" />
         <item itemvalue="JUnit.ATuser2Requirements" />
-        <item itemvalue="JUnit.ATuser2Requirements.allStaffApprovesBargain" />
       </list>
     </recent_temporary>
   </component>
@@ -271,14 +266,7 @@
       <workItem from="1654272885772" duration="651000" />
       <workItem from="1654323545795" duration="15106000" />
       <workItem from="1654352103856" duration="1356000" />
-      <workItem from="1654439930316" duration="4045000" />
-    </task>
-    <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
-      <created>1649926452757</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1649926452757</updated>
+      <workItem from="1654439930316" duration="7028000" />
     </task>
     <task id="LOCAL-00002" summary="Finished implementing REQ 2.4.1 - managing store inventory">
       <created>1650004007560</created>
@@ -609,7 +597,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654353466993</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Annotating...">
+      <created>1654451740153</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1654451740153</updated>
+    </task>
+    <task id="LOCAL-00050" summary="More general function in DAO">
+      <created>1654451966895</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1654451966895</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,8 +657,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactoring - moving store messages to Notificationbus" />
-    <MESSAGE value="Refactoring - moving store messages to NotificationBus&#10;Refactoring - fixing all kinds of warnings and types" />
     <MESSAGE value="concurrency bug fix in open store" />
     <MESSAGE value="Added search store function to gui" />
     <MESSAGE value="Added write review functionality to client" />
@@ -680,7 +680,9 @@
     <MESSAGE value="Test fixes" />
     <MESSAGE value="Need to annotate and map all classes..." />
     <MESSAGE value="Added simple mapping for user-user_state... working." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added simple mapping for user-user_state... working." />
+    <MESSAGE value="Annotating..." />
+    <MESSAGE value="More general function in DAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="More general function in DAO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

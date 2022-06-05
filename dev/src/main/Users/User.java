@@ -31,7 +31,7 @@ public class User implements Observable {
     private int user_id;
     private boolean isSystemManager;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private ShoppingCart cart;
 
     @OneToMany(cascade = CascadeType.ALL)

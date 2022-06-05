@@ -14,26 +14,29 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
-
+@Entity
 public class ShoppingBasket implements Serializable {
 
-
+    @Id
+    @GeneratedValue
+    private int id;
     @ElementCollection
     private Map<Product,Integer> productsQuantity;
     @ElementCollection
     private Map<Product, Double> costumePrice;
 
 
-
+    @OneToOne
     private final Store store;
-
+    @Transient
     private final Object basketEditLock = new Object();
 
-
+    @ElementCollection
     private final List<String> discountPasswords = new LinkedList<>();
 
+    private String store_name;
 
-
+    @OneToOne
     private User user;
 
     public ShoppingBasket(Store store, User user){
@@ -41,6 +44,7 @@ public class ShoppingBasket implements Serializable {
         productsQuantity=new ConcurrentHashMap<>();
         costumePrice=new WeakHashMap<>();
         this.user = user;
+        store_name=store.getName();
     }
 
     public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
@@ -55,6 +59,7 @@ public class ShoppingBasket implements Serializable {
 
         this.store = oldShoppingBasket.store;
         this.productsQuantity = newProductsQuantity;
+        store_name=store.getName();
     }
 
     public ShoppingBasket() {

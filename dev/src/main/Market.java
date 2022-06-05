@@ -49,6 +49,7 @@ public class Market {
     private ISecurity security_controller;
     private IPayment Psystem;
     private ISupplying Ssystem;
+    private DAO dao;
 
     private AtomicInteger currentlyLoggedInMembers;
 
@@ -81,6 +82,7 @@ public class Market {
         security_controller = new Security();
         currentlyLoggedInMembers = new AtomicInteger(0);
         this.initialize(Psystem, Isystem);
+        dao=DAO.getInstance();
     }
 
     public List<StoreDTO> getAllStoresOf(String userToken) {
@@ -197,6 +199,7 @@ public class Market {
             throw new IllegalArgumentException("password is not secure enough.");
         }
         User new_user = new User(false, userName, security_controller.hashPassword(password));
+        dao.persist(new_user);
 
         membersByUserName.put(userName, new_user);
         Logger.getInstance().logEvent("Market", String.format("New user registered with username: %s", userName));
@@ -221,6 +224,7 @@ public class Market {
         u.LogIn(password, this.security_controller);
         connectedSessions.put(token, u);
         addStats(StatsType.Login);
+        dao.merge(u);
         return new UserDTO(u);
     }
 
@@ -564,6 +568,9 @@ public class Market {
                 throw new IllegalArgumentException("There's already a store with that name in the system");
         Store newStore =founder.openStore(storeName);
         stores.put(storeName, newStore);
+
+        dao.persist(newStore);
+        dao.merge(founder);
         }
         return true;
     }
@@ -811,21 +818,5 @@ public class Market {
 
     public void setSecurity_controller(ISecurity security_controller) {
         this.security_controller = security_controller;
-    }
-
-    public static void main(String[] args){
-        DAO dao = DAO.getInstance();
-//        User u1 = new User(false,"user1","123456");
-//        dao.persist(u1);
-//        User manager = new User(false,"manager","123456");
-//        dao.persist(manager);
-//        Store store = u1.openStore("store1");
-//        dao.persist(store);
-//        dao.merge(u1);
-//        u1.appointManagerToStore(store,manager);
-//
-//        System.out.println("ok");
-        List<User> users = dao.getUsers();
-        System.out.println(users.get(0).getUserName());
     }
 }
