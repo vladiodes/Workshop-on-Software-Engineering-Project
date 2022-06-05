@@ -54,10 +54,9 @@ public class DAO {
         }
     }
 
-    public List<User> getUsers() {
-        String query = "select u from User u where u.user_id is not null";
-        TypedQuery<User> tq = entityManager.createQuery(query, User.class);
-        List<User> list;
+    public <T> List<T> getEntities(String query,Class<T> cls) {
+        TypedQuery<T> tq = entityManager.createQuery(query, cls);
+        List<T> list;
         try{
             list = tq.getResultList();
             return list;
@@ -65,6 +64,10 @@ public class DAO {
         catch(NoResultException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<User> getUsers(){
+        return getEntities("select u from User u where u.user_id is not null",User.class);
     }
 
 }
