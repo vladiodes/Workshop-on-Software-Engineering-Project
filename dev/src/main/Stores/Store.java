@@ -61,9 +61,9 @@ public class Store {
     private User founder;
     private boolean isActive;
     private String storeName;
-    @Transient
+    @OneToMany
     private List<StoreReview> storeReviews;
-    @Transient
+    @ElementCollection
     private Map<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
     @Transient
     private Map<Integer, Discount> DiscountsInStore;
@@ -76,8 +76,8 @@ public class Store {
     @Transient
     private Condition StorePurchaseCondition;
 
-    @Transient
-    private ConcurrentLinkedQueue<PersonalNotification> storeQuestions;
+    @OneToMany
+    private Collection<PersonalNotification> storeQuestions;
 
     public Store() {
 

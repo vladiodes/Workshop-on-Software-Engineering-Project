@@ -29,7 +29,7 @@ public class Product {
     private String description;
     private int quantity;
 
-    @Transient
+    @OneToMany
     private List<ProductReview> reviews;
     @Transient
     private Policy policy;
@@ -50,16 +50,6 @@ public class Product {
         this.reviews = new LinkedList<>();
         this.policy = new normalPolicy(price, store);
         this.store=store;
-    }
-
-    public Product(Product p) // Use this constructor to deep copy Product //TODO fix
-    {
-        this.productName = p.productName;
-        this.category = p.category;
-        this.keyWords = p.keyWords;
-        this.description = p.description;
-        this.quantity = p.quantity;
-        this.reviews = p.reviews;
     }
 
     public Product() {

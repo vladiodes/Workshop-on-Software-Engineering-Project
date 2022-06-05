@@ -5,6 +5,8 @@ import main.DTO.ShoppingCartDTO;
 import main.ExternalServices.Payment.IPayment;
 import main.Persistence.DAO;
 import main.Publisher.*;
+import main.Publisher.Observable;
+import main.Publisher.Observer;
 import main.Security.ISecurity;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingCart;
@@ -17,10 +19,7 @@ import main.utils.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -42,8 +41,8 @@ public class User implements Observable {
     private Observer observer;
     // maps notification to a bool value: true - if was published to user, false - if wasn't
 
-    @Transient
-    private ConcurrentHashMap<Notification,Boolean> notifications;
+    @ElementCollection
+    private Map<Notification,Boolean> notifications;
 
     @OneToOne(cascade = CascadeType.ALL)
     private UserStates state;
@@ -84,7 +83,7 @@ public class User implements Observable {
         isSystemManager = false;
         cart = new ShoppingCart(this);
         state = new GuestState(guestID);
-        notifications=new ConcurrentHashMap<>();
+        notifications= Collections.synchronizedMap(new HashMap<>());
         purchaseHistory=new LinkedList<>();
         registerObserver(new Publisher(this,null));
     }

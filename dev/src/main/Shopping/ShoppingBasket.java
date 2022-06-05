@@ -47,20 +47,20 @@ public class ShoppingBasket implements Serializable {
         store_name=store.getName();
     }
 
-    public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
-    {
-        Map<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
-        Map<Product,Integer> newProductsQuantity = Collections.synchronizedMap(new HashMap<>());
-
-        for(HashMap.Entry<Product, Integer> element : oldProductsQuantity.entrySet())
-        {
-            newProductsQuantity.put(new Product(element.getKey()), element.getValue());
-        }
-
-        this.store = oldShoppingBasket.store;
-        this.productsQuantity = newProductsQuantity;
-        store_name=store.getName();
-    }
+//    public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
+//    {
+//        Map<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
+//        Map<Product,Integer> newProductsQuantity = Collections.synchronizedMap(new HashMap<>());
+//
+//        for(HashMap.Entry<Product, Integer> element : oldProductsQuantity.entrySet())
+//        {
+//            newProductsQuantity.put(new Product(element.getKey()), element.getValue());
+//        }
+//
+//        this.store = oldShoppingBasket.store;
+//        this.productsQuantity = newProductsQuantity;
+//        store_name=store.getName();
+//    }
 
     public ShoppingBasket() {
         store=new Store();

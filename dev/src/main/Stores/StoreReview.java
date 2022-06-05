@@ -7,11 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 
+@Entity
 public class StoreReview implements Serializable {
+    @Id
+    @OneToOne
     private User user;
 
+    @Id
+    @OneToOne
     private Store IStore;
-    private String desc;
+    private String description;
     private double points;
 
     public StoreReview(User user, Store IStore, String desc, double points) throws Exception
@@ -21,7 +26,7 @@ public class StoreReview implements Serializable {
 
         if (desc.isBlank())
             throw new IllegalArgumentException("Review description cant be empty or blank");
-        this.desc = desc;
+        this.description = desc;
 
         if(points<0)
             throw new IllegalArgumentException("Review points cant be negative");
@@ -41,6 +46,6 @@ public class StoreReview implements Serializable {
     }
     public String getDescription()
     {
-        return desc;
+        return description;
     }
 }
