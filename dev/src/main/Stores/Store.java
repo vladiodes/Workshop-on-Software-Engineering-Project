@@ -420,8 +420,10 @@ public class Store {
     public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
             en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, paymentInformation, payment);
-        ShoppingBasketDTO basketDTO = new ShoppingBasketDTO(bask,user);
+        ShoppingBasketDTO basketDTO = new ShoppingBasketDTO(bask,user,true);
+        DAO.getInstance().persist(basketDTO);
         this.purchaseHistoryByTime.put(basketDTO,LocalDateTime.now());
+        DAO.getInstance().merge(this);
         notifyPurchase();
     }
 

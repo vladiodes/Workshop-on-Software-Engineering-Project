@@ -6,7 +6,9 @@ import main.Persistence.DAO;
 import main.Service.IService;
 import main.Service.Service;
 import main.Users.User;
+import main.utils.PaymentInformation;
 import main.utils.Response;
+import main.utils.SupplyingInformation;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class DB_Tests {
 //        service.addProductToStore(user1Token.getResult(),"product1","category",null,"desc","store1",100,200);
 //
 //        service.addProductToCart(managerToken.getResult(),"store1","product1",10);
+//        service.purchaseCart(managerToken.getResult(),new PaymentInformation(null,null,123,null,null),new SupplyingInformation(null,null));
 //
 //        System.out.println("ok");
         readFromDB();

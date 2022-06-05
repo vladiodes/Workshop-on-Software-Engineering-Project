@@ -22,14 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="More annotations... believe the process">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DB_Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DB_Tests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingBasketDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,14 +266,7 @@
       <workItem from="1654272885772" duration="651000" />
       <workItem from="1654323545795" duration="15106000" />
       <workItem from="1654352103856" duration="1356000" />
-      <workItem from="1654439930316" duration="8595000" />
-    </task>
-    <task id="LOCAL-00003" summary="Finished implementing REQ 2.4.4 - Appointing an owner to a store">
-      <created>1650005631970</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1650005631970</updated>
+      <workItem from="1654439930316" duration="11051000" />
     </task>
     <task id="LOCAL-00004" summary="Finished implementing REQ 2.4.5 - Deleting owner appointment">
       <created>1650009338077</created>
@@ -610,7 +604,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654456875836</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map">
+      <created>1654458648728</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1654458648728</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,7 +657,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added search store function to gui" />
     <MESSAGE value="Added write review functionality to client" />
     <MESSAGE value="Added deleting products from store functionality to gui" />
     <MESSAGE value="Answering buyers' queries functionality" />
@@ -681,7 +681,8 @@
     <MESSAGE value="Annotating..." />
     <MESSAGE value="More general function in DAO" />
     <MESSAGE value="More annotations... believe the process" />
-    <option name="LAST_COMMIT_MESSAGE" value="More annotations... believe the process" />
+    <MESSAGE value="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map" />
+    <option name="LAST_COMMIT_MESSAGE" value="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -728,8 +729,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/DB_Tests.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="66" />
+          <line>39</line>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

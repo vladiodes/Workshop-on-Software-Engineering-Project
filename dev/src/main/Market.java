@@ -609,6 +609,7 @@ public class Market {
         //User purchase history update
         User u = getConnectedUserByToken(userToken);
         u.purchaseCart(pinfo, sinfo, this.Psystem, this.Ssystem);
+        dao.merge(u);
         addStats(StatsType.Purchase);
     }
 
