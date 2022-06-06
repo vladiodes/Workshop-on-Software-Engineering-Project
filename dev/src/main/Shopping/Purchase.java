@@ -29,13 +29,13 @@ public class Purchase {
         this.supplyingSystem = supplyingSystem;
     }
 
-    public Purchase(Bid bid, ShoppingCart cart){
+    public Purchase(Bid bid, ShoppingCart cart,IPayment payment,ISupplying supplying){
         this.pinfo = bid.getPaymentInformation();
         this.sinfo = bid.getSupplyingInformation();
         this.user = bid.getUser();
         this.cart = cart;
-        this.paymentSystem = bid.getPayment();
-        this.supplyingSystem = bid.getSupplying();
+        this.paymentSystem = payment;
+        this.supplyingSystem = supplying;
     }
 
     public void executePurchase() throws Exception {

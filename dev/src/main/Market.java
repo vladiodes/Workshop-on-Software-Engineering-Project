@@ -126,7 +126,7 @@ public class Market {
     public void addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate Until) {
         User user = getConnectedUserByToken(userToken);
         Store store = getDomainStoreByName(storeName);
-        user.addAuctionPolicy(store, productName, price, Until);
+        user.addAuctionPolicy(store, productName, price, Until,Psystem,Ssystem);
     }
 
     public void addNormalPolicy(String userToken, String storeName, String productName, Double price) {
@@ -745,7 +745,7 @@ public class Market {
 
     public void ApproveBid(String userToken, String storeName, String productName, String username) throws Exception {
         User user = membersByUserName.get(username);
-        getConnectedUserByToken(userToken).ApproveBid(getDomainStoreByName(storeName), productName, user);
+        getConnectedUserByToken(userToken).ApproveBid(getDomainStoreByName(storeName), productName, user,Psystem,Ssystem);
     }
 
     public void DeclineBid(String userToken, String storeName, String productName, String username) throws Exception {

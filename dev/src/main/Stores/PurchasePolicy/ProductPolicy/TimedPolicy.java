@@ -17,6 +17,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract  class TimedPolicy extends Policy{
 
     @Override
@@ -31,10 +33,10 @@ public abstract  class TimedPolicy extends Policy{
         return null;
     }
 
-    protected void purchaseBid(Store store, Bid bid) throws Exception {
+    protected void purchaseBid(Store store, Bid bid,IPayment payment,ISupplying supplying) throws Exception {
         ShoppingCart tempCart = new ShoppingCart(bid.getUser());
         tempCart.addProductToCart(store, bid.getProduct().getName(), 1); //purchased 1 at a time.
-        Purchase temp = new Purchase(bid, tempCart);
+        Purchase temp = new Purchase(bid, tempCart,payment,supplying);
         temp.executePurchase();
     }
 

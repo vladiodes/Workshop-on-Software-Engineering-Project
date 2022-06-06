@@ -461,9 +461,9 @@ public class Store {
         product.setPolicy(new rafflePolicy(this, price));
     }
 
-    public void addAuctionPolicy(String productName, Double price, LocalDate until) {
+    public void addAuctionPolicy(String productName, Double price, LocalDate until,IPayment payment, ISupplying supplying) {
         Product product = getProduct(productName);
-        product.setPolicy(new AuctionPolicy(until, price,this, productName));
+        product.setPolicy(new AuctionPolicy(until, price,this, productName,payment,supplying));
     }
 
     public void addNormalPolicy(String productName, Double price) {

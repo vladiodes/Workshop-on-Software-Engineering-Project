@@ -531,10 +531,10 @@ public class User implements Observable {
         store.addRafflePolicy(productName, price);
     }
 
-    public void addAuctionPolicy(Store store, String productName, Double price, LocalDate Until) {
+    public void addAuctionPolicy(Store store, String productName, Double price, LocalDate Until,IPayment payment,ISupplying supplying) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
             throw new IllegalArgumentException("You don't have permission to add policies to this store.");
-        store.addAuctionPolicy(productName, price, Until);
+        store.addAuctionPolicy(productName, price, Until,payment,supplying);
     }
 
     public void addNormalPolicy(Store store, String productName, Double price) {
@@ -550,7 +550,7 @@ public class User implements Observable {
     }
 
     public boolean bidOnProduct(Store store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
-        Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, psystem, supplyingInformation, ssystem);
+        Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, supplyingInformation);
         return store.bidOnProduct(productName, bid);
     }
 
@@ -560,10 +560,10 @@ public class User implements Observable {
         return store.getProduct(productName).getUserBids();
     }
 
-    public void ApproveBid(Store store, String productName, User user) throws Exception {
+    public void ApproveBid(Store store, String productName, User user,IPayment payment,ISupplying supplying) throws Exception {
         if(!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to approve other user's bids.");
-        store.getProduct(productName).ApproveBid(user, this);
+        store.getProduct(productName).ApproveBid(user, this,payment,supplying);
     }
 
     public void DeclineBid(Store store, String productName, User user) throws Exception {

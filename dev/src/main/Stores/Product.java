@@ -154,8 +154,8 @@ public class Product {
         return policy.getBids();
     }
 
-    public void ApproveBid(User user, User apporvingUser) throws Exception {
-        policy.approveBid(user, apporvingUser);
+    public void ApproveBid(User user, User apporvingUser,IPayment payment,ISupplying supplying) throws Exception {
+        policy.approveBid(user, apporvingUser,payment,supplying);
     }
 
     public void DeclineBid(User user) {

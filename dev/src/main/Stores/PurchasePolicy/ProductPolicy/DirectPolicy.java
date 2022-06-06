@@ -28,7 +28,7 @@ public abstract  class DirectPolicy extends Policy{
         return null;
     }
     @Override
-    public void approveBid(User user, User approvingUser){
+    public void approveBid(User user, User approvingUser,IPayment payment,ISupplying supplying){
         throw new IllegalArgumentException("No bidding on this product.");
     }
     @Override

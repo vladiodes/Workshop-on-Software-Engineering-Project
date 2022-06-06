@@ -44,7 +44,7 @@ public abstract class Policy {
      */
     public abstract boolean bid(Bid bid);
     public abstract List<Bid> getBids();
-    public abstract void approveBid(User user, User approvingUser) throws Exception;
+    public abstract void approveBid(User user, User approvingUser,IPayment payment,ISupplying supplying) throws Exception;
     public abstract void declineBid(User user);
     public abstract void counterOfferBid(User user, Double offer);
 
