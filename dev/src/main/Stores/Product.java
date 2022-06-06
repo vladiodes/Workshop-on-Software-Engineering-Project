@@ -2,6 +2,7 @@ package main.Stores;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Persistence.DAO;
 import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Stores.PurchasePolicy.ProductPolicy.Policy;
 import main.Stores.PurchasePolicy.ProductPolicy.normalPolicy;
@@ -29,9 +30,9 @@ public class Product {
     private String description;
     private int quantity;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ProductReview> reviews;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Policy policy;
     @OneToOne
     private Store store;
@@ -50,6 +51,7 @@ public class Product {
         this.reviews = new LinkedList<>();
         this.policy = new normalPolicy(price, store);
         this.store=store;
+        DAO.getInstance().persist(this.policy);
     }
 
     public Product() {

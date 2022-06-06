@@ -54,4 +54,7 @@ public abstract class Discount {
         throw new IllegalArgumentException("this discount doesn't have conditions.");
     }
 
+    public int getId() {
+        return id;
+    }
 }

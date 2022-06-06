@@ -1,5 +1,6 @@
 package main.Users;
 
+import main.Persistence.DAO;
 import main.Stores.Store;
 
 import javax.persistence.*;
@@ -62,10 +63,12 @@ public class ManagerPermissions implements Serializable {
     public void addPermission(StorePermission permission) {
         if(!permissions.contains(permission))
             permissions.add(permission);
+        DAO.getInstance().merge(this);
     }
 
     public void removePermission(StorePermission permission) {
         permissions.remove(permission);
+        DAO.getInstance().merge(this);
     }
 
     public String permissionsToString() {

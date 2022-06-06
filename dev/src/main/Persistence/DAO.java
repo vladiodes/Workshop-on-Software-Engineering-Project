@@ -44,6 +44,24 @@ public class DAO {
         }
     }
 
+    public <T> void remove(T obj){
+        if(DAO.enablePersist) {
+            EntityTransaction et = null;
+            synchronized (entityManager) {
+                try {
+                    et = entityManager.getTransaction();
+                    et.begin();
+                    entityManager.remove(obj);
+                    et.commit();
+                } catch (Exception e) {
+                    if (et != null)
+                        et.rollback();
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
     public <T> void merge(T obj){
         if(DAO.enablePersist) {
             EntityTransaction et = null;

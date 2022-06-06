@@ -13,4 +13,8 @@ public abstract class Condition  {
     public abstract boolean pass(ShoppingBasket shoppingBasket);
     public abstract void addCondition(Condition condition);
     public abstract Collection<Condition> getConditions();
+
+    public int getId() {
+        return id;
+    }
 }

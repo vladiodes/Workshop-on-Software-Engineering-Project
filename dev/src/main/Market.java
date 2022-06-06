@@ -75,6 +75,7 @@ public class Market {
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
 
     public Market(IPayment Psystem, ISupplying Isystem){
+        dao=DAO.getInstance();
         membersByUserName =new ConcurrentHashMap<>();
         connectedSessions =new ConcurrentHashMap<>();
         stores=new ConcurrentHashMap<>();
@@ -82,7 +83,6 @@ public class Market {
         security_controller = new Security();
         currentlyLoggedInMembers = new AtomicInteger(0);
         this.initialize(Psystem, Isystem);
-        dao=DAO.getInstance();
     }
 
     public List<StoreDTO> getAllStoresOf(String userToken) {
@@ -178,15 +178,18 @@ public class Market {
                 case Login -> systemStats.addLogIn();
                 case Purchase -> systemStats.addPurchase();
             }
+            DAO.getInstance().merge(systemStats);
         }
         else
         {
             SystemStats newSystemStats = new SystemStats(date);
+            DAO.getInstance().persist(newSystemStats);
             switch (type) {
                 case Register -> newSystemStats.addRegister();
                 case Login -> newSystemStats.addLogIn();
                 case Purchase -> newSystemStats.addPurchase();
             }
+            DAO.getInstance().merge(newSystemStats);
             this.systemStatsByDate.put(date, newSystemStats);
         }
     }
@@ -298,7 +301,9 @@ public class Market {
             throw new IllegalArgumentException("can't pay 0 or less.");
         User user = getConnectedUserByToken(userToken);
         Store store = getDomainStoreByName(storeName);
-        return user.addProductToCart(store, productName, price);
+        boolean output= user.addProductToCart(store, productName, price);
+        dao.merge(user);
+        return output;
     }
 
     public boolean RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
@@ -313,7 +318,9 @@ public class Market {
         if(st == null) {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
-        return us.RemoveProductFromCart(st, productName, quantity);
+        boolean output= us.RemoveProductFromCart(st, productName, quantity);
+        dao.merge(us);
+        return output;
     }
 
     public ShoppingCartDTO getUserCart(String userToken) {
@@ -328,12 +335,16 @@ public class Market {
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
         Pair<User, Store> p=getConnectedUserAndStore(userToken,storeName);
-        return p.first.addProductToStore(p.second,productName,category,keyWords,description,quantity,price);
+        boolean output= p.first.addProductToStore(p.second,productName,category,keyWords,description,quantity,price);
+        dao.merge(p.first);
+        return output;
     }
 
     public boolean updateProductInStore(String userToken, String oldProductName,String newProductName, String category, List<String> keyWords, String description, String storeName, int quantity, double price) {
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
-        return p.first.updateProductToStore(p.second, oldProductName,newProductName, category, keyWords, description, quantity, price);
+        boolean output= p.first.updateProductToStore(p.second, oldProductName,newProductName, category, keyWords, description, quantity, price);
+        dao.merge(p.second);
+        return output;
     }
 
     public boolean appointStoreOwner(String userToken, String userToAppoint, String storeName) {
@@ -488,6 +499,7 @@ public class Market {
         if(toDelete.isAdmin() || toDelete.isManager() || toDelete.isFounder() || toDelete.isOwner())
             throw new IllegalArgumentException("Cant delete a user with a role");
         membersByUserName.remove(toDelete.getUserName());
+        DAO.getInstance().remove(toDelete);
         return true;
     }
 
@@ -509,8 +521,9 @@ public class Market {
         User user_receiving_msg = membersByUserName.get(userToRespond);
         if(user_receiving_msg==null)
             throw new IllegalArgumentException("No such user to respond to");
-
-        user_receiving_msg.notifyObserver(new PersonalNotification(responding_user.getUserName(),msg));
+        Notification n =new PersonalNotification(responding_user.getUserName(),msg);
+        DAO.getInstance().persist(n);
+        user_receiving_msg.notifyObserver(n);
         return true;
     }
 
@@ -543,6 +556,7 @@ public class Market {
         String adminUserName = "admin";
         String adminHashPassword = security_controller.hashPassword("admin");
         User admin = new User(true, adminUserName, adminHashPassword);
+        dao.persist(admin);
         membersByUserName.put("admin", admin);
         Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUserName));
         setSsystem(Isystem);
@@ -579,7 +593,9 @@ public class Market {
 
     public boolean removeProductFromStore(String userToken, String productName, String storeName) {
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
-        return p.first.removeProductFromStore(productName,p.second);
+        boolean output= p.first.removeProductFromStore(productName,p.second);
+        dao.merge(p.first);
+        return output;
     }
 
     public void addSecurityQuestion(String userToken, String question, String answer) throws Exception
@@ -594,13 +610,14 @@ public class Market {
             throw new Exception("User is a not a member");
         }
         u.addSecurityQuestion(question, answer);
+        dao.merge(u);
     }
 
     public void logout(String token) throws Exception
     {
         User u = getConnectedUserByToken(token);
-        String userName = u.getUserName();
         u.logout();
+        dao.merge(u);
         connectedSessions.put(token,new User(token));
     }
 
@@ -636,6 +653,8 @@ public class Market {
         Product prod = getProductByNameAndStore(productName, storeName);
         ProductReview pReview = new ProductReview(u, prod, reviewDescription, points);
         prod.addReview(pReview);
+        dao.persist(pReview);
+        dao.merge(prod);
     }
 
     private Product getProductByNameAndStore(String productName, String storeName) {
@@ -655,11 +674,14 @@ public class Market {
         Store store = stores.get(storeName);
         StoreReview sReview = new StoreReview(u, store, reviewDescription, points);
         store.addReview(sReview);
+        dao.persist(sReview);
+        dao.merge(store);
     }
 
     public void changePassword(String userToken, String oldPassword, String newPassword){
         User u = getConnectedUserByToken(userToken);
         u.changePassword(newPassword, this.security_controller, oldPassword);
+        dao.merge(u);
     }
 
     public void changeUsername(String userToken, String newUsername) throws Exception {
@@ -678,6 +700,7 @@ public class Market {
             this.membersByUserName.remove(oldUsername);
             this.membersByUserName.put(newUsername, u);
         }
+        dao.merge(u);
     }
 
     public void sendQuestionsToStore(String userToken, String storeName, String message) throws Exception{
@@ -693,6 +716,7 @@ public class Market {
         User u = getConnectedUserByToken(userToken);
         String userName = u.getUserName();
         store.addQuestionToStore(userName,message);
+        DAO.getInstance().merge(store);
     }
 
     private User getConnectedUserByToken(String userToken)
@@ -718,7 +742,10 @@ public class Market {
         {
             if(u.isAdmin())
             {
-                u.notifyObserver(new PersonalNotification(user.getUserName(),msg));
+                Notification n =new PersonalNotification(user.getUserName(),msg);
+                dao.persist(n);
+                u.notifyObserver(n);
+                dao.merge(u);
                 return;
             }
         }

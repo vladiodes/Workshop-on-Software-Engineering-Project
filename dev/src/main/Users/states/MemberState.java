@@ -1,5 +1,6 @@
 package main.Users.states;
 
+import main.Persistence.DAO;
 import main.Security.ISecurity;
 import main.Stores.Store;
 import main.Users.Qna;
@@ -76,7 +77,9 @@ public class MemberState extends UserStates {
         {
             throw new IllegalArgumentException("Question or Answer cant be empty");
         }
-        this.securityQNA.add(new Qna(question,answer));
+        Qna qna = new Qna(question,answer);
+        this.securityQNA.add(qna);
+        DAO.getInstance().persist(qna);
     }
 
     @Override

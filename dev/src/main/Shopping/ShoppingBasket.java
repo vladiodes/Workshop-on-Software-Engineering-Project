@@ -2,6 +2,7 @@ package main.Shopping;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Persistence.DAO;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.User;
@@ -54,6 +55,7 @@ public class ShoppingBasket implements Serializable {
 
     public void addDiscountPassword(String pass){
         discountPasswords.add(pass);
+        DAO.getInstance().merge(this);
     }
 
     public boolean hasAmount(Product product, Integer amount){

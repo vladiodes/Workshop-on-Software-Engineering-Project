@@ -160,6 +160,7 @@ public class User implements Observable {
         appointOwnerPreconditions(IStore, user_to_appoint);
 
         OwnerPermissions newOwnerAppointment = new OwnerPermissions(user_to_appoint, this, IStore);
+        DAO.getInstance().persist(newOwnerAppointment);
         user_to_appoint.addOwnedStore(newOwnerAppointment);
         IStore.addOwnerToStore(newOwnerAppointment);
         return true;
@@ -186,6 +187,7 @@ public class User implements Observable {
 
     private void addOwnedStore(OwnerPermissions newOwnerAppointment) {
         ownedStores.add(newOwnerAppointment);
+        DAO.getInstance().merge(this);
     }
 
     /**
@@ -208,6 +210,8 @@ public class User implements Observable {
         //finally - deleting the appointment to owner from the appointed_user
         appointed_user.ownedStores.remove(ow);
         IStore.removeOwner(ow);
+        DAO.getInstance().remove(ow);
+        DAO.getInstance().merge(appointed_user);
         return true;
     }
 
@@ -245,6 +249,8 @@ public class User implements Observable {
         //deleting the appointment to manager from the appointed_user
         manager.managedStores.remove(mp);
         IStore.removeManager(mp);
+        DAO.getInstance().remove(mp);
+        DAO.getInstance().merge(manager);
         return true;
 
     }
@@ -455,19 +461,23 @@ public class User implements Observable {
             throw new IllegalArgumentException("You're not a system manager!");
 
         IStore.CancelStaffRoles();
+        DAO.getInstance().remove(IStore);
         return true;
     }
 
     public void removeFounderRole(Store IStore) {
         getFoundedStores().remove(IStore);
+        DAO.getInstance().merge(this);
     }
 
     public void removeOwnerRole(OwnerPermissions ownerPermissions) {
         ownedStores.remove(ownerPermissions);
+        DAO.getInstance().merge(this);
     }
 
     public void removeManagerRole(ManagerPermissions managerPermissions) {
         managedStores.remove(managerPermissions);
+        DAO.getInstance().merge(this);
     }
 
     public boolean isAdmin() {
@@ -551,7 +561,10 @@ public class User implements Observable {
 
     public boolean bidOnProduct(Store store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
         Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, supplyingInformation);
-        return store.bidOnProduct(productName, bid);
+        DAO.getInstance().persist(bid);
+        boolean output= store.bidOnProduct(productName, bid);
+        DAO.getInstance().merge(store);
+        return output;
     }
 
     public List<Bid> getUserBids(Store store, String productName){
@@ -592,6 +605,7 @@ public class User implements Observable {
         notifications.put(notification,false);
         if(observer.update(notification))
             notifications.put(notification,true);
+        DAO.getInstance().merge(this);
     }
 
     @Override

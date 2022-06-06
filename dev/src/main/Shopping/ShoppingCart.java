@@ -66,8 +66,11 @@ public class ShoppingCart {
 
     public  boolean setCostumeProductPrice(Store IStore, String productName, double price, User user) {
         synchronized (carteditLock) {
-            if (baskets.containsKey(IStore.getName()))
-                return baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price, user);
+            if (baskets.containsKey(IStore.getName())) {
+                boolean output = baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price, user);
+                DAO.getInstance().merge(baskets.get(IStore.getName()));
+                return output;
+            }
             else {
                 throw new IllegalArgumentException("No basket for this store.");
             }
@@ -82,6 +85,7 @@ public class ShoppingCart {
             basket.RemoveProduct(prodName, quantity);
             if (basket.getAmountOfProducts() == 0)
                 this.baskets.remove(st.getName());
+            DAO.getInstance().merge(this);
             return true;
         }
     }

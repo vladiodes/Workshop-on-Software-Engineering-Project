@@ -2,6 +2,8 @@ package main.Stores.PurchasePolicy.ProductPolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Persistence.DAO;
+import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
 import main.Stores.Product;
 import main.Stores.Store;
@@ -83,11 +85,17 @@ public class BargainingPolicy extends TimedPolicy{
         for (Bid bidkey : bidApprovedBy.keySet()) {
             if (bid.getUser() == bidkey.getUser()) {
                 bidApprovedBy.remove(bidkey);
-                bidApprovedBy.put(bid, new bidApprovedByUserList());
+                bidApprovedByUserList lst = new bidApprovedByUserList();
+                DAO.getInstance().persist(lst);
+                bidApprovedBy.put(bid,lst);
+                DAO.getInstance().merge(this);
                 return true;
             }
         }
-        bidApprovedBy.put(bid, new bidApprovedByUserList());
+        bidApprovedByUserList lst = new bidApprovedByUserList();
+        DAO.getInstance().persist(lst);
+        bidApprovedBy.put(bid,lst );
+        DAO.getInstance().merge(this);
         return true;
     }
 
@@ -101,10 +109,14 @@ public class BargainingPolicy extends TimedPolicy{
         Bid bid = getUserBid(user.getUserName());
         bidApprovedByUserList approvers = bidApprovedBy.get(bid);
         approvers.add(approvingUser);
+        DAO.getInstance().merge(this);
         if (isApproved(approvers)) {
             this.purchaseBid(sellingStore, getUserBid(user.getUserName()),payment,supplying);
-            user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName())));
+            Notification n =new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName()));
+            DAO.getInstance().persist(n);
+            user.notifyObserver(n);
             bidApprovedBy.remove(getUserBid(user));
+            DAO.getInstance().merge(this);
         }
     }
 
@@ -112,7 +124,10 @@ public class BargainingPolicy extends TimedPolicy{
     public void declineBid(User user) {
         Bid toDecline = getUserBid(user.getUserName());
         bidApprovedBy.remove(toDecline);
-        user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been declined by store staff.", toDecline.getProduct().getName())));
+        DAO.getInstance().merge(this);
+        Notification n =new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been declined by store staff.", toDecline.getProduct().getName()));
+        DAO.getInstance().persist(n);
+        user.notifyObserver(n);
     }
 
     @Override
