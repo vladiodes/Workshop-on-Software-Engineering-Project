@@ -22,18 +22,30 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Persisting history">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="To continue: add annotations for discounts, conditions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DB_Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DB_Tests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/PersonalNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/PersonalNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/StoreNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/StoreNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/ProductReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/ProductReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositeCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositeCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalOrCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalOrCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalXorCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalXorCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/CategoryAmountCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/CategoryAmountCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/ProductAmountCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/ProductAmountCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimpleCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimpleCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/CompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/CompositeDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/MaximumCompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/MaximumCompositeDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/PlusCompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/PlusCompositeDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/ConditionalDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SecretDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SecretDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SimpleDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SimpleDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SingleDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/SingleDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,8 +246,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.DB_Tests" />
-        <item itemvalue="Application.Market" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="Application.Market" />
         <item itemvalue="Application.main.Communication.Main" />
         <item itemvalue="JUnit.ATuser2Requirements" />
       </list>
@@ -269,14 +281,9 @@
       <workItem from="1654272885772" duration="651000" />
       <workItem from="1654323545795" duration="15106000" />
       <workItem from="1654352103856" duration="1356000" />
-      <workItem from="1654439930316" duration="13226000" />
-    </task>
-    <task id="LOCAL-00005" summary="Finished implementing REQ 2.4.6 - Appointing store manager">
-      <created>1650010816917</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1650010816917</updated>
+      <workItem from="1654439930316" duration="13758000" />
+      <workItem from="1654494260542" duration="674000" />
+      <workItem from="1654495452737" duration="897000" />
     </task>
     <task id="LOCAL-00006" summary="Finished implementing REQ 2.4.7 - Changing manager's permissions">
       <created>1650032325375</created>
@@ -614,7 +621,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654460964546</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="To continue: add annotations for discounts, conditions">
+      <created>1654464055990</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1654464055990</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +674,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added deleting products from store functionality to gui" />
     <MESSAGE value="Answering buyers' queries functionality" />
     <MESSAGE value="Added sending questions to store functionality" />
     <MESSAGE value="Better history of user view" />
@@ -685,7 +698,8 @@
     <MESSAGE value="More annotations... believe the process" />
     <MESSAGE value="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map" />
     <MESSAGE value="Persisting history" />
-    <option name="LAST_COMMIT_MESSAGE" value="Persisting history" />
+    <MESSAGE value="To continue: add annotations for discounts, conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="To continue: add annotations for discounts, conditions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

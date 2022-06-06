@@ -8,6 +8,7 @@ import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
+import main.Persistence.DAO;
 import main.Service.CommandExecutor.Commands.*;
 import main.Service.CommandExecutor.Invoker;
 import main.Service.CommandExecutor.utils.UserTokens;
@@ -33,6 +34,10 @@ public class Service implements IService {
     private UserTokens uTokens = new UserTokens();
     private String logFileName = "DefaultVladi.json";
     private List<Invoker<?>> commands;
+    public Service(IPayment Psystem, ISupplying Isystem,Integer persistEnable){
+        DAO.enablePersist();
+        market=new Market(Psystem, Isystem);
+    }
     public Service(IPayment Psystem, ISupplying Isystem){
         market=new Market(Psystem, Isystem);
     }

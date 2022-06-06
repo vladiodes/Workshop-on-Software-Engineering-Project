@@ -3,6 +3,9 @@ package main.Stores.PurchasePolicy.Conditions.CompositeConditions;
 import main.Shopping.ShoppingBasket;
 import main.Stores.PurchasePolicy.Conditions.Condition;
 
+import javax.persistence.Entity;
+
+@Entity
 public class LogicalXorCondition extends CompositeCondition{
 
     @Override

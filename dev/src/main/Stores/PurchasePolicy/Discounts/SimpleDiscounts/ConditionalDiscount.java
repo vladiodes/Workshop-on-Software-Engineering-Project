@@ -3,13 +3,21 @@ package main.Stores.PurchasePolicy.Discounts.SimpleDiscounts;
 import main.Shopping.ShoppingBasket;
 import main.Stores.PurchasePolicy.Conditions.Condition;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
+@Entity
 public class ConditionalDiscount extends SingleDiscount{
+    @OneToOne
     private Condition condition;
     public ConditionalDiscount(LocalDate until, Double percent, Condition cond) {
         super(until, percent);
         this.condition = cond;
+    }
+
+    public ConditionalDiscount() {
+
     }
 
     @Override

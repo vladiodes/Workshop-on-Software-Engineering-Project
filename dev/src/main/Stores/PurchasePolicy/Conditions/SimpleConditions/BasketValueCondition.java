@@ -5,6 +5,7 @@ import main.Stores.PurchasePolicy.Conditions.Condition;
 
 import javax.persistence.Entity;
 
+@Entity
 public class BasketValueCondition extends SimpleCondition {
     private double requiredAmount;
 

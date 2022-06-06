@@ -8,6 +8,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import java.util.Collection;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class SimpleCondition extends Condition {
 
     @Override

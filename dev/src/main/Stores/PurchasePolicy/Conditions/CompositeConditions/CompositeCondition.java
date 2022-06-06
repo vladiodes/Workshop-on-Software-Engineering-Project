@@ -8,8 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class CompositeCondition extends Condition {
 
+    @OneToMany
     protected List<Condition> Conditions;
 
     public CompositeCondition() {

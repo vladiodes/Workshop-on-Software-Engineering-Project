@@ -6,6 +6,7 @@ import main.Stores.PurchasePolicy.Discounts.Discount;
 
 import javax.persistence.Entity;
 
+@Entity
 public class LogicalAndCondition extends CompositeCondition{
     @Override
     public boolean pass(ShoppingBasket shoppingBasket) {

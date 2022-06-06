@@ -31,6 +31,7 @@ import main.Users.User;
 import main.utils.*;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -65,15 +66,23 @@ public class Store {
     private List<StoreReview> storeReviews;
     @ElementCollection
     private Map<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "store_discounts",
+            joinColumns = {@JoinColumn(name="store_id",referencedColumnName = "store_id")},
+            inverseJoinColumns = {@JoinColumn(name="discount_id",referencedColumnName = "id")})
+    @MapKey(name="id")
     private Map<Integer, Discount> DiscountsInStore;
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "store_conditions",
+            joinColumns = {@JoinColumn(name="store_id",referencedColumnName = "store_id")},
+            inverseJoinColumns = {@JoinColumn(name="condition_id",referencedColumnName = "id")})
+    @MapKey(name="id")
     private Map<Integer, Condition> ConditionsInStore;
 
-    @Transient
+    @OneToOne
     private Discount StoreDiscount;
 
-    @Transient
+    @OneToOne
     private Condition StorePurchaseCondition;
 
     @OneToMany

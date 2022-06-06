@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DB_Tests {
     public static void main(String[] args){
-        IService service=new Service(new PaymentAdapter(),new SupplyingAdapter());
+        IService service=new Service(new PaymentAdapter(),new SupplyingAdapter(),1);
         Response<String> user1Token=service.guestConnect();
         Response<String> managerToken=service.guestConnect();
         service.register("user1","123456");
