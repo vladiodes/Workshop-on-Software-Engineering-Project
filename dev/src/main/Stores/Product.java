@@ -31,7 +31,7 @@ public class Product {
 
     @OneToMany
     private List<ProductReview> reviews;
-    @Transient
+    @OneToOne
     private Policy policy;
     @OneToOne
     private Store store;

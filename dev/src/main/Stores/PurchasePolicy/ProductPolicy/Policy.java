@@ -12,9 +12,12 @@ import java.util.List;
 import javax.persistence.*;
 
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Policy {
 
-
+    @Id
+    @GeneratedValue
     private int id;
 
     /***

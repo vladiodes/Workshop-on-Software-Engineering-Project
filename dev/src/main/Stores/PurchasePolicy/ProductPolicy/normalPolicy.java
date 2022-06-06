@@ -12,12 +12,14 @@ import main.utils.SupplyingInformation;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-
+@Entity
 public class normalPolicy extends DirectPolicy {
 
+    @OneToOne
     private Discount discount;
     private Double originalPrice;
 
+    @OneToOne
     private final Store sellingStore;
     public normalPolicy(Double price, Store store) {
         originalPrice = price;
