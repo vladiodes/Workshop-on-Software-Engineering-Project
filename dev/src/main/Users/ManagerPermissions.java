@@ -6,6 +6,8 @@ import main.Stores.Store;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Entity
@@ -27,7 +29,7 @@ public class ManagerPermissions implements Serializable {
     private Collection<StorePermission> permissions;
 
     public ManagerPermissions(User appointedToManager, User appointedBy, Store IStore){
-        permissions=new ConcurrentLinkedQueue<>();
+        permissions= Collections.synchronizedList(new LinkedList<>());
         this.appointedToManager=appointedToManager;
         this.IStore = IStore;
         this.appointedBy=appointedBy;

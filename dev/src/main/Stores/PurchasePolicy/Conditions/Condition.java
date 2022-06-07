@@ -10,11 +10,21 @@ public abstract class Condition  {
     @Id
     @GeneratedValue
     private int id;
+
+    private int id_in_store;
     public abstract boolean pass(ShoppingBasket shoppingBasket);
     public abstract void addCondition(Condition condition);
     public abstract Collection<Condition> getConditions();
 
     public int getId() {
         return id;
+    }
+
+    public int getId_in_store() {
+        return id_in_store;
+    }
+
+    public void setId_in_store(int id_in_store) {
+        this.id_in_store = id_in_store;
     }
 }

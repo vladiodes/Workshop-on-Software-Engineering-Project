@@ -22,23 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Now need to persist in code">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added persistance in code - now debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DB_Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DB_Tests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/TimedPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/TimedPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/SystemStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/SystemStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +138,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DB_Tests">
+  <component name="RunManager" selected="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -160,42 +150,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DB_Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.DB_Tests" />
+    <configuration name="AT_Req2_4_Req2_5.removeStoreOwnerAppointment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.*" />
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Market" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Market" />
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="main.Communication.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
-      <module name="dev" />
-      <option name="PROGRAM_PARAMETERS" value="store_with_manager.json" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.Communication.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_4_Req2_5" />
+      <option name="METHOD_NAME" value="removeStoreOwnerAppointment" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -215,6 +181,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ATuser2Requirements.biddingOnBargainNotifiesStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="biddingOnBargainNotifiesStaff" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.removeOwnerAppointmentGoodWithForkedChain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeOwnerAppointmentGoodWithForkedChain" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -230,18 +228,18 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.DB_Tests" />
-      <item itemvalue="Application.Market" />
-      <item itemvalue="Application.main.Communication.Main" />
+      <item itemvalue="JUnit.AT_Req2_4_Req2_5.removeStoreOwnerAppointment" />
       <item itemvalue="JUnit.ATuser2Requirements" />
+      <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargainNotifiesStaff" />
+      <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
       <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DB_Tests" />
+        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="Application.Market" />
-        <item itemvalue="Application.main.Communication.Main" />
+        <item itemvalue="JUnit.ATuser2Requirements.biddingOnBargainNotifiesStaff" />
+        <item itemvalue="JUnit.AT_Req2_4_Req2_5.removeStoreOwnerAppointment" />
         <item itemvalue="JUnit.ATuser2Requirements" />
       </list>
     </recent_temporary>
@@ -276,14 +274,8 @@
       <workItem from="1654352103856" duration="1356000" />
       <workItem from="1654439930316" duration="13758000" />
       <workItem from="1654494260542" duration="674000" />
-      <workItem from="1654495452737" duration="13871000" />
-    </task>
-    <task id="LOCAL-00010" summary="Moved Pair to a public package">
-      <created>1650099576694</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1650099576694</updated>
+      <workItem from="1654495452737" duration="15373000" />
+      <workItem from="1654596865680" duration="1694000" />
     </task>
     <task id="LOCAL-00011" summary="REQ 2.4.11 implemented">
       <created>1650101054837</created>
@@ -621,7 +613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654513427162</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Added persistance in code - now debug">
+      <created>1654518445916</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1654518445916</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,7 +666,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Bug fix in user purchase history when invoked by admin" />
     <MESSAGE value="Added purchase policies for products in GUI" />
     <MESSAGE value="Added discounts functionality to gui" />
     <MESSAGE value="Added option to enter secret code for basket in cart" />
@@ -692,7 +690,8 @@
     <MESSAGE value="Continue: Policies..." />
     <MESSAGE value="Added xml config file for hibernate" />
     <MESSAGE value="Now need to persist in code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now need to persist in code" />
+    <MESSAGE value="Added persistance in code - now debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added persistance in code - now debug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -741,6 +740,21 @@
           <url>file://$PROJECT_DIR$/src/main/DB_Tests.java</url>
           <line>40</line>
           <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Discounts_Conditions.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/UnitTests/UserTest.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

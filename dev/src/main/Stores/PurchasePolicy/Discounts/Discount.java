@@ -12,6 +12,8 @@ public abstract class Discount {
     @Id
     @GeneratedValue
     private int id;
+
+    private int id_in_store;
     private LocalDate until;
 
     public Discount(LocalDate until) {
@@ -56,5 +58,13 @@ public abstract class Discount {
 
     public int getId() {
         return id;
+    }
+
+    public int getId_in_store() {
+        return id_in_store;
+    }
+
+    public void setId_in_store(int id_in_store) {
+        this.id_in_store = id_in_store;
     }
 }
