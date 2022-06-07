@@ -12,17 +12,20 @@ public class DAO {
     private static DAO instance;
     private boolean shouldPersist;
     private static boolean enablePersist=false;
+    private static String persistence_unit = "Market";
     public static DAO getInstance(){
         if(instance==null)
-            instance=new DAO(enablePersist);
+            instance=new DAO(enablePersist,persistence_unit);
         return instance;
     }
     public static void enablePersist(){
         enablePersist=true;
     }
+    public static void setPersistence_unit(String unit){
+        persistence_unit=unit;
+    }
     private EntityManager entityManager=null;
-    private String persistence_unit = "Market";
-    private DAO(boolean shouldPersist) {
+    private DAO(boolean shouldPersist,String persistence_unit) {
         this.shouldPersist=shouldPersist;
         if (shouldPersist) {
             try {

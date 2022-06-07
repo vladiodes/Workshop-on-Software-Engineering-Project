@@ -559,6 +559,8 @@ public class User implements Observable {
     }
 
     public boolean bidOnProduct(Store store, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation, IPayment psystem, ISupplying ssystem) {
+        DAO.getInstance().persist(paymentInformation);
+        DAO.getInstance().persist(supplyingInformation);
         Bid bid = new Bid(store.getProduct(productName), this, costumePrice, paymentInformation, supplyingInformation);
         DAO.getInstance().persist(bid);
         boolean output= store.bidOnProduct(productName, bid);
