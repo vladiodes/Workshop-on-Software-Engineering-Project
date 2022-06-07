@@ -6,15 +6,15 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Condition  {
+public abstract class PurchaseCondition {
     @Id
     @GeneratedValue
     private int id;
 
     private int id_in_store;
     public abstract boolean pass(ShoppingBasket shoppingBasket);
-    public abstract void addCondition(Condition condition);
-    public abstract Collection<Condition> getConditions();
+    public abstract void addCondition(PurchaseCondition purchaseCondition);
+    public abstract Collection<PurchaseCondition> getConditions();
 
     public int getId() {
         return id;

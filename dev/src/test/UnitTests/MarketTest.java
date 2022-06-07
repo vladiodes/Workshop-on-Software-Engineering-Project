@@ -4,7 +4,7 @@ import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Payment.PaymentAdapter;
 import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
-import main.Market;
+import main.Market.Market;
 import main.Security.ISecurity;
 import main.Shopping.ShoppingCart;
 import main.Stores.Store;

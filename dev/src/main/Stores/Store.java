@@ -8,13 +8,13 @@ import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
 import main.Publisher.StoreNotification;
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalAndCondition;
-import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalOrCondition;
-import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalXorCondition;
-import main.Stores.PurchasePolicy.Conditions.Condition;
-import main.Stores.PurchasePolicy.Conditions.SimpleConditions.BasketValueCondition;
-import main.Stores.PurchasePolicy.Conditions.SimpleConditions.CategoryAmountCondition;
-import main.Stores.PurchasePolicy.Conditions.SimpleConditions.ProductAmountCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalAndPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalOrPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalXorPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.PurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.BasketValuePurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.CategoryAmountPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.ProductAmountPurchaseCondition;
 import main.Stores.PurchasePolicy.Discounts.*;
 import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.MaximumCompositeDiscount;
 import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.PlusCompositeDiscount;
@@ -26,15 +26,11 @@ import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
 import main.utils.*;
-import org.mockito.internal.matchers.Not;
 
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import javax.persistence.*;
 
 @Entity
@@ -56,7 +52,7 @@ public class Store {
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<ManagerPermissions> managers;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private User founder;
     private boolean isActive;
     private String storeName;
@@ -65,23 +61,17 @@ public class Store {
     @ElementCollection
     private Map<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "store_discounts",
-            joinColumns = {@JoinColumn(name="store_id",referencedColumnName = "store_id")},
-            inverseJoinColumns = {@JoinColumn(name="discount_id",referencedColumnName = "id")})
-    @MapKey(name="id")
+    @MapKey(name="id_in_store")
     private Map<Integer, Discount> DiscountsInStore;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "store_conditions",
-            joinColumns = {@JoinColumn(name="store_id",referencedColumnName = "store_id")},
-            inverseJoinColumns = {@JoinColumn(name="condition_id",referencedColumnName = "id")})
-    @MapKey(name="id")
-    private Map<Integer, Condition> ConditionsInStore;
+    @MapKey(name="id_in_store")
+    private Map<Integer, PurchaseCondition> ConditionsInStore;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Discount StoreDiscount;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Condition StorePurchaseCondition;
+    private PurchaseCondition storePurchasePurchaseCondition;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<PersonalNotification> storeQuestions;
@@ -110,7 +100,7 @@ public class Store {
         DiscountsInStore = Collections.synchronizedMap(new HashMap<>());
         ConditionsInStore = Collections.synchronizedMap(new HashMap<>());
         StoreDiscount = null;
-        StorePurchaseCondition = null;
+        storePurchasePurchaseCondition = null;
         this.owners = Collections.synchronizedList(new LinkedList<>());
         this.managers = Collections.synchronizedList(new LinkedList<>());
         this.productsByName = Collections.synchronizedMap(new HashMap<>());
@@ -223,7 +213,7 @@ public class Store {
         return map.size();
     }
 
-    private Condition getConditionbyID(int id){
+    private PurchaseCondition getConditionbyID(int id){
         if (!this.ConditionsInStore.containsKey(id))
             throw new IllegalArgumentException("Requested condition ID doesn't exist");
         return ConditionsInStore.get(id);
@@ -306,7 +296,7 @@ public class Store {
     }
 
     public int CreateBasketValueCondition(double requiredValue) {
-        Condition cond = new BasketValueCondition(requiredValue);
+        PurchaseCondition cond = new BasketValuePurchaseCondition(requiredValue);
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
         ConditionsInStore.put(out, cond);
@@ -316,7 +306,7 @@ public class Store {
     }
 
     public int CreateCategoryAmountCondition(String category, int amount) {
-        Condition cond = new CategoryAmountCondition(category, amount);
+        PurchaseCondition cond = new CategoryAmountPurchaseCondition(category, amount);
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
         ConditionsInStore.put(out, cond);
@@ -326,7 +316,7 @@ public class Store {
     }
 
     public int CreateProductAmountCondition(String productName, int amount) {
-        Condition cond = new ProductAmountCondition(amount, getProduct(productName));
+        PurchaseCondition cond = new ProductAmountPurchaseCondition(amount, getProduct(productName));
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
         ConditionsInStore.put(out, cond);
@@ -336,7 +326,7 @@ public class Store {
     }
 
     public int CreateLogicalAndCondition(List<Integer> conditionIds) {
-        Condition cond = new LogicalAndCondition();
+        PurchaseCondition cond = new LogicalAndPurchaseCondition();
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
         DAO.getInstance().persist(cond);
@@ -350,7 +340,7 @@ public class Store {
     }
 
     public int CreateLogicalOrCondition(List<Integer> conditionIds) {
-        Condition cond = new LogicalOrCondition();
+        PurchaseCondition cond = new LogicalOrPurchaseCondition();
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
         DAO.getInstance().persist(cond);
@@ -363,7 +353,7 @@ public class Store {
     }
 
     public int CreateLogicalXorCondition(int id1, int id2) {
-        Condition cond = new LogicalXorCondition();
+        PurchaseCondition cond = new LogicalXorPurchaseCondition();
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
         DAO.getInstance().persist(cond);
@@ -382,8 +372,8 @@ public class Store {
 
     public void SetConditionToStore(int ConditionID) {
         if(ConditionID == -1)
-            this.StorePurchaseCondition = null;
-        else this.StorePurchaseCondition = getConditionbyID(ConditionID);
+            this.storePurchasePurchaseCondition = null;
+        else this.storePurchasePurchaseCondition = getConditionbyID(ConditionID);
         DAO.getInstance().merge(this);
     }
 
@@ -395,8 +385,8 @@ public class Store {
 
     public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
         boolean res = this.getIsActive();
-        if(StorePurchaseCondition != null)
-            res &= StorePurchaseCondition.pass(shoppingBasket);
+        if(storePurchasePurchaseCondition != null)
+            res &= storePurchasePurchaseCondition.pass(shoppingBasket);
         for (Map.Entry<Product, Integer> ent: shoppingBasket.getProductsAndQuantities().entrySet() ) {
             res &=  ent.getKey().isPurchasableForAmount(ent.getValue());
             if(shoppingBasket.getCostumePriceForProduct(ent.getKey()) != null)
@@ -493,8 +483,12 @@ public class Store {
     }
 
     private void notifyPurchase() {
-        for (User manager: getOwnersOfStore())
-            manager.notifyObserver(new PersonalNotification(storeName,"Products were bought from your store!"));
+        for (User manager: getOwnersOfStore()){
+            Notification n = new PersonalNotification(storeName,"Products were bought from your store!");
+            DAO.getInstance().persist(n);
+            manager.notifyObserver(n);
+        }
+
     }
 
     public void addReview(StoreReview sReview) {

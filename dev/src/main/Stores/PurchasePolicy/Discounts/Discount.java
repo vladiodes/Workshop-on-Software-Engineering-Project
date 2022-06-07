@@ -1,7 +1,7 @@
 package main.Stores.PurchasePolicy.Discounts;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.Condition;
+import main.Stores.PurchasePolicy.Conditions.PurchaseCondition;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
@@ -52,7 +52,7 @@ public abstract class Discount {
         throw new IllegalArgumentException("Not a composite discount.");
     }
 
-    public void setCondition(Condition cond) {
+    public void setCondition(PurchaseCondition cond) {
         throw new IllegalArgumentException("this discount doesn't have conditions.");
     }
 

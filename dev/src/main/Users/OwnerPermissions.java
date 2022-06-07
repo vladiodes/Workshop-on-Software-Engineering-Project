@@ -2,22 +2,22 @@ package main.Users;
 
 import main.Stores.Store;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class OwnerPermissions implements Serializable {
+
     @Id
-    @OneToOne(cascade = CascadeType.ALL)
+    @GeneratedValue
+    private int id;
+    @OneToOne
     private User appointedToOwner;
-    @Id
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     private User appointedBy;
-    @Id
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     private Store IStore;
 
     public OwnerPermissions(User appointedToOwner, User appointedBy, Store IStore){

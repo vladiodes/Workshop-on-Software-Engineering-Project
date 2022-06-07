@@ -15,23 +15,25 @@ import java.util.List;
 
 public class DB_Tests {
     public static void main(String[] args){
-//        IService service=new Service(new PaymentAdapter(),new SupplyingAdapter(),1);
-//        Response<String> user1Token=service.guestConnect();
-//        Response<String> managerToken=service.guestConnect();
-//        service.register("user1","123456");
-//        service.register("manager","123456");
-//        service.login(user1Token.getResult(),"user1","123456");
-//        service.login(managerToken.getResult(),"manager","123456");
-//
-//        service.openStore(user1Token.getResult(),"store1");
-//        service.appointStoreManager(user1Token.getResult(),"manager","store1");
-//
-//        service.addProductToStore(user1Token.getResult(),"product1","category",null,"desc","store1",100,200);
-//
-//        service.addProductToCart(managerToken.getResult(),"store1","product1",10);
-//        service.purchaseCart(managerToken.getResult(),new PaymentInformation(null,null,123,null,null),new SupplyingInformation(null,null));
-//
-//        System.out.println("ok");
+        IService service=new Service(new PaymentAdapter(),new SupplyingAdapter(),false,true);
+        Response<String> user1Token=service.guestConnect();
+        Response<String> managerToken=service.guestConnect();
+        service.register("user1","123456");
+        service.register("manager","123456");
+        service.login(user1Token.getResult(),"user1","123456");
+        service.login(managerToken.getResult(),"manager","123456");
+
+        service.openStore(user1Token.getResult(),"store1");
+        service.appointStoreManager(user1Token.getResult(),"manager","store1");
+
+        service.addProductToStore(user1Token.getResult(),"product1","category",null,"desc","store1",100,200);
+
+        service.addProductToCart(managerToken.getResult(),"store1","product1",10);
+        service.purchaseCart(managerToken.getResult(),new PaymentInformation(null,null,123,null,null),new SupplyingInformation(null,null));
+
+        service.CreateProductAmountCondition(user1Token.getResult(), "store1","product1",3);
+
+        System.out.println("ok");
         readFromDB();
     }
 

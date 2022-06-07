@@ -66,7 +66,7 @@
                 <p><input type="radio" value="or" name="logical"> Or</p>
                 <p><input type="radio" value="xor" name="logical"> Xor</p>
                 <p><input type="radio" value="and" name="logical"> And</p>
-                <p><input type="radio" value="single" name="logical"> Single condition</p>
+                <p><input type="radio" value="single" name="logical"> Single purchaseCondition</p>
 
                 <hr class="solid">
 

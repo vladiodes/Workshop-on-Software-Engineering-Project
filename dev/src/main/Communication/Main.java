@@ -20,8 +20,9 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 
 
 public class Main {
-    private static IService service = new Service(new PaymentAdapter(), new SupplyingAdapter());
+
     public static void main(String[] args) {
+        IService service = new Service(new PaymentAdapter(), new SupplyingAdapter(),false,true);
         RegisterController registerController=new RegisterController(service);
         LoginController loginController=new LoginController(service);
         StoreController storeController=new StoreController(service);

@@ -1,7 +1,6 @@
 package main.Stores.PurchasePolicy.Conditions.SimpleConditions;
 
-import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.Condition;
+import main.Stores.PurchasePolicy.Conditions.PurchaseCondition;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -10,15 +9,15 @@ import java.util.Collection;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class SimpleCondition extends Condition {
+public abstract class SimplePurchaseCondition extends PurchaseCondition {
 
     @Override
-    public void addCondition(Condition condition) {
+    public void addCondition(PurchaseCondition purchaseCondition) {
         throw new IllegalArgumentException("can't complicate simple condition.");
     }
 
     @Override
-    public Collection<Condition> getConditions() {
+    public Collection<PurchaseCondition> getConditions() {
         throw new IllegalArgumentException("simple condition.");
     }
 }

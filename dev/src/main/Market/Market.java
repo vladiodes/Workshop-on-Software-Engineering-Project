@@ -1,4 +1,4 @@
-package main;
+package main.Market;
 
 
 import io.javalin.websocket.WsContext;
@@ -83,6 +83,17 @@ public class Market {
         security_controller = new Security();
         currentlyLoggedInMembers = new AtomicInteger(0);
         this.initialize(Psystem, Isystem);
+    }
+
+    public Market(IPayment Psystem, ISupplying Ssystem, ConcurrentHashMap<String, User> users, ConcurrentHashMap<String,Store> stores, ConcurrentHashMap<LocalDate,SystemStats> stats){
+        dao=DAO.getInstance();
+        this.membersByUserName=users;
+        this.systemStatsByDate=stats;
+        this.stores=stores;
+        security_controller = new Security();
+        currentlyLoggedInMembers = new AtomicInteger(0);
+        connectedSessions =new ConcurrentHashMap<>();
+        this.initialize(Psystem,Ssystem);
     }
 
     public List<StoreDTO> getAllStoresOf(String userToken) {
@@ -555,10 +566,12 @@ public class Market {
     private void initialize(IPayment Psystem, ISupplying Isystem) {
         String adminUserName = "admin";
         String adminHashPassword = security_controller.hashPassword("admin");
-        User admin = new User(true, adminUserName, adminHashPassword);
-        dao.persist(admin);
-        membersByUserName.put("admin", admin);
-        Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUserName));
+        if(!membersByUserName.containsKey(adminUserName)) {
+            User admin = new User(true, adminUserName, adminHashPassword);
+            dao.persist(admin);
+            membersByUserName.put("admin", admin);
+            Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUserName));
+        }
         setSsystem(Isystem);
         setPsystem(Psystem);
     }

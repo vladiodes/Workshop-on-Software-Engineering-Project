@@ -1,6 +1,8 @@
 package main.Persistence;
 
+import main.Stores.Store;
 import main.Users.User;
+import main.utils.SystemStats;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -8,10 +10,11 @@ import java.util.List;
 
 public class DAO {
     private static DAO instance;
+    private boolean shouldPersist;
     private static boolean enablePersist=false;
     public static DAO getInstance(){
         if(instance==null)
-            instance=new DAO();
+            instance=new DAO(enablePersist);
         return instance;
     }
     public static void enablePersist(){
@@ -19,15 +22,22 @@ public class DAO {
     }
     private EntityManager entityManager=null;
     private String persistence_unit = "Market";
-    private DAO() {
-        if (DAO.enablePersist) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistence_unit);
-            entityManager = emf.createEntityManager();
+    private DAO(boolean shouldPersist) {
+        this.shouldPersist=shouldPersist;
+        if (shouldPersist) {
+            try {
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistence_unit);
+                entityManager = emf.createEntityManager();
+            }
+            catch (Exception e){
+                DAO.enablePersist=false;
+                entityManager=null;
+            }
         }
     }
 
     public <T> void persist(T obj){
-        if(DAO.enablePersist) {
+        if(shouldPersist) {
             EntityTransaction et = null;
             synchronized (entityManager) {
                 try {
@@ -45,7 +55,7 @@ public class DAO {
     }
 
     public <T> void remove(T obj){
-        if(DAO.enablePersist) {
+        if(shouldPersist) {
             EntityTransaction et = null;
             synchronized (entityManager) {
                 try {
@@ -63,7 +73,7 @@ public class DAO {
     }
 
     public <T> void merge(T obj){
-        if(DAO.enablePersist) {
+        if(shouldPersist) {
             EntityTransaction et = null;
             synchronized (entityManager) {
                 try {
@@ -82,7 +92,7 @@ public class DAO {
     }
 
     public <T> List<T> getEntities(String query,Class<T> cls) {
-        if(DAO.enablePersist) {
+        if(shouldPersist) {
             TypedQuery<T> tq = entityManager.createQuery(query, cls);
             List<T> list;
             try {
@@ -100,5 +110,11 @@ public class DAO {
     public List<User> getUsers(){
         return getEntities("select u from User u where u.user_id is not null",User.class);
     }
+    public List<Store> getStores() {
+        return getEntities("select s from Store s where s.store_id is not null",Store.class);
+    }
 
+    public List<SystemStats> getStats() {
+        return getEntities("select s from SystemStats s where s.date is not null",SystemStats.class);
+    }
 }

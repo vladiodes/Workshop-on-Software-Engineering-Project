@@ -47,4 +47,8 @@ public class SystemStats {
     public Integer getNumOfRegistered() {
         return numOfRegistered.get();
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

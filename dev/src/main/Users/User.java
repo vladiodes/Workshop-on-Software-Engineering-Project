@@ -56,7 +56,6 @@ public class User implements Observable {
     private List<OwnerPermissions> ownedStores;
 
     public User() {
-
     }
 
     public List<Store> getManagedStores() {
@@ -595,6 +594,10 @@ public class User implements Observable {
     public void registerObserver(Observer observer) {
         this.observer=observer;
         notifyObserver();
+    }
+
+    public void setObserver(Observer observer){
+        this.observer=observer;
     }
 
     @Override

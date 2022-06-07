@@ -14,14 +14,17 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class ManagerPermissions implements Serializable {
 
     @Id
-    @OneToOne(cascade = CascadeType.ALL)
+    @GeneratedValue
+    private int id;
+
+    @OneToOne
     private User appointedToManager;
 
-    @Id
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     private User appointedBy;
-    @Id
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     private Store IStore;
     @ElementCollection(targetClass = StorePermission.class)
     @CollectionTable
