@@ -23,13 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some test issues">
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/MaximumCompositeDiscountTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/PlusCompositeDiscountTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/SimpleDiscountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/BasketValuePurchaseConditionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/CategoryAmountPurchaseConditionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/LogicalAndPurchaseConditionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/LogicalOrPurchaseConditionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/LogicalXorPurchaseConditionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/ProductAmountPurchaseConditionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/MaximumCompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/MaximumCompositeDiscount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +85,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts",
+    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions",
     "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/TradingSystem-main",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
@@ -128,11 +128,11 @@
       <recent name="test.UnitTests" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="main.Stores.PurchasePolicy.Conditions.CompositeConditions" />
+      <recent name="main.Stores.PurchasePolicy.Conditions.SimpleConditions" />
       <recent name="main.Stores.PurchasePolicy.Discounts.SimpleDiscounts" />
       <recent name="main.Stores.PurchasePolicy.Discounts.CompositeDiscounts" />
       <recent name="test.UnitTests" />
-      <recent name="main.Stores.Discounts" />
-      <recent name="test" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="test.RobustnessTests" />
@@ -142,7 +142,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ConditionalDiscountTest.isEligibleDisallows">
+  <component name="RunManager" selected="JUnit.LogicalXorPurchaseConditionTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -181,7 +181,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConditionalDiscountTest.isEligibleAllows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicalAndPurchaseConditionTest.passAllows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -190,14 +190,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.ConditionalDiscountTest" />
-      <option name="METHOD_NAME" value="isEligibleAllows" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalAndPurchaseConditionTest" />
+      <option name="METHOD_NAME" value="passAllows" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConditionalDiscountTest.isEligibleDisallows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicalAndPurchaseConditionTest.passDisallows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -206,14 +206,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.ConditionalDiscountTest" />
-      <option name="METHOD_NAME" value="isEligibleDisallows" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalAndPurchaseConditionTest" />
+      <option name="METHOD_NAME" value="passDisallows" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MaximumCompositeDiscountTest.getPercent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicalOrPurchaseConditionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -222,14 +222,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MaximumCompositeDiscountTest" />
-      <option name="METHOD_NAME" value="getPercent" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalOrPurchaseConditionTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MaximumCompositeDiscountTest.getPercentNotAllEligible" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicalXorPurchaseConditionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -238,14 +237,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MaximumCompositeDiscountTest" />
-      <option name="METHOD_NAME" value="getPercentNotAllEligible" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalXorPurchaseConditionTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MaximumCompositeDiscountTest.getPercentNothingEligible" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -254,9 +252,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MaximumCompositeDiscountTest" />
-      <option name="METHOD_NAME" value="getPercentNothingEligible" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -264,19 +260,19 @@
     <list>
       <item itemvalue="Application.ServiceLoader" />
       <item itemvalue="Application.main.Communication.Main" />
-      <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleAllows" />
-      <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleDisallows" />
-      <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercent" />
-      <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNotAllEligible" />
-      <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNothingEligible" />
+      <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passAllows" />
+      <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passDisallows" />
+      <item itemvalue="JUnit.LogicalOrPurchaseConditionTest" />
+      <item itemvalue="JUnit.LogicalXorPurchaseConditionTest" />
+      <item itemvalue="JUnit.test.UnitTests in dev" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleDisallows" />
-        <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleAllows" />
-        <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNothingEligible" />
-        <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNotAllEligible" />
-        <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercent" />
+        <item itemvalue="JUnit.LogicalXorPurchaseConditionTest" />
+        <item itemvalue="JUnit.LogicalOrPurchaseConditionTest" />
+        <item itemvalue="JUnit.test.UnitTests in dev" />
+        <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passDisallows" />
+        <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passAllows" />
       </list>
     </recent_temporary>
   </component>
