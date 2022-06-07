@@ -6,12 +6,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class UserTokens {
     private HashMap<String,String> name_Token;
-    private String defaultName = "User";
+    private String defaultName = "u";
     private AtomicInteger nameCounter;
 
     public UserTokens() {
         name_Token = new HashMap<>();
-        nameCounter = new AtomicInteger(0);
+        nameCounter = new AtomicInteger(1);
     }
 
     public void addNameToken(String name, String token){
