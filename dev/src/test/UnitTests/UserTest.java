@@ -6,8 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class UserTest {
     private User user;
@@ -19,6 +24,8 @@ class UserTest {
     @Mock
     private Store store_mock;
 
+
+
     @BeforeEach
     void setUp() {
         user = new User(false,"user1","password");
@@ -28,6 +35,10 @@ class UserTest {
         user4 = new User(false,"user4","password");
         user5 = new User(false,"user5","password");
         store_mock = mock(Store.class);
+        when(store_mock.getOwnersAppointments()).thenReturn(new LinkedList<>());
+        List<ManagerPermissions> managersList = new ArrayList<>();
+        when(store_mock.getManagersAppointments()).thenReturn(managersList);
+        when(store_mock.getManagersAppointments()).thenReturn(managersList);
     }
 
     @Test
@@ -49,6 +60,7 @@ class UserTest {
     @Test
     void addProductToStoreWithFounderPermissions(){
         user.getFoundedStores().add(store_mock);
+        when(store_mock.addProduct("product","category",null,null,5,15)).thenReturn(true);
         boolean res = user.addProductToStore(store_mock,"product","category",null,null,5,15);
         assertTrue(res);
     }
@@ -61,6 +73,7 @@ class UserTest {
     @Test
     void updateProductToStoreWithFounderPermissions(){
         user.getFoundedStores().add(store_mock);
+        when(store_mock.updateProduct("product","product","category",null,null,5,15)).thenReturn(true);
         boolean res = user.updateProductToStore(store_mock,"product","product","category",null,null,5,15);
         assertTrue(res);
     }
@@ -380,6 +393,7 @@ class UserTest {
         appointStoreManager(user,user2,store_mock);
         appointStoreOwner(user,user3,store_mock);
         user.grantOrDeletePermission(user2,store_mock,true,StorePermission.UpdateAddProducts);
+        when(store_mock.removeProduct("product")).thenReturn(true);
         assertTrue(user.removeProductFromStore("product",store_mock));
         assertTrue(user2.removeProductFromStore("product",store_mock));
         assertTrue(user3.removeProductFromStore("product",store_mock));
