@@ -6,7 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -34,6 +36,9 @@ class UserTest {
         user5 = new User(false,"user5","password");
         store_mock = mock(Store.class);
         when(store_mock.getOwnersAppointments()).thenReturn(new LinkedList<>());
+        List<ManagerPermissions> managersList = new ArrayList<>();
+        when(store_mock.getManagersAppointments()).thenReturn(managersList);
+        when(store_mock.getManagersAppointments()).thenReturn(managersList);
     }
 
     @Test

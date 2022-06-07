@@ -23,7 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some test issues">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -265,8 +264,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithChainIncludingManagers" />
         <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithChainIncludingManagers" />
         <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
         <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithChain" />
       </list>
