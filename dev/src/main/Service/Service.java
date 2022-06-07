@@ -829,7 +829,9 @@ public class Service implements IService {
     public Response<Boolean> removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to remove a store owner appointment parameters: token: %s userAppointed: %s storeName:%s", userToken, userAppointed, storeName));
         try {
-            return new Response<>(market.removeStoreOwnerAppointment(userToken, userAppointed, storeName));
+            Response<Boolean> output = new Response<>(market.removeStoreOwnerAppointment(userToken, userAppointed, storeName));
+            this.logCommand(removeStoreOwnerAppointmentCommand.class, new removeStoreOwnerAppointmentCommand(this.uTokens, userToken, userAppointed, storeName));
+            return output;
         } catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to remove store owner appointment, userToken:%s, userAppointed:%s, storeName:%s, Error:%s" ,userToken, userAppointed,storeName, e.getMessage()));
             return new Response<>(e, true);
@@ -873,7 +875,9 @@ public class Service implements IService {
     public Response<Boolean> allowManagerUpdateProducts(String userToken, String managerName, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to grant update products permission to:%s in store:%s", managerName, storeName));
         try {
-            return new Response<>(market.allowManagerUpdateProducts(userToken, managerName, storeName));
+            Response<Boolean> output = new Response<>(market.allowManagerUpdateProducts(userToken, managerName, storeName));
+            this.logCommand(AllowManagerUpdateProductsCommand.class ,new AllowManagerUpdateProductsCommand(this.uTokens, userToken, managerName, storeName));
+            return output;
         } catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to allow manager update products, userToken:%s, managerName:%s, storeName:%s, Error:%s" ,userToken, managerName,storeName, e.getMessage()));
             return new Response<>(e, true);
@@ -1116,7 +1120,9 @@ public class Service implements IService {
     public Response<Boolean> deleteUser(String userToken, String userName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to remove user %s", userName));
         try {
-            return new Response<>(market.deleteUser(userToken, userName));
+            Response<Boolean> output = new Response<>(market.deleteUser(userToken, userName));
+            this.logCommand(deleteUserCommand.class, new deleteUserCommand(this.uTokens, userToken, userName));
+            return output;
         } catch (IllegalArgumentException e) {
             Logger.getInstance().logEvent("Service",String.format("Failed to delete user, userToken:%s, userName:%s, Error:%s" ,userToken,userName, e.getMessage()));
             return new Response<>(e, true);

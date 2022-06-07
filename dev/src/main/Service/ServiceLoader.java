@@ -1,16 +1,14 @@
 package main.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Payment.PaymentAdapter;
-import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Service.CommandExecutor.Invoker;
 import main.Service.CommandExecutor.utils.UserTokens;
 import main.utils.Response;
 
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -38,20 +36,16 @@ public class ServiceLoader {
         service.SaveRecording();
     }
 
-    //you can use this main to create more startup files.
+//    you can use this main to create more startup files.
 //    public static void main(String[] args) throws Exception {
-//        createRecording("store_with_manager.json", new Function<IService, Void>() {
+//        createRecording("Tal3.json", new Function<IService, Void>() {
 //            @Override
 //            public Void apply(IService service) {
-//                Response<String> token = service.guestConnect();
-//                service.register("Founder","123456");
-//                service.login(token.getResult(), "Founder", "123456");
-//                service.openStore(token.getResult(), "Samsung");
-//                service.register("Manager", "123456");
-//                service.appointStoreManager(token.getResult(), "Manager", "Samsung");
-//                service.addProductToStore(token.getResult(), "S7", "Phone", Arrays.asList("TouchScreen", "Cool"), "Very good korean phone.", "Samsung", 10, 2700);
-//                service.logout(token.getResult());
-//                service.guestDisconnect(token.getResult());
+//                Response<String> admintoken = service.guestConnect();
+//                service.register("u1", "123456");
+//                service.login(admintoken.getResult(), "admin", "admin");
+//                service.deleteUser(admintoken.getResult(), "u1");
+//                service.logout(admintoken.getResult());
 //                return null;
 //            }
 //        });
