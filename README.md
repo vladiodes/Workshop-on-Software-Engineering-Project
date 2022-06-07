@@ -11,4 +11,10 @@ List of dependencies to install:
 - org.hibernate:hibernate-core:5.2.12.Final
 - mysql:mysql-connector-java:8.0.29
 - javax.xml.bind:jaxb-api:2.2.2
-
+# How to work with the database:
+You have to open an mySQL server and create 2 databases with the following names:
+- mydb
+- mydb_tests
+* The server's username and password are (or you can choose your own and change persistance.xml config file):
+* username: root
+* password: admin
