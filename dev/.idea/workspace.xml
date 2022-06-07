@@ -23,13 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some test issues">
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/BasketValuePurchaseConditionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/CategoryAmountPurchaseConditionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/LogicalAndPurchaseConditionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/LogicalOrPurchaseConditionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/LogicalXorPurchaseConditionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/ProductAmountPurchaseConditionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +137,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LogicalXorPurchaseConditionTest">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -181,7 +176,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogicalAndPurchaseConditionTest.passAllows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -190,45 +185,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalAndPurchaseConditionTest" />
-      <option name="METHOD_NAME" value="passAllows" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogicalAndPurchaseConditionTest.passDisallows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalAndPurchaseConditionTest" />
-      <option name="METHOD_NAME" value="passDisallows" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogicalOrPurchaseConditionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalOrPurchaseConditionTest" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogicalXorPurchaseConditionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.removeOwnerAppointmentGoodWithChain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -237,13 +200,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.LogicalXorPurchaseConditionTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeOwnerAppointmentGoodWithChain" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.removeOwnerAppointmentGoodWithChainIncludingManagers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -252,6 +216,38 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeOwnerAppointmentGoodWithChainIncludingManagers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.removeOwnerAppointmentGoodWithForkedChain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeOwnerAppointmentGoodWithForkedChain" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -260,19 +256,19 @@
     <list>
       <item itemvalue="Application.ServiceLoader" />
       <item itemvalue="Application.main.Communication.Main" />
-      <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passAllows" />
-      <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passDisallows" />
-      <item itemvalue="JUnit.LogicalOrPurchaseConditionTest" />
-      <item itemvalue="JUnit.LogicalXorPurchaseConditionTest" />
-      <item itemvalue="JUnit.test.UnitTests in dev" />
+      <item itemvalue="JUnit.UserTest" />
+      <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithChain" />
+      <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithChainIncludingManagers" />
+      <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
+      <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LogicalXorPurchaseConditionTest" />
-        <item itemvalue="JUnit.LogicalOrPurchaseConditionTest" />
-        <item itemvalue="JUnit.test.UnitTests in dev" />
-        <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passDisallows" />
-        <item itemvalue="JUnit.LogicalAndPurchaseConditionTest.passAllows" />
+        <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithChainIncludingManagers" />
+        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
+        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithChain" />
       </list>
     </recent_temporary>
   </component>
@@ -777,11 +773,6 @@
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
           <line>189</line>
           <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/UnitTests/UserTest.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
