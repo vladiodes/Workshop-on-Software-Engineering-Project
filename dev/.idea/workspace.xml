@@ -23,15 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some test issues">
-      <change afterPath="$PROJECT_DIR$/BarRecording.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Service/CommandExecutor/Commands/AllowManagerUpdateProductsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Service/CommandExecutor/Commands/deleteUserCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Service/CommandExecutor/Commands/removeStoreOwnerAppointmentCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/RobustnessTests/FaultyExternalSystems.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/CommandExecutor/utils/UserTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/CommandExecutor/utils/UserTokens.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store_with_manager.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,13 +128,14 @@
       <recent name="test" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="test.RobustnessTests" />
       <recent name="test.UnitTests" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main.Communication.Main">
+  <component name="RunManager" selected="JUnit.FaultyExternalSystems">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -180,6 +174,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FaultyExternalSystems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.RobustnessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
+      <option name="MAIN_CLASS_NAME" value="test.RobustnessTests.FaultyExternalSystems" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FaultyExternalSystems.DeliverySystemBroken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.RobustnessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
+      <option name="MAIN_CLASS_NAME" value="test.RobustnessTests.FaultyExternalSystems" />
+      <option name="METHOD_NAME" value="DeliverySystemBroken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FaultyExternalSystems.PaymentSystemBroken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.RobustnessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
+      <option name="MAIN_CLASS_NAME" value="test.RobustnessTests.FaultyExternalSystems" />
+      <option name="METHOD_NAME" value="PaymentSystemBroken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MarketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -191,22 +232,6 @@
       <option name="PACKAGE_NAME" value="test.UnitTests" />
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.removeOwnerAppointmentGoodWithForkedChain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
-      <option name="METHOD_NAME" value="removeOwnerAppointmentGoodWithForkedChain" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -228,15 +253,19 @@
     <list>
       <item itemvalue="Application.ServiceLoader" />
       <item itemvalue="Application.main.Communication.Main" />
+      <item itemvalue="JUnit.FaultyExternalSystems" />
+      <item itemvalue="JUnit.FaultyExternalSystems.DeliverySystemBroken" />
+      <item itemvalue="JUnit.FaultyExternalSystems.PaymentSystemBroken" />
       <item itemvalue="JUnit.MarketTest" />
-      <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
       <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FaultyExternalSystems" />
+        <item itemvalue="JUnit.FaultyExternalSystems.PaymentSystemBroken" />
+        <item itemvalue="JUnit.FaultyExternalSystems.DeliverySystemBroken" />
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.MarketTest" />
-        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
       </list>
     </recent_temporary>
   </component>
