@@ -39,6 +39,12 @@ public class DAO {
         }
     }
 
+    public static void disablePersist() {
+        instance.closeCon();
+        instance=null;
+        enablePersist=false;
+    }
+
     public <T> void persist(T obj){
         if(shouldPersist) {
             EntityTransaction et = null;
@@ -108,6 +114,10 @@ public class DAO {
         else{
             return new LinkedList<>();
         }
+    }
+
+    private void closeCon(){
+        this.entityManager.close();
     }
 
     public List<User> getUsers(){

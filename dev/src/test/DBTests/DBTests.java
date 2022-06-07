@@ -11,8 +11,10 @@ import main.Service.Service;
 import main.utils.PaymentInformation;
 import main.utils.Response;
 import main.utils.SupplyingInformation;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 
@@ -68,7 +70,8 @@ public class DBTests {
         setUp();
 
         DeleteChainOwnersWorks();
-        setUp();
+
+        DAO.disablePersist();
     }
 
 
@@ -179,4 +182,6 @@ public class DBTests {
         Assertions.assertFalse(wasError);
         Assertions.assertEquals(1,r.getResult().size());
     }
+
+
 }
