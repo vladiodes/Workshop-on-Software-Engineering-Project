@@ -1,24 +1,26 @@
 package test.UnitTests;
 
-import main.Stores.IStore;
+import main.Stores.Store;
 import main.Users.ManagerPermissions;
 import main.Users.StorePermission;
 import main.Users.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import test.Mocks.StoreMock;
+import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class ManagerPermissionsTest {
     private ManagerPermissions mp;
-    private IStore mock_store;
+    @Mock
+    private Store mock_store;
     private User appointing_user;
     private User appointed_user;
 
     @BeforeEach
     void setUp(){
-        mock_store=new StoreMock();
+        mock_store=mock(Store.class);
         appointing_user =new User(false,"user1","password");
         appointed_user =new User(false,"user2","password");
         mp=new ManagerPermissions(appointing_user, appointed_user,mock_store);

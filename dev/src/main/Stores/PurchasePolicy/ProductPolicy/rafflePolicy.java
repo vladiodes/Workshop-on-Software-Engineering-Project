@@ -4,31 +4,55 @@ import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Publisher.PersonalNotification;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Pair;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
 public class rafflePolicy extends DirectPolicy {
     private double accumaltivePrice;
-    private ConcurrentHashMap<User, Double> participants;
-    private ConcurrentHashMap<User, Pair<ISupplying,SupplyingInformation>> userSupplyInformation;
-    private ConcurrentHashMap<User, Pair<IPayment,PaymentInformation>> userPaymentInformation;
-    private final IStore store;
+    @Transient
+    private ISupplying supplying;
+    @Transient
+    private IPayment payment;
+    @ElementCollection
+    private Map<User, Double> participants;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_supplying_info_tbl",
+            joinColumns = {@JoinColumn(name = "policy_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "supplying_info_id", referencedColumnName = "id")})
+    @MapKeyJoinColumn(name = "user_id")
+    private Map<User, SupplyingInformation> userSupplyInformation;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_payment_info_tbl",
+            joinColumns = {@JoinColumn(name = "policy_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "payment_info_id", referencedColumnName = "id")})
+    @MapKeyJoinColumn(name = "user_id")
+    private Map<User, PaymentInformation> userPaymentInformation;
+    @OneToOne
+    private final Store store;
     private double originalPrice;
-    public rafflePolicy(IStore store, Double originalPrice) {
+    public rafflePolicy(Store store, Double originalPrice) {
         this.store = store;
         this.accumaltivePrice = 0;
-        this.participants = new ConcurrentHashMap<>();
-        userSupplyInformation = new ConcurrentHashMap<>();
-        userPaymentInformation = new ConcurrentHashMap<>();
+        this.participants = Collections.synchronizedMap(new HashMap<>());
+        userSupplyInformation = Collections.synchronizedMap(new HashMap<>());
+        userPaymentInformation = Collections.synchronizedMap(new HashMap<>());
         this.setOriginalPrice(originalPrice);
+    }
+
+    public rafflePolicy() {
+        store=new Store();
     }
 
     /***
@@ -60,9 +84,8 @@ public class rafflePolicy extends DirectPolicy {
 
     @Override
     public void close() {
-        for (Map.Entry<User, Pair<IPayment,PaymentInformation>> entry : userPaymentInformation.entrySet()){
-            Pair<IPayment, PaymentInformation> pay = entry.getValue();
-            pay.first.abort(pay.second);
+        for (Map.Entry<User,PaymentInformation> entry : userPaymentInformation.entrySet()){
+            payment.abort(entry.getValue());
             entry.getKey().notifyObserver(new PersonalNotification(store.getName(),"Raffle was closed, you should get refunded according to the payment service policy."));
         }
         this.ResetRaffle();
@@ -114,10 +137,10 @@ public class rafflePolicy extends DirectPolicy {
 
     private void executeRaffle(Product product){
         User winner = evaluateWinner();
-        Pair<ISupplying, SupplyingInformation> supl = userSupplyInformation.get(winner);
+        SupplyingInformation supl = userSupplyInformation.get(winner);
         Map<Product, Integer> items = new HashMap<>();
         items.put(product, 1);
-        if(supl.first.supply(supl.second, items)){
+        if(supplying.supply(supl, items)){
             winner.notifyObserver(new PersonalNotification(store.getName(),String.format("You have won the raffle for %s!", product.getName())));
         } else {
             winner.notifyObserver(new PersonalNotification(store.getName(),
@@ -140,11 +163,15 @@ public class rafflePolicy extends DirectPolicy {
 
     private void addUserToRaffle(User user, Double price, ISupplying supplying, SupplyingInformation supplyingInformation, IPayment payment, PaymentInformation paymentInformation){
         double oldvalue;
+        if(this.supplying==null) {
+            this.supplying = supplying;
+            this.payment = payment;
+        }
         if(participants.containsKey(user)){
             oldvalue = participants.get(user);
         } else oldvalue = 0;
-        userSupplyInformation.put(user, new Pair<>(supplying, supplyingInformation));
-        userPaymentInformation.put(user, new Pair<>(payment, paymentInformation));
+        userSupplyInformation.put(user, supplyingInformation);
+        userPaymentInformation.put(user, paymentInformation);
         participants.put(user, oldvalue + price);
     }
 }

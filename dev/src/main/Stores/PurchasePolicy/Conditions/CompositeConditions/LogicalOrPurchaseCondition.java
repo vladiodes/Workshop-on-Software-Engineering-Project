@@ -1,14 +1,16 @@
 package main.Stores.PurchasePolicy.Conditions.CompositeConditions;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.Condition;
-import main.Stores.PurchasePolicy.Discounts.Discount;
+import main.Stores.PurchasePolicy.Conditions.PurchaseCondition;
 
-public class LogicalOrCondition extends CompositeCondition{
+import javax.persistence.Entity;
+
+@Entity
+public class LogicalOrPurchaseCondition extends CompositePurchaseCondition {
     @Override
     public boolean pass(ShoppingBasket shoppingBasket) {
         boolean output = false;
-        for (Condition cond: this.Conditions)
+        for (PurchaseCondition cond: this.purchaseConditions)
             output |= cond.pass(shoppingBasket);
         return output;
     }

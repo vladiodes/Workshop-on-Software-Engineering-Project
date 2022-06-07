@@ -12,7 +12,7 @@
     </style>
     <div class="content">
         <h2>Compose new restriction rule from previous rules to a store</h2>
-        <p>Select a store, and then select previous ids of conditions to compose a new condition</p>
+        <p>Select a store, and then select previous ids of conditions to compose a new purchaseCondition</p>
         <hr class="solid">
         <form action="/composeConditionSelectStorePost" method="post">
             <p>Select your store</p>
@@ -29,13 +29,13 @@
             <form action="/composeRestrictions" method="post">
                 <input type="hidden" name="storeName" value="$store.getStoreName()">
                 <hr class="solid">
-                <h2>First condition:</h2>
+                <h2>First purchaseCondition:</h2>
                 <p>Condition ID</p>
                 <input type="number" name="condition1_id" value="0" required>
 
                 <hr class="solid">
 
-                <h2>Second condition:</h2>
+                <h2>Second purchaseCondition:</h2>
                 <p>Discount ID</p>
                 <input type="number" name="condition2_id" value="0" required>
 
@@ -48,7 +48,7 @@
 
                 <hr class="solid">
 
-                <input type="submit" value="Create new condition rule and assign to store" style="margin-bottom: 10px;">
+                <input type="submit" value="Create new purchaseCondition rule and assign to store" style="margin-bottom: 10px;">
             </form>
             #end
 

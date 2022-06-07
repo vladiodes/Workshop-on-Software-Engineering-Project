@@ -9,3 +9,6 @@ List of dependencies to install:
 - io.javalin:javalin:3.13.7
 - com.fasterxml.jackson.core:jackson-databind:2.0.2
 - org.hibernate:hibernate-core:5.2.12.Final
+- mysql:mysql-connector-java:8.0.29
+- javax.xml.bind:jaxb-api:2.2.2
+

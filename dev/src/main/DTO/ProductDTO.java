@@ -3,7 +3,15 @@ package main.DTO;
 import main.Stores.Product;
 import org.mockito.internal.matchers.Null;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class ProductDTO {
+    @Id
+    @GeneratedValue
+    private int id;
     private String productName;
     private String description;
 
@@ -19,6 +27,10 @@ public class ProductDTO {
         this.storeName=product.getStore().getName();
         this.price=product.getCleanPrice();
         this.quantity=product.getQuantity();
+    }
+
+    public ProductDTO() {
+
     }
 
     public String getProductName() {

@@ -29,13 +29,13 @@ public class Purchase {
         this.supplyingSystem = supplyingSystem;
     }
 
-    public Purchase(Bid bid, ShoppingCart cart){
+    public Purchase(Bid bid, ShoppingCart cart,IPayment payment,ISupplying supplying){
         this.pinfo = bid.getPaymentInformation();
         this.sinfo = bid.getSupplyingInformation();
         this.user = bid.getUser();
         this.cart = cart;
-        this.paymentSystem = bid.getPayment();
-        this.supplyingSystem = bid.getSupplying();
+        this.paymentSystem = payment;
+        this.supplyingSystem = supplying;
     }
 
     public void executePurchase() throws Exception {
@@ -65,7 +65,7 @@ public class Purchase {
     }
 
     private void updateMarket() {
-        ConcurrentHashMap<String, ShoppingBasket> baskets = cart.getBaskets();
+        Map<String, ShoppingBasket> baskets = cart.getBaskets();
         for(ShoppingBasket sb : baskets.values())
             sb.purchaseBasket(this.user, supplyingSystem, this.sinfo , this.pinfo, this.paymentSystem);
         this.user.addCartToHistory(this.cart);

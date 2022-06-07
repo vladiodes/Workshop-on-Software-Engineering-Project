@@ -22,14 +22,36 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Some more fixed to bidding...">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some test issues">
+      <change afterPath="$PROJECT_DIR$/src/main/Market/MarketBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/IStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/IStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DB_Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DB_Tests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositeCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/CompositePurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndPurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalOrCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalOrPurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalXorCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalXorPurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/PurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValueCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/BasketValuePurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/CategoryAmountCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/CategoryAmountPurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/ProductAmountCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/ProductAmountPurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimpleCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/SimpleConditions/SimplePurchaseCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/ConditionalDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts/ConditionalDiscount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Mocks/StoreMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/ManagerPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/OwnerPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/utils/SystemStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/SystemStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/addSimpleConditionToStore.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/addSimpleConditionToStore.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/composeConditionFromPrevRules.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/composeConditionFromPrevRules.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/composeDiscountToStore.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/composeDiscountToStore.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/MarketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/MarketTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +64,7 @@
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="Tag Library Descriptor" />
         <option value="Class" />
       </list>
     </option>
@@ -74,6 +97,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;2c95b5a9-8801-47ea-a2f8-a24f7211c10e&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
@@ -84,15 +108,16 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev/src/resources/velocity/store&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/TradingSystem-main&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="main.Users" />
       <recent name="main.utils" />
       <recent name="main.Stores" />
       <recent name="main.DTO" />
@@ -108,6 +133,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\META-INF" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity\store" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src\resources\velocity" />
       <recent name="C:\Users\vladi\OneDrive\Desktop\Workshop-on-Software-Engineering-Project\dev\src" />
@@ -131,8 +157,11 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="test.UnitTests" />
     </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -144,10 +173,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="main.Communication.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DB_Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.DB_Tests" />
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.Market.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
-      <option name="PROGRAM_PARAMETERS" value="store_with_manager.json" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.Communication.*" />
@@ -158,48 +199,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MarketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ATuser2Requirements.allStaffApprovesBargain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.removeOwnerAppointmentGoodWithForkedChain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="allStaffApprovesBargain" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ATuser2Requirements.userBidsOnTwoDifferentProductsAndApprovedOneOfThem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.AcceptanceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
-      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
-      <option name="METHOD_NAME" value="userBidsOnTwoDifferentProductsAndApprovedOneOfThem" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="removeOwnerAppointmentGoodWithForkedChain" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -220,19 +245,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.main.Communication.Main" />
-      <item itemvalue="JUnit.ATuser2Requirements" />
-      <item itemvalue="JUnit.ATuser2Requirements.allStaffApprovesBargain" />
-      <item itemvalue="JUnit.ATuser2Requirements.userBidsOnTwoDifferentProductsAndApprovedOneOfThem" />
+      <item itemvalue="Application.main.DB_Tests" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.MarketTest" />
+      <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
       <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="Application.main.Communication.Main" />
-        <item itemvalue="JUnit.ATuser2Requirements" />
-        <item itemvalue="JUnit.ATuser2Requirements.allStaffApprovesBargain" />
-        <item itemvalue="JUnit.ATuser2Requirements.userBidsOnTwoDifferentProductsAndApprovedOneOfThem" />
+        <item itemvalue="JUnit.MarketTest" />
+        <item itemvalue="Application.main.DB_Tests" />
+        <item itemvalue="JUnit.UserTest.removeOwnerAppointmentGoodWithForkedChain" />
       </list>
     </recent_temporary>
   </component>
@@ -256,84 +281,18 @@
       <workItem from="1653552678868" duration="657000" />
       <workItem from="1653553957518" duration="172000" />
       <workItem from="1653633326592" duration="24513000" />
-      <workItem from="1653717820849" duration="5447000" />
-    </task>
-    <task id="LOCAL-00001" summary="Working on REQ 2.4.1 - manage store inventory&#10;Implemented some basic staff">
-      <created>1649926452757</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1649926452757</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Finished implementing REQ 2.4.1 - managing store inventory">
-      <created>1650004007560</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1650004007576</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Finished implementing REQ 2.4.4 - Appointing an owner to a store">
-      <created>1650005631970</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1650005631970</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Finished implementing REQ 2.4.5 - Deleting owner appointment">
-      <created>1650009338077</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1650009338077</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Finished implementing REQ 2.4.6 - Appointing store manager">
-      <created>1650010816917</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1650010816917</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Finished implementing REQ 2.4.7 - Changing manager's permissions">
-      <created>1650032325375</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1650032325375</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Finished implementing REQ 2.4.8 and some fixes to REQ 2.4.7">
-      <created>1650034099630</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1650034099630</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Finished implementing REQ 2.4.9 - making a store inactive">
-      <created>1650035124004</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1650035124004</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Finished implementing REQ 2.4.10">
-      <created>1650035526252</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1650035526252</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Moved Pair to a public package">
-      <created>1650099576694</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1650099576694</updated>
-    </task>
-    <task id="LOCAL-00011" summary="REQ 2.4.11 implemented">
-      <created>1650101054837</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1650101054837</updated>
+      <workItem from="1653717820849" duration="5977000" />
+      <workItem from="1654243547311" duration="2245000" />
+      <workItem from="1654262029373" duration="52000" />
+      <workItem from="1654262446149" duration="27000" />
+      <workItem from="1654271742871" duration="462000" />
+      <workItem from="1654272885772" duration="651000" />
+      <workItem from="1654323545795" duration="15106000" />
+      <workItem from="1654352103856" duration="1356000" />
+      <workItem from="1654439930316" duration="13758000" />
+      <workItem from="1654494260542" duration="674000" />
+      <workItem from="1654495452737" duration="15373000" />
+      <workItem from="1654596865680" duration="7780000" />
     </task>
     <task id="LOCAL-00012" summary="REQ 2.4.12 implemented">
       <created>1650102737497</created>
@@ -573,7 +532,112 @@
       <option name="project" value="LOCAL" />
       <updated>1653728369634</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Test fixes">
+      <created>1653729568629</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1653729568629</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Need to annotate and map all classes...">
+      <created>1654352618493</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1654352618493</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Added simple mapping for user-user_state... working.">
+      <created>1654353466993</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1654353466993</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Annotating...">
+      <created>1654451740153</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1654451740153</updated>
+    </task>
+    <task id="LOCAL-00050" summary="More general function in DAO">
+      <created>1654451966895</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1654451966895</updated>
+    </task>
+    <task id="LOCAL-00051" summary="More annotations... believe the process">
+      <created>1654456875836</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1654456875836</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map">
+      <created>1654458648728</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1654458648728</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Persisting history">
+      <created>1654460964546</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1654460964546</updated>
+    </task>
+    <task id="LOCAL-00054" summary="To continue: add annotations for discounts, conditions">
+      <created>1654464055990</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1654464055990</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Mapped store, conditions and discounts">
+      <created>1654496629264</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1654496629264</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Continue: Policies...">
+      <created>1654498765979</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1654498765979</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Added xml config file for hibernate">
+      <created>1654505110416</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1654505110416</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Now need to persist in code">
+      <created>1654513427162</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1654513427162</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Added persistance in code - now debug">
+      <created>1654518445916</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1654518445916</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Fixed some test issues">
+      <created>1654598613163</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1654598613163</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,21 +683,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added NotificationBus tests" />
-    <MESSAGE value="Added ManagerPermissions tests" />
-    <MESSAGE value="Fixed compilation issues, still refactoring" />
-    <MESSAGE value="Refactoring - moving store messages to Notificationbus" />
-    <MESSAGE value="Refactoring - moving store messages to NotificationBus&#10;Refactoring - fixing all kinds of warnings and types" />
-    <MESSAGE value="concurrency bug fix in open store" />
-    <MESSAGE value="Added search store function to gui" />
-    <MESSAGE value="Added write review functionality to client" />
-    <MESSAGE value="Added deleting products from store functionality to gui" />
-    <MESSAGE value="Answering buyers' queries functionality" />
-    <MESSAGE value="Added sending questions to store functionality" />
-    <MESSAGE value="Better history of user view" />
-    <MESSAGE value="Better store history view" />
-    <MESSAGE value="Bug fix in user purchase history when invoked by admin" />
-    <MESSAGE value="Added purchase policies for products in GUI" />
     <MESSAGE value="Added discounts functionality to gui" />
     <MESSAGE value="Added option to enter secret code for basket in cart" />
     <MESSAGE value="Deleted some files regarding HTTPS" />
@@ -644,7 +693,22 @@
     <MESSAGE value="Added composing complex conditions for store in gui" />
     <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
     <MESSAGE value="Some more fixed to bidding..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some more fixed to bidding..." />
+    <MESSAGE value="Test fixes" />
+    <MESSAGE value="Need to annotate and map all classes..." />
+    <MESSAGE value="Added simple mapping for user-user_state... working." />
+    <MESSAGE value="Annotating..." />
+    <MESSAGE value="More general function in DAO" />
+    <MESSAGE value="More annotations... believe the process" />
+    <MESSAGE value="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map" />
+    <MESSAGE value="Persisting history" />
+    <MESSAGE value="To continue: add annotations for discounts, conditions" />
+    <MESSAGE value="Mapped store, conditions and discounts" />
+    <MESSAGE value="Continue: Policies..." />
+    <MESSAGE value="Added xml config file for hibernate" />
+    <MESSAGE value="Now need to persist in code" />
+    <MESSAGE value="Added persistance in code - now debug" />
+    <MESSAGE value="Fixed some test issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some test issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -658,11 +722,6 @@
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
           <line>510</line>
           <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions/LogicalAndCondition.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
@@ -695,9 +754,29 @@
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/DTO/ShoppingCartDTO.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="54" />
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Discounts_Conditions.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/UnitTests/UserTest.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Service/Service.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Main.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

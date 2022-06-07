@@ -3,27 +3,25 @@ package main.Stores;
 import main.DTO.ShoppingBasketDTO;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Persistence.DAO;
 import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
 import main.Publisher.StoreNotification;
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalAndCondition;
-import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalOrCondition;
-import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalXorCondition;
-import main.Stores.PurchasePolicy.Conditions.Condition;
-import main.Stores.PurchasePolicy.Conditions.SimpleConditions.BasketValueCondition;
-import main.Stores.PurchasePolicy.Conditions.SimpleConditions.CategoryAmountCondition;
-import main.Stores.PurchasePolicy.Conditions.SimpleConditions.ProductAmountCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalAndPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalOrPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.CompositeConditions.LogicalXorPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.PurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.BasketValuePurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.CategoryAmountPurchaseCondition;
+import main.Stores.PurchasePolicy.Conditions.SimpleConditions.ProductAmountPurchaseCondition;
 import main.Stores.PurchasePolicy.Discounts.*;
 import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.MaximumCompositeDiscount;
 import main.Stores.PurchasePolicy.Discounts.CompositeDiscounts.PlusCompositeDiscount;
 import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.ConditionalDiscount;
 import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.SecretDiscount;
 import main.Stores.PurchasePolicy.Discounts.SimpleDiscounts.SimpleDiscount;
-import main.Stores.PurchasePolicy.ProductPolicy.AuctionPolicy;
-import main.Stores.PurchasePolicy.ProductPolicy.BargainingPolicy;
-import main.Stores.PurchasePolicy.ProductPolicy.normalPolicy;
-import main.Stores.PurchasePolicy.ProductPolicy.rafflePolicy;
+import main.Stores.PurchasePolicy.ProductPolicy.*;
 import main.Users.ManagerPermissions;
 import main.Users.OwnerPermissions;
 import main.Users.User;
@@ -32,31 +30,56 @@ import main.utils.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.*;
+import javax.persistence.*;
 
-public class Store implements IStore {
+@Entity
+public class Store {
 
-    private ConcurrentHashMap<String, Product> productsByName;
-    private ConcurrentLinkedQueue<OwnerPermissions> owners;
-    private ConcurrentLinkedQueue<ManagerPermissions> managers;
+    @Id
+    @GeneratedValue
+    private int store_id;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "store_products",
+            joinColumns = {@JoinColumn(name="store_id",referencedColumnName = "store_id")},
+            inverseJoinColumns = {@JoinColumn(name="product_id",referencedColumnName = "id")})
+    @MapKey(name="productName")
+    private Map<String, Product> productsByName;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<OwnerPermissions> owners;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<ManagerPermissions> managers;
+
+    @OneToOne
     private User founder;
     private boolean isActive;
     private String storeName;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<StoreReview> storeReviews;
-    private ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
-    private ConcurrentHashMap<Integer, Discount> DiscountsInStore;
-    private ConcurrentHashMap<Integer, Condition> ConditionsInStore;
+    @ElementCollection
+    private Map<ShoppingBasketDTO, LocalDateTime> purchaseHistoryByTime;
+    @OneToMany(cascade = CascadeType.ALL)
+    @MapKey(name="id_in_store")
+    private Map<Integer, Discount> DiscountsInStore;
+    @OneToMany(cascade = CascadeType.ALL)
+    @MapKey(name="id_in_store")
+    private Map<Integer, PurchaseCondition> ConditionsInStore;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Discount StoreDiscount;
-    private Condition StorePurchaseCondition;
 
-    private ConcurrentLinkedQueue<PersonalNotification> storeQuestions;
+    @OneToOne(cascade = CascadeType.ALL)
+    private PurchaseCondition storePurchasePurchaseCondition;
 
-    @Override
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<PersonalNotification> storeQuestions;
+
+    public Store() {
+
+    }
+
     public List<User> getOwnersOfStore() {
         LinkedList<User> storeOwners = new LinkedList<>();
         for (OwnerPermissions ow : owners) {
@@ -65,7 +88,6 @@ public class Store implements IStore {
         return storeOwners;
     }
 
-    @Override
     public List<User> getManagersOfStore() {
         LinkedList<User> storeManagers = new LinkedList<>();
         for (ManagerPermissions mp : managers) {
@@ -75,32 +97,32 @@ public class Store implements IStore {
     }
 
     public Store(String storeName, User founder) {
-        DiscountsInStore = new ConcurrentHashMap<>();
-        ConditionsInStore = new ConcurrentHashMap<>();
+        DiscountsInStore = Collections.synchronizedMap(new HashMap<>());
+        ConditionsInStore = Collections.synchronizedMap(new HashMap<>());
         StoreDiscount = null;
-        StorePurchaseCondition = null;
-        this.owners = new ConcurrentLinkedQueue<>();
-        this.managers = new ConcurrentLinkedQueue<>();
-        this.productsByName = new ConcurrentHashMap<>();
+        storePurchasePurchaseCondition = null;
+        this.owners = Collections.synchronizedList(new LinkedList<>());
+        this.managers = Collections.synchronizedList(new LinkedList<>());
+        this.productsByName = Collections.synchronizedMap(new HashMap<>());
         isActive = true;
         this.storeName = storeName;
         this.founder = founder;
-        purchaseHistoryByTime = new ConcurrentHashMap<>();
+        purchaseHistoryByTime = Collections.synchronizedMap(new HashMap<>());
         this.storeReviews = new LinkedList<>();
-        this.storeQuestions=new ConcurrentLinkedQueue<>();
+        this.storeQuestions=Collections.synchronizedList(new LinkedList<>());
     }
 
-    @Override
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
         if (productsByName.containsKey(productName))
             throw new IllegalArgumentException("There's already such product with this name in the store");
 
         Product product = new Product(this,productName, category, keyWords, description, quantity, price);
+        DAO.getInstance().persist(product);
         productsByName.put(productName, product);
+        DAO.getInstance().merge(this);
         return true;
     }
 
-    @Override
     public boolean updateProduct(String oldProductName, String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
         Product product = productsByName.get(oldProductName);
         if (product == null)
@@ -113,59 +135,57 @@ public class Store implements IStore {
 
         productsByName.remove(oldProductName);
         productsByName.put(newProductName, product);
+        DAO.getInstance().merge(product);
         return true;
     }
 
-    @Override
-    public ConcurrentLinkedQueue<OwnerPermissions> getOwnersAppointments() {
+    public Collection<OwnerPermissions> getOwnersAppointments() {
         return owners;
     }
 
-    @Override
-    public ConcurrentLinkedQueue<ManagerPermissions> getManagersAppointments() {
+    public Collection<ManagerPermissions> getManagersAppointments() {
         return managers;
     }
 
-    @Override
     public void addOwnerToStore(OwnerPermissions newOwnerAppointment) {
         owners.add(newOwnerAppointment);
+        DAO.getInstance().merge(this);
     }
 
-    @Override
     public void addManager(ManagerPermissions newManagerAppointment) {
         managers.add(newManagerAppointment);
     }
 
-    @Override
     public void removeManager(ManagerPermissions mp) {
         managers.remove(mp);
+        DAO.getInstance().merge(this);
     }
 
-    @Override
     public void removeOwner(OwnerPermissions ow) {
         owners.remove(ow);
+        DAO.getInstance().merge(this);
     }
 
     public synchronized void closeStore() {
         if (!isActive)
             throw new IllegalArgumentException("The store is already closed!");
         isActive = false;
-        sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now inactive"));
+        DAO.getInstance().merge(this);
+        Notification n =new StoreNotification(storeName,"The store is now inactive");
+        DAO.getInstance().persist(n);
+        sendMessageToStaffOfStore(n);
     }
 
-    @Override
-    public ConcurrentHashMap<String, Product> getProductsByName() {
+    public Map<String, Product> getProductsByName() {
         return productsByName;
     }
 
-    @Override
     public Product getProduct(String name) {
         if(!productsByName.containsKey(name))
             throw new IllegalArgumentException("Request product doesn't exist");
         return productsByName.get(name);
     }
 
-    @Override
     public void sendMessageToStaffOfStore(Notification notification) {
         founder.notifyObserver(notification);
         for (User u : getOwnersOfStore())
@@ -174,7 +194,6 @@ public class Store implements IStore {
             u.notifyObserver(notification);
     }
 
-    @Override
     public List<String> getStoreMessages() {
         LinkedList<String> lst = new LinkedList<>();
         for(PersonalNotification notification : storeQuestions){
@@ -183,18 +202,18 @@ public class Store implements IStore {
         return lst;
     }
 
-    @Override
     public void addQuestionToStore(String userName, String message) {
         PersonalNotification n = new PersonalNotification(userName,message);
+        DAO.getInstance().persist(n);
         storeQuestions.add(n);
         sendMessageToStaffOfStore(n);
     }
 
-    private synchronized <K, V> int getID(ConcurrentHashMap<K, V> map){
+    private synchronized <K, V> int getID(Map<K, V> map){
         return map.size();
     }
 
-    private Condition getConditionbyID(int id){
+    private PurchaseCondition getConditionbyID(int id){
         if (!this.ConditionsInStore.containsKey(id))
             throw new IllegalArgumentException("Requested condition ID doesn't exist");
         return ConditionsInStore.get(id);
@@ -206,142 +225,168 @@ public class Store implements IStore {
         return DiscountsInStore.get(id);
     }
 
-    @Override
     public int CreateSimpleDiscount(LocalDate until, Double percent) {
         SimpleDiscount disc = new SimpleDiscount(until, percent);
         int id = getID(this.DiscountsInStore);
+        disc.setId_in_store(id);
         this.DiscountsInStore.put(id, disc);
+        DAO.getInstance().persist(disc);
+        DAO.getInstance().merge(this);
         return id;
     }
 
-    @Override
     public int CreateSecretDiscount(LocalDate until, Double percent, String secretCode) {
         SecretDiscount disc = new SecretDiscount(until, percent, secretCode);
         int id = getID(this.DiscountsInStore);
+        disc.setId_in_store(id);
         this.DiscountsInStore.put(id, disc);
+        DAO.getInstance().persist(disc);
+        DAO.getInstance().merge(this);
         return id;
     }
 
-    @Override
     public int CreateConditionalDiscount(LocalDate until, Double percent, int condID) {
         ConditionalDiscount disc = new ConditionalDiscount(until, percent, getConditionbyID(condID));
         int id = getID(this.DiscountsInStore);
+        disc.setId_in_store(id);
         this.DiscountsInStore.put(id, disc);
+        DAO.getInstance().persist(disc);
+        DAO.getInstance().merge(this);
         return id;
     }
 
-    @Override
     public int CreateMaximumCompositeDiscount(LocalDate until, List<Integer> discounts) {
         MaximumCompositeDiscount disc = new MaximumCompositeDiscount(until);
         int id = getID(this.DiscountsInStore);
         this.DiscountsInStore.put(id, disc);
+        disc.setId_in_store(id);
+        DAO.getInstance().persist(disc);
         for(Integer discid : discounts)
             disc.addDiscount(getDiscountByID(discid));
+        DAO.getInstance().merge(disc);
+        DAO.getInstance().merge(this);
         return id;
     }
 
-    @Override
     public int CreatePlusCompositeDiscount(LocalDate until, List<Integer> discounts) {
         PlusCompositeDiscount disc = new PlusCompositeDiscount(until);
         int id = getID(this.DiscountsInStore);
         this.DiscountsInStore.put(id, disc);
+        disc.setId_in_store(id);
+        DAO.getInstance().persist(disc);
         for(Integer discid : discounts)
             disc.addDiscount(getDiscountByID(discid));
+        DAO.getInstance().merge(disc);
+        DAO.getInstance().merge(this);
         return id;
     }
 
-    @Override
     public void SetDiscountToProduct(int discountID, String productName) {
         if (discountID == -1)
             this.getProduct(productName).setDiscount(null);
         else this.getProduct(productName).setDiscount(getDiscountByID(discountID));
+        DAO.getInstance().merge(getProduct(productName));
     }
 
-    @Override
     public void SetDiscountToStore(int discountID) {
         if (discountID == -1)
             this.StoreDiscount = null;
         else this.StoreDiscount = this.getDiscountByID(discountID);
+        DAO.getInstance().merge(this);
     }
 
-    @Override
     public int CreateBasketValueCondition(double requiredValue) {
-        Condition cond = new BasketValueCondition(requiredValue);
+        PurchaseCondition cond = new BasketValuePurchaseCondition(requiredValue);
         int out = getID(ConditionsInStore);
+        cond.setId_in_store(out);
         ConditionsInStore.put(out, cond);
+        DAO.getInstance().persist(cond);
+        DAO.getInstance().merge(this);
         return out;
     }
 
-    @Override
     public int CreateCategoryAmountCondition(String category, int amount) {
-        Condition cond = new CategoryAmountCondition(category, amount);
+        PurchaseCondition cond = new CategoryAmountPurchaseCondition(category, amount);
         int out = getID(ConditionsInStore);
+        cond.setId_in_store(out);
         ConditionsInStore.put(out, cond);
+        DAO.getInstance().persist(cond);
+        DAO.getInstance().merge(this);
         return out;
     }
 
-    @Override
     public int CreateProductAmountCondition(String productName, int amount) {
-        Condition cond = new ProductAmountCondition(amount, getProduct(productName));
+        PurchaseCondition cond = new ProductAmountPurchaseCondition(amount, getProduct(productName));
         int out = getID(ConditionsInStore);
+        cond.setId_in_store(out);
         ConditionsInStore.put(out, cond);
+        DAO.getInstance().persist(cond);
+        DAO.getInstance().merge(this);
         return out;
     }
 
-    @Override
     public int CreateLogicalAndCondition(List<Integer> conditionIds) {
-        Condition cond = new LogicalAndCondition();
+        PurchaseCondition cond = new LogicalAndPurchaseCondition();
         int out = getID(ConditionsInStore);
+        cond.setId_in_store(out);
+        DAO.getInstance().persist(cond);
         for(Integer condid : conditionIds)
             cond.addCondition(getConditionbyID(condid));
+
         ConditionsInStore.put(out, cond);
+        DAO.getInstance().merge(cond);
+        DAO.getInstance().merge(this);
         return out;
     }
 
-    @Override
     public int CreateLogicalOrCondition(List<Integer> conditionIds) {
-        Condition cond = new LogicalOrCondition();
+        PurchaseCondition cond = new LogicalOrPurchaseCondition();
         int out = getID(ConditionsInStore);
+        cond.setId_in_store(out);
+        DAO.getInstance().persist(cond);
         for(Integer condid : conditionIds)
             cond.addCondition(getConditionbyID(condid));
         ConditionsInStore.put(out, cond);
+        DAO.getInstance().merge(cond);
+        DAO.getInstance().merge(this);
         return out;
     }
 
-    @Override
     public int CreateLogicalXorCondition(int id1, int id2) {
-        Condition cond = new LogicalXorCondition();
+        PurchaseCondition cond = new LogicalXorPurchaseCondition();
         int out = getID(ConditionsInStore);
+        cond.setId_in_store(out);
+        DAO.getInstance().persist(cond);
         cond.addCondition(getConditionbyID(id1));
         cond.addCondition(getConditionbyID(id2));
         ConditionsInStore.put(out, cond);
+        DAO.getInstance().merge(cond);
+        DAO.getInstance().merge(this);
         return out;
     }
 
-    @Override
     public void SetConditionToDiscount(int discountId, int ConditionID) {
         getDiscountByID(discountId).setCondition(getConditionbyID(ConditionID));
+        DAO.getInstance().merge(this);
     }
 
-    @Override
     public void SetConditionToStore(int ConditionID) {
         if(ConditionID == -1)
-            this.StorePurchaseCondition = null;
-        else this.StorePurchaseCondition = getConditionbyID(ConditionID);
+            this.storePurchasePurchaseCondition = null;
+        else this.storePurchasePurchaseCondition = getConditionbyID(ConditionID);
+        DAO.getInstance().merge(this);
     }
 
-    @Override
     public double getPriceForProduct(Product product, User user) {
         if(this.StoreDiscount != null)
             return StoreDiscount.getPriceFor(product.getCurrentPrice(user), user.getCart().getBasket(this.getName()));
         else return product.getCurrentPrice(user);
     }
 
-    @Override
     public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
         boolean res = this.getIsActive();
-        if(StorePurchaseCondition != null)
-            res &= StorePurchaseCondition.pass(shoppingBasket);
+        if(storePurchasePurchaseCondition != null)
+            res &= storePurchasePurchaseCondition.pass(shoppingBasket);
         for (Map.Entry<Product, Integer> ent: shoppingBasket.getProductsAndQuantities().entrySet() ) {
             res &=  ent.getKey().isPurchasableForAmount(ent.getValue());
             if(shoppingBasket.getCostumePriceForProduct(ent.getKey()) != null)
@@ -350,30 +395,28 @@ public class Store implements IStore {
         return res;
     }
 
-    @Override
     public boolean isProductAddable(String productName) {
         return productsByName.get(productName)!=null && productsByName.get(productName).isAddableToBasket();
     }
 
-    @Override
     public String getName() {
         return storeName;
     }
 
-    @Override
     public Boolean getIsActive() {
         return isActive;
     }
 
-    @Override
     public synchronized void reOpen() {
         if (isActive)
             throw new IllegalArgumentException("The store is already opened!");
         isActive = true;
-        sendMessageToStaffOfStore(new StoreNotification(storeName,"The store is now open again"));
+        DAO.getInstance().merge(this);
+        Notification n =new StoreNotification(storeName,"The store is now open again");
+        DAO.getInstance().persist(n);
+        sendMessageToStaffOfStore(n);
     }
 
-    @Override
     public HashMap<User, String> getStoreStaff() {
         HashMap<User, String> staff = new HashMap<>();
         //founder
@@ -390,19 +433,18 @@ public class Store implements IStore {
         return staff;
     }
 
-    @Override
     public boolean respondToBuyer(User toRespond, String msg) {
-        toRespond.notifyObserver(new PersonalNotification(storeName,msg));
+        Notification n =new PersonalNotification(storeName,msg);
+        DAO.getInstance().persist(n);
+        toRespond.notifyObserver(n);
         // here we can add any history of messages between user-store if necessary
         return true;
     }
 
-    @Override
-    public ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime() {
+    public Map<ShoppingBasketDTO, LocalDateTime> getPurchaseHistoryByTime() {
         return purchaseHistoryByTime;
     }
 
-    @Override
     public void CancelStaffRoles() {
         //first removing founder
         founder.removeFounderRole(this);
@@ -421,29 +463,34 @@ public class Store implements IStore {
         }
     }
 
-    @Override
     public boolean removeProduct(String productName) {
         Product toRemove = productsByName.get(productName);
         if (toRemove == null)
             throw new IllegalArgumentException("No such product with this name");
-        return productsByName.remove(productName) != null;
+        boolean output= productsByName.remove(productName) != null;
+        DAO.getInstance().remove(toRemove);
+        return output;
     }
 
-    @Override
     public void purchaseBasket(User user, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment, ShoppingBasket bask) {
         for (Map.Entry<Product,Integer> en : bask.getProductsAndQuantities().entrySet())
             en.getKey().Purchase(user, bask.getCostumePriceForProduct(en.getKey()), bask.getProductsAndQuantities().get(en.getKey()) ,supplying, supplyingInformation, paymentInformation, payment);
-        ShoppingBasketDTO basketDTO = new ShoppingBasketDTO(bask,user);
+        ShoppingBasketDTO basketDTO = new ShoppingBasketDTO(bask,user,true);
+        DAO.getInstance().persist(basketDTO);
         this.purchaseHistoryByTime.put(basketDTO,LocalDateTime.now());
+        DAO.getInstance().merge(this);
         notifyPurchase();
     }
 
     private void notifyPurchase() {
-        for (User manager: getOwnersOfStore())
-            manager.notifyObserver(new PersonalNotification(storeName,"Products were bought from your store!"));
+        for (User manager: getOwnersOfStore()){
+            Notification n = new PersonalNotification(storeName,"Products were bought from your store!");
+            DAO.getInstance().persist(n);
+            manager.notifyObserver(n);
+        }
+
     }
 
-    @Override
     public void addReview(StoreReview sReview) {
         for (StoreReview sr : this.storeReviews)
             if(sr.getUser().equals(sReview.getUser()))
@@ -451,40 +498,49 @@ public class Store implements IStore {
         this.storeReviews.add(sReview);
     }
 
-    @Override
     public void notifyBargainingStaff(Bid newbid) {
         for (User staff: getStoreStaff().keySet())
-            if(staff.ShouldBeNotfiedForBargaining(this))
-                staff.notifyObserver(new PersonalNotification(
+            if(staff.ShouldBeNotfiedForBargaining(this)){
+                Notification n = new PersonalNotification(
                         storeName,
-                        String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName())));
+                        String.format("A new bargain offer on product %s from %s.", newbid.getProduct().getName(), newbid.getUser().getUserName()));
+                DAO.getInstance().persist(n);
+                staff.notifyObserver();
+            }
     }
 
-    @Override
     public void addRafflePolicy(String productName, Double price) {
         Product product = getProduct(productName);
-        product.setPolicy(new rafflePolicy(this, price));
+        Policy p =new rafflePolicy(this, price);
+        DAO.getInstance().persist(p);
+        product.setPolicy(p);
+        DAO.getInstance().merge(product);
     }
 
-    @Override
-    public void addAuctionPolicy(String productName, Double price, LocalDate until) {
+    public void addAuctionPolicy(String productName, Double price, LocalDate until,IPayment payment, ISupplying supplying) {
         Product product = getProduct(productName);
-        product.setPolicy(new AuctionPolicy(until, price,this, productName));
+        Policy p = new AuctionPolicy(until, price,this, productName,payment,supplying);
+        DAO.getInstance().persist(p);
+        product.setPolicy(p);
+        DAO.getInstance().merge(product);
     }
 
-    @Override
     public void addNormalPolicy(String productName, Double price) {
         Product product = getProduct(productName);
-        product.setPolicy(new normalPolicy(price, this));
+        Policy p =new normalPolicy(price, this);
+        DAO.getInstance().persist(p);
+        product.setPolicy(p);
+        DAO.getInstance().merge(p);
     }
 
-    @Override
     public void addBargainPolicy(String productName,Double originalPrice) {
         Product product = getProduct(productName);
-        product.setPolicy(new BargainingPolicy(this, originalPrice, product));
+        Policy p =new BargainingPolicy(this, originalPrice, product);
+        DAO.getInstance().persist(p);
+        product.setPolicy(p);
+        DAO.getInstance().merge(product);
     }
 
-    @Override
     public boolean bidOnProduct(String productName, Bid bid) {
         Product product = getProduct(productName);
         if (product.bid(bid)){

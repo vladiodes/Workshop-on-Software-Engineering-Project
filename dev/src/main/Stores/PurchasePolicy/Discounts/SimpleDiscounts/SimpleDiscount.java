@@ -2,14 +2,20 @@ package main.Stores.PurchasePolicy.Discounts.SimpleDiscounts;
 
 import main.Shopping.ShoppingBasket;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Entity
 public class SimpleDiscount extends SingleDiscount {
 
 
     public SimpleDiscount(LocalDate until, Double percent) {
         super(until, percent);
+    }
+
+    public SimpleDiscount() {
+        super();
     }
 
     @Override

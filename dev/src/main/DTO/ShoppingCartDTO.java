@@ -4,11 +4,23 @@ import main.Shopping.ShoppingBasket;
 import main.Shopping.ShoppingCart;
 import main.Users.User;
 
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Entity
 public class ShoppingCartDTO {
-    private HashMap<String, ShoppingBasketDTO> baskets;
+
+    @Id
+    @GeneratedValue
+    private int cartDTO_id;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "shopping_cart_baskets_history",
+            joinColumns = {@JoinColumn(name="cartDTO_id",referencedColumnName = "cartDTO_id")},
+            inverseJoinColumns = {@JoinColumn(name="shopping_basketDTO_id",referencedColumnName = "id")})
+    @MapKey(name="StoreName")
+    private Map<String, ShoppingBasketDTO> baskets;
     private double totalPrice;
     public ShoppingCartDTO(ShoppingCart cart, User user) {
         baskets = new HashMap<>();
@@ -17,8 +29,19 @@ public class ShoppingCartDTO {
         }
         totalPrice=cart.getPrice();
     }
+    public ShoppingCartDTO(ShoppingCart cart, User user,boolean toPersist) {
+        baskets = new HashMap<>();
+        for (Map.Entry<String, ShoppingBasket> kv : cart.getBasketInfo().entrySet()){
+            baskets.put(kv.getKey(), new ShoppingBasketDTO(kv.getValue(), user,toPersist));
+        }
+        totalPrice=cart.getPrice();
+    }
 
-    public HashMap<String, ShoppingBasketDTO> getBaskets() {
+    public ShoppingCartDTO() {
+
+    }
+
+    public Map<String, ShoppingBasketDTO> getBaskets() {
         return baskets;
     }
 

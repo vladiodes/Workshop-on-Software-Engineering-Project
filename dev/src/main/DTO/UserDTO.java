@@ -5,11 +5,11 @@ import main.Users.User;
 public class UserDTO {
 
     private String userName;
-    private ShoppingCartDTO cart;
+    //private ShoppingCartDTO cart;
     private boolean isAdmin;
     public UserDTO(User u) {
         this.userName = u.getUserName();
-        this.cart = new ShoppingCartDTO(u.getCart(), u);
+        //this.cart = new ShoppingCartDTO(u.getCart(), u);
         this.isAdmin=u.isAdmin();
     }
 

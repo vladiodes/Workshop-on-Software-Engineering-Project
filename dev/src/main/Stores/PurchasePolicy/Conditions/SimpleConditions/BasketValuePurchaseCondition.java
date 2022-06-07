@@ -1,13 +1,19 @@
 package main.Stores.PurchasePolicy.Conditions.SimpleConditions;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.Condition;
 
-public class BasketValueCondition extends SimpleCondition {
+import javax.persistence.Entity;
+
+@Entity
+public class BasketValuePurchaseCondition extends SimplePurchaseCondition {
     private double requiredAmount;
 
-    public BasketValueCondition(double requiredAmount) {
+    public BasketValuePurchaseCondition(double requiredAmount) {
         this.requiredAmount = requiredAmount;
+    }
+
+    public BasketValuePurchaseCondition() {
+
     }
 
     @Override

@@ -1,12 +1,19 @@
 package main.Publisher;
 
-public class PersonalNotification implements Notification {
+import javax.persistence.Entity;
+
+@Entity
+public class PersonalNotification extends Notification {
     private String sendingEntity;
     private String content;
 
     public PersonalNotification(String sendingEntity, String content){
         this.sendingEntity=sendingEntity;
         this.content=content;
+    }
+
+    public PersonalNotification() {
+
     }
 
     @Override

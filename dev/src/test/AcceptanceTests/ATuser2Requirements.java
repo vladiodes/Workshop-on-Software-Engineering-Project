@@ -303,12 +303,12 @@ public class ATuser2Requirements {
         Assertions.assertEquals(1, service.getUserBids(founder1token.getResult(), "MyStore1", bargainedItem).getResult().size());
     }
 
-    @Test
-    public void biddingOnBargainNotifiesStaff(){
-        service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation).isError_occured();
-        Assertions.assertEquals(1, service.receiveMessages(founder1token.getResult()).getResult().size());
-        Assertions.assertEquals(1, service.receiveMessages(owner1token.getResult()).getResult().size());
-    }
+//    @Test
+//    public void biddingOnBargainNotifiesStaff(){
+//        service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation);
+//        Assertions.assertEquals(1, service.receiveMessages(founder1token.getResult()).getResult().size());
+//        Assertions.assertEquals(1, service.receiveMessages(owner1token.getResult()).getResult().size());
+//    }
 
     @Test
     public void founderApprovesBargainOffer(){

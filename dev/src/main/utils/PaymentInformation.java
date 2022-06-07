@@ -1,13 +1,20 @@
 package main.utils;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class PaymentInformation {
-    private final String cardNumber;
-    private final LocalDate expDate;
-    private final int cvv;
-    private final String name;
-    private final String email;
+    @Id
+    @GeneratedValue
+    private int id;
+    private  String cardNumber;
+    private  LocalDate expDate;
+    private  int cvv;
+    private  String name;
+    private  String email;
 
     public PaymentInformation(String cardNumber, LocalDate expDate, int cvv, String name, String email) {
         this.cardNumber = cardNumber;
@@ -15,6 +22,10 @@ public class PaymentInformation {
         this.cvv = cvv;
         this.name = name;
         this.email = email;
+    }
+
+    public PaymentInformation() {
+
     }
 
     public LocalDate getExpDate() {

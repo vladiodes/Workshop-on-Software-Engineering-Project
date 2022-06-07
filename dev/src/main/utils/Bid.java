@@ -5,23 +5,34 @@ import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.Product;
 import main.Users.User;
 
-public class Bid implements Comparable {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+public class Bid implements Serializable,Comparable {
+    @Id
+    @GeneratedValue
+    private int id;
+    @OneToOne
     private Product product;
+    @OneToOne
     private User user;
     private Double costumePrice;
+    @OneToOne
     private PaymentInformation paymentInformation;
-    private IPayment payment;
+    @OneToOne
     private SupplyingInformation supplyingInformation;
-    private ISupplying supplying;
 
-    public Bid (Product product, User user, Double costumePrice, PaymentInformation paymentInformation, IPayment payment, SupplyingInformation supplyingInformation, ISupplying supplying) {
+    public Bid (Product product, User user, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         this.product = product;
         this.user = user;
         this.costumePrice = costumePrice;
         this.paymentInformation = paymentInformation;
-        this.payment = payment;
         this.supplyingInformation = supplyingInformation;
-        this.supplying = supplying;
+    }
+
+    public Bid() {
+
     }
 
     public Product getProduct() {
@@ -40,17 +51,12 @@ public class Bid implements Comparable {
         return paymentInformation;
     }
 
-    public IPayment getPayment() {
-        return payment;
-    }
+
 
     public SupplyingInformation getSupplyingInformation() {
         return supplyingInformation;
     }
 
-    public ISupplying getSupplying() {
-        return supplying;
-    }
 
 
     @Override

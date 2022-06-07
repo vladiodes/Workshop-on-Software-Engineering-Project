@@ -1,5 +1,6 @@
 package main.Users;
 
+
 import java.util.HashMap;
 
 public enum StorePermission {

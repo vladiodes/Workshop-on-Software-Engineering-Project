@@ -1,23 +1,30 @@
 package main.Users.states;
 
+import main.Persistence.DAO;
 import main.Security.ISecurity;
-import main.Stores.IStore;
 import main.Stores.Store;
+import main.Users.Qna;
 import main.Users.User;
 import main.utils.Pair;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class MemberState implements UserStates {
 
-    private List<IStore> foundedStores;
+@Entity
+public class MemberState extends UserStates {
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Store> foundedStores;
     private AtomicBoolean isLoggedIn;
     private String username;
     private String hashedPassword;
-    private List<Pair<String, String>> securityQNA;
+
+    @Transient
+    private List<Qna> securityQNA;
 
     public MemberState(String userName, String hashed_password) {
         this.username = userName;
@@ -25,6 +32,10 @@ public class MemberState implements UserStates {
         foundedStores = new LinkedList<>();
         isLoggedIn = new AtomicBoolean(false);
         securityQNA = new ArrayList<>();
+    }
+
+    public MemberState() {
+
     }
 
 
@@ -54,8 +65,8 @@ public class MemberState implements UserStates {
     }
 
     @Override
-    public IStore openStore(String storeName, User openingUser) {
-        IStore IStore = new Store(storeName,openingUser);
+    public Store openStore(String storeName, User openingUser) {
+        Store IStore = new Store(storeName,openingUser);
         foundedStores.add(IStore);
         return IStore;
     }
@@ -66,7 +77,9 @@ public class MemberState implements UserStates {
         {
             throw new IllegalArgumentException("Question or Answer cant be empty");
         }
-        this.securityQNA.add(new Pair<>(question, answer));
+        Qna qna = new Qna(question,answer);
+        this.securityQNA.add(qna);
+        DAO.getInstance().persist(qna);
     }
 
     @Override
@@ -87,12 +100,12 @@ public class MemberState implements UserStates {
     }
 
     @Override
-    public List<IStore> getFoundedStores() {
+    public List<Store> getFoundedStores() {
         return  this.foundedStores;
     }
 
     @Override
-    public List<Pair<String, String>> getSecurityQNA() {
+    public List<Qna> getSecurityQNA() {
         return this.securityQNA;
 
     }

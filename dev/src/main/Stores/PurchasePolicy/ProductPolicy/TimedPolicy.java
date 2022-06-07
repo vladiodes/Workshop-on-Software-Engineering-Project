@@ -2,17 +2,25 @@ package main.Stores.PurchasePolicy.ProductPolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Persistence.DAO;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingCart;
 import main.Stores.PurchasePolicy.Discounts.Discount;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
-public abstract  class TimedPolicy implements Policy{
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract  class TimedPolicy extends Policy{
 
     @Override
     public abstract boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment);
@@ -26,11 +34,13 @@ public abstract  class TimedPolicy implements Policy{
         return null;
     }
 
-    protected void purchaseBid(IStore store, Bid bid) throws Exception {
+    protected void purchaseBid(Store store, Bid bid,IPayment payment,ISupplying supplying) throws Exception {
         ShoppingCart tempCart = new ShoppingCart(bid.getUser());
+        DAO.getInstance().persist(tempCart);
         tempCart.addProductToCart(store, bid.getProduct().getName(), 1); //purchased 1 at a time.
-        Purchase temp = new Purchase(bid, tempCart);
+        Purchase temp = new Purchase(bid, tempCart,payment,supplying);
         temp.executePurchase();
+        DAO.getInstance().merge(bid.getUser());
     }
 
     @Override

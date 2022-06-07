@@ -8,9 +8,15 @@ import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.util.List;
 
-public abstract  class DirectPolicy implements Policy{
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract  class DirectPolicy extends Policy{
     @Override
     public abstract boolean productPurchased(Product product, User user, Double costumePrice, int amount, ISupplying supplying, SupplyingInformation supplyingInformation, PaymentInformation paymentInformation, IPayment payment);
     @Override
@@ -22,7 +28,7 @@ public abstract  class DirectPolicy implements Policy{
         return null;
     }
     @Override
-    public void approveBid(User user, User approvingUser){
+    public void approveBid(User user, User approvingUser,IPayment payment,ISupplying supplying){
         throw new IllegalArgumentException("No bidding on this product.");
     }
     @Override

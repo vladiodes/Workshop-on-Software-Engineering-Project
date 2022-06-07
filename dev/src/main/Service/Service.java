@@ -8,6 +8,7 @@ import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
+import main.Market.MarketBuilder;
 import main.Service.CommandExecutor.Commands.*;
 import main.Service.CommandExecutor.Invoker;
 import main.Service.CommandExecutor.utils.UserTokens;
@@ -16,18 +17,14 @@ import main.DTO.ProductDTO;
 import main.DTO.ShoppingCartDTO;
 import main.DTO.StoreDTO;
 import main.DTO.UserDTO;
-import main.Market;
+import main.Market.Market;
 import main.utils.*;
 
 
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.*;
 
 
 public class Service implements IService {
@@ -38,15 +35,19 @@ public class Service implements IService {
     private String logFileName = "DefaultVladi.json";
     private List<Invoker<?>> commands;
     public Service(IPayment Psystem, ISupplying Isystem){
-        market=new Market(Psystem, Isystem);
+        MarketBuilder builder = new MarketBuilder(false);
+        builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();
+        market=builder.build();
     }
 
     public UserTokens getuTokens() {
         return uTokens;
     }
 
-    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag){
-        market=new Market(Psystem, Isystem);
+    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag,boolean persistEnable){
+        MarketBuilder builder = new MarketBuilder(persistEnable);
+        builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();
+        market=builder.build();
         this.logCommandsFlag = logCommandsFlag;
         if(logCommandsFlag) {
             uTokens = new UserTokens();
@@ -1078,7 +1079,7 @@ public class Service implements IService {
     public Response<List<String>> getStorePurchaseHistory(String userToken, String storeName) {
         Logger.getInstance().logEvent("Service", String.format("Attempting to get store%s purchase history", storeName));
         try {
-            ConcurrentHashMap<ShoppingBasketDTO, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
+            Map<ShoppingBasketDTO, LocalDateTime> baskets = market.getStorePurchaseHistory(userToken, storeName);
             List<String> output = new LinkedList<>();
             for (ShoppingBasketDTO basket : baskets.keySet()) {
                 HashMap<ProductDTO, Integer> products = new HashMap<>();

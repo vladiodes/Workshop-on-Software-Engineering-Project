@@ -2,18 +2,22 @@ package main.Stores.PurchasePolicy.Conditions.SimpleConditions;
 
 import main.Shopping.ShoppingBasket;
 import main.Stores.Product;
-import main.Stores.PurchasePolicy.Conditions.Condition;
 
-import java.time.LocalDate;
+import javax.persistence.Entity;
 import java.util.Map;
 
-public class CategoryAmountCondition extends SimpleCondition {
+@Entity
+public class CategoryAmountPurchaseCondition extends SimplePurchaseCondition {
     private String category;
     private int requiredAmount;
 
-    public CategoryAmountCondition(String category, int amount) {
+    public CategoryAmountPurchaseCondition(String category, int amount) {
         this.category = category;
         this.requiredAmount = amount;
+    }
+
+    public CategoryAmountPurchaseCondition() {
+
     }
 
     @Override

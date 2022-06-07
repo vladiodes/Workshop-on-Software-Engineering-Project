@@ -3,19 +3,31 @@ package main.Stores.PurchasePolicy.ProductPolicy;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Stores.PurchasePolicy.Discounts.Discount;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+@Entity
 public class normalPolicy extends DirectPolicy {
+
+    @OneToOne
     private Discount discount;
     private Double originalPrice;
-    private final IStore sellingStore;
-    public normalPolicy(Double price, IStore store) {
+
+    @OneToOne
+    private final Store sellingStore;
+    public normalPolicy(Double price, Store store) {
         originalPrice = price;
         this.sellingStore = store;
+    }
+
+    public normalPolicy() {
+        sellingStore=new Store();
     }
 
 

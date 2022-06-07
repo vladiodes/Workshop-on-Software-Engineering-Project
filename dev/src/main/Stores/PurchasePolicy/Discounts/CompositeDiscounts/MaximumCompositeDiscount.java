@@ -3,11 +3,16 @@ package main.Stores.PurchasePolicy.Discounts.CompositeDiscounts;
 import main.Shopping.ShoppingBasket;
 import main.Stores.PurchasePolicy.Discounts.Discount;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
-
+@Entity
 public class MaximumCompositeDiscount extends  CompositeDiscount{
     public MaximumCompositeDiscount(LocalDate until) {
         super(until);
+    }
+
+    public MaximumCompositeDiscount() {
+
     }
 
 

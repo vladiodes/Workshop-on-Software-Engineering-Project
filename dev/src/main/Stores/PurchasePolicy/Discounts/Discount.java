@@ -1,16 +1,27 @@
 package main.Stores.PurchasePolicy.Discounts;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.Condition;
-
+import main.Stores.PurchasePolicy.Conditions.PurchaseCondition;
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Discount {
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private int id_in_store;
     private LocalDate until;
 
     public Discount(LocalDate until) {
         this.until = until;
+    }
+
+    public Discount() {
+
     }
 
     public Double getPriceFor(Double originalPrice, ShoppingBasket shoppingBasket) {
@@ -41,8 +52,19 @@ public abstract class Discount {
         throw new IllegalArgumentException("Not a composite discount.");
     }
 
-    public void setCondition(Condition cond) {
+    public void setCondition(PurchaseCondition cond) {
         throw new IllegalArgumentException("this discount doesn't have conditions.");
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getId_in_store() {
+        return id_in_store;
+    }
+
+    public void setId_in_store(int id_in_store) {
+        this.id_in_store = id_in_store;
+    }
 }

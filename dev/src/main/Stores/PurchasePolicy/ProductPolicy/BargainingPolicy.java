@@ -2,31 +2,45 @@ package main.Stores.PurchasePolicy.ProductPolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Persistence.DAO;
+import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
 public class BargainingPolicy extends TimedPolicy{
 
-    private ConcurrentHashMap<Bid, List<User>> bidApprovedBy;
-    private IStore sellingStore;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "approving_users_bids",
+            joinColumns = {@JoinColumn(name = "policy_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "approved_list_id", referencedColumnName = "id")})
+    @MapKeyJoinColumn(name = "id")
+    private Map<Bid, bidApprovedByUserList> bidApprovedBy;
+    @OneToOne
+    private Store sellingStore;
     private Double originalPrice;
+    @OneToOne
     private Product product;
 
-    public BargainingPolicy(IStore sellingStore, Double originalPrice, Product product) {
-        this.bidApprovedBy = new ConcurrentHashMap<>();
+    public BargainingPolicy(Store sellingStore, Double originalPrice, Product product) {
+        this.bidApprovedBy = Collections.synchronizedMap(new HashMap<>());
         this.sellingStore = sellingStore;
         this.originalPrice = originalPrice;
         this.product = product;
+    }
+
+    public BargainingPolicy() {
+
     }
 
     @Override
@@ -59,9 +73,9 @@ public class BargainingPolicy extends TimedPolicy{
         throw new IllegalArgumentException("User hasn't bid yet.");
     }
 
-    private boolean isApproved(List<User> approvers) {
+    private boolean isApproved(bidApprovedByUserList approvers) {
         for(User staff : sellingStore.getStoreStaff().keySet())
-            if (staff.ShouldBeNotfiedForBargaining(sellingStore) && !approvers.contains(staff))
+            if (staff.ShouldBeNotfiedForBargaining(sellingStore) && !approvers.getApprovedBy().contains(staff))
                 return false;
         return true;
     }
@@ -71,11 +85,17 @@ public class BargainingPolicy extends TimedPolicy{
         for (Bid bidkey : bidApprovedBy.keySet()) {
             if (bid.getUser() == bidkey.getUser()) {
                 bidApprovedBy.remove(bidkey);
-                bidApprovedBy.put(bid, new LinkedList<>());
+                bidApprovedByUserList lst = new bidApprovedByUserList();
+                DAO.getInstance().persist(lst);
+                bidApprovedBy.put(bid,lst);
+                DAO.getInstance().merge(this);
                 return true;
             }
         }
-        bidApprovedBy.put(bid, new LinkedList<>());
+        bidApprovedByUserList lst = new bidApprovedByUserList();
+        DAO.getInstance().persist(lst);
+        bidApprovedBy.put(bid,lst );
+        DAO.getInstance().merge(this);
         return true;
     }
 
@@ -85,14 +105,18 @@ public class BargainingPolicy extends TimedPolicy{
     }
 
     @Override
-    public void approveBid(User user, User approvingUser) throws Exception {
+    public void approveBid(User user, User approvingUser,IPayment payment,ISupplying supplying) throws Exception {
         Bid bid = getUserBid(user.getUserName());
-        List<User> approvers = bidApprovedBy.get(bid);
+        bidApprovedByUserList approvers = bidApprovedBy.get(bid);
         approvers.add(approvingUser);
+        DAO.getInstance().merge(this);
         if (isApproved(approvers)) {
-            this.purchaseBid(sellingStore, getUserBid(user.getUserName()));
-            user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName())));
+            this.purchaseBid(sellingStore, getUserBid(user.getUserName()),payment,supplying);
+            Notification n =new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName()));
+            DAO.getInstance().persist(n);
+            user.notifyObserver(n);
             bidApprovedBy.remove(getUserBid(user));
+            DAO.getInstance().merge(this);
         }
     }
 
@@ -100,7 +124,10 @@ public class BargainingPolicy extends TimedPolicy{
     public void declineBid(User user) {
         Bid toDecline = getUserBid(user.getUserName());
         bidApprovedBy.remove(toDecline);
-        user.notifyObserver(new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been declined by store staff.", toDecline.getProduct().getName())));
+        DAO.getInstance().merge(this);
+        Notification n =new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been declined by store staff.", toDecline.getProduct().getName()));
+        DAO.getInstance().persist(n);
+        user.notifyObserver(n);
     }
 
     @Override

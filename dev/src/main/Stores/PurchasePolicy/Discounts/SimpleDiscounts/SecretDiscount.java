@@ -2,14 +2,20 @@ package main.Stores.PurchasePolicy.Discounts.SimpleDiscounts;
 
 import main.Shopping.ShoppingBasket;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 
+@Entity
 public class SecretDiscount extends SingleDiscount {
     private final String password;
 
     public SecretDiscount(LocalDate until, Double percent, String password) {
         super(until, percent);
         this.password = password;
+    }
+
+    public SecretDiscount() {
+        password="password";
     }
 
 

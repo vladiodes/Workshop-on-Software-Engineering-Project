@@ -1,50 +1,61 @@
 package main.Shopping;
 
-
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
-import main.Stores.IStore;
+import main.Persistence.DAO;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ShoppingBasket {
-    private ConcurrentHashMap<Product,Integer> productsQuantity;
-    private WeakHashMap<Product, Double> costumePrice;
-    private final IStore store;
+
+@Entity
+public class ShoppingBasket implements Serializable {
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @ElementCollection
+    private Map<Product,Integer> productsQuantity;
+    @ElementCollection
+    private Map<Product, Double> costumePrice;
+
+
+    @OneToOne
+    private final Store store;
+    @Transient
     private final Object basketEditLock = new Object();
 
+    @ElementCollection
     private final List<String> discountPasswords = new LinkedList<>();
 
+    private String store_name;
+
+    @OneToOne
     private User user;
 
-    public ShoppingBasket(IStore store, User user){
+    public ShoppingBasket(Store store, User user){
         this.store = store;
-        productsQuantity=new ConcurrentHashMap<>();
+        productsQuantity=Collections.synchronizedMap(new HashMap<>());
         costumePrice=new WeakHashMap<>();
         this.user = user;
+        store_name=store.getName();
     }
 
-    public ShoppingBasket(ShoppingBasket oldShoppingBasket) //Use this constructor to deep copy ShoppingBasket (only productsQuantity)
-    {
-        ConcurrentHashMap<Product,Integer> oldProductsQuantity = oldShoppingBasket.getProductsAndQuantities();
-        ConcurrentHashMap<Product,Integer> newProductsQuantity = new ConcurrentHashMap<>();
-
-        for(HashMap.Entry<Product, Integer> element : oldProductsQuantity.entrySet())
-        {
-            newProductsQuantity.put(new Product(element.getKey()), element.getValue());
-        }
-
-        this.store = oldShoppingBasket.store;
-        this.productsQuantity = newProductsQuantity;
+    public ShoppingBasket() {
+        store=new Store();
     }
+
 
     public void addDiscountPassword(String pass){
         discountPasswords.add(pass);
+        DAO.getInstance().merge(this);
     }
 
     public boolean hasAmount(Product product, Integer amount){
@@ -120,11 +131,11 @@ public class ShoppingBasket {
         return productsQuantity.size();
     }
 
-    public ConcurrentHashMap<Product, Integer> getProductsAndQuantities() {
-        return new ConcurrentHashMap<>(productsQuantity);
+    public Map<Product, Integer> getProductsAndQuantities() {
+        return productsQuantity;
     }
 
-    public IStore getStore() {
+    public Store getStore() {
         return store;
     }
 

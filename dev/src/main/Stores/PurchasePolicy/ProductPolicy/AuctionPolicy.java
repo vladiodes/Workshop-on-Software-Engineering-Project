@@ -5,25 +5,33 @@ import main.ExternalServices.Supplying.ISupplying;
 import main.Logger.Logger;
 import main.Publisher.PersonalNotification;
 import main.Publisher.StoreNotification;
-import main.Stores.IStore;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
 import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+@Entity
 public class AuctionPolicy extends TimedPolicy {
-    private final LocalDate  until;
+    private LocalDate  until;
     private Double originalPrice;
+    @OneToOne
     private Bid highestBid;
+    @OneToOne
     private Bid winningBid;;
-    private  final Timer timer;
-    private final IStore sellingStore;
-    public AuctionPolicy(LocalDate until, Double originalPrice, IStore sellingStore, String prouctName) {
+    @Transient
+    private  Timer timer;
+    @OneToOne
+    private Store sellingStore;
+    public AuctionPolicy(LocalDate until, Double originalPrice, Store sellingStore, String prouctName,IPayment payment,ISupplying supplying) {
         this.sellingStore = sellingStore;
         this.until = until;
         this.originalPrice = originalPrice;
@@ -37,13 +45,17 @@ public class AuctionPolicy extends TimedPolicy {
                 else {
                     winningBid = highestBid;
                     try {
-                        purchaseBid(sellingStore, highestBid);
+                        purchaseBid(sellingStore, highestBid,payment,supplying);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }
         }, ChronoUnit.DAYS.between(LocalDate.now(), until));
+    }
+
+    public AuctionPolicy() {
+
     }
 
     @Override
@@ -68,7 +80,7 @@ public class AuctionPolicy extends TimedPolicy {
     }
 
     @Override
-    public void approveBid(User user, User approvingUser) {
+    public void approveBid(User user, User approvingUser,IPayment payment,ISupplying supplying) {
         throw new IllegalArgumentException("In auction bids don't need aproval.");
     }
 

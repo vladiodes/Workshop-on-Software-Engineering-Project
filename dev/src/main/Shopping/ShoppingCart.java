@@ -1,70 +1,83 @@
 package main.Shopping;
 
-
-
-import main.Stores.IStore;
-
-
 import java.util.*;
 
+import main.Persistence.DAO;
 import main.Stores.Product;
+import main.Stores.Store;
 import main.Users.User;
-
-import java.util.HashMap;
-
+import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+
+@Entity
 public class ShoppingCart {
-    private ConcurrentHashMap<String, ShoppingBasket> baskets; // (store name, basket)
+    @Id
+    @GeneratedValue
+    private int cart_id;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "shopping_cart_baskets",
+    joinColumns = {@JoinColumn(name="cart_id",referencedColumnName = "cart_id")},
+            inverseJoinColumns = {@JoinColumn(name="shopping_basket_id",referencedColumnName = "id")})
+    @MapKey(name="store_name")
+    private Map<String, ShoppingBasket> baskets; // (store name, basket)
+    @Transient
     private final Object carteditLock = new Object();
-    public ShoppingCart(User user) {
-        this.baskets = new ConcurrentHashMap<>();
-        this.user = user;
-    }
+    @OneToOne
     private User user;
 
-    public ShoppingCart(ShoppingCart oldCart) //use this constructor to deep copy a ShoppingCart
-    {
-        ConcurrentHashMap<String, ShoppingBasket> oldBaskets = oldCart.getBaskets();
-        ConcurrentHashMap<String, ShoppingBasket> newBaskets = new ConcurrentHashMap<>();
-
-        for(HashMap.Entry<String , ShoppingBasket> element : oldBaskets.entrySet())
-        {
-            newBaskets.put(element.getKey(), new ShoppingBasket(element.getValue()));
-        }
-        this.baskets = newBaskets;
+    public ShoppingCart(User user) {
+        this.baskets = Collections.synchronizedMap(new HashMap<>());
+        this.user = user;
     }
+
+    public ShoppingCart() {
+
+    }
+
     public HashMap<String, ShoppingBasket> getBasketInfo() {
         return new HashMap<>(baskets);
     }
 
-    public  boolean addProductToCart(IStore IStore, String productName, int quantity) {
+    public  boolean addProductToCart(Store IStore, String productName, int quantity) {
         synchronized (carteditLock) {
-            if (baskets.containsKey(IStore.getName()))
-                return baskets.get(IStore.getName()).AddProduct(productName, quantity);
+            if (baskets.containsKey(IStore.getName())) {
+                boolean output= baskets.get(IStore.getName()).AddProduct(productName, quantity);
+                DAO.getInstance().merge(baskets.get(IStore.getName()));
+                return output;
+            }
             else {
                 if (!IStore.getIsActive())
                     throw new IllegalArgumentException("Store is not active.");
                 if (!IStore.getProductsByName().containsKey(productName))
                     throw new IllegalArgumentException("Product does not exist in store");
                 ShoppingBasket basket = new ShoppingBasket(IStore, this.user);
+
+                DAO.getInstance().persist(basket);
+
                 baskets.put(IStore.getName(), basket);
-                return basket.AddProduct(productName, quantity);
+                boolean output= basket.AddProduct(productName, quantity);
+                DAO.getInstance().merge(basket);
+                return output;
             }
         }
     }
 
-    public  boolean setCostumeProductPrice(IStore IStore, String productName, double price, User user) {
+    public  boolean setCostumeProductPrice(Store IStore, String productName, double price, User user) {
         synchronized (carteditLock) {
-            if (baskets.containsKey(IStore.getName()))
-                return baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price, user);
+            if (baskets.containsKey(IStore.getName())) {
+                boolean output = baskets.get(IStore.getName()).setCostumePriceForProduct(productName, price, user);
+                DAO.getInstance().merge(baskets.get(IStore.getName()));
+                return output;
+            }
             else {
                 throw new IllegalArgumentException("No basket for this store.");
             }
         }
     }
 
-    public boolean RemoveProductFromCart(IStore st, String prodName, int quantity) {
+    public boolean RemoveProductFromCart(Store st, String prodName, int quantity) {
         if (!baskets.containsKey(st.getName()))
             throw new IllegalArgumentException("Basket for that store doesn't exist yet.");
         synchronized (carteditLock) {
@@ -72,6 +85,7 @@ public class ShoppingCart {
             basket.RemoveProduct(prodName, quantity);
             if (basket.getAmountOfProducts() == 0)
                 this.baskets.remove(st.getName());
+            DAO.getInstance().merge(this);
             return true;
         }
     }
@@ -82,7 +96,7 @@ public class ShoppingCart {
             return false;
         }
         ShoppingBasket sb = baskets.get(storeName);
-        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        Map<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
         for(Product p : productsQuantities.keySet())
         {
             if(p.getName().equals(productName))
@@ -99,7 +113,7 @@ public class ShoppingCart {
             return null;
         }
         ShoppingBasket sb = baskets.get(storeName);
-        ConcurrentHashMap<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
+        Map<Product, Integer> productsQuantities = sb.getProductsAndQuantities();
         for(Product p : productsQuantities.keySet())
         {
             if(p.getName().equals(productName))
@@ -114,7 +128,7 @@ public class ShoppingCart {
         return baskets.containsKey(storeName);
     }
 
-    public IStore getStore(String storeName) {
+    public Store getStore(String storeName) {
         if(!baskets.containsKey(storeName))
             return null;
         return baskets.get(storeName).getStore();
@@ -127,7 +141,7 @@ public class ShoppingCart {
         return result;
     }
 
-    public ConcurrentHashMap<String, ShoppingBasket> getBaskets() {
+    public Map<String, ShoppingBasket> getBaskets() {
         return baskets;
     }
 

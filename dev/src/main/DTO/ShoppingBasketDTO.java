@@ -1,26 +1,50 @@
 package main.DTO;
 
+import main.Persistence.DAO;
 import main.Shopping.ShoppingBasket;
 import main.Stores.Product;
 import main.Users.User;
 
+import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
+@Entity
 public class ShoppingBasketDTO {
-    private HashMap<ProductDTO,Integer> productsQuantity;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @ElementCollection
+    private Map<ProductDTO,Integer> productsQuantity;
     private String StoreName;
     private double totalPrice;
     public ShoppingBasketDTO(ShoppingBasket basket, User user) {
         StoreName = basket.getStore().getName();
         productsQuantity = new HashMap<>();
-        for (Map.Entry<Product, Integer> kv : basket.getProductsAndQuantities().entrySet())
+        for (Map.Entry<Product, Integer> kv : basket.getProductsAndQuantities().entrySet()) {
             productsQuantity.put(new ProductDTO(kv.getKey()), kv.getValue().intValue());
+        }
+        totalPrice=basket.getPrice();
+    }
+    public ShoppingBasketDTO(ShoppingBasket basket, User user,boolean toPersist) {
+        StoreName = basket.getStore().getName();
+        productsQuantity = new HashMap<>();
+        for (Map.Entry<Product, Integer> kv : basket.getProductsAndQuantities().entrySet()) {
+            ProductDTO p = new ProductDTO(kv.getKey());
+            productsQuantity.put(p, kv.getValue().intValue());
+            DAO.getInstance().persist(p);
+        }
         totalPrice=basket.getPrice();
     }
 
-    public HashMap<ProductDTO, Integer> getProductsQuantity() {
+    public ShoppingBasketDTO() {
+
+    }
+
+    public Map<ProductDTO, Integer> getProductsQuantity() {
         return productsQuantity;
     }
 

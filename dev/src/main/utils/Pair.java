@@ -8,4 +8,8 @@ public class Pair<K,V>  {
         this.first=first;
         this.second=second;
     }
+
+    public Pair() {
+
+    }
 }

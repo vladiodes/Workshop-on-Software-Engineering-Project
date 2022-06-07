@@ -32,7 +32,7 @@ public class ServiceLoader {
 
     public static void createRecording(String path, Function<IService, Void> scenario){
         ObjectMapper objectMapper = new ObjectMapper();
-        Service service = new Service(new PaymentAdapter(), new SupplyingAdapter(), true);
+        Service service = new Service(new PaymentAdapter(), new SupplyingAdapter(), true,false);
         service.setLogFileName(path);
         scenario.apply(service);
         service.SaveRecording();

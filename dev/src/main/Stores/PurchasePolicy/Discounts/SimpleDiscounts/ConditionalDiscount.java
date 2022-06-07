@@ -1,15 +1,23 @@
 package main.Stores.PurchasePolicy.Discounts.SimpleDiscounts;
 
 import main.Shopping.ShoppingBasket;
-import main.Stores.PurchasePolicy.Conditions.Condition;
+import main.Stores.PurchasePolicy.Conditions.PurchaseCondition;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
+@Entity
 public class ConditionalDiscount extends SingleDiscount{
-    private Condition condition;
-    public ConditionalDiscount(LocalDate until, Double percent, Condition cond) {
+    @OneToOne
+    private PurchaseCondition purchaseCondition;
+    public ConditionalDiscount(LocalDate until, Double percent, PurchaseCondition cond) {
         super(until, percent);
-        this.condition = cond;
+        this.purchaseCondition = cond;
+    }
+
+    public ConditionalDiscount() {
+
     }
 
     @Override
@@ -21,11 +29,11 @@ public class ConditionalDiscount extends SingleDiscount{
 
     @Override
     public boolean isEligible(ShoppingBasket shoppingBasket) {
-        return condition.pass(shoppingBasket);
+        return purchaseCondition.pass(shoppingBasket);
     }
 
     @Override
-    public void setCondition(Condition cond){
-        this.condition = cond;
+    public void setCondition(PurchaseCondition cond){
+        this.purchaseCondition = cond;
     }
 }

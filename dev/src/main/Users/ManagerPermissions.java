@@ -1,22 +1,46 @@
 package main.Users;
 
-import main.Stores.IStore;
+import main.Persistence.DAO;
+import main.Stores.Store;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class ManagerPermissions {
+@Entity
+public class ManagerPermissions implements Serializable {
 
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @OneToOne
     private User appointedToManager;
-    private User appointedBy;
-    private IStore IStore;
-    private ConcurrentLinkedQueue<StorePermission> permissions;
 
-    public ManagerPermissions(User appointedToManager, User appointedBy, IStore IStore){
-        permissions=new ConcurrentLinkedQueue<>();
+
+    @OneToOne
+    private User appointedBy;
+
+    @OneToOne
+    private Store IStore;
+    @ElementCollection(targetClass = StorePermission.class)
+    @CollectionTable
+    @Enumerated(EnumType.STRING)
+    private Collection<StorePermission> permissions;
+
+    public ManagerPermissions(User appointedToManager, User appointedBy, Store IStore){
+        permissions= Collections.synchronizedList(new LinkedList<>());
         this.appointedToManager=appointedToManager;
         this.IStore = IStore;
         this.appointedBy=appointedBy;
         addDefaultPermissions();
+    }
+
+    public ManagerPermissions() {
+
     }
 
     private void addDefaultPermissions() {
@@ -24,7 +48,7 @@ public class ManagerPermissions {
         permissions.add(StorePermission.ViewStoreHistory);
     }
 
-    public IStore getStore() {
+    public Store getStore() {
         return IStore;
     }
 
@@ -44,10 +68,12 @@ public class ManagerPermissions {
     public void addPermission(StorePermission permission) {
         if(!permissions.contains(permission))
             permissions.add(permission);
+        DAO.getInstance().merge(this);
     }
 
     public void removePermission(StorePermission permission) {
         permissions.remove(permission);
+        DAO.getInstance().merge(this);
     }
 
     public String permissionsToString() {
@@ -59,7 +85,7 @@ public class ManagerPermissions {
         return builder.toString();
     }
 
-    public ConcurrentLinkedQueue<StorePermission> getPermissions() {
+    public Collection<StorePermission> getPermissions() {
         return permissions;
     }
 }
