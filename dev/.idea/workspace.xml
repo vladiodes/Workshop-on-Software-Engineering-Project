@@ -23,8 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some test issues">
-      <change afterPath="$PROJECT_DIR$/src/test/RobustnessTests/FaultyExternalSystems.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/ConditionalDiscountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/MaximumCompositeDiscountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/PlusCompositeDiscountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/SecretDiscountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/SimpleDiscountTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/MaximumCompositeDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/CompositeDiscounts/MaximumCompositeDiscount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +39,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Enum" />
         <option value="Tag Library Descriptor" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -67,27 +72,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;2c95b5a9-8801-47ea-a2f8-a24f7211c10e&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/test/UnitTests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/TradingSystem-main&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "JPA.DatabaseSchemaImportDialog": "2c95b5a9-8801-47ea-a2f8-a24f7211c10e",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/Discounts/SimpleDiscounts",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/TradingSystem-main",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.27126437",
+    "settings.editor.selected.configurable": "reference.settings.project.statistic.project.settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.Users" />
@@ -123,6 +128,8 @@
       <recent name="test.UnitTests" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="main.Stores.PurchasePolicy.Discounts.SimpleDiscounts" />
+      <recent name="main.Stores.PurchasePolicy.Discounts.CompositeDiscounts" />
       <recent name="test.UnitTests" />
       <recent name="main.Stores.Discounts" />
       <recent name="test" />
@@ -135,7 +142,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FaultyExternalSystems">
+  <component name="RunManager" selected="JUnit.ConditionalDiscountTest.isEligibleDisallows">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -174,54 +181,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FaultyExternalSystems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.RobustnessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
-      <option name="MAIN_CLASS_NAME" value="test.RobustnessTests.FaultyExternalSystems" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FaultyExternalSystems.DeliverySystemBroken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.RobustnessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
-      <option name="MAIN_CLASS_NAME" value="test.RobustnessTests.FaultyExternalSystems" />
-      <option name="METHOD_NAME" value="DeliverySystemBroken" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FaultyExternalSystems.PaymentSystemBroken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.RobustnessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
-      <option name="MAIN_CLASS_NAME" value="test.RobustnessTests.FaultyExternalSystems" />
-      <option name="METHOD_NAME" value="PaymentSystemBroken" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MarketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConditionalDiscountTest.isEligibleAllows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -230,22 +190,73 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MarketTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.ConditionalDiscountTest" />
+      <option name="METHOD_NAME" value="isEligibleAllows" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConditionalDiscountTest.isEligibleDisallows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.ConditionalDiscountTest" />
+      <option name="METHOD_NAME" value="isEligibleDisallows" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaximumCompositeDiscountTest.getPercent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MaximumCompositeDiscountTest" />
+      <option name="METHOD_NAME" value="getPercent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaximumCompositeDiscountTest.getPercentNotAllEligible" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MaximumCompositeDiscountTest" />
+      <option name="METHOD_NAME" value="getPercentNotAllEligible" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaximumCompositeDiscountTest.getPercentNothingEligible" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.MaximumCompositeDiscountTest" />
+      <option name="METHOD_NAME" value="getPercentNothingEligible" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -253,19 +264,19 @@
     <list>
       <item itemvalue="Application.ServiceLoader" />
       <item itemvalue="Application.main.Communication.Main" />
-      <item itemvalue="JUnit.FaultyExternalSystems" />
-      <item itemvalue="JUnit.FaultyExternalSystems.DeliverySystemBroken" />
-      <item itemvalue="JUnit.FaultyExternalSystems.PaymentSystemBroken" />
-      <item itemvalue="JUnit.MarketTest" />
-      <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleAllows" />
+      <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleDisallows" />
+      <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercent" />
+      <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNotAllEligible" />
+      <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNothingEligible" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FaultyExternalSystems" />
-        <item itemvalue="JUnit.FaultyExternalSystems.PaymentSystemBroken" />
-        <item itemvalue="JUnit.FaultyExternalSystems.DeliverySystemBroken" />
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.MarketTest" />
+        <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleDisallows" />
+        <item itemvalue="JUnit.ConditionalDiscountTest.isEligibleAllows" />
+        <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNothingEligible" />
+        <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercentNotAllEligible" />
+        <item itemvalue="JUnit.MaximumCompositeDiscountTest.getPercent" />
       </list>
     </recent_temporary>
   </component>

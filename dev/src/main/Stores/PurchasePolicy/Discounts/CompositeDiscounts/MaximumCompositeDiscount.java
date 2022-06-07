@@ -26,7 +26,7 @@ public class MaximumCompositeDiscount extends  CompositeDiscount{
         Double percent = 0.0;
         for(Discount d : this.discounts) {
             double dpercent = d.getPercent(shoppingBasket);
-            if (percent < dpercent)
+            if (percent < dpercent && d.isEligible(shoppingBasket))
                 percent = dpercent;
         }
         return percent;
