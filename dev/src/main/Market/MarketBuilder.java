@@ -97,12 +97,13 @@ public class MarketBuilder {
         if (conf.getPersistence_unit() != null)
             DAO.setPersistence_unit(conf.getPersistence_unit());
         if(conf.getShouldPersist()) {
+            shouldLoadFromDB = true;
             DAO.enablePersist();
             loadStats().loadUsers().loadStores();
         }
         else DAO.disablePersist();
-        Psystem = (Psystem == null) ? new PaymentAdapter() : conf.getPaymentSystem().getDeclaredConstructor().newInstance();
-        Ssystem = (Ssystem == null) ? new SupplyingAdapter() : conf.getSupplyingSystem().getDeclaredConstructor().newInstance();
+        if (Psystem == null) Psystem = conf.getPaymentSystem().getDeclaredConstructor().newInstance();
+        if (Ssystem == null) Ssystem = conf.getSupplyingSystem().getDeclaredConstructor().newInstance();
         membersByUserName = (membersByUserName ==null) ? new ConcurrentHashMap<>() : membersByUserName;
         stores = (stores == null) ? new ConcurrentHashMap<>() : stores;
         systemStatsByDate = (systemStatsByDate == null) ? new ConcurrentHashMap<>() : systemStatsByDate;

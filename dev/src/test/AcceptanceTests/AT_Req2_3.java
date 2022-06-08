@@ -27,8 +27,7 @@ public class AT_Req2_3 {
 
 
     @Before
-    public void setUp()
-    {
+    public void setUp() throws Exception {
         longString = "";
         for(int i=0; i< 502; i++)
         {
@@ -419,8 +418,7 @@ public class AT_Req2_3 {
 
     //===========================================Teardown========================================
     @After
-    public void tearDown()
-    {
+    public void tearDown() throws Exception {
         service= new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
     }
 }

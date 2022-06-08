@@ -46,7 +46,7 @@ public class FaultyExternalSystems {
     double CokePrice = 5;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         mockSupplyer = mock(SupplyingAdapter.class);
         mockPayment = mock(PaymentAdapter.class);
         mockPaymentInformation = mock(PaymentInformation.class);
@@ -56,7 +56,7 @@ public class FaultyExternalSystems {
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(true);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(true);
 
-        service = new Service(mockPayment, mockSupplyer, false, false);
+        service = new Service(mockPayment, mockSupplyer);
         founder1token = service.guestConnect();
         user1token = service.guestConnect();
 

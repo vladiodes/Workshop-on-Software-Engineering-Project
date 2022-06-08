@@ -30,9 +30,9 @@ public class DBTests {
     private Response<String> founder1,manager1,owner2,owner1;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         DAO.setPersistence_unit("MarketTests");
-        service=new Service(new PaymentAdapter(),new SupplyingAdapter(),false,true);
+        service=new Service("DBTestingConfig.json");
         store1 = "store1";
         store2="store2";
         product1="product1";
@@ -44,7 +44,7 @@ public class DBTests {
     }
 
     @Test
-    public void addDataAndCheckBehaviour(){
+    public void addDataAndCheckBehaviour() throws Exception {
         addDataToService();
         setUp();
 

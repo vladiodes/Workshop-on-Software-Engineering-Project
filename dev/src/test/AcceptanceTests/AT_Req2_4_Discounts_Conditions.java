@@ -44,7 +44,7 @@ public class AT_Req2_4_Discounts_Conditions {
     String wrongSecretCode = "wrongcode";
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         mockSupplyer = mock(SupplyingAdapter.class);
         mockPayment = mock(PaymentAdapter.class);
         mockPaymentInformation = mock(PaymentInformation.class);

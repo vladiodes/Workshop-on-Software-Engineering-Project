@@ -37,16 +37,20 @@ public class Service implements IService {
     private UserTokens uTokens = new UserTokens();
     private String logFileName = "DefaultVladi.json";
     private List<Invoker<?>> commands;
-    public Service(IPayment Psystem, ISupplying Isystem){
-        MarketBuilder builder = new MarketBuilder(false);
-        builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();
-        market=builder.build();
+    public Service(IPayment Psystem, ISupplying Isystem) throws Exception{
+        MarketBuilder builder = new MarketBuilder();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Configuration conf = objectMapper.readValue(Paths.get("TestingConfig.json").toFile(), Configuration.class);
+        builder.setPSystem(Psystem);
+        builder.setSSystem(Isystem);
+        market=builder.build(conf);
     }
 
     public UserTokens getuTokens() {
         return uTokens;
     }
 
+    @Deprecated
     public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag, boolean persistEnable){
         MarketBuilder builder = new MarketBuilder(persistEnable);
         builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();

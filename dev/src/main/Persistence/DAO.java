@@ -119,7 +119,8 @@ public class DAO {
     }
 
     private void closeCon(){
-        this.entityManager.close();
+        if(entityManager != null)
+            this.entityManager.close();
     }
 
     public List<User> getUsers(){
