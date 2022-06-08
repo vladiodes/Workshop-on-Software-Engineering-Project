@@ -16,6 +16,9 @@ public class AT_Req2_6 {
     Response<String> adminToken, founder1token, user1token, user2token, user3token;
     IService service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
 
+    public AT_Req2_6() throws Exception {
+    }
+
     @Before
     public void setUp() {
         adminToken = service.guestConnect();

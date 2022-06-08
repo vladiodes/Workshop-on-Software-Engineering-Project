@@ -6,27 +6,34 @@ import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Persistence.DAO;
 import main.Publisher.Publisher;
+import main.Service.Configuration;
 import main.Stores.Store;
 import main.Users.User;
 import main.utils.SystemStats;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MarketBuilder {
-    private final boolean shouldLoadFromDB;
+    private boolean shouldLoadFromDB;
 
     private ConcurrentHashMap<String, User> membersByUserName=null; //key=username
     private ConcurrentHashMap<String, Store> stores=null; //key=store name
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate=null;
     private IPayment Psystem=null;
     private ISupplying Ssystem=null;
+    private String adminUsername = null;
+    private String adminPassword = null;
 
     public MarketBuilder(boolean shouldLoadFromDB){
         if(shouldLoadFromDB)
             DAO.enablePersist();
         this.shouldLoadFromDB=shouldLoadFromDB;
+    }
+
+    public MarketBuilder() {
     }
 
     public MarketBuilder loadUsers(){
@@ -81,8 +88,28 @@ public class MarketBuilder {
         membersByUserName = (membersByUserName ==null) ? new ConcurrentHashMap<>() : membersByUserName;
         stores = (stores == null) ? new ConcurrentHashMap<>() : stores;
         systemStatsByDate = (systemStatsByDate == null) ? new ConcurrentHashMap<>() : systemStatsByDate;
+        adminUsername = (adminUsername == null) ? "admin" : adminUsername;
+        adminUsername = (adminPassword == null) ? "admin" : adminPassword;
+        return new Market(Psystem,Ssystem,membersByUserName,stores,systemStatsByDate, adminUsername, adminPassword);
+    }
 
-        return new Market(Psystem,Ssystem,membersByUserName,stores,systemStatsByDate);
+    public Market build(Configuration conf) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        if (conf.getPersistence_unit() != null)
+            DAO.setPersistence_unit(conf.getPersistence_unit());
+        if(conf.getShouldPersist()) {
+            shouldLoadFromDB = true;
+            DAO.enablePersist();
+            loadStats().loadUsers().loadStores();
+        }
+        else DAO.disablePersist();
+        if (Psystem == null) Psystem = conf.getPaymentSystem().getDeclaredConstructor().newInstance();
+        if (Ssystem == null) Ssystem = conf.getSupplyingSystem().getDeclaredConstructor().newInstance();
+        membersByUserName = (membersByUserName ==null) ? new ConcurrentHashMap<>() : membersByUserName;
+        stores = (stores == null) ? new ConcurrentHashMap<>() : stores;
+        systemStatsByDate = (systemStatsByDate == null) ? new ConcurrentHashMap<>() : systemStatsByDate;
+        adminUsername = (conf.getAdminUsername() == null) ? "admin" : conf.getAdminUsername();
+        adminPassword = (conf.getAdminPassword() == null) ? "admin" : conf.getAdminPassword();
+        return new Market(Psystem,Ssystem,membersByUserName,stores,systemStatsByDate, adminUsername, adminPassword);
     }
 
 }

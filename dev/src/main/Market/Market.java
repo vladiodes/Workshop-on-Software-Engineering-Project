@@ -82,10 +82,10 @@ public class Market {
         systemStatsByDate=new ConcurrentHashMap<>();
         security_controller = new Security();
         currentlyLoggedInMembers = new AtomicInteger(0);
-        this.initialize(Psystem, Isystem);
+        this.initialize(Psystem, Isystem, "admin", "admin");
     }
 
-    public Market(IPayment Psystem, ISupplying Ssystem, ConcurrentHashMap<String, User> users, ConcurrentHashMap<String,Store> stores, ConcurrentHashMap<LocalDate,SystemStats> stats){
+    public Market(IPayment Psystem, ISupplying Ssystem, ConcurrentHashMap<String, User> users, ConcurrentHashMap<String,Store> stores, ConcurrentHashMap<LocalDate,SystemStats> stats, String adminUsername, String adminPassword){
         dao=DAO.getInstance();
         this.membersByUserName=users;
         this.systemStatsByDate=stats;
@@ -93,7 +93,7 @@ public class Market {
         security_controller = new Security();
         currentlyLoggedInMembers = new AtomicInteger(0);
         connectedSessions =new ConcurrentHashMap<>();
-        this.initialize(Psystem,Ssystem);
+        this.initialize(Psystem,Ssystem, adminUsername, adminPassword);
     }
 
     public List<StoreDTO> getAllStoresOf(String userToken) {
@@ -563,14 +563,13 @@ public class Market {
     /**
      * Create Default system manager
      */
-    private void initialize(IPayment Psystem, ISupplying Isystem) {
-        String adminUserName = "admin";
-        String adminHashPassword = security_controller.hashPassword("admin");
-        if(!membersByUserName.containsKey(adminUserName)) {
-            User admin = new User(true, adminUserName, adminHashPassword);
+    private void initialize(IPayment Psystem, ISupplying Isystem, String adminUsername, String adminPassword) {
+        String adminHashPassword = security_controller.hashPassword(adminPassword);
+        if(!membersByUserName.containsKey(adminUsername)) {
+            User admin = new User(true, adminUsername, adminHashPassword);
             dao.persist(admin);
             membersByUserName.put("admin", admin);
-            Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUserName));
+            Logger.getInstance().logEvent("Market", String.format("Added Default system admin with username: %s", adminUsername));
         }
         setSsystem(Isystem);
         setPsystem(Psystem);

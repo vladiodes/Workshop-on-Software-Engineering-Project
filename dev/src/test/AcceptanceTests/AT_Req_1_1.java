@@ -21,7 +21,7 @@ public class AT_Req_1_1 {
     Response<String> founder1token;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         adminToken = service.guestConnect();
         founder1token = service.guestConnect();

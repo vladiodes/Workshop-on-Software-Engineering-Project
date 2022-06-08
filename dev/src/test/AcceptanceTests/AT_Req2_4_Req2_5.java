@@ -20,6 +20,9 @@ public class AT_Req2_4_Req2_5 {
     Response<String> manager1token, manager2token, founder1token, founder2token, owner1token, user1token;
     IService service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
 
+    public AT_Req2_4_Req2_5() throws Exception {
+    }
+
     @Before
     public void setUp() {
         manager1token = service.guestConnect();
@@ -599,7 +602,7 @@ public class AT_Req2_4_Req2_5 {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws Exception {
         service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
     }
 }

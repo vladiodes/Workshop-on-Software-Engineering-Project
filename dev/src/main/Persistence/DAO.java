@@ -40,8 +40,10 @@ public class DAO {
     }
 
     public static void disablePersist() {
-        instance.closeCon();
-        instance=null;
+        if (instance != null) {
+            instance.closeCon();
+            instance = null;
+        }
         enablePersist=false;
     }
 
@@ -117,7 +119,8 @@ public class DAO {
     }
 
     private void closeCon(){
-        this.entityManager.close();
+        if(entityManager != null)
+            this.entityManager.close();
     }
 
     public List<User> getUsers(){
