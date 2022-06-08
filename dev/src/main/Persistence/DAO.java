@@ -40,8 +40,10 @@ public class DAO {
     }
 
     public static void disablePersist() {
-        instance.closeCon();
-        instance=null;
+        if (instance != null) {
+            instance.closeCon();
+            instance = null;
+        }
         enablePersist=false;
     }
 

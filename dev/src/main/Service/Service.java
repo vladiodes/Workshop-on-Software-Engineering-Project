@@ -22,6 +22,9 @@ import main.utils.*;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -44,7 +47,7 @@ public class Service implements IService {
         return uTokens;
     }
 
-    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag,boolean persistEnable){
+    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag, boolean persistEnable){
         MarketBuilder builder = new MarketBuilder(persistEnable);
         builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();
         market=builder.build();
@@ -53,6 +56,13 @@ public class Service implements IService {
             uTokens = new UserTokens();
             commands = new ArrayList<>();
         }
+    }
+
+    public Service(String configFileLocation) throws Exception {
+        MarketBuilder builder = new MarketBuilder();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Configuration conf = objectMapper.readValue(Paths.get(configFileLocation).toFile(), Configuration.class);
+        market=builder.build(conf);
     }
 
     public <T> void logCommand(Class<? extends Command<T>> cl,Command<T> command){
