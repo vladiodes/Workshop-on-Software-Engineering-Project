@@ -22,17 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added DB tests">
-      <change afterPath="$PROJECT_DIR$/src/main/Service/Configuration.java" afterDir="false" />
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleted dummy files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market/MarketBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/MarketBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +38,8 @@
         <option value="Interface" />
         <option value="Enum" />
         <option value="Tag Library Descriptor" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -75,27 +68,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "JPA.DatabaseSchemaImportDialog": "2c95b5a9-8801-47ea-a2f8-a24f7211c10e",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions",
-    "last_opened_file_path": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/mysql-connector-java-8.0.29.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.27126437",
-    "settings.editor.selected.configurable": "reference.settings.project.statistic.project.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;2c95b5a9-8801-47ea-a2f8-a24f7211c10e&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/Conditions/CompositeConditions&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/TradingSystem-main&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.Users" />
@@ -307,20 +300,7 @@
       <workItem from="1654494260542" duration="674000" />
       <workItem from="1654495452737" duration="15373000" />
       <workItem from="1654596865680" duration="7780000" />
-    </task>
-    <task id="LOCAL-00013" summary="Req 2.6.1 implemented">
-      <created>1650190175351</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1650190175351</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Req 2.6.2 implemented">
-      <created>1650191843192</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1650191843192</updated>
+      <workItem from="1654682967422" duration="534000" />
     </task>
     <task id="LOCAL-00015" summary="Req 2.6.3 implemented">
       <created>1650192532689</created>
@@ -651,7 +631,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654626910433</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fixed DBTests - after executing the DAO flag turns off and doesn't use persistent anymore">
+      <created>1654627878734</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1654627878734</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Deleted dummy files">
+      <created>1654627988558</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1654627988558</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,8 +691,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added option to enter secret code for basket in cart" />
-    <MESSAGE value="Deleted some files regarding HTTPS" />
     <MESSAGE value="Logger now writes bug events to BUG.txt" />
     <MESSAGE value="some work on discounts" />
     <MESSAGE value="Added discounts to GUI" />
@@ -722,7 +714,9 @@
     <MESSAGE value="Added persistance in code - now debug" />
     <MESSAGE value="Fixed some test issues" />
     <MESSAGE value="Added DB tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added DB tests" />
+    <MESSAGE value="Fixed DBTests - after executing the DAO flag turns off and doesn't use persistent anymore" />
+    <MESSAGE value="Deleted dummy files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted dummy files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -776,6 +770,11 @@
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
           <line>189</line>
           <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Main.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
