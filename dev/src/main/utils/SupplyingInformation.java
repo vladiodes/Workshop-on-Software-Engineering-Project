@@ -10,13 +10,23 @@ import java.time.LocalDateTime;
 public class SupplyingInformation {
     @Id
     @GeneratedValue
-    private int id;
-    private  String address;
-    private  LocalDate date;
+    private String name;
+    private String address;
 
-    public SupplyingInformation(String address, LocalDate date) {
+    private String city;
+
+    private String country;
+
+    private String zip;
+
+    private int transactionId;
+    public SupplyingInformation(String name, String address, String city, String country, String zip) {
         this.address = address;
-        this.date = date;
+        this.name = name;
+        this.city = city;
+        this.country = country;
+        this.zip = zip;
+        this.transactionId = 0;
     }
 
     public SupplyingInformation() {
@@ -27,7 +37,27 @@ public class SupplyingInformation {
         return address;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public int getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(int transactionId) {
+        this.transactionId = transactionId;
     }
 }

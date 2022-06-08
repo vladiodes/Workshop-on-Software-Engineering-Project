@@ -9,19 +9,21 @@ import java.time.LocalDate;
 public class PaymentInformation {
     @Id
     @GeneratedValue
-    private int id;
     private  String cardNumber;
     private  LocalDate expDate;
     private  int cvv;
     private  String name;
-    private  String email;
+    private String id;
 
-    public PaymentInformation(String cardNumber, LocalDate expDate, int cvv, String name, String email) {
+    private int transactionId;
+
+    public PaymentInformation(String cardNumber, LocalDate expDate, int cvv, String name, String id) {
         this.cardNumber = cardNumber;
         this.expDate = expDate;
         this.cvv = cvv;
         this.name = name;
-        this.email = email;
+        this.id = id;
+        this.transactionId = 0;
     }
 
     public PaymentInformation() {
@@ -44,8 +46,19 @@ public class PaymentInformation {
         return name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getId() {
+        return id;
     }
+
+    public int getTransactionId()
+    {
+        return this.transactionId;
+    }
+
+    public void setTransactionId(int newTrans)
+    {
+        this.transactionId = newTrans;
+    }
+
 
 }

@@ -90,7 +90,7 @@ public class DBTests {
         wasError |= service.addProductToStore(founder1.getResult(), product2, "category", null, "desc", store2, 100, 200).isError_occured();
 
         wasError |= service.addProductToCart(manager1.getResult(), store1, product1, 10).isError_occured();
-        wasError |= service.purchaseCart(manager1.getResult(), new PaymentInformation(null, null, 123, null, null), new SupplyingInformation(null, null)).isError_occured();
+        wasError |= service.purchaseCart(manager1.getResult(), new PaymentInformation(null, null, 123, null, null), new SupplyingInformation(null, null, null, null,null)).isError_occured();
 
         Assertions.assertFalse(wasError);
     }
@@ -129,8 +129,8 @@ public class DBTests {
 
     public void checkBids(){
         boolean wasError;
-        PaymentInformation pi = new PaymentInformation("1234",LocalDate.now().plusYears(3),1234,"vvv","asdasd");
-        SupplyingInformation si = new SupplyingInformation("123123",LocalDate.now().plusWeeks(2));
+        PaymentInformation pi = new PaymentInformation("1111222233334444",LocalDate.now().plusYears(3),123,"vvv","123456789");
+        SupplyingInformation si = new SupplyingInformation("Vladi", "Vladis Home", "Beer Sheva", "Israel", "1122334");
 
         wasError = service.login(manager1.getResult(),"manager1","123456").isError_occured();
         wasError|=service.bidOnProduct(manager1.getResult(),store2,product2,2000.0,pi,si).isError_occured();

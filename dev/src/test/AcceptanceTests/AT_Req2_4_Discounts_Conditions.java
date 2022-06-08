@@ -49,8 +49,6 @@ public class AT_Req2_4_Discounts_Conditions {
         mockPayment = mock(PaymentAdapter.class);
         mockPaymentInformation = mock(PaymentInformation.class);
         mockSupplyingInformation = mock(SupplyingInformation.class);
-        when(mockSupplyer.bookDelivery(any(SupplyingInformation.class))).thenReturn(true);
-        when(mockPayment.validateCard(any(PaymentInformation.class))).thenReturn(true);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(true);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(true);
 

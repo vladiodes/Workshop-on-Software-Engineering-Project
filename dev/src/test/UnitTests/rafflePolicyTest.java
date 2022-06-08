@@ -78,7 +78,14 @@ class rafflePolicyTest {
         subject.productPurchased(productMock,userMock1, originalPrice / 3 , 1, mockSupplyer, si, pi, mockPayment);
         subject.productPurchased(productMock,userMock2, originalPrice / 3 , 1, mockSupplyer, si, pi, mockPayment);
         subject.close();
-        verify(mockPayment, times(2)).abort(pi);
+        try
+        {
+            verify(mockPayment, times(2)).abort(pi);
+        }
+        catch(Exception e)
+        {
+            Assertions.fail();
+        }
     }
 
     @Test

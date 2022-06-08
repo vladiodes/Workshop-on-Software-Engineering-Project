@@ -41,10 +41,6 @@ public class Purchase {
     public void executePurchase() throws Exception {
         if (!this.cart.ValidateCart(this.user))
             throw new Exception("Cart is unpurchasable.");
-        if (!paymentSystem.validateCard(pinfo))
-            throw new Exception("Payment authentication failed.");
-        if (!supplyingSystem.bookDelivery(sinfo))
-            throw new Exception("Supplier authentication failed");
         Map<Product, Integer> toDeliver = this.cart.getProductsForPurchase(this.user);
         if (!(paymentSystem.makePayment(pinfo, this.cart.getPrice()) && (toDeliver.size() == 0 || supplyingSystem.supply(sinfo, toDeliver))))
         {

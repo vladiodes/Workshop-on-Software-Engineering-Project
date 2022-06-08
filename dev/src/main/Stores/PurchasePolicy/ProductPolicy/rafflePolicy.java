@@ -85,8 +85,15 @@ public class rafflePolicy extends DirectPolicy {
     @Override
     public void close() {
         for (Map.Entry<User,PaymentInformation> entry : userPaymentInformation.entrySet()){
-            payment.abort(entry.getValue());
-            entry.getKey().notifyObserver(new PersonalNotification(store.getName(),"Raffle was closed, you should get refunded according to the payment service policy."));
+            try
+            {
+                payment.abort(entry.getValue());
+                entry.getKey().notifyObserver(new PersonalNotification(store.getName(),"Raffle was closed, you should get refunded according to the payment service policy."));
+            }
+            catch (Exception e)
+            {
+                entry.getKey().notifyObserver(new PersonalNotification(store.getName(),"Raffle was closed, but we failed to refund you, please contact an admin for further help"));
+            }
         }
         this.ResetRaffle();
     }
