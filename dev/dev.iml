@@ -6,6 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="Market" />
+          <factory-entry name="MarketTests" />
           <factory-entry name="TradingSystemTest" />
         </datasource-mapping>
         <naming-strategy-map />

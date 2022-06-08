@@ -22,10 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Added DB tests">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Deleted dummy files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +138,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
+  <component name="RunManager" selected="Application.main.Communication.Main">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -300,20 +300,7 @@
       <workItem from="1654494260542" duration="674000" />
       <workItem from="1654495452737" duration="15373000" />
       <workItem from="1654596865680" duration="7780000" />
-    </task>
-    <task id="LOCAL-00013" summary="Req 2.6.1 implemented">
-      <created>1650190175351</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1650190175351</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Req 2.6.2 implemented">
-      <created>1650191843192</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1650191843192</updated>
+      <workItem from="1654682967422" duration="534000" />
     </task>
     <task id="LOCAL-00015" summary="Req 2.6.3 implemented">
       <created>1650192532689</created>
@@ -644,7 +631,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654626910433</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fixed DBTests - after executing the DAO flag turns off and doesn't use persistent anymore">
+      <created>1654627878734</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1654627878734</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Deleted dummy files">
+      <created>1654627988558</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1654627988558</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,8 +691,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added option to enter secret code for basket in cart" />
-    <MESSAGE value="Deleted some files regarding HTTPS" />
     <MESSAGE value="Logger now writes bug events to BUG.txt" />
     <MESSAGE value="some work on discounts" />
     <MESSAGE value="Added discounts to GUI" />
@@ -715,7 +714,9 @@
     <MESSAGE value="Added persistance in code - now debug" />
     <MESSAGE value="Fixed some test issues" />
     <MESSAGE value="Added DB tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added DB tests" />
+    <MESSAGE value="Fixed DBTests - after executing the DAO flag turns off and doesn't use persistent anymore" />
+    <MESSAGE value="Deleted dummy files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted dummy files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -769,6 +770,11 @@
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
           <line>189</line>
           <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Main.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
