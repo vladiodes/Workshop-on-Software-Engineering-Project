@@ -21,11 +21,6 @@ public class HttpRequestController {
         configureConnection();
     }
 
-    public HttpRequestController(boolean flag)
-    {
-
-    }
-
     private void configureConnection() throws Exception
     {
         connection = (HttpURLConnection) url.openConnection();

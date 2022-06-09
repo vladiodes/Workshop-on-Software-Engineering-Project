@@ -50,7 +50,7 @@ public class PaymentAdapter implements IPayment {
             params.put("year", String.valueOf(expYearNum));
             params.put("holder", pi.getName());
             params.put("ccv", String.valueOf(pi.getCvv()));
-            params.put("id", pi.getId());
+            params.put("id", pi.getUserId());
 
             this.httpReqCtrl = new HttpRequestController();
             String response = this.httpReqCtrl.sendRequest(params);
