@@ -3,6 +3,7 @@ package main.utils;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -10,6 +11,8 @@ import java.time.LocalDateTime;
 public class SupplyingInformation {
     @Id
     @GeneratedValue
+    int id;
+
     private String name;
     private String address;
 
@@ -18,7 +21,7 @@ public class SupplyingInformation {
     private String country;
 
     private String zip;
-
+    @Transient
     private int transactionId;
     public SupplyingInformation(String name, String address, String city, String country, String zip) {
         this.address = address;

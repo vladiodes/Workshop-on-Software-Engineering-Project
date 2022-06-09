@@ -3,6 +3,7 @@ package main.utils;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 
 @Entity
@@ -17,6 +18,7 @@ public class PaymentInformation {
     private  String name;
     private String userId;
 
+    @Transient
     private int transactionId;
 
     public PaymentInformation(String cardNumber, LocalDate expDate, int cvv, String name, String userId) {
