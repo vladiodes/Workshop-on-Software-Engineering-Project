@@ -7,6 +7,9 @@ import main.Service.CommandExecutor.Invoker;
 import main.Service.CommandExecutor.utils.UserTokens;
 import main.utils.Response;
 
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,17 +40,30 @@ public class ServiceLoader {
     }
 
 //    you can use this main to create more startup files.
-//    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 //        createRecording("Tal3.json", new Function<IService, Void>() {
 //            @Override
 //            public Void apply(IService service) {
-//                Response<String> admintoken = service.guestConnect();
-//                service.register("u1", "123456");
-//                service.login(admintoken.getResult(), "admin", "admin");
-//                service.deleteUser(admintoken.getResult(), "u1");
-//                service.logout(admintoken.getResult());
+//                Class<?> wat = PaymentAdapter.class;
+//                try {
+//                    Constructor<?> damn = wat.getConstructor();
+//                    PaymentAdapter pa = (PaymentAdapter)damn.newInstance();
+//                } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+//                         InvocationTargetException e) {
+//                    throw new RuntimeException(e);
+//                }
 //                return null;
 //            }
 //        });
-//    }
+        ObjectMapper objectMapper = new ObjectMapper();
+        Configuration c = new Configuration();
+        c.setPersistence_unit("Market");
+        c.setShouldPersist(true);
+        c.setAdminUsername("admin");
+        c.setAdminPassword("admin");
+        c.setPaymentSystem(PaymentAdapter.class);
+        c.setSupplyingSystem(SupplyingAdapter.class);
+        objectMapper.writeValue(new File("RealConfig.json"), c);
+    }
+
 }

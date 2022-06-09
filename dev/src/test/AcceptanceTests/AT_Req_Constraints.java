@@ -18,7 +18,7 @@ public class AT_Req_Constraints {
     IService service;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         adminToken = service.guestConnect();
         founder1token = service.guestConnect();

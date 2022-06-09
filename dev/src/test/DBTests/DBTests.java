@@ -11,17 +11,15 @@ import main.Service.Service;
 import main.utils.PaymentInformation;
 import main.utils.Response;
 import main.utils.SupplyingInformation;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.*;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.*;
+import org.junit.runners.MethodSorters;
 
 import java.time.LocalDate;
 import java.util.List;
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DBTests {
 
     private IService service;
@@ -30,9 +28,9 @@ public class DBTests {
     private Response<String> founder1,manager1,owner2,owner1;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         DAO.setPersistence_unit("MarketTests");
-        service=new Service(new PaymentAdapter(),new SupplyingAdapter(),false,true);
+        service=new Service("DBTestingConfig.json");
         store1 = "store1";
         store2="store2";
         product1="product1";
@@ -43,38 +41,40 @@ public class DBTests {
         owner2 = service.guestConnect();
     }
 
+//    @Test
+//    public void addDataAndCheckBehaviour() throws Exception {
+//        addDataToService();
+//        setUp();
+//
+//        addMoreData();
+//        setUp();
+//
+//        checkSimpleDiscount();
+//        setUp();
+//
+//        addBargainPolicyOnProduct2();
+//        setUp();
+//
+//        checkBids();
+//        setUp();
+
+//        acceptBidWorks();
+//        setUp();
+//
+//        appointOwnerChain();
+//        setUp();
+
+//        OwnersAreRecorded();
+//        setUp();
+//
+//        DeleteChainOwnersWorks();
+
+//        DAO.disablePersist();
+//    }
+
+
     @Test
-    public void addDataAndCheckBehaviour(){
-        addDataToService();
-        setUp();
-
-        addMoreData();
-        setUp();
-
-        checkSimpleDiscount();
-        setUp();
-
-        addBargainPolicyOnProduct2();
-        setUp();
-
-        checkBids();
-        setUp();
-
-        acceptBidWorks();
-        setUp();
-
-        appointOwnerChain();
-        setUp();
-
-        OwnersAreRecorded();
-        setUp();
-
-        DeleteChainOwnersWorks();
-
-        DAO.disablePersist();
-    }
-
-
+    @Order(5)
     public void addDataToService() {
         boolean wasError;
         wasError = service.register("founder1", "123456").isError_occured();
@@ -96,6 +96,8 @@ public class DBTests {
     }
 
 
+    @Test
+    @Order(2)
     public void addMoreData(){
         boolean wasError;
         wasError=service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -107,6 +109,8 @@ public class DBTests {
         Assertions.assertFalse(wasError);
     }
 
+    @Test
+    @Order(3)
     public void checkSimpleDiscount(){
         boolean wasError;
         wasError=service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -119,6 +123,8 @@ public class DBTests {
     }
 
 
+    @Test
+    @Order(4)
     public void addBargainPolicyOnProduct2(){
         boolean wasError;
         wasError=service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -127,6 +133,8 @@ public class DBTests {
     }
 
 
+    @Test
+    @Order(1)
     public void checkBids(){
         boolean wasError;
         PaymentInformation pi = new PaymentInformation("1111222233334444",LocalDate.now().plusYears(3),123,"vvv","123456789");
@@ -134,23 +142,11 @@ public class DBTests {
 
         wasError = service.login(manager1.getResult(),"manager1","123456").isError_occured();
         wasError|=service.bidOnProduct(manager1.getResult(),store2,product2,2000.0,pi,si).isError_occured();
-
         Assertions.assertFalse(wasError);
     }
 
-
-    public void acceptBidWorks(){
-        boolean wasError;
-        wasError=service.login(founder1.getResult(),"founder1","123456").isError_occured();
-        wasError |= service.ApproveBid(founder1.getResult(), store2,product2,"manager1").isError_occured();
-        wasError |= service.login(manager1.getResult(),"manager1","123456").isError_occured();
-        Response<List<String>> r = service.getPurchaseHistory(manager1.getResult(), "manager1");
-        wasError |= r.isError_occured();
-
-        Assertions.assertFalse(wasError);
-        Assertions.assertEquals(2,r.getResult().size());
-    }
-
+    @Test
+    @Order(7)
     public void appointOwnerChain(){
         boolean wasError;
         wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -163,6 +159,8 @@ public class DBTests {
         Assertions.assertFalse(wasError);
     }
 
+    @Test
+    @Order(8)
     public void OwnersAreRecorded(){
         boolean wasError;
         wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -173,6 +171,8 @@ public class DBTests {
 
     }
 
+    @Test
+    @Order(6)
     public void DeleteChainOwnersWorks(){
         boolean wasError;
         wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -181,6 +181,25 @@ public class DBTests {
         wasError|=r.isError_occured();
         Assertions.assertFalse(wasError);
         Assertions.assertEquals(1,r.getResult().size());
+    }
+
+    @Test
+    @Order(9)
+    public void ZacceptBidWorks(){
+        boolean wasError;
+        wasError=service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        wasError |= service.ApproveBid(founder1.getResult(), store2,product2,"manager1").isError_occured();
+        wasError |= service.login(manager1.getResult(),"manager1","123456").isError_occured();
+        Response<List<String>> r = service.getPurchaseHistory(manager1.getResult(), "manager1");
+        wasError |= r.isError_occured();
+
+        Assertions.assertFalse(wasError);
+        Assertions.assertEquals(2,r.getResult().size());
+    }
+
+    @AfterAll
+    public void TearDown(){
+        DAO.disablePersist();
     }
 
 

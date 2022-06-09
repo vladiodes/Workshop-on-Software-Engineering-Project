@@ -115,7 +115,10 @@ public class BargainingPolicy extends TimedPolicy{
             Notification n =new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName()));
             DAO.getInstance().persist(n);
             user.notifyObserver(n);
-            bidApprovedBy.remove(getUserBid(user));
+            Bid bidToRemove=getUserBid(user);
+            bidApprovedBy.remove(bidToRemove);
+            DAO.getInstance().remove(bidToRemove);
+            DAO.getInstance().remove(approvers);
             DAO.getInstance().merge(this);
         }
     }

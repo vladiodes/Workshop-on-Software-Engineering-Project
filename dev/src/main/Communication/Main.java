@@ -22,7 +22,16 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 public class Main {
 
     public static void main(String[] args) {
-        IService service = new Service(new PaymentAdapter(), new SupplyingAdapter(),false,true);
+        IService service;
+        String confFilePath = "RealConfig.json";
+        if(args.length >= 2 && !args[1].equals("NONE"))
+            confFilePath = args[1];
+        try {
+            service = new Service(confFilePath);
+        } catch (Exception e){
+            System.out.println(String.format("Failed to use configuration file, exiting. %s", e.getMessage()));
+            return;
+        }
         RegisterController registerController=new RegisterController(service);
         LoginController loginController=new LoginController(service);
         StoreController storeController=new StoreController(service);
@@ -158,7 +167,7 @@ public class Main {
         });
         try {
             if(args.length == 0 || (args[0].equals("NONE")))
-                ServiceLoader.loadFromFile("DefaultVladi.json", service);
+                System.out.println("No config run.");
             else
                 ServiceLoader.loadFromFile(args[0], service);
         }

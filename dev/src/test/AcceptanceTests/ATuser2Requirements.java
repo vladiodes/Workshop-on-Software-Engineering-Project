@@ -51,7 +51,7 @@ public class ATuser2Requirements {
     double auctionedItemPrice = 50;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         mockSupplyer = mock(SupplyingAdapter.class);
         mockPayment = mock(PaymentAdapter.class);
         mockPaymentInformation = mock(PaymentInformation.class);

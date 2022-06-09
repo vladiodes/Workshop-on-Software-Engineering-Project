@@ -1,0 +1,1 @@
+{"adminUsername":"admin","adminPassword":"admin","persistence_unit":"MarketTests","shouldPersist":true,"paymentSystem":"main.ExternalServices.Payment.PaymentAdapter","supplyingSystem":"main.ExternalServices.Supplying.SupplyingAdapter"}

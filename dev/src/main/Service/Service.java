@@ -22,6 +22,9 @@ import main.utils.*;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -34,17 +37,21 @@ public class Service implements IService {
     private UserTokens uTokens = new UserTokens();
     private String logFileName = "DefaultVladi.json";
     private List<Invoker<?>> commands;
-    public Service(IPayment Psystem, ISupplying Isystem){
-        MarketBuilder builder = new MarketBuilder(false);
-        builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();
-        market=builder.build();
+    public Service(IPayment Psystem, ISupplying Isystem) throws Exception{
+        MarketBuilder builder = new MarketBuilder();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Configuration conf = objectMapper.readValue(Paths.get("TestingConfig.json").toFile(), Configuration.class);
+        builder.setPSystem(Psystem);
+        builder.setSSystem(Isystem);
+        market=builder.build(conf);
     }
 
     public UserTokens getuTokens() {
         return uTokens;
     }
 
-    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag,boolean persistEnable){
+    @Deprecated
+    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag, boolean persistEnable){
         MarketBuilder builder = new MarketBuilder(persistEnable);
         builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();
         market=builder.build();
@@ -53,6 +60,13 @@ public class Service implements IService {
             uTokens = new UserTokens();
             commands = new ArrayList<>();
         }
+    }
+
+    public Service(String configFileLocation) throws Exception {
+        MarketBuilder builder = new MarketBuilder();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Configuration conf = objectMapper.readValue(Paths.get(configFileLocation).toFile(), Configuration.class);
+        market=builder.build(conf);
     }
 
     public <T> void logCommand(Class<? extends Command<T>> cl,Command<T> command){
