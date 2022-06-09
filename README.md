@@ -18,3 +18,23 @@ You have to open an mySQL server and create 2 databases with the following names
 * The server's username and password are (or you can choose your own and change persistance.xml config file):
 * username: root
 * password: admin
+
+# How the Config file should be written:
+you need to pass a JSON object stating the following properties:
+- adminUsername: the user name of the default admin
+- adminPassword: the password of the default admin
+- persistence_unit: Market for regular functionality
+                   MarketTests for tests functionality
+- shouldPersist: True/False if you want to persist/not
+- paymentSystem: Path to the payment system class you want to be used
+- supplyingSystem: Path to the supplying system class you want to be used
+
+# How the State file should be written:
+you need to pass an array of JSON objects stating the following properites:
+- command: Path to the command you want to execute
+- params: The parameters you want to pass to the command (as a string representing JSON object)
+
+# How to initialize the system with Config and State file:
+you need to pass 2 parameters to the program:
+param0 - Path to the Config file
+param1 - path to the State file
