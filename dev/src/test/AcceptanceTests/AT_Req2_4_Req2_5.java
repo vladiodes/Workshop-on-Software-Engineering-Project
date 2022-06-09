@@ -19,6 +19,7 @@ public class AT_Req2_4_Req2_5 {
 
     Response<String> manager1token, manager2token, founder1token, founder2token, owner1token, user1token;
     IService service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
+    int threadCount;
 
     public AT_Req2_4_Req2_5() throws Exception {
     }
@@ -51,6 +52,8 @@ public class AT_Req2_4_Req2_5 {
         service.appointStoreOwner(founder1token.getResult(), "owner1", "MyStore1");
         service.appointStoreManager(founder1token.getResult(), "manager1", "MyStore1");
         service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6);
+
+        threadCount = 10000;
     }
 
     /***
@@ -546,26 +549,36 @@ public class AT_Req2_4_Req2_5 {
     @Test
     public void concurrentAppointStoreManager() throws InterruptedException {
         AtomicInteger counter = new AtomicInteger(0);
-        Runnable founder1AppointsUser1 = () -> {
-            Response<Boolean> resp = service.appointStoreManager(founder1token.getResult(), "user1", "MyStore1");
-            if (!resp.isError_occured())
-                counter.incrementAndGet();
-        };
+//        Runnable founder1AppointsUser1 = () -> {
+//            Response<Boolean> resp = service.appointStoreManager(founder1token.getResult(), "user1", "MyStore1");
+//            if (!resp.isError_occured())
+//                counter.incrementAndGet();
+//        };
 
         Runnable owner1AppointsUser1 = () -> {
             Response<Boolean> resp = service.appointStoreManager(owner1token.getResult(), "user1", "MyStore1");
             if (!resp.isError_occured())
                 counter.incrementAndGet();
         };
+//        Thread founder1AppointsUser1Thread = new Thread(founder1AppointsUser1);
 
-        Thread founder1AppointsUser1Thread = new Thread(founder1AppointsUser1);
-        Thread owner1AppointsUser1Thread = new Thread(owner1AppointsUser1);
 
-        founder1AppointsUser1Thread.start();
-        owner1AppointsUser1Thread.start();
+        Thread[] owner1AppointsUser1Threads = new Thread[threadCount];
+        for(int i=0; i < owner1AppointsUser1Threads.length;i++){
+            owner1AppointsUser1Threads[i] = new Thread(owner1AppointsUser1);
+        }
 
-        founder1AppointsUser1Thread.join();
-        owner1AppointsUser1Thread.join();
+//        founder1AppointsUser1Thread.start();
+
+
+        for(int i=0; i < owner1AppointsUser1Threads.length;i++){
+            owner1AppointsUser1Threads[i].start();
+        }
+//        founder1AppointsUser1Thread.join();
+        for(int i=0; i < owner1AppointsUser1Threads.length;i++){
+            owner1AppointsUser1Threads[i].join();
+        }
+
         assertEquals(1, counter.get());
     }
 
@@ -576,29 +589,43 @@ public class AT_Req2_4_Req2_5 {
     public void concurrentRemoveAndEditProduct() throws InterruptedException {
         AtomicInteger num_of_errors = new AtomicInteger(0);
         AtomicBoolean should_not_happen = new AtomicBoolean(false);
+        AtomicInteger num_of_ops_until_delete = new AtomicInteger(0);
+        AtomicBoolean deleted = new AtomicBoolean(false);
         Runnable founder1RemoveProduct = () -> {
             Response<Boolean> resp = service.removeProductFromStore(founder1token.getResult(), "Coca Cola", "MyStore1");
             if (resp.isError_occured()) {
                 should_not_happen.set(true);
                 num_of_errors.incrementAndGet();
             }
+            deleted.getAndSet(true);
         };
         Runnable manager1UpdateProduct = () -> {
             Response<Boolean> resp = service.updateProduct(manager1token.getResult(), "Coca Cola", "Coca Cola", "Drinks", null, "very tasty drink", "MyStore1", 200, 6);
-            if (resp.isWas_expected_error())
+            if(!deleted.get()) {
+                num_of_ops_until_delete.incrementAndGet();
+            }
+            else if (resp.isWas_expected_error()){
                 num_of_errors.incrementAndGet();
+            }
         };
 
         Thread founder1RemoveProductThread = new Thread(founder1RemoveProduct);
-        Thread manager1UpdateProductThread = new Thread(manager1UpdateProduct);
-
+        Thread[] managerUpdateProductThreads = new Thread[threadCount];
+        for(int i=0; i < managerUpdateProductThreads.length;i++){
+            managerUpdateProductThreads[i] = new Thread(manager1UpdateProduct);
+        }
+        for(int i=0; i < managerUpdateProductThreads.length;i++){
+            managerUpdateProductThreads[i].start();
+        }
         founder1RemoveProductThread.start();
-        manager1UpdateProductThread.start();
+
         founder1RemoveProductThread.join();
-        manager1UpdateProductThread.join();
+        for(int i=0; i < managerUpdateProductThreads.length;i++){
+            managerUpdateProductThreads[i].join();
+        }
 
         assertFalse(should_not_happen.get());
-        assertTrue(num_of_errors.get() <= 1);
+        assertTrue(num_of_errors.get() == threadCount-num_of_ops_until_delete.get());
     }
 
     @After
