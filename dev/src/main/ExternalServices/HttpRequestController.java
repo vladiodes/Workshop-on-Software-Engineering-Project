@@ -15,9 +15,9 @@ public class HttpRequestController {
     private HttpURLConnection connection;
 
 
-    public HttpRequestController() throws Exception
+    public HttpRequestController(String urlAddress) throws Exception
     {
-        url = new URL("https://cs-bgu-wsep.herokuapp.com/");
+        url = new URL(urlAddress);
         configureConnection();
     }
 
@@ -53,43 +53,55 @@ public class HttpRequestController {
         return requestDataBytes;
     }
 
-    public String sendRequest(Map<String, String> requestParams) throws Exception
+    public String sendRequest(Map<String, String> requestParams)
     {
-        byte[] requestDataBytes = configureRequest(requestParams);
-        connection.setDoOutput(true);
-        try(DataOutputStream writer = new DataOutputStream(connection.getOutputStream()))
+        try
         {
-            //Send Request
-            writer.write(requestDataBytes);
-            //Read Response
-            StringBuilder content;
-            try(BufferedReader in =  new BufferedReader(new InputStreamReader(connection.getInputStream())))
+            byte[] requestDataBytes = configureRequest(requestParams);
+            connection.setDoOutput(true);
+            try(DataOutputStream writer = new DataOutputStream(connection.getOutputStream()))
             {
-                String line;
-                content = new StringBuilder();
-                while((line = in.readLine()) != null)
+                //Send Request
+                writer.write(requestDataBytes);
+                //Read Response
+                StringBuilder content;
+                try(BufferedReader in =  new BufferedReader(new InputStreamReader(connection.getInputStream())))
                 {
-                    content.append(line);
-                    content.append(System.lineSeparator());
+                    String line;
+                    content = new StringBuilder();
+                    while((line = in.readLine()) != null)
+                    {
+                        content.append(line);
+                        content.append(System.lineSeparator());
+                    }
                 }
+                String beforeRemove = content.toString();
+                if(beforeRemove.contains("error"))
+                    return null;
+                //Remove \n and \r from string
+                String afterRemove = beforeRemove.replaceAll("\n", "");
+                afterRemove = afterRemove.replaceAll("\r", "");
+                return afterRemove;
             }
-            String beforeRemove = content.toString();
-            //Remove \n and \r from string
-            String afterRemove = beforeRemove.replaceAll("\n", "");
-            afterRemove = afterRemove.replaceAll("\r", "");
-           return afterRemove;
+            finally
+            {
+                connection.disconnect();
+            }
         }
-        finally
+        catch (Exception e)
         {
-            connection.disconnect();
+            return null;
         }
+
     }
 
-    public boolean handshake() throws Exception
+    public boolean handshake()
     {
         Map<String,String> params = new HashMap<>();
         params.put("action_type", "handshake");
         String response = sendRequest(params);
+        if(response == null)
+            return false;
         return response.equals("OK");
     }
 }

@@ -12,12 +12,14 @@ import java.util.Map;
 public class SupplyingAdapter implements ISupplying {
 
     private HttpRequestController httpReqCtrl;
+    private String urlAddress;
 
     public SupplyingAdapter()
     {
+        this.urlAddress = "https://cs-bgu-wsep.herokuapp.com/";
         try
         {
-            this.httpReqCtrl = new HttpRequestController();
+            this.httpReqCtrl = new HttpRequestController(urlAddress);
         }
         catch (Exception e)
         {
@@ -34,7 +36,7 @@ public class SupplyingAdapter implements ISupplying {
             {
                 return false;
             }
-            this.httpReqCtrl = new HttpRequestController();
+            this.httpReqCtrl = new HttpRequestController(urlAddress);
             if(!this.httpReqCtrl.handshake())
             {
                 return false;
@@ -46,8 +48,10 @@ public class SupplyingAdapter implements ISupplying {
             params.put("city", si.getCity());
             params.put("country", si.getCountry());
             params.put("zip", si.getZip());
-            this.httpReqCtrl = new HttpRequestController();
+            this.httpReqCtrl = new HttpRequestController(urlAddress);
             String response = this.httpReqCtrl.sendRequest(params);
+            if (response == null)
+                return false;
             int transId = Integer.parseInt(response);
 
             si.setTransactionId(transId);
@@ -80,7 +84,7 @@ public class SupplyingAdapter implements ISupplying {
         {
             return; //Do nothing the supply already failed
         }
-        this.httpReqCtrl = new HttpRequestController();
+        this.httpReqCtrl = new HttpRequestController(urlAddress);
         if(!this.httpReqCtrl.handshake())
         {
             throw new Exception("Handshake failed, Cant abort supply");
@@ -89,8 +93,10 @@ public class SupplyingAdapter implements ISupplying {
         Map<String,String> params = new HashMap<>();
         params.put("action_type", "cancel_pay");
         params.put("transaction_id", String.valueOf(si.getTransactionId()));
-        this.httpReqCtrl = new HttpRequestController();
+        this.httpReqCtrl = new HttpRequestController(urlAddress);
         String response = this.httpReqCtrl.sendRequest(params);
+        if(response == null)
+            throw new Exception("Failed to send request to external supply system");
         int abortResult = Integer.parseInt(response);
         if(abortResult != 1)
         {

@@ -10,13 +10,15 @@ import java.util.Map;
 public class PaymentAdapter implements IPayment {
 
     private HttpRequestController httpReqCtrl;
+    private String urlAddress;
 
 
     public  PaymentAdapter()
     {
+        this.urlAddress = "https://cs-bgu-wsep.herokuapp.com/";
         try
         {
-            httpReqCtrl = new HttpRequestController();
+            httpReqCtrl = new HttpRequestController(urlAddress);
         }
         catch (Exception e)
         {
@@ -29,11 +31,11 @@ public class PaymentAdapter implements IPayment {
     public boolean makePayment(PaymentInformation pi, double amountToPay) {
         try
         {
-            if(httpReqCtrl == null)
+            if(httpReqCtrl == null) //If constructor failed
             {
                 return false;
             }
-            this.httpReqCtrl = new HttpRequestController();
+            this.httpReqCtrl = new HttpRequestController(urlAddress);
             if(!this.httpReqCtrl.handshake())
             {
                 return false;
@@ -52,9 +54,12 @@ public class PaymentAdapter implements IPayment {
             params.put("ccv", String.valueOf(pi.getCvv()));
             params.put("id", pi.getUserId());
 
-            this.httpReqCtrl = new HttpRequestController();
+            this.httpReqCtrl = new HttpRequestController(urlAddress);
             String response = this.httpReqCtrl.sendRequest(params);
-
+            if(response == null)
+            {
+                return false;
+            }
             int transactionId = Integer.parseInt(response);
 
             pi.setTransactionId(transactionId);
@@ -74,7 +79,7 @@ public class PaymentAdapter implements IPayment {
     @Override
     public void abort(PaymentInformation pi)  throws Exception{
 
-        if(httpReqCtrl == null)
+        if(httpReqCtrl == null) //If constructor failed
         {
             throw new Exception("No connection established");
         }
@@ -87,7 +92,7 @@ public class PaymentAdapter implements IPayment {
         {
             return;
         }
-        this.httpReqCtrl = new HttpRequestController();
+        this.httpReqCtrl = new HttpRequestController(urlAddress);
         if(!this.httpReqCtrl.handshake())
         {
             throw new Exception("Handshake failed. Cant abort payment.");
@@ -95,8 +100,12 @@ public class PaymentAdapter implements IPayment {
         Map<String,String> params = new HashMap<>();
         params.put("action_type", "cancel_pay");
         params.put("transaction_id", String.valueOf(pi.getTransactionId()));
-        this.httpReqCtrl = new HttpRequestController();
+        this.httpReqCtrl = new HttpRequestController(urlAddress);
         String response = this.httpReqCtrl.sendRequest(params);
+        if (response == null)
+        {
+            throw new Exception("Failed to send request to external payment system");
+        }
         int abortResult = Integer.parseInt(response);
         if(abortResult != 1)
         {
