@@ -22,11 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some small persistence bug with bidding">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Deleted dummy files">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BarRecording.json" beforeDir="false" afterPath="$PROJECT_DIR$/BarRecording.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBTestingConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DBTestingConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,12 +64,14 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
         <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
@@ -153,7 +156,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -165,9 +168,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
+      <option name="PROGRAM_PARAMETERS" value="BarRecording.json TestingConfig.json" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.Communication.*" />
@@ -197,7 +201,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DBTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ATuser2Requirements.founderApprovesBargainOffer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="founderApprovesBargainOffer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DBTests" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -283,6 +303,7 @@
       <item itemvalue="Application.ServiceLoader" />
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.DBTests" />
+      <item itemvalue="JUnit.ATuser2Requirements.founderApprovesBargainOffer" />
       <item itemvalue="JUnit.DBTests,acceptBidWorks and 1 more" />
       <item itemvalue="JUnit.DBTests.addDataAndCheckBehaviour" />
       <item itemvalue="JUnit.PlusCompositeDiscountTest" />
@@ -290,9 +311,8 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ATuser2Requirements.founderApprovesBargainOffer" />
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.DBTests" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.DBTests,acceptBidWorks and 1 more" />
         <item itemvalue="JUnit.DBTests.addDataAndCheckBehaviour" />
       </list>
@@ -304,7 +324,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="" />
+      <changelist id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Deleted dummy files" />
       <created>1649831427176</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

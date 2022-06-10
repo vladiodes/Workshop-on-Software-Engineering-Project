@@ -22,4 +22,10 @@
   {"command":"main.Service.CommandExecutor.Commands.AllowManagerUpdateProductsCommand","params":"{\"name\":\"User1\",\"managerName\":\"u3\",\"storeName\":\"s1\"}"},
   {"command":"main.Service.CommandExecutor.Commands.appointStoreOwnerCommand","params":"{\"name\":\"User1\",\"userToAppoint\":\"u4\",\"storeName\":\"s1\"}"},
   {"command":"main.Service.CommandExecutor.Commands.appointStoreOwnerCommand","params":"{\"name\":\"User1\",\"userToAppoint\":\"u5\",\"storeName\":\"s1\"}"},
-  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User4\"}"}]
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User5\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User4\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User3\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User2\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User1\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User0\"}"}
+]

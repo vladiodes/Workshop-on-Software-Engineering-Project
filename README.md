@@ -34,7 +34,7 @@ you need to pass an array of JSON objects stating the following properites:
 - command: Path to the command you want to execute
 - params: The parameters you want to pass to the command (as a string representing JSON object)
 
-# How to initialize the system with Config and State file:
+# How to initialize the system with Script and Configuration file:
 you need to pass 2 parameters to the program:
-- param0 - Path to the Config file
-- param1 - path to the State file
+- param0 - Path to the Script file
+- param1 - path to the Configuration file
