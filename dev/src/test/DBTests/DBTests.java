@@ -90,7 +90,8 @@ public class DBTests {
         wasError |= service.addProductToStore(founder1.getResult(), product2, "category", null, "desc", store2, 100, 200).isError_occured();
 
         wasError |= service.addProductToCart(manager1.getResult(), store1, product1, 10).isError_occured();
-        wasError |= service.purchaseCart(manager1.getResult(), new PaymentInformation(null, null, 123, null, null), new SupplyingInformation(null, null, null, null,null)).isError_occured();
+        wasError |= service.purchaseCart(manager1.getResult(), new PaymentInformation("123", LocalDate.now().plusYears(1), 123, "123", "123"), new SupplyingInformation("123", "123", "123", "123","123")).isError_occured();
+
 
         Assertions.assertFalse(wasError);
     }

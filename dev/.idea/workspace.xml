@@ -22,8 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some test issues">
+    <list default="true" id="5c192bfd-8603-4a58-9696-736260d16e1f" name="Changes" comment="Fixed some small persistence bug with bidding">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +153,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DBTests">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -163,7 +165,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
       <extension name="coverage">
@@ -185,6 +187,12 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <module name="dev" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -263,12 +271,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.ServiceLoader" />
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.DBTests" />
@@ -279,11 +290,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.DBTests" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.DBTests,acceptBidWorks and 1 more" />
         <item itemvalue="JUnit.DBTests.addDataAndCheckBehaviour" />
-        <item itemvalue="JUnit.PlusCompositeDiscountTest" />
-        <item itemvalue="JUnit.test in dev" />
       </list>
     </recent_temporary>
   </component>
@@ -320,6 +331,8 @@
       <workItem from="1654495452737" duration="15373000" />
       <workItem from="1654596865680" duration="7780000" />
       <workItem from="1654682967422" duration="534000" />
+      <workItem from="1654840837381" duration="701000" />
+      <workItem from="1654842323431" duration="1317000" />
     </task>
     <task id="LOCAL-00015" summary="Req 2.6.3 implemented">
       <created>1650192532689</created>
@@ -762,7 +775,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/ProductController.java</url>
-          <line>147</line>
+          <line>145</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -777,13 +790,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Discounts_Conditions.java</url>
-          <line>189</line>
+          <line>187</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_4_Req2_5.java</url>
-          <line>192</line>
+          <line>195</line>
           <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/DBTests/DBTests.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
