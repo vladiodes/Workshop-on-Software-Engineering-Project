@@ -92,6 +92,7 @@ public class DBTests {
         wasError |= service.addProductToCart(manager1.getResult(), store1, product1, 10).isError_occured();
         wasError |= service.purchaseCart(manager1.getResult(), new PaymentInformation("123", LocalDate.now().plusYears(1), 123, "123", "123"), new SupplyingInformation("123", "123", "123", "123","123")).isError_occured();
 
+
         Assertions.assertFalse(wasError);
     }
 
