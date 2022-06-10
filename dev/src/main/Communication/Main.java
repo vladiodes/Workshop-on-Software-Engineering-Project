@@ -172,7 +172,7 @@ public class Main {
                 ServiceLoader.loadFromFile(args[0], service);
         }
         catch (Exception e) {
-            System.out.println(String.format("Couldn't load service from file: %s",e.getMessage()));
+            System.out.printf("Couldn't load service from file: %s%n",e.getMessage());
         }
 
     }

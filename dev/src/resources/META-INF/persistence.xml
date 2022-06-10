@@ -27,11 +27,11 @@ mapped to database tables. Database driver, location, userid and pw
             <!-- Driver for DB database -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <!-- URL for DB -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11498440" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb" />
             <!-- Username -->
-            <property name="javax.persistence.jdbc.user" value="sql11498440" />
+            <property name="javax.persistence.jdbc.user" value="root" />
             <!-- Password -->
-            <property name="javax.persistence.jdbc.password" value="qKIp2URN8t" />
+            <property name="javax.persistence.jdbc.password" value="admin" />
             <!-- Drop and re-create the database schema on startup -->
 
         </properties>
