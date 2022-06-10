@@ -36,5 +36,5 @@ you need to pass an array of JSON objects stating the following properites:
 
 # How to initialize the system with Script and Configuration file:
 you need to pass 2 parameters to the program:
-- param0 - Path to the Script file
-- param1 - path to the Configuration file
+- param0 - Path to the Script file (NONE if not needed)
+- param1 - path to the Configuration file (NONE if not needed)
