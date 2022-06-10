@@ -36,5 +36,5 @@ you need to pass an array of JSON objects stating the following properites:
 
 # How to initialize the system with Config and State file:
 you need to pass 2 parameters to the program:
-- param0 - Path to the Config file
-- param1 - path to the State file
+- param0 - Path to the State file (NONE if no state needed)
+- param1 - path to the Config file
