@@ -51,8 +51,6 @@ public class FaultyExternalSystems {
         mockPayment = mock(PaymentAdapter.class);
         mockPaymentInformation = mock(PaymentInformation.class);
         mockSupplyingInformation = mock(SupplyingInformation.class);
-        when(mockSupplyer.bookDelivery(any(SupplyingInformation.class))).thenReturn(true);
-        when(mockPayment.validateCard(any(PaymentInformation.class))).thenReturn(true);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(true);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(true);
 
@@ -75,11 +73,9 @@ public class FaultyExternalSystems {
 
     private void PaymentThrows() {
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenThrow(new IllegalArgumentException());
-        when(mockPayment.validateCard(any(PaymentInformation.class))).thenThrow(new IllegalArgumentException());
     }
 
     private void DeliveryServiceThrows() {
-        when(mockSupplyer.bookDelivery(any(SupplyingInformation.class))).thenThrow(new IllegalArgumentException());
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenThrow(new IllegalArgumentException());
     }
 

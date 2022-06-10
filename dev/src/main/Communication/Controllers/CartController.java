@@ -40,15 +40,13 @@ public class CartController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         String exp_date = ctx.formParam("ExpDate");
         String[] exp_date_params = Objects.requireNonNull(exp_date).split("-");
-        String sup_date = ctx.formParam("supplyingDate");
-        String[] sup_date_params =Objects.requireNonNull(sup_date).split("-");
         //yyyy-mm-dd
         PaymentInformation pi = new PaymentInformation(ctx.formParam("cardNumber"),
                 LocalDate.of(Integer.parseInt(exp_date_params[0]),Month.of(Integer.parseInt(exp_date_params[1])),Integer.parseInt(exp_date_params[2])),
-                Integer.parseInt(Objects.requireNonNull(ctx.formParam("cvv"))),ctx.formParam("name"),ctx.formParam("email"));
+                Integer.parseInt(Objects.requireNonNull(ctx.formParam("cvv"))),ctx.formParam("name"),ctx.formParam("id"));
 
-        SupplyingInformation si = new SupplyingInformation(ctx.formParam("address"),
-                LocalDate.of(Integer.parseInt(sup_date_params[0]), Month.of(Integer.parseInt(sup_date_params[1])),Integer.parseInt(sup_date_params[2])));
+        SupplyingInformation si = new SupplyingInformation(ctx.formParam("name"), ctx.formParam("address"), ctx.formParam("city"),
+                ctx.formParam("country"), ctx.formParam("zip"));
 
         Response<Boolean> response=service.purchaseCart(ctx.sessionAttribute("userToken"),pi,si);
         if(response.isError_occured()){

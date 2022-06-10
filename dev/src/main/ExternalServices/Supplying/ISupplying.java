@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ISupplying {
-    boolean bookDelivery(SupplyingInformation si);
     boolean supply(SupplyingInformation si, Map<Product, Integer> productToSupply);
-    void abort (SupplyingInformation si);
+    void abort (SupplyingInformation si) throws Exception;
 }

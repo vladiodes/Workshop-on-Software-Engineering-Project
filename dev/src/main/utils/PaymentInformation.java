@@ -3,25 +3,31 @@ package main.utils;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 
 @Entity
 public class PaymentInformation {
     @Id
     @GeneratedValue
-    private int id;
+    int id;
+
     private  String cardNumber;
     private  LocalDate expDate;
     private  int cvv;
     private  String name;
-    private  String email;
+    private String userId;
 
-    public PaymentInformation(String cardNumber, LocalDate expDate, int cvv, String name, String email) {
+    @Transient
+    private int transactionId;
+
+    public PaymentInformation(String cardNumber, LocalDate expDate, int cvv, String name, String userId) {
         this.cardNumber = cardNumber;
         this.expDate = expDate;
         this.cvv = cvv;
         this.name = name;
-        this.email = email;
+        this.userId = userId;
+        this.transactionId = 0;
     }
 
     public PaymentInformation() {
@@ -44,8 +50,19 @@ public class PaymentInformation {
         return name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserId() {
+        return userId;
     }
+
+    public int getTransactionId()
+    {
+        return this.transactionId;
+    }
+
+    public void setTransactionId(int newTrans)
+    {
+        this.transactionId = newTrans;
+    }
+
 
 }

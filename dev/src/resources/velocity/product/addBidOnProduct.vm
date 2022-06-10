@@ -22,14 +22,20 @@
                     <input type="text" name="cvv" value="" required>
                     <p>Card holder name</p>
                     <input type="text" name="name" value="" required>
-                    <p>Email</p>
-                    <input type="text" name="email" value="" required>
+                    <p>ID</p>
+                    <input type="text" name="id" value="" required>
                 </td>
                 <td>
-                    <p>Supplying date</p>
-                    <input type="date" name="supplyingDate" required>
+                    <p>Name</p>
+                    <input type="text" name="name" required>
                     <p>Address</p>
                     <input type="text" name="address" value="" required>
+                    <p>City</p>
+                    <input type="text" name="city" value="" required>
+                    <p>Country</p>
+                    <input type="text" name="country" value="" required>
+                    <p>Zip</p>
+                    <input type="text" name="zip" value="" required>
                     <p><input type="submit" value="Add bid"></p>
                     #if($fail)
                         <p id="failed_response">$response</p>

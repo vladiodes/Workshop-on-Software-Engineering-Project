@@ -46,8 +46,6 @@ class PurchaseTest {
         mockSupplyingInformation = mock(SupplyingInformation.class);
         mockuser = mock(User.class);
         mockCart= mock(ShoppingCart.class);
-        when(mockSupplyer.bookDelivery(any(SupplyingInformation.class))).thenReturn(true);
-        when(mockPayment.validateCard(any(PaymentInformation.class))).thenReturn(true);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(true);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(true);
         when(prods.size()).thenReturn(5);
@@ -70,8 +68,15 @@ class PurchaseTest {
         Purchase subject = new Purchase(mockPaymentInformation, mockSupplyingInformation, mockuser, mockCart, mockPayment,mockSupplyer);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(false);
         Assertions.assertThrows(Exception.class, subject::executePurchase);
-        verify(mockPayment,times(1)).abort(mockPaymentInformation);
-        verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
+        try
+        {
+            verify(mockPayment,times(1)).abort(mockPaymentInformation);
+            verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
+        }
+        catch (Exception e)
+        {
+            Assertions.fail();
+        }
     }
 
     @Test
@@ -79,7 +84,15 @@ class PurchaseTest {
         Purchase subject = new Purchase(mockPaymentInformation, mockSupplyingInformation, mockuser, mockCart, mockPayment,mockSupplyer);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(false);
         Assertions.assertThrows(Exception.class, subject::executePurchase);
-        verify(mockPayment,times(1)).abort(mockPaymentInformation);
-        verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
+        try
+        {
+            verify(mockPayment,times(1)).abort(mockPaymentInformation);
+            verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
+        }
+        catch(Exception e)
+        {
+            Assertions.fail();
+        }
+
     }
 }

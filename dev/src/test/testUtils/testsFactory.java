@@ -14,19 +14,15 @@ import java.util.Map;
 
 public class testsFactory {
     public static PaymentInformation getSomePI(){
-        return new PaymentInformation("123", LocalDate.now(), 123 , "hi", "hi" );
+        return new PaymentInformation("1111222233334444", LocalDate.of(2023, 7, 5), 123 , "Awesome Name", "123456789" );
     }
 
     public static SupplyingInformation getSomeSI(){
-        return new SupplyingInformation("Wingate BeerSheba", LocalDate.now());
+        return new SupplyingInformation("Cool Name", "Address Street 9", "Haifa", "Israel", "2727209");
     }
 
     public static IPayment alwaysSuccessPayment(){
         return  new IPayment() {
-            @Override
-            public boolean validateCard(PaymentInformation pi) {
-                return true;
-            }
 
             @Override
             public boolean makePayment(PaymentInformation pi, double amountToPay) {
@@ -42,10 +38,6 @@ public class testsFactory {
 
     public static ISupplying alwaysSuccessSupplyer(){
         return new ISupplying() {
-            @Override
-            public boolean bookDelivery(SupplyingInformation si) {
-                return true;
-            }
 
             @Override
             public boolean supply(SupplyingInformation si, Map<Product, Integer> productToSupply) {
