@@ -100,6 +100,7 @@ public class ShoppingBasket implements Serializable {
                 throw new IllegalArgumentException("amount too high for product.");
             if (!store.getIsActive())
                 throw new IllegalArgumentException(String.format("Product %s isnt available.", prodToAdd.getName()));
+
             for (Product pr : productsQuantity.keySet())
                 if (pr.getName().equals(prodToAdd.getName())) {
                     productsQuantity.put(pr, productsQuantity.get(pr) + quantity);
@@ -126,6 +127,14 @@ public class ShoppingBasket implements Serializable {
             return setProductQuantity(productName, quantity * -1);
         }
     }
+    public int RemoveProduct(Product product) {
+        synchronized (basketEditLock) {
+            int output = this.productsQuantity.remove(product);
+            DAO.getInstance().merge(this);
+            return output;
+        }
+    }
+
 
     public int getAmountOfProducts(){
         return productsQuantity.size();
@@ -148,7 +157,12 @@ public class ShoppingBasket implements Serializable {
         double res = 0;
         for (Map.Entry<Product, Integer> en : productsQuantity.entrySet())
             if(!costumePrice.containsKey(en.getKey()))
-                res += store.getPriceForProduct(en.getKey(), this.user) * en.getValue();
+                try {
+                    res += store.getPriceForProduct(en.getKey(), this.user) * en.getValue();
+                } catch (Exception e) {
+                    if (!en.getKey().isAddableToBasket())
+                        this.RemoveProduct(en.getKey());
+                }
             else res += costumePrice.get(en.getKey()) * en.getValue();
         return res;
     }

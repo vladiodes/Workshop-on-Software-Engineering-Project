@@ -1,6 +1,7 @@
 package main.DTO;
 
 import main.Stores.Product;
+import main.Users.User;
 import org.mockito.internal.matchers.Null;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ public class ProductDTO {
 
     private String storeName;
 
-    private Double price;
+    private String price;
 
     private int quantity;
 
@@ -25,7 +26,20 @@ public class ProductDTO {
         this.productName = product.getName();
         this.description = product.getDescription();
         this.storeName=product.getStore().getName();
-        this.price=product.getCleanPrice();
+        this.price=product.getCleanPrice() + "";
+        this.quantity=product.getQuantity();
+    }
+
+    public ProductDTO(Product product, User u) {
+        this.productName = product.getName();
+        this.description = product.getDescription();
+        this.storeName=product.getStore().getName();
+        try {
+            this.price = product.getCurrentPrice(u) + "";
+        }
+        catch (Exception e) {
+            this.price = e.getMessage();
+        }
         this.quantity=product.getQuantity();
     }
 
@@ -45,7 +59,7 @@ public class ProductDTO {
         return storeName;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 

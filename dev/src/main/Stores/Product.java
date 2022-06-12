@@ -3,6 +3,7 @@ package main.Stores;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
 import main.Persistence.DAO;
+import main.Shopping.ShoppingBasket;
 import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Stores.PurchasePolicy.ProductPolicy.Policy;
 import main.Stores.PurchasePolicy.ProductPolicy.normalPolicy;
@@ -12,6 +13,7 @@ import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
 import javax.persistence.*;
+import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,7 +31,6 @@ public class Product {
     private List<String> keyWords;
     private String description;
     private int quantity;
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<ProductReview> reviews;
     @OneToOne(cascade = CascadeType.ALL)
