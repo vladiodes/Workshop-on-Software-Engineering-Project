@@ -5,12 +5,15 @@ List of dependencies to install:
 - org.apache.velocity:velocity-engine-examples:2.0
 - com.google.guava:guava:18.0
 - net.stickycode.mockwire:sticky-mockwire-mockito:5.1
-- org.mockito:mockito-all:1.10.19
+- org.mockito:mockito-all:2.0.2-beta
 - io.javalin:javalin:3.13.7
 - com.fasterxml.jackson.core:jackson-databind:2.0.2
 - org.hibernate:hibernate-core:5.2.12.Final
 - mysql:mysql-connector-java:8.0.29
 - javax.xml.bind:jaxb-api:2.2.2
+- org.junit.jupiter:junit-jupiter:5.5.2
+Java version:
+- Amazon Corretto 15.0.2
 # How to work with the database:
 You have to open an mySQL server and create 2 databases with the following names:
 - mydb
