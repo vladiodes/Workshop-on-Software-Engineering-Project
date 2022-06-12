@@ -551,4 +551,7 @@ public class Store {
     }
 
 
+    public User getFounder() {
+        return founder;
+    }
 }

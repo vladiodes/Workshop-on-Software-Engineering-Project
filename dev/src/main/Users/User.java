@@ -224,6 +224,9 @@ public class User implements Observable {
     }
 
     private OwnerPermissions CheckPreConditionsAndFindOwnerAppointment(Store IStore, User appointed_user) {
+        if(IStore.getFounder()==appointed_user)
+            throw new IllegalArgumentException("Can't delete the appointment of a founder");
+
         OwnerPermissions ow = null;
         //checking preconditions
         //first checking if this user is an owner of the store
