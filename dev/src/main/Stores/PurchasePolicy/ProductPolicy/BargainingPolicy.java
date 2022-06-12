@@ -170,6 +170,7 @@ public class BargainingPolicy extends TimedPolicy{
 
     @Override
     public boolean deliveredImmediately(User user){
+
         return isApproved(this.bidApprovedBy.get(getUserBid(user)));
     }
 }
