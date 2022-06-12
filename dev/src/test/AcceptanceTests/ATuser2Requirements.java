@@ -228,6 +228,7 @@ public class ATuser2Requirements {
         Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
         assertFalse(r.isError_occured());
         assertEquals(1, service.receiveMessages(owner1token.getResult()).getResult().size());
+        assertEquals(1, service.receiveMessages(founder1token.getResult()).getResult().size());
     }
 
     @Test
