@@ -482,13 +482,16 @@ public class Store {
         notifyPurchase();
     }
 
-    private void notifyPurchase() {
+    private void notifyPurchase() { // notifies owners and founder.
+        String notificationString = "Products were bought from your store!";
         for (User manager: getOwnersOfStore()){
-            Notification n = new PersonalNotification(storeName,"Products were bought from your store!");
+            Notification n = new PersonalNotification(storeName,notificationString);
             DAO.getInstance().persist(n);
             manager.notifyObserver(n);
         }
-
+        Notification n = new PersonalNotification(storeName,notificationString);
+        DAO.getInstance().persist(n);
+        founder.notifyObserver(n);
     }
 
     public void addReview(StoreReview sReview) {

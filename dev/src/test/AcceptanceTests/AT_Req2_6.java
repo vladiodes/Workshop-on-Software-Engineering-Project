@@ -101,7 +101,7 @@ public class AT_Req2_6 {
         service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 1);
         service.purchaseCart(user1token.getResult(), testsFactory.getSomePI(), testsFactory.getSomeSI());
         service.sendComplaint(user1token.getResult(), "complaint");
-        assertEquals(0, service.receiveMessages(founder1token.getResult()).getResult().size());
+        assertEquals(1, service.receiveMessages(founder1token.getResult()).getResult().size()); // should be 1 because of purchase
         assertEquals(0, service.receiveMessages(user1token.getResult()).getResult().size());
         assertEquals(1, service.receiveMessages(adminToken.getResult()).getResult().size());
     }
