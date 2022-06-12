@@ -92,11 +92,13 @@ class BargainingPolicyTest {
     void verifyNotBought(){
         verify(mockPaymentSystem, times(0)).makePayment(pi, userPrice);
         verify(mockSupplyingSystem, times(0)).supply(any(), any());
+        verify(store, times(0)).purchaseBasket(any(), any(), any(), any(), any(), any());
     }
 
     void verifyBought(){
         verify(mockPaymentSystem, times(1)).makePayment(pi, userPrice);
         verify(mockSupplyingSystem, times(1)).supply(any(), any());
+        verify(store, times(1)).purchaseBasket(any(), any(), any(), any(), any(), any());
     }
 
     @Test
