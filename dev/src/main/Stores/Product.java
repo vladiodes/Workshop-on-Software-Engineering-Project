@@ -29,7 +29,6 @@ public class Product {
     private List<String> keyWords;
     private String description;
     private int quantity;
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<ProductReview> reviews;
     @OneToOne(cascade = CascadeType.ALL)

@@ -25,7 +25,7 @@ public class ShoppingBasketDTO {
         StoreName = basket.getStore().getName();
         productsQuantity = new HashMap<>();
         for (Map.Entry<Product, Integer> kv : basket.getProductsAndQuantities().entrySet()) {
-            productsQuantity.put(new ProductDTO(kv.getKey()), kv.getValue().intValue());
+            productsQuantity.put(new ProductDTO(kv.getKey(), user), kv.getValue().intValue());
         }
         totalPrice=basket.getPrice();
     }
