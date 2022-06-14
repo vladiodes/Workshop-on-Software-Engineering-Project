@@ -5,6 +5,7 @@ import main.ExternalServices.Payment.PaymentAdapter;
 import main.ExternalServices.Supplying.ISupplying;
 import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Persistence.DAO;
+import main.Publisher.OfflinePublisher;
 import main.Publisher.Publisher;
 import main.Service.Configuration;
 import main.Stores.Store;
@@ -43,7 +44,7 @@ public class MarketBuilder {
             for (User u : users) {
                 if(u.getIsLoggedIn())
                     u.logout();
-                u.setObserver(new Publisher(u,null));
+                u.setObserver(new OfflinePublisher());
                 membersByUserName.put(u.getUserName(),u);
             }
         }

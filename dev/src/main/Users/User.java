@@ -84,7 +84,7 @@ public class User implements Observable {
         state = new GuestState(guestID);
         notifications= Collections.synchronizedMap(new HashMap<>());
         purchaseHistory=new LinkedList<>();
-        registerObserver(new Publisher(this,null));
+        registerObserver(new OfflinePublisher());
     }
 
     /**
@@ -98,7 +98,7 @@ public class User implements Observable {
         purchaseHistory = new LinkedList<>();
         state = new MemberState(userName, hashed_password);
         notifications=new ConcurrentHashMap<>();
-        registerObserver(new Publisher(this,null));
+        registerObserver(new OfflinePublisher());
     }
 
     public void setState(UserStates state) {
@@ -385,7 +385,7 @@ public class User implements Observable {
 
     public void logout() {
         this.state.logout();
-        observer=new Publisher(this,null);
+        observer=new OfflinePublisher();
     }
 
     public void purchaseCart(PaymentInformation pinfo, SupplyingInformation sinfo, IPayment psystem, ISupplying ssystem) throws Exception{
@@ -606,21 +606,36 @@ public class User implements Observable {
     }
 
     @Override
-    public void notifyObserver(Notification notification) {
-        if(Boolean.TRUE.equals(notifications.putIfAbsent(notification, false)))
-            return; //was already published...
-
-        notifications.put(notification,false);
+    public boolean notifyObserver(Notification notification) {
+        if (Boolean.TRUE.equals(notifications.putIfAbsent(notification, false)))
+            return false; //was already published...
+        boolean flag=notifications.putIfAbsent(notification, false)==null;
         if(observer.update(notification))
-            notifications.put(notification,true);
-        DAO.getInstance().merge(this);
+        {
+            if(flag) {
+                notifications.put(notification, true);
+                DAO.getInstance().merge(this);
+                return true;
+            }
+            return true;
+        }
+        return false;
+        //DAO.getInstance().merge(this);
     }
 
     @Override
     public void notifyObserver() {
+        LinkedList<Notification> published=new LinkedList<>();
         for(Notification notification:notifications.keySet()){
-            notifyObserver(notification);
+            if(notifyObserver(notification))
+                published.add(notification);
         }
+
+        for(Notification n: published){
+            notifications.put(n,true);
+        }
+        if(published.size()>0)
+            DAO.getInstance().merge(this);
     }
 
     public int CreateSimpleDiscount(Store store, LocalDate until, Double percent){
