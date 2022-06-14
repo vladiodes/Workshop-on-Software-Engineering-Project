@@ -159,33 +159,26 @@ public class UserController {
         String date = ctx.formParam("date");
         String[] date_params = Objects.requireNonNull(date).split("-");
 
-        Response<String> loggedInUsersPerDate = service.getNumberOfLoggedInUsersPerDate(ctx.sessionAttribute("userToken"), LocalDate.of
-                (Integer.parseInt(date_params[0]),
-                        Month.of(Integer.parseInt(date_params[1])),
-                        Integer.parseInt(date_params[2])));
-
-        Response<String> registeredUsersPerDate = service.getNumberOfRegisteredUsersPerDate(ctx.sessionAttribute("userToken"), LocalDate.of
-                (Integer.parseInt(date_params[0]),
-                        Month.of(Integer.parseInt(date_params[1])),
-                        Integer.parseInt(date_params[2])));
-
-        Response<String> purchasesPerDate = service.getNumberOfPurchasesPerDate(ctx.sessionAttribute("userToken"), LocalDate.of
+        Response<String> statsByDate = service.getStatsPerDate(ctx.sessionAttribute("userToken"),LocalDate.of
                 (Integer.parseInt(date_params[0]),
                         Month.of(Integer.parseInt(date_params[1])),
                         Integer.parseInt(date_params[2])));
 
 
 
-        if(loggedInUsersPerDate.isError_occured() || registeredUsersPerDate.isError_occured() || purchasesPerDate.isError_occured()){
+        if(statsByDate.isError_occured()){
             model.put("fail",true);
-            model.put("response","Couldn't get system stats for that date...");
+            model.put("response",statsByDate.getError_message());
         }
-        else{
-            model.put("success",true);
-            model.put("response",String.format("System stats for %s",ctx.formParam("date").toString()));
-            model.put("sys_stats",String.format("<p>Number of users that logged in: %s</p>" +
-                    "<p>Number of users that registered: %s</p>" +
-                    "<p>Number of purchases: %s</p>",loggedInUsersPerDate.getResult(),registeredUsersPerDate.getResult(),purchasesPerDate.getResult()));
+        else {
+            if (LocalDate.of
+                    (Integer.parseInt(date_params[0]),
+                            Month.of(Integer.parseInt(date_params[1])),
+                            Integer.parseInt(date_params[2])).isEqual(LocalDate.now()))
+                service.assignWStoStats(ctx.sessionAttribute("userToken"));
+            model.put("success", true);
+            model.put("response", String.format("System stats for %s", ctx.formParam("date").toString()));
+            model.put("sys_stats", statsByDate.getResult());
         }
         Response<String> response = service.getLoggedInVSRegistered(ctx.sessionAttribute("userToken"));
         model.put("logged_in_vs_registered_stats",response.getResult());
