@@ -22,10 +22,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed bug of removing founder appointment">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Updated quantity in DB when purchasing">
+      <change afterPath="$PROJECT_DIR$/src/main/Publisher/StatNotificationPush.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Publisher/StatsPublisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/utils/SystemStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/SystemStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/admin/systemStats.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/admin/systemStats.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +55,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="125-implement-dummy-observer-for-logged-out-users" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -84,27 +93,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;2c95b5a9-8801-47ea-a2f8-a24f7211c10e&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/ProductPolicy&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/banan/Downloads/Database_Tool-2022.1.3.zip&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "JPA.DatabaseSchemaImportDialog": "2c95b5a9-8801-47ea-a2f8-a24f7211c10e",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/ProductPolicy",
+    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.27126437",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.Users" />
@@ -199,69 +208,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BargainingPolicyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.BargainingPolicyTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BargainingPolicyTest.CantDeclineBidNotExisting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.BargainingPolicyTest" />
-      <option name="METHOD_NAME" value="CantDeclineBidNotExisting" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BargainingPolicyTest.approveBidAllows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.BargainingPolicyTest" />
-      <option name="METHOD_NAME" value="approveBidAllows" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BargainingPolicyTest.productPurchased" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.BargainingPolicyTest" />
-      <option name="METHOD_NAME" value="productPurchased" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DBTests" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
@@ -286,8 +232,62 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.NotificationTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.NotificationTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.RobustnessTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.RobustnessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.testUtils in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.testUtils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.testUtils" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -298,19 +298,19 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.DBTests" />
+      <item itemvalue="JUnit.test.NotificationTests in dev" />
+      <item itemvalue="JUnit.test.RobustnessTests in dev" />
+      <item itemvalue="JUnit.test.UnitTests in dev" />
+      <item itemvalue="JUnit.test.testUtils in dev" />
       <item itemvalue="JUnit.test in dev" />
-      <item itemvalue="JUnit.BargainingPolicyTest" />
-      <item itemvalue="JUnit.BargainingPolicyTest.CantDeclineBidNotExisting" />
-      <item itemvalue="JUnit.BargainingPolicyTest.approveBidAllows" />
-      <item itemvalue="JUnit.BargainingPolicyTest.productPurchased" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.BargainingPolicyTest" />
-        <item itemvalue="JUnit.BargainingPolicyTest.approveBidAllows" />
-        <item itemvalue="JUnit.BargainingPolicyTest.productPurchased" />
-        <item itemvalue="JUnit.BargainingPolicyTest.CantDeclineBidNotExisting" />
+        <item itemvalue="JUnit.test.UnitTests in dev" />
+        <item itemvalue="JUnit.test.testUtils in dev" />
+        <item itemvalue="JUnit.test.RobustnessTests in dev" />
+        <item itemvalue="JUnit.test.NotificationTests in dev" />
       </list>
     </recent_temporary>
   </component>
@@ -350,13 +350,7 @@
       <workItem from="1654840837381" duration="701000" />
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
-    </task>
-    <task id="LOCAL-00016" summary="Changed service signatures to return responses">
-      <created>1650361752699</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1650361752699</updated>
+      <workItem from="1655235787882" duration="2293000" />
     </task>
     <task id="LOCAL-00017" summary="getter in response">
       <created>1650361805501</created>
@@ -694,7 +688,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655051887521</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Updated quantity in DB when purchasing">
+      <created>1655228541297</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1655228541297</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,7 +741,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="some work on discounts" />
     <MESSAGE value="Added discounts to GUI" />
     <MESSAGE value="Added simple conditions for store in gui" />
     <MESSAGE value="Added composing complex conditions for store in gui" />
@@ -765,7 +765,8 @@
     <MESSAGE value="Fixed DBTests - after executing the DAO flag turns off and doesn't use persistent anymore" />
     <MESSAGE value="Deleted dummy files" />
     <MESSAGE value="Fixed bug of removing founder appointment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug of removing founder appointment" />
+    <MESSAGE value="Updated quantity in DB when purchasing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated quantity in DB when purchasing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

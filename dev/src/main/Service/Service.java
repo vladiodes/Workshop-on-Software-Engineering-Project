@@ -4,6 +4,7 @@ package main.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.websocket.WsContext;
+import io.javalin.websocket.WsMessageContext;
 import main.DTO.*;
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
@@ -1343,6 +1344,38 @@ public class Service implements IService {
         }
         catch (Exception e){
             Logger.getInstance().logBug("Service->verifyAdminDetails",e.getMessage());
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<Boolean> assignWStoStats(String userToken) {
+        Logger.getInstance().logEvent("Service","Assigning a websocket to stats");
+        try{
+            return new Response<>(market.assignWStoStats(userToken));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->assignWSToStats",e.getMessage());
+            return new Response<>(e,false);
+        }
+    }
+
+    @Override
+    public Response<String> getStatsPerDate(String userToken, LocalDate date) {
+        Logger.getInstance().logEvent("Service",String.format("Attempting to get system stats with token:%s",userToken));
+        try {
+            return new Response<>(market.getStatsByDate(userToken,date));
+        }
+        catch (IllegalArgumentException e){
+            return new Response<>(e,true);
+
+        }
+        catch (Exception e){
+            Logger.getInstance().logBug("Service->getStatsPerDate",e.getMessage());
             return new Response<>(e,false);
         }
     }

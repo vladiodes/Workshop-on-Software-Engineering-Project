@@ -3,6 +3,7 @@ package main.Service;
 
 
 import io.javalin.websocket.WsContext;
+import io.javalin.websocket.WsMessageContext;
 import main.DTO.*;
 import main.utils.*;
 import main.DTO.ProductDTO;
@@ -445,4 +446,12 @@ public interface IService {
      * @return true upon success
      */
     Response<Boolean> verifyAdminDetails(String username, String password);
+
+    /**
+     * REQ II.6.5
+     * System stats are updated in realTime
+     */
+    Response<Boolean> assignWStoStats(String userToken);
+
+    Response<String> getStatsPerDate(String userToken, LocalDate date);
 }

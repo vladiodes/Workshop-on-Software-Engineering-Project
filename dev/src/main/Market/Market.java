@@ -2,6 +2,7 @@ package main.Market;
 
 
 import io.javalin.websocket.WsContext;
+import io.javalin.websocket.WsMessageContext;
 import main.DTO.*;
 import main.Persistence.DAO;
 import main.Publisher.*;
@@ -68,7 +69,24 @@ public class Market {
         }
     }
 
-    private enum StatsType{Register, Login, Purchase}
+    public boolean assignWStoStats(String userToken) {
+        User admin = getConnectedUserByToken(userToken);
+        if(!admin.isAdmin())
+            throw new IllegalArgumentException("Only admins can view system stats");
+        SystemStats stats = systemStatsByDate.get(LocalDate.now());
+        if(stats==null){
+            stats=new SystemStats();
+            DAO.getInstance().persist(stats);
+        }
+        stats.registerObserver(admin);
+        return true;
+    }
+
+    public String getStatsByDate(String userToken, LocalDate date) {
+        return getStats(userToken,date).toString();
+    }
+
+    public enum StatsType{Register, Login, Purchase,GuestVisitor,NonStaffVisitor,ManagerVisitor,OwnerVisitor,AdminVisitor}
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;
 
     public Market(IPayment Psystem, ISupplying Isystem){
@@ -159,6 +177,7 @@ public class Market {
         User new_guest = new User(new_token);
         connectedSessions.put(new_token, new_guest);
         Logger.getInstance().logEvent("Market", String.format("New guest connected %s.", new_guest.getUserName()));
+        addStats(StatsType.GuestVisitor);
         return new_token;
     }
 
@@ -185,6 +204,11 @@ public class Market {
                 case Register -> systemStats.addRegister();
                 case Login -> systemStats.addLogIn();
                 case Purchase -> systemStats.addPurchase();
+                case GuestVisitor -> systemStats.addGuestVisitor();
+                case NonStaffVisitor -> systemStats.addNonStaffVisitor();
+                case ManagerVisitor -> systemStats.addManagerVisitor();
+                case OwnerVisitor -> systemStats.addOwnerVisitor();
+                case AdminVisitor -> systemStats.addAdminVisitor();
             }
             DAO.getInstance().merge(systemStats);
         }
@@ -192,13 +216,18 @@ public class Market {
         {
             SystemStats newSystemStats = new SystemStats(date);
             DAO.getInstance().persist(newSystemStats);
+            this.systemStatsByDate.put(date, newSystemStats);
             switch (type) {
                 case Register -> newSystemStats.addRegister();
                 case Login -> newSystemStats.addLogIn();
                 case Purchase -> newSystemStats.addPurchase();
+                case GuestVisitor -> newSystemStats.addGuestVisitor();
+                case NonStaffVisitor -> newSystemStats.addNonStaffVisitor();
+                case ManagerVisitor -> newSystemStats.addManagerVisitor();
+                case OwnerVisitor -> newSystemStats.addOwnerVisitor();
+                case AdminVisitor -> newSystemStats.addAdminVisitor();
             }
             DAO.getInstance().merge(newSystemStats);
-            this.systemStatsByDate.put(date, newSystemStats);
         }
     }
 
@@ -235,6 +264,7 @@ public class Market {
         u.LogIn(password, this.security_controller);
         connectedSessions.put(token, u);
         addStats(StatsType.Login);
+        addStats(u.visitorType());
         dao.merge(u);
         return new UserDTO(u);
     }

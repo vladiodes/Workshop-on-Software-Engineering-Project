@@ -63,7 +63,6 @@ public class Main {
                 service.leaveWSforUserToken(ctx.sessionAttribute("userToken"));
             });
         });
-
         app.routes(() -> {
             get("/", registerController.handleSystemConnect);
             post("/boot", registerController.verifyAdmin);

@@ -4,7 +4,13 @@
     let ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/notifications");
     ws.onopen = () => ws.send((localStorage.getItem("userToken")));
     ws.onmessage = msg => {
-        alert(msg.data);
+        let notification = msg.data;
+        if(notification.startsWith("<p>")){
+            document.getElementById("sys_stats").innerHTML=notification;
+        }
+        else {
+            alert(notification);
+        }
     };
 </script>
 <div id="nav-container">

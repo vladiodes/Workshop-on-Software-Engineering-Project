@@ -3,19 +3,18 @@
 #@mainLayout()
 #end
 <main>
+
     <div class="content">
-        <h2>Delete store:</h2>
         <form id="systemStats" method="post">
             <p>Select a date</p>
             <input type="date" name="date" required>
             <p><input type="submit" value="View stats"></p>
         </form>
-        <p>$logged_in_vs_registered_stats</p>
         #if($fail)
             <p id="failed_response">$response</p>
         #elseif($success)
             <p id="success_response">$response</p>
-            $sys_stats
+            <div id="sys_stats">$sys_stats</div>
         #end
     </div>
 </main>

@@ -3,6 +3,7 @@ package main.Users;
 import main.DTO.ShoppingBasketDTO;
 import main.DTO.ShoppingCartDTO;
 import main.ExternalServices.Payment.IPayment;
+import main.Market.Market;
 import main.Persistence.DAO;
 import main.Publisher.*;
 import main.Publisher.Observable;
@@ -735,5 +736,29 @@ public class User implements Observable {
 
     public LinkedList<Notification> getAllNotifications() {
         return new LinkedList<>(notifications.keySet());
+    }
+
+    public Market.StatsType visitorType() {
+        int founded=getFoundedStores().size();
+        int owned=getOwnedStores().size();
+        int managed= getManagedStores().size();
+
+        if (founded==0 && managed==0 && owned==0)
+            return Market.StatsType.NonStaffVisitor;
+
+        if(founded==0 && owned==0 && managed>0)
+            return Market.StatsType.ManagerVisitor;
+
+        if((founded>0 || owned>0) && managed==0)
+            return Market.StatsType.OwnerVisitor;
+
+        if(isSystemManager)
+            return Market.StatsType.AdminVisitor;
+
+        return null;
+    }
+
+    public Observer getObserver() {
+        return this.observer;
     }
 }
