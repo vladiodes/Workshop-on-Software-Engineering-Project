@@ -22,19 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Updated quantity in DB when purchasing">
-      <change afterPath="$PROJECT_DIR$/src/main/Publisher/StatNotificationPush.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Publisher/StatsPublisher.java" afterDir="false" />
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Implemented real time stats">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/SystemStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/SystemStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/admin/systemStats.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/admin/systemStats.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +152,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -350,14 +339,7 @@
       <workItem from="1654840837381" duration="701000" />
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
-      <workItem from="1655235787882" duration="2293000" />
-    </task>
-    <task id="LOCAL-00017" summary="getter in response">
-      <created>1650361805501</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1650361805501</updated>
+      <workItem from="1655235787882" duration="2596000" />
     </task>
     <task id="LOCAL-00018" summary="Fixed compilation issues">
       <created>1650545025130</created>
@@ -695,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655228541297</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Implemented real time stats">
+      <created>1655238309457</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1655238309457</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +730,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added discounts to GUI" />
     <MESSAGE value="Added simple conditions for store in gui" />
     <MESSAGE value="Added composing complex conditions for store in gui" />
     <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
@@ -766,7 +754,8 @@
     <MESSAGE value="Deleted dummy files" />
     <MESSAGE value="Fixed bug of removing founder appointment" />
     <MESSAGE value="Updated quantity in DB when purchasing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated quantity in DB when purchasing" />
+    <MESSAGE value="Implemented real time stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented real time stats" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

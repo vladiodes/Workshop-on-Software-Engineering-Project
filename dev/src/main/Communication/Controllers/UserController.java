@@ -170,11 +170,15 @@ public class UserController {
             model.put("fail",true);
             model.put("response",statsByDate.getError_message());
         }
-        else{
-            service.assignWStoStats(ctx.sessionAttribute("userToken"));
-            model.put("success",true);
-            model.put("response",String.format("System stats for %s",ctx.formParam("date").toString()));
-            model.put("sys_stats",statsByDate.getResult());
+        else {
+            if (LocalDate.of
+                    (Integer.parseInt(date_params[0]),
+                            Month.of(Integer.parseInt(date_params[1])),
+                            Integer.parseInt(date_params[2])).isEqual(LocalDate.now()))
+                service.assignWStoStats(ctx.sessionAttribute("userToken"));
+            model.put("success", true);
+            model.put("response", String.format("System stats for %s", ctx.formParam("date").toString()));
+            model.put("sys_stats", statsByDate.getResult());
         }
         Response<String> response = service.getLoggedInVSRegistered(ctx.sessionAttribute("userToken"));
         model.put("logged_in_vs_registered_stats",response.getResult());
