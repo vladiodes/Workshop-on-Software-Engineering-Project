@@ -85,5 +85,6 @@
     <orderEntry type="library" name="mysql.connector.java" level="project" />
     <orderEntry type="library" name="javax.xml.bind.jaxb.api" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.29" level="application" />
+    <orderEntry type="library" name="junit.jupiter" level="project" />
   </component>
 </module>

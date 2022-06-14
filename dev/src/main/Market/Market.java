@@ -4,10 +4,7 @@ package main.Market;
 import io.javalin.websocket.WsContext;
 import main.DTO.*;
 import main.Persistence.DAO;
-import main.Publisher.Notification;
-import main.Publisher.PersonalNotification;
-import main.Publisher.Publisher;
-import main.Publisher.WebSocket;
+import main.Publisher.*;
 import main.Stores.*;
 
 import main.ExternalServices.Payment.IPayment;
@@ -118,7 +115,7 @@ public class Market {
 
     public boolean leaveWSforUserToken(String userToken) {
         User u = getConnectedUserByToken(userToken);
-        u.registerObserver(new Publisher(u,null));
+        u.registerObserver(new OfflinePublisher());
         return true;
     }
 
