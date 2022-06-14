@@ -112,6 +112,7 @@ public class Product {
             throw new IllegalArgumentException("Quantity to remove is larger than stock");
         }
         this.quantity = this.quantity - quantity;
+        DAO.getInstance().merge(this);
     }
 
     public double getCleanPrice() {

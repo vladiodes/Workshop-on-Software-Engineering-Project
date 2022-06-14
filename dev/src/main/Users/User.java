@@ -607,7 +607,7 @@ public class User implements Observable {
 
     @Override
     public boolean notifyObserver(Notification notification) {
-        if (Boolean.TRUE.equals(notifications.putIfAbsent(notification, false)))
+        if (notifications.get(notification)!=null && notifications.get(notification))
             return false; //was already published...
         boolean flag=notifications.putIfAbsent(notification, false)==null;
         if(observer.update(notification))
