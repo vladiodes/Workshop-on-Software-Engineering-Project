@@ -22,12 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed bug - only members can bid products">
-      <change afterPath="$PROJECT_DIR$/src/test/UnitTests/SystemStatsTest.java" afterDir="false" />
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Added unit-tests for SystemStats">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/StatNotificationPush.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Publisher/StatNotificationPush.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Publisher/StatsPublisher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/SystemStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/SystemStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +154,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SystemStatsTest.concurrentAddGuest">
+  <component name="RunManager" selected="JUnit.UserTest.testManagerAndOwnerVisitor">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -217,7 +215,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SystemStatsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.testManagerAndOwnerVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -226,29 +224,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.SystemStatsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SystemStatsTest.concurrentAddGuest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.SystemStatsTest" />
-      <option name="METHOD_NAME" value="concurrentAddGuest" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testManagerAndOwnerVisitor" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SystemStatsTest.testAddLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.testManagerVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -257,39 +240,57 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.SystemStatsTest" />
-      <option name="METHOD_NAME" value="testAddLogin" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testManagerVisitor" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.testOnlyManagerVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testOnlyManagerVisitor" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.DBTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.testVisitorTypeNonStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.DBTests.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.DBTests" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testVisitorTypeNonStaff" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.testVisitorTypeOwner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testVisitorTypeOwner" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -299,19 +300,19 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.main.Communication.Main" />
       <item itemvalue="JUnit.DBTests" />
-      <item itemvalue="JUnit.SystemStatsTest" />
-      <item itemvalue="JUnit.SystemStatsTest.concurrentAddGuest" />
-      <item itemvalue="JUnit.SystemStatsTest.testAddLogin" />
-      <item itemvalue="JUnit.test.DBTests in dev" />
-      <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.UserTest.testManagerAndOwnerVisitor" />
+      <item itemvalue="JUnit.UserTest.testManagerVisitor" />
+      <item itemvalue="JUnit.UserTest.testOnlyManagerVisitor" />
+      <item itemvalue="JUnit.UserTest.testVisitorTypeNonStaff" />
+      <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SystemStatsTest.concurrentAddGuest" />
-        <item itemvalue="JUnit.SystemStatsTest" />
-        <item itemvalue="JUnit.SystemStatsTest.testAddLogin" />
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.test.DBTests in dev" />
+        <item itemvalue="JUnit.UserTest.testManagerAndOwnerVisitor" />
+        <item itemvalue="JUnit.UserTest.testManagerVisitor" />
+        <item itemvalue="JUnit.UserTest.testOnlyManagerVisitor" />
+        <item itemvalue="JUnit.UserTest.testVisitorTypeNonStaff" />
+        <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
       </list>
     </recent_temporary>
   </component>
@@ -352,13 +353,6 @@
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
       <workItem from="1655235787882" duration="2596000" />
-    </task>
-    <task id="LOCAL-00022" summary="Added NotificationBus tests">
-      <created>1650732398578</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1650732398578</updated>
     </task>
     <task id="LOCAL-00023" summary="Added ManagerPermissions tests">
       <created>1650733576135</created>
@@ -696,7 +690,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655368549747</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Added unit-tests for SystemStats">
+      <created>1655370454364</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1655370454364</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -742,7 +743,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Test fixes" />
     <MESSAGE value="Need to annotate and map all classes..." />
     <MESSAGE value="Added simple mapping for user-user_state... working." />
     <MESSAGE value="Annotating..." />
@@ -767,7 +767,8 @@
     <MESSAGE value="Fixes in DAO" />
     <MESSAGE value="Fixed bug - guest can add products to cart and purchase (in persistence mode)" />
     <MESSAGE value="Fixed bug - only members can bid products" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug - only members can bid products" />
+    <MESSAGE value="Added unit-tests for SystemStats" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added unit-tests for SystemStats" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
