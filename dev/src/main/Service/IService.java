@@ -454,4 +454,12 @@ public interface IService {
     Response<Boolean> assignWStoStats(String userToken);
 
     Response<String> getStatsPerDate(String userToken, LocalDate date);
+
+    /**
+     * REQ II.4.4
+     * @param userToken
+     * @return response message: Success or Failure message
+     */
+    Response<String> approveOwnerAppointment(String userToken,String userNameToApprove, String storeName);
+    Response<String> declineOwnerAppointment(String userToken, String userNameToDecline, String storeName);
 }

@@ -85,6 +85,27 @@ public class Market {
     public String getStatsByDate(String userToken, LocalDate date) {
         return getStats(userToken,date).toString();
     }
+    private User getUserByUserName(String userName) {
+        if(!membersByUserName.contains(userName)) {
+            throw new IllegalArgumentException("The user to appoint does not exits");
+        }
+        return this.membersByUserName.get(userName);
+    }
+    public String approveOwnerAppointment(String userToken, String userNameToApprove,String storeName) {
+        User approver = getConnectedUserByToken(userToken);
+        User userToApprove = getUserByUserName(userNameToApprove);
+        Store store = getDomainStoreByName(storeName);
+        store.approveOwnerRequest(approver, userToApprove);
+        return "Approved request successfully";
+    }
+
+    public String declineOwnerAppointment(String userToken, String userNameToDecline, String storeName) {
+        User refuser = getConnectedUserByToken(userToken);
+        User userToDecline = getUserByUserName(userNameToDecline);
+        Store store = getDomainStoreByName(storeName);
+        store.declineOwnerRequest(refuser, userToDecline);
+        return "Declined request successfully";
+    }
 
     public enum StatsType{Register, Login, Purchase,GuestVisitor,NonStaffVisitor,ManagerVisitor,OwnerVisitor,AdminVisitor}
     private ConcurrentHashMap <LocalDate, SystemStats> systemStatsByDate;

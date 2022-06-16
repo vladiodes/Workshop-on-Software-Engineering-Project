@@ -12,6 +12,7 @@ import main.Security.ISecurity;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingCart;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Stores.OwnerAppointmentRequest;
 import main.Stores.Store;
 import main.Users.states.GuestState;
 import main.Users.states.MemberState;
@@ -159,11 +160,15 @@ public class User implements Observable {
         //first checking preconditions to make the appointment
         appointOwnerPreconditions(IStore, user_to_appoint);
 
-        OwnerPermissions newOwnerAppointment = new OwnerPermissions(user_to_appoint, this, IStore);
-        DAO.getInstance().persist(newOwnerAppointment);
-        user_to_appoint.addOwnedStore(newOwnerAppointment);
-        IStore.addOwnerToStore(newOwnerAppointment);
+        OwnerAppointmentRequest request = new OwnerAppointmentRequest(this, user_to_appoint);
+        // TODO: persist the request in store
+        IStore.addOwnerRequest(request);
         return true;
+//        OwnerPermissions newOwnerAppointment = new OwnerPermissions(user_to_appoint, this, IStore);
+//        DAO.getInstance().persist(newOwnerAppointment);
+//        user_to_appoint.addOwnedStore(newOwnerAppointment);
+//        IStore.addOwnerToStore(newOwnerAppointment);
+
     }
 
     private void appointOwnerPreconditions(Store IStore, User user_to_appoint) {
@@ -185,7 +190,7 @@ public class User implements Observable {
         return user.getManagedStores().contains(IStore);
     }
 
-    private void addOwnedStore(OwnerPermissions newOwnerAppointment) {
+    public void addOwnedStore(OwnerPermissions newOwnerAppointment) {
         ownedStores.add(newOwnerAppointment);
         DAO.getInstance().merge(this);
     }
