@@ -22,9 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Atomic transactions - open and close at service level">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixes in DAO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/states/GuestState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/GuestState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/MemberState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/states/UserStates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/states/UserStates.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -344,13 +349,6 @@
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
       <workItem from="1655235787882" duration="2596000" />
-    </task>
-    <task id="LOCAL-00019" summary="Fixed ProductDTO constructor">
-      <created>1650545463219</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1650545463219</updated>
     </task>
     <task id="LOCAL-00020" summary="Unit tests for User">
       <created>1650726667114</created>
@@ -688,7 +686,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655362615977</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Fixes in DAO">
+      <created>1655366487307</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1655366487307</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +739,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added composing complex conditions for store in gui" />
     <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
     <MESSAGE value="Some more fixed to bidding..." />
     <MESSAGE value="Test fixes" />
@@ -759,7 +763,8 @@
     <MESSAGE value="Updated quantity in DB when purchasing" />
     <MESSAGE value="Implemented real time stats" />
     <MESSAGE value="Atomic transactions - open and close at service level" />
-    <option name="LAST_COMMIT_MESSAGE" value="Atomic transactions - open and close at service level" />
+    <MESSAGE value="Fixes in DAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes in DAO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

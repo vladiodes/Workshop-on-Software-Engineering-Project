@@ -64,4 +64,9 @@ public class GuestState extends UserStates {
     public String getUserName() {
         return userName;
     }
+
+    @Override
+    public boolean isGuest() {
+        return true;
+    }
 }

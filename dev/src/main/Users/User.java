@@ -401,12 +401,14 @@ public class User implements Observable {
 
     public void resetCart(){
         this.cart = new ShoppingCart(this);
-        DAO.getInstance().persist(cart);
+        if(!isGuest())
+            DAO.getInstance().persist(cart);
     }
 
     public void addCartToHistory(ShoppingCart cart){
         ShoppingCartDTO historyCart = new ShoppingCartDTO(cart, this,true);
-        DAO.getInstance().persist(historyCart);
+        if(!isGuest())
+            DAO.getInstance().persist(historyCart);
         this.purchaseHistory.add(historyCart);
     }
 
@@ -760,5 +762,9 @@ public class User implements Observable {
 
     public Observer getObserver() {
         return this.observer;
+    }
+
+    public boolean isGuest() {
+        return state.isGuest();
     }
 }

@@ -330,7 +330,8 @@ public class Market {
         if(!st.isProductAddable(productName))
             throw new IllegalArgumentException("Can't add this product to the cart - its policy doesn't allow to do so");
         boolean output= us.addProductToCart(st, productName, quantity);
-        dao.merge(us);
+        if (!us.isGuest())
+            dao.merge(us);
         return output;
     }
 
@@ -665,7 +666,8 @@ public class Market {
         //User purchase history update
         User u = getConnectedUserByToken(userToken);
         u.purchaseCart(pinfo, sinfo, this.Psystem, this.Ssystem);
-        dao.merge(u);
+        if(!u.isGuest())
+            dao.merge(u);
         addStats(StatsType.Purchase);
     }
 
