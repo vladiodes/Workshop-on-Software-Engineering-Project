@@ -745,6 +745,9 @@ public class User implements Observable {
         int owned=getOwnedStores().size();
         int managed= getManagedStores().size();
 
+        if(isSystemManager)
+            return Market.StatsType.AdminVisitor;
+
         if (founded==0 && managed==0 && owned==0)
             return Market.StatsType.NonStaffVisitor;
 
@@ -753,9 +756,6 @@ public class User implements Observable {
 
         if((founded>0 || owned>0) && managed==0)
             return Market.StatsType.OwnerVisitor;
-
-        if(isSystemManager)
-            return Market.StatsType.AdminVisitor;
 
         return null;
     }

@@ -69,9 +69,17 @@ public class SystemStats {
         pushNotification();
     }
 
+    public int getGuestsVisitors(){
+        return numOfGuests.get();
+    }
+
     public void addNonStaffVisitor(){
         numOfNonStaffMembers.incrementAndGet();
         pushNotification();
+    }
+
+    public int getNonStaffVisitors(){
+        return numOfNonStaffMembers.get();
     }
 
     public void addManagerVisitor(){
@@ -79,14 +87,26 @@ public class SystemStats {
         pushNotification();
     }
 
+    public int getManagersVisitors(){
+        return numOfStoreManagers.get();
+    }
+
     public void addOwnerVisitor(){
         numOfStoreOwners.incrementAndGet();
         pushNotification();
     }
 
+    public int getOwnerVisitors(){
+        return numOfStoreOwners.get();
+    }
+
     public void addAdminVisitor(){
         numOfSystemAdmins.incrementAndGet();
         pushNotification();
+    }
+
+    public int getAdminVisitors(){
+        return numOfSystemAdmins.get();
     }
 
     private void pushNotification() {

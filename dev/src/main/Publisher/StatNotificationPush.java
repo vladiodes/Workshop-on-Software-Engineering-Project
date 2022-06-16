@@ -1,14 +1,6 @@
 package main.Publisher;
 
 public class StatNotificationPush extends Notification{
-    private int guests;
-    private int nonStaff;
-    private int managers;
-    private int owners;
-    private int admins;
-    private int loggedIn;
-    private int purchases;
-    private int registered;
     private String content;
 
     public StatNotificationPush(int guests,int nonStaff,int managers,int owners,int admins,int loggedIn,int purchases,int registered){
