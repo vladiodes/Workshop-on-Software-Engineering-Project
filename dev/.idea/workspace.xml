@@ -22,10 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Small change">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Atomic transactions - open and close at service level">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,8 +299,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.test.DBTests in dev" />
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.test.DBTests in dev" />
         <item itemvalue="JUnit.test.UnitTests in dev" />
         <item itemvalue="JUnit.test.testUtils in dev" />
         <item itemvalue="JUnit.test.RobustnessTests in dev" />
@@ -345,13 +344,6 @@
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
       <workItem from="1655235787882" duration="2596000" />
-    </task>
-    <task id="LOCAL-00018" summary="Fixed compilation issues">
-      <created>1650545025130</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1650545025130</updated>
     </task>
     <task id="LOCAL-00019" summary="Fixed ProductDTO constructor">
       <created>1650545463219</created>
@@ -689,7 +681,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655238309457</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Atomic transactions - open and close at service level">
+      <created>1655362615976</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1655362615977</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,7 +734,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added simple conditions for store in gui" />
     <MESSAGE value="Added composing complex conditions for store in gui" />
     <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
     <MESSAGE value="Some more fixed to bidding..." />
@@ -760,7 +758,8 @@
     <MESSAGE value="Fixed bug of removing founder appointment" />
     <MESSAGE value="Updated quantity in DB when purchasing" />
     <MESSAGE value="Implemented real time stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented real time stats" />
+    <MESSAGE value="Atomic transactions - open and close at service level" />
+    <option name="LAST_COMMIT_MESSAGE" value="Atomic transactions - open and close at service level" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -819,6 +818,11 @@
           <url>file://$PROJECT_DIR$/src/main/Stores/Store.java</url>
           <line>485</line>
           <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/LoginController.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

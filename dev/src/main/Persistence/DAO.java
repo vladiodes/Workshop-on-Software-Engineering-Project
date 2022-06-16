@@ -60,7 +60,8 @@ public class DAO {
                 thread_transactions_map.put(Thread.currentThread().getId(),et);
             }
             catch (Exception e){
-                throw new RuntimeException(e);
+                e.printStackTrace();
+                throw new IllegalArgumentException("Something went wrong with the database...");
             }
         }
     }
@@ -69,13 +70,13 @@ public class DAO {
         if (shouldPersist) {
             EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
             if (et == null)
-                throw new RuntimeException("Problem with transactions");
+                return;
             try {
-                if(!et.getRollbackOnly())
+                if(!et.getRollbackOnly() && et.isActive())
                     et.commit();
             } catch (Exception e) {
                 et.rollback();
-                throw new RuntimeException(e);
+                //throw new RuntimeException(e);
             }
         }
     }
@@ -87,7 +88,8 @@ public class DAO {
                 try {
                     entityManager.persist(obj);
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
+                    throw new IllegalArgumentException("Something went wrong with the database...");
                 }
             }
         }
@@ -100,7 +102,8 @@ public class DAO {
                 try {
                     entityManager.remove(obj);
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
+                    throw new IllegalArgumentException("Something went wrong with the database...");
                 }
             }
         }
@@ -114,7 +117,7 @@ public class DAO {
                     entityManager.merge(obj);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    throw new RuntimeException(e);
+                    throw new IllegalArgumentException("Something went wrong with the database...");
                 }
             }
         }
