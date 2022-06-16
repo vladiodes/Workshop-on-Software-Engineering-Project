@@ -684,7 +684,7 @@ public class Market {
         User uToReturn = membersByUserName.get(userName);
         if(uToReturn == null)
             throw new IllegalArgumentException("User doesn't exist.");
-        return u.getPurchaseHistory();
+        return uToReturn.getPurchaseHistory();
 
     }
 

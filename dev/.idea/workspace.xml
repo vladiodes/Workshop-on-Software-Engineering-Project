@@ -22,8 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Added unit-tests for SystemStats">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed another bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -351,13 +352,6 @@
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
       <workItem from="1655235787882" duration="2596000" />
-    </task>
-    <task id="LOCAL-00023" summary="Added ManagerPermissions tests">
-      <created>1650733576135</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1650733576135</updated>
     </task>
     <task id="LOCAL-00024" summary="Fixed compilation issues, still refactoring">
       <created>1650744725864</created>
@@ -695,7 +689,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655370454364</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Fixed another bug">
+      <created>1655372763470</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1655372763470</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +742,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Need to annotate and map all classes..." />
     <MESSAGE value="Added simple mapping for user-user_state... working." />
     <MESSAGE value="Annotating..." />
     <MESSAGE value="More general function in DAO" />
@@ -766,7 +766,8 @@
     <MESSAGE value="Fixed bug - guest can add products to cart and purchase (in persistence mode)" />
     <MESSAGE value="Fixed bug - only members can bid products" />
     <MESSAGE value="Added unit-tests for SystemStats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added unit-tests for SystemStats" />
+    <MESSAGE value="Fixed another bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed another bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -823,13 +824,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Stores/Store.java</url>
-          <line>485</line>
+          <line>486</line>
           <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/LoginController.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
