@@ -27,12 +27,14 @@ public class ShoppingCart {
     @OneToOne
     private User user;
 
+
     public ShoppingCart(User user) {
         this.baskets = Collections.synchronizedMap(new HashMap<>());
         this.user = user;
     }
 
     public ShoppingCart() {
+        this.baskets = Collections.synchronizedMap(new HashMap<>());
 
     }
 
@@ -43,22 +45,23 @@ public class ShoppingCart {
     public  boolean addProductToCart(Store IStore, String productName, int quantity) {
         synchronized (carteditLock) {
             if (baskets.containsKey(IStore.getName())) {
-                boolean output= baskets.get(IStore.getName()).AddProduct(productName, quantity);
-                DAO.getInstance().merge(baskets.get(IStore.getName()));
+                boolean output = baskets.get(IStore.getName()).AddProduct(productName, quantity);
+                if (!this.user.isGuest())
+                    DAO.getInstance().merge(baskets.get(IStore.getName()));
                 return output;
-            }
-            else {
+            } else {
                 if (!IStore.getIsActive())
                     throw new IllegalArgumentException("Store is not active.");
                 if (!IStore.getProductsByName().containsKey(productName))
                     throw new IllegalArgumentException("Product does not exist in store");
                 ShoppingBasket basket = new ShoppingBasket(IStore, this.user);
-
-                DAO.getInstance().persist(basket);
+                if (!this.user.isGuest())
+                    DAO.getInstance().persist(basket);
 
                 baskets.put(IStore.getName(), basket);
-                boolean output= basket.AddProduct(productName, quantity);
-                DAO.getInstance().merge(basket);
+                boolean output = basket.AddProduct(productName, quantity);
+                if (!this.user.isGuest())
+                    DAO.getInstance().merge(basket);
                 return output;
             }
         }

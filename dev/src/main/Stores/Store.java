@@ -478,6 +478,7 @@ public class Store {
             throw new IllegalArgumentException("No such product with this name");
         boolean output= productsByName.remove(productName) != null;
         DAO.getInstance().remove(toRemove);
+        DAO.getInstance().merge(this);
         return output;
     }
 

@@ -114,4 +114,9 @@ public class MemberState extends UserStates {
     public String getUserName() {
         return this.username;
     }
+
+    @Override
+    public boolean isGuest() {
+        return false;
+    }
 }

@@ -22,8 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Implemented real time stats">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed another bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="149-write-some-unit-tests-for-systemstats" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -82,27 +83,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "JPA.DatabaseSchemaImportDialog": "2c95b5a9-8801-47ea-a2f8-a24f7211c10e",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "last_directory_selection": "C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/ProductPolicy",
-    "last_opened_file_path": "C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.27126437",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;2c95b5a9-8801-47ea-a2f8-a24f7211c10e&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/ProductPolicy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.Users" />
@@ -145,14 +146,14 @@
       <recent name="main.Stores.PurchasePolicy.Discounts.SimpleDiscounts" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="test.RobustnessTests" />
       <recent name="test.UnitTests" />
+      <recent name="test.RobustnessTests" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -207,54 +208,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.DBTests" />
       <option name="MAIN_CLASS_NAME" value="test.DBTests.DBTests" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test.NotificationTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test.RobustnessTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.RobustnessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.testManagerAndOwnerVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
@@ -263,21 +223,73 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testManagerAndOwnerVisitor" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.testUtils in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.testManagerVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.testUtils.*" />
+          <option name="PATTERN" value="test.UnitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.testUtils" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testManagerVisitor" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.testOnlyManagerVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testOnlyManagerVisitor" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.testVisitorTypeNonStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testVisitorTypeNonStaff" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.testVisitorTypeOwner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
+      <option name="METHOD_NAME" value="testVisitorTypeOwner" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -287,19 +299,19 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.DBTests" />
-      <item itemvalue="JUnit.test.NotificationTests in dev" />
-      <item itemvalue="JUnit.test.RobustnessTests in dev" />
-      <item itemvalue="JUnit.test.UnitTests in dev" />
-      <item itemvalue="JUnit.test.testUtils in dev" />
-      <item itemvalue="JUnit.test in dev" />
+      <item itemvalue="JUnit.UserTest.testManagerAndOwnerVisitor" />
+      <item itemvalue="JUnit.UserTest.testManagerVisitor" />
+      <item itemvalue="JUnit.UserTest.testOnlyManagerVisitor" />
+      <item itemvalue="JUnit.UserTest.testVisitorTypeNonStaff" />
+      <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.test.UnitTests in dev" />
-        <item itemvalue="JUnit.test.testUtils in dev" />
-        <item itemvalue="JUnit.test.RobustnessTests in dev" />
-        <item itemvalue="JUnit.test.NotificationTests in dev" />
+        <item itemvalue="JUnit.UserTest.testManagerAndOwnerVisitor" />
+        <item itemvalue="JUnit.UserTest.testManagerVisitor" />
+        <item itemvalue="JUnit.UserTest.testOnlyManagerVisitor" />
+        <item itemvalue="JUnit.UserTest.testVisitorTypeNonStaff" />
+        <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
       </list>
     </recent_temporary>
   </component>
@@ -340,48 +352,6 @@
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
       <workItem from="1655235787882" duration="2596000" />
-    </task>
-    <task id="LOCAL-00018" summary="Fixed compilation issues">
-      <created>1650545025130</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1650545025130</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Fixed ProductDTO constructor">
-      <created>1650545463219</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1650545463219</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Unit tests for User">
-      <created>1650726667114</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1650726667114</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Changed AT class name to be more relevant">
-      <created>1650726807168</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1650726807168</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Added NotificationBus tests">
-      <created>1650732398578</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1650732398578</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Added ManagerPermissions tests">
-      <created>1650733576135</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1650733576135</updated>
     </task>
     <task id="LOCAL-00024" summary="Fixed compilation issues, still refactoring">
       <created>1650744725864</created>
@@ -684,7 +654,49 @@
       <option name="project" value="LOCAL" />
       <updated>1655238309457</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Atomic transactions - open and close at service level">
+      <created>1655362615976</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1655362615977</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Fixes in DAO">
+      <created>1655366487307</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1655366487307</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Fixed bug - guest can add products to cart and purchase (in persistence mode)">
+      <created>1655367934901</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1655367934901</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Fixed bug - only members can bid products">
+      <created>1655368549746</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1655368549747</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Added unit-tests for SystemStats">
+      <created>1655370454364</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1655370454364</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Fixed another bug">
+      <created>1655372763470</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1655372763470</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -730,12 +742,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added simple conditions for store in gui" />
-    <MESSAGE value="Added composing complex conditions for store in gui" />
-    <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
-    <MESSAGE value="Some more fixed to bidding..." />
-    <MESSAGE value="Test fixes" />
-    <MESSAGE value="Need to annotate and map all classes..." />
     <MESSAGE value="Added simple mapping for user-user_state... working." />
     <MESSAGE value="Annotating..." />
     <MESSAGE value="More general function in DAO" />
@@ -755,7 +761,13 @@
     <MESSAGE value="Fixed bug of removing founder appointment" />
     <MESSAGE value="Updated quantity in DB when purchasing" />
     <MESSAGE value="Implemented real time stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented real time stats" />
+    <MESSAGE value="Atomic transactions - open and close at service level" />
+    <MESSAGE value="Fixes in DAO" />
+    <MESSAGE value="Fixed bug - guest can add products to cart and purchase (in persistence mode)" />
+    <MESSAGE value="Fixed bug - only members can bid products" />
+    <MESSAGE value="Added unit-tests for SystemStats" />
+    <MESSAGE value="Fixed another bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed another bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -812,7 +824,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Stores/Store.java</url>
-          <line>485</line>
+          <line>486</line>
           <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>

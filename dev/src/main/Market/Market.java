@@ -185,6 +185,8 @@ public class Market {
     public boolean bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         User user = getConnectedUserByToken(userToken);
         Store store = getDomainStoreByName(storeName);
+        if(user.isGuest())
+            throw new IllegalArgumentException("Only registered members can place bids on products");
         return user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem);
     }
 
@@ -351,7 +353,8 @@ public class Market {
         if(!st.isProductAddable(productName))
             throw new IllegalArgumentException("Can't add this product to the cart - its policy doesn't allow to do so");
         boolean output= us.addProductToCart(st, productName, quantity);
-        dao.merge(us);
+        if (!us.isGuest())
+            dao.merge(us);
         return output;
     }
 
@@ -686,7 +689,8 @@ public class Market {
         //User purchase history update
         User u = getConnectedUserByToken(userToken);
         u.purchaseCart(pinfo, sinfo, this.Psystem, this.Ssystem);
-        dao.merge(u);
+        if(!u.isGuest())
+            dao.merge(u);
         addStats(StatsType.Purchase);
     }
 
@@ -701,7 +705,7 @@ public class Market {
         User uToReturn = membersByUserName.get(userName);
         if(uToReturn == null)
             throw new IllegalArgumentException("User doesn't exist.");
-        return u.getPurchaseHistory();
+        return uToReturn.getPurchaseHistory();
 
     }
 

@@ -36,4 +36,7 @@ public abstract class UserStates {
     public abstract List<Qna> getSecurityQNA();
 
     public abstract String getUserName();
+
+    public abstract boolean isGuest();
+
 }
