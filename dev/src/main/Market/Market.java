@@ -164,6 +164,8 @@ public class Market {
     public boolean bidOnProduct(String userToken,String storeName, String productName, Double costumePrice, PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
         User user = getConnectedUserByToken(userToken);
         Store store = getDomainStoreByName(storeName);
+        if(user.isGuest())
+            throw new IllegalArgumentException("Only registered members can place bids on products");
         return user.bidOnProduct(store, productName, costumePrice, paymentInformation, supplyingInformation, Psystem, Ssystem);
     }
 
