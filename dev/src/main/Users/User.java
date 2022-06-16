@@ -159,15 +159,11 @@ public class User implements Observable {
 
         //first checking preconditions to make the appointment
         appointOwnerPreconditions(IStore, user_to_appoint);
-
         OwnerAppointmentRequest request = new OwnerAppointmentRequest(this, user_to_appoint);
         // TODO: persist the request in store
+        DAO.getInstance().persist(request);
         IStore.addOwnerRequest(request);
         return true;
-//        OwnerPermissions newOwnerAppointment = new OwnerPermissions(user_to_appoint, this, IStore);
-//        DAO.getInstance().persist(newOwnerAppointment);
-//        user_to_appoint.addOwnedStore(newOwnerAppointment);
-//        IStore.addOwnerToStore(newOwnerAppointment);
 
     }
 

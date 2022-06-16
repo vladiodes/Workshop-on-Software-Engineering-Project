@@ -462,4 +462,5 @@ public interface IService {
      */
     Response<String> approveOwnerAppointment(String userToken,String userNameToApprove, String storeName);
     Response<String> declineOwnerAppointment(String userToken, String userNameToDecline, String storeName);
+    Response<List<OwnerAppointmentRequestDTO>> getOwnerAppointmentRequests(String userToken, String storeName);
 }

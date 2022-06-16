@@ -1664,5 +1664,18 @@ public class Service implements IService {
         }
     }
 
-
+    @Override
+    public Response<List<OwnerAppointmentRequestDTO>> getOwnerAppointmentRequests(String userToken, String storeName) {
+        Logger.getInstance().logEvent("Service", String.format("Attempting to fetch %s owner appointment requests, request made by user token : %s", storeName,userToken));
+        try {
+            return new Response<>(market.getOwnerAppointmentRequests(userToken,storeName));
+        }
+        catch (IllegalArgumentException e) {
+            return new Response<>(e,true);
+        }
+        catch (Exception e) {
+            Logger.getInstance().logBug("Service->getOwnerAppointmentRequests",e.getMessage());
+            return  new Response<>(e,false);
+        }
+    }
 }

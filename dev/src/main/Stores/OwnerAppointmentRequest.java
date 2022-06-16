@@ -44,4 +44,7 @@ public class OwnerAppointmentRequest implements Serializable {
     public User getUserToAppoint() {
         return userToAppoint;
     }
+    public boolean didVote(User u) {
+        return approvedBy.contains(u);
+    }
 }

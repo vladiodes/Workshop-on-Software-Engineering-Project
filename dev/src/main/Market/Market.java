@@ -2,7 +2,6 @@ package main.Market;
 
 
 import io.javalin.websocket.WsContext;
-import io.javalin.websocket.WsMessageContext;
 import main.DTO.*;
 import main.Persistence.DAO;
 import main.Publisher.*;
@@ -17,8 +16,6 @@ import main.Stores.StoreReview;
 import main.Logger.Logger;
 import main.Security.ISecurity;
 import main.Security.Security;
-import main.Shopping.ShoppingBasket;
-import main.Shopping.ShoppingCart;
 import main.Users.StorePermission;
 import main.Users.User;
 
@@ -105,6 +102,17 @@ public class Market {
         Store store = getDomainStoreByName(storeName);
         store.declineOwnerRequest(refuser, userToDecline);
         return "Declined request successfully";
+    }
+
+    public List<OwnerAppointmentRequestDTO> getOwnerAppointmentRequests(String userToken, String storeName) {
+        List<OwnerAppointmentRequestDTO> res = new LinkedList<>();
+        User u = getConnectedUserByToken(userToken);
+        Store store = getDomainStoreByName(storeName);
+        List<OwnerAppointmentRequest> domainRes = store.getNotVotedOwnerAppointmentRequests(u);
+        for(OwnerAppointmentRequest req : domainRes) {
+            res.add(new OwnerAppointmentRequestDTO(req));
+        }
+        return res;
     }
 
     public enum StatsType{Register, Login, Purchase,GuestVisitor,NonStaffVisitor,ManagerVisitor,OwnerVisitor,AdminVisitor}

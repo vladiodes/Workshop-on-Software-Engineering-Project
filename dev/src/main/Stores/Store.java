@@ -632,7 +632,7 @@ public class Store {
         throw new IllegalArgumentException("User has no pending appointment request waiting");
     }
 
-    private boolean verifyPermissionToVoteOnOwnerAppointment(User u) {
+    private boolean verifyOwnerOrFounder(User u) {
         if (founder == u) return true;
         for(User owner : getOwnersOfStore()) {
             if(u == owner) return true;
@@ -642,7 +642,7 @@ public class Store {
 
     public void approveOwnerRequest(User approver, User userToApprove) {
         OwnerAppointmentRequest request = getOwnerAppointmentRequest(userToApprove);
-        boolean canVote = verifyPermissionToVoteOnOwnerAppointment(approver);
+        boolean canVote = verifyOwnerOrFounder(approver);
         if(canVote){
             boolean voteRes = request.addVote(approver);
             if(!voteRes) {
@@ -659,8 +659,9 @@ public class Store {
     }
 
     public void declineOwnerRequest(User refuser, User userToDecline) {
+        // TODO: check what happens when owner votes yes and then tries to vote no(if its even a use case)
         OwnerAppointmentRequest request = getOwnerAppointmentRequest(userToDecline);
-        boolean canVote = verifyPermissionToVoteOnOwnerAppointment(refuser);
+        boolean canVote = verifyOwnerOrFounder(refuser);
         if(canVote){
 
             Notification n = new PersonalNotification(
@@ -675,5 +676,27 @@ public class Store {
         else{
             throw new IllegalArgumentException("the refuser is not owner/founder of the store");
         }
+    }
+
+    private List<OwnerAppointmentRequest> getNotVotedByUserRequests(User u) {
+        List<OwnerAppointmentRequest> res = new LinkedList<>();
+        for(OwnerAppointmentRequest req : ownerAppointmentRequests) {
+            if(!req.didVote(u)) {
+                res.add(req);
+            }
+        }
+        return res;
+    }
+
+    public List<OwnerAppointmentRequest> getNotVotedOwnerAppointmentRequests(User u) {
+        boolean canWatchRequests = verifyOwnerOrFounder(u);
+        if(!canWatchRequests) {
+            throw new IllegalArgumentException("user is not owner/founder of the store and cannot see the requests");
+        }
+        return getNotVotedByUserRequests(u);
+    }
+
+    public Collection<OwnerAppointmentRequest> getAllOwnerRequests() {
+        return ownerAppointmentRequests;
     }
 }
