@@ -1,4 +1,4 @@
-#write u,123456 to file a 1000 times
+#to create csv files easy
 def write_to_file(filename,p):
     with open(filename, 'w') as f:
         for i in range(100):
