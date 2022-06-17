@@ -7,10 +7,13 @@ import main.utils.SystemStats;
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DAO {
     private static DAO instance;
     private boolean shouldPersist;
+    private Map<Long,EntityTransaction> thread_transactions_map;
     private static boolean enablePersist=false;
     private static String persistence_unit = "Market";
     public static DAO getInstance(){
@@ -36,6 +39,7 @@ public class DAO {
                 DAO.enablePersist=false;
                 entityManager=null;
             }
+            thread_transactions_map=new ConcurrentHashMap<>();
         }
     }
 
@@ -47,19 +51,45 @@ public class DAO {
         enablePersist=false;
     }
 
+    public void openTransaction(){
+        if(shouldPersist){
+            EntityTransaction et = null;
+            try{
+                et = entityManager.getTransaction();
+                et.begin();
+                thread_transactions_map.put(Thread.currentThread().getId(),et);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                throw new IllegalArgumentException("Something went wrong with the database...");
+            }
+        }
+    }
+
+    public void commitTransaction() {
+        if (shouldPersist) {
+            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
+            if (et == null)
+                return;
+            try {
+                if(!et.getRollbackOnly() && et.isActive())
+                    et.commit();
+            } catch (Exception e) {
+                et.rollback();
+                //throw new RuntimeException(e);
+            }
+        }
+    }
+
     public <T> void persist(T obj){
         if(shouldPersist) {
-            EntityTransaction et = null;
+            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
             synchronized (entityManager) {
                 try {
-                    et = entityManager.getTransaction();
-                    et.begin();
                     entityManager.persist(obj);
-                    et.commit();
                 } catch (Exception e) {
-                    if (et != null)
-                        et.rollback();
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
+                    throw new IllegalArgumentException("Something went wrong with the database...");
                 }
             }
         }
@@ -67,17 +97,13 @@ public class DAO {
 
     public <T> void remove(T obj){
         if(shouldPersist) {
-            EntityTransaction et = null;
+            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
             synchronized (entityManager) {
                 try {
-                    et = entityManager.getTransaction();
-                    et.begin();
                     entityManager.remove(obj);
-                    et.commit();
                 } catch (Exception e) {
-                    if (et != null)
-                        et.rollback();
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
+                    throw new IllegalArgumentException("Something went wrong with the database...");
                 }
             }
         }
@@ -85,18 +111,13 @@ public class DAO {
 
     public <T> void merge(T obj){
         if(shouldPersist) {
-            EntityTransaction et = null;
+            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
             synchronized (entityManager) {
                 try {
-                    et = entityManager.getTransaction();
-                    et.begin();
                     entityManager.merge(obj);
-                    et.commit();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    if (et != null)
-                        et.rollback();
-                    throw new RuntimeException(e);
+                    throw new IllegalArgumentException("Something went wrong with the database...");
                 }
             }
         }

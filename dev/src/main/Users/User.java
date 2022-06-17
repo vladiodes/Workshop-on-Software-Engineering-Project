@@ -401,12 +401,14 @@ public class User implements Observable {
 
     public void resetCart(){
         this.cart = new ShoppingCart(this);
-        DAO.getInstance().persist(cart);
+        if(!isGuest())
+            DAO.getInstance().persist(cart);
     }
 
     public void addCartToHistory(ShoppingCart cart){
         ShoppingCartDTO historyCart = new ShoppingCartDTO(cart, this,true);
-        DAO.getInstance().persist(historyCart);
+        if(!isGuest())
+            DAO.getInstance().persist(historyCart);
         this.purchaseHistory.add(historyCart);
     }
 
@@ -743,6 +745,9 @@ public class User implements Observable {
         int owned=getOwnedStores().size();
         int managed= getManagedStores().size();
 
+        if(isSystemManager)
+            return Market.StatsType.AdminVisitor;
+
         if (founded==0 && managed==0 && owned==0)
             return Market.StatsType.NonStaffVisitor;
 
@@ -752,13 +757,14 @@ public class User implements Observable {
         if((founded>0 || owned>0) && managed==0)
             return Market.StatsType.OwnerVisitor;
 
-        if(isSystemManager)
-            return Market.StatsType.AdminVisitor;
-
         return null;
     }
 
     public Observer getObserver() {
         return this.observer;
+    }
+
+    public boolean isGuest() {
+        return state.isGuest();
     }
 }

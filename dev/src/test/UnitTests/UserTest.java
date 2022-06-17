@@ -1,7 +1,9 @@
 package test.UnitTests;
 
+import main.Market.Market;
 import main.Stores.Store;
 import main.Users.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,8 @@ class UserTest {
     private User user5;
     @Mock
     private Store store_mock;
+    @Mock
+    private Store store_mock2;
 
 
 
@@ -35,6 +39,7 @@ class UserTest {
         user4 = new User(false,"user4","password");
         user5 = new User(false,"user5","password");
         store_mock = mock(Store.class);
+        store_mock2=mock(Store.class);
         when(store_mock.getOwnersAppointments()).thenReturn(new LinkedList<>());
         List<ManagerPermissions> managersList = new ArrayList<>();
         when(store_mock.getManagersAppointments()).thenReturn(managersList);
@@ -397,5 +402,44 @@ class UserTest {
         assertTrue(user.removeProductFromStore("product",store_mock));
         assertTrue(user2.removeProductFromStore("product",store_mock));
         assertTrue(user3.removeProductFromStore("product",store_mock));
+    }
+
+    @Test
+    void testVisitorTypeFounder(){
+        user.getFoundedStores().add(store_mock);
+        Assertions.assertEquals(user.visitorType(), Market.StatsType.OwnerVisitor);
+    }
+
+    @Test
+    void testVisitorTypeOwner(){
+        user.getFoundedStores().add(store_mock);
+        appointStoreOwner(user,user2,store_mock);
+        Assertions.assertEquals(user2.visitorType(), Market.StatsType.OwnerVisitor);
+    }
+
+    @Test
+    void testVisitorTypeNonStaff(){
+        Assertions.assertEquals(user2.visitorType(), Market.StatsType.NonStaffVisitor);
+    }
+
+    @Test
+    void testOnlyManagerVisitor(){
+        user.getFoundedStores().add(store_mock);
+        appointStoreManager(user,user2,store_mock);
+        Assertions.assertEquals(user2.visitorType(), Market.StatsType.ManagerVisitor);
+    }
+
+    @Test
+    void testManagerVisitor(){
+        Assertions.assertEquals(admin.visitorType(), Market.StatsType.AdminVisitor);
+    }
+
+    @Test
+    void testManagerAndOwnerVisitor(){
+        user.getFoundedStores().add(store_mock);
+        user2.getFoundedStores().add(store_mock2);
+        appointStoreManager(user2,user,store_mock2);
+
+        assertNull(user.visitorType());
     }
 }
