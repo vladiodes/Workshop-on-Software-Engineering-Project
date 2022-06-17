@@ -18,6 +18,7 @@ import java.util.function.Function;
 public class ServiceLoader {
 
     public static IService loadFromFile(String path, IService service ) throws Exception {
+        System.out.println("Starting script:");
         UserTokens ut = new UserTokens();
         ObjectMapper objectMapper = new ObjectMapper();
         Invoker<?>[] ins = objectMapper.readValue(Paths.get(path).toFile(), Invoker[].class);
@@ -28,12 +29,14 @@ public class ServiceLoader {
                 throw new IllegalArgumentException(String.format("Illegal commands. failed at command %d in file %s", counter, path));
             counter ++;
         }
+        System.out.println("Done script.");
         return service;
     }
 
-    public static void createRecording(String path, Function<IService, Void> scenario){
+    public static void createRecording(String path, Function<IService, Void> scenario) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        Service service = new Service(new PaymentAdapter(), new SupplyingAdapter(), true,false);
+        Service service = new Service("TestingConfig.json");
+        service.setLogCommandsFlag(true);
         service.setLogFileName(path);
         scenario.apply(service);
         service.SaveRecording();
@@ -41,29 +44,39 @@ public class ServiceLoader {
 
 //    you can use this main to create more startup files.
     public static void main(String[] args) throws Exception {
-//        createRecording("Tal3.json", new Function<IService, Void>() {
-//            @Override
-//            public Void apply(IService service) {
-//                Class<?> wat = PaymentAdapter.class;
-//                try {
-//                    Constructor<?> damn = wat.getConstructor();
-//                    PaymentAdapter pa = (PaymentAdapter)damn.newInstance();
-//                } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-//                         InvocationTargetException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                return null;
-//            }
-//        });
-        ObjectMapper objectMapper = new ObjectMapper();
-        Configuration c = new Configuration();
-        c.setPersistence_unit("Market");
-        c.setShouldPersist(true);
-        c.setAdminUsername("admin");
-        c.setAdminPassword("admin");
-        c.setPaymentSystem(PaymentAdapter.class);
-        c.setSupplyingSystem(SupplyingAdapter.class);
-        objectMapper.writeValue(new File("RealConfig.json"), c);
+        createRecording("StoreManagementStressStartup.json", new Function<IService, Void>() {
+            @Override
+            public Void apply(IService service) {
+                String username = "u";
+                String password = "123456";
+                String storeName = "s";
+                String productName = "p";
+                for(int i = 0; i < 100; i ++) {
+                    String currUser = username + i;
+                    service.register(currUser, password);
+                    String founderToken = service.guestConnect().getResult();
+                    service.login(founderToken, currUser, password);
+                    String currStore = storeName + i;
+                    service.openStore(founderToken, currStore);
+                    if(i == 50)
+                        System.out.println("Half users done.");
+                    for(int j = 0; j < 10; j ++)
+                        service.addProductToStore(founderToken, productName + j, "Test", new ArrayList<>(), "Test", currStore, 1000000 , 30);
+                    service.logout(founderToken);
+                }
+                System.out.println("Done Script.");
+                return null;
+            }
+        });
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Configuration c = new Configuration();
+//        c.setPersistence_unit("Market");
+//        c.setShouldPersist(true);
+//        c.setAdminUsername("admin");
+//        c.setAdminPassword("admin");
+//        c.setPaymentSystem(PaymentAdapter.class);
+//        c.setSupplyingSystem(SupplyingAdapter.class);
+//        objectMapper.writeValue(new File("RealConfig.json"), c);
     }
 
 }

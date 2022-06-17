@@ -89,7 +89,7 @@ public class StoreController {
         String [] keys = Objects.requireNonNull(ctx.formParam("keyWords")).split(",");
         List<String> keyWords = new LinkedList<>(Arrays.asList(keys));
 
-        Response<Boolean> response = service.updateProduct(ctx.sessionAttribute("userToken"),ctx.formParam("productName"),ctx.formParam("productName"),
+        Response<Boolean> response = service.updateProduct(ctx.formParam("userToken"),ctx.formParam("productName"),ctx.formParam("productName"),
                 ctx.formParam("category"),keyWords,ctx.formParam("description"),ctx.formParam("storeName"),
                 Integer.valueOf(ctx.formParam("quantity")),Double.valueOf(ctx.formParam("price")));
         if(response.isError_occured()){
@@ -247,7 +247,7 @@ public class StoreController {
     }
 
     private void appManager(Map<String, Object> model, Context ctx) {
-        Response<Boolean> response = service.appointStoreManager(ctx.sessionAttribute("userToken"), ctx.formParam("userName"), ctx.formParam("storeName"));
+        Response<Boolean> response = service.appointStoreManager(ctx.formParam("userToken"), ctx.formParam("userName"), ctx.formParam("storeName"));
         if (response.isError_occured()) {
             model.put("fail", true);
             model.put("response", response.getError_message());
