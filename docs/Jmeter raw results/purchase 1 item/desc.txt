@@ -1,0 +1,3 @@
+150 users all buying 1 item from the same store.
+server has 100 stores and each store at least 10 items.
+300 guests in the back ground going through pages.

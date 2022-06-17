@@ -44,31 +44,26 @@ public class ServiceLoader {
 
 //    you can use this main to create more startup files.
     public static void main(String[] args) throws Exception {
-        createRecording("MuchStress.json", new Function<IService, Void>() {
+        createRecording("StoreManagementStressStartup.json", new Function<IService, Void>() {
             @Override
             public Void apply(IService service) {
                 String username = "u";
                 String password = "123456";
-                for(int i = 0; i < 1000; i ++)
-                    service.register(username + i, password);
-                System.out.println("Done registering.");
-                String founderToken = service.guestConnect().getResult();
-                for(int i = 0; i < 299; i ++)
-                    service.guestConnect();
-                System.out.println("Done connecting.");
-                service.login(founderToken, username + 0, password);
                 String storeName = "s";
                 String productName = "p";
-                for(int i = 0; i < 1000; i ++)
-                {
+                for(int i = 0; i < 100; i ++) {
+                    String currUser = username + i;
+                    service.register(currUser, password);
+                    String founderToken = service.guestConnect().getResult();
+                    service.login(founderToken, currUser, password);
                     String currStore = storeName + i;
                     service.openStore(founderToken, currStore);
-                    if(i == 500)
-                        System.out.println("Half stores done.");
-                    for(int j = 0; j < 1000; j ++)
+                    if(i == 50)
+                        System.out.println("Half users done.");
+                    for(int j = 0; j < 10; j ++)
                         service.addProductToStore(founderToken, productName + j, "Test", new ArrayList<>(), "Test", currStore, 1000000 , 30);
+                    service.logout(founderToken);
                 }
-                service.logout(founderToken);
                 System.out.println("Done Script.");
                 return null;
             }

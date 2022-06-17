@@ -1,0 +1,12 @@
+Scripts:
+GuestConnect.json - 300 guest connects.
+StressStartup.json - registers 300 users, opens 100 stores and adds 10 products each.
+MuchStress.json - registers 1000 users, opens 1000 stores and adds 1000 products each.
+TalX.json - Tal's X scenario in the mail.
+DefaultVladi.json - registers vladi user and opens apple store.
+BarRecording.json - Bar's scenario from mail.
+StoreManagementStressStartup.json - 100 registers each is a founder of store with 10 products.
+Configs:
+DBTestingConfig.json - sets up the system with Database that cleans itself at the end of run.
+TestingConfig.json - sets up system with no persistence.
+RealConfig.json - sets up real database with persistence between runs and real payment systems.

@@ -1,0 +1,2 @@
+300 guests registering, loging in and opening stores.
+300 guests in the background going through pages.

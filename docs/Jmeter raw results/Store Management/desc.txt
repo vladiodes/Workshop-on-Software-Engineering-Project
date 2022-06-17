@@ -1,0 +1,1 @@
+X amount of founders login, appoint someone to manager, update product and logout.
