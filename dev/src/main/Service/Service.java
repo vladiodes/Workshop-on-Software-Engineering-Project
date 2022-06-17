@@ -3,6 +3,7 @@ package main.Service;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.log.Log;
 import io.javalin.websocket.WsContext;
 import io.javalin.websocket.WsMessageContext;
 import main.DTO.*;
@@ -51,18 +52,6 @@ public class Service implements IService {
         return uTokens;
     }
 
-    @Deprecated
-    public Service(IPayment Psystem, ISupplying Isystem, boolean logCommandsFlag, boolean persistEnable){
-        MarketBuilder builder = new MarketBuilder(persistEnable);
-        builder.setPSystem(Psystem).setSSystem(Isystem).loadStats().loadUsers().loadStores();
-        market=builder.build();
-        this.logCommandsFlag = logCommandsFlag;
-        if(logCommandsFlag) {
-            uTokens = new UserTokens();
-            commands = new ArrayList<>();
-        }
-    }
-
     public Service(String configFileLocation) throws Exception {
         MarketBuilder builder = new MarketBuilder();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -82,6 +71,12 @@ public class Service implements IService {
         catch (Exception e){
             Logger.getInstance().logBug("Service",String.format("Failed to log command %s", e.getMessage()));
         }
+    }
+
+    public void setLogCommandsFlag(boolean logCommandsFlag) {
+        if(logCommandsFlag)
+            commands = new ArrayList<>();
+        this.logCommandsFlag = logCommandsFlag;
     }
 
     public void SaveRecording(){
@@ -105,6 +100,7 @@ public class Service implements IService {
     public Response<String> guestConnect() {
         Logger.getInstance().logEvent("Service",String.format("Attempting to connect a guest"));
         Response<String> output = new Response<>(market.ConnectGuest());
+        Logger.getInstance().logGuest(output.getResult());
         this.logCommand(guestConnectCommand.class, new guestConnectCommand(this.uTokens, output.getResult()));
         return output;
     }

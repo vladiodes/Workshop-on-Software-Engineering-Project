@@ -48,7 +48,7 @@ public class CartController {
         SupplyingInformation si = new SupplyingInformation(ctx.formParam("name"), ctx.formParam("address"), ctx.formParam("city"),
                 ctx.formParam("country"), ctx.formParam("zip"));
 
-        Response<Boolean> response=service.purchaseCart(ctx.sessionAttribute("userToken"),pi,si);
+        Response<Boolean> response=service.purchaseCart(ctx.formParam("userToken"),pi,si);
         if(response.isError_occured()){
             model.put("fail",true);
             model.put("response",response.getError_message());
@@ -74,7 +74,7 @@ public class CartController {
     private Map<String, Object> addToCart(Context ctx) {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         List<String> params = List.of(Objects.requireNonNull(ctx.formParam("productStoreName")).split(","));
-        Response<Boolean> response=service.addProductToCart(ctx.sessionAttribute("userToken"),params.get(1),params.get(0),
+        Response<Boolean> response=service.addProductToCart(ctx.formParam("userToken1"),params.get(1),params.get(0),
                 Integer.parseInt(Objects.requireNonNull(ctx.formParam("quantity"))));
         if(response.isError_occured()){
             model.put("cart_fail",true);

@@ -46,6 +46,7 @@ public class RegisterController {
             Response<String> response = service.guestConnect();
             model.put("userToken", response.getResult());
             ctx.sessionAttribute("userToken", response.getResult());
+            ctx.cookieStore("userToken", response.getResult());
             ctx.render("/velocity/main.vm", model);
         }
     };

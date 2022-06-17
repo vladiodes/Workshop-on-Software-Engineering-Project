@@ -5,6 +5,10 @@
 <main>
     <div class="content">
         <form id="purchaseCart" method="post">
+        <input type="hidden" name="userToken" id="userToken" value="">
+        <script type="text/javascript">
+            document.getElementById("userToken").setAttribute('value',localStorage.getItem("userToken"));
+        </script>
         <table style="border-spacing: 10rem 0;">
             <tr>
                 <td>
