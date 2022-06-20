@@ -5,15 +5,16 @@ import main.Users.User;
 import main.utils.SystemStats;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Semaphore;
 
 public class DAO {
-    private static DAO instance;
     private boolean shouldPersist;
-    private Map<Long,EntityTransaction> thread_transactions_map;
+    private static DAO instance;
     private static boolean enablePersist=false;
     private static String persistence_unit = "Market";
     public static DAO getInstance(){
@@ -27,40 +28,40 @@ public class DAO {
     public static void setPersistence_unit(String unit){
         persistence_unit=unit;
     }
+    private Semaphore semaphore=new Semaphore(1);
     private EntityManager entityManager=null;
     private DAO(boolean shouldPersist,String persistence_unit) {
-        this.shouldPersist=shouldPersist;
+        this.shouldPersist = shouldPersist;
         if (shouldPersist) {
             try {
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistence_unit);
                 entityManager = emf.createEntityManager();
+            } catch (Exception e) {
+                DAO.enablePersist = false;
+                entityManager = null;
             }
-            catch (Exception e){
-                DAO.enablePersist=false;
-                entityManager=null;
-            }
-            thread_transactions_map=new ConcurrentHashMap<>();
         }
     }
 
     public static void disablePersist() {
         if (instance != null) {
             instance.closeCon();
-            instance = null;
+            instance=null;
         }
-        enablePersist=false;
+        enablePersist = false;
     }
 
-    public void openTransaction(){
+    public void openTransaction() {
         if(shouldPersist){
-            EntityTransaction et = null;
+            EntityTransaction et=null;
             try{
+                semaphore.acquire();
                 et = entityManager.getTransaction();
                 et.begin();
-                thread_transactions_map.put(Thread.currentThread().getId(),et);
             }
             catch (Exception e){
                 e.printStackTrace();
+                semaphore.release();
                 throw new IllegalArgumentException("Something went wrong with the database...");
             }
         }
@@ -68,22 +69,25 @@ public class DAO {
 
     public void commitTransaction() {
         if (shouldPersist) {
-            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
-            if (et == null)
-                return;
+            EntityTransaction et = null;
             try {
+                et = entityManager.getTransaction();
                 if(!et.getRollbackOnly() && et.isActive())
                     et.commit();
             } catch (Exception e) {
-                et.rollback();
+                if(et!=null)
+                    et.rollback();
                 //throw new RuntimeException(e);
+            }
+            finally {
+                semaphore.release();
             }
         }
     }
 
     public <T> void persist(T obj){
         if(shouldPersist) {
-            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
+            EntityTransaction et = entityManager.getTransaction();
             synchronized (entityManager) {
                 try {
                     entityManager.persist(obj);
@@ -97,7 +101,7 @@ public class DAO {
 
     public <T> void remove(T obj){
         if(shouldPersist) {
-            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
+            EntityTransaction et = entityManager.getTransaction();
             synchronized (entityManager) {
                 try {
                     entityManager.remove(obj);
@@ -111,7 +115,7 @@ public class DAO {
 
     public <T> void merge(T obj){
         if(shouldPersist) {
-            EntityTransaction et = thread_transactions_map.get(Thread.currentThread().getId());
+            entityManager.getTransaction();
             synchronized (entityManager) {
                 try {
                     entityManager.merge(obj);

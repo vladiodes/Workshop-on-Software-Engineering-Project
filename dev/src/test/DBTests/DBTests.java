@@ -1,10 +1,6 @@
 package test.DBTests;
 
 import main.DTO.ShoppingCartDTO;
-import main.ExternalServices.Payment.IPayment;
-import main.ExternalServices.Payment.PaymentAdapter;
-import main.ExternalServices.Supplying.ISupplying;
-import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Persistence.DAO;
 import main.Service.IService;
 import main.Service.Service;
@@ -14,10 +10,12 @@ import main.utils.SupplyingInformation;
 import org.junit.*;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
-import org.junit.runners.MethodSorters;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DBTests {
@@ -198,10 +196,48 @@ public class DBTests {
         Assertions.assertEquals(2,r.getResult().size());
     }
 
+    @Test
+    @Order(10)
+    public void concurrentDBModificationTest() throws Exception {
+        AtomicBoolean wasError = new AtomicBoolean(false);
+        int numOfThreads = 30;
+        Thread[] threads = new Thread[numOfThreads];
+        for (int i = 0; i < threads.length; i++) {
+            int finalI = i;
+            threads[i] = new Thread(() -> {
+                wasError.set(wasError.get() | service.register("u" + finalI, "123456").isError_occured());
+            });
+        }
+
+        for (Thread thread : threads) thread.start();
+
+        for (Thread thread : threads) thread.join();
+
+        Assertions.assertFalse(wasError.get());
+    }
+
+    @Test
+    @Order(11)
+    public void concurrentDBModificationAllWorked(){
+        AtomicBoolean wasError = new AtomicBoolean(false);
+        int numOfThreads = 30;
+        List<Response<String>> tokens =new ArrayList<>();
+        for(int i=0;i<numOfThreads;i++){
+            tokens.add(service.guestConnect());
+        }
+
+        for(int i=0;i<numOfThreads;i++){
+            wasError.set(wasError.get() | service.login(tokens.get(i).getResult(),"u" + i, "123456").isError_occured());
+        }
+
+        Assertions.assertFalse(wasError.get());
+    }
+
     @AfterAll
     public void TearDown(){
         DAO.disablePersist();
     }
+
 
 
 }
