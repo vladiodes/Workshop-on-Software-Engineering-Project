@@ -253,6 +253,16 @@ public class Market {
         return UUID.randomUUID().toString();
     }
 
+    // prevent someone from being logged in when performing login with different user
+    private void logoutExistingUser(String token) {
+        try{
+            this.logout(token); // logout if someone is already logged in with this session
+        }
+        catch (Exception e) {
+
+        }
+    }
+
     public UserDTO Login(String token, String userName, String password) {
         if (!membersByUserName.containsKey(userName)) {
             throw new IllegalArgumentException("username doesn't exist.");
@@ -261,6 +271,7 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("token %s isn't in the system and attempted to log in.", token));
             throw new IllegalArgumentException("token isn't connected in the system.");
         }
+        this.logoutExistingUser(token);
         User u = membersByUserName.get(userName);
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         u.LogIn(password, this.security_controller);
