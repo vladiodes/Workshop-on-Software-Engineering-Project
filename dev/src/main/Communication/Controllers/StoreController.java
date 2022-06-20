@@ -5,6 +5,7 @@ import io.javalin.http.Handler;
 import main.Communication.util.Path;
 import main.Communication.util.ViewUtil;
 import main.DTO.BidDTO;
+import main.DTO.OwnerAppointmentRequestDTO;
 import main.DTO.StoreDTO;
 import main.Service.IService;
 import main.utils.Response;
@@ -631,6 +632,70 @@ public class StoreController {
         }
         ctx.render(Path.Template.VIEW_BIDS,model);
     };
+
+    public Handler viewOwnerAppointmentRequests = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.VIEW_OWNER_APPOINTMENT_REQUESTS,model);
+    };
+
+    public Handler handleViewOwnerAppointmentRequests = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        getUserStores(ctx,model);
+
+        String userToken = ctx.sessionAttribute("userToken");
+        String storeName = ctx.formParam("storeName");
+        Response<List<OwnerAppointmentRequestDTO>> response = service.getOwnerAppointmentRequests(userToken,storeName);
+        if(response.isError_occured()) {
+            model.put("fail", true);
+            model.put("response", response.getError_message());
+        }
+        else {
+            model.put("success", true);
+            model.put("response", "Owner requests are:");
+            model.put("requests", response.getResult());
+            model.put("storeName", storeName);
+        }
+        ctx.render(Path.Template.VIEW_OWNER_APPOINTMENT_REQUESTS,model);
+    };
+
+    public Handler handleApproveOwnerAppointmentRequest = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        String userToken = ctx.sessionAttribute("userToken");
+        String storeName = ctx.formParam("storeName");
+        String userName = ctx.formParam("userName");
+        Response<String> response = service.approveOwnerAppointment(userToken,userName,storeName);
+        if(response.isError_occured()) {
+            model.put("fail_approveOrDelete", true);
+            model.put("response_vote", response.getError_message());
+        }
+        else {
+            model.put("success_approveOrDelete", true);
+            model.put("response_vote", "Approved Request Successfully");
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.VIEW_OWNER_APPOINTMENT_REQUESTS,model);
+    };
+
+    public Handler handleDeclineOwnerAppointmentRequest = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        String userToken = ctx.sessionAttribute("userToken");
+        String storeName = ctx.formParam("storeName");
+        String userName = ctx.formParam("userName");
+        Response<String> response = service.approveOwnerAppointment(userToken,userName,storeName);
+        if(response.isError_occured()) {
+            model.put("fail_approveOrDelete", true);
+            model.put("response_vote", response.getError_message());
+        }
+        else {
+            model.put("success_approveOrDelete", true);
+            model.put("response_vote", "Declined Request Successfully");
+        }
+        getUserStores(ctx,model);
+        ctx.render(Path.Template.VIEW_OWNER_APPOINTMENT_REQUESTS,model);
+    };
+
+
 
     public Handler addDiscountToStorePage = ctx ->{
         Map<String, Object> model = ViewUtil.baseModel(ctx);

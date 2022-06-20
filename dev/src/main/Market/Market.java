@@ -83,7 +83,7 @@ public class Market {
         return getStats(userToken,date).toString();
     }
     private User getUserByUserName(String userName) {
-        if(!membersByUserName.contains(userName)) {
+        if(!membersByUserName.containsKey(userName)) {
             throw new IllegalArgumentException("The user to appoint does not exits");
         }
         return this.membersByUserName.get(userName);

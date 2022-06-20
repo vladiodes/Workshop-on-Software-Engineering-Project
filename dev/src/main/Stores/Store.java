@@ -529,9 +529,11 @@ public class Store {
         );
         DAO.getInstance().persist(n);
         for(User owner : getOwnersOfStore()) {
-            owner.notifyObserver(n);
+            if(owner != req.getRequestedBy())
+                owner.notifyObserver(n);
         }
-        this.founder.notifyObserver(n);
+        if(this.founder != req.getRequestedBy())
+            this.founder.notifyObserver(n);
 
     }
     public void addRafflePolicy(String productName, Double price) {
@@ -579,6 +581,20 @@ public class Store {
     public User getFounder() {
         return founder;
     }
+    private void notifyAboutSuccessfullOwnerAppointment(OwnerAppointmentRequest request) {
+        Notification ownerNotification = new PersonalNotification(
+                this.storeName,
+                String.format("%s owner appointment request has been approved by all owners",request.getUserToAppoint().getUserName())
+        );
+        DAO.getInstance().persist(ownerNotification);
+        Notification newOwnerNotification = new PersonalNotification(
+                this.storeName,
+                "your owner appointment request has been approved"
+        );
+        DAO.getInstance().persist(newOwnerNotification);
+        request.getRequestedBy().notifyObserver(ownerNotification);
+        request.getUserToAppoint().notifyObserver(newOwnerNotification);
+    }
 
     private void executeNewOwnerRequest(OwnerAppointmentRequest request) {
         User toAppoint = request.getUserToAppoint();
@@ -586,7 +602,9 @@ public class Store {
         OwnerPermissions newOwnerAppointment = new OwnerPermissions(toAppoint, requestedBy, this);
         DAO.getInstance().persist(newOwnerAppointment);
         toAppoint.addOwnedStore(newOwnerAppointment);
+
         this.addOwnerToStore(newOwnerAppointment);
+        this.notifyAboutSuccessfullOwnerAppointment(request);
         this.ownerAppointmentRequests.remove(request);
         DAO.getInstance().merge(this);
     }

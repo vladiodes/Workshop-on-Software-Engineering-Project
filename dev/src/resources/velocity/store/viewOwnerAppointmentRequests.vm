@@ -4,11 +4,14 @@
 #end
 <main>
     <div class="content">
-        <h2>View bids</h2>
+        <h2>View Requests</h2>
         <form method="post">
-            <p>Store name</p>
-            <input type="text" name="storeName">
-
+            <p>Select your store</p>
+            <select name="storeName">
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
             <p><input type="submit" value="View Requests"></p>
         </form>
         #if($fail)
@@ -18,23 +21,23 @@
             #foreach($req in $requests)
                 <h2>Requesting Owner : $req.getRequestedBy()</h2>
                 <p>User to Appoint : $req.getUserToAppoint()</p>
-                <form method="post" action="/approveBid">
+                <form method="post" action="/approveRequest">
                     <input type="hidden" name="storeName" value="$storeName">
                     <input type="hidden" name="userName" value="$req.getUserToAppoint()">
-                    <input type="submit" value="Approve bid">
+                    <input type="submit" value="Approve Request">
                 </form>
-                <form method="post" action="/declineBid">
+                <form method="post" action="/declineRequest">
                     <input type="hidden" name="storeName" value="$storeName">
                     <input type="hidden" name="userName" value="$req.getUserToAppoint()">
-                    <input type="submit" value="Decline bid">
+                    <input type="submit" value="Decline Request">
                 </form>
             #end
         #end
 
-        #if($bid_fail)
-            <p id="failed_response">$response_bid</p>
-        #elseif($bid_success)
-            <p id="success_response">$response_bid</p>
+        #if($fail_approveOrDelete)
+            <p id="failed_response">$response_vote</p>
+        #elseif($success_approveOrDelete)
+            <p id="success_response">$response_vote</p>
         #end
 
     </div>
