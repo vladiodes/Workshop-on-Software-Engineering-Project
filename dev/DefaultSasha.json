@@ -9,6 +9,10 @@
   {"command":"main.Service.CommandExecutor.Commands.loginCommand","params":"{\"tokenName\":\"User0\",\"userName\":\"sasha\",\"password\":\"123456\"}"},
   {"command":"main.Service.CommandExecutor.Commands.appointStoreOwnerCommand","params":"{\"name\":\"User0\",\"userToAppoint\":\"sasha1\",\"storeName\":\"Sasha Store\"}"},
   {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User0\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.registerCommand","params":"{\"userName\":\"sasha2\",\"password\":\"123456\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.loginCommand","params":"{\"tokenName\":\"User0\",\"userName\":\"admin\",\"password\":\"admin\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.appointStoreOwnerCommand","params":"{\"name\":\"User0\",\"userToAppoint\":\"sasha2\",\"storeName\":\"Sasha Store\"}"},
+  {"command":"main.Service.CommandExecutor.Commands.logoutCommand","params":"{\"name\":\"User0\"}"},
 
   {"command":"main.Service.CommandExecutor.Commands.guestDisconnectCommand","params":"{\"name\":\"User0\"}"}
 ]

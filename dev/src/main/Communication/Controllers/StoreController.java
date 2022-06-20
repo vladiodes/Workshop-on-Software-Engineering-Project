@@ -682,7 +682,7 @@ public class StoreController {
         String userToken = ctx.sessionAttribute("userToken");
         String storeName = ctx.formParam("storeName");
         String userName = ctx.formParam("userName");
-        Response<String> response = service.approveOwnerAppointment(userToken,userName,storeName);
+        Response<String> response = service.declineOwnerAppointment(userToken,userName,storeName);
         if(response.isError_occured()) {
             model.put("fail_approveOrDelete", true);
             model.put("response_vote", response.getError_message());

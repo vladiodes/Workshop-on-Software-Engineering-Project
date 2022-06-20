@@ -5,7 +5,7 @@
 <main>
     <div class="content">
         <h2>View Requests</h2>
-        <form method="post">
+        <form action="/viewOwnerAppointmentRequests" id="view_owner_appointment_requests" method="post">
             <p>Select your store</p>
             <select name="storeName">
                 #foreach($store in $stores)
