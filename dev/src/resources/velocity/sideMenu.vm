@@ -30,6 +30,7 @@
                 <li><a href="/openStore">Open store</a></li>
                 <li><a href="/manageStoreInventory">Manage store inventory</a></li>
                 <li><a href="/manageStoreStaff">Manage store staff</a></li>
+
                 <li><a href="/answerQueries">Answer buyers' queries</a></li>
                 <li><a href="/openCloseStore">Re-Open/close your stores</a></li>
                 <li><a href="/sendComplaint">Send complaint</a></li>

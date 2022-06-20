@@ -8,36 +8,33 @@
         <form method="post">
             <p>Store name</p>
             <input type="text" name="storeName">
-            <p>Product name</p>
-            <input type="text" name="productName">
-            <p><input type="submit" value="View bids"></p>
+
+            <p><input type="submit" value="View Requests"></p>
         </form>
         #if($fail)
             <p id="failed_response">$response</p>
         #elseif($success)
             <p id="success_response">$response</p>
-            #foreach($bid in $bids)
-                <h2>Bidding user: $bid.getBiddingUser()</h2>
-                <p>Bid price: $bid.getCostumePrice()</p>
+            #foreach($req in $requests)
+                <h2>Requesting Owner : $req.getRequestedBy()</h2>
+                <p>User to Appoint : $req.getUserToAppoint()</p>
                 <form method="post" action="/approveBid">
                     <input type="hidden" name="storeName" value="$storeName">
-                    <input type="hidden" name="productName" value="$productName">
-                    <input type="hidden" name="userName" value="$bid.getBiddingUser()">
+                    <input type="hidden" name="userName" value="$req.getUserToAppoint()">
                     <input type="submit" value="Approve bid">
                 </form>
                 <form method="post" action="/declineBid">
                     <input type="hidden" name="storeName" value="$storeName">
-                    <input type="hidden" name="productName" value="$productName">
-                    <input type="hidden" name="userName" value="$bid.getBiddingUser()">
+                    <input type="hidden" name="userName" value="$req.getUserToAppoint()">
                     <input type="submit" value="Decline bid">
                 </form>
             #end
         #end
 
-        #if($fail_approveOrDelete)
-            <p id="failed_response">$response_vote</p>
-        #elseif($success_approveOrDelete)
-            <p id="success_response">$response_vote</p>
+        #if($bid_fail)
+            <p id="failed_response">$response_bid</p>
+        #elseif($bid_success)
+            <p id="success_response">$response_bid</p>
         #end
 
     </div>
