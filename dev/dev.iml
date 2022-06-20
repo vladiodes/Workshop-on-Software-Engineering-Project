@@ -86,5 +86,7 @@
     <orderEntry type="library" name="javax.xml.bind.jaxb.api" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.29" level="application" />
     <orderEntry type="library" name="junit.jupiter" level="project" />
+    <orderEntry type="library" name="io.metersphere.ms.jmeter.core" level="project" />
+    <orderEntry type="library" name="thoughtworks.xstream" level="project" />
   </component>
 </module>
