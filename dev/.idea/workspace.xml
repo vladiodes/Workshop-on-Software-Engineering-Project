@@ -23,19 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Deleted dummy files">
-      <change afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/Paths.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/buyDifferentItems.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/buySameItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/registerOpenStore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/storeManagments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Logger/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Stress_Load_tests/buyDifferentItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/buyDifferentItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Stress_Load_tests/buySameItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/buySameItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Stress_Load_tests/registerOpenStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Stress_Load_tests/registerOpenStore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

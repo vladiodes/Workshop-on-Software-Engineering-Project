@@ -8599,3 +8599,1439 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 1655757124584,0,Debug Sampler,200,OK,Workers 1-61,text,true,,426,0,3,3,null,0,0,0
 1655757124580,5,logout,200,OK,Workers 1-92,text,true,,2376,477,1,1,http://localhost/logout,5,0,1
 1655757124586,0,Debug Sampler,200,OK,Workers 1-92,text,true,,426,0,1,1,null,0,0,0
+1655758122317,376,Main menu,200,OK,Idlers 2-95,text,true,,800,111,212,279,http://localhost/,376,0,3
+1655758122279,414,Main menu,200,OK,Idlers 2-75,text,true,,802,111,212,279,http://localhost/,414,0,1
+1655758122261,432,Main menu,200,OK,Idlers 2-72,text,true,,800,111,212,279,http://localhost/,432,0,3
+1655758122194,499,Main menu,200,OK,Idlers 2-4,text,true,,800,111,212,279,http://localhost/,499,0,50
+1655758122403,290,Main menu,200,OK,Idlers 2-124,text,true,,801,111,212,279,http://localhost/,290,0,1
+1655758122195,498,Main menu,200,OK,Idlers 2-46,text,true,,802,111,212,279,http://localhost/,498,0,47
+1655758122221,472,Main menu,200,OK,Idlers 2-63,text,true,,801,111,212,279,http://localhost/,472,0,11
+1655758122433,260,Main menu,200,OK,Idlers 2-131,text,true,,802,111,212,279,http://localhost/,260,0,1
+1655758122195,498,Main menu,200,OK,Idlers 2-36,text,true,,801,111,212,279,http://localhost/,498,0,34
+1655758122373,320,Login,200,OK,Workers 1-35,text,true,,3192,836,67,279,http://localhost/login,320,0,3
+1655758122194,499,Main menu,200,OK,Idlers 2-13,text,true,,801,111,212,279,http://localhost/,499,0,49
+1655758122322,371,Main menu,200,OK,Idlers 2-97,text,true,,802,111,212,279,http://localhost/,371,0,1
+1655758122194,499,Main menu,200,OK,Idlers 2-44,text,true,,801,111,212,279,http://localhost/,499,0,85
+1655758122277,417,Main menu,200,OK,Idlers 2-71,text,true,,802,111,212,279,http://localhost/,417,0,1
+1655758122287,409,Main menu,200,OK,Idlers 2-84,text,true,,801,111,212,279,http://localhost/,409,0,1
+1655758122200,493,Main menu,200,OK,Idlers 2-57,text,true,,800,111,212,279,http://localhost/,493,0,43
+1655758122405,288,Main menu,200,OK,Idlers 2-125,text,true,,802,111,212,279,http://localhost/,288,0,1
+1655758122217,476,Main menu,200,OK,Idlers 2-61,text,true,,801,111,212,279,http://localhost/,476,0,8
+1655758122423,270,Main menu,200,OK,Idlers 2-123,text,true,,803,111,212,279,http://localhost/,270,0,0
+1655758122196,497,Main menu,200,OK,Idlers 2-54,text,true,,801,111,212,279,http://localhost/,497,0,66
+1655758122194,499,Main menu,200,OK,Idlers 2-12,text,true,,802,111,212,279,http://localhost/,499,0,49
+1655758122419,274,Main menu,200,OK,Idlers 2-118,text,true,,803,111,212,279,http://localhost/,274,0,0
+1655758122354,340,Main menu,200,OK,Idlers 2-106,text,true,,802,111,212,279,http://localhost/,340,0,1
+1655758122194,499,Main menu,200,OK,Idlers 2-16,text,true,,802,111,212,279,http://localhost/,499,0,31
+1655758122366,332,Main menu,200,OK,Idlers 2-107,text,true,,801,111,212,279,http://localhost/,332,0,1
+1655758122443,255,Main menu,200,OK,Idlers 2-137,text,true,,801,111,212,279,http://localhost/,255,0,0
+1655758122230,469,Main menu,200,OK,Idlers 2-66,text,true,,800,111,212,279,http://localhost/,469,0,1
+1655758122194,505,Main menu,200,OK,Idlers 2-48,text,true,,801,111,212,279,http://localhost/,505,0,44
+1655758122465,234,Main menu,200,OK,Idlers 2-140,text,true,,802,111,212,279,http://localhost/,234,0,0
+1655758122194,506,Main menu,200,OK,Idlers 2-10,text,true,,800,111,212,279,http://localhost/,506,0,44
+1655758122219,481,Main menu,200,OK,Idlers 2-62,text,true,,802,111,212,279,http://localhost/,481,0,61
+1655758122355,345,Main menu,200,OK,Idlers 2-108,text,true,,801,111,212,279,http://localhost/,345,0,1
+1655758122357,343,Main menu,200,OK,Idlers 2-109,text,true,,801,111,212,279,http://localhost/,343,0,1
+1655758122276,421,Main menu,200,OK,Idlers 2-81,text,true,,801,111,212,279,http://localhost/,421,0,1
+1655758122371,331,Main menu,200,OK,Idlers 2-113,text,true,,801,111,212,279,http://localhost/,331,0,1
+1655758122194,509,Main menu,200,OK,Idlers 2-50,text,true,,803,111,212,279,http://localhost/,509,0,70
+1655758122256,447,Main menu,200,OK,Idlers 2-69,text,true,,800,111,212,279,http://localhost/,447,0,4
+1655758122195,509,Main menu,200,OK,Idlers 2-39,text,true,,801,111,212,279,http://localhost/,509,0,32
+1655758122258,446,Login,200,OK,Workers 1-24,text,true,,3193,851,67,279,http://localhost/login,446,0,4
+1655758122341,363,Main menu,200,OK,Idlers 2-102,text,true,,802,111,212,279,http://localhost/,363,0,2
+1655758122262,443,Main menu,200,OK,Idlers 2-73,text,true,,801,111,212,279,http://localhost/,443,0,0
+1655758122312,393,Main menu,200,OK,Idlers 2-94,text,true,,802,111,212,279,http://localhost/,393,0,0
+1655758122194,514,Main menu,200,OK,Idlers 2-25,text,true,,802,111,212,279,http://localhost/,514,0,50
+1655758122366,342,Main menu,200,OK,Idlers 2-110,text,true,,803,111,212,279,http://localhost/,342,0,1
+1655758122194,516,Main menu,200,OK,Idlers 2-23,text,true,,803,111,212,279,http://localhost/,516,0,46
+1655758122349,361,Main menu,200,OK,Idlers 2-105,text,true,,802,111,212,279,http://localhost/,361,0,1
+1655758122194,518,Main menu,200,OK,Idlers 2-42,text,true,,801,111,212,279,http://localhost/,518,0,31
+1655758122297,415,Main menu,200,OK,Idlers 2-89,text,true,,801,111,212,279,http://localhost/,415,0,1
+1655758122470,243,Main menu,200,OK,Idlers 2-142,text,true,,801,111,212,279,http://localhost/,243,0,1
+1655758122394,319,Main menu,200,OK,Idlers 2-121,text,true,,801,111,212,279,http://localhost/,319,0,1
+1655758122263,450,Main menu,200,OK,Idlers 2-76,text,true,,802,111,212,279,http://localhost/,450,0,4
+1655758122369,344,Main menu,200,OK,Idlers 2-111,text,true,,803,111,212,279,http://localhost/,344,0,1
+1655758122700,15,cart,200,OK,Idlers 2-108,text,true,,1842,115,212,279,http://localhost/cart,15,0,0
+1655758122700,15,cart,200,OK,Idlers 2-109,text,true,,1843,115,212,279,http://localhost/cart,15,0,0
+1655758122435,281,Main menu,200,OK,Idlers 2-134,text,true,,803,111,212,279,http://localhost/,281,0,1
+1655758122416,300,Main menu,200,OK,Idlers 2-128,text,true,,801,111,212,279,http://localhost/,300,0,1
+1655758122288,428,Main menu,200,OK,Idlers 2-78,text,true,,802,111,212,279,http://localhost/,428,0,0
+1655758122383,333,Main menu,200,OK,Idlers 2-117,text,true,,802,111,212,279,http://localhost/,333,0,7
+1655758122329,388,Main menu,200,OK,Idlers 2-98,text,true,,801,111,212,279,http://localhost/,388,0,1
+1655758122465,252,Main menu,200,OK,Idlers 2-141,text,true,,801,111,212,279,http://localhost/,252,0,0
+1655758122203,514,Main menu,200,OK,Idlers 2-55,text,true,,800,111,212,279,http://localhost/,514,0,73
+1655758122473,244,Main menu,200,OK,Idlers 2-138,text,true,,803,111,212,279,http://localhost/,244,0,0
+1655758122701,21,cart,200,OK,Idlers 2-81,text,true,,1842,115,212,279,http://localhost/cart,21,0,0
+1655758122715,9,profile,200,OK,Idlers 2-109,text,true,,3673,118,212,279,http://localhost/profile,9,0,0
+1655758122194,531,Main menu,200,OK,Idlers 2-38,text,true,,803,111,212,279,http://localhost/,531,0,32
+1655758122194,528,Main menu,200,OK,Idlers 2-17,text,true,,801,111,212,279,http://localhost/,528,0,36
+1655758122213,514,Main menu,200,OK,Idlers 2-59,text,true,,801,111,212,279,http://localhost/,514,0,42
+1655758122273,454,Main menu,200,OK,Idlers 2-77,text,true,,801,111,212,279,http://localhost/,454,0,1
+1655758122378,350,Main menu,200,OK,Idlers 2-116,text,true,,802,111,212,279,http://localhost/,350,0,1
+1655758122194,536,Main menu,200,OK,Idlers 2-49,text,true,,802,111,212,279,http://localhost/,535,0,34
+1655758122343,387,Main menu,200,OK,Idlers 2-103,text,true,,801,111,212,279,http://localhost/,387,0,8
+1655758122328,403,Main menu,200,OK,Idlers 2-99,text,true,,801,111,212,279,http://localhost/,403,0,1
+1655758122427,306,Main menu,200,OK,Idlers 2-132,text,true,,803,111,212,279,http://localhost/,306,0,1
+1655758122282,452,Main menu,200,OK,Idlers 2-79,text,true,,800,111,212,279,http://localhost/,452,0,9
+1655758122194,541,Main menu,200,OK,Idlers 2-40,text,true,,802,111,212,279,http://localhost/,541,0,41
+1655758122425,310,Main menu,200,OK,Idlers 2-127,text,true,,803,111,212,279,http://localhost/,310,0,2
+1655758122474,261,Main menu,200,OK,Idlers 2-143,text,true,,802,111,212,279,http://localhost/,261,0,1
+1655758122279,457,Main menu,200,OK,Idlers 2-74,text,true,,802,111,212,279,http://localhost/,457,0,1
+1655758122475,262,Main menu,200,OK,Idlers 2-146,text,true,,802,111,212,279,http://localhost/,262,0,0
+1655758122723,15,profile,200,OK,Idlers 2-81,text,true,,3672,118,212,279,http://localhost/profile,15,0,0
+1655758122274,465,Main menu,200,OK,Idlers 2-80,text,true,,803,111,212,279,http://localhost/,465,0,1
+1655758122492,248,Main menu,200,OK,Idlers 2-150,text,true,,803,111,212,279,http://localhost/,248,0,0
+1655758122305,435,Main menu,200,OK,Idlers 2-92,text,true,,802,111,212,279,http://localhost/,435,0,1
+1655758122488,253,Main menu,200,OK,Idlers 2-152,text,true,,801,111,212,279,http://localhost/,253,0,0
+1655758122194,547,Main menu,200,OK,Idlers 2-43,text,true,,800,111,212,279,http://localhost/,547,0,50
+1655758122200,542,Main menu,200,OK,Idlers 2-56,text,true,,801,111,212,279,http://localhost/,542,0,65
+1655758122257,487,Main menu,200,OK,Idlers 2-65,text,true,,801,111,212,279,http://localhost/,487,0,4
+1655758122194,554,Main menu,200,OK,Idlers 2-27,text,true,,802,111,212,279,http://localhost/,554,0,42
+1655758122194,556,Main menu,200,OK,Idlers 2-5,text,true,,802,111,212,279,http://localhost/,556,0,42
+1655758122194,556,Login,200,OK,Workers 1-8,text,true,,3192,820,67,279,http://localhost/login,556,0,32
+1655758122195,561,Main menu,200,OK,Idlers 2-31,text,true,,802,111,213,281,http://localhost/,561,0,44
+1655758122195,561,Main menu,200,OK,Idlers 2-7,text,true,,800,111,213,281,http://localhost/,561,0,35
+1655758122420,345,Main menu,200,OK,Idlers 2-119,text,true,,801,111,213,281,http://localhost/,344,0,1
+1655758122528,237,Main menu,200,OK,Idlers 2-158,text,true,,802,111,213,281,http://localhost/,237,0,1
+1655758122528,240,Main menu,200,OK,Idlers 2-162,text,true,,803,111,213,281,http://localhost/,240,0,1
+1655758122484,288,Main menu,200,OK,Idlers 2-148,text,true,,802,111,214,282,http://localhost/,288,0,3
+1655758122772,9,cart,200,OK,Idlers 2-148,text,true,,1843,115,216,284,http://localhost/cart,9,0,0
+1655758122742,39,cart,200,OK,Idlers 2-56,text,true,,1843,115,216,284,http://localhost/cart,39,0,0
+1655758122195,598,Main menu,200,OK,Idlers 2-34,text,true,,800,111,217,285,http://localhost/,598,0,85
+1655758122345,448,Main menu,200,OK,Idlers 2-101,text,true,,800,111,217,285,http://localhost/,448,0,3
+1655758122194,599,Main menu,200,OK,Idlers 2-21,text,true,,803,111,217,285,http://localhost/,599,0,36
+1655758122281,513,Main menu,200,OK,Idlers 2-82,text,true,,801,111,217,285,http://localhost/,513,0,1
+1655758122194,600,Main menu,200,OK,Idlers 2-20,text,true,,802,111,217,285,http://localhost/,600,0,38
+1655758122290,505,Main menu,200,OK,Idlers 2-86,text,true,,801,111,217,285,http://localhost/,505,0,2
+1655758122464,332,Main menu,200,OK,Idlers 2-144,text,true,,802,111,217,285,http://localhost/,332,0,2
+1655758122216,580,Main menu,200,OK,Idlers 2-60,text,true,,803,111,217,285,http://localhost/,580,0,26
+1655758122487,309,Main menu,200,OK,Idlers 2-147,text,true,,803,111,217,285,http://localhost/,309,0,0
+1655758122514,284,Main menu,200,OK,Idlers 2-155,text,true,,802,111,217,285,http://localhost/,284,0,1
+1655758122195,603,Main menu,200,OK,Idlers 2-45,text,true,,801,111,217,285,http://localhost/,603,0,49
+1655758122781,19,profile,200,OK,Idlers 2-148,text,true,,3674,118,217,285,http://localhost/profile,19,0,0
+1655758122285,516,Main menu,200,OK,Idlers 2-85,text,true,,800,111,217,285,http://localhost/,516,0,0
+1655758122195,608,Main menu,200,OK,Idlers 2-37,text,true,,800,111,217,285,http://localhost/,608,0,38
+1655758122781,22,profile,200,OK,Idlers 2-56,text,true,,3672,118,217,285,http://localhost/profile,22,0,0
+1655758122194,610,Main menu,200,OK,Idlers 2-51,text,true,,802,111,217,285,http://localhost/,610,0,47
+1655758122309,495,Main menu,200,OK,Idlers 2-93,text,true,,802,111,217,285,http://localhost/,495,0,2
+1655758122419,385,Main menu,200,OK,Idlers 2-129,text,true,,803,111,217,285,http://localhost/,385,0,1
+1655758122300,504,Main menu,200,OK,Idlers 2-90,text,true,,801,111,217,285,http://localhost/,504,0,1
+1655758122194,611,Main menu,200,OK,Idlers 2-15,text,true,,801,111,217,285,http://localhost/,611,0,67
+1655758122198,607,Main menu,200,OK,Idlers 2-53,text,true,,801,111,217,285,http://localhost/,607,0,38
+1655758122436,369,Main menu,200,OK,Idlers 2-135,text,true,,802,111,217,285,http://localhost/,369,0,1
+1655758122366,439,Main menu,200,OK,Idlers 2-112,text,true,,801,111,217,285,http://localhost/,439,0,1
+1655758122304,501,Main menu,200,OK,Idlers 2-91,text,true,,799,111,217,285,http://localhost/,501,0,0
+1655758122282,523,Main menu,200,OK,Idlers 2-83,text,true,,802,111,217,285,http://localhost/,523,0,0
+1655758122418,388,Main menu,200,OK,Idlers 2-115,text,true,,802,111,217,285,http://localhost/,388,0,1
+1655758122195,611,Main menu,200,OK,Idlers 2-26,text,true,,800,111,217,285,http://localhost/,611,0,47
+1655758122442,364,Main menu,200,OK,Idlers 2-136,text,true,,802,111,217,285,http://localhost/,364,0,1
+1655758122195,612,Main menu,200,OK,Idlers 2-30,text,true,,802,111,218,286,http://localhost/,612,0,30
+1655758122194,613,Main menu,200,OK,Idlers 2-14,text,true,,802,111,218,286,http://localhost/,613,0,31
+1655758122208,600,Main menu,200,OK,Idlers 2-58,text,true,,802,111,218,286,http://localhost/,600,0,28
+1655758122194,616,Main menu,200,OK,Idlers 2-9,text,true,,802,111,219,287,http://localhost/,616,0,42
+1655758122421,389,Main menu,200,OK,Idlers 2-122,text,true,,803,111,220,288,http://localhost/,389,0,10
+1655758122521,292,Main menu,200,OK,Idlers 2-156,text,true,,802,111,220,288,http://localhost/,292,0,11
+1655758122194,619,Main menu,200,OK,Idlers 2-52,text,true,,800,111,220,288,http://localhost/,619,0,31
+1655758122195,618,Main menu,200,OK,Idlers 2-11,text,true,,803,111,220,288,http://localhost/,618,0,44
+1655758122741,75,cart,200,OK,Idlers 2-43,text,true,,1842,115,220,288,http://localhost/cart,75,0,0
+1655758122195,621,Main menu,200,OK,Idlers 2-3,text,true,,801,111,220,288,http://localhost/,621,0,37
+1655758122794,25,cart,200,OK,Idlers 2-21,text,true,,1843,115,220,288,http://localhost/cart,25,0,0
+1655758122490,331,Main menu,200,OK,Idlers 2-153,text,true,,802,111,220,288,http://localhost/,331,0,3
+1655758122806,16,cart,200,OK,Idlers 2-91,text,true,,1843,115,220,288,http://localhost/cart,16,0,0
+1655758122813,12,cart,200,OK,Idlers 2-52,text,true,,1843,115,220,288,http://localhost/cart,12,0,0
+1655758122295,530,Main menu,200,OK,Idlers 2-88,text,true,,800,111,220,288,http://localhost/,530,0,1
+1655758122485,342,Main menu,200,OK,Idlers 2-149,text,true,,801,111,220,288,http://localhost/,342,0,1
+1655758122715,113,profile,200,OK,Idlers 2-108,text,true,,3672,118,220,288,http://localhost/profile,113,0,0
+1655758122330,500,Main menu,200,OK,Idlers 2-100,text,true,,801,111,220,288,http://localhost/,500,0,0
+1655758122290,542,Main menu,200,OK,Idlers 2-87,text,true,,802,111,220,288,http://localhost/,542,0,2
+1655758122488,345,Main menu,200,OK,Idlers 2-151,text,true,,802,111,221,289,http://localhost/,345,0,0
+1655758122424,409,Main menu,200,OK,Idlers 2-126,text,true,,802,111,221,289,http://localhost/,409,0,3
+1655758122825,8,profile,200,OK,Idlers 2-52,text,true,,3672,118,221,290,http://localhost/profile,8,0,0
+1655758122195,638,Main menu,200,OK,Idlers 2-1,text,true,,802,111,221,290,http://localhost/,638,0,35
+1655758122194,639,Main menu,200,OK,Idlers 2-41,text,true,,802,111,221,290,http://localhost/,639,0,41
+1655758122535,299,Main menu,200,OK,Idlers 2-168,text,true,,802,111,221,290,http://localhost/,299,0,1
+1655758122194,640,Main menu,200,OK,Idlers 2-18,text,true,,800,111,221,290,http://localhost/,640,0,32
+1655758122822,17,profile,200,OK,Idlers 2-91,text,true,,3674,118,225,295,http://localhost/profile,17,0,0
+1655758122523,319,Main menu,200,OK,Idlers 2-159,text,true,,802,111,226,297,http://localhost/,319,0,4
+1655758122813,34,cart,200,OK,Idlers 2-156,text,true,,1844,115,226,298,http://localhost/cart,34,0,0
+1655758122738,111,Main menu,200,OK,Idlers 2-81,text,true,,1949,130,226,298,http://localhost/userPurchaseHistory,111,0,0
+1655758122810,43,cart,200,OK,Idlers 2-9,text,true,,1843,115,226,298,http://localhost/cart,43,0,0
+1655758122467,392,Main menu,200,OK,Idlers 2-145,text,true,,802,111,231,303,http://localhost/,392,0,1
+1655758122523,338,Main menu,200,OK,Idlers 2-157,text,true,,801,111,232,304,http://localhost/,338,0,1
+1655758122433,434,Main menu,200,OK,Idlers 2-133,text,true,,801,111,232,305,http://localhost/,434,0,1
+1655758122194,676,Main menu,200,OK,Idlers 2-47,text,true,,801,111,233,306,http://localhost/,676,0,68
+1655758122266,608,Main menu,200,OK,Idlers 2-70,text,true,,801,111,234,307,http://localhost/,608,0,1
+1655758122744,131,Main menu,200,OK,Idlers 2-214,text,true,,803,111,235,308,http://localhost/,131,0,2
+1655758122495,383,Main menu,200,OK,Idlers 2-154,text,true,,802,111,235,308,http://localhost/,383,0,1
+1655758122697,186,cart,200,OK,Idlers 2-16,text,true,,1843,115,235,308,http://localhost/cart,186,0,0
+1655758122875,8,cart,200,OK,Idlers 2-214,text,true,,1843,115,235,308,http://localhost/cart,8,0,0
+1655758122816,68,profile,200,OK,Idlers 2-43,text,true,,3674,118,235,308,http://localhost/profile,68,0,0
+1655758122847,40,profile,200,OK,Idlers 2-156,text,true,,3672,118,236,309,http://localhost/profile,40,0,0
+1655758122883,7,profile,200,OK,Idlers 2-16,text,true,,3673,118,237,310,http://localhost/profile,7,0,0
+1655758122884,7,profile,200,OK,Idlers 2-214,text,true,,3674,118,237,310,http://localhost/profile,7,0,0
+1655758122194,698,Main menu,200,OK,Idlers 2-35,text,true,,801,111,237,311,http://localhost/,697,0,38
+1655758122233,660,Main menu,200,OK,Idlers 2-67,text,true,,802,111,238,312,http://localhost/,660,0,7
+1655758122352,543,Main menu,200,OK,Idlers 2-104,text,true,,800,111,239,313,http://localhost/,543,0,3
+1655758122385,510,Main menu,200,OK,Idlers 2-114,text,true,,802,111,239,313,http://localhost/,510,0,31
+1655758122390,505,Main menu,200,OK,Idlers 2-120,text,true,,802,111,239,313,http://localhost/,505,0,3
+1655758122232,664,Login,200,OK,Workers 1-22,text,true,,3194,811,75,314,http://localhost/login,664,0,5
+1655758122194,706,Main menu,200,OK,Idlers 2-6,text,true,,802,111,240,315,http://localhost/,706,0,84
+1655758122194,706,Main menu,200,OK,Idlers 2-8,text,true,,800,111,240,315,http://localhost/,706,0,85
+1655758122320,580,Main menu,200,OK,Idlers 2-96,text,true,,800,111,240,315,http://localhost/,580,0,3
+1655758122228,673,Main menu,200,OK,Idlers 2-64,text,true,,801,111,240,315,http://localhost/,673,0,17
+1655758122194,707,Main menu,200,OK,Idlers 2-22,text,true,,800,111,240,315,http://localhost/,707,0,71
+1655758122259,644,Main menu,200,OK,Idlers 2-68,text,true,,801,111,242,318,http://localhost/,644,0,1
+1655758122195,710,Main menu,200,OK,Idlers 2-33,text,true,,801,111,242,318,http://localhost/,710,0,68
+1655758122808,99,Main menu,200,OK,Idlers 2-174,text,true,,801,111,244,320,http://localhost/,99,0,0
+1655758122194,715,Main menu,200,OK,Idlers 2-29,text,true,,801,111,246,322,http://localhost/,715,0,44
+1655758122194,715,Login,200,OK,Workers 1-14,text,true,,3193,806,76,322,http://localhost/login,715,0,84
+1655758122194,716,Login,200,OK,Workers 1-9,text,true,,3192,835,76,322,http://localhost/login,716,0,51
+1655758122194,716,Login,200,OK,Workers 1-6,text,true,,3190,820,76,322,http://localhost/login,716,0,40
+1655758122194,717,Main menu,200,OK,Idlers 2-32,text,true,,801,111,246,322,http://localhost/,717,0,44
+1655758122194,718,Main menu,200,OK,Idlers 2-2,text,true,,802,111,246,322,http://localhost/,718,0,86
+1655758122194,718,Main menu,200,OK,Idlers 2-28,text,true,,800,111,246,322,http://localhost/,718,0,31
+1655758122467,448,Main menu,200,OK,Idlers 2-139,text,true,,801,111,246,325,http://localhost/,448,0,1
+1655758122194,721,Main menu,200,OK,Idlers 2-19,text,true,,801,111,246,325,http://localhost/,721,0,67
+1655758122699,217,cart,200,OK,Idlers 2-140,text,true,,1843,115,246,325,http://localhost/cart,217,0,0
+1655758122537,379,Main menu,200,OK,Idlers 2-164,text,true,,801,111,246,325,http://localhost/,379,0,1
+1655758122811,105,Main menu,200,OK,Idlers 2-200,text,true,,802,111,246,325,http://localhost/,105,0,0
+1655758122815,103,Main menu,200,OK,Idlers 2-210,text,true,,802,111,247,326,http://localhost/,103,0,1
+1655758122702,225,cart,200,OK,Idlers 2-113,text,true,,1843,115,258,341,http://localhost/cart,225,0,0
+1655758122928,5,profile,200,OK,Idlers 2-113,text,true,,3674,118,263,346,http://localhost/profile,5,0,0
+1655758122819,114,profile,200,OK,Idlers 2-21,text,true,,3672,118,263,346,http://localhost/profile,114,0,0
+1655758122861,77,cart,200,OK,Idlers 2-157,text,true,,1844,115,265,348,http://localhost/cart,77,0,0
+1655758122917,21,profile,200,OK,Idlers 2-140,text,true,,3674,118,265,348,http://localhost/profile,21,0,0
+1655758122737,204,cart,200,OK,Idlers 2-74,text,true,,1843,115,265,348,http://localhost/cart,204,0,0
+1655758122578,364,Main menu,200,OK,Idlers 2-176,text,true,,802,111,265,348,http://localhost/,364,0,1
+1655758122938,5,profile,200,OK,Idlers 2-157,text,true,,3674,118,265,348,http://localhost/profile,5,0,0
+1655758122830,116,cart,200,OK,Idlers 2-100,text,true,,1844,115,265,349,http://localhost/cart,116,0,0
+1655758122946,5,profile,200,OK,Idlers 2-100,text,true,,3672,118,270,355,http://localhost/profile,5,0,0
+1655758122559,395,Main menu,200,OK,Idlers 2-161,text,true,,802,111,271,357,http://localhost/,395,0,1
+1655758122541,415,Main menu,200,OK,Idlers 2-160,text,true,,802,111,271,358,http://localhost/,415,0,1
+1655758122595,363,Main menu,200,OK,Idlers 2-181,text,true,,803,111,271,358,http://localhost/,363,0,0
+1655758122597,363,Main menu,200,OK,Idlers 2-180,text,true,,802,111,271,359,http://localhost/,363,0,2
+1655758122428,542,Main menu,200,OK,Idlers 2-130,text,true,,801,111,279,369,http://localhost/,542,0,3
+1655758122194,776,Main menu,200,OK,Idlers 2-24,text,true,,800,111,279,369,http://localhost/,776,0,71
+1655758122842,153,cart,200,OK,Idlers 2-159,text,true,,1842,115,296,392,http://localhost/cart,153,0,0
+1655758122696,306,cart,200,OK,Idlers 2-97,text,true,,1843,115,299,398,http://localhost/cart,306,0,0
+1655758122995,17,profile,200,OK,Idlers 2-159,text,true,,3673,118,299,398,http://localhost/profile,17,0,0
+1655758123002,10,profile,200,OK,Idlers 2-97,text,true,,3673,118,299,398,http://localhost/profile,10,0,0
+1655758123013,5,Main menu,200,OK,Idlers 2-97,text,true,,1902,130,299,398,http://localhost/userPurchaseHistory,5,0,0
+1655758123012,12,Main menu,200,OK,Idlers 2-159,text,true,,1901,130,298,397,http://localhost/userPurchaseHistory,12,0,0
+1655758122795,233,cart,200,OK,Idlers 2-86,text,true,,1843,115,297,396,http://localhost/cart,233,0,0
+1655758122586,445,Main menu,200,OK,Idlers 2-177,text,true,,803,111,297,396,http://localhost/,445,0,0
+1655758122543,491,Main menu,200,OK,Idlers 2-163,text,true,,802,111,297,396,http://localhost/,491,0,1
+1655758123028,6,profile,200,OK,Idlers 2-86,text,true,,3673,118,297,396,http://localhost/profile,6,0,0
+1655758122735,321,cart,200,OK,Idlers 2-40,text,true,,1843,115,297,396,http://localhost/cart,321,0,0
+1655758123056,9,profile,200,OK,Idlers 2-40,text,true,,3673,118,297,397,http://localhost/profile,9,0,0
+1655758122711,370,cart,200,OK,Idlers 2-23,text,true,,1844,115,297,397,http://localhost/cart,370,0,0
+1655758122711,383,cart,200,OK,Idlers 2-105,text,true,,1843,115,297,397,http://localhost/cart,383,0,0
+1655758122717,377,cart,200,OK,Idlers 2-55,text,true,,1844,115,297,397,http://localhost/cart,377,0,0
+1655758122733,371,cart,200,OK,Idlers 2-132,text,true,,1842,115,297,397,http://localhost/cart,371,0,0
+1655758123094,16,profile,200,OK,Idlers 2-55,text,true,,3672,118,297,397,http://localhost/profile,16,0,0
+1655758122731,387,cart,200,OK,Idlers 2-99,text,true,,1843,115,297,397,http://localhost/cart,387,0,0
+1655758123094,25,profile,200,OK,Idlers 2-105,text,true,,3674,118,297,397,http://localhost/profile,25,0,0
+1655758122728,392,cart,200,OK,Idlers 2-116,text,true,,1844,115,297,397,http://localhost/cart,392,0,0
+1655758123118,6,profile,200,OK,Idlers 2-99,text,true,,3673,118,297,397,http://localhost/profile,5,0,0
+1655758123120,6,profile,200,OK,Idlers 2-116,text,true,,3674,118,297,397,http://localhost/profile,6,0,0
+1655758123124,5,Main menu,200,OK,Idlers 2-99,text,true,,1902,130,297,397,http://localhost/userPurchaseHistory,5,0,0
+1655758123104,28,profile,200,OK,Idlers 2-132,text,true,,3674,118,296,396,http://localhost/profile,28,0,0
+1655758123126,8,Main menu,200,OK,Idlers 2-116,text,true,,1903,130,296,396,http://localhost/userPurchaseHistory,8,0,0
+1655758122727,409,cart,200,OK,Idlers 2-59,text,true,,1842,115,295,395,http://localhost/cart,409,0,0
+1655758123081,57,profile,200,OK,Idlers 2-23,text,true,,3674,118,295,395,http://localhost/profile,57,0,0
+1655758122716,424,cart,200,OK,Idlers 2-134,text,true,,1843,115,295,395,http://localhost/cart,424,0,0
+1655758123141,5,profile,200,OK,Idlers 2-134,text,true,,3674,118,295,395,http://localhost/profile,5,0,0
+1655758122726,422,cart,200,OK,Idlers 2-38,text,true,,1842,115,295,395,http://localhost/cart,422,0,0
+1655758123137,12,profile,200,OK,Idlers 2-59,text,true,,3672,118,295,395,http://localhost/profile,12,0,0
+1655758123148,5,profile,200,OK,Idlers 2-38,text,true,,3674,118,295,395,http://localhost/profile,5,0,0
+1655758122725,434,Main menu,200,OK,Idlers 2-109,text,true,,1902,130,295,395,http://localhost/userPurchaseHistory,434,0,0
+1655758122700,463,cart,200,OK,Idlers 2-62,text,true,,1842,115,294,394,http://localhost/cart,463,0,0
+1655758123154,15,Main menu,200,OK,Idlers 2-38,text,true,,1902,130,294,394,http://localhost/userPurchaseHistory,15,0,0
+1655758122717,453,cart,200,OK,Idlers 2-117,text,true,,1843,115,293,393,http://localhost/cart,453,0,0
+1655758123149,21,Main menu,200,OK,Idlers 2-59,text,true,,1902,130,293,393,http://localhost/userPurchaseHistory,21,0,0
+1655758122718,459,cart,200,OK,Idlers 2-138,text,true,,1842,115,292,392,http://localhost/cart,459,0,0
+1655758123177,6,profile,200,OK,Idlers 2-138,text,true,,3672,118,292,392,http://localhost/profile,5,0,0
+1655758123171,13,profile,200,OK,Idlers 2-117,text,true,,3672,118,292,392,http://localhost/profile,13,0,0
+1655758123163,23,profile,200,OK,Idlers 2-62,text,true,,3673,118,292,392,http://localhost/profile,23,0,0
+1655758122221,965,Login,200,OK,Workers 1-21,text,true,,3194,826,100,392,http://localhost/login,965,0,41
+1655758122194,995,Login,200,OK,Workers 1-16,text,true,,3194,811,100,392,http://localhost/login,995,0,38
+1655758122840,354,Main menu,200,OK,Idlers 2-264,text,true,,802,111,292,392,http://localhost/,354,0,1
+1655758122834,360,Main menu,200,OK,Idlers 2-255,text,true,,801,111,292,392,http://localhost/,360,0,1
+1655758122836,359,Main menu,200,OK,Idlers 2-256,text,true,,803,111,292,392,http://localhost/,359,0,1
+1655758122713,484,cart,200,OK,Idlers 2-142,text,true,,1842,115,292,392,http://localhost/cart,484,0,0
+1655758122853,344,profile,200,OK,Idlers 2-9,text,true,,3673,118,292,392,http://localhost/profile,344,0,0
+1655758122833,367,cart,200,OK,Idlers 2-151,text,true,,1843,115,292,392,http://localhost/cart,367,0,0
+1655758122713,487,cart,200,OK,Idlers 2-89,text,true,,1842,115,292,392,http://localhost/cart,487,0,0
+1655758123197,7,profile,200,OK,Idlers 2-142,text,true,,3672,118,292,392,http://localhost/profile,7,0,0
+1655758123200,4,profile,200,OK,Idlers 2-89,text,true,,3674,118,292,392,http://localhost/profile,4,0,0
+1655758122701,510,cart,200,OK,Idlers 2-36,text,true,,1843,115,292,392,http://localhost/cart,510,0,0
+1655758122542,675,Main menu,200,OK,Idlers 2-165,text,true,,801,111,292,392,http://localhost/,675,0,1
+1655758122832,388,cart,200,OK,Idlers 2-87,text,true,,1844,115,292,392,http://localhost/cart,388,0,0
+1655758122563,659,Main menu,200,OK,Idlers 2-166,text,true,,801,111,292,392,http://localhost/,659,0,0
+1655758122833,392,cart,200,OK,Idlers 2-126,text,true,,1842,115,292,392,http://localhost/cart,392,0,0
+1655758123119,106,Main menu,200,OK,Idlers 2-105,text,true,,1903,130,292,392,http://localhost/userPurchaseHistory,106,0,0
+1655758123133,94,Main menu,200,OK,Idlers 2-132,text,true,,1901,130,291,391,http://localhost/userPurchaseHistory,94,0,0
+1655758123138,89,Main menu,200,OK,Idlers 2-23,text,true,,1901,130,291,391,http://localhost/userPurchaseHistory,89,0,0
+1655758123225,8,profile,200,OK,Idlers 2-126,text,true,,3673,118,289,389,http://localhost/profile,8,0,0
+1655758122604,631,Main menu,200,OK,Idlers 2-184,text,true,,802,111,289,389,http://localhost/,631,0,1
+1655758122580,657,Main menu,200,OK,Idlers 2-173,text,true,,802,111,289,389,http://localhost/,657,0,0
+1655758122728,512,cart,200,OK,Idlers 2-77,text,true,,1843,115,289,389,http://localhost/cart,512,0,0
+1655758123234,9,Main menu,200,OK,Idlers 2-126,text,true,,1902,130,289,389,http://localhost/userPurchaseHistory,9,0,0
+1655758122607,637,Main menu,200,OK,Idlers 2-185,text,true,,802,111,289,389,http://localhost/,636,0,1
+1655758123235,12,cart,200,OK,Idlers 2-184,text,true,,1843,115,288,388,http://localhost/cart,12,0,0
+1655758123241,6,profile,200,OK,Idlers 2-77,text,true,,3674,118,288,388,http://localhost/profile,6,0,0
+1655758123065,186,Main menu,200,OK,Idlers 2-40,text,true,,1902,130,288,388,http://localhost/userPurchaseHistory,186,0,0
+1655758123247,5,profile,200,OK,Idlers 2-184,text,true,,3673,118,287,387,http://localhost/profile,5,0,0
+1655758123031,223,cart,200,OK,Idlers 2-177,text,true,,1842,115,287,387,http://localhost/cart,223,0,0
+1655758122730,525,cart,200,OK,Idlers 2-103,text,true,,1843,115,287,387,http://localhost/cart,525,0,0
+1655758122617,639,Main menu,200,OK,Idlers 2-188,text,true,,802,111,287,387,http://localhost/,639,0,2
+1655758122629,629,Main menu,200,OK,Idlers 2-189,text,true,,803,111,287,387,http://localhost/,629,0,2
+1655758122565,695,Main menu,200,OK,Idlers 2-169,text,true,,802,111,287,387,http://localhost/,695,0,85
+1655758123255,5,profile,200,OK,Idlers 2-177,text,true,,3672,118,287,387,http://localhost/profile,5,0,0
+1655758123255,7,profile,200,OK,Idlers 2-103,text,true,,3674,118,287,387,http://localhost/profile,7,0,0
+1655758123217,50,cart,200,OK,Idlers 2-165,text,true,,1842,115,287,387,http://localhost/cart,50,0,0
+1655758123034,236,cart,200,OK,Idlers 2-163,text,true,,1844,115,287,387,http://localhost/cart,236,0,0
+1655758122960,314,cart,200,OK,Idlers 2-180,text,true,,1843,115,287,387,http://localhost/cart,314,0,0
+1655758122870,405,cart,200,OK,Idlers 2-47,text,true,,1844,115,287,387,http://localhost/cart,404,0,0
+1655758123270,5,profile,200,OK,Idlers 2-163,text,true,,3674,118,287,387,http://localhost/profile,5,0,0
+1655758123274,5,profile,200,OK,Idlers 2-180,text,true,,3672,118,287,387,http://localhost/profile,5,0,0
+1655758122951,332,Main menu,200,OK,Idlers 2-100,text,true,,1903,130,287,387,http://localhost/userPurchaseHistory,332,0,0
+1655758123279,6,Main menu,200,OK,Idlers 2-180,text,true,,1902,130,286,386,http://localhost/userPurchaseHistory,6,0,0
+1655758122699,587,cart,200,OK,Idlers 2-48,text,true,,1843,115,285,385,http://localhost/cart,587,0,0
+1655758123275,15,profile,200,OK,Idlers 2-47,text,true,,3673,118,285,385,http://localhost/profile,14,0,0
+1655758123286,4,profile,200,OK,Idlers 2-48,text,true,,3672,118,285,385,http://localhost/profile,4,0,0
+1655758122692,599,Main menu,200,OK,Idlers 2-196,text,true,,801,111,285,385,http://localhost/,599,0,6
+1655758123290,5,Main menu,200,OK,Idlers 2-48,text,true,,1902,130,285,385,http://localhost/userPurchaseHistory,5,0,0
+1655758122696,600,cart,200,OK,Idlers 2-84,text,true,,1844,115,284,384,http://localhost/cart,600,0,0
+1655758123297,4,profile,200,OK,Idlers 2-84,text,true,,3674,118,284,384,http://localhost/profile,4,0,0
+1655758122938,364,Main menu,200,OK,Idlers 2-140,text,true,,1901,130,284,384,http://localhost/userPurchaseHistory,364,0,0
+1655758122695,609,cart,200,OK,Idlers 2-131,text,true,,1843,115,283,383,http://localhost/cart,609,0,0
+1655758123291,16,cart,200,OK,Idlers 2-196,text,true,,1842,115,283,383,http://localhost/cart,16,0,0
+1655758122713,595,Main menu,200,OK,Idlers 2-213,text,true,,801,111,283,383,http://localhost/,595,0,1
+1655758123305,4,profile,200,OK,Idlers 2-131,text,true,,3672,118,283,383,http://localhost/profile,4,0,0
+1655758122731,579,Main menu,200,OK,Idlers 2-218,text,true,,801,111,283,383,http://localhost/,579,0,2
+1655758122741,570,cart,200,OK,Idlers 2-92,text,true,,1842,115,283,383,http://localhost/cart,570,0,0
+1655758122742,571,Main menu,200,OK,Idlers 2-212,text,true,,802,111,283,383,http://localhost/,571,0,0
+1655758123308,5,cart,200,OK,Idlers 2-213,text,true,,1843,115,283,383,http://localhost/cart,5,0,0
+1655758122698,615,cart,200,OK,Idlers 2-107,text,true,,1842,115,283,383,http://localhost/cart,615,0,0
+1655758122719,597,Main menu,200,OK,Idlers 2-193,text,true,,801,111,283,383,http://localhost/,597,0,1
+1655758122697,619,cart,200,OK,Idlers 2-61,text,true,,1843,115,283,383,http://localhost/cart,619,0,0
+1655758123313,5,profile,200,OK,Idlers 2-107,text,true,,3674,118,283,383,http://localhost/profile,5,0,0
+1655758123318,6,Main menu,200,OK,Idlers 2-107,text,true,,1903,130,283,383,http://localhost/userPurchaseHistory,6,0,0
+1655758123316,8,profile,200,OK,Idlers 2-61,text,true,,3673,118,283,383,http://localhost/profile,8,0,0
+1655758122917,409,cart,200,OK,Idlers 2-200,text,true,,1843,115,282,382,http://localhost/cart,409,0,0
+1655758122754,572,Main menu,200,OK,Idlers 2-216,text,true,,801,111,282,382,http://localhost/,572,0,1
+1655758122778,550,Main menu,200,OK,Idlers 2-247,text,true,,801,111,282,382,http://localhost/,550,0,1
+1655758122709,620,cart,200,OK,Idlers 2-25,text,true,,1844,115,282,382,http://localhost/cart,620,0,0
+1655758123326,5,profile,200,OK,Idlers 2-200,text,true,,3673,118,282,382,http://localhost/profile,5,0,0
+1655758123326,6,cart,200,OK,Idlers 2-216,text,true,,1842,115,282,382,http://localhost/cart,6,0,0
+1655758123311,21,profile,200,OK,Idlers 2-92,text,true,,3673,118,282,382,http://localhost/profile,21,0,0
+1655758122779,555,Main menu,200,OK,Idlers 2-248,text,true,,801,111,282,382,http://localhost/,555,0,1
+1655758122917,417,cart,200,OK,Idlers 2-164,text,true,,1843,115,282,382,http://localhost/cart,417,0,0
+1655758122727,608,Main menu,200,OK,Idlers 2-192,text,true,,803,111,282,382,http://localhost/,608,0,1
+1655758122773,562,Main menu,200,OK,Idlers 2-178,text,true,,802,111,282,382,http://localhost/,562,0,10
+1655758123332,4,profile,200,OK,Idlers 2-216,text,true,,3672,118,282,382,http://localhost/profile,4,0,0
+1655758123334,4,profile,200,OK,Idlers 2-164,text,true,,3674,118,282,382,http://localhost/profile,4,0,0
+1655758122744,595,cart,200,OK,Idlers 2-65,text,true,,1843,115,282,382,http://localhost/cart,595,0,0
+1655758122912,431,cart,200,OK,Idlers 2-2,text,true,,1843,115,282,382,http://localhost/cart,431,0,0
+1655758122717,627,cart,200,OK,Idlers 2-141,text,true,,1843,115,282,382,http://localhost/cart,627,0,0
+1655758122794,550,Main menu,200,OK,Idlers 2-251,text,true,,802,111,282,382,http://localhost/,550,0,1
+1655758122716,631,cart,200,OK,Idlers 2-78,text,true,,1844,115,282,382,http://localhost/cart,631,0,0
+1655758122912,435,cart,200,OK,Idlers 2-28,text,true,,1844,115,282,382,http://localhost/cart,435,0,0
+1655758123344,4,profile,200,OK,Idlers 2-141,text,true,,3673,118,282,382,http://localhost/profile,4,0,0
+1655758122875,474,Main menu,200,OK,Idlers 2-280,text,true,,801,111,282,382,http://localhost/,474,0,1
+1655758122822,529,cart,200,OK,Idlers 2-153,text,true,,1844,115,282,382,http://localhost/cart,529,0,0
+1655758123347,5,profile,200,OK,Idlers 2-28,text,true,,3674,118,282,382,http://localhost/profile,5,0,0
+1655758123348,4,Main menu,200,OK,Idlers 2-141,text,true,,1903,130,282,382,http://localhost/userPurchaseHistory,4,0,0
+1655758122805,548,cart,200,OK,Idlers 2-135,text,true,,1842,115,281,381,http://localhost/cart,548,0,0
+1655758122817,536,cart,200,OK,Idlers 2-3,text,true,,1844,115,281,381,http://localhost/cart,536,0,0
+1655758123353,4,profile,200,OK,Idlers 2-135,text,true,,3673,118,281,381,http://localhost/profile,4,0,0
+1655758122907,450,cart,200,OK,Idlers 2-174,text,true,,1843,115,281,381,http://localhost/cart,450,0,0
+1655758122804,554,cart,200,OK,Idlers 2-129,text,true,,1843,115,281,381,http://localhost/cart,553,0,0
+1655758122896,473,Main menu,200,OK,Idlers 2-287,text,true,,801,111,281,381,http://localhost/,473,0,3
+1655758122750,624,cart,200,OK,Idlers 2-5,text,true,,1843,115,281,381,http://localhost/cart,624,0,0
+1655758122734,640,cart,200,OK,Idlers 2-79,text,true,,1844,115,281,381,http://localhost/cart,640,0,0
+1655758122796,582,cart,200,OK,Idlers 2-144,text,true,,1843,115,281,381,http://localhost/cart,582,0,0
+1655758123375,4,profile,200,OK,Idlers 2-5,text,true,,3674,118,281,381,http://localhost/profile,3,0,0
+1655758123378,5,profile,200,OK,Idlers 2-144,text,true,,3672,118,281,381,http://localhost/profile,4,0,0
+1655758123358,25,profile,200,OK,Idlers 2-129,text,true,,3672,118,281,381,http://localhost/profile,25,0,0
+1655758122695,693,cart,200,OK,Idlers 2-75,text,true,,1843,115,281,381,http://localhost/cart,693,0,0
+1655758122697,696,cart,200,OK,Idlers 2-12,text,true,,1844,115,281,381,http://localhost/cart,696,0,0
+1655758123375,18,profile,200,OK,Idlers 2-79,text,true,,3672,118,281,381,http://localhost/profile,18,0,0
+1655758122697,698,cart,200,OK,Idlers 2-123,text,true,,1844,115,281,381,http://localhost/cart,698,0,0
+1655758122704,692,cart,200,OK,Idlers 2-39,text,true,,1843,115,281,381,http://localhost/cart,692,0,0
+1655758123393,4,Main menu,200,OK,Idlers 2-79,text,true,,1901,130,281,381,http://localhost/userPurchaseHistory,4,0,0
+1655758123395,6,profile,200,OK,Idlers 2-123,text,true,,3673,118,280,380,http://localhost/profile,6,0,0
+1655758122807,593,Main menu,200,OK,Idlers 2-209,text,true,,802,111,280,380,http://localhost/,592,0,1
+1655758122699,707,cart,200,OK,Idlers 2-66,text,true,,1844,115,280,380,http://localhost/cart,707,0,0
+1655758123402,13,Main menu,200,OK,Idlers 2-123,text,true,,1901,130,280,380,http://localhost/userPurchaseHistory,13,0,0
+1655758122904,536,cart,200,OK,Idlers 2-68,text,true,,1842,115,279,379,http://localhost/cart,536,0,0
+1655758122901,540,cart,200,OK,Idlers 2-64,text,true,,1842,115,279,379,http://localhost/cart,540,0,0
+1655758122696,748,cart,200,OK,Idlers 2-57,text,true,,1843,115,279,379,http://localhost/cart,748,0,0
+1655758122713,734,cart,200,OK,Idlers 2-76,text,true,,1844,115,279,379,http://localhost/cart,734,0,0
+1655758122811,639,Main menu,200,OK,Idlers 2-207,text,true,,801,111,279,379,http://localhost/,639,0,0
+1655758122796,656,cart,200,OK,Idlers 2-60,text,true,,1842,115,279,379,http://localhost/cart,656,0,0
+1655758122808,644,cart,200,OK,Idlers 2-14,text,true,,1843,115,279,379,http://localhost/cart,644,0,0
+1655758123441,13,profile,200,OK,Idlers 2-64,text,true,,3673,118,279,379,http://localhost/profile,13,0,0
+1655758122809,645,Main menu,200,OK,Idlers 2-175,text,true,,802,111,279,379,http://localhost/,645,0,1
+1655758122804,650,cart,200,OK,Idlers 2-93,text,true,,1844,115,279,379,http://localhost/cart,650,0,0
+1655758123440,15,profile,200,OK,Idlers 2-68,text,true,,3673,118,279,379,http://localhost/profile,15,0,0
+1655758122917,539,Main menu,200,OK,Idlers 2-253,text,true,,801,111,279,379,http://localhost/,539,0,0
+1655758122812,644,Main menu,200,OK,Idlers 2-211,text,true,,802,111,279,379,http://localhost/,644,0,1
+1655758122896,561,cart,200,OK,Idlers 2-114,text,true,,1843,115,279,379,http://localhost/cart,560,0,0
+1655758122697,761,cart,200,OK,Idlers 2-106,text,true,,1844,115,279,379,http://localhost/cart,761,0,0
+1655758122730,729,cart,200,OK,Idlers 2-49,text,true,,1843,115,279,379,http://localhost/cart,729,0,0
+1655758123457,8,profile,200,OK,Idlers 2-114,text,true,,3674,118,279,379,http://localhost/profile,8,0,0
+1655758122808,659,cart,200,OK,Idlers 2-58,text,true,,1842,115,279,379,http://localhost/cart,659,0,0
+1655758122941,526,profile,200,OK,Idlers 2-74,text,true,,3672,118,279,379,http://localhost/profile,526,0,0
+1655758122808,661,Main menu,200,OK,Idlers 2-208,text,true,,803,111,279,379,http://localhost/,661,0,4
+1655758122697,779,cart,200,OK,Idlers 2-118,text,true,,1844,115,279,379,http://localhost/cart,779,0,0
+1655758122695,785,cart,200,OK,Idlers 2-46,text,true,,1844,115,279,379,http://localhost/cart,785,0,0
+1655758122954,529,cart,200,OK,Idlers 2-161,text,true,,1843,115,279,379,http://localhost/cart,529,0,0
+1655758122805,684,cart,200,OK,Idlers 2-15,text,true,,1843,115,279,379,http://localhost/cart,683,0,0
+1655758122957,532,cart,200,OK,Idlers 2-160,text,true,,1843,115,279,379,http://localhost/cart,531,0,0
+1655758122806,684,cart,200,OK,Idlers 2-83,text,true,,1842,115,279,379,http://localhost/cart,684,0,0
+1655758122957,536,Main menu,200,OK,Idlers 2-233,text,true,,802,111,279,379,http://localhost/,536,0,2
+1655758122962,531,Main menu,200,OK,Idlers 2-237,text,true,,802,111,279,379,http://localhost/,531,0,0
+1655758123489,7,profile,200,OK,Idlers 2-15,text,true,,3674,118,279,379,http://localhost/profile,7,0,0
+1655758122970,529,cart,200,OK,Idlers 2-130,text,true,,1843,115,279,379,http://localhost/cart,529,0,0
+1655758122971,534,cart,200,OK,Idlers 2-24,text,true,,1844,115,279,379,http://localhost/cart,534,0,0
+1655758123496,11,Main menu,200,OK,Idlers 2-15,text,true,,1903,130,279,379,http://localhost/userPurchaseHistory,11,0,0
+1655758122697,813,cart,200,OK,Idlers 2-54,text,true,,1843,115,278,378,http://localhost/cart,813,0,0
+1655758122706,807,cart,200,OK,Idlers 2-94,text,true,,1844,115,278,378,http://localhost/cart,807,0,0
+1655758123510,4,profile,200,OK,Idlers 2-54,text,true,,3674,118,278,378,http://localhost/profile,4,0,0
+1655758122891,628,Main menu,200,OK,Idlers 2-214,text,true,,1903,130,278,378,http://localhost/userPurchaseHistory,628,0,0
+1655758123514,5,profile,200,OK,Idlers 2-94,text,true,,3673,118,277,377,http://localhost/profile,5,0,0
+1655758123520,4,Main menu,200,OK,Idlers 2-94,text,true,,1903,130,277,377,http://localhost/userPurchaseHistory,4,0,0
+1655758122878,646,cart,200,OK,Idlers 2-154,text,true,,1842,115,277,377,http://localhost/cart,646,0,0
+1655758122887,638,Main menu,200,OK,Idlers 2-156,text,true,,1903,130,276,376,http://localhost/userPurchaseHistory,638,0,0
+1655758122884,643,Main menu,200,OK,Idlers 2-43,text,true,,1903,130,275,375,http://localhost/userPurchaseHistory,643,0,0
+1655758123525,4,profile,200,OK,Idlers 2-154,text,true,,3673,118,274,374,http://localhost/profile,4,0,0
+1655758122740,795,cart,200,OK,Idlers 2-150,text,true,,1843,115,274,374,http://localhost/cart,795,0,0
+1655758122834,701,cart,200,OK,Idlers 2-168,text,true,,1843,115,274,374,http://localhost/cart,701,0,0
+1655758122834,703,cart,200,OK,Idlers 2-18,text,true,,1843,115,274,374,http://localhost/cart,703,0,0
+1655758123535,4,profile,200,OK,Idlers 2-150,text,true,,3674,118,274,374,http://localhost/profile,4,0,0
+1655758122813,727,cart,200,OK,Idlers 2-11,text,true,,1844,115,274,374,http://localhost/cart,727,0,0
+1655758123537,4,profile,200,OK,Idlers 2-18,text,true,,3674,118,274,374,http://localhost/profile,4,0,0
+1655758123541,3,profile,200,OK,Idlers 2-11,text,true,,3673,118,274,374,http://localhost/profile,3,0,0
+1655758122833,712,Main menu,200,OK,Idlers 2-52,text,true,,1901,130,274,374,http://localhost/userPurchaseHistory,712,0,0
+1655758123541,5,Main menu,200,OK,Idlers 2-18,text,true,,1900,130,273,373,http://localhost/userPurchaseHistory,5,0,0
+1655758122852,696,Main menu,200,OK,Idlers 2-267,text,true,,802,111,272,372,http://localhost/,696,0,0
+1655758122833,715,cart,200,OK,Idlers 2-41,text,true,,1844,115,272,372,http://localhost/cart,715,0,0
+1655758122837,712,Main menu,200,OK,Idlers 2-260,text,true,,802,111,272,372,http://localhost/,712,0,1
+1655758122840,710,Main menu,200,OK,Idlers 2-206,text,true,,801,111,272,372,http://localhost/,710,0,1
+1655758123548,4,profile,200,OK,Idlers 2-41,text,true,,3673,118,272,372,http://localhost/profile,4,0,0
+1655758122736,821,cart,200,OK,Idlers 2-143,text,true,,1842,115,272,372,http://localhost/cart,821,0,0
+1655758122839,722,Main menu,200,OK,Idlers 2-91,text,true,,1901,130,272,372,http://localhost/userPurchaseHistory,722,0,0
+1655758122828,735,Main menu,200,OK,Idlers 2-108,text,true,,1903,130,271,371,http://localhost/userPurchaseHistory,735,0,0
+1655758123558,5,profile,200,OK,Idlers 2-143,text,true,,3673,118,271,371,http://localhost/profile,5,0,0
+1655758123535,31,profile,200,OK,Idlers 2-168,text,true,,3672,118,270,370,http://localhost/profile,31,0,0
+1655758122710,860,cart,200,OK,Idlers 2-110,text,true,,1843,115,270,370,http://localhost/cart,860,0,0
+1655758123566,4,Main menu,200,OK,Idlers 2-168,text,true,,1902,130,270,370,http://localhost/userPurchaseHistory,4,0,0
+1655758122840,731,Main menu,200,OK,Idlers 2-263,text,true,,801,111,269,369,http://localhost/,731,0,1
+1655758122837,735,Main menu,200,OK,Idlers 2-259,text,true,,801,111,269,369,http://localhost/,735,0,1
+1655758123570,4,profile,200,OK,Idlers 2-110,text,true,,3673,118,269,369,http://localhost/profile,4,0,0
+1655758122851,724,Main menu,200,OK,Idlers 2-203,text,true,,802,111,269,369,http://localhost/,724,0,1
+1655758122855,720,Main menu,200,OK,Idlers 2-271,text,true,,802,111,269,369,http://localhost/,720,0,1
+1655758122764,812,cart,200,OK,Idlers 2-31,text,true,,1844,115,269,369,http://localhost/cart,812,0,0
+1655758122857,720,Main menu,200,OK,Idlers 2-272,text,true,,802,111,269,369,http://localhost/,720,0,1
+1655758122858,720,Main menu,200,OK,Idlers 2-275,text,true,,801,111,269,369,http://localhost/,720,0,1
+1655758122706,872,cart,200,OK,Idlers 2-73,text,true,,1844,115,269,369,http://localhost/cart,872,0,0
+1655758122855,724,Main menu,200,OK,Idlers 2-268,text,true,,803,111,269,369,http://localhost/,724,0,2
+1655758122810,772,cart,200,OK,Idlers 2-122,text,true,,1843,115,269,369,http://localhost/cart,772,0,0
+1655758122862,721,Main menu,200,OK,Idlers 2-258,text,true,,802,111,269,369,http://localhost/,721,0,1
+1655758122726,857,cart,200,OK,Idlers 2-17,text,true,,1843,115,269,369,http://localhost/cart,857,0,0
+1655758122859,726,Main menu,200,OK,Idlers 2-276,text,true,,802,111,269,369,http://localhost/,726,0,1
+1655758123198,388,Main menu,200,OK,Idlers 2-9,text,true,,1902,130,269,369,http://localhost/userPurchaseHistory,388,0,0
+1655758123576,10,profile,200,OK,Idlers 2-31,text,true,,3673,118,269,369,http://localhost/profile,10,0,0
+1655758123200,386,profile,200,OK,Idlers 2-151,text,true,,3674,118,269,369,http://localhost/profile,386,0,0
+1655758122713,873,cart,200,OK,Idlers 2-121,text,true,,1843,115,269,368,http://localhost/cart,873,0,0
+1655758122868,720,Main menu,200,OK,Idlers 2-202,text,true,,802,111,268,368,http://localhost/,720,0,1
+1655758123212,377,profile,200,OK,Idlers 2-36,text,true,,3674,118,268,368,http://localhost/profile,377,0,0
+1655758122794,797,cart,200,OK,Idlers 2-82,text,true,,1841,115,268,368,http://localhost/cart,797,0,0
+1655758122805,786,cart,200,OK,Idlers 2-53,text,true,,1844,115,268,368,http://localhost/cart,786,0,0
+1655758123221,371,profile,200,OK,Idlers 2-87,text,true,,3672,118,268,368,http://localhost/profile,371,0,0
+1655758123586,7,Main menu,200,OK,Idlers 2-151,text,true,,1902,130,268,368,http://localhost/userPurchaseHistory,7,0,0
+1655758123591,5,profile,200,OK,Idlers 2-82,text,true,,3672,118,267,367,http://localhost/profile,5,0,0
+1655758123587,10,profile,200,OK,Idlers 2-121,text,true,,3673,118,267,367,http://localhost/profile,10,0,0
+1655758123586,13,Main menu,200,OK,Idlers 2-31,text,true,,1902,130,267,367,http://localhost/userPurchaseHistory,13,0,0
+1655758123256,345,cart,200,OK,Idlers 2-188,text,true,,1843,115,266,366,http://localhost/cart,345,0,0
+1655758122804,797,cart,200,OK,Idlers 2-90,text,true,,1843,115,266,366,http://localhost/cart,797,0,0
+1655758123597,5,Main menu,200,OK,Idlers 2-82,text,true,,1903,130,266,366,http://localhost/userPurchaseHistory,5,0,0
+1655758123307,299,profile,200,OK,Idlers 2-196,text,true,,3672,118,265,365,http://localhost/profile,299,0,0
+1655758123601,8,profile,200,OK,Idlers 2-90,text,true,,3673,118,265,365,http://localhost/profile,8,0,0
+1655758123601,10,profile,200,OK,Idlers 2-188,text,true,,3672,118,265,365,http://localhost/profile,10,0,0
+1655758122695,916,cart,200,OK,Idlers 2-95,text,true,,1844,115,265,365,http://localhost/cart,916,0,0
+1655758122735,881,cart,200,OK,Idlers 2-127,text,true,,1842,115,265,365,http://localhost/cart,881,0,0
+1655758122803,813,cart,200,OK,Idlers 2-37,text,true,,1843,115,265,365,http://localhost/cart,813,0,0
+1655758122803,814,cart,200,OK,Idlers 2-85,text,true,,1843,115,265,365,http://localhost/cart,814,0,0
+1655758122717,902,cart,200,OK,Idlers 2-98,text,true,,1842,115,265,365,http://localhost/cart,902,0,0
+1655758123616,4,profile,200,OK,Idlers 2-37,text,true,,3673,118,265,365,http://localhost/profile,4,0,0
+1655758123611,11,profile,200,OK,Idlers 2-95,text,true,,3674,118,265,365,http://localhost/profile,11,0,0
+1655758123617,5,profile,200,OK,Idlers 2-85,text,true,,3673,118,265,365,http://localhost/profile,5,0,0
+1655758123267,360,profile,200,OK,Idlers 2-165,text,true,,3672,118,265,365,http://localhost/profile,360,0,0
+1655758123619,11,profile,200,OK,Idlers 2-98,text,true,,3673,118,265,365,http://localhost/profile,11,0,0
+1655758122696,935,cart,200,OK,Idlers 2-71,text,true,,1842,115,265,365,http://localhost/cart,935,0,0
+1655758122806,825,cart,200,OK,Idlers 2-115,text,true,,1843,115,265,365,http://localhost/cart,825,0,0
+1655758123313,323,profile,200,OK,Idlers 2-213,text,true,,3674,118,265,365,http://localhost/profile,323,0,0
+1655758122695,942,cart,200,OK,Idlers 2-13,text,true,,1844,115,265,365,http://localhost/cart,942,0,0
+1655758122695,943,cart,200,OK,Idlers 2-72,text,true,,1842,115,265,365,http://localhost/cart,943,0,0
+1655758122700,941,cart,200,OK,Idlers 2-10,text,true,,1842,115,265,365,http://localhost/cart,941,0,0
+1655758123330,311,profile,200,OK,Idlers 2-25,text,true,,3673,118,265,365,http://localhost/profile,311,0,0
+1655758123628,17,Main menu,200,OK,Idlers 2-165,text,true,,1903,130,265,365,http://localhost/userPurchaseHistory,17,0,0
+1655758123641,4,profile,200,OK,Idlers 2-10,text,true,,3673,118,265,365,http://localhost/profile,4,0,0
+1655758123324,325,Main menu,200,OK,Idlers 2-61,text,true,,1903,130,264,364,http://localhost/userPurchaseHistory,325,0,0
+1655758122695,957,cart,200,OK,Idlers 2-63,text,true,,1843,115,263,363,http://localhost/cart,957,0,0
+1655758123339,314,profile,200,OK,Idlers 2-65,text,true,,3673,118,263,363,http://localhost/profile,314,0,0
+1655758122872,783,Main menu,200,OK,Idlers 2-222,text,true,,803,111,263,363,http://localhost/,783,0,1
+1655758122870,786,Main menu,200,OK,Idlers 2-279,text,true,,802,111,263,363,http://localhost/,786,0,4
+1655758122799,859,cart,200,OK,Idlers 2-155,text,true,,1843,115,263,363,http://localhost/cart,859,0,0
+1655758122794,868,cart,200,OK,Idlers 2-101,text,true,,1842,115,263,363,http://localhost/cart,868,0,0
+1655758122696,968,cart,200,OK,Idlers 2-44,text,true,,1843,115,263,363,http://localhost/cart,968,0,0
+1655758123343,322,profile,200,OK,Idlers 2-2,text,true,,3674,118,263,363,http://localhost/profile,322,0,0
+1655758122877,790,Main menu,200,OK,Idlers 2-199,text,true,,802,111,263,363,http://localhost/,790,0,0
+1655758122794,873,cart,200,OK,Idlers 2-34,text,true,,1843,115,263,363,http://localhost/cart,873,0,0
+1655758123663,5,profile,200,OK,Idlers 2-101,text,true,,3673,118,263,363,http://localhost/profile,5,0,0
+1655758122801,868,Main menu,200,OK,Idlers 2-148,text,true,,1901,130,263,363,http://localhost/userPurchaseHistory,868,0,0
+1655758123667,4,profile,200,OK,Idlers 2-34,text,true,,3674,118,262,362,http://localhost/profile,4,0,0
+1655758122704,969,cart,200,OK,Idlers 2-69,text,true,,1843,115,262,362,http://localhost/cart,969,0,0
+1655758123664,10,profile,200,OK,Idlers 2-44,text,true,,3672,118,262,362,http://localhost/profile,10,0,0
+1655758123347,332,profile,200,OK,Idlers 2-78,text,true,,3674,118,262,362,http://localhost/profile,332,0,0
+1655758122765,915,cart,200,OK,Idlers 2-119,text,true,,1843,115,262,362,http://localhost/cart,915,0,0
+1655758122888,792,Main menu,200,OK,Idlers 2-283,text,true,,802,111,262,362,http://localhost/,792,0,1
+1655758122892,790,Main menu,200,OK,Idlers 2-198,text,true,,802,111,262,362,http://localhost/,790,0,1
+1655758122894,790,Main menu,200,OK,Idlers 2-219,text,true,,801,111,262,362,http://localhost/,790,0,0
+1655758123674,11,profile,200,OK,Idlers 2-69,text,true,,3672,118,262,362,http://localhost/profile,11,0,0
+1655758122769,919,cart,200,OK,Idlers 2-162,text,true,,1843,115,262,362,http://localhost/cart,919,0,0
+1655758123351,346,profile,200,OK,Idlers 2-153,text,true,,3673,118,262,362,http://localhost/profile,346,0,0
+1655758122712,987,cart,200,OK,Idlers 2-42,text,true,,1843,115,262,362,http://localhost/cart,987,0,0
+1655758123679,22,Main menu,200,OK,Idlers 2-78,text,true,,1902,130,262,362,http://localhost/userPurchaseHistory,22,0,0
+1655758122757,945,cart,200,OK,Idlers 2-7,text,true,,1843,115,261,361,http://localhost/cart,945,0,0
+1655758123700,5,profile,200,OK,Idlers 2-42,text,true,,3673,118,261,361,http://localhost/profile,5,0,0
+1655758123671,34,Main menu,200,OK,Idlers 2-34,text,true,,1902,130,261,361,http://localhost/userPurchaseHistory,34,0,0
+1655758123358,347,profile,200,OK,Idlers 2-174,text,true,,3673,118,260,360,http://localhost/profile,347,0,0
+1655758122699,1008,cart,200,OK,Idlers 2-137,text,true,,1844,115,260,360,http://localhost/cart,1008,0,0
+1655758122748,959,cart,200,OK,Idlers 2-27,text,true,,1843,115,260,360,http://localhost/cart,959,0,0
+1655758123708,4,profile,200,OK,Idlers 2-137,text,true,,3673,118,260,360,http://localhost/profile,4,0,0
+1655758123708,9,profile,200,OK,Idlers 2-27,text,true,,3673,118,260,360,http://localhost/profile,9,0,0
+1655758123688,33,profile,200,OK,Idlers 2-162,text,true,,3674,118,260,360,http://localhost/profile,33,0,0
+1655758123354,367,profile,200,OK,Idlers 2-3,text,true,,3672,118,260,360,http://localhost/profile,367,0,0
+1655758122766,958,cart,200,OK,Idlers 2-158,text,true,,1843,115,260,360,http://localhost/cart,958,0,0
+1655758122799,929,cart,200,OK,Idlers 2-45,text,true,,1844,115,260,360,http://localhost/cart,929,0,0
+1655758122796,932,cart,200,OK,Idlers 2-147,text,true,,1843,115,260,360,http://localhost/cart,932,0,0
+1655758122898,831,Main menu,200,OK,Idlers 2-288,text,true,,802,111,260,360,http://localhost/,831,0,1
+1655758123724,5,profile,200,OK,Idlers 2-158,text,true,,3673,118,260,360,http://localhost/profile,5,0,0
+1655758123728,6,profile,200,OK,Idlers 2-45,text,true,,3672,118,260,360,http://localhost/profile,6,0,0
+1655758123729,5,profile,200,OK,Idlers 2-147,text,true,,3674,118,260,360,http://localhost/profile,5,0,0
+1655758123335,401,cart,200,OK,Idlers 2-192,text,true,,1843,115,260,360,http://localhost/cart,401,0,0
+1655758123668,68,Main menu,200,OK,Idlers 2-101,text,true,,1902,130,260,360,http://localhost/userPurchaseHistory,68,0,0
+1655758123734,4,Main menu,200,OK,Idlers 2-45,text,true,,1903,130,259,359,http://localhost/userPurchaseHistory,4,0,0
+1655758123737,5,profile,200,OK,Idlers 2-192,text,true,,3672,118,258,358,http://localhost/profile,5,0,0
+1655758122740,1005,cart,200,OK,Idlers 2-80,text,true,,1843,115,258,358,http://localhost/cart,1004,0,0
+1655758123645,109,Main menu,200,OK,Idlers 2-10,text,true,,1901,130,258,358,http://localhost/userPurchaseHistory,109,0,0
+1655758123642,112,Main menu,200,OK,Idlers 2-25,text,true,,1901,130,258,358,http://localhost/userPurchaseHistory,112,0,0
+1655758122902,854,Main menu,200,OK,Idlers 2-257,text,true,,802,111,256,356,http://localhost/,854,0,1
+1655758123745,13,profile,200,OK,Idlers 2-80,text,true,,3673,118,256,356,http://localhost/profile,13,0,0
+1655758123316,446,cart,200,OK,Idlers 2-193,text,true,,1843,115,256,356,http://localhost/cart,446,0,0
+1655758122902,861,Main menu,200,OK,Idlers 2-252,text,true,,803,111,256,356,http://localhost/,861,0,1
+1655758123762,6,profile,200,OK,Idlers 2-193,text,true,,3674,118,256,356,http://localhost/profile,6,0,0
+1655758123388,381,profile,200,OK,Idlers 2-75,text,true,,3673,118,256,356,http://localhost/profile,381,0,0
+1655758123393,378,profile,200,OK,Idlers 2-12,text,true,,3673,118,256,356,http://localhost/profile,378,0,0
+1655758123333,438,Main menu,200,OK,Idlers 2-92,text,true,,1901,130,256,356,http://localhost/userPurchaseHistory,438,0,0
+1655758123630,149,Main menu,200,OK,Idlers 2-98,text,true,,1902,130,255,355,http://localhost/userPurchaseHistory,149,0,0
+1655758123622,163,Main menu,200,OK,Idlers 2-85,text,true,,1901,130,254,354,http://localhost/userPurchaseHistory,163,0,0
+1655758123620,167,Main menu,200,OK,Idlers 2-37,text,true,,1902,130,253,353,http://localhost/userPurchaseHistory,167,0,0
+1655758123758,34,Main menu,200,OK,Idlers 2-80,text,true,,1903,130,252,352,http://localhost/userPurchaseHistory,34,0,0
+1655758123313,482,cart,200,OK,Idlers 2-212,text,true,,1844,115,251,351,http://localhost/cart,482,0,0
+1655758123611,188,Main menu,200,OK,Idlers 2-188,text,true,,1902,130,251,351,http://localhost/userPurchaseHistory,188,0,0
+1655758123796,13,profile,200,OK,Idlers 2-212,text,true,,3673,118,250,350,http://localhost/profile,13,0,0
+1655758122804,1008,Main menu,200,OK,Idlers 2-56,text,true,,1902,130,250,350,http://localhost/userPurchaseHistory,1008,0,0
+1655758123809,6,Main menu,200,OK,Idlers 2-212,text,true,,1902,130,249,349,http://localhost/userPurchaseHistory,6,0,0
+1655758122737,1078,cart,200,OK,Idlers 2-146,text,true,,1844,115,249,349,http://localhost/cart,1078,0,0
+1655758123609,207,Main menu,200,OK,Idlers 2-90,text,true,,1902,130,248,348,http://localhost/userPurchaseHistory,207,0,0
+1655758123397,418,profile,200,OK,Idlers 2-39,text,true,,3674,118,249,349,http://localhost/profile,418,0,0
+1655758122904,912,Main menu,200,OK,Idlers 2-195,text,true,,803,111,247,347,http://localhost/,912,0,1
+1655758123816,3,profile,200,OK,Idlers 2-146,text,true,,3673,118,247,347,http://localhost/profile,3,0,0
+1655758123406,417,profile,200,OK,Idlers 2-66,text,true,,3672,118,247,347,http://localhost/profile,417,0,0
+1655758123816,7,Main menu,200,OK,Idlers 2-39,text,true,,1903,130,247,347,http://localhost/userPurchaseHistory,7,0,0
+1655758123310,521,cart,200,OK,Idlers 2-218,text,true,,1843,115,246,346,http://localhost/cart,521,0,0
+1655758123820,14,Main menu,200,OK,Idlers 2-146,text,true,,1903,130,246,346,http://localhost/userPurchaseHistory,14,0,0
+1655758123597,241,Main menu,200,OK,Idlers 2-121,text,true,,1903,130,245,345,http://localhost/userPurchaseHistory,241,0,0
+1655758123831,15,profile,200,OK,Idlers 2-218,text,true,,3672,118,244,344,http://localhost/profile,15,0,0
+1655758123261,588,Main menu,200,OK,Idlers 2-177,text,true,,1903,130,244,344,http://localhost/userPurchaseHistory,588,0,0
+1655758123846,4,Main menu,200,OK,Idlers 2-218,text,true,,1902,130,243,343,http://localhost/userPurchaseHistory,4,0,0
+1655758123244,609,cart,200,OK,Idlers 2-185,text,true,,1842,115,242,342,http://localhost/cart,609,0,0
+1655758122907,946,Main menu,200,OK,Idlers 2-194,text,true,,803,111,242,342,http://localhost/,946,0,0
+1655758123853,5,profile,200,OK,Idlers 2-185,text,true,,3672,118,242,342,http://localhost/profile,5,0,0
+1655758122906,954,Main menu,200,OK,Idlers 2-254,text,true,,801,111,242,342,http://localhost/,954,0,1
+1655758122908,953,Main menu,200,OK,Idlers 2-291,text,true,,803,111,242,342,http://localhost/,953,0,0
+1655758123445,418,profile,200,OK,Idlers 2-57,text,true,,3673,118,242,342,http://localhost/profile,418,0,0
+1655758122794,1076,cart,200,OK,Idlers 2-20,text,true,,1843,115,242,342,http://localhost/cart,1076,0,0
+1655758123871,4,profile,200,OK,Idlers 2-20,text,true,,3672,118,242,342,http://localhost/profile,4,0,0
+1655758123853,24,cart,200,OK,Idlers 2-194,text,true,,1843,115,242,342,http://localhost/cart,24,0,0
+1655758122805,1073,cart,200,OK,Idlers 2-112,text,true,,1843,115,242,342,http://localhost/cart,1073,0,0
+1655758123447,432,profile,200,OK,Idlers 2-76,text,true,,3673,118,242,342,http://localhost/profile,432,0,0
+1655758123877,4,profile,200,OK,Idlers 2-194,text,true,,3672,118,242,342,http://localhost/profile,4,0,0
+1655758123878,4,profile,200,OK,Idlers 2-112,text,true,,3672,118,242,342,http://localhost/profile,4,0,0
+1655758123879,6,Main menu,200,OK,Idlers 2-76,text,true,,1901,130,242,342,http://localhost/userPurchaseHistory,6,0,0
+1655758123881,5,Main menu,200,OK,Idlers 2-194,text,true,,1901,130,241,341,http://localhost/userPurchaseHistory,5,0,0
+1655758122696,1191,cart,200,OK,Idlers 2-125,text,true,,1842,115,240,340,http://localhost/cart,1191,0,0
+1655758122806,1081,cart,200,OK,Idlers 2-26,text,true,,1843,115,240,340,http://localhost/cart,1081,0,0
+1655758123887,4,profile,200,OK,Idlers 2-125,text,true,,3674,118,240,340,http://localhost/profile,4,0,0
+1655758123887,4,profile,200,OK,Idlers 2-26,text,true,,3673,118,240,340,http://localhost/profile,4,0,0
+1655758123882,12,Main menu,200,OK,Idlers 2-112,text,true,,1903,130,240,340,http://localhost/userPurchaseHistory,12,0,0
+1655758123891,5,Main menu,200,OK,Idlers 2-26,text,true,,1903,130,239,339,http://localhost/userPurchaseHistory,5,0,0
+1655758122807,1090,cart,200,OK,Idlers 2-136,text,true,,1842,115,238,338,http://localhost/cart,1090,0,0
+1655758122713,1188,cart,200,OK,Idlers 2-111,text,true,,1842,115,238,338,http://localhost/cart,1188,0,0
+1655758123897,4,profile,200,OK,Idlers 2-136,text,true,,3673,118,238,338,http://localhost/profile,4,0,0
+1655758122741,1162,cart,200,OK,Idlers 2-152,text,true,,1842,115,238,338,http://localhost/cart,1162,0,0
+1655758122807,1097,cart,200,OK,Idlers 2-30,text,true,,1843,115,238,338,http://localhost/cart,1097,0,0
+1655758123901,4,Main menu,200,OK,Idlers 2-136,text,true,,1902,130,238,338,http://localhost/userPurchaseHistory,4,0,0
+1655758123904,4,profile,200,OK,Idlers 2-30,text,true,,3673,118,237,337,http://localhost/profile,4,0,0
+1655758123903,5,profile,200,OK,Idlers 2-152,text,true,,3673,118,237,337,http://localhost/profile,5,0,0
+1655758123901,9,profile,200,OK,Idlers 2-111,text,true,,3673,118,237,337,http://localhost/profile,9,0,0
+1655758122913,998,Main menu,200,OK,Idlers 2-191,text,true,,802,111,237,337,http://localhost/,998,0,1
+1655758123552,360,Main menu,200,OK,Idlers 2-41,text,true,,1902,130,237,337,http://localhost/userPurchaseHistory,360,0,0
+1655758122913,1001,Main menu,200,OK,Idlers 2-292,text,true,,802,111,236,336,http://localhost/,1001,0,1
+1655758123551,366,cart,200,OK,Idlers 2-206,text,true,,1842,115,236,336,http://localhost/cart,366,0,0
+1655758123563,357,Main menu,200,OK,Idlers 2-143,text,true,,1902,130,236,336,http://localhost/userPurchaseHistory,357,0,0
+1655758123917,4,profile,200,OK,Idlers 2-206,text,true,,3672,118,235,335,http://localhost/profile,4,0,0
+1655758123514,411,Main menu,200,OK,Idlers 2-54,text,true,,1902,130,235,335,http://localhost/userPurchaseHistory,411,0,0
+1655758123539,386,Main menu,200,OK,Idlers 2-150,text,true,,1901,130,235,335,http://localhost/userPurchaseHistory,386,0,0
+1655758122826,1100,cart,200,OK,Idlers 2-88,text,true,,1843,115,233,333,http://localhost/cart,1100,0,0
+1655758123452,478,profile,200,OK,Idlers 2-60,text,true,,3673,118,233,333,http://localhost/profile,478,0,0
+1655758123926,4,profile,200,OK,Idlers 2-88,text,true,,3674,118,233,333,http://localhost/profile,4,0,0
+1655758123493,440,cart,200,OK,Idlers 2-233,text,true,,1844,115,233,333,http://localhost/cart,440,0,0
+1655758123452,484,profile,200,OK,Idlers 2-14,text,true,,3672,118,233,333,http://localhost/profile,484,0,0
+1655758122894,1043,cart,200,OK,Idlers 2-67,text,true,,1843,115,233,333,http://localhost/cart,1043,0,0
+1655758123934,3,profile,200,OK,Idlers 2-233,text,true,,3672,118,233,333,http://localhost/profile,3,0,0
+1655758122958,980,cart,200,OK,Idlers 2-181,text,true,,1844,115,233,333,http://localhost/cart,980,0,0
+1655758122892,1046,cart,200,OK,Idlers 2-35,text,true,,1843,115,233,333,http://localhost/cart,1046,0,0
+1655758122943,997,cart,200,OK,Idlers 2-176,text,true,,1844,115,233,333,http://localhost/cart,997,0,0
+1655758123469,471,cart,200,OK,Idlers 2-208,text,true,,1843,115,233,333,http://localhost/cart,471,0,0
+1655758123454,493,profile,200,OK,Idlers 2-93,text,true,,3673,118,233,333,http://localhost/profile,492,0,0
+1655758123941,6,profile,200,OK,Idlers 2-176,text,true,,3674,118,233,333,http://localhost/profile,5,0,0
+1655758123465,482,Main menu,200,OK,Idlers 2-114,text,true,,1902,130,233,333,http://localhost/userPurchaseHistory,481,0,0
+1655758123937,10,profile,200,OK,Idlers 2-67,text,true,,3673,118,232,332,http://localhost/profile,10,0,0
+1655758123941,7,profile,200,OK,Idlers 2-208,text,true,,3674,118,232,332,http://localhost/profile,7,0,0
+1655758122919,1030,Main menu,200,OK,Idlers 2-243,text,true,,801,111,232,332,http://localhost/,1030,0,0
+1655758122919,1031,Main menu,200,OK,Idlers 2-244,text,true,,802,111,232,332,http://localhost/,1031,0,1
+1655758122933,1017,Main menu,200,OK,Idlers 2-21,text,true,,1901,130,232,332,http://localhost/userPurchaseHistory,1017,0,0
+1655758123454,498,cart,200,OK,Idlers 2-175,text,true,,1843,115,231,331,http://localhost/cart,498,0,0
+1655758123456,496,cart,200,OK,Idlers 2-253,text,true,,1842,115,231,331,http://localhost/cart,496,0,0
+1655758123938,15,profile,200,OK,Idlers 2-35,text,true,,3674,118,231,331,http://localhost/profile,15,0,0
+1655758122921,1032,Main menu,200,OK,Idlers 2-240,text,true,,803,111,231,331,http://localhost/,1032,0,0
+1655758123454,500,Main menu,200,OK,Idlers 2-64,text,true,,1902,130,231,331,http://localhost/userPurchaseHistory,500,0,0
+1655758122922,1033,Main menu,200,OK,Idlers 2-190,text,true,,801,111,230,330,http://localhost/,1032,0,1
+1655758123938,17,profile,200,OK,Idlers 2-181,text,true,,3674,118,230,330,http://localhost/profile,17,0,0
+1655758122916,1039,cart,200,OK,Idlers 2-19,text,true,,1843,115,230,330,http://localhost/cart,1039,0,0
+1655758122922,1033,Main menu,200,OK,Idlers 2-239,text,true,,802,111,230,330,http://localhost/,1033,0,1
+1655758123952,4,profile,200,OK,Idlers 2-175,text,true,,3673,118,230,330,http://localhost/profile,4,0,0
+1655758123955,4,profile,200,OK,Idlers 2-19,text,true,,3672,118,230,330,http://localhost/profile,4,0,0
+1655758122915,1044,cart,200,OK,Idlers 2-139,text,true,,1842,115,230,330,http://localhost/cart,1044,0,0
+1655758122895,1064,cart,200,OK,Idlers 2-104,text,true,,1844,115,230,330,http://localhost/cart,1064,0,0
+1655758122704,1256,cart,200,OK,Idlers 2-102,text,true,,1843,115,230,330,http://localhost/cart,1256,0,0
+1655758123959,4,profile,200,OK,Idlers 2-139,text,true,,3674,118,230,330,http://localhost/profile,4,0,0
+1655758123960,3,profile,200,OK,Idlers 2-104,text,true,,3673,118,230,330,http://localhost/profile,3,0,0
+1655758122896,1070,cart,200,OK,Idlers 2-120,text,true,,1844,115,230,330,http://localhost/cart,1070,0,0
+1655758122900,1066,cart,200,OK,Idlers 2-8,text,true,,1844,115,230,330,http://localhost/cart,1066,0,0
+1655758122901,1066,cart,200,OK,Idlers 2-96,text,true,,1841,115,230,330,http://localhost/cart,1066,0,0
+1655758123966,4,profile,200,OK,Idlers 2-120,text,true,,3672,118,230,330,http://localhost/profile,3,0,0
+1655758123963,12,Main menu,200,OK,Idlers 2-104,text,true,,1901,130,230,330,http://localhost/userPurchaseHistory,12,0,0
+1655758123960,17,profile,200,OK,Idlers 2-102,text,true,,3674,118,229,329,http://localhost/profile,17,0,0
+1655758122704,1274,cart,200,OK,Idlers 2-50,text,true,,1842,115,229,329,http://localhost/cart,1274,0,0
+1655758123379,601,Main menu,200,OK,Idlers 2-5,text,true,,1903,130,229,329,http://localhost/userPurchaseHistory,601,0,0
+1655758123402,579,cart,200,OK,Idlers 2-209,text,true,,1843,115,228,328,http://localhost/cart,579,0,0
+1655758123967,14,profile,200,OK,Idlers 2-96,text,true,,3672,118,228,328,http://localhost/profile,14,0,0
+1655758123978,6,profile,200,OK,Idlers 2-50,text,true,,3674,118,228,328,http://localhost/profile,6,0,0
+1655758123981,5,profile,200,OK,Idlers 2-209,text,true,,3672,118,228,328,http://localhost/profile,5,0,0
+1655758123967,19,profile,200,OK,Idlers 2-8,text,true,,3672,118,228,328,http://localhost/profile,19,0,0
+1655758123982,5,Main menu,200,OK,Idlers 2-96,text,true,,1902,130,228,328,http://localhost/userPurchaseHistory,5,0,0
+1655758122924,1063,Main menu,200,OK,Idlers 2-236,text,true,,802,111,228,328,http://localhost/,1063,0,0
+1655758122900,1087,cart,200,OK,Idlers 2-6,text,true,,1842,115,228,328,http://localhost/cart,1087,0,0
+1655758122695,1297,cart,200,OK,Idlers 2-124,text,true,,1842,115,227,327,http://localhost/cart,1297,0,0
+1655758123357,635,Main menu,200,OK,Idlers 2-135,text,true,,1901,130,227,327,http://localhost/userPurchaseHistory,635,0,0
+1655758123987,5,profile,200,OK,Idlers 2-6,text,true,,3673,118,226,326,http://localhost/profile,5,0,0
+1655758122804,1190,cart,200,OK,Idlers 2-51,text,true,,1842,115,226,326,http://localhost/cart,1190,0,0
+1655758122924,1070,Main menu,200,OK,Idlers 2-232,text,true,,802,111,226,326,http://localhost/,1070,0,0
+1655758123992,4,profile,200,OK,Idlers 2-124,text,true,,3673,118,226,326,http://localhost/profile,4,0,0
+1655758122890,1106,Main menu,200,OK,Idlers 2-16,text,true,,1903,130,226,326,http://localhost/userPurchaseHistory,1106,0,0
+1655758123994,3,profile,200,OK,Idlers 2-51,text,true,,3674,118,225,325,http://localhost/profile,3,0,0
+1655758123352,646,Main menu,200,OK,Idlers 2-28,text,true,,1901,130,225,325,http://localhost/userPurchaseHistory,646,0,0
+1655758122924,1074,Main menu,200,OK,Idlers 2-187,text,true,,802,111,225,325,http://localhost/,1074,0,0
+1655758123996,4,Main menu,200,OK,Idlers 2-124,text,true,,1902,130,224,324,http://localhost/userPurchaseHistory,4,0,0
+1655758122911,1090,cart,200,OK,Idlers 2-32,text,true,,1843,115,223,323,http://localhost/cart,1090,0,0
+1655758122924,1078,Main menu,200,OK,Idlers 2-235,text,true,,803,111,223,323,http://localhost/,1078,0,1
+1655758122925,1078,Main menu,200,OK,Idlers 2-231,text,true,,802,111,223,323,http://localhost/,1078,0,1
+1655758124001,3,profile,200,OK,Idlers 2-32,text,true,,3672,118,223,323,http://localhost/profile,3,0,0
+1655758122926,1079,Main menu,200,OK,Idlers 2-229,text,true,,802,111,223,323,http://localhost/,1079,0,1
+1655758123349,657,cart,200,OK,Idlers 2-280,text,true,,1842,115,223,323,http://localhost/cart,657,0,0
+1655758122716,1293,cart,200,OK,Idlers 2-128,text,true,,1842,115,223,323,http://localhost/cart,1293,0,0
+1655758123339,670,Main menu,200,OK,Idlers 2-164,text,true,,1902,130,223,323,http://localhost/userPurchaseHistory,670,0,0
+1655758122928,1081,Main menu,200,OK,Idlers 2-225,text,true,,802,111,223,323,http://localhost/,1081,0,1
+1655758122827,1184,cart,200,OK,Idlers 2-149,text,true,,1843,115,222,322,http://localhost/cart,1184,0,0
+1655758122929,1083,Main menu,200,OK,Idlers 2-221,text,true,,801,111,222,322,http://localhost/,1083,0,0
+1655758124006,7,profile,200,OK,Idlers 2-280,text,true,,3672,118,222,322,http://localhost/profile,7,0,0
+1655758123336,680,Main menu,200,OK,Idlers 2-216,text,true,,1901,130,222,322,http://localhost/userPurchaseHistory,680,0,0
+1655758123458,558,profile,200,OK,Idlers 2-106,text,true,,3672,118,222,322,http://localhost/profile,558,0,0
+1655758124013,4,Main menu,200,OK,Idlers 2-280,text,true,,1901,130,221,321,http://localhost/userPurchaseHistory,4,0,0
+1655758123328,689,cart,200,OK,Idlers 2-247,text,true,,1842,115,220,320,http://localhost/cart,689,0,0
+1655758122927,1091,Main menu,200,OK,Idlers 2-228,text,true,,802,111,220,320,http://localhost/,1091,0,0
+1655758122930,1089,Main menu,200,OK,Idlers 2-217,text,true,,802,111,220,320,http://localhost/,1089,0,1
+1655758124017,3,profile,200,OK,Idlers 2-247,text,true,,3673,118,220,320,http://localhost/profile,3,0,0
+1655758122929,1091,Main menu,200,OK,Idlers 2-220,text,true,,803,111,220,320,http://localhost/,1091,0,1
+1655758123335,688,cart,200,OK,Idlers 2-178,text,true,,1843,115,220,320,http://localhost/cart,688,0,0
+1655758123331,693,Main menu,200,OK,Idlers 2-200,text,true,,1902,130,220,320,http://localhost/userPurchaseHistory,693,0,0
+1655758122934,1091,Main menu,200,OK,Idlers 2-295,text,true,,801,111,219,319,http://localhost/,1091,0,1
+1655758123334,692,cart,200,OK,Idlers 2-248,text,true,,1842,115,219,319,http://localhost/cart,692,0,0
+1655758122936,1090,Main menu,200,OK,Idlers 2-300,text,true,,802,111,219,319,http://localhost/,1090,0,1
+1655758124010,17,cart,200,OK,Idlers 2-225,text,true,,1843,115,219,319,http://localhost/cart,17,0,0
+1655758122932,1097,Main menu,200,OK,Idlers 2-296,text,true,,801,111,219,319,http://localhost/,1097,0,2
+1655758124025,5,cart,200,OK,Idlers 2-295,text,true,,1844,115,219,319,http://localhost/cart,5,0,0
+1655758122936,1095,Main menu,200,OK,Idlers 2-299,text,true,,803,111,219,319,http://localhost/,1095,0,0
+1655758124027,4,profile,200,OK,Idlers 2-225,text,true,,3673,118,219,319,http://localhost/profile,4,0,0
+1655758124030,3,profile,200,OK,Idlers 2-295,text,true,,3672,118,219,319,http://localhost/profile,3,0,0
+1655758124026,9,cart,200,OK,Idlers 2-300,text,true,,1844,115,219,319,http://localhost/cart,9,0,0
+1655758122933,1102,Main menu,200,OK,Idlers 2-113,text,true,,1903,130,219,319,http://localhost/userPurchaseHistory,1102,0,0
+1655758122940,1096,Main menu,200,OK,Idlers 2-186,text,true,,802,111,218,318,http://localhost/,1096,0,1
+1655758123262,779,Main menu,200,OK,Idlers 2-103,text,true,,1903,130,218,318,http://localhost/userPurchaseHistory,779,0,0
+1655758122695,1347,cart,200,OK,Idlers 2-4,text,true,,1844,115,217,317,http://localhost/cart,1347,0,0
+1655758123275,770,Main menu,200,OK,Idlers 2-163,text,true,,1902,130,217,317,http://localhost/userPurchaseHistory,770,0,0
+1655758123253,792,Main menu,200,OK,Idlers 2-184,text,true,,1901,130,217,317,http://localhost/userPurchaseHistory,792,0,0
+1655758123467,578,profile,200,OK,Idlers 2-58,text,true,,3672,118,215,315,http://localhost/profile,578,0,0
+1655758123237,809,cart,200,OK,Idlers 2-173,text,true,,1842,115,215,315,http://localhost/cart,809,0,0
+1655758124046,3,profile,200,OK,Idlers 2-173,text,true,,3673,118,215,315,http://localhost/profile,3,0,0
+1655758123460,590,profile,200,OK,Idlers 2-49,text,true,,3673,118,215,315,http://localhost/profile,590,0,0
+1655758123205,847,Main menu,200,OK,Idlers 2-142,text,true,,1903,130,215,315,http://localhost/userPurchaseHistory,847,0,0
+1655758123205,847,Main menu,200,OK,Idlers 2-89,text,true,,1901,130,215,315,http://localhost/userPurchaseHistory,847,0,0
+1655758123146,908,Main menu,200,OK,Idlers 2-134,text,true,,1902,130,213,313,http://localhost/userPurchaseHistory,908,0,0
+1655758124050,4,Main menu,200,OK,Idlers 2-173,text,true,,1903,130,213,313,http://localhost/userPurchaseHistory,4,0,0
+1655758123223,832,cart,200,OK,Idlers 2-166,text,true,,1843,115,211,311,http://localhost/cart,832,0,0
+1655758123260,796,cart,200,OK,Idlers 2-169,text,true,,1843,115,211,311,http://localhost/cart,796,0,0
+1655758124036,20,cart,200,OK,Idlers 2-186,text,true,,1843,115,211,311,http://localhost/cart,20,0,0
+1655758122947,1110,Main menu,200,OK,Idlers 2-182,text,true,,803,111,211,311,http://localhost/,1110,0,0
+1655758122949,1109,Main menu,200,OK,Idlers 2-179,text,true,,801,111,211,311,http://localhost/,1109,0,0
+1655758122947,1112,Main menu,200,OK,Idlers 2-171,text,true,,803,111,211,311,http://localhost/,1112,0,1
+1655758124056,3,profile,200,OK,Idlers 2-169,text,true,,3672,118,211,311,http://localhost/profile,3,0,0
+1655758124056,5,profile,200,OK,Idlers 2-186,text,true,,3673,118,211,311,http://localhost/profile,5,0,0
+1655758124056,5,profile,200,OK,Idlers 2-166,text,true,,3674,118,211,311,http://localhost/profile,5,0,0
+1655758123194,880,cart,200,OK,Idlers 2-264,text,true,,1842,115,211,311,http://localhost/cart,880,0,0
+1655758122833,1241,cart,200,OK,Idlers 2-1,text,true,,1843,115,211,311,http://localhost/cart,1241,0,0
+1655758122860,1216,cart,200,OK,Idlers 2-145,text,true,,1844,115,211,311,http://localhost/cart,1216,0,0
+1655758123477,600,profile,200,OK,Idlers 2-118,text,true,,3673,118,211,311,http://localhost/profile,600,0,0
+1655758122950,1128,Main menu,200,OK,Idlers 2-170,text,true,,802,111,211,311,http://localhost/,1128,0,2
+1655758124074,4,profile,200,OK,Idlers 2-1,text,true,,3672,118,211,311,http://localhost/profile,4,0,0
+1655758122946,1133,Main menu,200,OK,Idlers 2-183,text,true,,801,111,211,311,http://localhost/,1133,0,1
+1655758123186,894,Main menu,200,OK,Idlers 2-62,text,true,,1902,130,211,311,http://localhost/userPurchaseHistory,894,0,0
+1655758124076,4,profile,200,OK,Idlers 2-145,text,true,,3672,118,211,311,http://localhost/profile,4,0,0
+1655758122949,1131,Main menu,200,OK,Idlers 2-226,text,true,,803,111,210,310,http://localhost/,1131,0,0
+1655758122947,1136,Main menu,200,OK,Idlers 2-223,text,true,,800,111,210,310,http://localhost/,1136,0,1
+1655758122867,1217,cart,200,OK,Idlers 2-133,text,true,,1842,115,210,310,http://localhost/cart,1217,0,0
+1655758122951,1134,Main menu,200,OK,Idlers 2-230,text,true,,803,111,210,310,http://localhost/,1134,0,0
+1655758123183,904,Main menu,200,OK,Idlers 2-138,text,true,,1902,130,210,310,http://localhost/userPurchaseHistory,904,0,0
+1655758123194,894,cart,200,OK,Idlers 2-255,text,true,,1844,115,209,309,http://localhost/cart,894,0,0
+1655758124061,32,Main menu,200,OK,Idlers 2-166,text,true,,1903,130,209,309,http://localhost/userPurchaseHistory,32,0,0
+1655758124089,4,profile,200,OK,Idlers 2-255,text,true,,3673,118,209,309,http://localhost/profile,4,0,0
+1655758123196,900,cart,200,OK,Idlers 2-256,text,true,,1843,115,208,308,http://localhost/cart,900,0,0
+1655758124060,38,Main menu,200,OK,Idlers 2-169,text,true,,1901,130,208,308,http://localhost/userPurchaseHistory,38,0,0
+1655758124096,4,profile,200,OK,Idlers 2-256,text,true,,3673,118,207,307,http://localhost/profile,4,0,0
+1655758122326,1774,Login,200,OK,Workers 1-31,text,true,,3193,816,100,307,http://localhost/login,1774,0,2
+1655758124059,48,cart,200,OK,Idlers 2-171,text,true,,1843,115,207,307,http://localhost/cart,48,0,0
+1655758124057,51,cart,200,OK,Idlers 2-182,text,true,,1844,115,207,307,http://localhost/cart,51,0,0
+1655758124046,64,Main menu,200,OK,Idlers 2-58,text,true,,1902,130,207,307,http://localhost/userPurchaseHistory,64,0,0
+1655758124107,3,profile,200,OK,Idlers 2-171,text,true,,3673,118,207,307,http://localhost/profile,3,0,0
+1655758123468,643,Main menu,200,OK,Idlers 2-74,text,true,,1902,130,206,306,http://localhost/userPurchaseHistory,643,0,0
+1655758123248,863,Main menu,200,OK,Idlers 2-77,text,true,,1902,130,206,306,http://localhost/userPurchaseHistory,863,0,0
+1655758124108,4,profile,200,OK,Idlers 2-182,text,true,,3673,118,204,304,http://localhost/profile,4,0,0
+1655758122953,1160,Main menu,200,OK,Idlers 2-204,text,true,,801,111,204,304,http://localhost/,1160,0,0
+1655758123258,859,cart,200,OK,Idlers 2-189,text,true,,1843,115,204,304,http://localhost/cart,859,0,0
+1655758123290,827,Main menu,200,OK,Idlers 2-47,text,true,,1901,130,204,304,http://localhost/userPurchaseHistory,827,0,0
+1655758123301,817,Main menu,200,OK,Idlers 2-84,text,true,,1902,130,203,303,http://localhost/userPurchaseHistory,817,0,0
+1655758124034,85,Main menu,200,OK,Idlers 2-295,text,true,,1902,130,202,302,http://localhost/userPurchaseHistory,85,0,0
+1655758124117,3,profile,200,OK,Idlers 2-189,text,true,,3672,118,201,301,http://localhost/profile,3,0,0
+1655758122954,1167,Main menu,200,OK,Idlers 2-205,text,true,,802,111,201,301,http://localhost/,1167,0,1
+1655758122953,1174,Main menu,200,OK,Idlers 2-167,text,true,,802,111,201,301,http://localhost/,1174,0,0
+1655758124031,97,Main menu,200,OK,Idlers 2-225,text,true,,1903,130,201,301,http://localhost/userPurchaseHistory,97,0,0
+1655758124120,12,Main menu,200,OK,Idlers 2-189,text,true,,1903,130,200,300,http://localhost/userPurchaseHistory,12,0,0
+1655758124031,102,cart,200,OK,Idlers 2-299,text,true,,1843,115,199,299,http://localhost/cart,102,0,0
+1655758123480,658,profile,200,OK,Idlers 2-46,text,true,,3673,118,199,299,http://localhost/profile,658,0,0
+1655758122956,1185,Main menu,200,OK,Idlers 2-234,text,true,,802,111,199,299,http://localhost/,1185,0,1
+1655758123483,661,profile,200,OK,Idlers 2-161,text,true,,3673,118,199,299,http://localhost/profile,661,0,0
+1655758124138,6,Main menu,200,OK,Idlers 2-46,text,true,,1903,130,199,299,http://localhost/userPurchaseHistory,6,0,0
+1655758124142,4,cart,200,OK,Idlers 2-234,text,true,,1843,115,198,298,http://localhost/cart,4,0,0
+1655758122965,1184,Main menu,200,OK,Idlers 2-241,text,true,,802,111,198,298,http://localhost/,1184,0,1
+1655758124146,5,profile,200,OK,Idlers 2-234,text,true,,3672,118,198,298,http://localhost/profile,5,0,0
+1655758124133,18,profile,200,OK,Idlers 2-299,text,true,,3674,118,198,298,http://localhost/profile,18,0,0
+1655758124127,25,cart,200,OK,Idlers 2-167,text,true,,1843,115,198,298,http://localhost/cart,25,0,0
+1655758122955,1197,Main menu,200,OK,Idlers 2-172,text,true,,802,111,198,298,http://localhost/,1197,0,2
+1655758124144,9,Main menu,200,OK,Idlers 2-161,text,true,,1902,130,198,298,http://localhost/userPurchaseHistory,9,0,0
+1655758124021,133,Main menu,200,OK,Idlers 2-247,text,true,,1901,130,197,297,http://localhost/userPurchaseHistory,133,0,0
+1655758124151,4,Main menu,200,OK,Idlers 2-299,text,true,,1902,130,196,296,http://localhost/userPurchaseHistory,4,0,0
+1655758124152,5,profile,200,OK,Idlers 2-167,text,true,,3672,118,195,295,http://localhost/profile,5,0,0
+1655758124149,9,cart,200,OK,Idlers 2-241,text,true,,1843,115,195,295,http://localhost/cart,9,0,0
+1655758124151,10,Main menu,200,OK,Idlers 2-234,text,true,,1902,130,195,295,http://localhost/userPurchaseHistory,10,0,0
+1655758124158,5,profile,200,OK,Idlers 2-241,text,true,,3672,118,194,294,http://localhost/profile,5,0,0
+1655758123998,171,cart,200,OK,Idlers 2-187,text,true,,1842,115,194,294,http://localhost/cart,171,0,0
+1655758124169,4,profile,200,OK,Idlers 2-187,text,true,,3673,118,194,294,http://localhost/profile,4,0,0
+1655758123489,684,profile,200,OK,Idlers 2-160,text,true,,3673,118,194,294,http://localhost/profile,684,0,0
+1655758124004,171,Main menu,200,OK,Idlers 2-32,text,true,,1903,130,194,294,http://localhost/userPurchaseHistory,171,0,0
+1655758124173,5,Main menu,200,OK,Idlers 2-187,text,true,,1903,130,193,293,http://localhost/userPurchaseHistory,5,0,0
+1655758123997,187,Main menu,200,OK,Idlers 2-51,text,true,,1902,130,192,292,http://localhost/userPurchaseHistory,187,0,0
+1655758122874,1311,cart,200,OK,Idlers 2-70,text,true,,1844,115,191,291,http://localhost/cart,1311,0,0
+1655758124185,4,profile,200,OK,Idlers 2-70,text,true,,3673,118,191,291,http://localhost/profile,4,0,0
+1655758124004,187,cart,200,OK,Idlers 2-231,text,true,,1843,115,191,291,http://localhost/cart,187,0,0
+1655758124191,4,profile,200,OK,Idlers 2-231,text,true,,3672,118,191,291,http://localhost/profile,4,0,0
+1655758123369,838,cart,200,OK,Idlers 2-287,text,true,,1843,115,191,291,http://localhost/cart,837,0,0
+1655758123994,213,cart,200,OK,Idlers 2-232,text,true,,1843,115,191,291,http://localhost/cart,213,0,0
+1655758123986,224,Main menu,200,OK,Idlers 2-209,text,true,,1901,130,191,291,http://localhost/userPurchaseHistory,224,0,0
+1655758124207,3,profile,200,OK,Idlers 2-232,text,true,,3671,118,191,291,http://localhost/profile,3,0,0
+1655758124207,8,profile,200,OK,Idlers 2-287,text,true,,3674,118,190,290,http://localhost/profile,8,0,0
+1655758122960,1256,Main menu,200,OK,Idlers 2-201,text,true,,801,111,190,290,http://localhost/,1256,0,1
+1655758122968,1249,Main menu,200,OK,Idlers 2-284,text,true,,802,111,190,290,http://localhost/,1249,0,1
+1655758122963,1255,Main menu,200,OK,Idlers 2-197,text,true,,802,111,190,290,http://localhost/,1255,0,1
+1655758122965,1254,Main menu,200,OK,Idlers 2-238,text,true,,801,111,190,290,http://localhost/,1254,0,4
+1655758122969,1252,Main menu,200,OK,Idlers 2-215,text,true,,803,111,190,290,http://localhost/,1252,0,1
+1655758124211,13,Main menu,200,OK,Idlers 2-232,text,true,,1902,130,190,290,http://localhost/userPurchaseHistory,13,0,0
+1655758122964,1263,Main menu,200,OK,Idlers 2-227,text,true,,802,111,189,289,http://localhost/,1263,0,0
+1655758123993,235,Main menu,200,OK,Idlers 2-6,text,true,,1901,130,189,289,http://localhost/userPurchaseHistory,235,0,0
+1655758122970,1260,Main menu,200,OK,Idlers 2-245,text,true,,803,111,188,288,http://localhost/,1260,0,0
+1655758122966,1265,Main menu,200,OK,Idlers 2-224,text,true,,801,111,188,288,http://localhost/,1265,0,1
+1655758123984,250,Main menu,200,OK,Idlers 2-50,text,true,,1903,130,188,288,http://localhost/userPurchaseHistory,250,0,0
+1655758123491,746,profile,200,OK,Idlers 2-83,text,true,,3673,118,187,287,http://localhost/profile,746,0,0
+1655758124231,6,cart,200,OK,Idlers 2-224,text,true,,1843,115,187,287,http://localhost/cart,6,0,0
+1655758122969,1269,Main menu,200,OK,Idlers 2-242,text,true,,801,111,187,287,http://localhost/,1269,0,1
+1655758124237,3,profile,200,OK,Idlers 2-224,text,true,,3672,118,187,287,http://localhost/profile,3,0,0
+1655758124217,24,cart,200,OK,Idlers 2-284,text,true,,1842,115,187,287,http://localhost/cart,24,0,0
+1655758123977,265,Main menu,200,OK,Idlers 2-102,text,true,,1901,130,187,287,http://localhost/userPurchaseHistory,265,0,0
+1655758123383,861,Main menu,200,OK,Idlers 2-144,text,true,,1902,130,186,286,http://localhost/userPurchaseHistory,861,0,0
+1655758124241,4,profile,200,OK,Idlers 2-284,text,true,,3672,118,185,285,http://localhost/profile,4,0,0
+1655758123970,275,Main menu,200,OK,Idlers 2-120,text,true,,1902,130,185,285,http://localhost/userPurchaseHistory,275,0,0
+1655758122901,1346,cart,200,OK,Idlers 2-22,text,true,,1843,115,184,284,http://localhost/cart,1346,0,0
+1655758123959,289,Main menu,200,OK,Idlers 2-19,text,true,,1902,130,184,284,http://localhost/userPurchaseHistory,289,0,0
+1655758122909,1340,cart,200,OK,Idlers 2-29,text,true,,1844,115,183,283,http://localhost/cart,1340,0,0
+1655758122905,1345,cart,200,OK,Idlers 2-33,text,true,,1843,115,183,283,http://localhost/cart,1345,0,0
+1655758124250,3,profile,200,OK,Idlers 2-33,text,true,,3673,118,183,283,http://localhost/profile,3,0,0
+1655758122971,1282,Main menu,200,OK,Idlers 2-250,text,true,,802,111,183,283,http://localhost/,1282,0,1
+1655758122984,1269,Main menu,200,OK,Idlers 2-266,text,true,,802,111,183,283,http://localhost/,1269,0,0
+1655758123500,754,profile,200,OK,Idlers 2-130,text,true,,3673,118,183,283,http://localhost/profile,754,0,0
+1655758122986,1268,Main menu,200,OK,Idlers 2-273,text,true,,803,111,183,283,http://localhost/,1268,0,1
+1655758122986,1268,Main menu,200,OK,Idlers 2-274,text,true,,802,111,183,283,http://localhost/,1268,0,1
+1655758122983,1271,Main menu,200,OK,Idlers 2-265,text,true,,802,111,183,283,http://localhost/,1271,0,0
+1655758122984,1270,Main menu,200,OK,Idlers 2-269,text,true,,803,111,183,283,http://localhost/,1270,0,1
+1655758122980,1274,Main menu,200,OK,Idlers 2-261,text,true,,803,111,183,283,http://localhost/,1274,0,1
+1655758124247,8,profile,200,OK,Idlers 2-22,text,true,,3672,118,183,283,http://localhost/profile,8,0,0
+1655758124249,6,profile,200,OK,Idlers 2-29,text,true,,3672,118,183,283,http://localhost/profile,6,0,0
+1655758123506,749,profile,200,OK,Idlers 2-24,text,true,,3675,118,183,283,http://localhost/profile,749,0,0
+1655758122971,1285,Main menu,200,OK,Idlers 2-246,text,true,,803,111,183,283,http://localhost/,1285,0,1
+1655758122988,1269,Main menu,200,OK,Idlers 2-277,text,true,,804,111,183,283,http://localhost/,1269,0,0
+1655758123955,304,Main menu,200,OK,Idlers 2-181,text,true,,1901,130,183,283,http://localhost/userPurchaseHistory,304,0,0
+1655758124255,4,Main menu,200,OK,Idlers 2-22,text,true,,1903,130,183,283,http://localhost/userPurchaseHistory,4,0,0
+1655758123955,305,cart,200,OK,Idlers 2-190,text,true,,1844,115,181,281,http://localhost/cart,305,0,0
+1655758123956,306,cart,200,OK,Idlers 2-239,text,true,,1843,115,181,281,http://localhost/cart,306,0,0
+1655758123950,312,cart,200,OK,Idlers 2-244,text,true,,1843,115,181,281,http://localhost/cart,312,0,0
+1655758122985,1278,Main menu,200,OK,Idlers 2-270,text,true,,802,111,181,281,http://localhost/,1278,0,1
+1655758124260,4,profile,200,OK,Idlers 2-190,text,true,,3674,118,181,281,http://localhost/profile,4,0,0
+1655758124262,3,profile,200,OK,Idlers 2-239,text,true,,3673,118,181,281,http://localhost/profile,3,0,0
+1655758123947,318,Main menu,200,OK,Idlers 2-176,text,true,,1901,130,181,281,http://localhost/userPurchaseHistory,318,0,0
+1655758124263,3,profile,200,OK,Idlers 2-244,text,true,,3674,118,181,281,http://localhost/profile,3,0,0
+1655758122982,1284,Main menu,200,OK,Idlers 2-262,text,true,,802,111,180,280,http://localhost/,1284,0,1
+1655758122971,1296,Main menu,200,OK,Idlers 2-249,text,true,,803,111,180,280,http://localhost/,1296,0,1
+1655758123002,1265,Main menu,200,OK,Idlers 2-278,text,true,,803,111,180,280,http://localhost/,1265,0,0
+1655758122918,1349,cart,200,OK,Idlers 2-210,text,true,,1843,115,180,280,http://localhost/cart,1349,0,0
+1655758123040,1228,Main menu,200,OK,Idlers 2-298,text,true,,803,111,180,280,http://localhost/,1228,0,1
+1655758122943,1326,Main menu,200,OK,Idlers 2-157,text,true,,1903,130,180,280,http://localhost/userPurchaseHistory,1326,0,0
+1655758123455,815,Main menu,200,OK,Idlers 2-68,text,true,,1902,130,179,279,http://localhost/userPurchaseHistory,815,0,0
+1655758123037,1233,Main menu,200,OK,Idlers 2-286,text,true,,804,111,179,279,http://localhost/,1233,0,0
+1655758123930,341,Main menu,200,OK,Idlers 2-60,text,true,,1902,130,178,278,http://localhost/userPurchaseHistory,341,0,0
+1655758123047,1226,Main menu,200,OK,Idlers 2-289,text,true,,803,111,177,277,http://localhost/,1226,0,0
+1655758123053,1221,Main menu,200,OK,Idlers 2-297,text,true,,803,111,177,277,http://localhost/,1221,0,0
+1655758123008,1267,Main menu,200,OK,Idlers 2-294,text,true,,803,111,177,277,http://localhost/,1267,0,31
+1655758124271,5,cart,200,OK,Idlers 2-286,text,true,,1844,115,177,277,http://localhost/cart,5,0,0
+1655758123054,1222,Main menu,200,OK,Idlers 2-290,text,true,,803,111,177,277,http://localhost/,1222,0,1
+1655758124273,5,cart,200,OK,Idlers 2-289,text,true,,1845,115,177,277,http://localhost/cart,5,0,0
+1655758123451,830,cart,200,OK,Idlers 2-207,text,true,,1843,115,177,277,http://localhost/cart,830,0,0
+1655758124278,3,profile,200,OK,Idlers 2-289,text,true,,3673,118,177,277,http://localhost/profile,3,0,0
+1655758123930,351,Main menu,200,OK,Idlers 2-88,text,true,,1902,130,177,277,http://localhost/userPurchaseHistory,351,0,0
+1655758123110,1178,Main menu,200,OK,Idlers 2-55,text,true,,1902,130,176,276,http://localhost/userPurchaseHistory,1178,0,0
+1655758123549,739,cart,200,OK,Idlers 2-260,text,true,,1842,115,176,276,http://localhost/cart,739,0,0
+1655758123548,742,cart,200,OK,Idlers 2-267,text,true,,1844,115,175,275,http://localhost/cart,742,0,0
+1655758123035,1255,Main menu,200,OK,Idlers 2-86,text,true,,1902,130,175,275,http://localhost/userPurchaseHistory,1255,0,0
+1655758124281,9,profile,200,OK,Idlers 2-207,text,true,,3674,118,175,275,http://localhost/profile,9,0,0
+1655758123911,379,cart,200,OK,Idlers 2-191,text,true,,1844,115,174,274,http://localhost/cart,379,0,0
+1655758123908,383,Main menu,200,OK,Idlers 2-152,text,true,,1901,130,174,274,http://localhost/userPurchaseHistory,383,0,0
+1655758123530,761,Main menu,200,OK,Idlers 2-154,text,true,,1903,130,173,273,http://localhost/userPurchaseHistory,761,0,0
+1655758124288,4,profile,200,OK,Idlers 2-260,text,true,,3674,118,172,272,http://localhost/profile,4,0,0
+1655758123053,1240,Main menu,200,OK,Idlers 2-293,text,true,,803,111,172,272,http://localhost/,1240,0,0
+1655758123914,379,cart,200,OK,Idlers 2-292,text,true,,1843,115,172,272,http://localhost/cart,379,0,0
+1655758123055,1238,Main menu,200,OK,Idlers 2-281,text,true,,802,111,172,272,http://localhost/,1238,0,1
+1655758123544,749,Main menu,200,OK,Idlers 2-11,text,true,,1902,130,172,272,http://localhost/userPurchaseHistory,749,0,0
+1655758123055,1239,Main menu,200,OK,Idlers 2-282,text,true,,803,111,171,271,http://localhost/,1239,0,1
+1655758124290,5,profile,200,OK,Idlers 2-267,text,true,,3674,118,171,271,http://localhost/profile,5,0,0
+1655758123057,1238,Main menu,200,OK,Idlers 2-285,text,true,,803,111,171,271,http://localhost/,1238,0,0
+1655758124293,4,profile,200,OK,Idlers 2-292,text,true,,3674,118,171,271,http://localhost/profile,4,0,0
+1655758124292,5,Main menu,200,OK,Idlers 2-260,text,true,,1903,130,171,271,http://localhost/userPurchaseHistory,5,0,0
+1655758124291,7,profile,200,OK,Idlers 2-191,text,true,,3674,118,170,270,http://localhost/profile,7,0,0
+1655758123910,390,Main menu,200,OK,Idlers 2-111,text,true,,1903,130,170,270,http://localhost/userPurchaseHistory,390,0,0
+1655758123908,393,Main menu,200,OK,Idlers 2-30,text,true,,1901,130,169,269,http://localhost/userPurchaseHistory,393,0,0
+1655758123891,412,Main menu,200,OK,Idlers 2-125,text,true,,1901,130,168,268,http://localhost/userPurchaseHistory,412,0,0
+1655758123862,444,cart,200,OK,Idlers 2-291,text,true,,1844,115,167,267,http://localhost/cart,444,0,0
+1655758123575,732,cart,200,OK,Idlers 2-203,text,true,,1844,115,167,267,http://localhost/cart,732,0,0
+1655758123860,447,cart,200,OK,Idlers 2-254,text,true,,1843,115,167,267,http://localhost/cart,447,0,0
+1655758123309,999,Main menu,200,OK,Idlers 2-131,text,true,,1901,130,167,267,http://localhost/userPurchaseHistory,999,0,0
+1655758124306,3,profile,200,OK,Idlers 2-291,text,true,,3674,118,166,266,http://localhost/profile,3,0,0
+1655758123383,926,Main menu,200,OK,Idlers 2-129,text,true,,1902,130,166,266,http://localhost/userPurchaseHistory,926,0,0
+1655758124307,3,profile,200,OK,Idlers 2-254,text,true,,3674,118,165,265,http://localhost/profile,3,0,0
+1655758124307,5,profile,200,OK,Idlers 2-203,text,true,,3674,118,165,265,http://localhost/profile,5,0,0
+1655758123622,692,Main menu,200,OK,Idlers 2-95,text,true,,1902,130,165,265,http://localhost/userPurchaseHistory,692,0,0
+1655758123763,551,cart,200,OK,Idlers 2-252,text,true,,1843,115,164,264,http://localhost/cart,551,0,0
+1655758124314,4,profile,200,OK,Idlers 2-252,text,true,,3672,118,164,264,http://localhost/profile,4,0,0
+1655758123742,578,Main menu,200,OK,Idlers 2-192,text,true,,1902,130,164,264,http://localhost/userPurchaseHistory,578,0,0
+1655758123771,550,Main menu,200,OK,Idlers 2-12,text,true,,1902,130,163,263,http://localhost/userPurchaseHistory,550,0,0
+1655758124318,4,Main menu,200,OK,Idlers 2-252,text,true,,1903,130,162,262,http://localhost/userPurchaseHistory,4,0,0
+1655758123768,556,Main menu,200,OK,Idlers 2-193,text,true,,1902,130,161,261,http://localhost/userPurchaseHistory,556,0,0
+1655758123734,591,Main menu,200,OK,Idlers 2-147,text,true,,1903,130,160,260,http://localhost/userPurchaseHistory,591,0,0
+1655758123667,660,cart,200,OK,Idlers 2-199,text,true,,1844,115,159,259,http://localhost/cart,660,0,0
+1655758123344,983,cart,200,OK,Idlers 2-251,text,true,,1843,115,159,259,http://localhost/cart,983,0,0
+1655758123717,611,Main menu,200,OK,Idlers 2-27,text,true,,1902,130,159,259,http://localhost/userPurchaseHistory,611,0,0
+1655758123713,616,Main menu,200,OK,Idlers 2-137,text,true,,1901,130,158,258,http://localhost/userPurchaseHistory,616,0,0
+1655758124327,3,profile,200,OK,Idlers 2-251,text,true,,3674,118,157,257,http://localhost/profile,3,0,0
+1655758124327,3,profile,200,OK,Idlers 2-199,text,true,,3675,118,157,257,http://localhost/profile,3,0,0
+1655758123705,626,Main menu,200,OK,Idlers 2-42,text,true,,1902,130,157,257,http://localhost/userPurchaseHistory,626,0,0
+1655758123697,635,Main menu,200,OK,Idlers 2-153,text,true,,1901,130,156,256,http://localhost/userPurchaseHistory,635,0,0
+1655758123578,755,profile,200,OK,Idlers 2-73,text,true,,3674,118,155,255,http://localhost/profile,754,0,0
+1655758123674,660,Main menu,200,OK,Idlers 2-44,text,true,,1902,130,155,255,http://localhost/userPurchaseHistory,660,0,0
+1655758123577,758,cart,200,OK,Idlers 2-272,text,true,,1843,115,154,254,http://localhost/cart,758,0,0
+1655758124330,5,Main menu,200,OK,Idlers 2-251,text,true,,1903,130,154,254,http://localhost/userPurchaseHistory,5,0,0
+1655758123722,616,Main menu,200,OK,Idlers 2-3,text,true,,1902,130,153,253,http://localhost/userPurchaseHistory,616,0,0
+1655758124336,3,profile,200,OK,Idlers 2-272,text,true,,3674,118,153,253,http://localhost/profile,3,0,0
+1655758123729,611,cart,200,OK,Idlers 2-288,text,true,,1843,115,152,252,http://localhost/cart,611,0,0
+1655758123721,620,Main menu,200,OK,Idlers 2-162,text,true,,1901,130,152,252,http://localhost/userPurchaseHistory,620,0,0
+1655758123576,767,cart,200,OK,Idlers 2-271,text,true,,1844,115,151,251,http://localhost/cart,767,0,0
+1655758123582,761,profile,200,OK,Idlers 2-122,text,true,,3673,118,151,251,http://localhost/profile,761,0,0
+1655758124340,5,profile,200,OK,Idlers 2-288,text,true,,3675,118,151,251,http://localhost/profile,5,0,0
+1655758123757,590,cart,200,OK,Idlers 2-257,text,true,,1842,115,151,251,http://localhost/cart,590,0,0
+1655758123585,762,cart,200,OK,Idlers 2-276,text,true,,1844,115,151,251,http://localhost/cart,762,0,0
+1655758123574,773,Main menu,200,OK,Idlers 2-110,text,true,,1904,130,151,251,http://localhost/userPurchaseHistory,773,0,0
+1655758124313,36,Main menu,200,OK,Idlers 2-203,text,true,,1903,130,150,250,http://localhost/userPurchaseHistory,35,0,0
+1655758124347,3,profile,200,OK,Idlers 2-257,text,true,,3673,118,149,249,http://localhost/profile,3,0,0
+1655758124343,7,profile,200,OK,Idlers 2-271,text,true,,3674,118,149,249,http://localhost/profile,7,0,0
+1655758124347,4,profile,200,OK,Idlers 2-276,text,true,,3675,118,149,249,http://localhost/profile,4,0,0
+1655758123573,781,cart,200,OK,Idlers 2-259,text,true,,1844,115,149,249,http://localhost/cart,781,0,0
+1655758123591,763,profile,200,OK,Idlers 2-53,text,true,,3675,118,149,249,http://localhost/profile,763,0,0
+1655758124309,46,Main menu,200,OK,Idlers 2-291,text,true,,1904,130,149,249,http://localhost/userPurchaseHistory,46,0,0
+1655758124351,5,Main menu,200,OK,Idlers 2-271,text,true,,1902,130,148,248,http://localhost/userPurchaseHistory,5,0,0
+1655758124354,3,profile,200,OK,Idlers 2-259,text,true,,3674,118,147,247,http://localhost/profile,3,0,0
+1655758123823,535,Main menu,200,OK,Idlers 2-66,text,true,,1902,130,147,247,http://localhost/userPurchaseHistory,535,0,0
+1655758123817,550,cart,200,OK,Idlers 2-195,text,true,,1843,115,146,246,http://localhost/cart,550,0,0
+1655758123616,752,profile,200,OK,Idlers 2-127,text,true,,3674,118,146,246,http://localhost/profile,752,0,0
+1655758123592,780,Main menu,200,OK,Idlers 2-87,text,true,,1902,130,146,246,http://localhost/userPurchaseHistory,780,0,0
+1655758123705,676,Main menu,200,OK,Idlers 2-174,text,true,,1903,130,145,245,http://localhost/userPurchaseHistory,676,0,0
+1655758123875,511,Main menu,200,OK,Idlers 2-20,text,true,,1903,130,144,244,http://localhost/userPurchaseHistory,510,0,0
+1655758123858,528,Main menu,200,OK,Idlers 2-185,text,true,,1901,130,144,244,http://localhost/userPurchaseHistory,527,0,0
+1655758124290,96,Main menu,200,OK,Idlers 2-207,text,true,,1903,130,144,244,http://localhost/userPurchaseHistory,96,0,0
+1655758123636,750,Main menu,200,OK,Idlers 2-213,text,true,,1902,130,143,243,http://localhost/userPurchaseHistory,750,0,0
+1655758123863,523,Main menu,200,OK,Idlers 2-57,text,true,,1902,130,140,240,http://localhost/userPurchaseHistory,523,0,0
+1655758123631,757,profile,200,OK,Idlers 2-71,text,true,,3673,118,139,239,http://localhost/profile,757,0,0
+1655758124368,20,profile,200,OK,Idlers 2-195,text,true,,3674,118,139,239,http://localhost/profile,20,0,0
+1655758123631,758,profile,200,OK,Idlers 2-115,text,true,,3674,118,139,239,http://localhost/profile,758,0,0
+1655758123584,806,profile,200,OK,Idlers 2-17,text,true,,3675,118,139,239,http://localhost/profile,806,0,0
+1655758124295,95,cart,200,OK,Idlers 2-285,text,true,,1845,115,139,239,http://localhost/cart,95,0,0
+1655758123637,753,profile,200,OK,Idlers 2-13,text,true,,3674,118,139,239,http://localhost/profile,753,0,0
+1655758123730,661,Main menu,200,OK,Idlers 2-158,text,true,,1902,130,139,239,http://localhost/userPurchaseHistory,661,0,0
+1655758124298,93,Main menu,200,OK,Idlers 2-191,text,true,,1903,130,139,239,http://localhost/userPurchaseHistory,93,0,0
+1655758123653,740,profile,200,OK,Idlers 2-63,text,true,,3674,118,137,237,http://localhost/profile,740,0,0
+1655758124390,3,profile,200,OK,Idlers 2-285,text,true,,3674,118,137,237,http://localhost/profile,3,0,0
+1655758123921,474,Main menu,200,OK,Idlers 2-206,text,true,,1903,130,137,237,http://localhost/userPurchaseHistory,474,0,0
+1655758123659,737,profile,200,OK,Idlers 2-155,text,true,,3673,118,136,236,http://localhost/profile,737,0,0
+1655758123638,758,profile,200,OK,Idlers 2-72,text,true,,3674,118,136,236,http://localhost/profile,758,0,0
+1655758124266,134,cart,200,OK,Idlers 2-262,text,true,,1843,115,136,236,http://localhost/cart,134,0,0
+1655758123937,463,Main menu,200,OK,Idlers 2-233,text,true,,1903,130,136,236,http://localhost/userPurchaseHistory,463,0,0
+1655758124397,3,Main menu,200,OK,Idlers 2-72,text,true,,1904,130,136,236,http://localhost/userPurchaseHistory,3,0,0
+1655758123936,465,Main menu,200,OK,Idlers 2-14,text,true,,1902,130,134,234,http://localhost/userPurchaseHistory,465,0,0
+1655758124264,137,Main menu,200,OK,Idlers 2-190,text,true,,1902,130,134,234,http://localhost/userPurchaseHistory,137,0,0
+1655758124400,4,profile,200,OK,Idlers 2-262,text,true,,3673,118,132,232,http://localhost/profile,4,0,0
+1655758124265,144,Main menu,200,OK,Idlers 2-239,text,true,,1903,130,132,232,http://localhost/userPurchaseHistory,144,0,0
+1655758124266,144,Main menu,200,OK,Idlers 2-244,text,true,,1903,130,131,231,http://localhost/userPurchaseHistory,144,0,0
+1655758123456,954,cart,200,OK,Idlers 2-211,text,true,,1843,115,131,231,http://localhost/cart,954,0,0
+1655758123680,730,profile,200,OK,Idlers 2-119,text,true,,3675,118,130,230,http://localhost/profile,730,0,0
+1655758123949,461,cart,200,OK,Idlers 2-243,text,true,,1843,115,130,230,http://localhost/cart,461,0,0
+1655758123947,464,Main menu,200,OK,Idlers 2-93,text,true,,1902,130,130,230,http://localhost/userPurchaseHistory,464,0,0
+1655758123953,458,Main menu,200,OK,Idlers 2-35,text,true,,1902,130,129,229,http://localhost/userPurchaseHistory,458,0,0
+1655758124255,157,Main menu,200,OK,Idlers 2-24,text,true,,1902,130,128,228,http://localhost/userPurchaseHistory,157,0,0
+1655758124410,3,profile,200,OK,Idlers 2-243,text,true,,3673,118,127,227,http://localhost/profile,3,0,0
+1655758124410,3,profile,200,OK,Idlers 2-211,text,true,,3675,118,127,227,http://localhost/profile,3,0,0
+1655758123948,466,Main menu,200,OK,Idlers 2-208,text,true,,1902,130,127,227,http://localhost/userPurchaseHistory,466,0,0
+1655758123702,714,profile,200,OK,Idlers 2-7,text,true,,3674,118,126,226,http://localhost/profile,714,0,0
+1655758124255,162,Main menu,200,OK,Idlers 2-29,text,true,,1903,130,126,226,http://localhost/userPurchaseHistory,162,0,0
+1655758124253,166,cart,200,OK,Idlers 2-250,text,true,,1844,115,125,225,http://localhost/cart,166,0,0
+1655758123953,469,profile,200,OK,Idlers 2-253,text,true,,3673,118,125,225,http://localhost/profile,469,0,0
+1655758124419,3,profile,200,OK,Idlers 2-250,text,true,,3675,118,125,225,http://localhost/profile,3,0,0
+1655758124416,6,Main menu,200,OK,Idlers 2-7,text,true,,1904,130,125,225,http://localhost/userPurchaseHistory,6,0,0
+1655758124413,11,Main menu,200,OK,Idlers 2-211,text,true,,1903,130,124,224,http://localhost/userPurchaseHistory,11,0,0
+1655758123956,469,Main menu,200,OK,Idlers 2-175,text,true,,1901,130,123,223,http://localhost/userPurchaseHistory,469,0,0
+1655758123954,471,cart,200,OK,Idlers 2-240,text,true,,1843,115,122,222,http://localhost/cart,471,0,0
+1655758124009,416,profile,200,OK,Idlers 2-128,text,true,,3674,118,122,222,http://localhost/profile,416,0,0
+1655758124011,416,profile,200,OK,Idlers 2-149,text,true,,3674,118,122,222,http://localhost/profile,416,0,0
+1655758124425,3,profile,200,OK,Idlers 2-240,text,true,,3674,118,122,222,http://localhost/profile,3,0,0
+1655758124245,183,Main menu,200,OK,Idlers 2-284,text,true,,1902,130,122,222,http://localhost/userPurchaseHistory,183,0,0
+1655758123963,465,Main menu,200,OK,Idlers 2-139,text,true,,1903,130,122,222,http://localhost/userPurchaseHistory,465,0,0
+1655758124020,409,cart,200,OK,Idlers 2-217,text,true,,1843,115,121,221,http://localhost/cart,409,0,0
+1655758124023,410,profile,200,OK,Idlers 2-178,text,true,,3673,118,120,220,http://localhost/profile,410,0,0
+1655758124240,194,Main menu,200,OK,Idlers 2-224,text,true,,1902,130,120,220,http://localhost/userPurchaseHistory,194,0,0
+1655758124227,208,cart,200,OK,Idlers 2-227,text,true,,1842,115,119,219,http://localhost/cart,208,0,0
+1655758124218,218,cart,200,OK,Idlers 2-197,text,true,,1842,115,119,219,http://localhost/cart,218,0,0
+1655758124433,4,Main menu,200,OK,Idlers 2-178,text,true,,1902,130,119,219,http://localhost/userPurchaseHistory,4,0,0
+1655758124429,8,profile,200,OK,Idlers 2-217,text,true,,3674,118,118,218,http://localhost/profile,8,0,0
+1655758124026,412,profile,200,OK,Idlers 2-248,text,true,,3673,118,118,218,http://localhost/profile,412,0,0
+1655758123948,490,Main menu,200,OK,Idlers 2-67,text,true,,1903,130,118,218,http://localhost/userPurchaseHistory,490,0,0
+1655758124436,2,profile,200,OK,Idlers 2-227,text,true,,3675,118,117,217,http://localhost/profile,2,0,0
+1655758124436,4,profile,200,OK,Idlers 2-197,text,true,,3674,118,117,217,http://localhost/profile,4,0,0
+1655758124035,407,profile,200,OK,Idlers 2-300,text,true,,3674,118,117,217,http://localhost/profile,407,0,0
+1655758124230,214,cart,200,OK,Idlers 2-245,text,true,,1842,115,117,217,http://localhost/cart,214,0,0
+1655758123986,459,Main menu,200,OK,Idlers 2-8,text,true,,1900,130,117,217,http://localhost/userPurchaseHistory,459,0,0
+1655758124221,225,cart,200,OK,Idlers 2-215,text,true,,1843,115,116,216,http://localhost/cart,225,0,0
+1655758124219,228,cart,200,OK,Idlers 2-238,text,true,,1842,115,116,216,http://localhost/cart,228,0,0
+1655758124042,405,profile,200,OK,Idlers 2-4,text,true,,3674,118,116,216,http://localhost/profile,405,0,0
+1655758124445,3,profile,200,OK,Idlers 2-245,text,true,,3673,118,116,216,http://localhost/profile,3,0,0
+1655758124446,4,profile,200,OK,Idlers 2-215,text,true,,3675,118,116,216,http://localhost/profile,4,0,0
+1655758124216,234,cart,200,OK,Idlers 2-201,text,true,,1842,115,116,216,http://localhost/cart,234,0,0
+1655758124447,3,profile,200,OK,Idlers 2-238,text,true,,3674,118,116,216,http://localhost/profile,3,0,0
+1655758124074,378,profile,200,OK,Idlers 2-264,text,true,,3672,118,116,216,http://localhost/profile,378,0,0
+1655758123987,466,cart,200,OK,Idlers 2-236,text,true,,1842,115,116,216,http://localhost/cart,466,0,0
+1655758124450,3,profile,200,OK,Idlers 2-201,text,true,,3675,118,116,216,http://localhost/profile,3,0,0
+1655758124215,240,Main menu,200,OK,Idlers 2-287,text,true,,1901,130,116,216,http://localhost/userPurchaseHistory,240,0,0
+1655758124016,440,Main menu,200,OK,Idlers 2-106,text,true,,1902,130,115,215,http://localhost/userPurchaseHistory,440,0,0
+1655758124019,438,cart,200,OK,Idlers 2-228,text,true,,1844,115,114,214,http://localhost/cart,438,0,0
+1655758124002,455,cart,200,OK,Idlers 2-235,text,true,,1843,115,114,214,http://localhost/cart,455,0,0
+1655758124453,7,profile,200,OK,Idlers 2-236,text,true,,3674,118,114,214,http://localhost/profile,7,0,0
+1655758124458,2,profile,200,OK,Idlers 2-235,text,true,,3673,118,114,214,http://localhost/profile,2,0,0
+1655758124163,299,Main menu,200,OK,Idlers 2-241,text,true,,1901,130,114,214,http://localhost/userPurchaseHistory,299,0,0
+1655758124173,290,Main menu,200,OK,Idlers 2-160,text,true,,1902,130,113,213,http://localhost/userPurchaseHistory,290,0,0
+1655758124195,270,Main menu,200,OK,Idlers 2-231,text,true,,1901,130,112,212,http://localhost/userPurchaseHistory,270,0,0
+1655758124158,307,Main menu,200,OK,Idlers 2-167,text,true,,1902,130,112,212,http://localhost/userPurchaseHistory,307,0,0
+1655758124457,9,profile,200,OK,Idlers 2-228,text,true,,3674,118,110,210,http://localhost/profile,9,0,0
+1655758124152,317,cart,200,OK,Idlers 2-172,text,true,,1844,115,110,210,http://localhost/cart,317,0,0
+1655758124050,421,Main menu,200,OK,Idlers 2-49,text,true,,1903,130,110,210,http://localhost/userPurchaseHistory,421,0,0
+1655758124058,413,cart,200,OK,Idlers 2-179,text,true,,1844,115,110,210,http://localhost/cart,413,0,0
+1655758124469,3,profile,200,OK,Idlers 2-172,text,true,,3674,118,109,209,http://localhost/profile,3,0,0
+1655758124100,373,Main menu,200,OK,Idlers 2-256,text,true,,1903,130,109,209,http://localhost/userPurchaseHistory,373,0,0
+1655758124471,3,profile,200,OK,Idlers 2-179,text,true,,3675,118,108,208,http://localhost/profile,3,0,0
+1655758124093,383,Main menu,200,OK,Idlers 2-255,text,true,,1902,130,108,208,http://localhost/userPurchaseHistory,383,0,0
+1655758124061,415,Main menu,200,OK,Idlers 2-186,text,true,,1901,130,108,208,http://localhost/userPurchaseHistory,415,0,0
+1655758124473,3,Main menu,200,OK,Idlers 2-172,text,true,,1904,130,106,206,http://localhost/userPurchaseHistory,3,0,0
+1655758124078,400,cart,200,OK,Idlers 2-170,text,true,,1844,115,105,205,http://localhost/cart,400,0,0
+1655758124084,395,profile,200,OK,Idlers 2-133,text,true,,3674,118,105,205,http://localhost/profile,395,0,0
+1655758124237,247,Main menu,200,OK,Idlers 2-83,text,true,,1903,130,105,205,http://localhost/userPurchaseHistory,247,0,0
+1655758124083,403,cart,200,OK,Idlers 2-223,text,true,,1843,115,104,204,http://localhost/cart,403,0,0
+1655758123185,1304,Main menu,200,OK,Idlers 2-117,text,true,,1901,130,104,204,http://localhost/userPurchaseHistory,1304,0,0
+1655758124486,4,profile,200,OK,Idlers 2-223,text,true,,3674,118,103,203,http://localhost/profile,4,0,0
+1655758124077,415,Main menu,200,OK,Idlers 2-118,text,true,,1902,130,103,203,http://localhost/userPurchaseHistory,415,0,0
+1655758124478,15,profile,200,OK,Idlers 2-170,text,true,,3674,118,102,202,http://localhost/profile,15,0,0
+1655758124254,240,Main menu,200,OK,Idlers 2-130,text,true,,1903,130,102,202,http://localhost/userPurchaseHistory,240,0,0
+1655758124238,257,cart,200,OK,Idlers 2-242,text,true,,1845,115,101,201,http://localhost/cart,257,0,0
+1655758124474,23,Main menu,200,OK,Idlers 2-179,text,true,,1903,130,101,201,http://localhost/userPurchaseHistory,23,0,0
+1655758124494,4,Main menu,200,OK,Idlers 2-170,text,true,,1902,130,100,200,http://localhost/userPurchaseHistory,4,0,0
+1655758124254,245,cart,200,OK,Idlers 2-274,text,true,,1845,115,99,199,http://localhost/cart,245,0,0
+1655758124495,4,profile,200,OK,Idlers 2-242,text,true,,3673,118,99,199,http://localhost/profile,4,0,0
+1655758124253,248,cart,200,OK,Idlers 2-266,text,true,,1844,115,99,199,http://localhost/cart,248,0,0
+1655758124499,4,profile,200,OK,Idlers 2-274,text,true,,3674,118,99,199,http://localhost/profile,4,0,0
+1655758124254,249,cart,200,OK,Idlers 2-265,text,true,,1845,115,99,199,http://localhost/cart,249,0,0
+1655758124085,419,cart,200,OK,Idlers 2-230,text,true,,1843,115,99,199,http://localhost/cart,419,0,0
+1655758124501,3,profile,200,OK,Idlers 2-266,text,true,,3675,118,99,199,http://localhost/profile,3,0,0
+1655758124503,4,profile,200,OK,Idlers 2-265,text,true,,3675,118,99,199,http://localhost/profile,4,0,0
+1655758124504,3,profile,200,OK,Idlers 2-230,text,true,,3675,118,99,199,http://localhost/profile,3,0,0
+1655758122271,2241,Login,200,OK,Workers 1-23,text,true,,3192,816,100,199,http://localhost/login,2241,0,3
+1655758124112,402,Main menu,200,OK,Idlers 2-182,text,true,,1902,130,99,199,http://localhost/userPurchaseHistory,402,0,0
+1655758124113,403,cart,200,OK,Idlers 2-204,text,true,,1842,115,98,198,http://localhost/cart,403,0,0
+1655758124121,395,cart,200,OK,Idlers 2-205,text,true,,1844,115,98,198,http://localhost/cart,395,0,0
+1655758124517,3,profile,200,OK,Idlers 2-205,text,true,,3673,118,98,198,http://localhost/profile,3,0,0
+1655758124517,3,profile,200,OK,Idlers 2-204,text,true,,3674,118,98,198,http://localhost/profile,3,0,0
+1655758124110,411,Main menu,200,OK,Idlers 2-171,text,true,,1902,130,98,198,http://localhost/userPurchaseHistory,411,0,0
+1655758124254,268,cart,200,OK,Idlers 2-269,text,true,,1843,115,97,197,http://localhost/cart,268,0,0
+1655758124466,58,Main menu,200,OK,Idlers 2-228,text,true,,1903,130,97,197,http://localhost/userPurchaseHistory,58,0,0
+1655758124078,448,Main menu,200,OK,Idlers 2-1,text,true,,1902,130,96,196,http://localhost/userPurchaseHistory,448,0,0
+1655758124080,447,Main menu,200,OK,Idlers 2-145,text,true,,1903,130,95,195,http://localhost/userPurchaseHistory,447,0,0
+1655758124452,76,Main menu,200,OK,Idlers 2-264,text,true,,1903,130,94,194,http://localhost/userPurchaseHistory,76,0,0
+1655758124522,6,profile,200,OK,Idlers 2-269,text,true,,3674,118,93,193,http://localhost/profile,6,0,0
+1655758124079,451,cart,200,OK,Idlers 2-183,text,true,,1844,115,93,193,http://localhost/cart,451,0,0
+1655758124267,265,profile,200,OK,Idlers 2-210,text,true,,3674,118,93,193,http://localhost/profile,265,0,0
+1655758124531,3,profile,200,OK,Idlers 2-183,text,true,,3674,118,93,193,http://localhost/profile,3,0,0
+1655758124450,85,Main menu,200,OK,Idlers 2-238,text,true,,1902,130,93,193,http://localhost/userPurchaseHistory,85,0,0
+1655758124267,270,cart,200,OK,Idlers 2-278,text,true,,1845,115,92,192,http://localhost/cart,270,0,0
+1655758124448,90,Main menu,200,OK,Idlers 2-245,text,true,,1903,130,92,192,http://localhost/userPurchaseHistory,90,0,0
+1655758124450,89,Main menu,200,OK,Idlers 2-215,text,true,,1902,130,91,191,http://localhost/userPurchaseHistory,89,0,0
+1655758124189,351,Main menu,200,OK,Idlers 2-70,text,true,,1903,130,90,190,http://localhost/userPurchaseHistory,351,0,0
+1655758124537,3,profile,200,OK,Idlers 2-278,text,true,,3674,118,89,189,http://localhost/profile,3,0,0
+1655758124540,4,Main menu,200,OK,Idlers 2-278,text,true,,1902,130,89,189,http://localhost/userPurchaseHistory,4,0,0
+1655758124274,271,cart,200,OK,Idlers 2-297,text,true,,1845,115,88,188,http://localhost/cart,271,0,0
+1655758124447,98,Main menu,200,OK,Idlers 2-4,text,true,,1903,130,88,188,http://localhost/userPurchaseHistory,98,0,0
+1655758124442,105,Main menu,200,OK,Idlers 2-300,text,true,,1902,130,87,187,http://localhost/userPurchaseHistory,105,0,0
+1655758124545,4,profile,200,OK,Idlers 2-297,text,true,,3675,118,86,186,http://localhost/profile,4,0,0
+1655758124440,109,Main menu,200,OK,Idlers 2-197,text,true,,1902,130,86,186,http://localhost/userPurchaseHistory,109,0,0
+1655758124276,275,profile,200,OK,Idlers 2-286,text,true,,3673,118,85,185,http://localhost/profile,275,0,0
+1655758124427,127,Main menu,200,OK,Idlers 2-149,text,true,,1903,130,85,185,http://localhost/userPurchaseHistory,127,0,0
+1655758124029,525,cart,200,OK,Idlers 2-296,text,true,,1843,115,85,185,http://localhost/cart,525,0,0
+1655758124021,534,cart,200,OK,Idlers 2-220,text,true,,1845,115,84,184,http://localhost/cart,534,0,0
+1655758123493,1065,cart,200,OK,Idlers 2-237,text,true,,1844,115,84,184,http://localhost/cart,1065,0,0
+1655758124555,3,profile,200,OK,Idlers 2-220,text,true,,3673,118,84,184,http://localhost/profile,3,0,0
+1655758124005,554,cart,200,OK,Idlers 2-229,text,true,,1844,115,84,184,http://localhost/cart,554,0,0
+1655758124422,138,Main menu,200,OK,Idlers 2-250,text,true,,1904,130,84,184,http://localhost/userPurchaseHistory,138,0,0
+1655758124558,3,profile,200,OK,Idlers 2-237,text,true,,3673,118,83,183,http://localhost/profile,3,0,0
+1655758124558,4,Main menu,200,OK,Idlers 2-220,text,true,,1903,130,83,183,http://localhost/userPurchaseHistory,4,0,0
+1655758124561,4,Main menu,200,OK,Idlers 2-237,text,true,,1902,130,82,182,http://localhost/userPurchaseHistory,4,0,0
+1655758124413,152,Main menu,200,OK,Idlers 2-243,text,true,,1903,130,81,181,http://localhost/userPurchaseHistory,152,0,0
+1655758124555,12,profile,200,OK,Idlers 2-296,text,true,,3674,118,80,180,http://localhost/profile,12,0,0
+1655758124559,8,profile,200,OK,Idlers 2-229,text,true,,3674,118,80,180,http://localhost/profile,8,0,0
+1655758123682,886,cart,200,OK,Idlers 2-198,text,true,,1845,115,80,180,http://localhost/cart,886,0,0
+1655758123680,890,cart,200,OK,Idlers 2-283,text,true,,1844,115,80,180,http://localhost/cart,890,0,0
+1655758124568,3,profile,200,OK,Idlers 2-198,text,true,,3674,118,80,180,http://localhost/profile,3,0,0
+1655758124404,169,Main menu,200,OK,Idlers 2-262,text,true,,1902,130,80,180,http://localhost/userPurchaseHistory,169,0,0
+1655758124570,4,profile,200,OK,Idlers 2-283,text,true,,3674,118,79,179,http://localhost/profile,4,0,0
+1655758124393,182,Main menu,200,OK,Idlers 2-285,text,true,,1902,130,79,179,http://localhost/userPurchaseHistory,182,0,0
+1655758124567,8,Main menu,200,OK,Idlers 2-296,text,true,,1903,130,79,179,http://localhost/userPurchaseHistory,8,0,0
+1655758123665,910,Main menu,200,OK,Idlers 2-2,text,true,,1902,130,78,178,http://localhost/userPurchaseHistory,910,0,0
+1655758124571,6,Main menu,200,OK,Idlers 2-198,text,true,,1902,130,76,176,http://localhost/userPurchaseHistory,6,0,0
+1655758124393,184,Main menu,200,OK,Idlers 2-63,text,true,,1903,130,75,175,http://localhost/userPurchaseHistory,184,0,0
+1655758124281,299,Main menu,200,OK,Idlers 2-289,text,true,,1903,130,74,174,http://localhost/userPurchaseHistory,299,0,0
+1655758124390,190,Main menu,200,OK,Idlers 2-13,text,true,,1903,130,74,174,http://localhost/userPurchaseHistory,190,0,0
+1655758124390,192,Main menu,200,OK,Idlers 2-17,text,true,,1903,130,72,172,http://localhost/userPurchaseHistory,192,0,0
+1655758123655,928,cart,200,OK,Idlers 2-222,text,true,,1843,115,71,171,http://localhost/cart,928,0,0
+1655758124389,195,Main menu,200,OK,Idlers 2-115,text,true,,1904,130,71,171,http://localhost/userPurchaseHistory,195,0,0
+1655758123653,931,Main menu,200,OK,Idlers 2-65,text,true,,1903,130,70,170,http://localhost/userPurchaseHistory,931,0,0
+1655758124293,293,cart,200,OK,Idlers 2-293,text,true,,1843,115,69,169,http://localhost/cart,293,0,0
+1655758124584,2,profile,200,OK,Idlers 2-222,text,true,,3673,118,69,169,http://localhost/profile,2,0,0
+1655758124388,199,Main menu,200,OK,Idlers 2-71,text,true,,1903,130,69,169,http://localhost/userPurchaseHistory,199,0,0
+1655758124293,294,cart,200,OK,Idlers 2-281,text,true,,1843,115,69,169,http://localhost/cart,294,0,0
+1655758124295,293,Main menu,200,OK,Idlers 2-267,text,true,,1903,130,68,168,http://localhost/userPurchaseHistory,293,0,0
+1655758124586,3,profile,200,OK,Idlers 2-293,text,true,,3675,118,67,167,http://localhost/profile,3,0,0
+1655758124588,7,profile,200,OK,Idlers 2-281,text,true,,3673,118,67,167,http://localhost/profile,7,0,0
+1655758124368,227,Main menu,200,OK,Idlers 2-127,text,true,,1903,130,67,167,http://localhost/userPurchaseHistory,227,0,0
+1655758123571,1026,cart,200,OK,Idlers 2-263,text,true,,1844,115,66,166,http://localhost/cart,1026,0,0
+1655758124310,287,Main menu,200,OK,Idlers 2-254,text,true,,1902,130,66,166,http://localhost/userPurchaseHistory,287,0,0
+1655758123590,1010,Main menu,200,OK,Idlers 2-36,text,true,,1902,130,65,165,http://localhost/userPurchaseHistory,1010,0,0
+1655758124597,3,profile,200,OK,Idlers 2-263,text,true,,3673,118,64,164,http://localhost/profile,3,0,0
+1655758124351,250,Main menu,200,OK,Idlers 2-276,text,true,,1904,130,64,164,http://localhost/userPurchaseHistory,250,0,0
+1655758124343,259,Main menu,200,OK,Idlers 2-122,text,true,,1903,130,63,163,http://localhost/userPurchaseHistory,259,0,0
+1655758123588,1015,cart,200,OK,Idlers 2-202,text,true,,1844,115,62,162,http://localhost/cart,1015,0,0
+1655758124603,3,profile,200,OK,Idlers 2-202,text,true,,3673,118,62,162,http://localhost/profile,3,0,0
+1655758123578,1028,cart,200,OK,Idlers 2-275,text,true,,1843,115,62,162,http://localhost/cart,1028,0,0
+1655758123584,1022,cart,200,OK,Idlers 2-258,text,true,,1845,115,62,162,http://localhost/cart,1022,0,0
+1655758124333,275,Main menu,200,OK,Idlers 2-73,text,true,,1904,130,62,162,http://localhost/userPurchaseHistory,275,0,0
+1655758124606,3,profile,200,OK,Idlers 2-258,text,true,,3674,118,61,161,http://localhost/profile,3,0,0
+1655758124330,279,Main menu,200,OK,Idlers 2-199,text,true,,1902,130,61,161,http://localhost/userPurchaseHistory,279,0,0
+1655758124345,267,Main menu,200,OK,Idlers 2-288,text,true,,1904,130,60,160,http://localhost/userPurchaseHistory,267,0,0
+1655758124606,6,profile,200,OK,Idlers 2-275,text,true,,3675,118,59,159,http://localhost/profile,6,0,0
+1655758124595,17,Main menu,200,OK,Idlers 2-281,text,true,,1902,130,59,159,http://localhost/userPurchaseHistory,17,0,0
+1655758124609,4,Main menu,200,OK,Idlers 2-258,text,true,,1902,130,58,158,http://localhost/userPurchaseHistory,4,0,0
+1655758124339,275,Main menu,200,OK,Idlers 2-272,text,true,,1904,130,57,157,http://localhost/userPurchaseHistory,275,0,0
+1655758124351,265,Main menu,200,OK,Idlers 2-257,text,true,,1903,130,56,156,http://localhost/userPurchaseHistory,265,0,0
+1655758123606,1010,Main menu,200,OK,Idlers 2-196,text,true,,1904,130,56,156,http://localhost/userPurchaseHistory,1010,0,0
+1655758124612,4,Main menu,200,OK,Idlers 2-275,text,true,,1903,130,54,154,http://localhost/userPurchaseHistory,4,0,0
+1655758124589,28,Main menu,200,OK,Idlers 2-293,text,true,,1902,130,53,153,http://localhost/userPurchaseHistory,28,0,0
+1655758124388,232,Main menu,200,OK,Idlers 2-195,text,true,,1902,130,52,152,http://localhost/userPurchaseHistory,232,0,0
+1655758124355,268,Main menu,200,OK,Idlers 2-53,text,true,,1904,130,51,151,http://localhost/userPurchaseHistory,268,0,0
+1655758124574,49,Main menu,200,OK,Idlers 2-283,text,true,,1904,130,51,151,http://localhost/userPurchaseHistory,49,0,0
+1655758123656,969,cart,200,OK,Idlers 2-279,text,true,,1844,115,49,149,http://localhost/cart,969,0,0
+1655758124396,229,Main menu,200,OK,Idlers 2-155,text,true,,1904,130,49,149,http://localhost/userPurchaseHistory,229,0,0
+1655758123579,1046,cart,200,OK,Idlers 2-268,text,true,,1844,115,48,148,http://localhost/cart,1046,0,0
+1655758124410,217,Main menu,200,OK,Idlers 2-119,text,true,,1903,130,48,148,http://localhost/userPurchaseHistory,217,0,0
+1655758124567,61,Main menu,200,OK,Idlers 2-229,text,true,,1902,130,47,147,http://localhost/userPurchaseHistory,61,0,0
+1655758123686,942,Main menu,200,OK,Idlers 2-69,text,true,,1903,130,47,147,http://localhost/userPurchaseHistory,942,0,0
+1655758123769,859,Main menu,200,OK,Idlers 2-75,text,true,,1903,130,47,147,http://localhost/userPurchaseHistory,859,0,0
+1655758124422,208,Main menu,200,OK,Idlers 2-253,text,true,,1902,130,44,144,http://localhost/userPurchaseHistory,208,0,0
+1655758124012,620,cart,200,OK,Idlers 2-221,text,true,,1844,115,43,143,http://localhost/cart,620,0,0
+1655758123684,948,cart,200,OK,Idlers 2-219,text,true,,1843,115,43,143,http://localhost/cart,948,0,0
+1655758124551,84,Main menu,200,OK,Idlers 2-286,text,true,,1904,130,43,143,http://localhost/userPurchaseHistory,84,0,0
+1655758124632,3,profile,200,OK,Idlers 2-219,text,true,,3673,118,42,142,http://localhost/profile,3,0,0
+1655758124632,3,profile,200,OK,Idlers 2-221,text,true,,3675,118,42,142,http://localhost/profile,3,0,0
+1655758124625,12,profile,200,OK,Idlers 2-279,text,true,,3675,118,42,142,http://localhost/profile,12,0,0
+1655758124426,211,Main menu,200,OK,Idlers 2-128,text,true,,1903,130,42,142,http://localhost/userPurchaseHistory,211,0,0
+1655758124625,13,profile,200,OK,Idlers 2-268,text,true,,3675,118,41,141,http://localhost/profile,13,0,0
+1655758124549,89,Main menu,200,OK,Idlers 2-297,text,true,,1904,130,41,141,http://localhost/userPurchaseHistory,89,0,0
+1655758124297,342,Main menu,200,OK,Idlers 2-292,text,true,,1904,130,40,140,http://localhost/userPurchaseHistory,342,0,0
+1655758124357,282,Main menu,200,OK,Idlers 2-259,text,true,,1904,130,39,139,http://localhost/userPurchaseHistory,282,0,0
+1655758124428,212,Main menu,200,OK,Idlers 2-240,text,true,,1903,130,38,138,http://localhost/userPurchaseHistory,212,0,0
+1655758124600,41,Main menu,200,OK,Idlers 2-263,text,true,,1902,130,37,137,http://localhost/userPurchaseHistory,41,0,0
+1655758124438,207,Main menu,200,OK,Idlers 2-227,text,true,,1904,130,36,136,http://localhost/userPurchaseHistory,207,0,0
+1655758124438,208,Main menu,200,OK,Idlers 2-248,text,true,,1903,130,35,135,http://localhost/userPurchaseHistory,208,0,0
+1655758124438,208,Main menu,200,OK,Idlers 2-217,text,true,,1902,130,35,135,http://localhost/userPurchaseHistory,208,0,0
+1655758124276,371,cart,200,OK,Idlers 2-294,text,true,,1843,115,33,133,http://localhost/cart,371,0,0
+1655758124534,116,Main menu,200,OK,Idlers 2-183,text,true,,1903,130,33,133,http://localhost/userPurchaseHistory,116,0,0
+1655758124648,2,profile,200,OK,Idlers 2-294,text,true,,3674,118,32,132,http://localhost/profile,2,0,0
+1655758124532,119,Main menu,200,OK,Idlers 2-210,text,true,,1902,130,32,132,http://localhost/userPurchaseHistory,118,0,0
+1655758124276,375,cart,200,OK,Idlers 2-290,text,true,,1844,115,31,131,http://localhost/cart,375,0,0
+1655758124268,384,cart,200,OK,Idlers 2-298,text,true,,1844,115,31,131,http://localhost/cart,384,0,0
+1655758124081,572,cart,200,OK,Idlers 2-226,text,true,,1844,115,31,131,http://localhost/cart,572,0,0
+1655758124460,194,Main menu,200,OK,Idlers 2-236,text,true,,1903,130,31,131,http://localhost/userPurchaseHistory,194,0,0
+1655758124453,201,Main menu,200,OK,Idlers 2-201,text,true,,1904,130,31,131,http://localhost/userPurchaseHistory,201,0,0
+1655758124652,2,profile,200,OK,Idlers 2-298,text,true,,3673,118,31,131,http://localhost/profile,2,0,0
+1655758124652,3,profile,200,OK,Idlers 2-290,text,true,,3674,118,29,129,http://localhost/profile,3,0,0
+1655758124653,4,profile,200,OK,Idlers 2-226,text,true,,3675,118,29,129,http://localhost/profile,4,0,0
+1655758124529,128,Main menu,200,OK,Idlers 2-269,text,true,,1904,130,29,129,http://localhost/userPurchaseHistory,128,0,0
+1655758124461,197,Main menu,200,OK,Idlers 2-235,text,true,,1902,130,28,128,http://localhost/userPurchaseHistory,197,0,0
+1655758124507,155,Main menu,200,OK,Idlers 2-230,text,true,,1904,130,27,127,http://localhost/userPurchaseHistory,155,0,0
+1655758124263,400,cart,200,OK,Idlers 2-270,text,true,,1844,115,26,126,http://localhost/cart,400,0,0
+1655758124507,158,Main menu,200,OK,Idlers 2-265,text,true,,1902,130,26,126,http://localhost/userPurchaseHistory,158,0,0
+1655758124663,3,profile,200,OK,Idlers 2-270,text,true,,3675,118,25,125,http://localhost/profile,3,0,0
+1655758124257,409,cart,200,OK,Idlers 2-277,text,true,,1843,115,25,125,http://localhost/cart,409,0,0
+1655758124504,164,Main menu,200,OK,Idlers 2-266,text,true,,1901,130,25,125,http://localhost/userPurchaseHistory,164,0,0
+1655758124256,413,cart,200,OK,Idlers 2-246,text,true,,1844,115,24,124,http://localhost/cart,413,0,0
+1655758124666,5,profile,200,OK,Idlers 2-277,text,true,,3673,118,24,124,http://localhost/profile,5,0,0
+1655758124669,3,profile,200,OK,Idlers 2-246,text,true,,3674,118,24,124,http://localhost/profile,3,0,0
+1655758124503,170,Main menu,200,OK,Idlers 2-274,text,true,,1902,130,24,124,http://localhost/userPurchaseHistory,170,0,0
+1655758124253,423,Main menu,200,OK,Idlers 2-33,text,true,,1902,130,23,123,http://localhost/userPurchaseHistory,423,0,0
+1655758124499,179,Main menu,200,OK,Idlers 2-242,text,true,,1903,130,22,122,http://localhost/userPurchaseHistory,179,0,0
+1655758124479,200,Main menu,200,OK,Idlers 2-133,text,true,,1903,130,21,121,http://localhost/userPurchaseHistory,200,0,0
+1655758124255,424,cart,200,OK,Idlers 2-261,text,true,,1843,115,21,121,http://localhost/cart,424,0,0
+1655758124490,190,Main menu,200,OK,Idlers 2-223,text,true,,1904,130,20,120,http://localhost/userPurchaseHistory,190,0,0
+1655758122194,2488,Login,200,OK,Workers 1-13,text,true,,3192,801,100,119,http://localhost/login,2488,0,31
+1655758124254,429,cart,200,OK,Idlers 2-273,text,true,,1844,115,19,119,http://localhost/cart,429,0,0
+1655758124672,12,Main menu,200,OK,Idlers 2-246,text,true,,1902,130,19,119,http://localhost/userPurchaseHistory,12,0,0
+1655758124666,19,Main menu,200,OK,Idlers 2-270,text,true,,1904,130,18,118,http://localhost/userPurchaseHistory,19,0,0
+1655758124679,7,profile,200,OK,Idlers 2-261,text,true,,3675,118,17,117,http://localhost/profile,7,0,0
+1655758124657,29,Main menu,200,OK,Idlers 2-226,text,true,,1903,130,17,117,http://localhost/userPurchaseHistory,29,0,0
+1655758124656,32,Main menu,200,OK,Idlers 2-290,text,true,,1903,130,16,116,http://localhost/userPurchaseHistory,32,0,0
+1655758124683,6,profile,200,OK,Idlers 2-273,text,true,,3673,118,15,115,http://localhost/profile,6,0,0
+1655758124686,3,Main menu,200,OK,Idlers 2-261,text,true,,1902,130,15,115,http://localhost/userPurchaseHistory,3,0,0
+1655758124520,170,Main menu,200,OK,Idlers 2-205,text,true,,1903,130,14,114,http://localhost/userPurchaseHistory,170,0,0
+1655758124520,173,Main menu,200,OK,Idlers 2-204,text,true,,1903,130,13,113,http://localhost/userPurchaseHistory,173,0,0
+1655758124655,38,Main menu,200,OK,Idlers 2-298,text,true,,1904,130,13,113,http://localhost/userPurchaseHistory,38,0,0
+1655758124638,58,Main menu,200,OK,Idlers 2-268,text,true,,1902,130,11,111,http://localhost/userPurchaseHistory,58,0,0
+1655758124295,401,cart,200,OK,Idlers 2-282,text,true,,1843,115,11,111,http://localhost/cart,401,0,0
+1655758124636,62,Main menu,200,OK,Idlers 2-219,text,true,,1903,130,10,110,http://localhost/userPurchaseHistory,62,0,0
+1655758124636,63,Main menu,200,OK,Idlers 2-221,text,true,,1903,130,9,109,http://localhost/userPurchaseHistory,63,0,0
+1655758124696,3,profile,200,OK,Idlers 2-282,text,true,,3674,118,9,109,http://localhost/profile,3,0,0
+1655758124587,113,Main menu,200,OK,Idlers 2-222,text,true,,1903,130,8,108,http://localhost/userPurchaseHistory,113,0,0
+1655758124267,433,cart,200,OK,Idlers 2-249,text,true,,1844,115,7,107,http://localhost/cart,433,0,0
+1655758124699,4,Main menu,200,OK,Idlers 2-282,text,true,,1904,130,7,107,http://localhost/userPurchaseHistory,4,0,0
+1655758124700,3,profile,200,OK,Idlers 2-249,text,true,,3675,118,7,107,http://localhost/profile,3,0,0
+1655758124637,67,Main menu,200,OK,Idlers 2-279,text,true,,1904,130,6,106,http://localhost/userPurchaseHistory,67,0,0
+1655758124650,55,Main menu,200,OK,Idlers 2-294,text,true,,1903,130,5,105,http://localhost/userPurchaseHistory,55,0,0
+1655758124689,17,Main menu,200,OK,Idlers 2-273,text,true,,1903,130,4,104,http://localhost/userPurchaseHistory,17,0,0
+1655758124671,38,Main menu,200,OK,Idlers 2-277,text,true,,1904,130,3,103,http://localhost/userPurchaseHistory,38,0,0
+1655758124606,103,Main menu,200,OK,Idlers 2-202,text,true,,1903,130,3,103,http://localhost/userPurchaseHistory,103,0,0
+1655758124703,7,Main menu,200,OK,Idlers 2-249,text,true,,1903,130,1,101,http://localhost/userPurchaseHistory,7,0,0
+1655758122267,2452,Login,200,OK,Workers 1-25,text,true,,3192,806,100,100,http://localhost/login,2452,0,2
+1655758122194,2538,Login,200,OK,Workers 1-2,text,true,,3192,820,100,100,http://localhost/login,2538,0,61
+1655758122289,2455,Login,200,OK,Workers 1-26,text,true,,3194,851,100,100,http://localhost/login,2455,0,2
+1655758122285,2471,Login,200,OK,Workers 1-28,text,true,,3193,816,100,100,http://localhost/login,2471,0,1
+1655758122194,2575,Login,200,OK,Workers 1-12,text,true,,3194,851,100,100,http://localhost/login,2575,0,61
+1655758122366,2418,Login,200,OK,Workers 1-34,text,true,,3195,801,100,100,http://localhost/login,2418,0,1
+1655758122194,2605,Login,200,OK,Workers 1-7,text,true,,3193,810,100,100,http://localhost/login,2605,0,61
+1655758122329,2483,Login,200,OK,Workers 1-32,text,true,,3194,806,100,100,http://localhost/login,2483,0,1
+1655758122301,2524,Login,200,OK,Workers 1-29,text,true,,3194,841,100,100,http://localhost/login,2524,0,2
+1655758122300,2536,Login,200,OK,Workers 1-27,text,true,,3194,841,100,100,http://localhost/login,2536,0,1
+1655758122194,2655,Login,200,OK,Workers 1-1,text,true,,3192,845,100,100,http://localhost/login,2655,0,73
+1655758122194,2677,Login,200,OK,Workers 1-4,text,true,,3192,830,100,100,http://localhost/login,2677,0,70
+1655758122194,2692,Login,200,OK,Workers 1-5,text,true,,3192,845,100,100,http://localhost/login,2692,0,32
+1655758122194,2709,Login,200,OK,Workers 1-3,text,true,,3193,810,100,100,http://localhost/login,2709,0,42
+1655758122349,2568,Login,200,OK,Workers 1-33,text,true,,3194,821,100,100,http://localhost/login,2568,0,1
+1655758122194,2740,Login,200,OK,Workers 1-15,text,true,,3194,806,100,100,http://localhost/login,2740,0,84
+1655758122194,2757,Login,200,OK,Workers 1-11,text,true,,3194,826,100,100,http://localhost/login,2757,0,31
+1655758122218,2748,Login,200,OK,Workers 1-20,text,true,,3194,801,100,100,http://localhost/login,2748,0,26
+1655758122197,2782,Login,200,OK,Workers 1-18,text,true,,3193,851,100,100,http://localhost/login,2782,0,65
+1655758122194,2795,Login,200,OK,Workers 1-10,text,true,,3192,835,100,100,http://localhost/login,2795,0,61
+1655758122194,2806,Login,200,OK,Workers 1-17,text,true,,3194,821,100,100,http://localhost/login,2806,0,43
+1655758122309,2702,Login,200,OK,Workers 1-30,text,true,,3193,836,100,100,http://localhost/login,2702,0,1
+1655758122206,2816,Login,200,OK,Workers 1-19,text,true,,3193,821,100,100,http://localhost/login,2816,0,20
+1655758122366,2667,Login,200,OK,Workers 1-36,text,true,,3195,846,100,100,http://localhost/login,2667,0,1
+1655758122382,2664,Login,200,OK,Workers 1-37,text,true,,3195,806,100,100,http://localhost/login,2664,0,8
+1655758122407,2655,Login,200,OK,Workers 1-40,text,true,,3194,801,100,100,http://localhost/login,2655,0,3
+1655758122424,2650,Login,200,OK,Workers 1-39,text,true,,3193,831,100,100,http://localhost/login,2650,0,2
+1655758122435,2651,Login,200,OK,Workers 1-42,text,true,,3195,831,100,100,http://localhost/login,2651,0,1
+1655758122418,2678,Login,200,OK,Workers 1-41,text,true,,3193,821,100,100,http://localhost/login,2678,0,0
+1655758122421,2689,Login,200,OK,Workers 1-38,text,true,,3194,841,100,100,http://localhost/login,2689,0,1
+1655758122456,2666,Login,200,OK,Workers 1-44,text,true,,3195,851,100,100,http://localhost/login,2666,0,3
+1655758122465,2668,Login,200,OK,Workers 1-45,text,true,,3195,816,100,100,http://localhost/login,2668,0,0
+1655758122467,2680,Login,200,OK,Workers 1-43,text,true,,3195,806,100,100,http://localhost/login,2680,0,1
+1655758122470,2688,Login,200,OK,Workers 1-46,text,true,,3194,836,100,100,http://localhost/login,2688,0,1
+1655758122477,2697,Login,200,OK,Workers 1-47,text,true,,3193,826,100,100,http://localhost/login,2697,0,1
+1655758122576,2608,Login,200,OK,Workers 1-56,text,true,,3194,806,100,100,http://localhost/login,2608,0,1
+1655758122678,2518,Login,200,OK,Workers 1-52,text,true,,3194,826,100,100,http://localhost/login,2518,0,1
+1655758122579,2629,Login,200,OK,Workers 1-57,text,true,,3193,806,100,100,http://localhost/login,2629,0,0
+1655758122696,2531,addProductToCart,200,OK,Workers 1-35,text,true,,3230,842,100,100,http://localhost/addToCart,2531,0,1
+1655758122704,2546,addProductToCart,200,OK,Workers 1-24,text,true,,3231,817,100,100,http://localhost/addToCart,2546,0,1
+1655758122545,2718,Login,200,OK,Workers 1-53,text,true,,3193,841,100,100,http://localhost/login,2717,0,11
+1655758122770,2504,Login,200,OK,Workers 1-65,text,true,,3193,841,100,100,http://localhost/login,2504,0,1
+1655758122898,2387,Login,200,OK,Workers 1-82,text,true,,3193,801,100,100,http://localhost/login,2387,0,1
+1655758122903,2397,Login,200,OK,Workers 1-62,text,true,,3195,836,100,100,http://localhost/login,2397,0,1
+1655758122488,2824,Login,200,OK,Workers 1-48,text,true,,3194,831,100,100,http://localhost/login,2824,0,1
+1655758122492,2832,Login,200,OK,Workers 1-49,text,true,,3195,801,100,100,http://localhost/login,2832,0,0
+1655758122515,2820,Login,200,OK,Workers 1-51,text,true,,3193,801,100,100,http://localhost/login,2820,0,6
+1655758122506,2842,Login,200,OK,Workers 1-50,text,true,,3195,801,100,100,http://localhost/login,2842,0,1
+1655758122843,2517,Login,200,OK,Workers 1-85,text,true,,3194,841,100,100,http://localhost/login,2517,0,1
+1655758122896,2478,addProductToCart,200,OK,Workers 1-22,text,true,,3231,817,100,100,http://localhost/addToCart,2478,0,1
+1655758122867,2521,Login,200,OK,Workers 1-88,text,true,,3193,846,100,100,http://localhost/login,2521,0,1
+1655758122910,2493,addProductToCart,200,OK,Workers 1-9,text,true,,3231,861,100,100,http://localhost/addToCart,2492,0,1
+1655758122836,2577,Login,200,OK,Workers 1-81,text,true,,3194,801,100,100,http://localhost/login,2577,0,1
+1655758122837,2588,Login,200,OK,Workers 1-64,text,true,,3193,851,100,100,http://localhost/login,2588,0,2
+1655758122851,2585,Login,200,OK,Workers 1-84,text,true,,3195,821,100,100,http://localhost/login,2585,0,2
+1655758123187,2263,addProductToCart,200,OK,Workers 1-21,text,true,,3232,842,100,100,http://localhost/addToCart,2263,0,1
+1655758122807,2654,Login,200,OK,Workers 1-66,text,true,,3194,851,100,100,http://localhost/login,2654,0,0
+1655758122755,2717,Login,200,OK,Workers 1-69,text,true,,3194,846,100,100,http://localhost/login,2717,0,51
+1655758122922,2565,Login,200,OK,Workers 1-76,text,true,,3194,851,100,100,http://localhost/login,2561,0,1
+1655758122899,2603,Login,200,OK,Workers 1-63,text,true,,3194,806,100,100,http://localhost/login,2603,0,1
+1655758122928,2586,Login,200,OK,Workers 1-73,text,true,,3195,811,100,100,http://localhost/login,2586,0,1
+1655758122750,2776,Login,200,OK,Workers 1-68,text,true,,3194,851,100,100,http://localhost/login,2776,0,1
+1655758122734,2803,Login,200,OK,Workers 1-67,text,true,,3193,826,100,100,http://localhost/login,2803,0,1
+1655758122750,2803,addProductToCart,200,OK,Workers 1-8,text,true,,3231,856,100,100,http://localhost/addToCart,2803,0,1
+1655758122611,2952,Login,200,OK,Workers 1-60,text,true,,3194,806,100,100,http://localhost/login,2952,0,2
+1655758122944,2630,Login,200,OK,Workers 1-71,text,true,,3193,801,100,100,http://localhost/login,2630,0,1
+1655758122945,2639,Login,200,OK,Workers 1-89,text,true,,3194,846,100,100,http://localhost/login,2639,0,1
+1655758122953,2643,Login,200,OK,Workers 1-74,text,true,,3194,806,100,100,http://localhost/login,2643,0,1
+1655758122932,2678,Login,200,OK,Workers 1-93,text,true,,3194,811,100,100,http://localhost/login,2678,0,2
+1655758122930,2692,Login,200,OK,Workers 1-72,text,true,,3193,806,100,100,http://localhost/login,2692,0,1
+1655758122961,2673,Login,200,OK,Workers 1-61,text,true,,3192,821,100,100,http://localhost/login,2673,0,1
+1655758122958,2688,Login,200,OK,Workers 1-75,text,true,,3194,831,100,100,http://localhost/login,2688,0,1
+1655758122960,2699,Login,200,OK,Workers 1-58,text,true,,3193,826,100,100,http://localhost/login,2699,0,1
+1655758122963,2708,Login,200,OK,Workers 1-54,text,true,,3194,841,100,100,http://localhost/login,2708,0,1
+1655758123016,2670,Login,200,OK,Workers 1-94,text,true,,3194,846,100,100,http://localhost/login,2670,0,1
+1655758122920,2779,Login,200,OK,Workers 1-77,text,true,,3195,851,100,100,http://localhost/login,2779,0,2
+1655758122919,2792,Login,200,OK,Workers 1-59,text,true,,3194,841,100,100,http://localhost/login,2792,0,0
+1655758123026,2696,Login,200,OK,Workers 1-95,text,true,,3195,811,100,100,http://localhost/login,2696,0,1
+1655758123045,2689,Login,200,OK,Workers 1-100,text,true,,3196,846,100,100,http://localhost/login,2689,0,1
+1655758122910,2837,addProductToCart,200,OK,Workers 1-6,text,true,,3230,826,100,100,http://localhost/addToCart,2837,0,1
+1655758122909,2852,addProductToCart,200,OK,Workers 1-14,text,true,,3231,847,100,100,http://localhost/addToCart,2852,0,1
+1655758122903,2871,Login,200,OK,Workers 1-80,text,true,,3194,806,100,100,http://localhost/login,2871,0,1
+1655758122902,2884,Login,200,OK,Workers 1-70,text,true,,3193,831,100,100,http://localhost/login,2884,0,1
+1655758123193,2606,addProductToCart,200,OK,Workers 1-16,text,true,,3233,842,100,100,http://localhost/addToCart,2606,0,0
+1655758123061,2755,Login,200,OK,Workers 1-99,text,true,,3195,846,100,100,http://localhost/login,2755,0,3
+1655758123060,2767,Login,200,OK,Workers 1-87,text,true,,3194,801,100,100,http://localhost/login,2767,0,1
+1655758123057,2781,Login,200,OK,Workers 1-90,text,true,,3194,816,100,100,http://localhost/login,2781,0,0
+1655758123054,2796,Login,200,OK,Workers 1-91,text,true,,3195,801,100,100,http://localhost/login,2795,0,1
+1655758123006,2858,Login,200,OK,Workers 1-83,text,true,,3194,836,100,100,http://localhost/login,2858,0,1
+1655758123046,2830,Login,200,OK,Workers 1-98,text,true,,3195,826,100,100,http://localhost/login,2830,0,0
+1655758123044,2843,Login,200,OK,Workers 1-86,text,true,,3194,806,100,100,http://localhost/login,2843,0,1
+1655758122971,2929,Login,200,OK,Workers 1-79,text,true,,3195,836,100,100,http://localhost/login,2929,0,1
+1655758122964,2948,Login,200,OK,Workers 1-97,text,true,,3194,821,100,100,http://localhost/login,2948,0,2
+1655758122968,2957,Login,200,OK,Workers 1-78,text,true,,3195,821,100,100,http://localhost/login,2957,0,1
+1655758122944,2992,Login,200,OK,Workers 1-92,text,true,,3194,841,100,100,http://localhost/login,2992,0,1
+1655758122950,2998,Login,200,OK,Workers 1-55,text,true,,3193,851,100,100,http://localhost/login,2998,0,1
+1655758122950,3009,Login,200,OK,Workers 1-96,text,true,,3193,806,100,100,http://localhost/login,3009,0,2
+1655758124100,1872,addProductToCart,200,OK,Workers 1-31,text,true,,3232,857,100,100,http://localhost/addToCart,1872,0,2
+1655758124512,1473,addProductToCart,200,OK,Workers 1-23,text,true,,3232,832,100,100,http://localhost/addToCart,1473,0,1
+1655758124683,1316,addProductToCart,200,OK,Workers 1-13,text,true,,3231,827,100,100,http://localhost/addToCart,1316,0,0
+1655758124719,1294,addProductToCart,200,OK,Workers 1-25,text,true,,3233,817,100,100,http://localhost/addToCart,1294,0,1
+1655758124732,1297,addProductToCart,200,OK,Workers 1-2,text,true,,3232,851,100,100,http://localhost/addToCart,1297,0,1
+1655758124744,1300,addProductToCart,200,OK,Workers 1-26,text,true,,3233,847,100,100,http://localhost/addToCart,1300,0,1
+1655758124757,1302,addProductToCart,200,OK,Workers 1-28,text,true,,3233,817,100,100,http://localhost/addToCart,1302,0,0
+1655758124769,1305,addProductToCart,200,OK,Workers 1-12,text,true,,3231,857,100,100,http://localhost/addToCart,1305,0,1
+1655758124784,1305,addProductToCart,200,OK,Workers 1-34,text,true,,3232,862,100,100,http://localhost/addToCart,1305,0,1
+1655758124799,1312,addProductToCart,200,OK,Workers 1-7,text,true,,3233,846,100,100,http://localhost/addToCart,1312,0,1
+1655758124812,1314,addProductToCart,200,OK,Workers 1-32,text,true,,3231,837,100,100,http://localhost/addToCart,1314,0,1
+1655758124825,1319,addProductToCart,200,OK,Workers 1-29,text,true,,3233,857,100,100,http://localhost/addToCart,1319,0,1
+1655758124837,1323,addProductToCart,200,OK,Workers 1-27,text,true,,3231,812,100,100,http://localhost/addToCart,1323,0,0
+1655758124849,1328,addProductToCart,200,OK,Workers 1-1,text,true,,3233,836,100,100,http://localhost/addToCart,1328,0,0
+1655758124872,1324,addProductToCart,200,OK,Workers 1-4,text,true,,3231,856,100,100,http://localhost/addToCart,1324,0,0
+1655758124886,1327,addProductToCart,200,OK,Workers 1-5,text,true,,3233,826,100,100,http://localhost/addToCart,1327,0,1
+1655758124903,1324,addProductToCart,200,OK,Workers 1-3,text,true,,3233,861,100,100,http://localhost/addToCart,1324,0,1
+1655758124917,1324,addProductToCart,200,OK,Workers 1-33,text,true,,3230,857,100,100,http://localhost/addToCart,1324,0,1
+1655758124935,1320,addProductToCart,200,OK,Workers 1-15,text,true,,3232,842,100,100,http://localhost/addToCart,1320,0,0
+1655758124951,1318,addProductToCart,200,OK,Workers 1-11,text,true,,3231,847,100,100,http://localhost/addToCart,1318,0,1
+1655758124967,1320,addProductToCart,200,OK,Workers 1-20,text,true,,3232,847,100,100,http://localhost/addToCart,1319,0,0
+1655758124979,1322,addProductToCart,200,OK,Workers 1-18,text,true,,3232,837,100,100,http://localhost/addToCart,1321,0,0
+1655758124990,1324,addProductToCart,200,OK,Workers 1-10,text,true,,3233,846,100,100,http://localhost/addToCart,1324,0,0
+1655758125001,1328,addProductToCart,200,OK,Workers 1-17,text,true,,3231,817,100,100,http://localhost/addToCart,1327,0,0
+1655758125011,1331,addProductToCart,200,OK,Workers 1-30,text,true,,3232,812,100,100,http://localhost/addToCart,1331,0,1
+1655758125022,1333,addProductToCart,200,OK,Workers 1-19,text,true,,3232,842,100,100,http://localhost/addToCart,1333,0,1
+1655758125033,1335,addProductToCart,200,OK,Workers 1-36,text,true,,3233,842,100,100,http://localhost/addToCart,1335,0,1
+1655758125047,1335,addProductToCart,200,OK,Workers 1-37,text,true,,3231,817,100,100,http://localhost/addToCart,1335,0,0
+1655758125062,1334,addProductToCart,200,OK,Workers 1-40,text,true,,3233,812,100,100,http://localhost/addToCart,1334,0,0
+1655758125074,1336,addProductToCart,200,OK,Workers 1-39,text,true,,3231,842,100,100,http://localhost/addToCart,1336,0,1
+1655758125086,1338,addProductToCart,200,OK,Workers 1-42,text,true,,3233,837,100,100,http://localhost/addToCart,1338,0,0
+1655758125096,1341,addProductToCart,200,OK,Workers 1-41,text,true,,3231,852,100,100,http://localhost/addToCart,1341,0,0
+1655758125110,1352,addProductToCart,200,OK,Workers 1-38,text,true,,3231,832,100,100,http://localhost/addToCart,1351,0,1
+1655758125122,1357,addProductToCart,200,OK,Workers 1-44,text,true,,3232,847,100,100,http://localhost/addToCart,1357,0,1
+1655758125133,1361,addProductToCart,200,OK,Workers 1-45,text,true,,3232,812,100,100,http://localhost/addToCart,1361,0,1
+1655758125148,1359,addProductToCart,200,OK,Workers 1-43,text,true,,3232,822,100,100,http://localhost/addToCart,1359,0,0
+1655758125158,1362,addProductToCart,200,OK,Workers 1-46,text,true,,3233,857,100,100,http://localhost/addToCart,1362,0,1
+1655758125174,1359,addProductToCart,200,OK,Workers 1-47,text,true,,3232,842,100,100,http://localhost/addToCart,1359,0,0
+1655758125184,1364,addProductToCart,200,OK,Workers 1-56,text,true,,3232,847,100,100,http://localhost/addToCart,1364,0,1
+1655758125196,1365,addProductToCart,200,OK,Workers 1-52,text,true,,3232,812,100,100,http://localhost/addToCart,1365,0,0
+1655758125208,1370,addProductToCart,200,OK,Workers 1-57,text,true,,3231,837,100,100,http://localhost/addToCart,1370,0,1
+1655758125227,2634,Purchase Items,200,OK,Workers 1-35,text,true,,3603,2003,100,100,http://localhost/purchaseCart,2634,0,1
+1655758125250,3324,Purchase Items,200,OK,Workers 1-24,text,true,,3602,2063,100,100,http://localhost/purchaseCart,3324,0,1
+1655758125263,3327,addProductToCart,200,OK,Workers 1-53,text,true,,3231,822,100,100,http://localhost/addToCart,3327,0,0
+1655758125274,3339,addProductToCart,200,OK,Workers 1-65,text,true,,3232,837,100,100,http://localhost/addToCart,3338,0,1
+1655758125285,3344,addProductToCart,200,OK,Workers 1-82,text,true,,3233,832,100,100,http://localhost/addToCart,3344,0,0
+1655758125300,3344,addProductToCart,200,OK,Workers 1-62,text,true,,3232,857,100,100,http://localhost/addToCart,3344,0,1
+1655758125313,3345,addProductToCart,200,OK,Workers 1-48,text,true,,3231,817,100,100,http://localhost/addToCart,3345,0,0
+1655758125324,3350,addProductToCart,200,OK,Workers 1-49,text,true,,3233,847,100,100,http://localhost/addToCart,3350,0,1
+1655758125335,3355,addProductToCart,200,OK,Workers 1-51,text,true,,3233,862,100,100,http://localhost/addToCart,3355,0,0
+1655758125348,3363,addProductToCart,200,OK,Workers 1-50,text,true,,3232,852,100,100,http://localhost/addToCart,3363,0,1
+1655758125360,3365,addProductToCart,200,OK,Workers 1-85,text,true,,3231,822,100,100,http://localhost/addToCart,3365,0,1
+1655758125375,4008,Purchase Items,200,OK,Workers 1-22,text,true,,3601,2039,100,100,http://localhost/purchaseCart,4008,0,0
+1655758125388,4012,addProductToCart,200,OK,Workers 1-88,text,true,,3232,847,100,100,http://localhost/addToCart,4011,0,1
+1655758125403,4680,Purchase Items,200,OK,Workers 1-9,text,true,,3602,1967,100,100,http://localhost/purchaseCart,4680,0,0
+1655758125413,4682,addProductToCart,200,OK,Workers 1-81,text,true,,3231,817,100,100,http://localhost/addToCart,4682,0,1
+1655758125425,4685,addProductToCart,200,OK,Workers 1-64,text,true,,3231,857,100,100,http://localhost/addToCart,4685,0,0
+1655758125436,4688,addProductToCart,200,OK,Workers 1-84,text,true,,3233,857,100,100,http://localhost/addToCart,4688,0,1
+1655758125450,5327,Purchase Items,200,OK,Workers 1-21,text,true,,3602,2015,100,100,http://localhost/purchaseCart,5327,0,1
+1655758125461,5330,addProductToCart,200,OK,Workers 1-66,text,true,,3232,852,100,100,http://localhost/addToCart,5330,0,0
+1655758125472,5333,addProductToCart,200,OK,Workers 1-69,text,true,,3233,862,100,100,http://localhost/addToCart,5333,0,1
+1655758125487,5334,addProductToCart,200,OK,Workers 1-76,text,true,,3233,857,100,100,http://localhost/addToCart,5334,0,1
+1655758125502,5335,addProductToCart,200,OK,Workers 1-63,text,true,,3232,857,100,100,http://localhost/addToCart,5335,0,0
+1655758125514,5339,addProductToCart,200,OK,Workers 1-73,text,true,,3232,817,100,100,http://localhost/addToCart,5338,0,0
+1655758125526,5341,addProductToCart,200,OK,Workers 1-68,text,true,,3231,857,100,100,http://localhost/addToCart,5341,0,0
+1655758125537,5345,addProductToCart,200,OK,Workers 1-67,text,true,,3232,857,100,100,http://localhost/addToCart,5345,0,1
+1655758125553,6010,Purchase Items,200,OK,Workers 1-8,text,true,,3603,2063,100,100,http://localhost/purchaseCart,6010,0,0
+1655758125563,6015,addProductToCart,200,OK,Workers 1-60,text,true,,3233,862,100,100,http://localhost/addToCart,6015,0,1
+1655758125574,6018,addProductToCart,200,OK,Workers 1-71,text,true,,3232,817,100,100,http://localhost/addToCart,6018,0,0
+1655758125585,6024,addProductToCart,200,OK,Workers 1-89,text,true,,3233,822,100,100,http://localhost/addToCart,6024,0,0
+1655758125596,6027,addProductToCart,200,OK,Workers 1-74,text,true,,3232,827,100,100,http://localhost/addToCart,6026,0,0
+1655758125610,6025,addProductToCart,200,OK,Workers 1-93,text,true,,3232,822,100,100,http://localhost/addToCart,6025,0,1
+1655758125623,6025,addProductToCart,200,OK,Workers 1-72,text,true,,3232,812,100,100,http://localhost/addToCart,6025,0,0
+1655758125634,6027,addProductToCart,200,OK,Workers 1-61,text,true,,3233,862,100,100,http://localhost/addToCart,6027,0,1
+1655758125646,6030,addProductToCart,200,OK,Workers 1-75,text,true,,3233,862,100,100,http://localhost/addToCart,6030,0,0
+1655758125659,6032,addProductToCart,200,OK,Workers 1-58,text,true,,3232,837,100,100,http://localhost/addToCart,6032,0,1
+1655758125672,6033,addProductToCart,200,OK,Workers 1-54,text,true,,3232,857,100,100,http://localhost/addToCart,6033,0,0
+1655758125686,6032,addProductToCart,200,OK,Workers 1-94,text,true,,3231,857,100,100,http://localhost/addToCart,6032,0,1
+1655758125699,6042,addProductToCart,200,OK,Workers 1-77,text,true,,3233,827,100,100,http://localhost/addToCart,6042,0,1
+1655758125711,6045,addProductToCart,200,OK,Workers 1-59,text,true,,3233,852,100,100,http://localhost/addToCart,6045,0,0
+1655758125722,6047,addProductToCart,200,OK,Workers 1-95,text,true,,3233,812,100,100,http://localhost/addToCart,6047,0,1
+1655758125734,6049,addProductToCart,200,OK,Workers 1-100,text,true,,3231,827,100,100,http://localhost/addToCart,6049,0,1
+1655758125747,6716,Purchase Items,200,OK,Workers 1-6,text,true,,3601,2075,100,100,http://localhost/purchaseCart,6716,0,0
+1655758125761,7359,Purchase Items,200,OK,Workers 1-14,text,true,,3601,2087,100,100,http://localhost/purchaseCart,7359,0,1
+1655758125774,7360,addProductToCart,200,OK,Workers 1-80,text,true,,3232,852,100,100,http://localhost/addToCart,7360,0,0
+1655758125787,7362,addProductToCart,200,OK,Workers 1-70,text,true,,3232,812,100,100,http://localhost/addToCart,7362,0,0
+1655758125799,8021,Purchase Items,200,OK,Workers 1-16,text,true,,3603,2087,100,100,http://localhost/purchaseCart,8021,0,1
+1655758125816,8018,addProductToCart,200,OK,Workers 1-99,text,true,,3232,817,100,100,http://localhost/addToCart,8018,0,1
+1655758125827,8025,addProductToCart,200,OK,Workers 1-87,text,true,,3233,822,100,100,http://localhost/addToCart,8025,0,1
+1655758125839,8028,addProductToCart,200,OK,Workers 1-90,text,true,,3231,847,100,100,http://localhost/addToCart,8028,0,0
+1655758125850,8031,addProductToCart,200,OK,Workers 1-91,text,true,,3231,852,100,100,http://localhost/addToCart,8031,0,0
+1655758125864,8031,addProductToCart,200,OK,Workers 1-83,text,true,,3231,822,100,100,http://localhost/addToCart,8031,0,1
+1655758125876,8034,addProductToCart,200,OK,Workers 1-98,text,true,,3232,862,100,100,http://localhost/addToCart,8034,0,0
+1655758125887,8039,addProductToCart,200,OK,Workers 1-86,text,true,,3233,852,100,100,http://localhost/addToCart,8039,0,1
+1655758125900,8040,addProductToCart,200,OK,Workers 1-79,text,true,,3231,832,100,100,http://localhost/addToCart,8040,0,1
+1655758125912,8044,addProductToCart,200,OK,Workers 1-97,text,true,,3233,852,100,100,http://localhost/addToCart,8044,0,1
+1655758125925,8049,addProductToCart,200,OK,Workers 1-78,text,true,,3232,852,100,100,http://localhost/addToCart,8049,0,1
+1655758125936,8057,addProductToCart,200,OK,Workers 1-92,text,true,,3233,832,100,100,http://localhost/addToCart,8057,0,1
+1655758125948,8059,addProductToCart,200,OK,Workers 1-55,text,true,,3232,822,100,100,http://localhost/addToCart,8059,0,0
+1655758125959,8061,addProductToCart,200,OK,Workers 1-96,text,true,,3233,822,100,100,http://localhost/addToCart,8061,0,1
+1655758125972,8693,Purchase Items,200,OK,Workers 1-31,text,true,,3602,2039,100,100,http://localhost/purchaseCart,8693,0,1
+1655758125986,9352,Purchase Items,200,OK,Workers 1-23,text,true,,3603,2003,100,100,http://localhost/purchaseCart,9352,0,0
+1655758125999,10020,Purchase Items,200,OK,Workers 1-13,text,true,,3601,1967,100,100,http://localhost/purchaseCart,10020,0,1
+1655758126013,10674,Purchase Items,200,OK,Workers 1-25,text,true,,3602,1967,100,100,http://localhost/purchaseCart,10674,0,1
+1655758126030,11328,Purchase Items,200,OK,Workers 1-2,text,true,,3602,2039,100,100,http://localhost/purchaseCart,11328,0,0
+1655758126044,11976,Purchase Items,200,OK,Workers 1-26,text,true,,3602,2003,100,100,http://localhost/purchaseCart,11976,0,1
+1655758126059,12631,Purchase Items,200,OK,Workers 1-28,text,true,,3601,1991,100,100,http://localhost/purchaseCart,12631,0,1
+1655758126075,13289,Purchase Items,200,OK,Workers 1-12,text,true,,3602,2075,100,100,http://localhost/purchaseCart,13289,0,0
+1655758126089,13935,Purchase Items,200,OK,Workers 1-34,text,true,,3602,1967,100,100,http://localhost/purchaseCart,13935,0,1
+1655758126111,14608,Purchase Items,200,OK,Workers 1-7,text,true,,3603,1967,100,100,http://localhost/purchaseCart,14608,0,1
+1655758126126,15245,Purchase Items,200,OK,Workers 1-32,text,true,,3603,1979,100,100,http://localhost/purchaseCart,15245,0,1
+1655758126144,15897,Purchase Items,200,OK,Workers 1-29,text,true,,3601,2051,100,100,http://localhost/purchaseCart,15897,0,1
+1655758126160,16545,Purchase Items,200,OK,Workers 1-27,text,true,,3603,2063,100,100,http://localhost/purchaseCart,16545,0,1
+1655758126178,17186,Purchase Items,200,OK,Workers 1-1,text,true,,3602,2003,100,100,http://localhost/purchaseCart,17186,0,0
+1655758126196,17831,Purchase Items,200,OK,Workers 1-4,text,true,,3602,2087,100,100,http://localhost/purchaseCart,17831,0,0
+1655758126213,18490,Purchase Items,200,OK,Workers 1-5,text,true,,3602,2015,100,100,http://localhost/purchaseCart,18490,0,1
+1655758126227,19485,Purchase Items,200,OK,Workers 1-3,text,true,,3601,2087,100,100,http://localhost/purchaseCart,19485,0,1
+1655758126241,20159,Purchase Items,200,OK,Workers 1-33,text,true,,3602,1967,100,100,http://localhost/purchaseCart,20159,0,1
+1655758126256,20830,Purchase Items,200,OK,Workers 1-15,text,true,,3602,2051,100,100,http://localhost/purchaseCart,20830,0,0
+1655758126269,21503,Purchase Items,200,OK,Workers 1-11,text,true,,3603,1979,100,100,http://localhost/purchaseCart,21503,0,0
+1655758126287,22183,Purchase Items,200,OK,Workers 1-20,text,true,,3602,2015,100,100,http://localhost/purchaseCart,22183,0,0
+1655758126301,22873,Purchase Items,200,OK,Workers 1-18,text,true,,3603,2027,100,100,http://localhost/purchaseCart,22873,0,0
+1655758126314,23609,Purchase Items,200,OK,Workers 1-10,text,true,,3602,2003,100,100,http://localhost/purchaseCart,23609,0,1
+1655758126329,24277,Purchase Items,200,OK,Workers 1-17,text,true,,3603,1979,100,100,http://localhost/purchaseCart,24277,0,0
+1655758126342,24934,Purchase Items,200,OK,Workers 1-30,text,true,,3601,1979,100,100,http://localhost/purchaseCart,24934,0,1
+1655758126355,25617,Purchase Items,200,OK,Workers 1-19,text,true,,3602,1979,100,100,http://localhost/purchaseCart,25617,0,1
+1

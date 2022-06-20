@@ -39,6 +39,6 @@ public class buyDifferentItems {
             expected+= purchases.size();
         }
         System.out.println(String.format("Actual: %d", expected));
-        Assert.assertTrue(0.95<(double)(expected / 100));   //SLA=95%
+        Assert.assertTrue(0.95<(double)expected / 100);   //SLA=95%
     }
 }

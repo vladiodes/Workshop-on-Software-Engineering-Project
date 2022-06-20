@@ -35,6 +35,6 @@ public class buySameItem {
         service.login(token,"admin","admin");
         List<String> purchases = service.getStorePurchaseHistory(token, "s1").getResult();
         System.out.println(String.format("Actual: %d", purchases.size()));
-        Assert.assertTrue(0.95<(double)(purchases.size() / 150));   //SLA=95%
+        Assert.assertTrue(0.95<(double)purchases.size() / 150);   //SLA=95%
     }
 }

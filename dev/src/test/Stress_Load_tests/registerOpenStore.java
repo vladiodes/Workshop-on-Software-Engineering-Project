@@ -33,6 +33,6 @@ public class registerOpenStore {
         service.login(token,"admin","admin");
         int usersRegistered = Integer.parseInt(service.getNumberOfRegisteredUsersPerDate(token, LocalDate.now()).getResult());
         System.out.println(String.format("Actual is %d", usersRegistered));
-        Assert.assertTrue(0.95<(double)(usersRegistered / 100));   //SLA=95%
+        Assert.assertTrue(0.95<(double)usersRegistered / 100);   //SLA=95%
     }
 }
