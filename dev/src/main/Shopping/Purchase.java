@@ -39,22 +39,32 @@ public class Purchase {
     }
 
     public void executePurchase() throws Exception {
-        if (!this.cart.ValidateCart(this.user))
-            throw new Exception("Cart is unpurchasable.");
+        this.cart.ValidateCart(this.user); //Throws specific exceptions for why cart is not purchasable
         Map<Product, Integer> toDeliver = this.cart.getProductsForPurchase(this.user);
         if (!(paymentSystem.makePayment(pinfo, this.cart.getPrice()) && (toDeliver.size() == 0 || supplyingSystem.supply(sinfo, toDeliver))))
         {
-            paymentSystem.abort(pinfo);
-            supplyingSystem.abort(sinfo);
-            throw new Exception("Unexpected purchase error, aborting.");
+            if(pinfo.getTransactionId()!=0)
+            {
+                paymentSystem.abort(pinfo);
+                throw new Exception("Unexpected purchase error, aborting payment.");
+            }
+
+            if(sinfo.getTransactionId()!=0)
+            {
+                supplyingSystem.abort(sinfo);
+                throw new Exception("Unexpected purchase error, aborting supply.");
+            }
+            throw new Exception("Payment failed");
         }
         try {
             updateMarket();
         }
         catch (Exception e){
             Logger.getInstance().logBug("Purchase",String.format( "Updating market on purchase failed: %s", e.getMessage()));
-            paymentSystem.abort(pinfo);
-            supplyingSystem.abort(sinfo);
+            if(pinfo.getTransactionId()!=0)
+                paymentSystem.abort(pinfo);
+            if(sinfo.getTransactionId()!=0)
+                supplyingSystem.abort(sinfo);
             throw e;
         }
         Logger.getInstance().logEvent("Purchase", String.format("User %s executed a purchase.", user.getUserName()));

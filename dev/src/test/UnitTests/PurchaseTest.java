@@ -68,15 +68,6 @@ class PurchaseTest {
         Purchase subject = new Purchase(mockPaymentInformation, mockSupplyingInformation, mockuser, mockCart, mockPayment,mockSupplyer);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(false);
         Assertions.assertThrows(Exception.class, subject::executePurchase);
-        try
-        {
-            verify(mockPayment,times(1)).abort(mockPaymentInformation);
-            verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
-        }
-        catch (Exception e)
-        {
-            Assertions.fail();
-        }
     }
 
     @Test
@@ -84,15 +75,5 @@ class PurchaseTest {
         Purchase subject = new Purchase(mockPaymentInformation, mockSupplyingInformation, mockuser, mockCart, mockPayment,mockSupplyer);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(false);
         Assertions.assertThrows(Exception.class, subject::executePurchase);
-        try
-        {
-            verify(mockPayment,times(1)).abort(mockPaymentInformation);
-            verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
-        }
-        catch(Exception e)
-        {
-            Assertions.fail();
-        }
-
     }
 }

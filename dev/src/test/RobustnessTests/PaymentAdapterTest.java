@@ -33,8 +33,8 @@ public class PaymentAdapterTest {
 
         //Prepare badMockPI
         when(badMockPI.getCardNumber()).thenReturn(null);
-        when(badMockPI.getName()).thenThrow(Exception.class);
-        when(badMockPI.getCvv()).thenReturn(-50);
+        when(badMockPI.getName()).thenReturn("NameUsh");
+        when(badMockPI.getCvv()).thenReturn(986);
         when(badMockPI.getExpDate()).thenReturn(LocalDate.of(1995, 7, 5));
         when(badMockPI.getUserId()).thenReturn(null);
         when(mockPI.getTransactionId()).thenReturn(0);

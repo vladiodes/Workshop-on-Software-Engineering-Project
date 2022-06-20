@@ -383,15 +383,31 @@ public class Store {
         else return product.getCurrentPrice(user);
     }
 
-    public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket) {
+    //Returns true if valid and throws exceptions if not. Never returns false.
+    public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket){
         boolean res = this.getIsActive();
+        if(!res)
+            throw new IllegalArgumentException("Store" + this.getName()+ " is inactive");
         if(storePurchasePurchaseCondition != null)
             res &= storePurchasePurchaseCondition.pass(shoppingBasket);
+        if(!res)
+            throw new IllegalArgumentException("Shopping basket doesnt pass the conditions of store "+ this.getName());
         for (Map.Entry<Product, Integer> ent: shoppingBasket.getProductsAndQuantities().entrySet() ) {
             res &=  ent.getKey().isPurchasableForAmount(ent.getValue());
+            if(!res)
+            {
+                throw new IllegalArgumentException("Product " + ent.getKey().getName() + "is not purchasable for amount " + ent.getValue());
+            }
             if(shoppingBasket.getCostumePriceForProduct(ent.getKey()) != null)
+            {
                 res &= ent.getKey().isPurchasableForPrice(shoppingBasket.getCostumePriceForProduct(ent.getKey()), ent.getValue(), user);
+                if(!res)
+                {
+                    throw new IllegalArgumentException("Product " + ent.getKey().getName() + "is not purchasable for that price");
+                }
+            }
         }
+        //Only returns true because no exceptions were thrown until here
         return res;
     }
 
