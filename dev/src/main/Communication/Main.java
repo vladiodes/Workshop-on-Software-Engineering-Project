@@ -21,6 +21,8 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 
 public class Main {
 
+    static IService currentService;
+
     public static void main(String[] args) {
         IService service;
         String confFilePath = "RealConfig.json";
@@ -174,7 +176,11 @@ public class Main {
         catch (Exception e) {
             System.out.printf("Couldn't load service from file: %s%n",e.getMessage());
         }
+        currentService = service;
+    }
 
+    public static IService getService(){
+        return currentService;
     }
 
     private static SslContextFactory getSslContextFactory() {

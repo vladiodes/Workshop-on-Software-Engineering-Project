@@ -18,13 +18,13 @@ public class Logger {
 
     private String logFileName = "LOG.txt";
     private String bugFileName = "BUG.txt";
-   // private String userTokens = "C:\\Users\\banan\\Desktop\\Studies\\semester F\\sadna\\apache-jmeter-5.4.3\\bin\\TOKENS.csv";
+    private String userTokens = "TOKENS.csv";
 
     private Logger() {
-        //DeleteFile(userTokens);
+        DeleteFile(userTokens);
         DeleteFile(logFileName);
         DeleteFile(bugFileName);
-        //appendStrToFile(String.format("%s\n","userToken"),userTokens);
+        appendStrToFile(String.format("%s\n","userToken"),userTokens);
     }
 
     private void DeleteFile(String path){
@@ -48,9 +48,9 @@ public class Logger {
         appendStrToFile(String.format("[BUG][%s] - %s in class: %s\n", LocalDateTime.now(),msg,className),bugFileName);
     }
 
-//    public synchronized void logGuest(String msg) {
-//        appendStrToFile(String.format("%s\n",msg),userTokens);
-//    }
+    public synchronized void logGuest(String msg) {
+        appendStrToFile(String.format("%s\n",msg),userTokens);
+    }
 
     private void appendStrToFile(String msg,String fileName) {
 

@@ -101,7 +101,7 @@ public class Service implements IService {
     public Response<String> guestConnect() {
         Logger.getInstance().logEvent("Service",String.format("Attempting to connect a guest"));
         Response<String> output = new Response<>(market.ConnectGuest());
-        //Logger.getInstance().logGuest(output.getResult());
+        Logger.getInstance().logGuest(output.getResult());
         this.logCommand(guestConnectCommand.class, new guestConnectCommand(this.uTokens, output.getResult()));
         return output;
     }
