@@ -10034,4 +10034,268 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 1655758126329,24277,Purchase Items,200,OK,Workers 1-17,text,true,,3603,1979,100,100,http://localhost/purchaseCart,24277,0,0
 1655758126342,24934,Purchase Items,200,OK,Workers 1-30,text,true,,3601,1979,100,100,http://localhost/purchaseCart,24934,0,1
 1655758126355,25617,Purchase Items,200,OK,Workers 1-19,text,true,,3602,1979,100,100,http://localhost/purchaseCart,25617,0,1
-1
+1655758126369,26289,Purchase Items,200,OK,Workers 1-36,text,true,,3603,1991,100,100,http://localhost/purchaseCart,26289,0,0
+1655758126382,26966,Purchase Items,200,OK,Workers 1-37,text,true,,3602,2051,100,100,http://localhost/purchaseCart,26966,0,1
+1655758126396,27636,Purchase Items,200,OK,Workers 1-40,text,true,,3601,2063,100,100,http://localhost/purchaseCart,27636,0,1
+1655758126410,28319,Purchase Items,200,OK,Workers 1-39,text,true,,3602,2051,100,100,http://localhost/purchaseCart,28319,0,1
+1655758126424,29012,Purchase Items,200,OK,Workers 1-42,text,true,,3602,1979,100,100,http://localhost/purchaseCart,29012,0,0
+1655758126438,29661,Purchase Items,200,OK,Workers 1-41,text,true,,3603,2027,100,100,http://localhost/purchaseCart,29661,0,0
+1655758126462,30298,Purchase Items,200,OK,Workers 1-38,text,true,,3602,2051,100,100,http://localhost/purchaseCart,30298,0,0
+1655758126480,30982,Purchase Items,200,OK,Workers 1-44,text,true,,3602,2039,100,100,http://localhost/purchaseCart,30982,0,0
+1655758126494,31651,Purchase Items,200,OK,Workers 1-45,text,true,,3601,2075,100,100,http://localhost/purchaseCart,31651,0,1
+1655758126507,32343,Purchase Items,200,OK,Workers 1-43,text,true,,3602,2003,100,100,http://localhost/purchaseCart,32343,0,1
+1655758126520,33015,Purchase Items,200,OK,Workers 1-46,text,true,,3602,2015,100,100,http://localhost/purchaseCart,33015,0,1
+1655758126534,33684,Purchase Items,200,OK,Workers 1-47,text,true,,3603,2027,100,100,http://localhost/purchaseCart,33684,0,0
+1655758126548,34360,Purchase Items,200,OK,Workers 1-56,text,true,,3602,2003,100,100,http://localhost/purchaseCart,34360,0,0
+1655758126561,35046,Purchase Items,200,OK,Workers 1-52,text,true,,3602,2063,100,100,http://localhost/purchaseCart,35046,0,1
+1655758126578,35719,Purchase Items,200,OK,Workers 1-57,text,true,,3601,1967,100,100,http://localhost/purchaseCart,35719,0,0
+1655758127861,34447,logout,200,OK,Workers 1-35,text,true,,2378,465,100,100,http://localhost/logout,34447,0,1
+1655758162311,2,Debug Sampler,200,OK,Workers 1-35,text,true,,420,0,100,100,null,0,0,0
+1655758128574,33745,logout,200,OK,Workers 1-24,text,true,,2376,471,99,99,http://localhost/logout,33745,0,1
+1655758162319,1,Debug Sampler,200,OK,Workers 1-24,text,true,,421,0,99,99,null,0,0,0
+1655758128591,34771,Purchase Items,200,OK,Workers 1-53,text,true,,3602,2051,98,98,http://localhost/purchaseCart,34771,0,0
+1655758128613,35425,Purchase Items,200,OK,Workers 1-65,text,true,,3602,2015,98,98,http://localhost/purchaseCart,35425,0,0
+1655758128629,36083,Purchase Items,200,OK,Workers 1-82,text,true,,3601,2027,98,98,http://localhost/purchaseCart,36082,0,1
+1655758128644,36734,Purchase Items,200,OK,Workers 1-62,text,true,,3602,2027,98,98,http://localhost/purchaseCart,36734,0,1
+1655758128658,37389,Purchase Items,200,OK,Workers 1-48,text,true,,3602,1991,98,98,http://localhost/purchaseCart,37389,0,0
+1655758128674,38034,Purchase Items,200,OK,Workers 1-49,text,true,,3602,2015,98,98,http://localhost/purchaseCart,38034,0,1
+1655758128690,38697,Purchase Items,200,OK,Workers 1-51,text,true,,3603,1967,98,98,http://localhost/purchaseCart,38697,0,1
+1655758128711,39342,Purchase Items,200,OK,Workers 1-50,text,true,,3602,2051,98,98,http://localhost/purchaseCart,39341,0,1
+1655758128725,39983,Purchase Items,200,OK,Workers 1-85,text,true,,3603,2039,98,98,http://localhost/purchaseCart,39983,0,1
+1655758129383,39335,logout,200,OK,Workers 1-22,text,true,,2377,471,98,98,http://localhost/logout,39335,0,1
+1655758168718,1,Debug Sampler,200,OK,Workers 1-22,text,true,,421,0,98,98,null,0,0,0
+1655758129400,39988,Purchase Items,200,OK,Workers 1-88,text,true,,3602,2087,97,97,http://localhost/purchaseCart,39988,0,0
+1655758130083,39316,logout,200,OK,Workers 1-9,text,true,,2376,495,97,97,http://localhost/logout,39316,0,0
+1655758169399,0,Debug Sampler,200,OK,Workers 1-9,text,true,,418,0,97,97,null,0,0,0
+1655758130095,39977,Purchase Items,200,OK,Workers 1-81,text,true,,3601,2063,96,96,http://localhost/purchaseCart,39977,0,1
+1655758130110,40622,Purchase Items,200,OK,Workers 1-64,text,true,,3601,2015,96,96,http://localhost/purchaseCart,40622,0,1
+1655758130124,41269,Purchase Items,200,OK,Workers 1-84,text,true,,3602,1991,96,96,http://localhost/purchaseCart,41269,0,1
+1655758130777,40627,logout,200,OK,Workers 1-21,text,true,,2376,489,96,96,http://localhost/logout,40627,0,0
+1655758171404,0,Debug Sampler,200,OK,Workers 1-21,text,true,,421,0,96,96,null,0,0,0
+1655758130791,41293,Purchase Items,200,OK,Workers 1-66,text,true,,3602,2015,95,95,http://localhost/purchaseCart,41293,0,1
+1655758130805,41939,Purchase Items,200,OK,Workers 1-69,text,true,,3602,2039,95,95,http://localhost/purchaseCart,41939,0,0
+1655758130821,42590,Purchase Items,200,OK,Workers 1-76,text,true,,3603,1991,95,95,http://localhost/purchaseCart,42589,0,0
+1655758130838,43227,Purchase Items,200,OK,Workers 1-63,text,true,,3602,2051,95,95,http://localhost/purchaseCart,43227,0,0
+1655758130853,43890,Purchase Items,200,OK,Workers 1-73,text,true,,3602,1979,95,95,http://localhost/purchaseCart,43889,0,0
+1655758130867,44538,Purchase Items,200,OK,Workers 1-68,text,true,,3602,2087,95,95,http://localhost/purchaseCart,44538,0,1
+1655758130882,45197,Purchase Items,200,OK,Workers 1-67,text,true,,3603,2087,95,95,http://localhost/purchaseCart,45197,0,0
+1655758131563,44525,logout,200,OK,Workers 1-8,text,true,,2378,480,95,95,http://localhost/logout,44525,0,1
+1655758176088,0,Debug Sampler,200,OK,Workers 1-8,text,true,,417,0,95,95,null,0,0,0
+1655758131578,45168,Purchase Items,200,OK,Workers 1-60,text,true,,3602,2063,94,94,http://localhost/purchaseCart,45168,0,1
+1655758131593,45813,Purchase Items,200,OK,Workers 1-71,text,true,,3603,2063,94,94,http://localhost/purchaseCart,45813,0,0
+1655758131609,46448,Purchase Items,200,OK,Workers 1-89,text,true,,3601,1991,94,94,http://localhost/purchaseCart,46448,0,0
+1655758131623,47089,Purchase Items,200,OK,Workers 1-74,text,true,,3602,2039,94,94,http://localhost/purchaseCart,47089,0,0
+1655758131635,47755,Purchase Items,200,OK,Workers 1-93,text,true,,3602,1979,94,94,http://localhost/purchaseCart,47755,0,1
+1655758131648,48728,Purchase Items,200,OK,Workers 1-72,text,true,,3602,1979,94,94,http://localhost/purchaseCart,48728,0,1
+1655758131662,49391,Purchase Items,200,OK,Workers 1-61,text,true,,3602,2027,94,94,http://localhost/purchaseCart,49391,0,0
+1655758131676,50080,Purchase Items,200,OK,Workers 1-75,text,true,,3602,1991,94,94,http://localhost/purchaseCart,50080,0,1
+1655758131691,50768,Purchase Items,200,OK,Workers 1-58,text,true,,3603,2087,94,94,http://localhost/purchaseCart,50768,0,0
+1655758131705,51440,Purchase Items,200,OK,Workers 1-54,text,true,,3603,2027,94,94,http://localhost/purchaseCart,51440,0,1
+1655758131719,52123,Purchase Items,200,OK,Workers 1-94,text,true,,3601,2087,94,94,http://localhost/purchaseCart,52123,0,0
+1655758131741,52802,Purchase Items,200,OK,Workers 1-77,text,true,,3603,2039,94,94,http://localhost/purchaseCart,52802,0,1
+1655758131757,53455,Purchase Items,200,OK,Workers 1-59,text,true,,3603,2075,94,94,http://localhost/purchaseCart,53455,0,0
+1655758131769,54114,Purchase Items,200,OK,Workers 1-95,text,true,,3603,2015,94,94,http://localhost/purchaseCart,54114,0,1
+1655758131783,54814,Purchase Items,200,OK,Workers 1-100,text,true,,3601,2075,94,94,http://localhost/purchaseCart,54814,0,1
+1655758132464,54146,logout,200,OK,Workers 1-6,text,true,,2376,480,94,94,http://localhost/logout,54146,0,0
+1655758186610,0,Debug Sampler,200,OK,Workers 1-6,text,true,,418,0,94,94,null,0,0,0
+1655758133120,53505,logout,200,OK,Workers 1-14,text,true,,2377,471,93,93,http://localhost/logout,53505,0,1
+1655758186625,0,Debug Sampler,200,OK,Workers 1-14,text,true,,421,0,93,93,null,0,0,0
+1655758133134,54167,Purchase Items,200,OK,Workers 1-80,text,true,,3601,2015,92,92,http://localhost/purchaseCart,54167,0,0
+1655758133149,54838,Purchase Items,200,OK,Workers 1-70,text,true,,3602,2075,92,92,http://localhost/purchaseCart,54838,0,0
+1655758133820,54177,logout,200,OK,Workers 1-16,text,true,,2377,486,92,92,http://localhost/logout,54177,0,1
+1655758187997,0,Debug Sampler,200,OK,Workers 1-16,text,true,,421,0,92,92,null,0,0,0
+1655758133834,54845,Purchase Items,200,OK,Workers 1-99,text,true,,3601,2075,91,91,http://localhost/purchaseCart,54845,0,0
+1655758133852,55503,Purchase Items,200,OK,Workers 1-87,text,true,,3603,2051,91,91,http://localhost/purchaseCart,55503,0,1
+1655758133867,56167,Purchase Items,200,OK,Workers 1-90,text,true,,3602,2039,91,91,http://localhost/purchaseCart,56167,0,0
+1655758133881,56887,Purchase Items,200,OK,Workers 1-91,text,true,,3602,1979,91,91,http://localhost/purchaseCart,56887,0,1
+1655758133895,57559,Purchase Items,200,OK,Workers 1-83,text,true,,3601,2039,91,91,http://localhost/purchaseCart,57559,0,1
+1655758133910,58225,Purchase Items,200,OK,Workers 1-98,text,true,,3602,2075,91,91,http://localhost/purchaseCart,58225,0,1
+1655758133926,58890,Purchase Items,200,OK,Workers 1-86,text,true,,3602,1967,91,91,http://localhost/purchaseCart,58890,0,1
+1655758133941,59563,Purchase Items,200,OK,Workers 1-79,text,true,,3602,2063,91,91,http://localhost/purchaseCart,59563,0,0
+1655758133956,60247,Purchase Items,200,OK,Workers 1-97,text,true,,3602,1991,91,91,http://localhost/purchaseCart,60247,0,0
+1655758133974,60928,Purchase Items,200,OK,Workers 1-78,text,true,,3601,2063,91,91,http://localhost/purchaseCart,60928,0,1
+1655758133993,61584,Purchase Items,200,OK,Workers 1-92,text,true,,3601,2027,91,91,http://localhost/purchaseCart,61584,0,0
+1655758134007,62248,Purchase Items,200,OK,Workers 1-55,text,true,,3602,2075,91,91,http://localhost/purchaseCart,62248,0,1
+1655758134020,62933,Purchase Items,200,OK,Workers 1-96,text,true,,3602,1967,91,91,http://localhost/purchaseCart,62933,0,1
+1655758134665,62299,logout,200,OK,Workers 1-31,text,true,,2376,465,91,91,http://localhost/logout,62299,0,2
+1655758196964,0,Debug Sampler,200,OK,Workers 1-31,text,true,,420,0,91,91,null,0,0,0
+1655758135338,61636,logout,200,OK,Workers 1-23,text,true,,2377,486,90,90,http://localhost/logout,61636,0,0
+1655758196974,0,Debug Sampler,200,OK,Workers 1-23,text,true,,421,0,90,90,null,0,0,0
+1655758136020,60964,logout,200,OK,Workers 1-13,text,true,,2378,468,89,89,http://localhost/logout,60964,0,0
+1655758196984,0,Debug Sampler,200,OK,Workers 1-13,text,true,,421,0,89,89,null,0,0,0
+1655758136687,60307,logout,200,OK,Workers 1-25,text,true,,2376,480,88,88,http://localhost/logout,60307,0,0
+1655758196994,0,Debug Sampler,200,OK,Workers 1-25,text,true,,421,0,88,88,null,0,0,0
+1655758137359,59645,logout,200,OK,Workers 1-2,text,true,,2377,468,87,87,http://localhost/logout,59645,0,0
+1655758197004,0,Debug Sampler,200,OK,Workers 1-2,text,true,,418,0,87,87,null,0,0,0
+1655758138020,58994,logout,200,OK,Workers 1-26,text,true,,2377,480,86,86,http://localhost/logout,58994,0,1
+1655758197014,0,Debug Sampler,200,OK,Workers 1-26,text,true,,421,0,86,86,null,0,0,0
+1655758138690,58334,logout,200,OK,Workers 1-28,text,true,,2377,471,85,85,http://localhost/logout,58334,0,1
+1655758197025,0,Debug Sampler,200,OK,Workers 1-28,text,true,,421,0,85,85,null,0,0,0
+1655758139365,57669,logout,200,OK,Workers 1-12,text,true,,2377,486,84,84,http://localhost/logout,57669,0,0
+1655758197034,0,Debug Sampler,200,OK,Workers 1-12,text,true,,421,0,84,84,null,0,0,0
+1655758140024,57020,logout,200,OK,Workers 1-34,text,true,,2377,468,83,83,http://localhost/logout,57020,0,1
+1655758197044,0,Debug Sampler,200,OK,Workers 1-34,text,true,,421,0,83,83,null,0,0,0
+1655758140719,56336,logout,200,OK,Workers 1-7,text,true,,2377,471,82,82,http://localhost/logout,56336,0,1
+1655758197055,0,Debug Sampler,200,OK,Workers 1-7,text,true,,418,0,82,82,null,0,0,0
+1655758141371,55694,logout,200,OK,Workers 1-32,text,true,,2378,495,81,81,http://localhost/logout,55694,0,1
+1655758197065,0,Debug Sampler,200,OK,Workers 1-32,text,true,,421,0,81,81,null,0,0,0
+1655758142041,55033,logout,200,OK,Workers 1-29,text,true,,2378,480,80,80,http://localhost/logout,55033,0,0
+1655758197074,1,Debug Sampler,200,OK,Workers 1-29,text,true,,421,0,80,80,null,0,0,0
+1655758142705,54380,logout,200,OK,Workers 1-27,text,true,,2376,474,79,79,http://localhost/logout,54380,0,0
+1655758197085,0,Debug Sampler,200,OK,Workers 1-27,text,true,,421,0,79,79,null,0,0,0
+1655758143364,53732,logout,200,OK,Workers 1-1,text,true,,2375,474,78,78,http://localhost/logout,53732,0,1
+1655758197096,0,Debug Sampler,200,OK,Workers 1-1,text,true,,418,0,78,78,null,0,0,0
+1655758144027,53083,logout,200,OK,Workers 1-4,text,true,,2377,495,77,77,http://localhost/logout,53083,0,1
+1655758197110,0,Debug Sampler,200,OK,Workers 1-4,text,true,,417,0,77,77,null,0,0,0
+1655758144703,52418,logout,200,OK,Workers 1-5,text,true,,2376,486,76,76,http://localhost/logout,52418,0,1
+1655758197121,0,Debug Sampler,200,OK,Workers 1-5,text,true,,418,0,76,76,null,0,0,0
+1655758145712,51419,logout,200,OK,Workers 1-3,text,true,,2377,471,75,75,http://localhost/logout,51419,0,1
+1655758197131,0,Debug Sampler,200,OK,Workers 1-3,text,true,,418,0,75,75,null,0,0,0
+1655758146400,50742,logout,200,OK,Workers 1-33,text,true,,2377,465,74,74,http://localhost/logout,50741,0,0
+1655758197142,0,Debug Sampler,200,OK,Workers 1-33,text,true,,421,0,74,74,null,0,0,0
+1655758147086,50067,logout,200,OK,Workers 1-15,text,true,,2378,495,73,73,http://localhost/logout,50067,0,0
+1655758197153,0,Debug Sampler,200,OK,Workers 1-15,text,true,,420,0,73,73,null,0,0,0
+1655758147772,49392,logout,200,OK,Workers 1-11,text,true,,2375,477,72,72,http://localhost/logout,49392,0,0
+1655758197164,0,Debug Sampler,200,OK,Workers 1-11,text,true,,421,0,72,72,null,0,0,0
+1655758148471,48703,logout,200,OK,Workers 1-20,text,true,,2376,474,71,71,http://localhost/logout,48703,0,0
+1655758197174,0,Debug Sampler,200,OK,Workers 1-20,text,true,,421,0,71,71,null,0,0,0
+1655758149174,48010,logout,200,OK,Workers 1-18,text,true,,2378,465,70,70,http://localhost/logout,48010,0,0
+1655758197184,0,Debug Sampler,200,OK,Workers 1-18,text,true,,421,0,70,70,null,0,0,0
+1655758149924,47270,logout,200,OK,Workers 1-10,text,true,,2377,495,69,69,http://localhost/logout,47270,0,0
+1655758197194,0,Debug Sampler,200,OK,Workers 1-10,text,true,,419,0,69,69,null,0,0,0
+1655758150606,46598,logout,200,OK,Workers 1-17,text,true,,2377,489,68,68,http://localhost/logout,46598,0,1
+1655758197204,0,Debug Sampler,200,OK,Workers 1-17,text,true,,421,0,68,68,null,0,0,0
+1655758151276,45940,logout,200,OK,Workers 1-30,text,true,,2378,471,67,67,http://localhost/logout,45940,0,1
+1655758197216,0,Debug Sampler,200,OK,Workers 1-30,text,true,,421,0,67,67,null,0,0,0
+1655758151972,45255,logout,200,OK,Workers 1-19,text,true,,2377,483,66,66,http://localhost/logout,45255,0,0
+1655758197227,0,Debug Sampler,200,OK,Workers 1-19,text,true,,421,0,66,66,null,0,0,0
+1655758152658,44579,logout,200,OK,Workers 1-36,text,true,,2376,489,65,65,http://localhost/logout,44579,0,1
+1655758197237,0,Debug Sampler,200,OK,Workers 1-36,text,true,,421,0,65,65,null,0,0,0
+1655758153348,43899,logout,200,OK,Workers 1-37,text,true,,2377,489,64,64,http://localhost/logout,43899,0,0
+1655758197247,1,Debug Sampler,200,OK,Workers 1-37,text,true,,421,0,64,64,null,0,0,0
+1655758154032,43226,logout,200,OK,Workers 1-40,text,true,,2377,480,63,63,http://localhost/logout,43225,0,0
+1655758197258,0,Debug Sampler,200,OK,Workers 1-40,text,true,,421,0,63,63,null,0,0,0
+1655758154729,42538,logout,200,OK,Workers 1-39,text,true,,2376,468,62,62,http://localhost/logout,42538,0,0
+1655758197267,0,Debug Sampler,200,OK,Workers 1-39,text,true,,421,0,62,62,null,0,0,0
+1655758155436,41842,logout,200,OK,Workers 1-42,text,true,,2376,474,61,61,http://localhost/logout,41842,0,0
+1655758197278,0,Debug Sampler,200,OK,Workers 1-42,text,true,,421,0,61,61,null,0,0,0
+1655758156099,41190,logout,200,OK,Workers 1-41,text,true,,2377,471,60,60,http://localhost/logout,41190,0,0
+1655758197289,0,Debug Sampler,200,OK,Workers 1-41,text,true,,421,0,60,60,null,0,0,0
+1655758156760,40539,logout,200,OK,Workers 1-38,text,true,,2377,492,59,59,http://localhost/logout,40539,0,1
+1655758197299,0,Debug Sampler,200,OK,Workers 1-38,text,true,,421,0,59,59,null,0,0,0
+1655758157463,39848,logout,200,OK,Workers 1-44,text,true,,2377,495,58,58,http://localhost/logout,39848,0,1
+1655758197310,0,Debug Sampler,200,OK,Workers 1-44,text,true,,421,0,58,58,null,0,0,0
+1655758158147,39180,logout,200,OK,Workers 1-45,text,true,,2376,477,57,57,http://localhost/logout,39180,0,0
+1655758197326,0,Debug Sampler,200,OK,Workers 1-45,text,true,,421,0,57,57,null,0,0,0
+1655758158851,38487,logout,200,OK,Workers 1-43,text,true,,2377,495,56,56,http://localhost/logout,38487,0,1
+1655758197337,0,Debug Sampler,200,OK,Workers 1-43,text,true,,421,0,56,56,null,0,0,0
+1655758159536,37813,logout,200,OK,Workers 1-46,text,true,,2377,468,55,55,http://localhost/logout,37813,0,1
+1655758197348,0,Debug Sampler,200,OK,Workers 1-46,text,true,,421,0,55,55,null,0,0,0
+1655758160220,37144,logout,200,OK,Workers 1-47,text,true,,2377,486,54,54,http://localhost/logout,37144,0,0
+1655758197363,0,Debug Sampler,200,OK,Workers 1-47,text,true,,421,0,54,54,null,0,0,0
+1655758160910,36464,logout,200,OK,Workers 1-56,text,true,,2377,483,53,53,http://localhost/logout,36464,0,0
+1655758197373,0,Debug Sampler,200,OK,Workers 1-56,text,true,,421,0,53,53,null,0,0,0
+1655758161609,35776,logout,200,OK,Workers 1-52,text,true,,2377,489,52,52,http://localhost/logout,35776,0,0
+1655758197384,0,Debug Sampler,200,OK,Workers 1-52,text,true,,421,0,52,52,null,0,0,0
+1655758162297,35098,logout,200,OK,Workers 1-57,text,true,,2377,486,51,51,http://localhost/logout,35098,0,0
+1655758197395,0,Debug Sampler,200,OK,Workers 1-57,text,true,,421,0,51,51,null,0,0,0
+1655758163362,34043,logout,200,OK,Workers 1-53,text,true,,2377,477,50,50,http://localhost/logout,34043,0,1
+1655758197406,0,Debug Sampler,200,OK,Workers 1-53,text,true,,421,0,50,50,null,0,0,0
+1655758164038,33380,logout,200,OK,Workers 1-65,text,true,,2378,465,49,49,http://localhost/logout,33380,0,0
+1655758197418,0,Debug Sampler,200,OK,Workers 1-65,text,true,,421,0,49,49,null,0,0,0
+1655758164712,32716,logout,200,OK,Workers 1-82,text,true,,2377,492,48,48,http://localhost/logout,32716,0,0
+1655758197428,0,Debug Sampler,200,OK,Workers 1-82,text,true,,421,0,48,48,null,0,0,0
+1655758165378,32060,logout,200,OK,Workers 1-62,text,true,,2377,465,47,47,http://localhost/logout,32060,0,0
+1655758197438,0,Debug Sampler,200,OK,Workers 1-62,text,true,,421,0,47,47,null,0,0,0
+1655758166047,31401,logout,200,OK,Workers 1-48,text,true,,2377,477,46,46,http://localhost/logout,31401,0,0
+1655758197448,0,Debug Sampler,200,OK,Workers 1-48,text,true,,421,0,46,46,null,0,0,0
+1655758166708,30751,logout,200,OK,Workers 1-49,text,true,,2378,489,45,45,http://localhost/logout,30751,0,1
+1655758197460,0,Debug Sampler,200,OK,Workers 1-49,text,true,,421,0,45,45,null,0,0,0
+1655758167387,30087,logout,200,OK,Workers 1-51,text,true,,2377,483,44,44,http://localhost/logout,30087,0,1
+1655758197474,0,Debug Sampler,200,OK,Workers 1-51,text,true,,421,0,44,44,null,0,0,0
+1655758168053,29435,logout,200,OK,Workers 1-50,text,true,,2378,495,43,43,http://localhost/logout,29435,0,0
+1655758197488,0,Debug Sampler,200,OK,Workers 1-50,text,true,,421,0,43,43,null,0,0,0
+1655758168708,28792,logout,200,OK,Workers 1-85,text,true,,2377,465,42,42,http://localhost/logout,28792,0,0
+1655758197501,0,Debug Sampler,200,OK,Workers 1-85,text,true,,421,0,42,42,null,0,0,0
+1655758169388,28124,logout,200,OK,Workers 1-88,text,true,,2378,465,41,41,http://localhost/logout,28124,0,1
+1655758197512,0,Debug Sampler,200,OK,Workers 1-88,text,true,,421,0,41,41,null,0,0,0
+1655758170072,27454,logout,200,OK,Workers 1-81,text,true,,2377,471,40,40,http://localhost/logout,27454,0,0
+1655758197526,0,Debug Sampler,200,OK,Workers 1-81,text,true,,421,0,40,40,null,0,0,0
+1655758170732,26806,logout,200,OK,Workers 1-64,text,true,,2376,492,39,39,http://localhost/logout,26806,0,1
+1655758197538,0,Debug Sampler,200,OK,Workers 1-64,text,true,,421,0,39,39,null,0,0,0
+1655758171393,26159,logout,200,OK,Workers 1-84,text,true,,2377,474,38,38,http://localhost/logout,26159,0,0
+1655758197552,0,Debug Sampler,200,OK,Workers 1-84,text,true,,421,0,38,38,null,0,0,0
+1655758172084,25481,logout,200,OK,Workers 1-66,text,true,,2377,474,37,37,http://localhost/logout,25481,0,1
+1655758197565,0,Debug Sampler,200,OK,Workers 1-66,text,true,,421,0,37,37,null,0,0,0
+1655758172744,24833,logout,200,OK,Workers 1-69,text,true,,2377,480,36,36,http://localhost/logout,24833,0,0
+1655758197577,0,Debug Sampler,200,OK,Workers 1-69,text,true,,420,0,36,36,null,0,0,0
+1655758173411,24180,logout,200,OK,Workers 1-76,text,true,,2376,483,35,35,http://localhost/logout,24180,0,0
+1655758197591,0,Debug Sampler,200,OK,Workers 1-76,text,true,,421,0,35,35,null,0,0,0
+1655758174065,23539,logout,200,OK,Workers 1-63,text,true,,2377,474,34,34,http://localhost/logout,23539,0,1
+1655758197605,0,Debug Sampler,200,OK,Workers 1-63,text,true,,420,0,34,34,null,0,0,0
+1655758174743,22872,logout,200,OK,Workers 1-73,text,true,,2377,483,33,33,http://localhost/logout,22872,0,0
+1655758197615,0,Debug Sampler,200,OK,Workers 1-73,text,true,,420,0,33,33,null,0,0,0
+1655758175405,22220,logout,200,OK,Workers 1-68,text,true,,2378,471,32,32,http://localhost/logout,22220,0,7
+1655758197625,0,Debug Sampler,200,OK,Workers 1-68,text,true,,421,0,32,32,null,0,0,0
+1655758176079,21557,logout,200,OK,Workers 1-67,text,true,,2378,468,31,31,http://localhost/logout,21557,0,0
+1655758197636,0,Debug Sampler,200,OK,Workers 1-67,text,true,,420,0,31,31,null,0,0,0
+1655758176746,20900,logout,200,OK,Workers 1-60,text,true,,2376,492,30,30,http://localhost/logout,20900,0,0
+1655758197646,1,Debug Sampler,200,OK,Workers 1-60,text,true,,421,0,30,30,null,0,0,0
+1655758177406,20251,logout,200,OK,Workers 1-71,text,true,,2377,489,29,29,http://localhost/logout,20251,0,0
+1655758197657,1,Debug Sampler,200,OK,Workers 1-71,text,true,,421,0,29,29,null,0,0,0
+1655758178057,19611,logout,200,OK,Workers 1-89,text,true,,2377,492,28,28,http://localhost/logout,19611,0,0
+1655758197669,0,Debug Sampler,200,OK,Workers 1-89,text,true,,421,0,28,28,null,0,0,0
+1655758178712,18967,logout,200,OK,Workers 1-74,text,true,,2377,492,27,27,http://localhost/logout,18967,0,1
+1655758197679,0,Debug Sampler,200,OK,Workers 1-74,text,true,,421,0,27,27,null,0,0,0
+1655758179390,18299,logout,200,OK,Workers 1-93,text,true,,2376,471,26,26,http://localhost/logout,18299,0,1
+1655758197689,0,Debug Sampler,200,OK,Workers 1-93,text,true,,421,0,26,26,null,0,0,0
+1655758180376,17324,logout,200,OK,Workers 1-72,text,true,,2378,486,25,25,http://localhost/logout,17324,0,1
+1655758197700,0,Debug Sampler,200,OK,Workers 1-72,text,true,,421,0,25,25,null,0,0,0
+1655758181053,16658,logout,200,OK,Workers 1-61,text,true,,2377,465,24,24,http://localhost/logout,16658,0,0
+1655758197711,0,Debug Sampler,200,OK,Workers 1-61,text,true,,421,0,24,24,null,0,0,0
+1655758181757,15966,logout,200,OK,Workers 1-75,text,true,,2378,489,23,23,http://localhost/logout,15966,0,0
+1655758197724,0,Debug Sampler,200,OK,Workers 1-75,text,true,,421,0,23,23,null,0,0,0
+1655758182459,15276,logout,200,OK,Workers 1-58,text,true,,2378,465,22,22,http://localhost/logout,15276,0,0
+1655758197735,1,Debug Sampler,200,OK,Workers 1-58,text,true,,421,0,22,22,null,0,0,0
+1655758183145,14601,logout,200,OK,Workers 1-54,text,true,,2377,489,21,21,http://localhost/logout,14601,0,1
+1655758197746,1,Debug Sampler,200,OK,Workers 1-54,text,true,,420,0,21,21,null,0,0,0
+1655758183842,13915,logout,200,OK,Workers 1-94,text,true,,2377,483,20,20,http://localhost/logout,13915,0,0
+1655758197757,0,Debug Sampler,200,OK,Workers 1-94,text,true,,421,0,20,20,null,0,0,0
+1655758184543,13224,logout,200,OK,Workers 1-77,text,true,,2376,468,19,19,http://localhost/logout,13224,0,1
+1655758197767,0,Debug Sampler,200,OK,Workers 1-77,text,true,,421,0,19,19,null,0,0,0
+1655758185212,12566,logout,200,OK,Workers 1-59,text,true,,2377,465,18,18,http://localhost/logout,12566,0,0
+1655758197778,0,Debug Sampler,200,OK,Workers 1-59,text,true,,420,0,18,18,null,0,0,0
+1655758185883,11910,logout,200,OK,Workers 1-95,text,true,,2377,495,17,17,http://localhost/logout,11910,0,0
+1655758197793,0,Debug Sampler,200,OK,Workers 1-95,text,true,,421,0,17,17,null,0,0,0
+1655758186597,11206,logout,200,OK,Workers 1-100,text,true,,2377,495,16,16,http://localhost/logout,11206,0,0
+1655758197803,0,Debug Sampler,200,OK,Workers 1-100,text,true,,422,0,16,16,null,0,0,0
+1655758187302,10511,logout,200,OK,Workers 1-80,text,true,,2378,489,15,15,http://localhost/logout,10511,0,0
+1655758197813,0,Debug Sampler,200,OK,Workers 1-80,text,true,,421,0,15,15,null,0,0,0
+1655758187987,9838,logout,200,OK,Workers 1-70,text,true,,2376,486,14,14,http://localhost/logout,9838,0,0
+1655758197825,0,Debug Sampler,200,OK,Workers 1-70,text,true,,421,0,14,14,null,0,0,0
+1655758188679,9157,logout,200,OK,Workers 1-99,text,true,,2377,480,13,13,http://localhost/logout,9157,0,1
+1655758197836,0,Debug Sampler,200,OK,Workers 1-99,text,true,,421,0,13,13,null,0,0,0
+1655758189355,8492,logout,200,OK,Workers 1-87,text,true,,2376,471,12,12,http://localhost/logout,8492,0,0
+1655758197847,1,Debug Sampler,200,OK,Workers 1-87,text,true,,421,0,12,12,null,0,0,0
+1655758190035,7823,logout,200,OK,Workers 1-90,text,true,,2377,492,11,11,http://localhost/logout,7823,0,0
+1655758197858,0,Debug Sampler,200,OK,Workers 1-90,text,true,,420,0,11,11,null,0,0,0
+1655758190768,7100,logout,200,OK,Workers 1-91,text,true,,2377,492,10,10,http://localhost/logout,7100,0,1
+1655758197869,0,Debug Sampler,200,OK,Workers 1-91,text,true,,420,0,10,10,null,0,0,0
+1655758191454,6425,logout,200,OK,Workers 1-83,text,true,,2376,483,9,9,http://localhost/logout,6425,0,1
+1655758197880,0,Debug Sampler,200,OK,Workers 1-83,text,true,,421,0,9,9,null,0,0,0
+1655758192135,5755,logout,200,OK,Workers 1-98,text,true,,2377,492,8,8,http://localhost/logout,5755,0,1
+1655758197890,0,Debug Sampler,200,OK,Workers 1-98,text,true,,421,0,8,8,null,0,0,0
+1655758192817,5085,logout,200,OK,Workers 1-86,text,true,,2378,465,7,7,http://localhost/logout,5085,0,0
+1655758197902,0,Debug Sampler,200,OK,Workers 1-86,text,true,,421,0,7,7,null,0,0,0
+1655758193504,4408,logout,200,OK,Workers 1-79,text,true,,2377,480,6,6,http://localhost/logout,4408,0,0
+1655758197912,0,Debug Sampler,200,OK,Workers 1-79,text,true,,421,0,6,6,null,0,0,0
+1655758194203,3719,logout,200,OK,Workers 1-97,text,true,,2378,468,5,5,http://localhost/logout,3719,0,0
+1655758197922,0,Debug Sampler,200,OK,Workers 1-97,text,true,,421,0,5,5,null,0,0,0
+1655758194903,3030,logout,200,OK,Workers 1-78,text,true,,2377,477,4,4,http://localhost/logout,3030,0,0
+1655758197933,0,Debug Sampler,200,OK,Workers 1-78,text,true,,421,0,4,4,null,0,0,0
+1655758195577,2366,logout,200,OK,Workers 1-92,text,true,,2375,477,3,3,http://localhost/logout,2366,0,1
+1655758197943,0,Debug Sampler,200,OK,Workers 1-92,text,true,,421,0,3,3,null,0,0,0
+1655758196255,1698,logout,200,OK,Workers 1-55,text,true,,2378,474,2,2,http://localhost/logout,1698,0,1
+1655758197954,0,Debug Sampler,200,OK,Workers 1-55,text,true,,421,0,2,2,null,0,0,0
+1655758196953,1011,logout,200,OK,Workers 1-96,text,true,,2378,492,1,1,http://localhost/logout,1011,0,0
+1655758197964,0,Debug Sampler,200,OK,Workers 1-96,text,true,,421,0,1,1,null,0,0,0
