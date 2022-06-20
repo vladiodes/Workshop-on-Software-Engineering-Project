@@ -21,6 +21,10 @@
             <td>
                 <h2>Appoint/remove staff:</h2>
                 <form action="/appointOrDeleteManager" id="appoint_del_manager" method="post">
+                    <input type="hidden" name="userToken" id="userToken" value="">
+                    <script type="text/javascript">
+                        document.getElementById("userToken").setAttribute('value',localStorage.getItem("userToken"));
+                    </script>
                     <p>Select your store</p>
                     <select name="storeName">
                         #foreach($store in $stores)

@@ -54,6 +54,7 @@ public class Main {
             config.addStaticFiles("/public");
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
         }).start(HerokuUtil.getHerokuAssignedPort());
+        app.before(ctx -> ctx.header("Access-Control-Allow-Credentials", "true"));
         app.ws("/notifications", ws -> {
             ws.onMessage(ctx -> {
                 String userToken = ctx.message();
