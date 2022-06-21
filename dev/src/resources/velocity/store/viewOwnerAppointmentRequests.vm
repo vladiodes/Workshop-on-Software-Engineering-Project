@@ -19,8 +19,8 @@
         #elseif($success)
             <p id="success_response">$response</p>
             #foreach($req in $requests)
-                <h2>Requesting Owner : $req.getRequestedBy()</h2>
-                <p>User to Appoint : $req.getUserToAppoint()</p>
+                <h2 >Requesting Owner : $req.getRequestedBy()</h2>
+                <h2 style="color:blue">User to Appoint : $req.getUserToAppoint()</h2>
                 <form method="post" action="/approveRequest">
                     <input type="hidden" name="storeName" value="$storeName">
                     <input type="hidden" name="userName" value="$req.getUserToAppoint()">

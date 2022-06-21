@@ -652,7 +652,7 @@ public class StoreController {
         }
         else {
             model.put("success", true);
-            model.put("response", "Owner requests are:");
+            model.put("response", "Owner requests that are pending your approval:");
             model.put("requests", response.getResult());
             model.put("storeName", storeName);
         }
