@@ -22,18 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed another bug">
-      <change afterPath="$PROJECT_DIR$/src/resources/velocity/store/viewOwnerAppointmentRequests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/sideMenu.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreStaff.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/manageStoreStaff.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/viewBids.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/viewBids.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocityconfig/velocity_implicit.vm" afterDir="false" />
     <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Deleted dummy files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/ServiceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results_jmeter_latest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results_jmeter_latest.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +46,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="138-req-i7--relevant--exceptions" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -92,11 +84,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;2c95b5a9-8801-47ea-a2f8-a24f7211c10e&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/banan/Desktop/Studies/semester F/sadna/Workshop-on-Software-Engineering-Project/dev/src/main/Stores/PurchasePolicy/ProductPolicy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladi/OneDrive/Desktop/Workshop-on-Software-Engineering-Project/dev&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="main.Users" />
@@ -139,6 +147,8 @@
       <recent name="main.Stores.PurchasePolicy.Discounts.SimpleDiscounts" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="test.Stress_Load_tests" />
+      <recent name="test.Sress_Load_tests" />
       <recent name="test.RobustnessTests" />
       <recent name="test.UnitTests" />
     </key>
@@ -146,18 +156,14 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
-      <module name="dev" />
-
-      <option name="PROGRAM_PARAMETERS" value="StoreManagementStressStartup.json TestingConfig.json" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.Communication.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+  <component name="RunManager" selected="JUnit.buyDifferentItems">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -168,12 +174,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="main.Service.ServiceLoader" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Service.ServiceLoader" />
+    <configuration default="true" type="Application" factoryName="Application">
+      <shortenClasspath name="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.Communication.Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
+      <option name="PROGRAM_PARAMETERS" value="DefaultVladi.json RealConfig.json" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="main.Communication.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -181,13 +194,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="main.Service.ServiceLoader" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Service.ServiceLoader" />
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -207,94 +223,114 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="TEST_OBJECT" value="package" />
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <shortenClasspath name="ARGS_FILE" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.NotificationTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="buyDifferentItems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.NotificationTests.*" />
+          <option name="PATTERN" value="test.Stress_Load_tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.NotificationTests" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
+      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.buyDifferentItems" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.RobustnessTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="buyDifferentItems.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.RobustnessTests.*" />
+          <option name="PATTERN" value="test.Stress_Load_tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.RobustnessTests" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
+      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.buyDifferentItems" />
+      <option name="METHOD_NAME" value="execute" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.UnitTests in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="registerOpenStore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
+          <option name="PATTERN" value="test.Stress_Load_tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
+      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.registerOpenStore" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test.testUtils in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="registerOpenStore.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.testUtils.*" />
+          <option name="PATTERN" value="test.Stress_Load_tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.testUtils" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="test.Sress_Load_tests" />
+      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.registerOpenStore" />
+      <option name="METHOD_NAME" value="execute" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="storeManagments.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.Stress_Load_tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
+      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.storeManagments" />
+      <option name="METHOD_NAME" value="execute" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.main.Communication.Main" />
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.main.Service.ServiceLoader" />
       <item itemvalue="JUnit.DBTests" />
-      <item itemvalue="JUnit.test in dev" />
-      <item itemvalue="JUnit.test.NotificationTests in dev" />
-      <item itemvalue="JUnit.test.RobustnessTests in dev" />
-      <item itemvalue="JUnit.test.UnitTests in dev" />
-      <item itemvalue="JUnit.test.testUtils in dev" />
+      <item itemvalue="JUnit.buyDifferentItems" />
+      <item itemvalue="JUnit.buyDifferentItems.execute" />
+      <item itemvalue="JUnit.registerOpenStore" />
+      <item itemvalue="JUnit.registerOpenStore.execute" />
+      <item itemvalue="JUnit.storeManagments.execute" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.test in dev" />
-        <item itemvalue="JUnit.test.UnitTests in dev" />
-        <item itemvalue="JUnit.test.testUtils in dev" />
-        <item itemvalue="JUnit.test.RobustnessTests in dev" />
-        <item itemvalue="JUnit.test.NotificationTests in dev" />
+        <item itemvalue="JUnit.buyDifferentItems" />
+        <item itemvalue="JUnit.storeManagments.execute" />
+        <item itemvalue="JUnit.registerOpenStore.execute" />
+        <item itemvalue="JUnit.registerOpenStore" />
+        <item itemvalue="JUnit.buyDifferentItems.execute" />
       </list>
     </recent_temporary>
   </component>
@@ -335,6 +371,8 @@
       <workItem from="1654842323431" duration="1317000" />
       <workItem from="1655225435022" duration="1470000" />
       <workItem from="1655235787882" duration="2596000" />
+      <workItem from="1655718579333" duration="1725000" />
+      <workItem from="1655720592338" duration="2886000" />
     </task>
     <task id="LOCAL-00018" summary="Fixed compilation issues">
       <created>1650545025130</created>
@@ -722,11 +760,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added simple conditions for store in gui" />
     <MESSAGE value="Added composing complex conditions for store in gui" />
     <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
     <MESSAGE value="Some more fixed to bidding..." />
@@ -751,33 +787,8 @@
     <MESSAGE value="Fixed bug of removing founder appointment" />
     <MESSAGE value="Updated quantity in DB when purchasing" />
     <MESSAGE value="Implemented real time stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented real time stats" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="-1506" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1655718664207">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1506" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1655718664207" />
-    <state x="-1264" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1655718373794">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1264" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1655718373794" />
-    <state x="690" y="274" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1655717527421">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="274" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1655717527421" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1655717529277">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1655717529277" />
-    <state x="-1253" y="253" width="585" height="534" key="find.popup" timestamp="1655718206723">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1253" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1655718206723" />
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1655717977825">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1655717977825" />
+    <MESSAGE value="Updated db locks and added concurrent db tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated db locks and added concurrent db tests" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -86,8 +86,7 @@
     <orderEntry type="library" name="javax.xml.bind.jaxb.api" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.29" level="application" />
     <orderEntry type="library" name="junit.jupiter" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="library" name="com.fasterxml.jackson.core:jackson-databind:2.0.2" level="project" />
-    <orderEntry type="library" name="org.hibernate.orm:hibernate-core:6.0.2.Final" level="project" />
+    <orderEntry type="library" name="io.metersphere.ms.jmeter.core" level="project" />
+    <orderEntry type="library" name="thoughtworks.xstream" level="project" />
   </component>
 </module>

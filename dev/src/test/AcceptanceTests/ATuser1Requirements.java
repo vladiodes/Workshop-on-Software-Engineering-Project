@@ -21,7 +21,7 @@ public class ATuser1Requirements {
     String securePassword = "Ligma123";
     @Before
     public void setUp() throws Exception {
-        System = new Service("DBTestingConfig.json");
+        System = new Service("TestingConfig.json");
         usertoken1 = System.guestConnect();
         usertoken2 = System.guestConnect();
         usertoken3 = System.guestConnect();

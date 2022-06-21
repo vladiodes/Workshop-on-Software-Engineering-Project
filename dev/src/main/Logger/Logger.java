@@ -18,7 +18,7 @@ public class Logger {
 
     private String logFileName = "LOG.txt";
     private String bugFileName = "BUG.txt";
-    private String userTokens = "C:\\Users\\banan\\Desktop\\Studies\\semester F\\sadna\\apache-jmeter-5.4.3\\bin\\TOKENS.csv";
+    private String userTokens = "TOKENS.csv";
 
     private Logger() {
         DeleteFile(userTokens);

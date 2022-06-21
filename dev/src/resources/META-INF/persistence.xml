@@ -27,7 +27,7 @@ mapped to database tables. Database driver, location, userid and pw
             <!-- Driver for DB database -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <!-- URL for DB -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3360/mydb" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb" />
             <!-- Username -->
             <property name="javax.persistence.jdbc.user" value="root" />
             <!-- Password -->
@@ -56,7 +56,7 @@ complete transactions with the DB  -->
             <!-- Driver for DB database -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <!-- URL for DB -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3360/mydb_tests" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb_tests" />
             <!-- Username -->
             <property name="javax.persistence.jdbc.user" value="root" />
             <!-- Password -->

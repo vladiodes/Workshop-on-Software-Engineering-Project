@@ -374,7 +374,7 @@ public class User implements Observable {
 
 
     public HashMap<User, String> getStoreStaff(Store IStore) {
-        if (hasPermission(IStore, StorePermission.OwnerPermission))
+        if (hasPermission(IStore, StorePermission.OwnerPermission) || isAdmin())
             return IStore.getStoreStaff();
         throw new IllegalArgumentException("You don't have permission to do that");
     }
