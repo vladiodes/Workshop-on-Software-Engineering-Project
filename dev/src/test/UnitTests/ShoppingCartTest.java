@@ -130,20 +130,20 @@ class ShoppingCartTest {
 
     @Test
     void validateCartNoItems() {
-        assertFalse(cart.ValidateCart(userMock));
+        assertThrows(IllegalArgumentException.class, ()->cart.ValidateCart(userMock));
     }
 
     @Test
     void validateCartNotEnoughQuantity() {
         cart.addProductToCart(st1, productName1, phoneQuantity);
         st1.getProductsByName().get(productName1).subtractQuantity(5);
-        assertFalse(cart.ValidateCart(userMock));
+        assertThrows(IllegalArgumentException.class, ()->cart.ValidateCart(userMock));
     }
 
     @Test
     void validateCartStoreNoLongerOpen() {
         cart.addProductToCart(st1, productName1, phoneQuantity);
         st1.closeStore();
-        assertFalse(cart.ValidateCart(userMock));
+        assertThrows(IllegalArgumentException.class, ()->cart.ValidateCart(userMock));
     }
 }

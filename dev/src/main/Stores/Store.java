@@ -387,7 +387,7 @@ public class Store {
     public boolean ValidateBasket(User user, ShoppingBasket shoppingBasket){
         boolean res = this.getIsActive();
         if(!res)
-            throw new IllegalArgumentException("Store" + this.getName()+ " is inactive");
+            throw new IllegalArgumentException("Store " + this.getName()+ " is inactive");
         if(storePurchasePurchaseCondition != null)
             res &= storePurchasePurchaseCondition.pass(shoppingBasket);
         if(!res)
@@ -396,14 +396,14 @@ public class Store {
             res &=  ent.getKey().isPurchasableForAmount(ent.getValue());
             if(!res)
             {
-                throw new IllegalArgumentException("Product " + ent.getKey().getName() + "is not purchasable for amount " + ent.getValue());
+                throw new IllegalArgumentException("Product " + ent.getKey().getName() + " is not purchasable for amount " + ent.getValue());
             }
             if(shoppingBasket.getCostumePriceForProduct(ent.getKey()) != null)
             {
                 res &= ent.getKey().isPurchasableForPrice(shoppingBasket.getCostumePriceForProduct(ent.getKey()), ent.getValue(), user);
                 if(!res)
                 {
-                    throw new IllegalArgumentException("Product " + ent.getKey().getName() + "is not purchasable for that price");
+                    throw new IllegalArgumentException("Product " + ent.getKey().getName() + " is not purchasable for that price");
                 }
             }
         }
