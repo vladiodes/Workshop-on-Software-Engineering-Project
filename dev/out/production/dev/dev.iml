@@ -54,7 +54,6 @@
     <orderEntry type="library" name="apache.velocity.engine.examples" level="project" />
     <orderEntry type="library" name="google.guava" level="project" />
     <orderEntry type="library" name="net.stickycode.mockwire.sticky.mockito" level="project" />
-    <orderEntry type="library" name="mockito.all" level="project" />
     <orderEntry type="library" name="net.stickycode.mockwire:sticky-mockwire-mockito:5.1" level="project" />
     <orderEntry type="library" name="org.slf4j:slf4j-simple:1.7.26" level="project" />
     <orderEntry type="library" name="com.j2html:j2html:1.5.0" level="project" />
@@ -86,7 +85,8 @@
     <orderEntry type="library" name="javax.xml.bind.jaxb.api" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.29" level="application" />
     <orderEntry type="library" name="junit.jupiter" level="project" />
-    <orderEntry type="library" name="io.metersphere.ms.jmeter.core" level="project" />
     <orderEntry type="library" name="thoughtworks.xstream" level="project" />
+    <orderEntry type="library" name="io.metersphere.ms.jmeter.core" level="project" />
+    <orderEntry type="library" name="mockito.all" level="project" />
   </component>
 </module>

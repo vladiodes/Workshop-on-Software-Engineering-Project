@@ -24,8 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Deleted dummy files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_jmeter_latest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results_jmeter_latest.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dev/dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dev/dev.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/PurchaseConcurrencyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="138-req-i7--relevant--exceptions" />
+        <entry key="$PROJECT_DIR$/.." value="139-req-ii44" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -156,7 +157,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.buyDifferentItems">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -184,6 +185,7 @@
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
       <option name="PROGRAM_PARAMETERS" value="DefaultVladi.json RealConfig.json" />
+      <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.Communication.*" />
@@ -223,6 +225,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PurchaseConcurrencyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.PurchaseConcurrencyTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceLoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.UnitTests" />
+      <option name="MAIN_CLASS_NAME" value="test.UnitTests.ServiceLoaderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <shortenClasspath name="ARGS_FILE" />
       <option name="TEST_OBJECT" value="class" />
@@ -246,56 +280,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="buyDifferentItems.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.buyDifferentItems" />
-      <option name="METHOD_NAME" value="execute" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="registerOpenStore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.registerOpenStore" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="registerOpenStore.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Sress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.registerOpenStore" />
-      <option name="METHOD_NAME" value="execute" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="storeManagments.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <shortenClasspath name="ARGS_FILE" />
@@ -313,24 +297,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.main.Communication.Main" />
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.main.Service.ServiceLoader" />
       <item itemvalue="JUnit.DBTests" />
+      <item itemvalue="JUnit.PurchaseConcurrencyTest" />
+      <item itemvalue="JUnit.ServiceLoaderTest" />
+      <item itemvalue="JUnit.test in dev" />
       <item itemvalue="JUnit.buyDifferentItems" />
-      <item itemvalue="JUnit.buyDifferentItems.execute" />
-      <item itemvalue="JUnit.registerOpenStore" />
-      <item itemvalue="JUnit.registerOpenStore.execute" />
       <item itemvalue="JUnit.storeManagments.execute" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.ServiceLoaderTest" />
+        <item itemvalue="JUnit.PurchaseConcurrencyTest" />
         <item itemvalue="JUnit.buyDifferentItems" />
         <item itemvalue="JUnit.storeManagments.execute" />
-        <item itemvalue="JUnit.registerOpenStore.execute" />
-        <item itemvalue="JUnit.registerOpenStore" />
-        <item itemvalue="JUnit.buyDifferentItems.execute" />
       </list>
     </recent_temporary>
   </component>
@@ -373,6 +372,7 @@
       <workItem from="1655235787882" duration="2596000" />
       <workItem from="1655718579333" duration="1725000" />
       <workItem from="1655720592338" duration="2886000" />
+      <workItem from="1655812302698" duration="1680000" />
     </task>
     <task id="LOCAL-00018" summary="Fixed compilation issues">
       <created>1650545025130</created>
