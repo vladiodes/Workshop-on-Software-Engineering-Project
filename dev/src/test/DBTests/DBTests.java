@@ -1,5 +1,6 @@
 package test.DBTests;
 
+import main.DTO.OwnerAppointmentRequestDTO;
 import main.DTO.ShoppingCartDTO;
 import main.Persistence.DAO;
 import main.Service.IService;
@@ -23,7 +24,7 @@ public class DBTests {
     private IService service;
     private String store1,store2;
     private String product1,product2;
-    private Response<String> founder1,manager1,owner2,owner1;
+    private Response<String> founder1,manager1,owner2,owner1,owner3;
 
     @Before
     public void setUp() throws Exception {
@@ -37,6 +38,7 @@ public class DBTests {
         manager1 = service.guestConnect();
         owner1 = service.guestConnect();
         owner2 = service.guestConnect();
+        owner3 = service.guestConnect();
     }
 
 //    @Test
@@ -144,7 +146,7 @@ public class DBTests {
 
     @Test
     @Order(7)
-    public void appointOwnerChain(){
+    public void createOwnerAppointmentRequestsChain() {
         boolean wasError;
         wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
         wasError |= service.register("owner1","123456").isError_occured();
@@ -155,9 +157,42 @@ public class DBTests {
 
         Assertions.assertFalse(wasError);
     }
-
     @Test
     @Order(8)
+    public void OwnerAppointmentRequestsAreRecorded(){
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        Response<List<OwnerAppointmentRequestDTO>> resFounder1 = service.getOwnerAppointmentRequests(founder1.getResult(),store2);
+        wasError |= resFounder1.isError_occured();
+        Assertions.assertEquals(1,resFounder1.getResult().size());
+
+        wasError |= service.approveOwnerAppointment(founder1.getResult(),"owner2",store2).isError_occured();
+        Assertions.assertFalse(wasError);
+    }
+
+    @Test
+    @Order(9)
+    public void OwnerAppointmentRequestsAreDiscarded() {
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        wasError |= service.login(owner1.getResult(), "owner1", "123456").isError_occured();
+        wasError |= service.login(owner2.getResult(), "owner2", "123456").isError_occured();
+
+        Response<List<OwnerAppointmentRequestDTO>> resFounder1 = service.getOwnerAppointmentRequests(founder1.getResult(),store2);
+        Response<List<OwnerAppointmentRequestDTO>> resOwner1 = service.getOwnerAppointmentRequests(owner1.getResult(),store2);
+        Response<List<OwnerAppointmentRequestDTO>> resOwner2 = service.getOwnerAppointmentRequests(owner2.getResult(),store2);
+
+        wasError |= resFounder1.isError_occured();
+        wasError |= resOwner1.isError_occured();
+        wasError |= resOwner2.isError_occured();
+
+        Assertions.assertEquals(0,resFounder1.getResult().size());
+        Assertions.assertEquals(0,resOwner1.getResult().size());
+        Assertions.assertEquals(0,resOwner2.getResult().size());
+    }
+
+    @Test
+    @Order(10)
     public void OwnersAreRecorded(){
         boolean wasError;
         wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -181,7 +216,7 @@ public class DBTests {
     }
 
     @Test
-    @Order(9)
+    @Order(11)
     public void ZacceptBidWorks(){
         boolean wasError;
         wasError=service.login(founder1.getResult(),"founder1","123456").isError_occured();
@@ -195,7 +230,7 @@ public class DBTests {
     }
 
     @Test
-    @Order(10)
+    @Order(12)
     public void concurrentDBModificationTest() throws Exception {
         AtomicBoolean wasError = new AtomicBoolean(false);
         int numOfThreads = 30;
@@ -215,7 +250,7 @@ public class DBTests {
     }
 
     @Test
-    @Order(11)
+    @Order(13)
     public void concurrentDBModificationAllWorked(){
         AtomicBoolean wasError = new AtomicBoolean(false);
         int numOfThreads = 30;
