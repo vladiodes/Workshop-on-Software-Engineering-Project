@@ -93,8 +93,6 @@ public class DBTests {
 
         Assertions.assertFalse(wasError);
     }
-
-
     @Test
     @Order(2)
     public void addMoreData(){

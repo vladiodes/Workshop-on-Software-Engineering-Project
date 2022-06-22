@@ -607,6 +607,7 @@ public class Store {
         this.notifyAboutSuccessfullOwnerAppointment(request);
         this.ownerAppointmentRequests.remove(request);
         DAO.getInstance().merge(this);
+        DAO.getInstance().remove(request);
     }
     public void addOwnerRequest(OwnerAppointmentRequest request) {
         this.ownerAppointmentRequests.add(request);
@@ -677,7 +678,6 @@ public class Store {
     }
 
     public void declineOwnerRequest(User refuser, User userToDecline) {
-        // TODO: check what happens when owner votes yes and then tries to vote no(if its even a use case)
         OwnerAppointmentRequest request = getOwnerAppointmentRequest(userToDecline);
         boolean canVote = verifyOwnerOrFounder(refuser);
         if(canVote){
@@ -690,6 +690,7 @@ public class Store {
             userToDecline.notifyObserver(n);
             ownerAppointmentRequests.remove(request);
             DAO.getInstance().merge(this);
+            DAO.getInstance().remove(request);
         }
         else{
             throw new IllegalArgumentException("the refuser is not owner/founder of the store");
