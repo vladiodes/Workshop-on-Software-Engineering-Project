@@ -4,6 +4,7 @@ package test.AcceptanceTests;
 import main.Service.IService;
 import main.Service.Service;
 import main.utils.Response;
+import org.apache.xpath.operations.Bool;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import test.testUtils.testsFactory;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AT_Req2_4_4_Owner_appointment {
-    private Response<String> founder,owner1,owner2,owner3,manager;
+    private Response<String> founder,owner1,owner2,owner3,owner4,manager;
     private String storeName,password;
     IService service;
     @Before
@@ -25,6 +26,7 @@ public class AT_Req2_4_4_Owner_appointment {
         owner1 = service.guestConnect();
         owner2 = service.guestConnect();
         owner3 = service.guestConnect();
+        owner4 = service.guestConnect();
         manager = service.guestConnect();
         password = "123456";
 
@@ -32,12 +34,16 @@ public class AT_Req2_4_4_Owner_appointment {
         service.register("owner1",password);
         service.register("owner2",password);
         service.register("owner3",password);
+        service.register("owner4",password);
+
         service.register("manager",password);
 
         service.login(founder.getResult(),"founder",password);
         service.login(owner1.getResult(),"owner1",password);
         service.login(owner2.getResult(),"owner2",password);
         service.login(owner3.getResult(),"owner3",password);
+        service.login(owner4.getResult(),"owner4",password);
+
         service.login(manager.getResult(),"manager",password);
 
         service.openStore(founder.getResult(), storeName);
@@ -135,11 +141,72 @@ public class AT_Req2_4_4_Owner_appointment {
         service.appointStoreOwner(owner2.getResult(), "owner3", storeName);
         service.approveOwnerAppointment(founder.getResult(), "owner3",storeName);
         service.approveOwnerAppointment(owner1.getResult(), "owner3",storeName);
-        assertThrows(IllegalArgumentException.class,()->service.appointStoreOwner(user4,user,store_mock));
+        Response<Boolean> response =  service.appointStoreOwner(owner3.getResult(), "owner1",storeName);
+        Assertions.assertTrue(response.isError_occured() && response.isWas_expected_error());
+    }
 
 
+    @Test
+    public void removeOwnerAppointmentGoodNoChain() {
+        appointOwnerWithoutAnyExtraApprovalNeeded();
+        Response<Boolean> response = service.removeStoreOwnerAppointment(founder.getResult(),"owner1",storeName);
+        Assertions.assertTrue(response.getResult());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner1.getResult()).getResult().size());
+    }
+
+    @Test
+    public void removeOwnerAppointmentGoodWithChain() {
+        appointOwnerWithoutAnyExtraApprovalNeeded();
+        service.appointStoreOwner(owner1.getResult(), "owner2",storeName);
+        service.approveOwnerAppointment(founder.getResult(),"owner2",storeName);
+        service.appointStoreOwner(owner2.getResult(), "owner3",storeName);
+        service.approveOwnerAppointment(founder.getResult(),"owner3",storeName);
+        service.approveOwnerAppointment(owner1.getResult(),"owner3",storeName);
+        service.appointStoreOwner(owner3.getResult(), "owner4",storeName);
+        service.approveOwnerAppointment(founder.getResult(),"owner4",storeName);
+        service.approveOwnerAppointment(owner1.getResult(),"owner4",storeName);
+        service.approveOwnerAppointment(owner2.getResult(),"owner4",storeName);
+        service.removeStoreOwnerAppointment(founder.getResult(),"owner1",storeName);
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner1.getResult()).getResult().size());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner2.getResult()).getResult().size());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner3.getResult()).getResult().size());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner4.getResult()).getResult().size());
+    }
+
+    @Test
+    public void removeOwnerAppointmentGoodWithChainIncludingManagers() {
+        appointOwnerWithoutAnyExtraApprovalNeeded();
+        service.appointStoreOwner(owner1.getResult(), "owner2",storeName);
+        service.approveOwnerAppointment(founder.getResult(), "owner2",storeName);
+        service.appointStoreManager(owner2.getResult(), "owner3",storeName);
+        Response<Boolean> response = service.removeStoreOwnerAppointment(founder.getResult(), "owner1",storeName);
+        Assertions.assertTrue(response.getResult());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner1.getResult()).getResult().size());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner2.getResult()).getResult().size());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner3.getResult()).getResult().size());
 
     }
+
+    @Test
+    public void removeOwnerAppointmentGoodWithForkedChain() {
+        appointOwnerWithoutAnyExtraApprovalNeeded();
+        service.appointStoreOwner(founder.getResult(), "owner2",storeName);
+        service.approveOwnerAppointment(owner1.getResult(), "owner2",storeName);
+        service.appointStoreOwner(owner1.getResult(), "owner3",storeName);
+        service.approveOwnerAppointment(founder.getResult(), "owner3",storeName);
+        service.approveOwnerAppointment(owner2.getResult(), "owner3",storeName);
+        service.appointStoreOwner(owner2.getResult(), "owner4",storeName);
+        service.approveOwnerAppointment(founder.getResult(), "owner4",storeName);
+        service.approveOwnerAppointment(owner1.getResult(), "owner4",storeName);
+        service.approveOwnerAppointment(owner3.getResult(), "owner4",storeName);
+        Response<Boolean> response = service.removeStoreOwnerAppointment(founder.getResult(), "owner1",storeName);
+        Assertions.assertTrue(response.getResult());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner1.getResult()).getResult().size());
+        Assertions.assertEquals(1,service.getAllStoresOfUser(owner2.getResult()).getResult().size());
+        Assertions.assertEquals(0,service.getAllStoresOfUser(owner3.getResult()).getResult().size());
+        Assertions.assertEquals(1,service.getAllStoresOfUser(owner4.getResult()).getResult().size());
+    }
+
 
     @After
     public void tearDown() throws Exception {
