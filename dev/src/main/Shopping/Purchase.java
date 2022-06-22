@@ -46,6 +46,8 @@ public class Purchase {
             if(pinfo.getTransactionId()!=0)
             {
                 paymentSystem.abort(pinfo);
+                if(sinfo.getTransactionId()!=0)
+                    supplyingSystem.abort(sinfo);
                 throw new Exception("Unexpected purchase error, aborting payment.");
             }
 
