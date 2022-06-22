@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import test.testUtils.testsFactory;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class AT_Req2_4_4_Owner_appointment {
     private Response<String> founder,owner1,owner2,owner3,manager;
     private String storeName,password;
@@ -123,6 +125,20 @@ public class AT_Req2_4_4_Owner_appointment {
         service.appointStoreOwner(founder.getResult(), "owner2",storeName);
         Response<String> response = service.approveOwnerAppointment(manager.getResult(), "owner2",storeName);
         Assertions.assertTrue(response.isError_occured() && response.isWas_expected_error());
+    }
+
+    @Test
+    public void appointOwnerCircularity() {
+        appointOwnerWithoutAnyExtraApprovalNeeded();
+        service.appointStoreOwner(owner1.getResult(), "owner2", storeName);
+        service.approveOwnerAppointment(founder.getResult(), "owner2",storeName);
+        service.appointStoreOwner(owner2.getResult(), "owner3", storeName);
+        service.approveOwnerAppointment(founder.getResult(), "owner3",storeName);
+        service.approveOwnerAppointment(owner1.getResult(), "owner3",storeName);
+        assertThrows(IllegalArgumentException.class,()->service.appointStoreOwner(user4,user,store_mock));
+
+
+
     }
 
     @After

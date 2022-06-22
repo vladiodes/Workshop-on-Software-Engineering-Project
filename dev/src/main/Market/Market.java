@@ -261,6 +261,13 @@ public class Market {
         }
     }
 
+    private void verifyNotAlreadyLoggedInWithToken(String token) {
+        User u = getConnectedUserByToken(token);
+        if(u.getIsLoggedIn()) {
+            throw new IllegalArgumentException("User already logged in with this token");
+        }
+    }
+
     public UserDTO Login(String token, String userName, String password) {
         if (!membersByUserName.containsKey(userName)) {
             throw new IllegalArgumentException("username doesn't exist.");
@@ -269,7 +276,8 @@ public class Market {
             Logger.getInstance().logBug("Market", String.format("token %s isn't in the system and attempted to log in.", token));
             throw new IllegalArgumentException("token isn't connected in the system.");
         }
-        this.logoutExistingUser(token);
+        this.verifyNotAlreadyLoggedInWithToken(token);
+//        this.logoutExistingUser(token);
         User u = membersByUserName.get(userName);
         Logger.getInstance().logEvent("Market", String.format("%s logged in.", userName));
         u.LogIn(password, this.security_controller);

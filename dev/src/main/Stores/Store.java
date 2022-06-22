@@ -609,7 +609,7 @@ public class Store {
         DAO.getInstance().merge(this);
         DAO.getInstance().remove(request);
     }
-    public void addOwnerRequest(OwnerAppointmentRequest request) {
+    public boolean addOwnerRequest(OwnerAppointmentRequest request) {
         this.ownerAppointmentRequests.add(request);
         DAO.getInstance().merge(this);
         if(verifyRequest(request)) {
@@ -620,6 +620,7 @@ public class Store {
             // notify all owners and founder about new request they need to decide on
             notifyOwnersOnNewAppointmentRequest(request);
         }
+        return true;
     }
     private boolean verifyRequest(OwnerAppointmentRequest request) {
         Collection<User> approves = request.getApprovedBy();

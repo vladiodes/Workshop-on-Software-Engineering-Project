@@ -1,12 +1,15 @@
 package test.UnitTests;
 
 import main.Market.Market;
+import main.Stores.OwnerAppointmentRequest;
 import main.Stores.Store;
 import main.Users.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
+
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,6 +44,7 @@ class UserTest {
         store_mock = mock(Store.class);
         store_mock2=mock(Store.class);
         when(store_mock.getOwnersAppointments()).thenReturn(new LinkedList<>());
+        when(store_mock.addOwnerRequest(any(OwnerAppointmentRequest.class))).thenReturn(true);
         List<ManagerPermissions> managersList = new ArrayList<>();
         when(store_mock.getManagersAppointments()).thenReturn(managersList);
         when(store_mock.getManagersAppointments()).thenReturn(managersList);
@@ -99,14 +103,13 @@ class UserTest {
     void appointOwnerToStoreSuccess(){
         user.getFoundedStores().add(store_mock);
         assertTrue(user.appointOwnerToStore(store_mock,user2));
-        assertTrue(user2.getOwnedStores().contains(store_mock));
     }
 
     @Test
     void appointOwnerToStoreOwnerAppointing(){
         user.getFoundedStores().add(store_mock);
-        appointStoreOwner(user,user2,store_mock);
-        appointStoreOwner(user2,user3,store_mock);
+        requestToAppointStoreOwner(user,user2,store_mock);
+        requestToAppointStoreOwner(user2,user3,store_mock);
         assertTrue(user3.getOwnedStores().contains(store_mock));
     }
 
@@ -115,6 +118,7 @@ class UserTest {
         user.getFoundedStores().add(store_mock);
         appointStoreOwner(user,user2,store_mock);
         appointStoreOwner(user2,user3,store_mock);
+
         appointStoreOwner(user3,user4,store_mock);
         assertThrows(IllegalArgumentException.class,()->appointStoreOwner(user4,user,store_mock));
     }
@@ -137,6 +141,13 @@ class UserTest {
         appointing.appointOwnerToStore(in_store,appointed);
         in_store.getOwnersAppointments().add(new OwnerPermissions(appointed,appointing,in_store));
     }
+
+    private void requestToAppointStoreOwner(User appointing,User appointed,Store in_store) {
+        appointing.appointOwnerToStore(in_store,appointed);
+        in_store.getAllOwnerRequests().add(new OwnerAppointmentRequest(appointing,appointed));
+    }
+
+
 
     private void appointStoreManager(User appointing,User appointed,Store in_store) {
         appointing.appointManagerToStore(in_store,appointed);
