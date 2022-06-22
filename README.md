@@ -12,10 +12,10 @@ List of dependencies to install:
 - mysql:mysql-connector-java:8.0.29
 - javax.xml.bind:jaxb-api:2.2.2
 - org.junit.jupiter:junit-jupiter:5.5.2
-for JMeter tests:
-io.metersphere:ms-jmeter-core:jmeter-5.5_0
-com.thoughtworks.xstream:xstream:1.4.19
-Java version:
+- for JMeter tests:
+- io.metersphere:ms-jmeter-core:jmeter-5.5_0
+- com.thoughtworks.xstream:xstream:1.4.19
+- Java version:
 - Amazon Corretto 15.0.2
 # How to work with the database:
 You have to open an mySQL server and create 2 databases with the following names:

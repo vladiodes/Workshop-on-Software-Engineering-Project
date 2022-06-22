@@ -43,7 +43,7 @@ class PurchaseConcurrencyTest {
         si = mock(SupplyingInformation.class);
         paymentSystem = mock(IPayment.class);
         supplyingSystem = mock(ISupplying.class);
-        when(paymentSystem.makePayment(any(PaymentInformation.class),any(double.class))).thenReturn(true);
+        when(paymentSystem.makePayment(any(PaymentInformation.class),any(Double.class))).thenReturn(true);
         when(supplyingSystem.supply(any(),any())).thenReturn(true);
         market = new Market(paymentSystem, supplyingSystem);
         founder = market.ConnectGuest();

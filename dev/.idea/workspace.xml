@@ -22,10 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Deleted dummy files">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Added AT for new system stats req">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_jmeter_latest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results_jmeter_latest.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="138-req-i7--relevant--exceptions" />
+        <entry key="$PROJECT_DIR$/.." value="139-req-ii44" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -156,7 +155,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.buyDifferentItems">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -184,6 +183,7 @@
       <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
       <module name="dev" />
       <option name="PROGRAM_PARAMETERS" value="DefaultVladi.json RealConfig.json" />
+      <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.Communication.*" />
@@ -204,6 +204,73 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_6_5_SystemStats_Updated" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6_5_SystemStats_Updated" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_6_5_SystemStats_Updated.testManagerLogins" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6_5_SystemStats_Updated" />
+      <option name="METHOD_NAME" value="testManagerLogins" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_6_5_SystemStats_Updated.testOwnerLogins" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6_5_SystemStats_Updated" />
+      <option name="METHOD_NAME" value="testOwnerLogins" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AT_Req2_6_5_SystemStats_Updated.testPurchasesRecorded" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.AT_Req2_6_5_SystemStats_Updated" />
+      <option name="METHOD_NAME" value="testPurchasesRecorded" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -230,85 +297,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="buyDifferentItems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="test in dev" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dev" />
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.buyDifferentItems" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="buyDifferentItems.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.buyDifferentItems" />
-      <option name="METHOD_NAME" value="execute" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="registerOpenStore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.registerOpenStore" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="registerOpenStore.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Sress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.registerOpenStore" />
-      <option name="METHOD_NAME" value="execute" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="storeManagments.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.Stress_Load_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Stress_Load_tests" />
-      <option name="MAIN_CLASS_NAME" value="test.Stress_Load_tests.storeManagments" />
-      <option name="METHOD_NAME" value="execute" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -318,19 +317,19 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.main.Service.ServiceLoader" />
       <item itemvalue="JUnit.DBTests" />
-      <item itemvalue="JUnit.buyDifferentItems" />
-      <item itemvalue="JUnit.buyDifferentItems.execute" />
-      <item itemvalue="JUnit.registerOpenStore" />
-      <item itemvalue="JUnit.registerOpenStore.execute" />
-      <item itemvalue="JUnit.storeManagments.execute" />
+      <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated" />
+      <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated.testManagerLogins" />
+      <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated.testOwnerLogins" />
+      <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated.testPurchasesRecorded" />
+      <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.buyDifferentItems" />
-        <item itemvalue="JUnit.storeManagments.execute" />
-        <item itemvalue="JUnit.registerOpenStore.execute" />
-        <item itemvalue="JUnit.registerOpenStore" />
-        <item itemvalue="JUnit.buyDifferentItems.execute" />
+        <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated" />
+        <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated.testPurchasesRecorded" />
+        <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated.testOwnerLogins" />
+        <item itemvalue="JUnit.AT_Req2_6_5_SystemStats_Updated.testManagerLogins" />
       </list>
     </recent_temporary>
   </component>
@@ -373,20 +372,9 @@
       <workItem from="1655235787882" duration="2596000" />
       <workItem from="1655718579333" duration="1725000" />
       <workItem from="1655720592338" duration="2886000" />
-    </task>
-    <task id="LOCAL-00018" summary="Fixed compilation issues">
-      <created>1650545025130</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1650545025130</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Fixed ProductDTO constructor">
-      <created>1650545463219</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1650545463219</updated>
+      <workItem from="1655812302698" duration="1988000" />
+      <workItem from="1655816982731" duration="4108000" />
+      <workItem from="1655880921996" duration="215000" />
     </task>
     <task id="LOCAL-00020" summary="Unit tests for User">
       <created>1650726667114</created>
@@ -717,7 +705,21 @@
       <option name="project" value="LOCAL" />
       <updated>1655238309457</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Fixed bugs in tests - now all runs not only on Ilay's machine...">
+      <created>1655814257908</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1655814257908</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Added AT for new system stats req">
+      <created>1655819626845</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1655819626845</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -763,8 +765,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added composing complex conditions for store in gui" />
-    <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
     <MESSAGE value="Some more fixed to bidding..." />
     <MESSAGE value="Test fixes" />
     <MESSAGE value="Need to annotate and map all classes..." />
@@ -788,7 +788,9 @@
     <MESSAGE value="Updated quantity in DB when purchasing" />
     <MESSAGE value="Implemented real time stats" />
     <MESSAGE value="Updated db locks and added concurrent db tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated db locks and added concurrent db tests" />
+    <MESSAGE value="Fixed bugs in tests - now all runs not only on Ilay's machine..." />
+    <MESSAGE value="Added AT for new system stats req" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added AT for new system stats req" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

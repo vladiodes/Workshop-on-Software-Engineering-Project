@@ -31,7 +31,7 @@ class ServiceLoaderTest {
         when(service.register(any(String.class), any(String.class))).thenReturn(new Response<>(true));
         when(service.login(any(String.class), any(String.class), any(String.class))).thenReturn(new Response<>(null));
         when(service.openStore(any(String.class), any(String.class))).thenReturn(new Response<>(null));
-        when(service.addProductToStore(any(String.class), any(String.class),any(String.class), any(List.class), any(String.class), any(String.class),any(int.class), any(double.class))).thenReturn(new Response<>(null));
+        when(service.addProductToStore(any(String.class), any(String.class),any(String.class), any(List.class), any(String.class), any(String.class),any(Integer.class), any(Double.class))).thenReturn(new Response<>(null));
         when(service.appointStoreManager(any(String.class), any(String.class),any(String.class))).thenReturn(new Response<>(null));
         when(service.appointStoreOwner(any(String.class), any(String.class),any(String.class))).thenReturn(new Response<>(null));
         when(service.allowManagerUpdateProducts(any(String.class), any(String.class),any(String.class))).thenReturn(new Response<>(null));
