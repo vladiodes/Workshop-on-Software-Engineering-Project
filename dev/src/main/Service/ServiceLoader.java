@@ -44,27 +44,24 @@ public class ServiceLoader {
 
 //    you can use this main to create more startup files.
     public static void main(String[] args) throws Exception {
-        createRecording("StoreManagementStressStartup.json", new Function<IService, Void>() {
+        createRecording("Bar_final_meeting_startup.json", new Function<IService, Void>() {
             @Override
             public Void apply(IService service) {
                 String username = "u";
                 String password = "123456";
-                String storeName = "s";
-                String productName = "p";
-                for(int i = 0; i < 100; i ++) {
-                    String currUser = username + i;
-                    service.register(currUser, password);
-                    String founderToken = service.guestConnect().getResult();
-                    service.login(founderToken, currUser, password);
-                    String currStore = storeName + i;
-                    service.openStore(founderToken, currStore);
-                    if(i == 50)
-                        System.out.println("Half users done.");
-                    for(int j = 0; j < 10; j ++)
-                        service.addProductToStore(founderToken, productName + j, "Test", new ArrayList<>(), "Test", currStore, 1000000 , 30);
-                    service.logout(founderToken);
+                String tokens[] = new String[5];
+                for(int i = 1; i < 5; i ++){
+                    service.register(username + i, password);
+                    tokens[i] = service.guestConnect().getResult();
+                    service.login(tokens[i], username + i, password);
                 }
-                System.out.println("Done Script.");
+                service.openStore(tokens[2], "s");
+                service.addProductToStore(tokens[2], "Bamba", "Snack", new ArrayList<>(), "Peanut snack", "s", 20, 30);
+                service.appointStoreManager(tokens[2], "u3", "s");
+                service.allowManagerUpdateProducts(tokens[2], "u3", "s");
+                for(int i = 1; i < 5; i ++){
+                    service.logout(tokens[i]);
+                }
                 return null;
             }
         });
