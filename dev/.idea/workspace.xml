@@ -22,9 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed bugs in tests - now all runs not only on Ilay's machine...">
-      <change afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/AT_Req2_6_5_SystemStats_Updated.java" afterDir="false" />
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Added AT for new system stats req">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,14 +373,8 @@
       <workItem from="1655718579333" duration="1725000" />
       <workItem from="1655720592338" duration="2886000" />
       <workItem from="1655812302698" duration="1988000" />
-      <workItem from="1655816982731" duration="2326000" />
-    </task>
-    <task id="LOCAL-00019" summary="Fixed ProductDTO constructor">
-      <created>1650545463219</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1650545463219</updated>
+      <workItem from="1655816982731" duration="4108000" />
+      <workItem from="1655880921996" duration="215000" />
     </task>
     <task id="LOCAL-00020" summary="Unit tests for User">
       <created>1650726667114</created>
@@ -718,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655814257908</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Added AT for new system stats req">
+      <created>1655819626845</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1655819626845</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -764,7 +765,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed the following:&#10;1. Store history is now independent of domain basket&#10;2. Added some tests to bargain policy&#10;3. Deleted unnecessary functions from Store" />
     <MESSAGE value="Some more fixed to bidding..." />
     <MESSAGE value="Test fixes" />
     <MESSAGE value="Need to annotate and map all classes..." />
@@ -789,7 +789,8 @@
     <MESSAGE value="Implemented real time stats" />
     <MESSAGE value="Updated db locks and added concurrent db tests" />
     <MESSAGE value="Fixed bugs in tests - now all runs not only on Ilay's machine..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs in tests - now all runs not only on Ilay's machine..." />
+    <MESSAGE value="Added AT for new system stats req" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added AT for new system stats req" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
