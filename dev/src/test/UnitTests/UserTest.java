@@ -200,8 +200,8 @@ class UserTest {
 
     @Test
     void grantPermissionGood(){
-        user.addOwnedStore(new OwnerPermissions(user,user,store_mock));
-        appointStoreOwner(user,user2,store_mock);
+        user.getFoundedStores().add(store_mock);
+        user2.addOwnedStore(new OwnerPermissions(user2,user,store_mock));
         appointStoreManager(user2,user3,store_mock);
         assertTrue(user2.grantOrDeletePermission(user3,store_mock,true,StorePermission.UpdateAddProducts));
     }
@@ -239,7 +239,7 @@ class UserTest {
     @Test
     void getStoreStaffOwnerOrFounderGood(){
         user.getFoundedStores().add(store_mock);
-        appointStoreOwner(user,user2,store_mock);
+        user2.addOwnedStore(new OwnerPermissions(user2,user,store_mock));
         assertDoesNotThrow(()->user2.getStoreStaff(store_mock));
         assertDoesNotThrow(()->user.getStoreStaff(store_mock));
     }
@@ -247,7 +247,7 @@ class UserTest {
     @Test
     void receiveQuestionsFromStoreOwnerOrFounderGood(){
         user.getFoundedStores().add(store_mock);
-        appointStoreOwner(user,user2,store_mock);
+        user2.addOwnedStore(new OwnerPermissions(user2,user,store_mock));
         assertDoesNotThrow(()->user2.receiveQuestionsFromStore(store_mock));
         assertDoesNotThrow(()->user.receiveQuestionsFromStore(store_mock));
     }
@@ -270,7 +270,7 @@ class UserTest {
     @Test
     void sendRespondsFromStoreOwnerOrFounderGood(){
         user.getFoundedStores().add(store_mock);
-        appointStoreOwner(user,user2,store_mock);
+        user2.addOwnedStore(new OwnerPermissions(user2,user,store_mock));
         assertDoesNotThrow(()->user2.sendRespondFromStore(store_mock,user3,"asdasd"));
         assertDoesNotThrow(()->user.sendRespondFromStore(store_mock,user3,"asdasd"));
     }
@@ -293,10 +293,11 @@ class UserTest {
     @Test
     void getStorePurchaseHistoryOwnerOrFounderGood(){
         user.getFoundedStores().add(store_mock);
-        appointStoreOwner(user,user2,store_mock);
+        user2.addOwnedStore(new OwnerPermissions(user2,user,store_mock));
         assertDoesNotThrow(()->user2.getStorePurchaseHistoryByTime(store_mock));
         assertDoesNotThrow(()->user.getStorePurchaseHistoryByTime(store_mock));
     }
+
 
     @Test
     void getStorePurchaseHistoryManagerWithPermissions(){
@@ -348,7 +349,7 @@ class UserTest {
     void removeProductFromStoreOwnerOrFounderOrManagerWithPermissions(){
         user.getFoundedStores().add(store_mock);
         appointStoreManager(user,user2,store_mock);
-        appointStoreOwner(user,user3,store_mock);
+        user3.addOwnedStore(new OwnerPermissions(user3,user,store_mock));
         user.grantOrDeletePermission(user2,store_mock,true,StorePermission.UpdateAddProducts);
         when(store_mock.removeProduct("product")).thenReturn(true);
         assertTrue(user.removeProductFromStore("product",store_mock));
@@ -365,7 +366,7 @@ class UserTest {
     @Test
     void testVisitorTypeOwner(){
         user.getFoundedStores().add(store_mock);
-        appointStoreOwner(user,user2,store_mock);
+        user2.addOwnedStore(new OwnerPermissions(user2,user,store_mock));
         Assertions.assertEquals(user2.visitorType(), Market.StatsType.OwnerVisitor);
     }
 

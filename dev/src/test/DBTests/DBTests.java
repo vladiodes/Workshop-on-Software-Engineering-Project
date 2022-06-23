@@ -30,6 +30,7 @@ public class DBTests {
     @BeforeEach
     public void setUp() throws Exception {
         DAO.setPersistence_unit("MarketTests");
+        DAO.enablePersist();
         service=new Service("DBTestingConfig.json");
         store1 = "store1";
         store2="store2";

@@ -23,7 +23,10 @@ public class DAO {
         return instance;
     }
     public static void enablePersist(){
+        if(instance!=null && !instance.shouldPersist)
+            instance=null;
         enablePersist=true;
+
     }
     public static void setPersistence_unit(String unit){
         persistence_unit=unit;
