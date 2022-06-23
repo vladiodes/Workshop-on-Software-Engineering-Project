@@ -22,12 +22,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed unit-tests">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Added AT for new system stats req">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TOKENS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TOKENS.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/util/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/AuctionPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/rafflePolicy.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/addAuctionPolicy.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/product/addRafflePolicy.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/addPolicy.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/addPolicy.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/rafflePolicyTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,6 +223,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ATuser2Requirements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DBTests" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="dev" />
       <shortenClasspath name="ARGS_FILE" />
@@ -239,23 +267,6 @@
       <option name="PACKAGE_NAME" value="test.UnitTests" />
       <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.receiveQuestionsFromStoreOwnerOrFounderGood" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
-      <option name="METHOD_NAME" value="receiveQuestionsFromStoreOwnerOrFounderGood" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -321,8 +332,8 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.main.Service.ServiceLoader" />
       <item itemvalue="JUnit.DBTests" />
+      <item itemvalue="JUnit.ATuser2Requirements" />
       <item itemvalue="JUnit.UserTest" />
-      <item itemvalue="JUnit.UserTest.receiveQuestionsFromStoreOwnerOrFounderGood" />
       <item itemvalue="JUnit.UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
       <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
       <item itemvalue="JUnit.test in dev" />
@@ -330,10 +341,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.test in dev" />
+        <item itemvalue="JUnit.ATuser2Requirements" />
         <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
         <item itemvalue="JUnit.UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
-        <item itemvalue="JUnit.UserTest.receiveQuestionsFromStoreOwnerOrFounderGood" />
       </list>
     </recent_temporary>
   </component>

@@ -33,8 +33,6 @@ public class Path {
         public static final String ASK_QUERIES = "velocity/store/askQueries.vm";
         public static final String VIEW_USER_PURCHASE_HISTORY = "velocity/users/viewPurchaseHistory.vm";
         public static final String ADD_POLICY = "velocity/store/addPolicy.vm";
-        public static final String ADD_RAFFLE_POLICY = "velocity/product/addRafflePolicy.vm";
-        public static final String ADD_AUCTION_POLICY = "velocity/product/addAuctionPolicy.vm";
         public static final String ADD_BARGAIN_POLICY = "velocity/product/addBargainPolicy.vm";
         public static final String RESET_POLICIES = "velocity/product/resetPolicies.vm";
         public static final String ADD_DISCOUNT = "velocity/store/addDiscount.vm";

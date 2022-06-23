@@ -220,8 +220,6 @@ public interface IService {
      */
     // used to reset policies
     Response<Boolean> addNormalPolicy(String userToken, String storeName, String productName, Double price);
-    Response<Boolean> addRafflePolicy(String userToken, String storeName, String productName, Double price);
-    Response<Boolean> addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate until);
     Response<Boolean> addBargainPolicy(String userToken, String StoreName, String productName, Double OriginalPrice);
 
 

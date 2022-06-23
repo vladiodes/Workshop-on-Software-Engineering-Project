@@ -852,40 +852,6 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> addRafflePolicy(String userToken, String storeName, String productName, Double price) {
-        try {
-            DAO.getInstance().openTransaction();
-            market.addRafflePolicy(userToken, storeName, productName, price);
-            return new Response<>(true);
-        } catch (IllegalArgumentException e) {
-            return new Response<>(e, true);
-        } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in adding Policy.");
-            return new Response<>(e, false);
-        }
-        finally {
-            DAO.getInstance().commitTransaction();
-        }
-    }
-
-    @Override
-    public Response<Boolean> addAuctionPolicy(String userToken, String storeName, String productName, Double price, LocalDate until) {
-        try {
-            DAO.getInstance().openTransaction();
-            market.addAuctionPolicy(userToken, storeName, productName, price, until);
-            return new Response<>(true);
-        } catch (IllegalArgumentException e) {
-            return new Response<>(e, true);
-        } catch (Exception e) {
-            Logger.getInstance().logBug("Service", "Bug in adding Policy.");
-            return new Response<>(e, false);
-        }
-        finally {
-            DAO.getInstance().commitTransaction();
-        }
-    }
-
-    @Override
     public Response<Boolean> addBargainPolicy(String userToken, String StoreName, String productName, Double originalPrice) {
         try {
             DAO.getInstance().openTransaction();

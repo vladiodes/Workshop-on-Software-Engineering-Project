@@ -131,10 +131,6 @@ public class Main {
             post("/askQueries",storeController.askQueriesPost);
             get("/addPolicy",storeController.addPolicyPage);
             post("/addPolicySelectStore",storeController.addPolicySelectStorePost);
-            post("/addRafflePolicy",storeController.addRafflePolicyPost);
-            post("/handleAddRafflePolicy",storeController.handleAddRafflePolicy);
-            post("/addAuctionPolicy",storeController.addAuctionPolicyPost);
-            post("/handleAddAuctionPolicy",storeController.handleAddAuctionPolicy);
             post("/addBargainPolicy",storeController.addBargainPolicyPost);
             post("/handleAddBargainPolicy",storeController.handleAddBargainPolicy);
             post("/resetPolicy",storeController.resetPolicy);

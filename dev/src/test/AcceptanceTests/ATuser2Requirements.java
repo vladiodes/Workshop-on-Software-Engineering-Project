@@ -84,7 +84,6 @@ public class ATuser2Requirements {
         service.addProductToStore(founder1token.getResult(), AuctionedItem, "Drinks", null, "tasty drink", "MyStore1", 100, auctionedItemPrice);
         service.addBargainPolicy(founder1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice);
         service.addBargainPolicy(founder1token.getResult(), "MyStore1", bargainedItem2, bargainedItemPrice2);
-        service.addAuctionPolicy(founder1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice, LocalDate.now().plusDays(5));
     }
 
     /***
@@ -271,52 +270,6 @@ public class ATuser2Requirements {
         }
     }
 
-    @Test
-    public void SetProductForRaffle() {
-        Assertions.assertFalse(service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", 50.0).isError_occured());
-    }
-
-    @Test
-    public void SetProductForRaffleNoPermissions() {
-        Assertions.assertTrue(service.addRafflePolicy(user1token.getResult(), "MyStore1", "Sprite", 50.0).isError_occured());
-    }
-
-    @Test
-    public void BuyRafflePartly() {
-        double pay = 25;
-        Assertions.assertFalse(service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", 50.0).isError_occured());
-        Assertions.assertFalse(service.addProductToCart(user2token.getResult(), "MyStore1", "Sprite", 1).isError_occured());
-        Assertions.assertFalse(service.setCostumPriceForProductInCart(user2token.getResult(), "MyStore1", "Sprite", pay).isError_occured());
-        Assertions.assertFalse(service.purchaseCart(user2token.getResult(), pi, si).isError_occured());
-        verify(mockPayment, times(1)).makePayment(pi, pay);
-        verify(mockSupplyer, times(0)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
-    }
-
-    @Test
-    public void cantPayOverRaffleAmount() {
-        double fullPrice = 50.0;
-        double pay = fullPrice + 1;
-        service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", fullPrice);
-        service.addProductToCart(user2token.getResult(), "MyStore1", "Sprite", 1);
-        Assertions.assertTrue(service.setCostumPriceForProductInCart(user2token.getResult(), "MyStore1", "Sprite", pay).isError_occured());
-    }
-
-    @Test
-    public void BuyRaffleFully() {
-        double fullPrice = 50.0;
-        double pay1 = 15;
-        double pay2 = fullPrice - pay1;
-        Assertions.assertFalse(service.addRafflePolicy(owner1token.getResult(), "MyStore1", "Sprite", fullPrice).isError_occured());
-        service.addProductToCart(user2token.getResult(), "MyStore1", "Sprite", 1);
-        service.addProductToCart(user1token.getResult(), "MyStore1", "Sprite", 1);
-        service.setCostumPriceForProductInCart(user2token.getResult(), "MyStore1", "Sprite", pay2);
-        service.setCostumPriceForProductInCart(user1token.getResult(), "MyStore1", "Sprite", pay1);
-        service.purchaseCart(user2token.getResult(), pi, si);
-        service.purchaseCart(user1token.getResult(), pi, si);
-        verify(mockPayment, times(1)).makePayment(pi, pay1);
-        verify(mockPayment, times(1)).makePayment(pi, pay2);
-        verify(mockSupplyer, times(1)).supply(any(SupplyingInformation.class), anyMapOf(Product.class, Integer.class));
-    }
 
     @Test
     public void biddingOnBargain(){
@@ -324,12 +277,12 @@ public class ATuser2Requirements {
         Assertions.assertEquals(1, service.getUserBids(founder1token.getResult(), "MyStore1", bargainedItem).getResult().size());
     }
 
-//    @Test
-//    public void biddingOnBargainNotifiesStaff(){
-//        service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation);
-//        Assertions.assertEquals(1, service.receiveMessages(founder1token.getResult()).getResult().size());
-//        Assertions.assertEquals(1, service.receiveMessages(owner1token.getResult()).getResult().size());
-//    }
+    @Test
+    public void biddingOnBargainNotifiesStaff(){
+        service.bidOnProduct(user1token.getResult(), "MyStore1", bargainedItem, bargainedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation);
+        Assertions.assertEquals(1, service.receiveMessages(founder1token.getResult()).getResult().size());
+        Assertions.assertEquals(1, service.receiveMessages(owner1token.getResult()).getResult().size());
+    }
 
     @Test
     public void founderApprovesBargainOffer(){
@@ -394,11 +347,6 @@ public class ATuser2Requirements {
     }
 
     @Test
-    public void biddingOnAuction(){
-        Assertions.assertFalse(service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice , mockPaymentInformation, mockSupplyingInformation).isError_occured());
-    }
-
-    @Test
     public void CantBidOnAuctionSamePrice(){
         service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice , mockPaymentInformation, mockSupplyingInformation);
         Assertions.assertTrue(service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice , mockPaymentInformation, mockSupplyingInformation).isError_occured());
@@ -408,13 +356,6 @@ public class ATuser2Requirements {
     public void CantBidOnAuctionLowerPrice(){
         service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice , mockPaymentInformation, mockSupplyingInformation);
         Assertions.assertTrue(service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice - 1 , mockPaymentInformation, mockSupplyingInformation).isError_occured());
-    }
-
-    @Test
-    public void HighestBidOnAuctionCounts(){
-        service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice , mockPaymentInformation, mockSupplyingInformation);
-        service.bidOnProduct(user1token.getResult(), "MyStore1", AuctionedItem, auctionedItemPrice + 1, mockPaymentInformation, mockSupplyingInformation);
-        Assertions.assertEquals(auctionedItemPrice + 1, service.getUserBids(founder1token.getResult(),"MyStore1", AuctionedItem).getResult().get(0).getCostumePrice());
     }
 
     @Test

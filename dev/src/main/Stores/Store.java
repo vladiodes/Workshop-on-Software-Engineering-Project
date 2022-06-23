@@ -536,21 +536,6 @@ public class Store {
             this.founder.notifyObserver(n);
 
     }
-    public void addRafflePolicy(String productName, Double price) {
-        Product product = getProduct(productName);
-        Policy p =new rafflePolicy(this, price);
-        DAO.getInstance().persist(p);
-        product.setPolicy(p);
-        DAO.getInstance().merge(product);
-    }
-
-    public void addAuctionPolicy(String productName, Double price, LocalDate until,IPayment payment, ISupplying supplying) {
-        Product product = getProduct(productName);
-        Policy p = new AuctionPolicy(until, price,this, productName,payment,supplying);
-        DAO.getInstance().persist(p);
-        product.setPolicy(p);
-        DAO.getInstance().merge(product);
-    }
 
     public void addNormalPolicy(String productName, Double price) {
         Product product = getProduct(productName);

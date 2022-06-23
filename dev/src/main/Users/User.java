@@ -545,17 +545,6 @@ public class User implements Observable {
         return stores;
     }
 
-    public void addRafflePolicy(Store store, String productName, Double price) {
-        if(!hasPermission(store, StorePermission.PolicyPermission))
-            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
-        store.addRafflePolicy(productName, price);
-    }
-
-    public void addAuctionPolicy(Store store, String productName, Double price, LocalDate Until,IPayment payment,ISupplying supplying) {
-        if(!hasPermission(store, StorePermission.PolicyPermission))
-            throw new IllegalArgumentException("You don't have permission to add policies to this store.");
-        store.addAuctionPolicy(productName, price, Until,payment,supplying);
-    }
 
     public void addNormalPolicy(Store store, String productName, Double price) {
         if(!hasPermission(store, StorePermission.PolicyPermission))
