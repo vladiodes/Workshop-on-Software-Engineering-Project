@@ -4,13 +4,12 @@ import main.Persistence.DAO;
 import main.Users.User;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
 @Entity
-public class OwnerAppointmentRequest implements Serializable {
+public class OwnerAppointmentRequest {
     @Id
     @GeneratedValue
     private int id;
@@ -26,6 +25,10 @@ public class OwnerAppointmentRequest implements Serializable {
         this.userToAppoint = userToAppoint;
         this.approvedBy = Collections.synchronizedList(new LinkedList<>());
         this.approvedBy.add(requestedBy);
+    }
+
+    public OwnerAppointmentRequest() {
+
     }
 
     public boolean addVote(User u) {

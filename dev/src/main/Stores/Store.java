@@ -687,11 +687,12 @@ public class Store {
                     storeName,
                     String.format("%s owner appointment request was decline by %s", userToDecline.getUserName(), refuser.getUserName())
             );
+            DAO.getInstance().persist(n);
             request.getRequestedBy().notifyObserver(n);
             userToDecline.notifyObserver(n);
             ownerAppointmentRequests.remove(request);
-            DAO.getInstance().merge(this);
             DAO.getInstance().remove(request);
+            DAO.getInstance().merge(this);
         }
         else{
             throw new IllegalArgumentException("the refuser is not owner/founder of the store");
