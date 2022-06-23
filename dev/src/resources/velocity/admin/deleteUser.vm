@@ -5,7 +5,7 @@
 <main>
     <div class="content">
         <h2>Delete user:</h2>
-        <form id="delete_user" method="post">
+        <form id="delete_user" action="/deleteUser" method="post">
             <p>Username</p>
             <input type="text" name="username" placeholder="Enter username to delete" value="" required>
 

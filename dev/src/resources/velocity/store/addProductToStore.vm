@@ -5,7 +5,7 @@
 <main>
     <div class="content">
         <h2>Manage your stores' inventory:</h2>
-        <form id="add_product_to_store" method="post">
+        <form id="add_product_to_store" action= "/addProductToStore" method="post">
             <input type="hidden" name="userToken" id="userToken" value="">
             <script type="text/javascript">
                 document.getElementById("userToken").setAttribute('value',localStorage.getItem("userToken"));

@@ -145,6 +145,8 @@ public class Market {
 
 
     public void addNormalPolicy(String userToken, String storeName, String productName, Double price) {
+        verifyStoreNameNotNull(storeName);
+
         User user = getConnectedUserByToken(userToken);
         Store store = getDomainStoreByName(storeName);
         user.addNormalPolicy(store, productName, price);
@@ -152,6 +154,8 @@ public class Market {
 
     public boolean bidOnProduct(String userToken, String storeName, String productName, Double costumePrice,
             PaymentInformation paymentInformation, SupplyingInformation supplyingInformation) {
+        verifyStoreNameNotNull(storeName);
+
         User user = getConnectedUserByToken(userToken);
         Store store = getDomainStoreByName(storeName);
         if (user.isGuest())
@@ -292,6 +296,8 @@ public class Market {
     }
 
     public List<ProductDTO> getStoreProducts(String storeName) {
+        verifyStoreNameNotNull(storeName);
+
         List<ProductDTO> res = new LinkedList<>();
         StoreDTO st = this.getStoreByName(storeName);
         if (st == null)
@@ -319,6 +325,8 @@ public class Market {
     }
 
     public boolean addProductToCart(String userToken, String storeName, String productName, int quantity) {
+        verifyStoreNameNotNull(storeName);
+
         User us = this.connectedSessions.get(userToken);
         if (quantity <= 0)
             throw new IllegalArgumentException("quantity is lesss than or equal to 0.");
@@ -341,6 +349,8 @@ public class Market {
 
     public boolean addProductToCart(String userToken, String storeName, String productName, double price)
             throws Exception {
+        verifyStoreNameNotNull(storeName);
+
         if (price <= 0)
             throw new IllegalArgumentException("can't pay 0 or less.");
         User user = getConnectedUserByToken(userToken);
@@ -351,6 +361,8 @@ public class Market {
     }
 
     public boolean RemoveProductFromCart(String userToken, String storeName, String productName, int quantity) {
+        verifyStoreNameNotNull(storeName);
+
         User us = this.connectedSessions.get(userToken);
         if (quantity <= 0)
             throw new IllegalArgumentException("quantity is lesss than or equal to 0.");
@@ -378,6 +390,7 @@ public class Market {
 
     public boolean addProductToStore(String userToken, String productName, String category, List<String> keyWords,
             String description, String storeName, int quantity, double price) {
+        verifyStoreNameNotNull(storeName);
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         boolean output = p.first.addProductToStore(p.second, productName, category, keyWords, description, quantity,
                 price);
@@ -387,6 +400,7 @@ public class Market {
 
     public boolean updateProductInStore(String userToken, String oldProductName, String newProductName, String category,
             List<String> keyWords, String description, String storeName, int quantity, double price) {
+        verifyStoreNameNotNull(storeName);
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         boolean output = p.first.updateProductToStore(p.second, oldProductName, newProductName, category, keyWords,
                 description, quantity, price);
@@ -395,6 +409,7 @@ public class Market {
     }
 
     public boolean appointStoreOwner(String userToken, String userToAppoint, String storeName) {
+        verifyStoreNameNotNull(storeName);
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User user_to_appoint = membersByUserName.get(userToAppoint);
         if (user_to_appoint == null)
@@ -404,6 +419,7 @@ public class Market {
     }
 
     public boolean removeStoreOwnerAppointment(String userToken, String userAppointed, String storeName) {
+        verifyStoreNameNotNull(storeName);
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User appointed_user = membersByUserName.get(userAppointed);
         if (appointed_user == null)
@@ -425,6 +441,7 @@ public class Market {
     }
 
     public boolean appointStoreManager(String userToken, String userToAppoint, String storeName) {
+        verifyStoreNameNotNull(storeName);
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User user_to_appoint = membersByUserName.get(userToAppoint);
         if (user_to_appoint == null)
@@ -446,48 +463,59 @@ public class Market {
     }
 
     public boolean allowManagerBargainProducts(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.BargainPermission, true);
     }
 
     public boolean disallowManagerBargainProducts(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.BargainPermission, false);
     }
 
     public boolean allowManagerPolicyProducts(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.PolicyPermission, true);
     }
 
     public boolean disallowManagerPolicyProducts(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.PolicyPermission, false);
     }
 
     public boolean allowManagerUpdateProducts(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.UpdateAddProducts, true);
     }
 
     public boolean disallowManagerUpdateProducts(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.UpdateAddProducts, false);
     }
 
     public boolean allowManagerViewPurchaseHistory(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.ViewStoreHistory, true);
     }
 
     public boolean disallowManagerViewPurchaseHistory(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.ViewStoreHistory, false);
     }
 
     public boolean allowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.AnswerAndTakeRequests,
                 true);
     }
 
     public boolean disallowManagerAnswerAndTakeRequests(String userToken, String managerName, String storeName) {
+        verifyStoreNameNotNull(storeName);
         return allowOrDisallowPermission(userToken, managerName, storeName, StorePermission.AnswerAndTakeRequests,
                 false);
     }
 
     public boolean removeStoreManager(String userToken, String userAppointed, String storeName) {
+        verifyStoreNameNotNull(storeName);
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User manager = membersByUserName.get(userAppointed);
         if (manager == null)
@@ -497,26 +525,35 @@ public class Market {
     }
 
     public boolean closeStore(String userToken, String storeName) {
+        verifyStoreNameNotNull(storeName);
+
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.closeStore(p.second);
     }
 
     public boolean reopenStore(String userToken, String storeName) {
+        verifyStoreNameNotNull(storeName);
+
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.reOpenStore(p.second);
     }
 
     public HashMap<User, String> getStoreStaff(String userToken, String storeName) {
+        verifyStoreNameNotNull(storeName);
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.getStoreStaff(p.second);
     }
 
     public List<String> receiveQuestionsFromBuyers(String userToken, String storeName) {
+        verifyStoreNameNotNull(storeName);
+
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.receiveQuestionsFromStore(p.second);
     }
 
     public boolean sendRespondToBuyer(String userToken, String storeName, String userToRespond, String msg) {
+        verifyStoreNameNotNull(storeName);
+
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         User toRespond = membersByUserName.get(userToRespond);
         if (toRespond == null)
@@ -525,11 +562,15 @@ public class Market {
     }
 
     public Map<ShoppingBasketDTO, LocalDateTime> getStorePurchaseHistory(String userToken, String storeName) {
+        verifyStoreNameNotNull(storeName);
+
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         return p.first.getStorePurchaseHistoryByTime(p.second);
     }
 
     public boolean deleteStore(String userToken, String storeName) {
+        verifyStoreNameNotNull(storeName);
+
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
         if (p.first.removeStore(p.second)) {
             stores.remove(storeName);
@@ -544,7 +585,9 @@ public class Market {
         if (admin == null)
             throw new IllegalArgumentException("No such admin in the system");
         User toDelete = membersByUserName.get(userName);
-
+        if(toDelete == null) {
+            throw new IllegalArgumentException(String.format("%s does not exist in the system", userName));
+        }
         // Check to see if user has any role
         if (toDelete.isAdmin() || toDelete.isManager() || toDelete.isFounder() || toDelete.isOwner())
             throw new IllegalArgumentException("Cant delete a user with a role");
@@ -788,6 +831,7 @@ public class Market {
     }
 
     public List<OwnerAppointmentRequestDTO> getOwnerAppointmentRequests(String userToken, String storeName) {
+        verifyStoreNameNotNull(storeName);
         List<OwnerAppointmentRequestDTO> res = new LinkedList<>();
         User u = getConnectedUserByToken(userToken);
         Store store = getDomainStoreByName(storeName);
@@ -944,5 +988,11 @@ public class Market {
 
     public void setSecurity_controller(ISecurity security_controller) {
         this.security_controller = security_controller;
+    }
+
+    private void verifyStoreNameNotNull(String storeName) {
+        if(storeName == null) {
+            throw new IllegalArgumentException("Please Choose a Store");
+        }
     }
 }
