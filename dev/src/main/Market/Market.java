@@ -143,18 +143,6 @@ public class Market {
         return String.format("%d/%d are logged in right now", currentlyLoggedInMembers.get(), membersByUserName.size());
     }
 
-    public void addRafflePolicy(String userToken, String storeName, String productName, Double price) {
-        User user = getConnectedUserByToken(userToken);
-        Store store = getDomainStoreByName(storeName);
-        user.addRafflePolicy(store, productName, price);
-    }
-
-    public void addAuctionPolicy(String userToken, String storeName, String productName, Double price,
-            LocalDate Until) {
-        User user = getConnectedUserByToken(userToken);
-        Store store = getDomainStoreByName(storeName);
-        user.addAuctionPolicy(store, productName, price, Until, Psystem, Ssystem);
-    }
 
     public void addNormalPolicy(String userToken, String storeName, String productName, Double price) {
         User user = getConnectedUserByToken(userToken);

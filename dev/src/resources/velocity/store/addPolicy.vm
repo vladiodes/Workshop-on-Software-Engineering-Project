@@ -19,16 +19,6 @@
         #elseif($success)
             #foreach($name_product in $store.getProductsByName().entrySet())
                 <h2>$name_product.key</h2>
-                <form action="/addRafflePolicy" method="post">
-                    <input type="hidden" name="storeName" value="$store.getStoreName()">
-                    <input type="hidden" name="productName" value="$name_product.key">
-                    <input type="submit" value="Add raffle policy">
-                </form>
-                <form action="/addAuctionPolicy" method="post">
-                    <input type="hidden" name="storeName" value="$store.getStoreName()">
-                    <input type="hidden" name="productName" value="$name_product.key">
-                    <input type="submit" value="Add auction policy">
-                </form>
                 <form action="/addBargainPolicy" method="post">
                     <input type="hidden" name="storeName" value="$store.getStoreName()">
                     <input type="hidden" name="productName" value="$name_product.key">

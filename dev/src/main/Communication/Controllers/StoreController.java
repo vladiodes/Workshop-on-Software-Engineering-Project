@@ -471,31 +471,6 @@ public class StoreController {
         ctx.render(Path.Template.ADD_POLICY,model);
     };
 
-    public Handler addRafflePolicyPost = ctx ->{
-        Map<String, Object> model = getParams(ctx);
-        ctx.render(Path.Template.ADD_RAFFLE_POLICY,model);
-    };
-
-    public Handler handleAddRafflePolicy = ctx ->{
-        Map<String, Object> model = ViewUtil.baseModel(ctx);
-        Response<Boolean> response = service.addRafflePolicy(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
-                Double.valueOf(Objects.requireNonNull(ctx.formParam("price"))));
-        if(response.isError_occured()){
-            model.put("fail",true);
-            model.put("response",response.getError_message());
-        }
-        else {
-            model.put("success",true);
-            model.put("response","Successfully added raffle policy");
-        }
-        ctx.render(Path.Template.ADD_RAFFLE_POLICY,model);
-    };
-
-    public Handler addAuctionPolicyPost = ctx ->{
-        Map<String, Object> model = getParams(ctx);
-        ctx.render(Path.Template.ADD_AUCTION_POLICY,model);
-    };
-
     @NotNull
     private Map<String, Object> getParams(Context ctx) {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
@@ -503,26 +478,6 @@ public class StoreController {
         model.put("productName", ctx.formParam("productName"));
         return model;
     }
-
-    public Handler handleAddAuctionPolicy = ctx ->{
-        Map<String, Object> model = ViewUtil.baseModel(ctx);
-        String[] until_date_params = Objects.requireNonNull(ctx.formParam("untilDate")).split("-");
-
-        Response<Boolean> response = service.addAuctionPolicy(ctx.sessionAttribute("userToken"),ctx.formParam("storeName"),ctx.formParam("productName"),
-                Double.valueOf(Objects.requireNonNull(ctx.formParam("price"))),
-                LocalDate.of(Integer.parseInt(until_date_params[0]), Month.of(Integer.parseInt(until_date_params[1])),Integer.parseInt(until_date_params[2])));
-        if(response.isError_occured()){
-            model.put("fail",true);
-            model.put("response",response.getError_message());
-        }
-        else {
-            model.put("success",true);
-            model.put("response","Successfully added auction policy");
-        }
-        model.put("storeName", ctx.formParam("storeName"));
-        model.put("productName", ctx.formParam("productName"));
-        ctx.render(Path.Template.ADD_AUCTION_POLICY,model);
-    };
 
     public Handler addBargainPolicyPost = ctx ->{
         Map<String, Object> model = getParams(ctx);
