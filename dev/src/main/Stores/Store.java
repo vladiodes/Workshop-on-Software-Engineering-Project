@@ -46,6 +46,8 @@ public class Store {
             inverseJoinColumns = {@JoinColumn(name="product_id",referencedColumnName = "id")})
     @MapKey(name="productName")
     private Map<String, Product> productsByName;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<OwnerAppointmentRequest> ownerAppointmentRequests;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<OwnerPermissions> owners;
@@ -55,6 +57,7 @@ public class Store {
     @OneToOne
     private User founder;
     private boolean isActive;
+
     private String storeName;
     @OneToMany(cascade = CascadeType.ALL)
     private List<StoreReview> storeReviews;
@@ -110,6 +113,7 @@ public class Store {
         purchaseHistoryByTime = Collections.synchronizedMap(new HashMap<>());
         this.storeReviews = new LinkedList<>();
         this.storeQuestions=Collections.synchronizedList(new LinkedList<>());
+        this.ownerAppointmentRequests = Collections.synchronizedList(new LinkedList<>());
     }
 
     public boolean addProduct(String productName, String category, List<String> keyWords, String description, int quantity, double price) {
@@ -164,6 +168,11 @@ public class Store {
     public void removeOwner(OwnerPermissions ow) {
         owners.remove(ow);
         DAO.getInstance().merge(this);
+
+        Collection<OwnerAppointmentRequest> approvedRequests = getApprovedRequests();
+        for(OwnerAppointmentRequest req : approvedRequests) {
+            executeNewOwnerRequest(req);
+        }
     }
 
     public synchronized void closeStore() {
@@ -513,6 +522,20 @@ public class Store {
             }
     }
 
+    public void notifyOwnersOnNewAppointmentRequest(OwnerAppointmentRequest req) {
+        Notification n = new PersonalNotification(
+                storeName,
+                String.format("%s has requested to appoint %s to store owner", req.getRequestedBy().getUserName(), req.getUserToAppoint().getUserName())
+        );
+        DAO.getInstance().persist(n);
+        for(User owner : getOwnersOfStore()) {
+            if(owner != req.getRequestedBy())
+                owner.notifyObserver(n);
+        }
+        if(this.founder != req.getRequestedBy())
+            this.founder.notifyObserver(n);
+
+    }
     public void addRafflePolicy(String productName, Double price) {
         Product product = getProduct(productName);
         Policy p =new rafflePolicy(this, price);
@@ -557,5 +580,152 @@ public class Store {
 
     public User getFounder() {
         return founder;
+    }
+    private void notifyAboutSuccessfullOwnerAppointment(OwnerAppointmentRequest request) {
+        Notification ownerNotification = new PersonalNotification(
+                this.storeName,
+                String.format("%s owner appointment request has been approved by all owners",request.getUserToAppoint().getUserName())
+        );
+        DAO.getInstance().persist(ownerNotification);
+        Notification newOwnerNotification = new PersonalNotification(
+                this.storeName,
+                "your owner appointment request has been approved"
+        );
+        DAO.getInstance().persist(newOwnerNotification);
+        request.getRequestedBy().notifyObserver(ownerNotification);
+        request.getUserToAppoint().notifyObserver(newOwnerNotification);
+    }
+
+    private void executeNewOwnerRequest(OwnerAppointmentRequest request) {
+        User toAppoint = request.getUserToAppoint();
+        User requestedBy = request.getRequestedBy();
+        OwnerPermissions newOwnerAppointment = new OwnerPermissions(toAppoint, requestedBy, this);
+        DAO.getInstance().persist(newOwnerAppointment);
+        toAppoint.addOwnedStore(newOwnerAppointment);
+
+        this.addOwnerToStore(newOwnerAppointment);
+        this.notifyAboutSuccessfullOwnerAppointment(request);
+        this.ownerAppointmentRequests.remove(request);
+        DAO.getInstance().merge(this);
+        DAO.getInstance().remove(request);
+    }
+    public boolean addOwnerRequest(OwnerAppointmentRequest request) {
+        this.ownerAppointmentRequests.add(request);
+        DAO.getInstance().merge(this);
+        if(verifyRequest(request)) {
+            // if the store has only 1 owner
+            executeNewOwnerRequest(request);
+        }
+        else {
+            // notify all owners and founder about new request they need to decide on
+            notifyOwnersOnNewAppointmentRequest(request);
+        }
+        return true;
+    }
+    private boolean verifyRequest(OwnerAppointmentRequest request) {
+        Collection<User> approves = request.getApprovedBy();
+        if(!approves.contains(this.founder)) return false;
+
+        for(User owner : getOwnersOfStore()) {
+            if (!approves.contains(owner)) {
+                return  false;
+            }
+        }
+        return true;
+    }
+    private Collection<OwnerAppointmentRequest> getApprovedRequests() {
+        Collection<OwnerAppointmentRequest> res = Collections.synchronizedList(new LinkedList<>());
+        for(OwnerAppointmentRequest req : this.ownerAppointmentRequests) {
+            if(verifyRequest(req)){
+                res.add(req);
+            }
+        }
+        return res;
+    }
+
+    private OwnerAppointmentRequest getOwnerAppointmentRequest(User userToAppoint) {
+        for(OwnerAppointmentRequest req : ownerAppointmentRequests){
+            if(req.getUserToAppoint() == userToAppoint) {
+                return req;
+            }
+        }
+        throw new IllegalArgumentException("User has no pending appointment request waiting");
+    }
+
+    private boolean verifyOwnerOrFounder(User u) {
+        if (founder == u) return true;
+        for(User owner : getOwnersOfStore()) {
+            if(u == owner) return true;
+        }
+        return false;
+    }
+
+    public void approveOwnerRequest(User approver, User userToApprove) {
+        OwnerAppointmentRequest request = getOwnerAppointmentRequest(userToApprove);
+        boolean canVote = verifyOwnerOrFounder(approver);
+        if(canVote){
+            boolean voteRes = request.addVote(approver);
+            if(!voteRes) {
+                throw new IllegalArgumentException(String.format("%s already voted for this request", approver.getUserName()));
+            }
+            boolean shouldAppoint = verifyRequest(request);
+            if(shouldAppoint) {
+                executeNewOwnerRequest(request);
+            }
+        }
+        else{
+            throw new IllegalArgumentException("the approver is not owner/founder of the store");
+        }
+    }
+
+    public void declineOwnerRequest(User refuser, User userToDecline) {
+        OwnerAppointmentRequest request = getOwnerAppointmentRequest(userToDecline);
+        boolean canVote = verifyOwnerOrFounder(refuser);
+        if(canVote){
+
+            Notification n = new PersonalNotification(
+                    storeName,
+                    String.format("%s owner appointment request was decline by %s", userToDecline.getUserName(), refuser.getUserName())
+            );
+            DAO.getInstance().persist(n);
+            request.getRequestedBy().notifyObserver(n);
+            userToDecline.notifyObserver(n);
+            ownerAppointmentRequests.remove(request);
+            DAO.getInstance().remove(request);
+            DAO.getInstance().merge(this);
+        }
+        else{
+            throw new IllegalArgumentException("the refuser is not owner/founder of the store");
+        }
+    }
+
+    private List<OwnerAppointmentRequest> getNotVotedByUserRequests(User u) {
+        List<OwnerAppointmentRequest> res = new LinkedList<>();
+        for(OwnerAppointmentRequest req : ownerAppointmentRequests) {
+            if(!req.didVote(u)) {
+                res.add(req);
+            }
+        }
+        return res;
+    }
+
+    public List<OwnerAppointmentRequest> getNotVotedOwnerAppointmentRequests(User u) {
+        boolean canWatchRequests = verifyOwnerOrFounder(u);
+        if(!canWatchRequests) {
+            throw new IllegalArgumentException("user is not owner/founder of the store and cannot see the requests");
+        }
+        return getNotVotedByUserRequests(u);
+    }
+
+    public Collection<OwnerAppointmentRequest> getAllOwnerRequests() {
+        return ownerAppointmentRequests;
+    }
+
+    public boolean containsRequestFor(User user_to_appoint) {
+        for(OwnerAppointmentRequest request:ownerAppointmentRequests){
+            if(user_to_appoint==request.getUserToAppoint())
+                return true;
+        }
+        return false;
     }
 }

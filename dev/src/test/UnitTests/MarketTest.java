@@ -7,12 +7,15 @@ import main.ExternalServices.Supplying.SupplyingAdapter;
 import main.Market.Market;
 import main.Security.ISecurity;
 import main.Shopping.ShoppingCart;
+import main.Stores.OwnerAppointmentRequest;
 import main.Stores.Store;
 import main.Users.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -52,6 +55,12 @@ class MarketTest {
     ConcurrentHashMap<String, Store> stores;
     @Mock
     ISecurity security_controller;
+    @Mock
+    Collection<OwnerAppointmentRequest> ownerAppointmentRequests;
+
+    @Mock
+    Store storeMock;
+
     String GuestuserToken;
     String MemberUserToken;
     String ownerToken;
@@ -84,6 +93,7 @@ class MarketTest {
         membersByUserName = mock(ConcurrentHashMap.class);
         connectedSessions = mock(ConcurrentHashMap.class);
         stores = mock(ConcurrentHashMap.class);
+
         security_controller = mock(ISecurity.class);
         mockPayment = mock(PaymentAdapter.class);
         guestuserMock = mock(User.class);
@@ -94,12 +104,14 @@ class MarketTest {
         managerMock = mock(User.class);
         notAdminMock = mock(User.class);
         toDeleteUserMock = mock(User.class);
+        storeMock = mock(Store.class);
 
         m = new Market(mockPayment,mockSupplyer);
         m.setConnectedSessions(connectedSessions);
         m.setMembersByUserName(membersByUserName);
         m.setStores(stores);
         m.setSecurity_controller(security_controller);
+
         ConfigMocks();
     }
 
@@ -119,6 +131,9 @@ class MarketTest {
 
         when(connectedSessions.get(adminToken)).thenReturn(adminMock);
         when(connectedSessions.containsKey(adminToken)).thenReturn(true);
+        when(connectedSessions.get(founderToken)).thenReturn(founderMock);
+        when(connectedSessions.containsKey(founderToken)).thenReturn(true);
+
         when(adminMock.isAdmin()).thenReturn(true);
 
         //admin2
@@ -143,6 +158,7 @@ class MarketTest {
         when(founderMock.isFounder()).thenReturn(true);
         when(founderMock.isManager()).thenReturn(false);
         when(founderMock.isOwner()).thenReturn(false);
+        when(founderMock.getUserName()).thenReturn(founderUsername);
         when(membersByUserName.get(founderUsername)).thenReturn(founderMock);
         when(membersByUserName.containsKey(founderUsername)).thenReturn(true);
 
@@ -182,6 +198,15 @@ class MarketTest {
         when(membersByUserName.containsKey(GuestUserName)).thenReturn(false);
         when(security_controller.isValidPassword(any(String.class), any(String.class))).thenReturn(true);
         when(security_controller.hashPassword(memberPassword)).thenReturn(memberPassword);
+
+        //stores
+        when(stores.get("store1")).thenReturn(storeMock);
+        when(stores.containsKey("store1")).thenReturn(true);
+        List<OwnerAppointmentRequest> test = new LinkedList<>();
+        test.add(new OwnerAppointmentRequest(adminMock,MemberUserMock));
+        when(storeMock.getNotVotedOwnerAppointmentRequests(founderMock)).thenReturn(test);
+        when(founderMock.appointOwnerToStore(storeMock,MemberUserMock)).thenReturn(true);
+
         doThrow(new IllegalArgumentException()).when(MemberUserMock).changeUsername(baduserName);
     }
 
@@ -322,6 +347,71 @@ class MarketTest {
         verify(membersByUserName, times(1)).remove(any(String.class));
     }
 
+    @Test
+    void addOwnerAppointmentRequestSuccess() {
+        assertTrue(m.appointStoreOwner(founderToken,memberUserName,"store1"));
+    }
 
+    @Test
+    void addOwnerAppointmentRequestFailBadUserName() {
+        assertThrows(IllegalArgumentException.class, () -> m.appointStoreOwner(founderToken,baduserName,"store1"));
+    }
+    @Test
+    void addOwnerAppointmentRequestFailBadUserToken() {
+        assertThrows(IllegalArgumentException.class, () -> m.appointStoreOwner("madeUpToken",memberUserName,"store1"));
+
+    }
+    @Test
+    void addOwnerAppointmentRequestFailBadStoreName() {
+        assertThrows(IllegalArgumentException.class, () -> m.appointStoreOwner(founderToken,memberUserName,"NotExistingStoreName"));
+    }
+
+    @Test
+    void approveOwnerAppointmentRequestSuccess() {
+        assertEquals("Approved request successfully", m.approveOwnerAppointment(founderToken,memberUserName,"store1"));
+    }
+    @Test
+    void approveOwnerAppointmentRequestNotExistingStoreFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.approveOwnerAppointment(founderToken,memberUserName,"store2"));
+    }
+    @Test
+    void approveOwnerAppointmentRequestNotValidTokenFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.approveOwnerAppointment("badToken",memberUserName,"store1"));
+    }
+    @Test
+    void approveOwnerAppointmentRequestNotExistingUserNameFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.approveOwnerAppointment(founderToken,"BadUserName","store1"));
+    }
+
+    @Test
+    void declineOwnerAppointmentRequestSuccess() {
+        assertEquals("Declined request successfully", m.declineOwnerAppointment(founderToken,memberUserName,"store1"));
+    }
+    @Test
+    void declineOwnerAppointmentRequestNotExistingStoreFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.declineOwnerAppointment(founderToken,memberUserName,"store2"));
+    }
+    @Test
+    void declineOwnerAppointmentRequestNotValidTokenFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.declineOwnerAppointment("badToken",memberUserName,"store1"));
+    }
+    @Test
+    void declineOwnerAppointmentRequestNotExistingUserNameFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.declineOwnerAppointment(founderToken,"BadUserName","store1"));
+    }
+
+    @Test
+    void getAllOwnerAppointmentRequestsSuccess() {
+        assertTrue(m.getOwnerAppointmentRequests(founderToken,"store1").size() == 1);
+    }
+
+    @Test
+    void getAllOwnerAppointmentRequestsNotExistingStoreFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.getOwnerAppointmentRequests(founderToken,"store2"));
+    }
+    @Test
+    void getAllOwnerAppointmentRequestsNotValidTokenFail() {
+        assertThrows(IllegalArgumentException.class, () -> m.getOwnerAppointmentRequests("badToken","store1"));
+    }
 
 }

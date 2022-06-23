@@ -151,6 +151,12 @@ public class Main {
             post("/viewBids",storeController.handleViewBidsPost);
             post("/approveBid",productController.approveBidPost);
             post("/declineBid",productController.declineBidPost);
+
+            get("/viewOwnerAppointmentRequests", storeController.viewOwnerAppointmentRequests);
+            post("/viewOwnerAppointmentRequests", storeController.handleViewOwnerAppointmentRequests);
+            post("/approveRequest", storeController.handleApproveOwnerAppointmentRequest);
+            post("/declineRequest", storeController.handleDeclineOwnerAppointmentRequest);
+
             get("/addDiscountToStore",storeController.addDiscountToStorePage);
             post("/addDiscountSelectStoreCompose",storeController.addDiscountSelectStoreCompose);
             post("/addDiscountToStore",storeController.addDiscountToStoreComposePage);

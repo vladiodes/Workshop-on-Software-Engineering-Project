@@ -1,5 +1,6 @@
 package test.DBTests;
 
+import main.DTO.OwnerAppointmentRequestDTO;
 import main.DTO.ShoppingCartDTO;
 import main.Persistence.DAO;
 import main.Service.IService;
@@ -7,13 +8,14 @@ import main.Service.Service;
 import main.utils.PaymentInformation;
 import main.utils.Response;
 import main.utils.SupplyingInformation;
-import org.junit.*;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -23,11 +25,12 @@ public class DBTests {
     private IService service;
     private String store1,store2;
     private String product1,product2;
-    private Response<String> founder1,manager1,owner2,owner1;
+    private Response<String> founder1,manager1,owner2,owner1,owner3;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         DAO.setPersistence_unit("MarketTests");
+        DAO.enablePersist();
         service=new Service("DBTestingConfig.json");
         store1 = "store1";
         store2="store2";
@@ -37,42 +40,12 @@ public class DBTests {
         manager1 = service.guestConnect();
         owner1 = service.guestConnect();
         owner2 = service.guestConnect();
+        owner3 = service.guestConnect();
     }
-
-//    @Test
-//    public void addDataAndCheckBehaviour() throws Exception {
-//        addDataToService();
-//        setUp();
-//
-//        addMoreData();
-//        setUp();
-//
-//        checkSimpleDiscount();
-//        setUp();
-//
-//        addBargainPolicyOnProduct2();
-//        setUp();
-//
-//        checkBids();
-//        setUp();
-
-//        acceptBidWorks();
-//        setUp();
-//
-//        appointOwnerChain();
-//        setUp();
-
-//        OwnersAreRecorded();
-//        setUp();
-//
-//        DeleteChainOwnersWorks();
-
-//        DAO.disablePersist();
-//    }
 
 
     @Test
-    @Order(5)
+    @Order(1)
     public void addDataToService() {
         boolean wasError;
         wasError = service.register("founder1", "123456").isError_occured();
@@ -93,8 +66,6 @@ public class DBTests {
 
         Assertions.assertFalse(wasError);
     }
-
-
     @Test
     @Order(2)
     public void addMoreData(){
@@ -133,7 +104,7 @@ public class DBTests {
 
 
     @Test
-    @Order(1)
+    @Order(5)
     public void checkBids(){
         boolean wasError;
         PaymentInformation pi = new PaymentInformation("1111222233334444",LocalDate.now().plusYears(3),123,"vvv","123456789");
@@ -145,46 +116,8 @@ public class DBTests {
     }
 
     @Test
-    @Order(7)
-    public void appointOwnerChain(){
-        boolean wasError;
-        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
-        wasError |= service.register("owner1","123456").isError_occured();
-        wasError |= service.register("owner2","123456").isError_occured();
-        wasError |= service.appointStoreOwner(founder1.getResult(),"owner1",store2).isError_occured();
-        wasError |= service.login(owner1.getResult(),"owner1","123456").isError_occured();
-        wasError |= service.appointStoreOwner(owner1.getResult(),"owner2",store2).isError_occured();
-
-        Assertions.assertFalse(wasError);
-    }
-
-    @Test
-    @Order(8)
-    public void OwnersAreRecorded(){
-        boolean wasError;
-        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
-        Response<List<String>> r = service.getStoreStaff(founder1.getResult(), store2);
-        wasError|=r.isError_occured();
-        Assertions.assertFalse(wasError);
-        Assertions.assertEquals(3,r.getResult().size());
-
-    }
-
-    @Test
     @Order(6)
-    public void DeleteChainOwnersWorks(){
-        boolean wasError;
-        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
-        wasError|=service.removeStoreOwnerAppointment(founder1.getResult(), "owner1",store2).isError_occured();
-        Response<List<String>> r = service.getStoreStaff(founder1.getResult(), store2);
-        wasError|=r.isError_occured();
-        Assertions.assertFalse(wasError);
-        Assertions.assertEquals(1,r.getResult().size());
-    }
-
-    @Test
-    @Order(9)
-    public void ZacceptBidWorks(){
+    public void acceptBidWorks(){
         boolean wasError;
         wasError=service.login(founder1.getResult(),"founder1","123456").isError_occured();
         wasError |= service.ApproveBid(founder1.getResult(), store2,product2,"manager1").isError_occured();
@@ -197,7 +130,107 @@ public class DBTests {
     }
 
     @Test
+    @Order(7)
+    public void createOwnerAppointmentRequestsChain() {
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        wasError |= service.register("owner1","123456").isError_occured();
+        wasError |= service.register("owner2","123456").isError_occured();
+        wasError |= service.appointStoreOwner(founder1.getResult(),"owner1",store2).isError_occured();
+        wasError |= service.login(owner1.getResult(),"owner1","123456").isError_occured();
+        wasError |= service.appointStoreOwner(owner1.getResult(),"owner2",store2).isError_occured();
+
+        Assertions.assertFalse(wasError);
+    }
+    @Test
+    @Order(8)
+    public void OwnerAppointmentRequestsAreRecorded(){
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        Response<List<OwnerAppointmentRequestDTO>> resFounder1 = service.getOwnerAppointmentRequests(founder1.getResult(),store2);
+        wasError |= resFounder1.isError_occured();
+        Assertions.assertEquals(1,resFounder1.getResult().size());
+
+        wasError |= service.approveOwnerAppointment(founder1.getResult(),"owner2",store2).isError_occured();
+        Assertions.assertFalse(wasError);
+    }
+
+    @Test
+    @Order(9)
+    public void OwnerAppointmentRequestsAreDiscarded() {
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        wasError |= service.login(owner1.getResult(), "owner1", "123456").isError_occured();
+        wasError |= service.login(owner2.getResult(), "owner2", "123456").isError_occured();
+
+        Response<List<OwnerAppointmentRequestDTO>> resFounder1 = service.getOwnerAppointmentRequests(founder1.getResult(),store2);
+        Response<List<OwnerAppointmentRequestDTO>> resOwner1 = service.getOwnerAppointmentRequests(owner1.getResult(),store2);
+        Response<List<OwnerAppointmentRequestDTO>> resOwner2 = service.getOwnerAppointmentRequests(owner2.getResult(),store2);
+
+        wasError |= resFounder1.isError_occured();
+        wasError |= resOwner1.isError_occured();
+        wasError |= resOwner2.isError_occured();
+
+        Assertions.assertEquals(0,resFounder1.getResult().size());
+        Assertions.assertEquals(0,resOwner1.getResult().size());
+        Assertions.assertEquals(0,resOwner2.getResult().size());
+    }
+
+    @Test
     @Order(10)
+    public void OwnersAreRecorded(){
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        Response<List<String>> r = service.getStoreStaff(founder1.getResult(), store2);
+        wasError|=r.isError_occured();
+        Assertions.assertFalse(wasError);
+        Assertions.assertEquals(3,r.getResult().size());
+
+    }
+
+    @Test
+    @Order(11)
+    public void DeleteChainOwnersWorks(){
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        wasError|=service.removeStoreOwnerAppointment(founder1.getResult(), "owner1",store2).isError_occured();
+        Response<List<String>> r = service.getStoreStaff(founder1.getResult(), store2);
+        wasError|=r.isError_occured();
+        Assertions.assertFalse(wasError);
+        Assertions.assertEquals(1,r.getResult().size());
+    }
+
+    @Test
+    @Order(12)
+    public void AppointOwnerAndDecline(){
+        boolean wasError;
+        wasError = service.login(founder1.getResult(),"founder1","123456").isError_occured();
+        wasError |= service.appointStoreOwner(founder1.getResult(),"owner1",store2).isError_occured();
+        wasError |= service.login(owner1.getResult(),"owner1","123456").isError_occured();
+        wasError |= service.appointStoreOwner(owner1.getResult(),"owner2",store2).isError_occured();
+        wasError |= service.declineOwnerAppointment(founder1.getResult(),"owner2",store2).isError_occured();
+        Response<List<String>> r = service.getStoreStaff(founder1.getResult(), store2);
+        wasError|=r.isError_occured();
+        Assertions.assertFalse(wasError);
+        Assertions.assertEquals(2,r.getResult().size());
+    }
+
+    @Test
+    @Order(13)
+    public void AppointOwnerAgainAfterDecline() {
+        boolean wasError;
+        wasError = service.login(founder1.getResult(), "founder1", "123456").isError_occured();
+        wasError |= service.login(owner1.getResult(), "owner1", "123456").isError_occured();
+        wasError |= service.appointStoreOwner(owner1.getResult(), "owner2", store2).isError_occured();
+        wasError |= service.approveOwnerAppointment(founder1.getResult(), "owner2", store2).isError_occured();
+        Response<List<String>> r = service.getStoreStaff(founder1.getResult(), store2);
+        wasError |= r.isError_occured();
+        Assertions.assertFalse(wasError);
+        Assertions.assertEquals(3, r.getResult().size());
+    }
+
+    @Test
+    @Order(14)
     public void concurrentDBModificationTest() throws Exception {
         AtomicBoolean wasError = new AtomicBoolean(false);
         int numOfThreads = 30;
@@ -217,7 +250,7 @@ public class DBTests {
     }
 
     @Test
-    @Order(11)
+    @Order(15)
     public void concurrentDBModificationAllWorked(){
         AtomicBoolean wasError = new AtomicBoolean(false);
         int numOfThreads = 30;
@@ -234,7 +267,7 @@ public class DBTests {
     }
 
     @AfterAll
-    public void TearDown(){
+    static void TearDown(){
         DAO.disablePersist();
     }
 

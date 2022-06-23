@@ -196,13 +196,19 @@ public class AT_Req2_4_Req2_5 {
         assertTrue(service.removeStoreOwnerAppointment(founder1token.getResult(), "owner1", "MyStore1").getResult());
     }
 
+
     /***
      * use case: Removing Store Owner Appointment req 4.5:
      */
     @Test
     public void chainRemoveStoreOwnerAppointment() {
         service.appointStoreOwner(founder1token.getResult(), "manager2", "MyStore1");
+        service.approveOwnerAppointment(owner1token.getResult(),"manager2","MyStore1");
+
         service.appointStoreOwner(manager2token.getResult(), "user1", "MyStore1");
+        service.approveOwnerAppointment(owner1token.getResult(),"user1","MyStore1");
+        service.approveOwnerAppointment(founder1token.getResult(),"user1","MyStore1");
+
         assertTrue(service.removeStoreOwnerAppointment(founder1token.getResult(), "manager2", "MyStore1").getResult());
 
         // this should throw an expected error since user1 was appointed by manager2 and it shouldn't be a manager anymore!
@@ -627,6 +633,7 @@ public class AT_Req2_4_Req2_5 {
         assertFalse(should_not_happen.get());
         assertTrue(num_of_errors.get() == threadCount-num_of_ops_until_delete.get());
     }
+
 
     @After
     public void tearDown() throws Exception {

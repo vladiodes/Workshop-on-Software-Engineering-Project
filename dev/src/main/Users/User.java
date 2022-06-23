@@ -12,6 +12,7 @@ import main.Security.ISecurity;
 import main.Shopping.Purchase;
 import main.Shopping.ShoppingCart;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Stores.OwnerAppointmentRequest;
 import main.Stores.Store;
 import main.Users.states.GuestState;
 import main.Users.states.MemberState;
@@ -158,12 +159,11 @@ public class User implements Observable {
 
         //first checking preconditions to make the appointment
         appointOwnerPreconditions(IStore, user_to_appoint);
-
-        OwnerPermissions newOwnerAppointment = new OwnerPermissions(user_to_appoint, this, IStore);
-        DAO.getInstance().persist(newOwnerAppointment);
-        user_to_appoint.addOwnedStore(newOwnerAppointment);
-        IStore.addOwnerToStore(newOwnerAppointment);
+        OwnerAppointmentRequest request = new OwnerAppointmentRequest(this, user_to_appoint);
+        DAO.getInstance().persist(request);
+        IStore.addOwnerRequest(request);
         return true;
+
     }
 
     private void appointOwnerPreconditions(Store IStore, User user_to_appoint) {
@@ -171,6 +171,8 @@ public class User implements Observable {
 
         if (!hasPermission(IStore, StorePermission.OwnerPermission))
             throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
+        if(IStore.containsRequestFor(user_to_appoint))
+            throw new IllegalArgumentException("There's already a requested appointment for that user");
         if (checkIfAlreadyStaff(IStore, user_to_appoint))
             throw new IllegalArgumentException("This user is already a staff of the store");
 
@@ -185,7 +187,7 @@ public class User implements Observable {
         return user.getManagedStores().contains(IStore);
     }
 
-    private void addOwnedStore(OwnerPermissions newOwnerAppointment) {
+    public void addOwnedStore(OwnerPermissions newOwnerAppointment) {
         ownedStores.add(newOwnerAppointment);
         DAO.getInstance().merge(this);
     }
@@ -322,6 +324,9 @@ public class User implements Observable {
         if (!hasPermission(IStore, StorePermission.OwnerPermission)) {
             throw new IllegalArgumentException("This user doesn't have permission to do that");
         }
+
+        if(IStore.containsRequestFor(user_to_appoint))
+            throw new IllegalArgumentException("There's an owner appointment for that user");
 
         //second checking if the user to appoint isn't already an owner/manager/founder of the store
         if (checkIfAlreadyStaff(IStore, user_to_appoint))

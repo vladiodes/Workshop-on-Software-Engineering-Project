@@ -49,6 +49,10 @@
                 </form>
             </td>
             <td>
+                <h2>Approve/Decline owner appointment request:</h2>
+                <li><a href="/viewOwnerAppointmentRequests">View Requests</a></li>
+            </td>
+            <td>
                 <h2>Grant/remove permissions</h2>
                 <form action="/grantRemovePermissions" id="grant_rem_permission" method="post">
                     <p>Select your store</p>

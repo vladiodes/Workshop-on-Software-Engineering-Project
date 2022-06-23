@@ -47,6 +47,7 @@ public class ATuser1Requirements {
         assertTrue(System.login(usertoken1.getResult(), "UnkownUserName", securePassword).isError_occured());
         assertTrue(System.login(usertoken1.getResult(), userName, "BadPassword").isError_occured());
         assertFalse(System.login(usertoken1.getResult(), userName, securePassword).isError_occured());
+        // TODO: maybe remove last line (not we logout whoever was connected with current token)
         assertTrue(System.login(usertoken1.getResult(), userName, securePassword).isError_occured());
     }
 

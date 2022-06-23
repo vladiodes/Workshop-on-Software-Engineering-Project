@@ -27,4 +27,10 @@
 #* @vtlvariable name="response_bid" type="java.lang.String" *#
 #* @vtlvariable name="fail_discount" type="java.lang.Boolean" *#
 #* @vtlvariable name="success_discount" type="java.lang.Boolean" *#
+#* @vtlvariable name="requests" type="java.lang.Iterable<main.DTO.OwnerAppointmentRequestDTO>" *#
+#* @vtlvariable name="success_approveOrDelete" type="java.lang.Boolean" *#
+#* @vtlvariable name="fail_approveOrDelete" type="java.lang.Boolean" *#
+#* @vtlvariable name="response_vote" type="java.lang.String" *#
+
+
 

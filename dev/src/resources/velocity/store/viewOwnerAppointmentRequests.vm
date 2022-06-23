@@ -1,0 +1,47 @@
+#parse("/velocity/layout.vm")
+#parse("/velocity/index.vm")
+#@mainLayout()
+#end
+<main>
+    <div class="content">
+        <h2>View Requests</h2>
+        <form action="/viewOwnerAppointmentRequests" id="view_owner_appointment_requests" method="post">
+            <p>Select your store</p>
+            <select name="storeName">
+                #foreach($store in $stores)
+                    <option value="$store.getStoreName()">$store.getStoreName()</option>
+                #end
+            </select>
+            <p><input type="submit" value="View Requests"></p>
+        </form>
+        #if($fail)
+            <p id="failed_response">$response</p>
+        #elseif($success)
+            <p id="success_response">$response</p>
+            #foreach($req in $requests)
+                <h2 >Requesting Owner : $req.getRequestedBy()</h2>
+                <h2 style="color:blue">User to Appoint : $req.getUserToAppoint()</h2>
+                <form method="post" action="/approveRequest">
+                    <input type="hidden" name="storeName" value="$storeName">
+                    <input type="hidden" name="userName" value="$req.getUserToAppoint()">
+                    <input type="submit" value="Approve Request">
+                </form>
+                <form method="post" action="/declineRequest">
+                    <input type="hidden" name="storeName" value="$storeName">
+                    <input type="hidden" name="userName" value="$req.getUserToAppoint()">
+                    <input type="submit" value="Decline Request">
+                </form>
+            #end
+        #end
+
+        #if($fail_approveOrDelete)
+            <p id="failed_response">$response_vote</p>
+        #elseif($success_approveOrDelete)
+            <p id="success_response">$response_vote</p>
+        #end
+
+    </div>
+</main>
+</div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package test.UnitTests;
 
+import main.Stores.OwnerAppointmentRequest;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.ManagerPermissions;
@@ -16,10 +17,14 @@ class StoreTest {
 
     private Store store;
     private User founder;
+    private User owner1ToAppoint,owner2ToAppoint;
 
     @BeforeEach
     void setUp(){
         founder=new User(false,"founder","password");
+        owner1ToAppoint = new User(false,"owner1","password");
+        owner2ToAppoint = new User(false,"owner2","password");
+
         store=new Store("store1",founder);
     }
 
@@ -136,6 +141,70 @@ class StoreTest {
     @Test
     void removeProductNonExist(){
         assertThrows(IllegalArgumentException.class,()->store.removeProduct("aaa"));
+    }
+    @Test
+    void addOwnerAppointmentRequestOneOwnerTest() {
+        OwnerAppointmentRequest req = new OwnerAppointmentRequest(founder, owner1ToAppoint);
+        store.addOwnerRequest(req);
+        assertTrue(store.getOwnersOfStore().size() == 1);
+    }
+    @Test
+    void addOwnerAppointmentNeedApprovalTest() {
+        addOwnerAppointmentRequestOneOwnerTest();
+        OwnerAppointmentRequest req = new OwnerAppointmentRequest(founder, owner2ToAppoint);
+
+        store.addOwnerRequest(req);
+        assertTrue(store.getAllOwnerRequests().size() == 1);
+    }
+
+    @Test
+    void approveOwnerAppointmentRequestSuccessTest() {
+        addOwnerAppointmentNeedApprovalTest();
+        store.approveOwnerRequest(owner1ToAppoint,owner2ToAppoint);
+        assertTrue(store.getAllOwnerRequests().size() == 0 && store.getOwnersOfStore().size() == 2);
+    }
+
+    @Test
+    void approveOwnerAppointmentRequestFailTest() {
+        addOwnerAppointmentNeedApprovalTest();
+        assertThrows(IllegalArgumentException.class, () -> store.approveOwnerRequest(owner2ToAppoint,owner2ToAppoint));
+    }
+    @Test
+    void declineOwnerAppointmentRequestSuccessTest() {
+        addOwnerAppointmentNeedApprovalTest();
+        store.declineOwnerRequest(owner1ToAppoint,owner2ToAppoint);
+        assertTrue(store.getAllOwnerRequests().size() == 0 && store.getOwnersOfStore().size() == 1);
+    }
+
+    @Test
+    void declineOwnerAppointmentRequestFailTest() {
+        addOwnerAppointmentNeedApprovalTest();
+        assertThrows(IllegalArgumentException.class, () -> store.declineOwnerRequest(owner2ToAppoint,owner2ToAppoint));
+    }
+
+    @Test
+    void approveOwnerAppointmentNotExistsTest() {
+        assertThrows(IllegalArgumentException.class, ()->store.approveOwnerRequest(founder,owner1ToAppoint));
+    }
+    @Test
+    void declineOwnerAppointmentNotExistsTest() {
+        assertThrows(IllegalArgumentException.class, ()->store.declineOwnerRequest(founder,owner1ToAppoint));
+    }
+
+    @Test
+    void getNotVotedOwnerAppointmentRequestsNoRequestsTest() {
+        assertTrue(store.getNotVotedOwnerAppointmentRequests(founder).size() == 0);
+    }
+
+    @Test
+    void getNotVotedOwnerAppointmentRequestsNotEmptyTest() {
+        addOwnerAppointmentNeedApprovalTest();
+        assertTrue(store.getNotVotedOwnerAppointmentRequests(owner1ToAppoint).size() == 1);
+    }
+
+    @Test
+    void getNotVotedOwnerAppointmentRequestsNotOwnerTest() {
+        assertThrows(IllegalArgumentException.class, () -> store.getNotVotedOwnerAppointmentRequests(owner1ToAppoint));
     }
 
 
