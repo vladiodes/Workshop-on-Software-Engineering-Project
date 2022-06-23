@@ -236,40 +236,43 @@ public class Store {
 
     public int CreateSimpleDiscount(LocalDate until, Double percent) {
         SimpleDiscount disc = new SimpleDiscount(until, percent);
+        DAO.getInstance().persist(disc);
         int id = getID(this.DiscountsInStore);
         disc.setId_in_store(id);
         this.DiscountsInStore.put(id, disc);
-        DAO.getInstance().persist(disc);
+        DAO.getInstance().merge(disc);
         DAO.getInstance().merge(this);
         return id;
     }
 
     public int CreateSecretDiscount(LocalDate until, Double percent, String secretCode) {
         SecretDiscount disc = new SecretDiscount(until, percent, secretCode);
+        DAO.getInstance().persist(disc);
         int id = getID(this.DiscountsInStore);
         disc.setId_in_store(id);
         this.DiscountsInStore.put(id, disc);
-        DAO.getInstance().persist(disc);
+        DAO.getInstance().merge(disc);
         DAO.getInstance().merge(this);
         return id;
     }
 
     public int CreateConditionalDiscount(LocalDate until, Double percent, int condID) {
         ConditionalDiscount disc = new ConditionalDiscount(until, percent, getConditionbyID(condID));
+        DAO.getInstance().persist(disc);
         int id = getID(this.DiscountsInStore);
         disc.setId_in_store(id);
         this.DiscountsInStore.put(id, disc);
-        DAO.getInstance().persist(disc);
+        DAO.getInstance().merge(disc);
         DAO.getInstance().merge(this);
         return id;
     }
 
     public int CreateMaximumCompositeDiscount(LocalDate until, List<Integer> discounts) {
         MaximumCompositeDiscount disc = new MaximumCompositeDiscount(until);
+        DAO.getInstance().persist(disc);
         int id = getID(this.DiscountsInStore);
         this.DiscountsInStore.put(id, disc);
         disc.setId_in_store(id);
-        DAO.getInstance().persist(disc);
         for(Integer discid : discounts)
             disc.addDiscount(getDiscountByID(discid));
         DAO.getInstance().merge(disc);
@@ -279,10 +282,10 @@ public class Store {
 
     public int CreatePlusCompositeDiscount(LocalDate until, List<Integer> discounts) {
         PlusCompositeDiscount disc = new PlusCompositeDiscount(until);
+        DAO.getInstance().persist(disc);
         int id = getID(this.DiscountsInStore);
         this.DiscountsInStore.put(id, disc);
         disc.setId_in_store(id);
-        DAO.getInstance().persist(disc);
         for(Integer discid : discounts)
             disc.addDiscount(getDiscountByID(discid));
         DAO.getInstance().merge(disc);
@@ -350,9 +353,9 @@ public class Store {
 
     public int CreateLogicalOrCondition(List<Integer> conditionIds) {
         PurchaseCondition cond = new LogicalOrPurchaseCondition();
+        DAO.getInstance().persist(cond);
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
-        DAO.getInstance().persist(cond);
         for(Integer condid : conditionIds)
             cond.addCondition(getConditionbyID(condid));
         ConditionsInStore.put(out, cond);
@@ -363,9 +366,9 @@ public class Store {
 
     public int CreateLogicalXorCondition(int id1, int id2) {
         PurchaseCondition cond = new LogicalXorPurchaseCondition();
+        DAO.getInstance().persist(cond);
         int out = getID(ConditionsInStore);
         cond.setId_in_store(out);
-        DAO.getInstance().persist(cond);
         cond.addCondition(getConditionbyID(id1));
         cond.addCondition(getConditionbyID(id2));
         ConditionsInStore.put(out, cond);
