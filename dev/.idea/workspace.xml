@@ -22,12 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed DBTests and some implementation">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed unit-tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TOKENS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TOKENS.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Persistence/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Persistence/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/DBTests/DBTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/UnitTests/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +158,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.test in dev">
+  <component name="RunManager" selected="Application.main.Communication.Main">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -166,21 +166,6 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
-      <module name="dev" />
-      <option name="PROGRAM_PARAMETERS" value="DefaultVladi.json TestingConfig.json" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.Communication.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -193,6 +178,21 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <shortenClasspath name="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.Communication.Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Communication.Main" />
+      <module name="dev" />
+      <option name="PROGRAM_PARAMETERS" value="DefaultVladi.json RealConfig.json" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.Communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -317,7 +317,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.main.Communication.Main" />
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.main.Service.ServiceLoader" />
       <item itemvalue="JUnit.DBTests" />
@@ -379,13 +379,6 @@
       <workItem from="1655812302698" duration="1988000" />
       <workItem from="1655816982731" duration="4108000" />
       <workItem from="1655880921996" duration="215000" />
-    </task>
-    <task id="LOCAL-00021" summary="Changed AT class name to be more relevant">
-      <created>1650726807168</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1650726807168</updated>
     </task>
     <task id="LOCAL-00022" summary="Added NotificationBus tests">
       <created>1650732398578</created>
@@ -723,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655972610671</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Fixed unit-tests">
+      <created>1655975542545</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1655975542545</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,7 +769,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Test fixes" />
     <MESSAGE value="Need to annotate and map all classes..." />
     <MESSAGE value="Added simple mapping for user-user_state... working." />
     <MESSAGE value="Annotating..." />
@@ -794,7 +793,8 @@
     <MESSAGE value="Fixed bugs in tests - now all runs not only on Ilay's machine..." />
     <MESSAGE value="Added AT for new system stats req" />
     <MESSAGE value="Fixed DBTests and some implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed DBTests and some implementation" />
+    <MESSAGE value="Fixed unit-tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed unit-tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

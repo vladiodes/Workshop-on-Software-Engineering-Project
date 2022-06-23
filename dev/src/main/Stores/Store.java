@@ -720,4 +720,12 @@ public class Store {
     public Collection<OwnerAppointmentRequest> getAllOwnerRequests() {
         return ownerAppointmentRequests;
     }
+
+    public boolean containsRequestFor(User user_to_appoint) {
+        for(OwnerAppointmentRequest request:ownerAppointmentRequests){
+            if(user_to_appoint==request.getUserToAppoint())
+                return true;
+        }
+        return false;
+    }
 }

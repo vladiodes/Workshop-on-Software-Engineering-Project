@@ -171,6 +171,8 @@ public class User implements Observable {
 
         if (!hasPermission(IStore, StorePermission.OwnerPermission))
             throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
+        if(IStore.containsRequestFor(user_to_appoint))
+            throw new IllegalArgumentException("There's already a requested appointment for that user");
         if (checkIfAlreadyStaff(IStore, user_to_appoint))
             throw new IllegalArgumentException("This user is already a staff of the store");
 
@@ -322,6 +324,9 @@ public class User implements Observable {
         if (!hasPermission(IStore, StorePermission.OwnerPermission)) {
             throw new IllegalArgumentException("This user doesn't have permission to do that");
         }
+
+        if(IStore.containsRequestFor(user_to_appoint))
+            throw new IllegalArgumentException("There's an owner appointment for that user");
 
         //second checking if the user to appoint isn't already an owner/manager/founder of the store
         if (checkIfAlreadyStaff(IStore, user_to_appoint))

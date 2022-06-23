@@ -232,7 +232,7 @@ public class StoreController {
             model.put("response", response.getError_message());
         } else {
             model.put("success", true);
-            model.put("response", String.format("Successfully promoted %s to owner in the store %s", ctx.formParam("userName"), ctx.formParam("storeName")));
+            model.put("response", String.format("Successfully requested to promote %s to owner in the store %s", ctx.formParam("userName"), ctx.formParam("storeName")));
         }
     }
 
