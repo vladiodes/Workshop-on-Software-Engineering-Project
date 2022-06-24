@@ -173,12 +173,14 @@ public class ShoppingCart {
 
     /***
      *
-     * @return true/false if cart is purchasable.
+     * @return true if purchasable or throw exception if not. Never returns false
      */
-    public boolean ValidateCart(User user) {
+    public boolean ValidateCart(User user){
         boolean res = getAmountOfProducts() > 0;
+        if(!res)
+            throw new IllegalArgumentException("Cart is empty");
         for(ShoppingBasket basket : this.baskets.values())
-            res &= basket.ValidateBasket(user);
+            res &= basket.ValidateBasket(user); //Each basket return true or throws exception
         return res;
     }
 

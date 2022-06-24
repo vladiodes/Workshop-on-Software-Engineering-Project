@@ -110,7 +110,7 @@ class ShoppingBasketTest {
         int quantity = phoneQuantity;
         basket.AddProduct(productName1, quantity);
         st1.getProduct(productName1).subtractQuantity(5);
-        Assertions.assertFalse(basket.ValidateBasket(userMock));
+        Assertions.assertThrows(IllegalArgumentException.class, ()->basket.ValidateBasket(userMock));
     }
 
     @Test
@@ -118,6 +118,6 @@ class ShoppingBasketTest {
         int quantity = (int) Math.floor(Math.random() * phoneQuantity);
         basket.AddProduct(productName1, quantity);
         st1.closeStore();
-        Assertions.assertFalse(basket.ValidateBasket(userMock));
+        Assertions.assertThrows(IllegalArgumentException.class, ()->basket.ValidateBasket(userMock));
     }
 }

@@ -1132,7 +1132,7 @@ public class Service implements IService {
     }
 
     @Override
-    public Response<Boolean> allowManagerBargainPreducts(String userToken, String managerName, String storeName) {
+    public Response<Boolean> allowManagerBargainProducts(String userToken, String managerName, String storeName) {
         try {
             DAO.getInstance().openTransaction();
             return new Response<>(market.allowManagerBargainProducts(userToken, managerName, storeName));
