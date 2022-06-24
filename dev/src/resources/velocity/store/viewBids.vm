@@ -5,7 +5,7 @@
 <main>
     <div class="content">
         <h2>View bids</h2>
-        <form method="post">
+        <form action="/viewBids" method="post">
             <p>Store name</p>
             <input type="text" name="storeName">
             <p>Product name</p>
