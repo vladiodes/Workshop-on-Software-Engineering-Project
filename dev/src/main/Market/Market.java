@@ -315,8 +315,8 @@ public class Market {
                 if (productName == null || productName.isBlank() || currPrd.getName().equals(productName))
                     if (category == null || category.isBlank() || currPrd.getCategory().equals(category))
                         if (keyWord == null || keyWord.isBlank() || currPrd.hasKeyWord(keyWord))
-                            if (productRating == null) // TODO: || rating = productRating
-                                if (storeRating == null) // TODO: || rating = productRating
+                            if (productRating == null || productRating == currPrd.getAverageReview())
+                                if (storeRating == null || storeRating == currStr.getAverageReview())
                                     if (minPrice == null || maxPrice == null || (currPrd.getCleanPrice() <= maxPrice
                                             && currPrd.getCleanPrice() >= minPrice))
                                         result.add(new ProductDTO(currPrd));

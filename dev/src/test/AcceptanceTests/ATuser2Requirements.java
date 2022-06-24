@@ -37,7 +37,7 @@ public class ATuser2Requirements {
     PaymentInformation mockPaymentInformation;
     @Mock
     SupplyingInformation mockSupplyingInformation;
-    Response<String> founder1token, user1token, user2token, owner1token;
+    Response<String> founder1token, user1token, user2token, owner1token, manager1token;
     IService service;
     PaymentInformation pi = testsFactory.getSomePI();
     SupplyingInformation si = testsFactory.getSomeSI();
@@ -64,6 +64,7 @@ public class ATuser2Requirements {
         user1token = service.guestConnect();
         user2token = service.guestConnect();
         owner1token = service.guestConnect();
+        manager1token = service.guestConnect();
 
         service.register("manager1", "12345678");
         service.register("founder1", "12345678");
@@ -74,9 +75,11 @@ public class ATuser2Requirements {
         service.login(user1token.getResult(), "user1", "12345678");
         service.login(user2token.getResult(), "user2", "12345678");
         service.login(owner1token.getResult(), "owner1", "12345678");
+        service.login(manager1token.getResult(), "manager1", "12345678");
 
         service.openStore(founder1token.getResult(), "MyStore1");
         service.appointStoreOwner(founder1token.getResult(), "owner1", "MyStore1");
+        service.appointStoreManager(founder1token.getResult(), "manager1", "MyStore1");
         service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
         service.addProductToStore(founder1token.getResult(), "Sprite", "Drinks", null, "tasty drink", "MyStore1", 100, CokePrice);
         service.addProductToStore(founder1token.getResult(), bargainedItem, "Drinks", null, "tasty drink", "MyStore1", 100, bargainedItemPrice);
@@ -373,8 +376,25 @@ public class ATuser2Requirements {
         assertFalse(service.ApproveBid(owner1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
         assertFalse(service.ApproveBid(founder1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
         assertEquals(1,service.getUserBids(founder1token.getResult(),"MyStore1",bargainedItem2).getResult().size());
+    }
 
+    @Test
+    public void OwnerRemoveDoesntRuinBid(){
+        assertFalse(service.bidOnProduct(user1token.getResult(),"MyStore1",bargainedItem,bargainedItemPrice+1,mockPaymentInformation,mockSupplyingInformation).isError_occured());
+        assertFalse(service.ApproveBid(founder1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
+        service.removeStoreOwnerAppointment(founder1token.getResult(), "owner1", "MyStore1");
+        verify(mockPayment, times(1)).makePayment(any(PaymentInformation.class), any(Double.class));
+    }
 
+    @Test
+    public void ManagerRemoveDoesntRuinBid(){
+        service.allowManagerBargainProducts(founder1token.getResult(), "manager1", "MyStore1");
+        assertFalse(service.bidOnProduct(user1token.getResult(),"MyStore1",bargainedItem,bargainedItemPrice+1,mockPaymentInformation,mockSupplyingInformation).isError_occured());
+        assertFalse(service.ApproveBid(founder1token.getResult(), "MyStore1", bargainedItem, "user1").isError_occured());
+        service.removeStoreOwnerAppointment(founder1token.getResult(), "owner1", "MyStore1");
+        verify(mockPayment, times(0)).makePayment(any(PaymentInformation.class), any(Double.class));
+        service.disallowManagerBargainProducts(founder1token.getResult(), "manager1", "MyStore1");
+        verify(mockPayment, times(1)).makePayment(any(PaymentInformation.class), any(Double.class));
     }
 
     @After

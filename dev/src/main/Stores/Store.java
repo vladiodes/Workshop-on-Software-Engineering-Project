@@ -127,6 +127,16 @@ public class Store {
         return true;
     }
 
+    public double getAverageReview(){
+        double output = 0;
+        for(StoreReview rs : this.storeReviews)
+            output += rs.getPoints();
+        if(this.storeReviews.size() == 0)
+            return 0;
+        else
+            return output / this.storeReviews.size();
+    }
+
     public boolean updateProduct(String oldProductName, String newProductName, String category, List<String> keyWords, String description, int quantity, double price) {
         Product product = productsByName.get(oldProductName);
         if (product == null)
@@ -163,6 +173,7 @@ public class Store {
     public void removeManager(ManagerPermissions mp) {
         managers.remove(mp);
         DAO.getInstance().merge(this);
+        notifyProductsStaffChange();
     }
 
     public void removeOwner(OwnerPermissions ow) {
@@ -173,6 +184,7 @@ public class Store {
         for(OwnerAppointmentRequest req : approvedRequests) {
             executeNewOwnerRequest(req);
         }
+        notifyProductsStaffChange();
     }
 
     public synchronized void closeStore() {
@@ -731,5 +743,10 @@ public class Store {
                 return true;
         }
         return false;
+    }
+
+    public void notifyProductsStaffChange(){
+        for (Product prod: this.getProductsByName().values())
+            prod.StaffUpdateNotify();
     }
 }
