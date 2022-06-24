@@ -12,14 +12,19 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import test.testUtils.testsFactory;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AT_Req2_4_4_Owner_appointment {
     private Response<String> founder,owner1,owner2,owner3,owner4,manager;
     private String storeName,password;
+    private int threadCount;
     IService service;
     @Before
     public void setUp() throws Exception {
+        threadCount = 10000;
         service = new Service(testsFactory.alwaysSuccessPayment(),testsFactory.alwaysSuccessSupplyer());
         storeName = "testingStore";
         founder = service.guestConnect();
@@ -205,6 +210,28 @@ public class AT_Req2_4_4_Owner_appointment {
         Assertions.assertEquals(1,service.getAllStoresOfUser(owner2.getResult()).getResult().size());
         Assertions.assertEquals(0,service.getAllStoresOfUser(owner3.getResult()).getResult().size());
         Assertions.assertEquals(1,service.getAllStoresOfUser(owner4.getResult()).getResult().size());
+    }
+
+    @Test
+    public void ConcurrentAppointSameUser() throws InterruptedException{
+        AtomicInteger successCounter = new AtomicInteger(0);
+        Runnable appointStoreOwner = () -> {
+            Response<Boolean> response = service.appointStoreOwner(founder.getResult(), "owner1", storeName);
+            if(!response.isError_occured()) {
+                successCounter.getAndIncrement();
+            }
+        };
+        Thread[] appointStoreOwnerThreads = new Thread[threadCount];
+        for(int i=0;i<threadCount;i++) {
+            appointStoreOwnerThreads[i] = new Thread(appointStoreOwner);
+        }
+        for(int i=0;i<threadCount;i++) {
+            appointStoreOwnerThreads[i].start();
+        }
+        for(int i=0;i<threadCount;i++) {
+            appointStoreOwnerThreads[i].join();
+        }
+        assertEquals(1,successCounter.get());
     }
 
 
