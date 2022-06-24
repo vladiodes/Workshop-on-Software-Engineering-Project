@@ -66,32 +66,36 @@ class PurchaseTest {
     @Test
     void ifPaymentFailsAbortSupply() {
         Purchase subject = new Purchase(mockPaymentInformation, mockSupplyingInformation, mockuser, mockCart, mockPayment,mockSupplyer);
+        when(mockPaymentInformation.getTransactionId()).thenReturn(-1);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(false);
         Assertions.assertThrows(Exception.class, subject::executePurchase);
+        verify(mockSupplyer, times(0)).supply(mockSupplyingInformation, prods);
         try
         {
-            verify(mockPayment,times(1)).abort(mockPaymentInformation);
-            verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
+            verify(mockPayment, times(1)).abort(mockPaymentInformation);
         }
         catch (Exception e)
         {
-            Assertions.fail();
+            fail();
         }
     }
 
     @Test
     void ifSupplymentFailsAbortPayment() {
         Purchase subject = new Purchase(mockPaymentInformation, mockSupplyingInformation, mockuser, mockCart, mockPayment,mockSupplyer);
+        when(mockSupplyingInformation.getTransactionId()).thenReturn(-1);
+        when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(true);
+        when(mockPaymentInformation.getTransactionId()).thenReturn(5000);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(false);
         Assertions.assertThrows(Exception.class, subject::executePurchase);
         try
         {
-            verify(mockPayment,times(1)).abort(mockPaymentInformation);
-            verify(mockSupplyer,times(1)).abort(mockSupplyingInformation);
+            verify(mockSupplyer, times(1)).abort(mockSupplyingInformation);
+            verify(mockPayment, times(1)).abort(mockPaymentInformation);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            Assertions.fail();
+            fail();
         }
 
     }
