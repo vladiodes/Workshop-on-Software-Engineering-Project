@@ -57,6 +57,15 @@ public class Product {
 
     }
 
+    public double getAverageReview(){
+        double output = 0;
+        for (ProductReview pr : this.reviews)
+            output += pr.getPoints();
+        if(this.reviews.size() == 0)
+            return 0;
+        else return output / this.reviews.size();
+    }
+
     public String getName() {
         return productName;
     }
@@ -170,5 +179,9 @@ public class Product {
 
     public boolean isAddableToBasket() {
         return policy.isAddableToBasket();
+    }
+
+    public void StaffUpdateNotify(){
+        this.policy.StaffUpdateNotify();
     }
 }

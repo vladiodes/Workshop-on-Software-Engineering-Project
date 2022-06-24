@@ -355,7 +355,7 @@ public class User implements Observable {
                     mp.addPermission(permission);
                 else
                     mp.removePermission(permission);
-
+                IStore.notifyProductsStaffChange();
                 return true;
             }
         }

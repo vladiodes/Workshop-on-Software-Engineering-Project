@@ -296,7 +296,7 @@ public interface IService {
      * REQ 2.4.7
      * @return true/false upon success/failure
      */
-    Response<Boolean> allowManagerBargainPreducts(String userToken, String managerName, String storeName);
+    Response<Boolean> allowManagerBargainProducts(String userToken, String managerName, String storeName);
     /**
      * REQ 2.4.7
      * @return true/false upon success/failure

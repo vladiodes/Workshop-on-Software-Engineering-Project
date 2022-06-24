@@ -25,3 +25,4 @@ hs_err_pid*
 dev/out/production/*
 dev/LOG.txt
 dev/BUG.txt
+*.csv

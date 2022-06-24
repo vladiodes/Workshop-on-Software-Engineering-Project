@@ -2,6 +2,7 @@ package main.Stores.PurchasePolicy.ProductPolicy;
 
 import main.ExternalServices.Payment.IPayment;
 import main.ExternalServices.Supplying.ISupplying;
+import main.Logger.Logger;
 import main.Persistence.DAO;
 import main.Publisher.Notification;
 import main.Publisher.PersonalNotification;
@@ -11,6 +12,7 @@ import main.Users.User;
 import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
+import org.apache.bcel.generic.ISUB;
 
 import javax.persistence.*;
 import java.util.*;
@@ -31,6 +33,9 @@ public class BargainingPolicy extends TimedPolicy{
     private Double originalPrice;
     @OneToOne
     private Product product;
+    @Transient
+    private IPayment latestPaymentSystem;
+    private ISupplying latestSupplySystem;
 
     public BargainingPolicy(Store sellingStore, Double originalPrice, Product product) {
         this.bidApprovedBy = Collections.synchronizedMap(new HashMap<>());
@@ -110,16 +115,41 @@ public class BargainingPolicy extends TimedPolicy{
         bidApprovedByUserList approvers = bidApprovedBy.get(bid);
         approvers.add(approvingUser);
         DAO.getInstance().merge(this);
+        latestPaymentSystem = payment;
+        latestSupplySystem = supplying;
         if (isApproved(approvers)) {
-            this.purchaseBid(sellingStore, getUserBid(user.getUserName()),payment,supplying);
-            Notification n =new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName()));
+            Approved(user, payment, supplying, bid, approvers);
+        }
+    }
+
+    private void Approved(User user, IPayment payment, ISupplying supplying, Bid bid, bidApprovedByUserList approvers) throws Exception {
+        synchronized (bid) {
+            this.purchaseBid(sellingStore, getUserBid(user.getUserName()), payment, supplying);
+            Notification n = new PersonalNotification(sellingStore.getName(), String.format("Your offer for %s has been accepted and product was successfully purchased.", bid.getProduct().getName()));
             DAO.getInstance().persist(n);
             user.notifyObserver(n);
-            Bid bidToRemove=getUserBid(user);
+            Bid bidToRemove = getUserBid(user);
             bidApprovedBy.remove(bidToRemove);
             DAO.getInstance().remove(bidToRemove);
             DAO.getInstance().remove(approvers);
             DAO.getInstance().merge(this);
+        }
+    }
+
+    @Override
+    public void StaffUpdateNotify(){
+        for(Map.Entry<Bid, bidApprovedByUserList> entry : this.bidApprovedBy.entrySet()){
+            Bid bid = entry.getKey();
+            bidApprovedByUserList approvers = entry.getValue();
+            synchronized (bid){
+                if (isApproved(approvers)) {
+                    try {
+                        Approved(bid.getUser(), latestPaymentSystem, latestSupplySystem, bid, approvers);
+                    } catch (Exception e){
+                        Logger.getInstance().logBug("Baragin", String.format("On product %s store %s, after staff update something happend: %s", bid.getProduct().getName(), this.sellingStore.getName(), e.getMessage()));
+                    }
+                }
+            }
         }
     }
 

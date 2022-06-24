@@ -71,6 +71,6 @@ public abstract class Policy {
     public abstract void setDiscount(Discount discount);
     public abstract Discount getDiscount();
     public abstract void setOriginalPrice(Double price);
-
+    public void StaffUpdateNotify(){}
     public abstract boolean isAddableToBasket();
 }
