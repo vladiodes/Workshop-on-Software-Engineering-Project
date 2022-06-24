@@ -22,6 +22,7 @@ public class AT_Req2_3 {
     private Response<String> guest1Token, memberNoCartToken, memberWithCartToken, founder1token, founder2token, loggedOutMember, founder3token, memberBoughtCola, memberToChange1, memberToChange2, bloggerMember;
     private IService service;
     String longString;
+    int threadCount;
 
     //===========================================Setup========================================
 
@@ -33,6 +34,7 @@ public class AT_Req2_3 {
         {
             longString = longString + "a";
         }
+        threadCount = 10000;
         service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         guest1Token = service.guestConnect();
         memberNoCartToken = service.guestConnect();
@@ -45,6 +47,7 @@ public class AT_Req2_3 {
         memberToChange1 = service.guestConnect();
         memberToChange2 = service.guestConnect();
         bloggerMember = service.guestConnect();
+
 
 
         //Register
@@ -140,6 +143,32 @@ public class AT_Req2_3 {
         //Member opens store invalid attributes - fail
         assertTrue(service.openStore(guest1Token.getResult(), "").isError_occured()); //Empty store name
         assertTrue(service.openStore(guest1Token.getResult(), "MyStore1").isError_occured()); //Store name already exists
+    }
+
+    /***
+     * use case: openStore req 3.2 :
+     */
+
+    @Test
+    public void testOpenStoreConcurrentSameName () throws InterruptedException{
+        AtomicInteger successCounter = new AtomicInteger(0);
+        Runnable openStoreExecution = () -> {
+            Response<Boolean> response = service.openStore(founder1token.getResult(),"TestStore1");
+            if(!response.isError_occured()) {
+                successCounter.getAndIncrement();
+            }
+        };
+        Thread[] openStoreThreads = new Thread[threadCount];
+        for(int i=0;i<threadCount;i++) {
+            openStoreThreads[i] = new Thread(openStoreExecution);
+        }
+        for(int i=0;i<threadCount;i++) {
+            openStoreThreads[i].start();
+        }
+        for(int i=0;i<threadCount;i++) {
+            openStoreThreads[i].join();
+        }
+        assertEquals(1,successCounter.get());
     }
 
     /***

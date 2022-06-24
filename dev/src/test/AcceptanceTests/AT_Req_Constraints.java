@@ -9,6 +9,7 @@ import org.junit.Test;
 import test.testUtils.testsFactory;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,9 +17,11 @@ public class AT_Req_Constraints {
 
     Response<String> adminToken, founder1token, user1token, user2token, user3token;
     IService service;
+    int threadCount;
 
     @Before
     public void setUp() throws Exception {
+        this.threadCount = 10000;
         service = new Service(testsFactory.alwaysSuccessPayment(), testsFactory.alwaysSuccessSupplyer());
         adminToken = service.guestConnect();
         founder1token = service.guestConnect();
@@ -40,6 +43,29 @@ public class AT_Req_Constraints {
         Response<List<String>> res2 = service.getPurchaseHistory(founder1token.getResult(),"founder1");
         assertTrue(res.isError_occured() && !res2.isError_occured());
 
+    }
+
+    @Test
+    public void ConcurrentCheckUsernameIsUnique() throws InterruptedException{
+        AtomicInteger successCounter = new AtomicInteger(0);
+        Runnable registerSameUser = () -> {
+            Response<Boolean> response = service.register("user11","123456");
+            if(!response.isError_occured()) {
+                successCounter.getAndIncrement();
+            }
+        };
+        Thread[] registerThreads = new Thread[threadCount];
+        for(int i=0;i<threadCount;i++) {
+            registerThreads[i] = new Thread(registerSameUser);
+        }
+        for(int i=0;i<threadCount;i++) {
+            registerThreads[i].start();
+        }
+        for(int i=0;i<threadCount;i++) {
+            registerThreads[i].join();
+        }
+
+        assertEquals(1, successCounter.get());
     }
 
     /*
