@@ -234,11 +234,10 @@ public class ATuser2Requirements {
 
     @Test
     public void PurchaseCartNotifies() {
-        // TODO: verify with everyone about amount of messages
         service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 5);
         Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
         assertFalse(r.isError_occured());
-        // 3 messages: 1 for orange juice not bought, 1 for owner appointment and 1 for cart notification
+        // 2 messages: 1 for owner appointment and 1 for cart notification
         assertEquals(2, service.receiveMessages(owner1token.getResult()).getResult().size());
         assertEquals(2, service.receiveMessages(founder1token.getResult()).getResult().size());
     }

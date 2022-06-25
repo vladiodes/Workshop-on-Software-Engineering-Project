@@ -156,18 +156,22 @@ public class User implements Observable {
     }
 
     public boolean appointOwnerToStore(Store IStore, User user_to_appoint) {
+        synchronized (IStore) {
+            //first checking preconditions to make the appointment
 
-        //first checking preconditions to make the appointment
-        appointOwnerPreconditions(IStore, user_to_appoint);
-        OwnerAppointmentRequest request = new OwnerAppointmentRequest(this, user_to_appoint);
-        DAO.getInstance().persist(request);
-        IStore.addOwnerRequest(request);
+            appointOwnerPreconditions(IStore, user_to_appoint);
+            OwnerAppointmentRequest request = new OwnerAppointmentRequest(this, user_to_appoint);
+            DAO.getInstance().persist(request);
+            IStore.addOwnerRequest(request);
+        }
+
         return true;
 
     }
 
     private void appointOwnerPreconditions(Store IStore, User user_to_appoint) {
         //first checking if the appointing (this) user can appoint a owner to the store
+
 
         if (!hasPermission(IStore, StorePermission.OwnerPermission))
             throw new IllegalArgumentException("This user can't appoint an owner because he's not an owner/founder of the store");
@@ -304,14 +308,16 @@ public class User implements Observable {
     }
 
     public boolean appointManagerToStore(Store IStore, User user_to_appoint) {
-        appointManagerPreconditions(IStore, user_to_appoint);
+        synchronized (IStore) {
+            appointManagerPreconditions(IStore, user_to_appoint);
 
-        ManagerPermissions newManagerAppointment = new ManagerPermissions(user_to_appoint, this, IStore);
-        DAO.getInstance().persist(newManagerAppointment);
-        user_to_appoint.addManagedStores(newManagerAppointment);
-        DAO.getInstance().merge(user_to_appoint);
-        IStore.addManager(newManagerAppointment);
-        DAO.getInstance().merge(IStore);
+            ManagerPermissions newManagerAppointment = new ManagerPermissions(user_to_appoint, this, IStore);
+            DAO.getInstance().persist(newManagerAppointment);
+            user_to_appoint.addManagedStores(newManagerAppointment);
+            DAO.getInstance().merge(user_to_appoint);
+            IStore.addManager(newManagerAppointment);
+            DAO.getInstance().merge(IStore);
+        }
         return true;
     }
 
