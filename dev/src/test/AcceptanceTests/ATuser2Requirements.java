@@ -52,6 +52,8 @@ public class ATuser2Requirements {
 
     @Before
     public void setUp() throws Exception {
+        pi.setTransactionId(0);
+        si.setTransactionId(0);
         mockSupplyer = mock(SupplyingAdapter.class);
         mockPayment = mock(PaymentAdapter.class);
         mockPaymentInformation = mock(PaymentInformation.class);
@@ -243,13 +245,15 @@ public class ATuser2Requirements {
 
     @Test
     public void PurchaseCartFailedSupply() {
+        si.setTransactionId(-1);
+        pi.setTransactionId(1);
         when(mockSupplyer.supply(any(SupplyingInformation.class), any(HashMap.class))).thenReturn(false);
         service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 5);
         Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
         assertTrue(r.isError_occured());
         try
         {
-            verify(mockPayment, times(1)).abort(pi);
+            verify(mockPayment, times(1)).abort(any());
         }
         catch(Exception e)
         {
@@ -259,6 +263,8 @@ public class ATuser2Requirements {
 
     @Test
     public void PurchaseCartFailedPayment() {
+        pi.setTransactionId(-1);
+        si.setTransactionId(1);
         when(mockPayment.makePayment(any(PaymentInformation.class), any(Double.class))).thenReturn(false);
         service.addProductToCart(user1token.getResult(), "MyStore1", "Coca Cola", 5);
         Response<Boolean> r = service.purchaseCart(user1token.getResult(), pi, si);
