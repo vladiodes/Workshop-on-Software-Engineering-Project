@@ -52,6 +52,7 @@ public class AT_Req2_4_Req2_5 {
         service.appointStoreOwner(founder1token.getResult(), "owner1", "MyStore1");
         service.appointStoreManager(founder1token.getResult(), "manager1", "MyStore1");
         service.addProductToStore(founder1token.getResult(), "Coca Cola", "Drinks", null, "tasty drink", "MyStore1", 100, 6);
+        service.addProductToStore(founder1token.getResult(), "Iphone", "phone", null, "smart phone", "MyStore1", 1, 6);
 
         threadCount = 10000;
     }
@@ -70,6 +71,31 @@ public class AT_Req2_4_Req2_5 {
             searchFlag |= product.getProductName().equals("Pepsi Cola");
         assertTrue(searchFlag);
     }
+    /***
+     * use case: Product Management req 4.1:
+     */
+    @Test
+    public void concurrentAddSameProduct() throws InterruptedException{
+        AtomicInteger successCounter = new AtomicInteger(0);
+        Runnable removeProductExec = () -> {
+            Response<Boolean> response = service.addProductToStore(founder1token.getResult(), "testProd", "test", null, "testProd", "MyStore1", 150, 6);
+            if(!response.isError_occured()) {
+                successCounter.getAndIncrement();
+            }
+        };
+        Thread[] removeProductsThreads = new Thread[threadCount];
+        for(int i=0;i<threadCount;i++) {
+            removeProductsThreads[i] = new Thread(removeProductExec);
+        }
+        for(int i=0;i<threadCount;i++){
+            removeProductsThreads[i].start();
+        }
+        for(int i=0;i<threadCount;i++){
+            removeProductsThreads[i].join();
+        }
+        assertEquals(1,successCounter.get());
+    }
+
 
     /***
      * use case: Product Management req 4.1:
@@ -123,6 +149,31 @@ public class AT_Req2_4_Req2_5 {
             if (product.getProductName().equals("Coca Cola"))
                 assertNotEquals(product.getDescription(), "bad drink");
     }
+    /***
+     * use case: Product Management req 4.1:
+     */
+    @Test
+    public void concurrentRemoveProduct() throws InterruptedException{
+        AtomicInteger successCounter = new AtomicInteger(0);
+        Runnable removeProductExec = () -> {
+            Response<Boolean> response = service.removeProductFromStore(founder1token.getResult(), "Iphone", "MyStore1");
+            if(!response.isError_occured()) {
+                successCounter.getAndIncrement();
+            }
+        };
+        Thread[] removeProductsThreads = new Thread[threadCount];
+        for(int i=0;i<threadCount;i++) {
+            removeProductsThreads[i] = new Thread(removeProductExec);
+        }
+        for(int i=0;i<threadCount;i++){
+            removeProductsThreads[i].start();
+        }
+        for(int i=0;i<threadCount;i++){
+            removeProductsThreads[i].join();
+        }
+        assertEquals(1,successCounter.get());
+    }
+
 
     /***
      * use case: Product Management req 4.1:
