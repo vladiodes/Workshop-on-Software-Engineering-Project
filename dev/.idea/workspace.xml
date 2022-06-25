@@ -22,12 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Added AT for new system stats req">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Small fixes in orm mapping of discount and purchase condition">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TOKENS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TOKENS.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/PurchaseCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Conditions/PurchaseCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/Discounts/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AcceptanceTests/ATuser2Requirements.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +158,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main.Communication.Main">
+  <component name="RunManager" selected="JUnit.test in dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -227,6 +227,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ATuser2Requirements.PurchaseCartFailedPayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="PurchaseCartFailedPayment" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ATuser2Requirements.PurchaseCartFailedSupply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dev" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.AcceptanceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.AcceptanceTests" />
+      <option name="MAIN_CLASS_NAME" value="test.AcceptanceTests.ATuser2Requirements" />
+      <option name="METHOD_NAME" value="PurchaseCartFailedSupply" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DBTests" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="dev" />
       <shortenClasspath name="ARGS_FILE" />
@@ -259,40 +293,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
-      <option name="METHOD_NAME" value="removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.testVisitorTypeOwner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dev" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.UnitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.UnitTests" />
-      <option name="MAIN_CLASS_NAME" value="test.UnitTests.UserTest" />
-      <option name="METHOD_NAME" value="testVisitorTypeOwner" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <shortenClasspath name="ARGS_FILE" />
       <option name="TEST_OBJECT" value="class" />
@@ -320,19 +320,19 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.main.Service.ServiceLoader" />
       <item itemvalue="JUnit.DBTests" />
+      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedPayment" />
+      <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedSupply" />
       <item itemvalue="JUnit.ATuser2Requirements" />
       <item itemvalue="JUnit.UserTest" />
-      <item itemvalue="JUnit.UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
-      <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
       <item itemvalue="JUnit.test in dev" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.test in dev" />
         <item itemvalue="JUnit.ATuser2Requirements" />
+        <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedPayment" />
+        <item itemvalue="JUnit.ATuser2Requirements.PurchaseCartFailedSupply" />
         <item itemvalue="JUnit.UserTest" />
-        <item itemvalue="JUnit.UserTest.testVisitorTypeOwner" />
-        <item itemvalue="JUnit.UserTest.removeProductFromStoreOwnerOrFounderOrManagerWithPermissions" />
       </list>
     </recent_temporary>
   </component>
@@ -378,13 +378,7 @@
       <workItem from="1655812302698" duration="1988000" />
       <workItem from="1655816982731" duration="4108000" />
       <workItem from="1655880921996" duration="215000" />
-    </task>
-    <task id="LOCAL-00022" summary="Added NotificationBus tests">
-      <created>1650732398578</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1650732398578</updated>
+      <workItem from="1656143390302" duration="1600000" />
     </task>
     <task id="LOCAL-00023" summary="Added ManagerPermissions tests">
       <created>1650733576135</created>
@@ -722,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655975542545</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Small fixes in orm mapping of discount and purchase condition">
+      <created>1656006070970</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1656006070980</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -768,7 +769,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Need to annotate and map all classes..." />
     <MESSAGE value="Added simple mapping for user-user_state... working." />
     <MESSAGE value="Annotating..." />
     <MESSAGE value="More general function in DAO" />
@@ -793,7 +793,8 @@
     <MESSAGE value="Added AT for new system stats req" />
     <MESSAGE value="Fixed DBTests and some implementation" />
     <MESSAGE value="Fixed unit-tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed unit-tests" />
+    <MESSAGE value="Small fixes in orm mapping of discount and purchase condition" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes in orm mapping of discount and purchase condition" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

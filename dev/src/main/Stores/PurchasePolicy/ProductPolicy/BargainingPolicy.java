@@ -35,6 +35,7 @@ public class BargainingPolicy extends TimedPolicy{
     private Product product;
     @Transient
     private IPayment latestPaymentSystem;
+    @Transient
     private ISupplying latestSupplySystem;
 
     public BargainingPolicy(Store sellingStore, Double originalPrice, Product product) {
