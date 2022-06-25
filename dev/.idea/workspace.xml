@@ -22,14 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed some bugs with bidding">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed bug with delete product">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TOKENS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TOKENS.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Market/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Market/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/Policy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/normalPolicy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,14 +381,7 @@
       <workItem from="1655880921996" duration="215000" />
       <workItem from="1656143390302" duration="4185000" />
       <workItem from="1656168680567" duration="2856000" />
-      <workItem from="1656172806904" duration="2286000" />
-    </task>
-    <task id="LOCAL-00025" summary="Refactoring - moving store messages to NotificationBus&#10;Refactoring - fixing all kinds of warnings and types">
-      <created>1650746165583</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1650746165583</updated>
+      <workItem from="1656172806904" duration="2682000" />
     </task>
     <task id="LOCAL-00026" summary="concurrency bug fix in open store">
       <created>1650747935414</created>
@@ -730,7 +719,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656170299226</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Fixed bug with delete product">
+      <created>1656175225315</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1656175225316</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,7 +772,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="More general function in DAO" />
     <MESSAGE value="More annotations... believe the process" />
     <MESSAGE value="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map" />
     <MESSAGE value="Persisting history" />
@@ -801,7 +796,8 @@
     <MESSAGE value="Small fixes in orm mapping of discount and purchase condition" />
     <MESSAGE value="Fixed test and fixed mapping" />
     <MESSAGE value="Fixed some bugs with bidding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs with bidding" />
+    <MESSAGE value="Fixed bug with delete product" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with delete product" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

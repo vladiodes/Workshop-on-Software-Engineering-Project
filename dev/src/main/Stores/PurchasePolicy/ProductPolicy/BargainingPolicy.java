@@ -183,7 +183,11 @@ public class BargainingPolicy extends TimedPolicy{
     @Override
     public void close() {
         for (Bid bidkey : bidApprovedBy.keySet()) {
-            bidkey.getUser().notifyObserver(new PersonalNotification(sellingStore.getName(), String.format("%s is not up for bargaining anymore",product.getName())));
+            DAO.getInstance().remove(bidkey);
+            DAO.getInstance().remove(bidApprovedBy.get(bidkey));
+            Notification n =new PersonalNotification(sellingStore.getName(), String.format("%s is not up for bargaining anymore",product.getName()));
+            DAO.getInstance().persist(n);
+            bidkey.getUser().notifyObserver(n);
         }
     }
 
