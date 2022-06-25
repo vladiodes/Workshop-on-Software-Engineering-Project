@@ -184,4 +184,8 @@ public class Product {
     public void StaffUpdateNotify(){
         this.policy.StaffUpdateNotify();
     }
+
+    public boolean hasBid() {
+        return policy.hasBid();
+    }
 }

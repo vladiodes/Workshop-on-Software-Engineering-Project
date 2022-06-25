@@ -687,9 +687,48 @@ public class Market {
 
     public boolean removeProductFromStore(String userToken, String productName, String storeName) {
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        if(productInSomeCart(productName,p.second))
+            throw new IllegalArgumentException("Product in user's cart");
+        if(productInBid(productName,p.second))
+            throw new IllegalArgumentException("Product in bidding progress");
         boolean output = p.first.removeProductFromStore(productName, p.second);
         dao.merge(p.first);
         return output;
+    }
+
+    private boolean productInBid(String productName, Store second) {
+        Product p = second.getProductsByName().get(productName);
+        return p!=null && p.hasBid();
+    }
+
+    private boolean productInSomeCart(String productName, Store store) {
+        for(User user:connectedSessions.values()) {
+            if (!user.isGuest())
+                continue;
+            try {
+                for (Product p : user.getCart().getBasket(store.getName()).getProductsAndQuantities().keySet()) {
+                    if (p.getName().equals(productName))
+                        return true;
+                }
+            }
+            catch (IllegalArgumentException ignored){
+
+            }
+        }
+
+        for(User user:membersByUserName.values()){
+            try {
+                for (Product p : user.getCart().getBasket(store.getName()).getProductsAndQuantities().keySet()) {
+                    if (p.getName().equals(productName))
+                        return true;
+                }
+            }
+            catch (IllegalArgumentException ignored){
+
+            }
+        }
+
+        return false;
     }
 
     public void addSecurityQuestion(String userToken, String question, String answer) throws Exception {

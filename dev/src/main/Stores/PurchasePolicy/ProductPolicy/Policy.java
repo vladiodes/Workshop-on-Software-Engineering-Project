@@ -73,4 +73,11 @@ public abstract class Policy {
     public abstract void setOriginalPrice(Double price);
     public void StaffUpdateNotify(){}
     public abstract boolean isAddableToBasket();
+
+    /**
+     *
+     * @return true if there's an ongoing bid
+     */
+    public abstract boolean hasBid();
+
 }

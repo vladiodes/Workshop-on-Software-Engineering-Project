@@ -89,4 +89,9 @@ public class normalPolicy extends DirectPolicy {
         return true;
     }
 
+    @Override
+    public boolean hasBid() {
+        return false;
+    }
+
 }
