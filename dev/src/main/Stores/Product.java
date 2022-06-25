@@ -161,8 +161,8 @@ public class Product {
         return this.policy.bid(bid);
     }
 
-    public List<Bid> getUserBids() {
-        return policy.getBids();
+    public List<Bid> getUserBids(User requestingUser) {
+        return policy.getBids(requestingUser);
     }
 
     public void ApproveBid(User user, User apporvingUser,IPayment payment,ISupplying supplying) throws Exception {

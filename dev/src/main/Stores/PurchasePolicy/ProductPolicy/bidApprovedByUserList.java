@@ -25,6 +25,8 @@ public class bidApprovedByUserList {
     }
 
     public void add(User approvingUser) {
+        if(approvedBy.contains(approvingUser))
+            throw new IllegalArgumentException("You've already approved this bid!");
         approvedBy.add(approvingUser);
     }
 }

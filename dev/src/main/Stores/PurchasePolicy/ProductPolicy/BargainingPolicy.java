@@ -106,8 +106,13 @@ public class BargainingPolicy extends TimedPolicy{
     }
 
     @Override
-    public List<Bid> getBids() {
-        return new ArrayList<>(this.bidApprovedBy.keySet());
+    public List<Bid> getBids(User requestingUser) {
+        ArrayList<Bid> lst = new ArrayList<>();
+        for(Bid bid:bidApprovedBy.keySet()){
+            if(!bidApprovedBy.get(bid).getApprovedBy().contains(requestingUser))
+                lst.add(bid);
+        }
+        return lst;
     }
 
     @Override
@@ -157,7 +162,10 @@ public class BargainingPolicy extends TimedPolicy{
     @Override
     public void declineBid(User user) {
         Bid toDecline = getUserBid(user.getUserName());
+        bidApprovedByUserList approvers = bidApprovedBy.get(toDecline);
         bidApprovedBy.remove(toDecline);
+        DAO.getInstance().remove(toDecline);
+        DAO.getInstance().remove(approvers);
         DAO.getInstance().merge(this);
         Notification n =new PersonalNotification(sellingStore.getName(),String.format("Your offer for %s has been declined by store staff.", toDecline.getProduct().getName()));
         DAO.getInstance().persist(n);

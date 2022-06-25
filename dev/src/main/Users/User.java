@@ -577,7 +577,7 @@ public class User implements Observable {
     public List<Bid> getUserBids(Store store, String productName){
         if(!hasPermission(store, StorePermission.BargainPermission))
             throw new IllegalArgumentException("No permission to view other user's bids.");
-        return store.getProduct(productName).getUserBids();
+        return store.getProduct(productName).getUserBids(this);
     }
 
     public void ApproveBid(Store store, String productName, User user,IPayment payment,ISupplying supplying) throws Exception {

@@ -34,10 +34,10 @@
             #end
         #end
 
-        #if($fail_approveOrDelete)
-            <p id="failed_response">$response_vote</p>
-        #elseif($success_approveOrDelete)
-            <p id="success_response">$response_vote</p>
+        #if($bid_fail)
+            <p id="failed_response">$response_bid</p>
+        #elseif($bid_success)
+            <p id="success_response">$response_bid</p>
         #end
 
     </div>

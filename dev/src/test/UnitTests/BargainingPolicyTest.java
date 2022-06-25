@@ -112,7 +112,7 @@ class BargainingPolicyTest {
     @Order(1)
     void bid() {
         assertTrue(subject.bid(bid));
-        assertTrue(subject.getBids().contains(bid));
+        assertTrue(subject.getBids(approvingUser1).contains(bid));
     }
 
     @Test

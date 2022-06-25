@@ -24,7 +24,7 @@ public abstract  class DirectPolicy extends Policy{
         throw new IllegalArgumentException("This product is not up for bidding.");
     }
     @Override
-    public List<Bid> getBids(){
+    public List<Bid> getBids(User requestingUser){
         return null;
     }
     @Override

@@ -43,7 +43,7 @@ public abstract class Policy {
      * @return true if should notify store staff.
      */
     public abstract boolean bid(Bid bid);
-    public abstract List<Bid> getBids();
+    public abstract List<Bid> getBids(User requestingUser);
     public abstract void approveBid(User user, User approvingUser,IPayment payment,ISupplying supplying) throws Exception;
     public abstract void declineBid(User user);
     public abstract void counterOfferBid(User user, Double offer);
