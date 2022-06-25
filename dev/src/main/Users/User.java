@@ -308,14 +308,16 @@ public class User implements Observable {
     }
 
     public boolean appointManagerToStore(Store IStore, User user_to_appoint) {
-        appointManagerPreconditions(IStore, user_to_appoint);
+        synchronized (IStore) {
+            appointManagerPreconditions(IStore, user_to_appoint);
 
-        ManagerPermissions newManagerAppointment = new ManagerPermissions(user_to_appoint, this, IStore);
-        DAO.getInstance().persist(newManagerAppointment);
-        user_to_appoint.addManagedStores(newManagerAppointment);
-        DAO.getInstance().merge(user_to_appoint);
-        IStore.addManager(newManagerAppointment);
-        DAO.getInstance().merge(IStore);
+            ManagerPermissions newManagerAppointment = new ManagerPermissions(user_to_appoint, this, IStore);
+            DAO.getInstance().persist(newManagerAppointment);
+            user_to_appoint.addManagedStores(newManagerAppointment);
+            DAO.getInstance().merge(user_to_appoint);
+            IStore.addManager(newManagerAppointment);
+            DAO.getInstance().merge(IStore);
+        }
         return true;
     }
 

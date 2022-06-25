@@ -326,6 +326,31 @@ public class AT_Req2_4_Req2_5 {
      * use case: Appointing New Store Manager req 4.6:
      */
     @Test
+    public void concurrentAppointStoreManagerSameUser() throws InterruptedException{
+        AtomicInteger successCounter = new AtomicInteger(0);
+        Runnable appointStoreOwner = () -> {
+            Response<Boolean> response = service.appointStoreManager(founder1token.getResult(), "manager2", "MyStore1");
+            if(!response.isError_occured()) {
+                successCounter.getAndIncrement();
+            }
+        };
+        Thread[] appointStoreOwnerThreads = new Thread[threadCount];
+        for(int i=0;i<threadCount;i++) {
+            appointStoreOwnerThreads[i] = new Thread(appointStoreOwner);
+        }
+        for(int i=0;i<threadCount;i++) {
+            appointStoreOwnerThreads[i].start();
+        }
+        for(int i=0;i<threadCount;i++) {
+            appointStoreOwnerThreads[i].join();
+        }
+        assertEquals(1,successCounter.get());
+    }
+
+    /***
+     * use case: Appointing New Store Manager req 4.6:
+     */
+    @Test
     public void appointStoreManagerAgain() {
         service.appointStoreManager(founder1token.getResult(), "user1", "MyStore1");
         assertTrue(service.appointStoreManager(owner1token.getResult(), "user1", "MyStore1").isWas_expected_error());
