@@ -22,10 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed bug with delete product">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed more bugs with bidding">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TOKENS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TOKENS.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/BargainingPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/DirectPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/PurchasePolicy/ProductPolicy/DirectPolicy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -381,14 +382,7 @@
       <workItem from="1655880921996" duration="215000" />
       <workItem from="1656143390302" duration="4185000" />
       <workItem from="1656168680567" duration="2856000" />
-      <workItem from="1656172806904" duration="2682000" />
-    </task>
-    <task id="LOCAL-00026" summary="concurrency bug fix in open store">
-      <created>1650747935414</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1650747935414</updated>
+      <workItem from="1656172806904" duration="4213000" />
     </task>
     <task id="LOCAL-00027" summary="Added search store function to gui">
       <created>1652202889343</created>
@@ -726,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656175225316</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Fixed more bugs with bidding">
+      <created>1656175600706</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1656175600706</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -772,7 +773,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="More annotations... believe the process" />
     <MESSAGE value="Annotated cart,basket&#10;Changed ConcurrentHashMap to be Collection Map" />
     <MESSAGE value="Persisting history" />
     <MESSAGE value="To continue: add annotations for discounts, conditions" />
@@ -797,7 +797,8 @@
     <MESSAGE value="Fixed test and fixed mapping" />
     <MESSAGE value="Fixed some bugs with bidding" />
     <MESSAGE value="Fixed bug with delete product" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with delete product" />
+    <MESSAGE value="Fixed more bugs with bidding" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed more bugs with bidding" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

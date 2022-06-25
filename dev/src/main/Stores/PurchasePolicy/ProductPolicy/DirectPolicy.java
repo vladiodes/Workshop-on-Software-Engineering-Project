@@ -11,6 +11,7 @@ import main.utils.SupplyingInformation;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +26,7 @@ public abstract  class DirectPolicy extends Policy{
     }
     @Override
     public List<Bid> getBids(User requestingUser){
-        return null;
+        throw new IllegalArgumentException("This product isn't up for bidding");
     }
     @Override
     public void approveBid(User user, User approvingUser,IPayment payment,ISupplying supplying){
