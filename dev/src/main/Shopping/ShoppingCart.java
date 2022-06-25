@@ -88,7 +88,8 @@ public class ShoppingCart {
             basket.RemoveProduct(prodName, quantity);
             if (basket.getAmountOfProducts() == 0)
                 this.baskets.remove(st.getName());
-            DAO.getInstance().merge(this);
+            if(!user.isGuest())
+                DAO.getInstance().merge(this);
             return true;
         }
     }

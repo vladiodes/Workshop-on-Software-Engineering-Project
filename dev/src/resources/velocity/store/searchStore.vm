@@ -15,6 +15,10 @@
         #elseif($success)
             <p id="success_response">Search results:</p>
             <form action="/addToCartAfterStoreSearch" method="post">
+                <input type="hidden" name="userToken1" id="userToken1" value="">
+                <script type="text/javascript">
+                    document.getElementById("userToken1").setAttribute('value',localStorage.getItem("userToken"));
+                </script>
                 <select name="productStoreName">
                     #foreach($pname_product in $store.productsByName.entrySet())
                     <option value="$pname_product.value.getProductName(),$store.getStoreName()">$pname_product.value.getProductName() , price: $pname_product.value.getPrice()</option>

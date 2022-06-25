@@ -375,7 +375,8 @@ public class Market {
             throw new IllegalArgumentException("Store doesn't exist.");
         }
         boolean output = us.RemoveProductFromCart(st, productName, quantity);
-        dao.merge(us);
+        if(!us.isGuest())
+            dao.merge(us);
         return output;
     }
 
@@ -572,10 +573,41 @@ public class Market {
         verifyStoreNameNotNull(storeName);
 
         Pair<User, Store> p = getConnectedUserAndStore(userToken, storeName);
+        if(productsInCart(storeName) || productsInBid(p.second))
+            throw new IllegalArgumentException("Products are in cart or on an on-going bid");
         if (p.first.removeStore(p.second)) {
             stores.remove(storeName);
             return true;
         }
+        return false;
+    }
+
+    private boolean productsInBid(Store store) {
+        for(Product p:store.getProductsByName().values()){
+            try {
+                if (p.getUserBids(new User("dummy")).size() > 0)
+                    return true;
+            }
+            catch (IllegalArgumentException ignored){
+
+            }
+        }
+        return false;
+    }
+
+    private boolean productsInCart(String storeName) {
+        for(User u:connectedSessions.values()){
+            if(!u.isGuest())
+                continue;
+            if(u.getCart().getBasketInfo().containsKey(storeName))
+                return true;
+        }
+
+        for(User u:membersByUserName.values()){
+            if(u.getCart().getBasketInfo().containsKey(storeName))
+                return true;
+        }
+
         return false;
     }
 

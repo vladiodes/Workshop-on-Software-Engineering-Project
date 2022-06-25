@@ -6,7 +6,7 @@
     <div class="content">
         <h2>Delete store:</h2>
         <form id="delete_store" method="post">
-            <p>Username</p>
+            <p>Store name</p>
             <input type="text" name="storeName" placeholder="Enter store to delete" value="" required>
 
             <p><input type="submit" value="Delete store"></p>

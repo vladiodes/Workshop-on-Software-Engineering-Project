@@ -488,11 +488,13 @@ public class User implements Observable {
 
     public void removeOwnerRole(OwnerPermissions ownerPermissions) {
         ownedStores.remove(ownerPermissions);
+        DAO.getInstance().remove(ownerPermissions);
         DAO.getInstance().merge(this);
     }
 
     public void removeManagerRole(ManagerPermissions managerPermissions) {
         managedStores.remove(managerPermissions);
+        DAO.getInstance().remove(managerPermissions);
         DAO.getInstance().merge(this);
     }
 
