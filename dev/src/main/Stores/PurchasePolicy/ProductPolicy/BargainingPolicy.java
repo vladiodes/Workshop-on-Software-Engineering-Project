@@ -219,8 +219,12 @@ public class BargainingPolicy extends TimedPolicy{
     }
 
     @Override
-    public boolean deliveredImmediately(User user){
+    public Set<Bid> getAllBids() {
+        return bidApprovedBy.keySet();
+    }
 
+    @Override
+    public boolean deliveredImmediately(User user){
         return isApproved(this.bidApprovedBy.get(getUserBid(user)));
     }
 }

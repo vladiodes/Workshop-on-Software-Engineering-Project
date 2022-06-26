@@ -14,6 +14,7 @@ import main.utils.SupplyingInformation;
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -187,5 +188,9 @@ public class Product {
 
     public boolean hasBid() {
         return policy.hasBid();
+    }
+
+    public Set<Bid> getAllBids() {
+        return policy.getAllBids();
     }
 }

@@ -6,11 +6,14 @@ import main.Stores.PurchasePolicy.Discounts.Discount;
 import main.Stores.Product;
 import main.Stores.Store;
 import main.Users.User;
+import main.utils.Bid;
 import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class normalPolicy extends DirectPolicy {
@@ -92,6 +95,11 @@ public class normalPolicy extends DirectPolicy {
     @Override
     public boolean hasBid() {
         return false;
+    }
+
+    @Override
+    public Set<Bid> getAllBids() {
+        return new HashSet<>();
     }
 
 }

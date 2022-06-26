@@ -9,6 +9,7 @@ import main.utils.PaymentInformation;
 import main.utils.SupplyingInformation;
 import main.utils.Bid;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 
@@ -79,5 +80,7 @@ public abstract class Policy {
      * @return true if there's an ongoing bid
      */
     public abstract boolean hasBid();
+
+    public abstract Set<Bid> getAllBids();
 
 }

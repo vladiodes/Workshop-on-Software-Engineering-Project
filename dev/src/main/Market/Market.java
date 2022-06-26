@@ -623,9 +623,23 @@ public class Market {
         // Check to see if user has any role
         if (toDelete.isAdmin() || toDelete.isManager() || toDelete.isFounder() || toDelete.isOwner())
             throw new IllegalArgumentException("Cant delete a user with a role");
+        if(hasBids(toDelete))
+            throw new IllegalArgumentException("The user has a pending bidding process");
         membersByUserName.remove(toDelete.getUserName());
         DAO.getInstance().remove(toDelete);
         return true;
+    }
+
+    private boolean hasBids(User toDelete) {
+        for(Store store:stores.values()){
+            for(Product p:store.getProductsByName().values()){
+                for(Bid bid:p.getAllBids()){
+                    if(bid.getUser()==toDelete)
+                        return true;
+                }
+            }
+        }
+        return false;
     }
 
     public List<String> receiveMessages(String userToken) {
