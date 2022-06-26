@@ -22,11 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Delete user bugs fixed">
+    <list default="true" id="e0d1bf10-a8ef-4dd6-b4d1-a780084305dd" name="Changes" comment="Fixed bug with condition pass calculation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TOKENS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TOKENS.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shopping/ShoppingBasket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/velocity/store/composeConditionFromPrevRules.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/velocity/store/composeConditionFromPrevRules.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Stores/Store.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,14 +385,8 @@
       <workItem from="1656234384200" duration="1731000" />
       <workItem from="1656236465971" duration="569000" />
       <workItem from="1656238370457" duration="6000" />
-      <workItem from="1656240869881" duration="2412000" />
-    </task>
-    <task id="LOCAL-00030" summary="Answering buyers' queries functionality">
-      <created>1652205932645</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1652205932645</updated>
+      <workItem from="1656240869881" duration="2494000" />
+      <workItem from="1656260831124" duration="3003000" />
     </task>
     <task id="LOCAL-00031" summary="Added sending questions to store functionality">
       <created>1652206380647</created>
@@ -731,7 +724,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656236961640</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Fixed bug with condition pass calculation">
+      <created>1656243325937</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1656243325937</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -777,7 +777,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="To continue: add annotations for discounts, conditions" />
     <MESSAGE value="Mapped store, conditions and discounts" />
     <MESSAGE value="Continue: Policies..." />
     <MESSAGE value="Added xml config file for hibernate" />
@@ -802,7 +801,8 @@
     <MESSAGE value="Fixed more bugs with bidding" />
     <MESSAGE value="Fixed bugs with delete store" />
     <MESSAGE value="Delete user bugs fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete user bugs fixed" />
+    <MESSAGE value="Fixed bug with condition pass calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with condition pass calculation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -836,6 +836,11 @@
           <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/CartController.java</url>
           <line>39</line>
           <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Communication/Controllers/StoreController.java</url>
+          <line>349</line>
+          <option name="timeStamp" value="90" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

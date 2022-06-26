@@ -491,16 +491,15 @@ public class Store {
         this.founder = null;
 
         //then removing all owners
-        for (OwnerPermissions owner : owners) {
+        for (OwnerPermissions owner : owners)
             owner.getAppointedToOwner().removeOwnerRole(owner);
-            this.owners.remove(owner);
-        }
+        owners = Collections.synchronizedList(new LinkedList<>());
+
 
         //finally, removing all managers
-        for (ManagerPermissions manager : managers) {
+        for (ManagerPermissions manager : managers)
             manager.getAppointedToManager().removeManagerRole(manager);
-            this.managers.remove(manager);
-        }
+        managers = Collections.synchronizedList(new LinkedList<>());
     }
 
     public boolean removeProduct(String productName) {
