@@ -36,7 +36,7 @@
                 <hr class="solid">
 
                 <h2>Second purchaseCondition:</h2>
-                <p>Discount ID</p>
+                <p>Condition ID</p>
                 <input type="number" name="condition2_id" value="0" required>
 
                 <hr class="solid">

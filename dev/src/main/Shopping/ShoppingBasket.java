@@ -59,7 +59,7 @@ public class ShoppingBasket implements Serializable {
     }
 
     public boolean hasAmount(Product product, Integer amount){
-        return productsQuantity.get(product) >= amount;
+        return productsQuantity.get(product)!=null && productsQuantity.get(product) >= amount;
     }
 
     public boolean hasDiscountPassword(String pass){
