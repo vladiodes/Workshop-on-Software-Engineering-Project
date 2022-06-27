@@ -34,8 +34,11 @@ public class ATuser1Requirements {
      */
     @Test
     public void Registering(){
+        //Register with insecure password - fail
         assertTrue(System.register(userName, insecurePassword).isError_occured());
+        //Register with secured password - success
         assertFalse(System.register(userName, securePassword).isError_occured());
+        //Register with username already is use - fail
         assertTrue(System.register(userName, securePassword).isError_occured());
     }
     /***
@@ -44,11 +47,18 @@ public class ATuser1Requirements {
     @Test
     public void Login(){
         System.register(userName, securePassword);
-        assertTrue(System.login(usertoken1.getResult(), "UnkownUserName", securePassword).isError_occured());
+        //Login bad password - fail
         assertTrue(System.login(usertoken1.getResult(), userName, "BadPassword").isError_occured());
+        //Login good password - success
         assertFalse(System.login(usertoken1.getResult(), userName, securePassword).isError_occured());
-        // TODO: maybe remove last line (not we logout whoever was connected with current token)
+        //Duplicate login - fail
         assertTrue(System.login(usertoken1.getResult(), userName, securePassword).isError_occured());
+    }
+
+    @Test
+    public void unknownUsernameLogin()
+    {
+        assertTrue(System.login(usertoken1.getResult(), "UnkownUserName", securePassword).isError_occured());
     }
 
     @After
